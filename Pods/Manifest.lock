@@ -1,0 +1,41 @@
+PODS:
+  - LightRoute (2.1.21)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
+  - Swinject (2.6.2)
+  - SwinjectStoryboard (2.2.0):
+    - Swinject (~> 2.6)
+
+DEPENDENCIES:
+  - LightRoute (from `https://github.com/SpectralDragon/LightRoute.git`)
+  - R.swift (~> 5.0.3)
+  - Swinject (~> 2.6.2)
+  - SwinjectStoryboard (~> 2.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - R.swift
+    - R.swift.Library
+    - Swinject
+    - SwinjectStoryboard
+
+EXTERNAL SOURCES:
+  LightRoute:
+    :git: https://github.com/SpectralDragon/LightRoute.git
+
+CHECKOUT OPTIONS:
+  LightRoute:
+    :commit: e49872e525f930763a868e473c525b4108df22a8
+    :git: https://github.com/SpectralDragon/LightRoute.git
+
+SPEC CHECKSUMS:
+  LightRoute: db57625eed1e3ca42cd102ef5846bb871f4ed208
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
+  SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
+
+PODFILE CHECKSUM: 0d68aa4fed53e2627683ddd0efb8d0c176ec4139
+
+COCOAPODS: 1.6.1
