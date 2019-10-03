@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
+		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
+		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
+		A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AC2345F81A00EE1807 /* Event.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 		0EA6DED6AE53EB86801DC0B1 /* Pods-Cooplay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.release.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.release.xcconfig"; sourceTree = "<group>"; };
 		7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cooplay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		A82FF2AC2345F81A00EE1807 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 		A82FF2A12345E97900EE1807 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2AE2345FBD700EE1807 /* Common */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +134,16 @@
 			children = (
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		A82FF2AE2345FBD700EE1807 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2AC2345F81A00EE1807 /* Event.swift */,
+				A82FF2AA2345F60F00EE1807 /* Game.swift */,
+				A82FF2A82345F23C00EE1807 /* User.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		A87701F223336E6E002EA095 = {
@@ -318,8 +335,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
+				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
+				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
