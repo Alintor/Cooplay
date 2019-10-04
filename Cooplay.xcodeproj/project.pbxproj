@@ -24,6 +24,10 @@
 		A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */; };
 		A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */; };
 		A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */; };
+		A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2C02346F4C500EE1807 /* AvatarView.xib */; };
+		A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C22346F5D200EE1807 /* AvatarView.swift */; };
+		A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C52346F6AB00EE1807 /* AvatarViewModel.swift */; };
+		A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C92346F81300EE1807 /* UIColor.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
@@ -49,6 +53,10 @@
 		A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedStorage.swift; sourceTree = "<group>"; };
 		A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceAssemblyContainer.swift; sourceTree = "<group>"; };
 		A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
+		A82FF2C02346F4C500EE1807 /* AvatarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarView.xib; sourceTree = "<group>"; };
+		A82FF2C22346F5D200EE1807 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		A82FF2C52346F6AB00EE1807 /* AvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewModel.swift; sourceTree = "<group>"; };
+		A82FF2C92346F81300EE1807 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2BC2346F3AB00EE1807 /* Common */,
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 			);
 			path = Presentation;
@@ -278,6 +287,64 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		A82FF2BC2346F3AB00EE1807 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2BD2346F3BA00EE1807 /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A82FF2BD2346F3BA00EE1807 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2BE2346F48F00EE1807 /* Avatar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A82FF2BE2346F48F00EE1807 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2C42346F69400EE1807 /* AvatarViewModel */,
+				A82FF2BF2346F4A600EE1807 /* AvatarView */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		A82FF2BF2346F4A600EE1807 /* AvatarView */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2C02346F4C500EE1807 /* AvatarView.xib */,
+				A82FF2C22346F5D200EE1807 /* AvatarView.swift */,
+			);
+			path = AvatarView;
+			sourceTree = "<group>";
+		};
+		A82FF2C42346F69400EE1807 /* AvatarViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2C52346F6AB00EE1807 /* AvatarViewModel.swift */,
+			);
+			path = AvatarViewModel;
+			sourceTree = "<group>";
+		};
+		A82FF2C72346F7F700EE1807 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2C82346F80000EE1807 /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A82FF2C82346F80000EE1807 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2C92346F81300EE1807 /* UIColor.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		A87701F223336E6E002EA095 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +366,7 @@
 		A87701FD23336E6E002EA095 /* Cooplay */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2C72346F7F700EE1807 /* Extensions */,
 				A82FF2B323460E6100EE1807 /* Constants */,
 				A82FF2A32345EA3700EE1807 /* Configuration */,
 				A82FF2A22345E98600EE1807 /* Application */,
@@ -386,6 +454,7 @@
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A877020423336E6E002EA095 /* Main.storyboard in Resources */,
+				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,8 +534,10 @@
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
+				A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */,
 				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
+				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
@@ -474,6 +545,7 @@
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
 				840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */,
 				13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */,
+				A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */,
 				7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,

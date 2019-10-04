@@ -16,6 +16,24 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `AvatarView`.
+    static let avatarView = _R.nib._AvatarView()
+    
+    /// `UINib(name: "AvatarView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.avatarView) instead")
+    static func avatarView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.avatarView)
+    }
+    
+    static func avatarView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.avatarView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     /// Storyboard `EventsList`.
@@ -59,6 +77,21 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+  }
+  
+  struct nib {
+    struct _AvatarView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "AvatarView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
