@@ -1,0 +1,100 @@
+//
+//  HardcodedStorage.swift
+//  Cooplay
+//
+//  Created by Alexandr on 04/10/2019.
+//  Copyright © 2019 Ovchinnikov. All rights reserved.
+//
+
+enum HardcodedConstants {
+    
+    static let overwatch = Game(
+        slug: "overwatch",
+        name: "Overwatch",
+        imagePath: "https://media.rawg.io/media/games/4ea/4ea507ceebeabb43edbc09468f5aaac6.jpg"
+    )
+    static let destiny = Game(
+        slug: "destiny-2",
+        name: "Destiny 2",
+        imagePath: "https://media.rawg.io/media/games/1d5/1d553996f8c07c06d5f5e526c65d33a4.jpg"
+    )
+    static let apex = Game(
+        slug: "apex-legends",
+        name: "Apex Legends",
+        imagePath: "https://media.rawg.io/media/games/b72/b7233d5d5b1e75e86bb860ccc7aeca85.jpg"
+    )
+    static let divinity = Game(
+        slug: "divinity-original-sin-2",
+        name: "Divinity: Original Sin 2",
+        imagePath: "https://media.rawg.io/media/games/424/424facd40f4eb1f2794fe4b4bb28a277.jpg"
+    )
+    
+    static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .ontime, lateness: nil)
+    static let me_unknown = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .unknown, lateness: nil)
+    static let me_maybe = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .maybe, lateness: nil)
+    static let nilo_ontime = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, status: .ontime, lateness: nil)
+    static let nilo_late = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, status: .late, lateness: 15)
+    static let nilo_decline = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, status: .declined, lateness: nil)
+    static let madik_ontime = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, status: .ontime, lateness: nil)
+    static let madik_decline = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, status: .declined, lateness: nil)
+    static let madik_maybe = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, status: .maybe, lateness: nil)
+    static let rika_ontime = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, status: .ontime, lateness: nil)
+    static let rika_maybe = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, status: .maybe, lateness: nil)
+    static let random1 = User(id: "cvnvrdger", name: "Dude", avatarPath: nil, status: .ontime, lateness: nil)
+    static let random2 = User(id: "tryuyrteruy", name: "Lalka", avatarPath: nil, status: .ontime, lateness: nil)
+    static let random3 = User(id: "bnhgdfjghs", name: "Nagibator", avatarPath: nil, status: .ontime, lateness: nil)
+    static let random4 = User(id: "asfdh", name: "Boom", avatarPath: nil, status: .ontime, lateness: nil)
+    
+    static let eventInvitation1 = Event(
+        game: divinity,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_ontime, rika_ontime],
+        me: me_unknown
+    )
+    static let eventInvitation2 = Event(
+        game: overwatch,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_ontime, rika_ontime, madik_maybe],
+        me: me_unknown
+    )
+    static let eventNow = Event(
+        game: overwatch,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_late, rika_ontime, madik_maybe],
+        me: me_ontime
+    )
+    static let eventFuture1 = Event(
+        game: apex,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_ontime, rika_ontime],
+        me: me_ontime
+    )
+    static let eventFuture2 = Event(
+        game: destiny,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_ontime, rika_maybe, madik_ontime],
+        me: me_ontime
+    )
+    static let eventFuture3 = Event(
+        game: overwatch,
+        date: "yyyy-MM-dd HH:mm:ss",
+        members: [nilo_ontime, rika_ontime, madik_maybe, random1, random4, random2],
+        me: me_ontime
+    )
+}
+
+final class HardcodedStorage {
+    
+    private var events = [
+        HardcodedConstants.eventInvitation1,
+        HardcodedConstants.eventInvitation2,
+        HardcodedConstants.eventNow,
+        HardcodedConstants.eventFuture1,
+        HardcodedConstants.eventFuture2,
+        HardcodedConstants.eventFuture3
+    ]
+    
+    func fetchEvents() -> [Event] {
+        return events
+    }
+}

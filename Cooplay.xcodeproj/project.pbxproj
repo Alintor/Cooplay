@@ -11,6 +11,11 @@
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
 		A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AC2345F81A00EE1807 /* Event.swift */; };
+		A82FF2B2234606B700EE1807 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B1234606B700EE1807 /* EventService.swift */; };
+		A82FF2B523460E7900EE1807 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B423460E7900EE1807 /* Constants.swift */; };
+		A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */; };
+		A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */; };
+		A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
@@ -26,6 +31,11 @@
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A82FF2AC2345F81A00EE1807 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A82FF2B1234606B700EE1807 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		A82FF2B423460E7900EE1807 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedStorage.swift; sourceTree = "<group>"; };
+		A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceAssemblyContainer.swift; sourceTree = "<group>"; };
+		A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 		A82FF2A02345E97400EE1807 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2AF2346065300EE1807 /* Services */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -117,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				A87701FE23336E6E002EA095 /* AppDelegate.swift */,
+				A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -146,6 +158,32 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		A82FF2AF2346065300EE1807 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2B02346068A00EE1807 /* Event */,
+				A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A82FF2B02346068A00EE1807 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2B1234606B700EE1807 /* EventService.swift */,
+				A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		A82FF2B323460E6100EE1807 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2B423460E7900EE1807 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		A87701F223336E6E002EA095 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +205,7 @@
 		A87701FD23336E6E002EA095 /* Cooplay */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2B323460E6100EE1807 /* Constants */,
 				A82FF2A32345EA3700EE1807 /* Configuration */,
 				A82FF2A22345E98600EE1807 /* Application */,
 				A82FF2A12345E97900EE1807 /* Models */,
@@ -339,8 +378,13 @@
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
+				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
+				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
+				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
+				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
+				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

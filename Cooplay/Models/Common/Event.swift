@@ -11,4 +11,5 @@ struct Event: Codable {
     let game: Game
     let date: String
     let members: [User]
+    let me: User
 }
