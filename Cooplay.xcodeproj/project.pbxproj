@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E18459CE62AE534539FD03 /* EventsListPresenter.swift */; };
+		24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */; };
+		7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */; };
+		7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */; };
+		81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */; };
+		826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */; };
+		840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */; };
+		9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F78D0DA3753B15C262B74E /* EventsListViewController.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
@@ -22,10 +30,15 @@
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
+		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
+		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EA6DED6AE53EB86801DC0B1 /* Pods-Cooplay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.release.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.release.xcconfig"; sourceTree = "<group>"; };
+		16F78D0DA3753B15C262B74E /* EventsListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
+		27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractor.swift; sourceTree = "<group>"; };
+		58E18459CE62AE534539FD03 /* EventsListPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListPresenter.swift; sourceTree = "<group>"; };
 		7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cooplay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -43,7 +56,14 @@
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
+		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
+		D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewInput.swift; sourceTree = "<group>"; };
+		D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListModuleInput.swift; sourceTree = "<group>"; };
+		E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListAssemblyContainer.swift; sourceTree = "<group>"; };
+		F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouterInput.swift; sourceTree = "<group>"; };
+		F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29C76481B7BAAB90E6F28ED9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */,
+				16F78D0DA3753B15C262B74E /* EventsListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6E6E73E704500B36C74145 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		341ED12C318527A07E987A11 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3B0EFF11180C755BF51BF0FA /* EventsList */ = {
+			isa = PBXGroup;
+			children = (
+				3F5C5305CF1A7BD6D04DB03F /* Module */,
+			);
+			path = EventsList;
+			sourceTree = "<group>";
+		};
+		3F5C5305CF1A7BD6D04DB03F /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				341ED12C318527A07E987A11 /* Assembly */,
+				2E6E6E73E704500B36C74145 /* Storyboard */,
+				29C76481B7BAAB90E6F28ED9 /* View */,
+				58304493DDCCDAD996EFB47C /* Presenter */,
+				453A18536F15553BFFBC0F8D /* Interactor */,
+				71A8D9DFDA6019C9C37F682C /* Router */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		453A18536F15553BFFBC0F8D /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */,
+				27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		58304493DDCCDAD996EFB47C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */,
+				58E18459CE62AE534539FD03 /* EventsListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		618666405E3843E32A72C4E0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,9 +151,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		71A8D9DFDA6019C9C37F682C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */,
+				F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3B0EFF11180C755BF51BF0FA /* EventsList */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -262,11 +356,12 @@
 				TargetAttributes = {
 					A87701FA23336E6E002EA095 = {
 						CreatedOnToolsVersion = 10.3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = A87701F623336E6E002EA095 /* Build configuration list for PBXProject "Cooplay" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -291,6 +386,7 @@
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A877020423336E6E002EA095 /* Main.storyboard in Resources */,
+				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,8 +398,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cooplay/Pods-Cooplay-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LightRoute/LightRoute.framework",
@@ -312,8 +406,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightRoute.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -330,14 +422,10 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = R.swift;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
@@ -350,15 +438,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Cooplay-checkManifestLockResult.txt",
 			);
@@ -385,6 +469,15 @@
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
+				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
+				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
+				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
+				840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */,
+				13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */,
+				7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */,
+				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
+				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
+				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,8 +613,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -534,10 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ovchinnikov.Cooplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -553,10 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ovchinnikov.Cooplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

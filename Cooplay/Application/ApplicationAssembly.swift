@@ -15,10 +15,10 @@ final class ApplicationAssembly {
         return Assembler([
             
             // Services
-            EventServiceAssemblyContainer()
+            EventServiceAssemblyContainer(),
             
             // Modules
-            
+            EventsListAssemblyContainer()
             ])
     }
 }

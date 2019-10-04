@@ -16,12 +16,19 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
+    /// Storyboard `EventsList`.
+    static let eventsList = _R.storyboard.eventsList()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    
+    /// `UIStoryboard(name: "EventsList", bundle: ...)`
+    static func eventsList(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.eventsList)
+    }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
@@ -56,8 +63,29 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try eventsList.validate()
       try launchScreen.validate()
       try main.validate()
+    }
+    
+    struct eventsList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = EventsListViewController
+      
+      let bundle = R.hostingBundle
+      let eventsListViewController = StoryboardViewControllerResource<EventsListViewController>(identifier: "EventsListViewController")
+      let name = "EventsList"
+      
+      func eventsListViewController(_: Void = ()) -> EventsListViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventsListViewController)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.eventsList().eventsListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventsListViewController' could not be loaded from storyboard 'EventsList' as 'EventsListViewController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
