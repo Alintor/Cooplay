@@ -30,6 +30,10 @@
 		A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C92346F81300EE1807 /* UIColor.swift */; };
 		A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2CB2347043F00EE1807 /* UIImageView.swift */; };
 		A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2CE234714BD00EE1807 /* Localizable.strings */; };
+		A82FF2D42347193000EE1807 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2D22347193000EE1807 /* EventCell.swift */; };
+		A82FF2D52347193000EE1807 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2D32347193000EE1807 /* EventCell.xib */; };
+		A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2D72347228600EE1807 /* EventCellViewModel.swift */; };
+		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
@@ -61,6 +65,10 @@
 		A82FF2C92346F81300EE1807 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A82FF2CB2347043F00EE1807 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A82FF2CE234714BD00EE1807 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		A82FF2D22347193000EE1807 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		A82FF2D32347193000EE1807 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		A82FF2D72347228600EE1807 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
+		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 		3F5C5305CF1A7BD6D04DB03F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2D62347226800EE1807 /* ViewModel */,
 				341ED12C318527A07E987A11 /* Assembly */,
 				2E6E6E73E704500B36C74145 /* Storyboard */,
 				29C76481B7BAAB90E6F28ED9 /* View */,
@@ -186,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2A62345EB6600EE1807 /* R.generated.swift */,
+				A82FF2D9234729B300EE1807 /* Colors */,
 				A82FF2CD2347148900EE1807 /* Strings */,
 				A82FF29E2345E8F700EE1807 /* Launch */,
 				A82FF29D2345E8E900EE1807 /* Images */,
@@ -363,8 +373,34 @@
 		A82FF2D02347160600EE1807 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2D12347180700EE1807 /* EventCell */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A82FF2D12347180700EE1807 /* EventCell */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2D22347193000EE1807 /* EventCell.swift */,
+				A82FF2D32347193000EE1807 /* EventCell.xib */,
+			);
+			path = EventCell;
+			sourceTree = "<group>";
+		};
+		A82FF2D62347226800EE1807 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2D72347228600EE1807 /* EventCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A82FF2D9234729B300EE1807 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2DA234729C900EE1807 /* Colors.xcassets */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		A87701F223336E6E002EA095 = {
@@ -478,7 +514,9 @@
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A877020423336E6E002EA095 /* Main.storyboard in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
+				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
+				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,10 +600,12 @@
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
+				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
+				A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
 				A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */,
 				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
