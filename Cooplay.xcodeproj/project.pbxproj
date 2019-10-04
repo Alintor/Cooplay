@@ -28,6 +28,8 @@
 		A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C22346F5D200EE1807 /* AvatarView.swift */; };
 		A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C52346F6AB00EE1807 /* AvatarViewModel.swift */; };
 		A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2C92346F81300EE1807 /* UIColor.swift */; };
+		A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2CB2347043F00EE1807 /* UIImageView.swift */; };
+		A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2CE234714BD00EE1807 /* Localizable.strings */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		A82FF2C22346F5D200EE1807 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		A82FF2C52346F6AB00EE1807 /* AvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewModel.swift; sourceTree = "<group>"; };
 		A82FF2C92346F81300EE1807 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		A82FF2CB2347043F00EE1807 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		A82FF2CE234714BD00EE1807 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		29C76481B7BAAB90E6F28ED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2D02347160600EE1807 /* Cells */,
 				D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */,
 				16F78D0DA3753B15C262B74E /* EventsListViewController.swift */,
 			);
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2A62345EB6600EE1807 /* R.generated.swift */,
+				A82FF2CD2347148900EE1807 /* Strings */,
 				A82FF29E2345E8F700EE1807 /* Launch */,
 				A82FF29D2345E8E900EE1807 /* Images */,
 			);
@@ -341,8 +347,24 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2C92346F81300EE1807 /* UIColor.swift */,
+				A82FF2CB2347043F00EE1807 /* UIImageView.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		A82FF2CD2347148900EE1807 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2CE234714BD00EE1807 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		A82FF2D02347160600EE1807 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		A87701F223336E6E002EA095 = {
@@ -452,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
+				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A877020423336E6E002EA095 /* Main.storyboard in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
@@ -506,7 +529,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -553,6 +576,7 @@
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
+				A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */,
 				840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */,
 				13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */,
 				A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */,

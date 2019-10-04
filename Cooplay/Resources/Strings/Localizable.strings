@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Cooplay
+
+  Created by Alexandr on 04/10/2019.
+  Copyright © 2019 Ovchinnikov. All rights reserved.
+*/
+
+"tableName" = "Localizable";
+
+// MARK: - Common
+"common.statuses.ontime" = "Пойду";
+"common.statuses.maybe" = "Возможно";
+"common.statuses.late" = "Опоздаю";
+"common.statuses.declined" = "Не пойду";
+"common.statuses.unknown" = "Приглашен";
+
+// MARK: - Events list
+"eventsList.title" = "Все события";
+"eventsList.sections.active" = "Ближайшее";
+"eventsList.sections.future" = "Будущие событие";
+"eventsList.sections.declined" = "Отказался";
+"eventsList.sections.invited" = "Приглашен";

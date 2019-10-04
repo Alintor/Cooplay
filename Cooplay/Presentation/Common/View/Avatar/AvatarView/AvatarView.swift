@@ -32,7 +32,9 @@ import UIKit
     func update(with model: AvatarViewModel) {
         firstNameLetterLabel.text = model.firstNameLetter
         view.backgroundColor = model.backgroundColor
-        // TODO: load image
+        if let imagePath = model.avatarPath {
+            iconImageView.setImage(withPath: imagePath)
+        }
     }
     
     // MARK: - Private

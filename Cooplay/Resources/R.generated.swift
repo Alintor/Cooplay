@@ -16,6 +16,75 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.image` struct is generated, and contains static references to 9 images.
+  struct image {
+    /// Image `common.details`.
+    static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
+    /// Image `status.declined.small`.
+    static let statusDeclinedSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined.small")
+    /// Image `status.declined`.
+    static let statusDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined")
+    /// Image `status.maybe.small`.
+    static let statusMaybeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.maybe.small")
+    /// Image `status.maybe`.
+    static let statusMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.maybe")
+    /// Image `status.ontime.small`.
+    static let statusOntimeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.ontime.small")
+    /// Image `status.ontime`.
+    static let statusOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.ontime")
+    /// Image `status.unknown.small`.
+    static let statusUnknownSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.unknown.small")
+    /// Image `status.unknown`.
+    static let statusUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.unknown")
+    
+    /// `UIImage(named: "common.details", bundle: ..., traitCollection: ...)`
+    static func commonDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonDetails, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.declined", bundle: ..., traitCollection: ...)`
+    static func statusDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusDeclined, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.declined.small", bundle: ..., traitCollection: ...)`
+    static func statusDeclinedSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusDeclinedSmall, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.maybe", bundle: ..., traitCollection: ...)`
+    static func statusMaybe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusMaybe, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.maybe.small", bundle: ..., traitCollection: ...)`
+    static func statusMaybeSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusMaybeSmall, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.ontime", bundle: ..., traitCollection: ...)`
+    static func statusOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusOntime, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.ontime.small", bundle: ..., traitCollection: ...)`
+    static func statusOntimeSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusOntimeSmall, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.unknown", bundle: ..., traitCollection: ...)`
+    static func statusUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusUnknown, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.unknown.small", bundle: ..., traitCollection: ...)`
+    static func statusUnknownSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusUnknownSmall, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
     /// Nib `AvatarView`.
@@ -56,6 +125,94 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
+    struct localizable {
+      /// Value: Localizable
+      static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ближайшее
+      static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Будущие событие
+      static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Возможно
+      static let commonStatusesMaybe = Rswift.StringResource(key: "common.statuses.maybe", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Все события
+      static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не пойду
+      static let commonStatusesDeclined = Rswift.StringResource(key: "common.statuses.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Опоздаю
+      static let commonStatusesLate = Rswift.StringResource(key: "common.statuses.late", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отказался
+      static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пойду
+      static let commonStatusesOntime = Rswift.StringResource(key: "common.statuses.ontime", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашен
+      static let commonStatusesUnknown = Rswift.StringResource(key: "common.statuses.unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашен
+      static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: Localizable
+      static func tableName(_: Void = ()) -> String {
+        return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Ближайшее
+      static func eventsListSectionsActive(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.active", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Будущие событие
+      static func eventsListSectionsFuture(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Возможно
+      static func commonStatusesMaybe(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.maybe", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Все события
+      static func eventsListTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не пойду
+      static func commonStatusesDeclined(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.declined", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Опоздаю
+      static func commonStatusesLate(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.late", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Отказался
+      static func eventsListSectionsDeclined(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.declined", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Пойду
+      static func commonStatusesOntime(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.ontime", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приглашен
+      static func commonStatusesUnknown(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.unknown", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приглашен
+      static func eventsListSectionsInvited(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.invited", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
     }
     
     fileprivate init() {}
