@@ -6,10 +6,12 @@
 //  Copyright © 2019 Ovchinnikov. All rights reserved.
 //
 
+import Foundation
+
 struct Event: Codable {
     
     let game: Game
-    let date: String
+    let date: Date
     let members: [User]
     let me: User
 }

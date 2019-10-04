@@ -12,10 +12,9 @@ enum GlobalConstant {
     
     enum Format {
         
-        enum ServerDate: String {
-            
-            case long = "yyyy-MM-dd HH:mm:ss",
-            short = "yyyy-MM-dd"
+        enum Date: String {
+            case serverDate = "yyyy-MM-dd HH:mm:ss",
+            time = "HH:mm"
         }
     }
 }

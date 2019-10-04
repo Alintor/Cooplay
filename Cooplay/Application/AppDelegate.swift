@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.barStyle = .blackOpaque
+        navigationBarAppearance.barTintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
+        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.tintColor = .white
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(

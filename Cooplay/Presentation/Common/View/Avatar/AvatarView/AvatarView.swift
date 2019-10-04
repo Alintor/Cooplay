@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable final class AvatarView: UIView {
     
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var firstNameLetterLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     
@@ -31,10 +32,13 @@ import UIKit
     
     func update(with model: AvatarViewModel) {
         firstNameLetterLabel.text = model.firstNameLetter
-        view.backgroundColor = model.backgroundColor
+        backgroundView.backgroundColor = model.backgroundColor
         if let imagePath = model.avatarPath {
             iconImageView.setImage(withPath: imagePath)
         }
+        let diameter = view.frame.size.width
+        firstNameLetterLabel.font = firstNameLetterLabel.font.withSize(diameter / 2)
+        backgroundView.layer.cornerRadius = diameter / 2
     }
     
     // MARK: - Private

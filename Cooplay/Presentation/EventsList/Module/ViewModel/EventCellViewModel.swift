@@ -25,7 +25,7 @@ struct EventCellViewModel {
     init(with model: Event) {
         self.model = model
         title = model.game.name
-        date = model.date
+        date = model.date.displayString
         imagePath = model.game.imagePath
         if let lateness = model.me.lateness {
             lateTime = "\(lateness)"
@@ -33,7 +33,19 @@ struct EventCellViewModel {
         if let status = model.me.status {
             statusTitle = NSLocalizedString("common.statuses.\(status.rawValue)", comment: "")
             statusIcon = UIImage(named: "status.\(status.rawValue).small")
-            statusColor = UIColor(named: "status.\(status.rawValue)")
+            switch status {
+            case .ontime:
+                statusColor = R.color.statusOntime()
+            case .maybe:
+                statusColor = R.color.statusMaybe()
+            case .late:
+                statusColor = R.color.statusLate()
+            case .declined:
+                statusColor = R.color.statusDeclined()
+            case .unknown:
+                statusColor = R.color.statusUnknown()
+            }
+            
         }
         // TODO: Sort members
         let memberViewModels = model.members.map { AvatarViewModel(with: $0) }

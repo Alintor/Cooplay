@@ -11,6 +11,8 @@ import DTModelStorage
 
 class EventCell: UITableViewCell {
     
+    static let defaultHeight: CGFloat = 114
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var gameImageView: UIImageView!
@@ -19,6 +21,7 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var statusIconImageView: UIImageView!
     @IBOutlet weak var statusIconView: UIView!
     @IBOutlet weak var membersView: UIStackView!
+    @IBOutlet weak var statusIconWidthConstraint: NSLayoutConstraint!
     
 }
 
@@ -32,14 +35,18 @@ extension EventCell: ModelTransfer {
         lateTimeLabel.text = model.lateTime
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
+        statusIconWidthConstraint.isActive = model.lateTime == nil
         let avatarDiameter = membersView.frame.size.height
-        let avatarCornerRadius = avatarDiameter / 2
+        membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {
             let avatarView = AvatarView(
                 frame: CGRect(x: 0, y: 0, width: avatarDiameter, height: avatarDiameter)
             )
-            avatarView.layer.cornerRadius = avatarCornerRadius
             avatarView.update(with: member)
+            NSLayoutConstraint.activate([
+                avatarView.heightAnchor.constraint(equalToConstant: avatarDiameter),
+                avatarView.widthAnchor.constraint(equalToConstant: avatarDiameter)
+            ])
             membersView.addArrangedSubview(avatarView)
         }
     }

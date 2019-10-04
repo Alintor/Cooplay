@@ -16,6 +16,57 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.color` struct is generated, and contains static references to 5 colors.
+  struct color {
+    /// Color `status.declined`.
+    static let statusDeclined = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.declined")
+    /// Color `status.late`.
+    static let statusLate = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.late")
+    /// Color `status.maybe`.
+    static let statusMaybe = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.maybe")
+    /// Color `status.ontime`.
+    static let statusOntime = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.ontime")
+    /// Color `status.unknown`.
+    static let statusUnknown = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.unknown")
+    
+    /// `UIColor(named: "status.declined", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func statusDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.statusDeclined, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "status.late", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func statusLate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.statusLate, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "status.maybe", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func statusMaybe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.statusMaybe, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "status.ontime", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func statusOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.statusOntime, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "status.unknown", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func statusUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.statusUnknown, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.image` struct is generated, and contains static references to 9 images.
   struct image {
     /// Image `common.details`.
@@ -85,10 +136,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `AvatarView`.
     static let avatarView = _R.nib._AvatarView()
+    /// Nib `EventCell`.
+    static let eventCell = _R.nib._EventCell()
     
     /// `UINib(name: "AvatarView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avatarView) instead")
@@ -96,21 +149,37 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.avatarView)
     }
     
+    /// `UINib(name: "EventCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.eventCell) instead")
+    static func eventCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.eventCell)
+    }
+    
     static func avatarView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avatarView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+    
+    static func eventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
+      return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
     }
     
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `EventCell`.
+    static let eventCell: Rswift.ReuseIdentifier<EventCell> = Rswift.ReuseIdentifier(identifier: "EventCell")
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
   struct storyboard {
     /// Storyboard `EventsList`.
     static let eventsList = _R.storyboard.eventsList()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
-    /// Storyboard `Main`.
-    static let main = _R.storyboard.main()
     
     /// `UIStoryboard(name: "EventsList", bundle: ...)`
     static func eventsList(_: Void = ()) -> UIKit.UIStoryboard {
@@ -120,11 +189,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
-    }
-    
-    /// `UIStoryboard(name: "Main", bundle: ...)`
-    static func main(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.main)
     }
     
     fileprivate init() {}
@@ -248,6 +312,20 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _EventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = EventCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "EventCell"
+      let name = "EventCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -255,7 +333,6 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try eventsList.validate()
       try launchScreen.validate()
-      try main.validate()
     }
     
     struct eventsList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -283,20 +360,6 @@ struct _R: Rswift.Validatable {
       
       let bundle = R.hostingBundle
       let name = "LaunchScreen"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = ViewController
-      
-      let bundle = R.hostingBundle
-      let name = "Main"
       
       static func validate() throws {
         if #available(iOS 11.0, *) {

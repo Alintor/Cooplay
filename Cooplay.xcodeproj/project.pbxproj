@@ -34,9 +34,10 @@
 		A82FF2D52347193000EE1807 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2D32347193000EE1807 /* EventCell.xib */; };
 		A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2D72347228600EE1807 /* EventCellViewModel.swift */; };
 		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
+		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
+		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
-		A877020423336E6E002EA095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020223336E6E002EA095 /* Main.storyboard */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
@@ -69,10 +70,11 @@
 		A82FF2D32347193000EE1807 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		A82FF2D72347228600EE1807 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
 		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A877020323336E6E002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		A82FF2C72346F7F700EE1807 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A82FF2DE23474C1900EE1807 /* Foundation */,
 				A82FF2C82346F80000EE1807 /* UIKit */,
 			);
 			path = Extensions;
@@ -358,6 +361,7 @@
 			children = (
 				A82FF2C92346F81300EE1807 /* UIColor.swift */,
 				A82FF2CB2347043F00EE1807 /* UIImageView.swift */,
+				A82FF2DC2347492B00EE1807 /* String.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -403,6 +407,14 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		A82FF2DE23474C1900EE1807 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				A82FF2DF23474C2700EE1807 /* Date.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		A87701F223336E6E002EA095 = {
 			isa = PBXGroup;
 			children = (
@@ -434,7 +446,6 @@
 				A82FF29F2345E92B00EE1807 /* SupportingFiles */,
 				A82FF29C2345E8BA00EE1807 /* Resources */,
 				A877020023336E6E002EA095 /* ViewController.swift */,
-				A877020223336E6E002EA095 /* Main.storyboard */,
 			);
 			path = Cooplay;
 			sourceTree = "<group>";
@@ -512,7 +523,6 @@
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
 				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
-				A877020423336E6E002EA095 /* Main.storyboard in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
@@ -601,6 +611,7 @@
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
+				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
@@ -620,6 +631,7 @@
 				840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */,
 				13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */,
 				A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */,
+				A82FF2E023474C2700EE1807 /* Date.swift in Sources */,
 				7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
@@ -630,14 +642,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A877020223336E6E002EA095 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A877020323336E6E002EA095 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A877020723336E6F002EA095 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -770,6 +774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -786,6 +791,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

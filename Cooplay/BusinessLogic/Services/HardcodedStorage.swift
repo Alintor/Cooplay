@@ -31,6 +31,7 @@ enum HardcodedConstants {
     
     static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .ontime, lateness: nil)
     static let me_unknown = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .unknown, lateness: nil)
+    static let me_late = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .late, lateness: 15)
     static let me_maybe = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, status: .maybe, lateness: nil)
     static let nilo_ontime = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, status: .ontime, lateness: nil)
     static let nilo_late = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, status: .late, lateness: 15)
@@ -43,43 +44,43 @@ enum HardcodedConstants {
     static let random1 = User(id: "cvnvrdger", name: "Dude", avatarPath: nil, status: .ontime, lateness: nil)
     static let random2 = User(id: "tryuyrteruy", name: "Lalka", avatarPath: nil, status: .ontime, lateness: nil)
     static let random3 = User(id: "bnhgdfjghs", name: "Nagibator", avatarPath: nil, status: .ontime, lateness: nil)
-    static let random4 = User(id: "asfdh", name: "Boom", avatarPath: nil, status: .ontime, lateness: nil)
+    static let random4 = User(id: "fghrgjbvccssew", name: "Boom", avatarPath: nil, status: .ontime, lateness: nil)
     
     static let eventInvitation1 = Event(
         game: divinity,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-10-29 20:30:00".convertServerDate!,
         members: [nilo_ontime, rika_ontime],
         me: me_unknown
     )
     static let eventInvitation2 = Event(
         game: overwatch,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-11-02 22:15:00".convertServerDate!,
         members: [nilo_ontime, rika_ontime, madik_maybe],
         me: me_unknown
     )
     static let eventNow = Event(
         game: overwatch,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-10-4 21:00:00".convertServerDate!,
         members: [nilo_late, rika_ontime, madik_maybe],
         me: me_ontime
     )
     static let eventFuture1 = Event(
         game: apex,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-10-5 22:00:00".convertServerDate!,
         members: [nilo_ontime, rika_ontime],
-        me: me_ontime
+        me: me_late
     )
     static let eventFuture2 = Event(
         game: destiny,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-10-19 21:10:00".convertServerDate!,
         members: [nilo_ontime, rika_maybe, madik_ontime],
         me: me_ontime
     )
     static let eventFuture3 = Event(
         game: overwatch,
-        date: "yyyy-MM-dd HH:mm:ss",
+        date: "2019-10-25 22:45:00".convertServerDate!,
         members: [nilo_ontime, rika_ontime, madik_maybe, random1, random4, random2],
-        me: me_ontime
+        me: me_maybe
     )
 }
 
