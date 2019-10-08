@@ -200,9 +200,9 @@ struct R: Rswift.Validatable {
     struct localizable {
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Ближайшее
+      /// Value: Ближайшее событие
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Будущие событие
+      /// Value: Будущие события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Возможно
       static let commonStatusesMaybe = Rswift.StringResource(key: "common.statuses.maybe", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -226,12 +226,12 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Ближайшее
+      /// Value: Ближайшее событие
       static func eventsListSectionsActive(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.active", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Будущие событие
+      /// Value: Будущие события
       static func eventsListSectionsFuture(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
       }

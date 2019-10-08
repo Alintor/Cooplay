@@ -18,4 +18,5 @@ protocol EventsListViewInput: class {
     // MARK: - View in
 
     func setupInitialState()
+    func updateProfile(with model: AvatarViewModel)
 }

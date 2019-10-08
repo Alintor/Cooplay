@@ -10,6 +10,11 @@ import UIKit
 
 struct EventCellViewModel {
     
+    private enum Constant {
+        
+        static let maxMembersCount = 4
+    }
+    
     var title: String
     var date: String
     var imagePath: String
@@ -33,22 +38,17 @@ struct EventCellViewModel {
         if let status = model.me.status {
             statusTitle = NSLocalizedString("common.statuses.\(status.rawValue)", comment: "")
             statusIcon = UIImage(named: "status.\(status.rawValue).small")
-            switch status {
-            case .ontime:
-                statusColor = R.color.statusOntime()
-            case .maybe:
-                statusColor = R.color.statusMaybe()
-            case .late:
-                statusColor = R.color.statusLate()
-            case .declined:
-                statusColor = R.color.statusDeclined()
-            case .unknown:
-                statusColor = R.color.statusUnknown()
-            }
-            
+            statusColor = UIColor(named: "status.\(status.rawValue)")
         }
         // TODO: Sort members
         let memberViewModels = model.members.map { AvatarViewModel(with: $0) }
-        members = memberViewModels
+        let otherCount = memberViewModels.count - Constant.maxMembersCount
+        if otherCount > 1 {
+            members = Array(memberViewModels.prefix(Constant.maxMembersCount))
+            self.otherCount = otherCount
+        } else {
+            members = memberViewModels
+            self.otherCount = nil
+        }
     }
 }

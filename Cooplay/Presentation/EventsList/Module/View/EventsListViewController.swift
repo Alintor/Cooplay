@@ -9,8 +9,18 @@ import DTTableViewManager
 import DTModelStorage
 
 final class EventsListViewController: UIViewController, EventsListViewInput, DTTableViewManageable {
+    
+    private enum Constant {
+        
+        static let profileDiameter: CGFloat = 32
+        static let profileTrailingIndent: CGFloat = 16
+        static let profilewBottomIndent: CGFloat = 12
+        static let profileTopIndent: CGFloat = 4
+    }
 
     @IBOutlet weak var tableView: UITableView!
+    
+    private var avatarView: AvatarView?
     
     // MARK: - View out
 
@@ -22,7 +32,6 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 
     func setupInitialState() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        //self.view.backgroundColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
         manager.startManaging(withDelegate: self)
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType)
@@ -33,6 +42,20 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             dataSourceIsReady?(dataSource)
         }
     }
+    
+    func updateProfile(with model: AvatarViewModel) {
+        if avatarView == nil {
+            avatarView = AvatarView(frame: CGRect(
+                x: 0,
+                y: 0,
+                width: Constant.profileDiameter,
+                height: Constant.profileDiameter
+            ))
+            // TODO: Set action
+        }
+        avatarView?.update(with: model)
+        configureProfileView()
+    }
 
 	// MARK: - Life cycle
 
@@ -40,4 +63,59 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 		super.viewDidLoad()
 		viewIsReady?()
 	}
+    
+    override func viewDidAppear(_ animated: Bool) {
+        configureProfileView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        avatarView?.removeConstraints(avatarView?.constraints ?? [])
+        avatarView?.removeFromSuperview()
+    }
+    
+    // MARK: - Private
+    
+    private func configureProfileView() {
+        guard let avatarView = avatarView else { return }
+        navigationController?.navigationBar.addSubview(avatarView)
+        let navigationBar = self.navigationController?.navigationBar
+        let trailingContraint = NSLayoutConstraint(
+            item: avatarView,
+            attribute: .trailingMargin,
+            relatedBy: .equal,
+            toItem: navigationBar,
+            attribute: .trailingMargin,
+            multiplier: 1.0,
+            constant: -Constant.profileTrailingIndent
+        )
+        let bottomConstraint = NSLayoutConstraint(
+            item: avatarView,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: navigationBar,
+            attribute: .bottom,
+            multiplier: 1.0,
+            constant: -Constant.profilewBottomIndent
+        )
+        let topConstraint = NSLayoutConstraint(
+            item: avatarView,
+            attribute: .top,
+            relatedBy: .greaterThanOrEqual,
+            toItem: navigationBar,
+            attribute: .top,
+            multiplier: 1.0,
+            constant: Constant.profileTopIndent
+        )
+        let heightConstraint = avatarView.heightAnchor.constraint(equalToConstant: Constant.profileDiameter)
+        let widthConstraint = avatarView.widthAnchor.constraint(equalTo: avatarView.heightAnchor, multiplier: 1)
+        bottomConstraint.priority = .defaultLow
+        avatarView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            trailingContraint,
+            bottomConstraint,
+            topConstraint,
+            heightConstraint,
+            widthConstraint
+        ])
+    }
 }

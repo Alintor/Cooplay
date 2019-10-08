@@ -36,12 +36,21 @@ import UIKit
         if let imagePath = model.avatarPath {
             iconImageView.setImage(withPath: imagePath)
         }
+        configureView()
+    }
+    
+    func update(with count: Int) {
+        firstNameLetterLabel.text = "+\(count)"
+        configureView()
+    }
+    
+    // MARK: - Private
+    
+    private func configureView() {
         let diameter = view.frame.size.width
         firstNameLetterLabel.font = firstNameLetterLabel.font.withSize(diameter / 2)
         backgroundView.layer.cornerRadius = diameter / 2
     }
-    
-    // MARK: - Private
     
     private func loadNIB() {
         view = R.nib.avatarView.firstView(owner: self)

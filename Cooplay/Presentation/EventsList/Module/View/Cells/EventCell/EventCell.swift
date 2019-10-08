@@ -49,5 +49,16 @@ extension EventCell: ModelTransfer {
             ])
             membersView.addArrangedSubview(avatarView)
         }
+        if let otherCount = model.otherCount {
+            let avatarView = AvatarView(
+                frame: CGRect(x: 0, y: 0, width: avatarDiameter, height: avatarDiameter)
+            )
+            avatarView.update(with: otherCount)
+            NSLayoutConstraint.activate([
+                avatarView.heightAnchor.constraint(equalToConstant: avatarDiameter),
+                avatarView.widthAnchor.constraint(equalToConstant: avatarDiameter)
+                ])
+            membersView.addArrangedSubview(avatarView)
+        }
     }
 }

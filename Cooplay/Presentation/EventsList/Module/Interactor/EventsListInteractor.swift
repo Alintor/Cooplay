@@ -38,7 +38,7 @@ extension EventsListInteractor: EventsListInteractorInput {
         eventService?.fetchEvents { result in
             switch result {
             case .success(let events):
-                completion(.success(events))
+                completion(.success(events.sorted(by: { $0.date < $1.date })))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }
