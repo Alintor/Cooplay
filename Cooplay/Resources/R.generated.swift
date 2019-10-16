@@ -16,8 +16,16 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 5 colors.
+  /// This `R.color` struct is generated, and contains static references to 11 colors.
   struct color {
+    /// Color `action.accent`.
+    static let actionAccent = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.accent")
+    /// Color `background`.
+    static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
+    /// Color `block`.
+    static let block = Rswift.ColorResource(bundle: R.hostingBundle, name: "block")
+    /// Color `shape.background`.
+    static let shapeBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "shape.background")
     /// Color `status.declined`.
     static let statusDeclined = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.declined")
     /// Color `status.late`.
@@ -28,6 +36,38 @@ struct R: Rswift.Validatable {
     static let statusOntime = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.ontime")
     /// Color `status.unknown`.
     static let statusUnknown = Rswift.ColorResource(bundle: R.hostingBundle, name: "status.unknown")
+    /// Color `text.primary`.
+    static let textPrimary = Rswift.ColorResource(bundle: R.hostingBundle, name: "text.primary")
+    /// Color `text.secondary`.
+    static let textSecondary = Rswift.ColorResource(bundle: R.hostingBundle, name: "text.secondary")
+    
+    /// `UIColor(named: "action.accent", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func actionAccent(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.actionAccent, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "background", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "block", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func block(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.block, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "shape.background", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func shapeBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.shapeBackground, compatibleWith: traitCollection)
+    }
     
     /// `UIColor(named: "status.declined", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
@@ -62,6 +102,20 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func statusUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.statusUnknown, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "text.primary", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func textPrimary(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.textPrimary, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "text.secondary", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func textSecondary(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.textSecondary, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -348,6 +402,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventsList', but couldn't be loaded.") }
         }
         if _R.storyboard.eventsList().eventsListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventsListViewController' could not be loaded from storyboard 'EventsList' as 'EventsListViewController'.") }
       }

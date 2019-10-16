@@ -41,6 +41,7 @@ import UIKit
     
     func update(with count: Int) {
         firstNameLetterLabel.text = "+\(count)"
+        backgroundView.backgroundColor = R.color.shapeBackground()
         configureView()
     }
     
