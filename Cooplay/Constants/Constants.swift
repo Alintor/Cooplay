@@ -18,3 +18,5 @@ enum GlobalConstant {
         }
     }
 }
+
+var localizableUITableName = "Localizable"

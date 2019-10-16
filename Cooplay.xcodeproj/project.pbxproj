@@ -40,6 +40,13 @@
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
+		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
+		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
+		A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26F2356F8C800DA1089 /* UILabel.swift */; };
+		A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2712356F8F400DA1089 /* UINavigationItem.swift */; };
+		A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2732356F91900DA1089 /* UISearchBar.swift */; };
+		A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2752356F93600DA1089 /* UITabBarItem.swift */; };
+		A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2772356F96300DA1089 /* UITextField.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
@@ -78,6 +85,13 @@
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		A8D1D26F2356F8C800DA1089 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		A8D1D2712356F8F400DA1089 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
+		A8D1D2732356F91900DA1089 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
+		A8D1D2752356F93600DA1089 /* UITabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItem.swift; sourceTree = "<group>"; };
+		A8D1D2772356F96300DA1089 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -361,7 +375,13 @@
 			children = (
 				A82FF2C92346F81300EE1807 /* UIColor.swift */,
 				A82FF2CB2347043F00EE1807 /* UIImageView.swift */,
-				A82FF2DC2347492B00EE1807 /* String.swift */,
+				A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */,
+				A8D1D26D2356F8A400DA1089 /* UIButton.swift */,
+				A8D1D26F2356F8C800DA1089 /* UILabel.swift */,
+				A8D1D2712356F8F400DA1089 /* UINavigationItem.swift */,
+				A8D1D2732356F91900DA1089 /* UISearchBar.swift */,
+				A8D1D2752356F93600DA1089 /* UITabBarItem.swift */,
+				A8D1D2772356F96300DA1089 /* UITextField.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -411,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2DF23474C2700EE1807 /* Date.swift */,
+				A82FF2DC2347492B00EE1807 /* String.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -613,6 +634,8 @@
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
+				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
+				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
@@ -620,10 +643,14 @@
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
 				A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */,
 				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
+				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
+				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
+				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
+				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
@@ -636,6 +663,7 @@
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
+				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
