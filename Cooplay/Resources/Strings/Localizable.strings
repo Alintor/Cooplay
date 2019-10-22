@@ -14,6 +14,12 @@
 "common.statuses.late" = "Опоздаю";
 "common.statuses.declined" = "Не пойду";
 "common.statuses.unknown" = "Приглашен";
+"common.statuses.ontime.full" = "Приду вовремя";
+"common.statuses.maybe.full" = "Возможно, пойду";
+"common.statuses.late.full" = "Опоздаю";
+"common.statuses.declined.full" = "Не пойду";
+"common.statuses.unknown.full" = "Приглашен";
+"common.lateTime" = "на %d мин.";
 
 // MARK: - Events list
 "eventsList.title" = "Все события";

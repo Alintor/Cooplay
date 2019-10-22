@@ -47,6 +47,12 @@
 		A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2732356F91900DA1089 /* UISearchBar.swift */; };
 		A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2752356F93600DA1089 /* UITabBarItem.swift */; };
 		A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2772356F96300DA1089 /* UITextField.swift */; };
+		A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D27C2357070A00DA1089 /* ActiveEventCell.swift */; };
+		A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D1D27D2357070A00DA1089 /* ActiveEventCell.xib */; };
+		A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */; };
+		A8D1D28623572B6400DA1089 /* MemberStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D1D28523572B6400DA1089 /* MemberStatusView.xib */; };
+		A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D28723572B7300DA1089 /* MemberStatusView.swift */; };
+		A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2892357306800DA1089 /* MemberStatusViewModel.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
@@ -92,6 +98,12 @@
 		A8D1D2732356F91900DA1089 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		A8D1D2752356F93600DA1089 /* UITabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItem.swift; sourceTree = "<group>"; };
 		A8D1D2772356F96300DA1089 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		A8D1D27C2357070A00DA1089 /* ActiveEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEventCell.swift; sourceTree = "<group>"; };
+		A8D1D27D2357070A00DA1089 /* ActiveEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActiveEventCell.xib; sourceTree = "<group>"; };
+		A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEventCellViewModel.swift; sourceTree = "<group>"; };
+		A8D1D28523572B6400DA1089 /* MemberStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberStatusView.xib; sourceTree = "<group>"; };
+		A8D1D28723572B7300DA1089 /* MemberStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberStatusView.swift; sourceTree = "<group>"; };
+		A8D1D2892357306800DA1089 /* MemberStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberStatusViewModel.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -330,6 +342,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8D1D28223572B2700DA1089 /* MemberStatus */,
 				A82FF2BE2346F48F00EE1807 /* Avatar */,
 			);
 			path = View;
@@ -397,6 +410,7 @@
 		A82FF2D02347160600EE1807 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A8D1D279235706CA00DA1089 /* ActiveEventCell */,
 				A82FF2D12347180700EE1807 /* EventCell */,
 			);
 			path = Cells;
@@ -415,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2D72347228600EE1807 /* EventCellViewModel.swift */,
+				A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -469,6 +484,41 @@
 				A877020023336E6E002EA095 /* ViewController.swift */,
 			);
 			path = Cooplay;
+			sourceTree = "<group>";
+		};
+		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D27C2357070A00DA1089 /* ActiveEventCell.swift */,
+				A8D1D27D2357070A00DA1089 /* ActiveEventCell.xib */,
+			);
+			path = ActiveEventCell;
+			sourceTree = "<group>";
+		};
+		A8D1D28223572B2700DA1089 /* MemberStatus */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D28323572B3800DA1089 /* MemberStatusViewModel */,
+				A8D1D28423572B4200DA1089 /* MemberStatusView */,
+			);
+			path = MemberStatus;
+			sourceTree = "<group>";
+		};
+		A8D1D28323572B3800DA1089 /* MemberStatusViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D2892357306800DA1089 /* MemberStatusViewModel.swift */,
+			);
+			path = MemberStatusViewModel;
+			sourceTree = "<group>";
+		};
+		A8D1D28423572B4200DA1089 /* MemberStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D28523572B6400DA1089 /* MemberStatusView.xib */,
+				A8D1D28723572B7300DA1089 /* MemberStatusView.swift */,
+			);
+			path = MemberStatusView;
 			sourceTree = "<group>";
 		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
@@ -543,11 +593,13 @@
 			files = (
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
 				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
+				A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
+				A8D1D28623572B6400DA1089 /* MemberStatusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +687,7 @@
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
+				A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */,
 				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
@@ -648,10 +701,13 @@
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
+				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
+				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
+				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
 				A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */,

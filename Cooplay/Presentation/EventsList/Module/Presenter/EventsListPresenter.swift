@@ -13,9 +13,8 @@ final class EventsListPresenter {
         
         enum Section {
             
-            static let invited = 0
-            static let active = 1
-            static let future = 2
+            static let active = 0
+            static let future = 1
         }
     }
 
@@ -59,15 +58,15 @@ final class EventsListPresenter {
     }
     
     private func configureInvitedSection(with events: [Event]) {
-        dataSource.setItems(events.map({ EventCellViewModel(with: $0)}), forSection: Constant.Section.invited)
-        dataSource.setSectionHeaderModel(
-            R.string.localizable.eventsListSectionsInvited(),
-            forSection: Constant.Section.invited
-        )
+//        dataSource.setItems(events.map({ EventCellViewModel(with: $0)}), forSection: Constant.Section.invited)
+//        dataSource.setSectionHeaderModel(
+//            R.string.localizable.eventsListSectionsInvited(),
+//            forSection: Constant.Section.invited
+//        )
     }
     
     private func configureActiveSection(with event: Event) {
-        dataSource.setItems([EventCellViewModel(with: event)], forSection: Constant.Section.active)
+        dataSource.setItems([ActiveEventCellViewModel(with: event)], forSection: Constant.Section.active)
         dataSource.setSectionHeaderModel(
             R.string.localizable.eventsListSectionsActive(),
             forSection: Constant.Section.active

@@ -121,7 +121,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 9 images.
+  /// This `R.image` struct is generated, and contains static references to 10 images.
   struct image {
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
@@ -129,6 +129,8 @@ struct R: Rswift.Validatable {
     static let statusDeclinedSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined.small")
     /// Image `status.declined`.
     static let statusDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined")
+    /// Image `status.late`.
+    static let statusLate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.late")
     /// Image `status.maybe.small`.
     static let statusMaybeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.maybe.small")
     /// Image `status.maybe`.
@@ -155,6 +157,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "status.declined.small", bundle: ..., traitCollection: ...)`
     static func statusDeclinedSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusDeclinedSmall, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.late", bundle: ..., traitCollection: ...)`
+    static func statusLate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusLate, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.maybe", bundle: ..., traitCollection: ...)`
@@ -190,12 +197,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
+    /// Nib `ActiveEventCell`.
+    static let activeEventCell = _R.nib._ActiveEventCell()
     /// Nib `AvatarView`.
     static let avatarView = _R.nib._AvatarView()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
+    /// Nib `MemberStatusView`.
+    static let memberStatusView = _R.nib._MemberStatusView()
+    
+    /// `UINib(name: "ActiveEventCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.activeEventCell) instead")
+    static func activeEventCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.activeEventCell)
+    }
     
     /// `UINib(name: "AvatarView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avatarView) instead")
@@ -209,6 +226,16 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.eventCell)
     }
     
+    /// `UINib(name: "MemberStatusView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.memberStatusView) instead")
+    static func memberStatusView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.memberStatusView)
+    }
+    
+    static func activeEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
+      return R.nib.activeEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
+    }
+    
     static func avatarView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avatarView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -217,11 +244,17 @@ struct R: Rswift.Validatable {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
     }
     
+    static func memberStatusView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.memberStatusView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `ActiveEventCell`.
+    static let activeEventCell: Rswift.ReuseIdentifier<ActiveEventCell> = Rswift.ReuseIdentifier(identifier: "ActiveEventCell")
     /// Reuse identifier `EventCell`.
     static let eventCell: Rswift.ReuseIdentifier<EventCell> = Rswift.ReuseIdentifier(identifier: "EventCell")
     
@@ -250,7 +283,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
     struct localizable {
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -260,12 +293,18 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Возможно
       static let commonStatusesMaybe = Rswift.StringResource(key: "common.statuses.maybe", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Возможно, пойду
+      static let commonStatusesMaybeFull = Rswift.StringResource(key: "common.statuses.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let commonStatusesDeclined = Rswift.StringResource(key: "common.statuses.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не пойду
+      static let commonStatusesDeclinedFull = Rswift.StringResource(key: "common.statuses.declined.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
       static let commonStatusesLate = Rswift.StringResource(key: "common.statuses.late", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Опоздаю
+      static let commonStatusesLateFull = Rswift.StringResource(key: "common.statuses.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отказался
       static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
@@ -273,7 +312,13 @@ struct R: Rswift.Validatable {
       /// Value: Приглашен
       static let commonStatusesUnknown = Rswift.StringResource(key: "common.statuses.unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
+      static let commonStatusesUnknownFull = Rswift.StringResource(key: "common.statuses.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашен
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приду вовремя
+      static let commonStatusesOntimeFull = Rswift.StringResource(key: "common.statuses.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: на %d мин.
+      static let commonLateTime = Rswift.StringResource(key: "common.lateTime", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
@@ -295,6 +340,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("common.statuses.maybe", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Возможно, пойду
+      static func commonStatusesMaybeFull(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.maybe.full", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Все события
       static func eventsListTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
@@ -305,9 +355,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("common.statuses.declined", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Не пойду
+      static func commonStatusesDeclinedFull(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.declined.full", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Опоздаю
       static func commonStatusesLate(_: Void = ()) -> String {
         return NSLocalizedString("common.statuses.late", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Опоздаю
+      static func commonStatusesLateFull(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.late.full", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Отказался
@@ -326,8 +386,23 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Приглашен
+      static func commonStatusesUnknownFull(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.unknown.full", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приглашен
       static func eventsListSectionsInvited(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.invited", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приду вовремя
+      static func commonStatusesOntimeFull(_: Void = ()) -> String {
+        return NSLocalizedString("common.statuses.ontime.full", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: на %d мин.
+      static func commonLateTime(_ value1: Int) -> String {
+        return String(format: NSLocalizedString("common.lateTime", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       fileprivate init() {}
@@ -355,6 +430,20 @@ struct _R: Rswift.Validatable {
   }
   
   struct nib {
+    struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = ActiveEventCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "ActiveEventCell"
+      let name = "ActiveEventCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _AvatarView: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "AvatarView"
@@ -375,6 +464,17 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _MemberStatusView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "MemberStatusView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       fileprivate init() {}

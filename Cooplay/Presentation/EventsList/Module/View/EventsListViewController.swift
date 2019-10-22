@@ -33,8 +33,13 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     func setupInitialState() {
         navigationController?.navigationBar.prefersLargeTitles = true
         manager.startManaging(withDelegate: self)
+        manager.configureEvents(for: ActiveEventCell.self) { cellType, modelType in
+            manager.register(cellType) { $0.condition = .section(0) }
+            manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
+            manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
+        }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
-            manager.register(cellType)
+            manager.register(cellType) { $0.condition = .section(1) }
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
