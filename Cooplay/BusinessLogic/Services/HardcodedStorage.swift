@@ -103,6 +103,7 @@ final class HardcodedStorage {
     ]
     
     func fetchEvents() -> [Event] {
+        
         return events
     }
 }

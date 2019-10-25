@@ -31,6 +31,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     // MARK: - View in
 
     func setupInitialState() {
+        tableView.isHidden = true
         navigationController?.navigationBar.prefersLargeTitles = true
         manager.startManaging(withDelegate: self)
         manager.configureEvents(for: ActiveEventCell.self) { cellType, modelType in
@@ -60,6 +61,32 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         }
         avatarView?.update(with: model)
         configureProfileView()
+    }
+    
+    func showItems() {
+        tableView.isHidden = false
+        var sectionHeaders = [UIView]()
+        for sectionIndex in 0...tableView.numberOfSections - 1 {
+            if let sectionHeader = tableView.headerView(forSection: sectionIndex) {
+                sectionHeader.alpha = 0
+                sectionHeaders.append(sectionHeader)
+            }
+        }
+        var delay: TimeInterval = 0
+        for cell in tableView.visibleCells {
+            cell.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
+            UIView.animate(withDuration: 0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                cell.transform = .identity
+            }) { (_) in
+                guard cell == self.tableView.visibleCells.last else { return }
+                for sectionHeader in sectionHeaders {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        sectionHeader.alpha = 1
+                    })
+                }
+            }
+            delay += 0.2
+        }
     }
 
 	// MARK: - Life cycle

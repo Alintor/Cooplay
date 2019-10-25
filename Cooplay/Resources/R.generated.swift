@@ -112,8 +112,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 10 images.
+  /// This `R.image` struct is generated, and contains static references to 11 images.
   struct image {
+    /// Image `common.arrow`.
+    static let commonArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrow")
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
     /// Image `status.normal.declined`.
@@ -134,6 +136,11 @@ struct R: Rswift.Validatable {
     static let statusSmallOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.ontime")
     /// Image `status.small.unknown`.
     static let statusSmallUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.unknown")
+    
+    /// `UIImage(named: "common.arrow", bundle: ..., traitCollection: ...)`
+    static func commonArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonArrow, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "common.details", bundle: ..., traitCollection: ...)`
     static func commonDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -516,6 +523,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         }
       }
       

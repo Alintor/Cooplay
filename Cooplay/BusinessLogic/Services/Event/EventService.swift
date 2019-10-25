@@ -44,7 +44,10 @@ extension EventService: EventServiceType {
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
         
         if let events = storage?.fetchEvents() {
-            completion(.success(events))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                completion(.success(events))
+            }
+            
         }
     }
 }

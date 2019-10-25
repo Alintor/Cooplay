@@ -41,8 +41,10 @@ final class EventsListPresenter {
     private var dataSource: MemoryStorage!
     
     private func fetchEvents() {
+        view.showProgress(indicatorType: .arrows)
         interactor.fetchEvents { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success(let events):
                 self.configureInvitedSection(with: events.filter({ $0.me.state == .unknown }))
@@ -51,6 +53,7 @@ final class EventsListPresenter {
                     self.configureActiveSection(with: activeEvent)
                 }
                 self.configureFutureSection(with: acceptedEvents.suffix(acceptedEvents.count - 1))
+                self.view.showItems()
             case .failure(let error):
                 break
             }

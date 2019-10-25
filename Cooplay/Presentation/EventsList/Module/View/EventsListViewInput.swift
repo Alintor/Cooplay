@@ -7,7 +7,7 @@
 
 import DTModelStorage
 
-protocol EventsListViewInput: class {
+protocol EventsListViewInput: class, ActivityIndicatorRenderer {
 
     // MARK: - View out
 
@@ -19,4 +19,5 @@ protocol EventsListViewInput: class {
 
     func setupInitialState()
     func updateProfile(with model: AvatarViewModel)
+    func showItems()
 }

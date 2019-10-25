@@ -56,6 +56,8 @@
 		A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */; };
 		A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D298235F002B00DA1089 /* StatusMenuView.swift */; };
 		A8D1D29F2361884000DA1089 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D29E2361884000DA1089 /* UIView.swift */; };
+		A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */; };
+		A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
@@ -110,6 +112,8 @@
 		A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusContextView.swift; sourceTree = "<group>"; };
 		A8D1D298235F002B00DA1089 /* StatusMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuView.swift; sourceTree = "<group>"; };
 		A8D1D29E2361884000DA1089 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorRenderer.swift; sourceTree = "<group>"; };
+		A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowsActivityIndicatorView.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8D1D2A22362EB3600DA1089 /* ActivityIndicator */,
 				A8D1D293235EEEAC00DA1089 /* StateContextView */,
 				A8D1D28223572B2700DA1089 /* MemberStatus */,
 				A82FF2BE2346F48F00EE1807 /* Avatar */,
@@ -538,6 +543,23 @@
 			path = StateContextView;
 			sourceTree = "<group>";
 		};
+		A8D1D2A22362EB3600DA1089 /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */,
+				A8D1D2A92362ED1600DA1089 /* ActivityIndicatorViews */,
+			);
+			path = ActivityIndicator;
+			sourceTree = "<group>";
+		};
+		A8D1D2A92362ED1600DA1089 /* ActivityIndicatorViews */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */,
+			);
+			path = ActivityIndicatorViews;
+			sourceTree = "<group>";
+		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -707,9 +729,11 @@
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
 				A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */,
+				A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */,
 				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
+				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
