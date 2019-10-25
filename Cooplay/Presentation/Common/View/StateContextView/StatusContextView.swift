@@ -58,7 +58,7 @@ class StatusContextView: UIView {
             case .overTarget:
                 return 0
             case .moveToBottom:
-                return 0.1
+                return 0.35
             }
         }
     }
@@ -170,18 +170,21 @@ class StatusContextView: UIView {
         menuView.alpha = 0
         delegate.setTargetView(hide: true)
         
-        UIView.animate(withDuration: 0.3, delay: contextType.delay, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.7, delay: contextType.delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.menuView?.transform = .identity
             self.menuView?.alpha = 1
             //self.blurEffectView.alpha = 1
         })
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.blurEffectView.alpha = 1
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            //self.blurEffectView.alpha = 1
             if self.contextType == .moveToBottom {
                 targetView.frame.origin.y =
                     window.frame.height - window.safeAreaInsets.bottom - targetView.frame.height - Constant.menuIndent
             }
         })
+        UIView.animate(withDuration: 0.3) {
+            self.blurEffectView.alpha = 1
+        }
     }
     
     @objc func close() {

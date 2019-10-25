@@ -134,11 +134,11 @@ extension ActiveEventCell: StatusContextDelegate {
     func restoreView() {
         statusViewLeadingConstraint.constant = 16
         statusViewTrailingConstraint.constant = 16
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
             self.layoutIfNeeded()
-        }
+        })
     }
 }
 

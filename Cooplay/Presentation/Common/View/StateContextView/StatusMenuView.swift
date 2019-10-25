@@ -130,7 +130,7 @@ class StatusMenuView: UIView {
     private func configureView() {
         self.backgroundColor = .clear
         let backgroundView = UIView(frame: .zero)
-        backgroundView.backgroundColor = .clear
+        backgroundView.backgroundColor = menuSize.backgroundColor
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -260,6 +260,7 @@ class StatusMenuView: UIView {
                 itemView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor),
                 latenessStackView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor)
             ])
+            latenessItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
             let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
             panGestureRecognizer.delegate = self
             latenessItemView.addGestureRecognizer(panGestureRecognizer)
@@ -285,14 +286,14 @@ class StatusMenuView: UIView {
             if
                 let lateLeadingConstraint = lateLeadingConstraint,
                 lateLeadingConstraint.constant < 0 || lateLeadingConstraint.constant > -(menuSize.width + 10) {
-                if abs(lateLeadingConstraint.constant) < menuSize.width * (1 / 2) {
+                if abs(lateLeadingConstraint.constant) < menuSize.width * Constant.latenessMovingBoard {
                     lateLeadingConstraint.constant = 0
                 } else {
                     lateLeadingConstraint.constant = -menuSize.width
                 }
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     self.layoutIfNeeded()
-                }
+                })
             }
             
             UIView.animate(withDuration: 0.1) {
@@ -314,7 +315,7 @@ class StatusMenuView: UIView {
                     handler?(.ontime)
                 case lateItemView:
                     lateLeadingConstraint?.constant = -menuSize.width
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                    UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         self.layoutIfNeeded()
                     })
                 default:
@@ -343,23 +344,24 @@ class StatusMenuView: UIView {
                 if inset <= -menuSize.width {
                     gesture.state = .ended
                 }
-                if abs(inset) < menuSize.width * (1 / 2) || inset > 0 {
+                if abs(inset) < menuSize.width * Constant.latenessMovingBoard || inset > 0 {
                     lateLeadingConstraint.constant = 0
-                    UIView.animate(withDuration: 0.3) {
+                    UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         self.layoutIfNeeded()
-                    }
+                    })
                 } else {
                     lateLeadingConstraint.constant = inset
                 }
             } else {
-                if abs(lateLeadingConstraint.constant) < menuSize.width * (1 / 2) {
+                gesture.state = .ended
+                if abs(lateLeadingConstraint.constant) < menuSize.width * Constant.latenessMovingBoard {
                     lateLeadingConstraint.constant = 0
                 } else {
                     lateLeadingConstraint.constant = -menuSize.width
                 }
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     self.layoutIfNeeded()
-                }
+                })
             }
         }
     }
