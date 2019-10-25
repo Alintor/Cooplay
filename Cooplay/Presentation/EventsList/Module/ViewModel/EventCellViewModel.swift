@@ -37,7 +37,7 @@ struct EventCellViewModel {
         }
         if let status = model.me.status {
             statusTitle = NSLocalizedString("common.statuses.\(status.rawValue)", comment: "")
-            statusIcon = UIImage(named: "status.\(status.rawValue).small")
+            statusIcon = UIImage(named: "status.small.\(status.rawValue)")
             statusColor = UIColor(named: "status.\(status.rawValue)")
         }
         // TODO: Sort members

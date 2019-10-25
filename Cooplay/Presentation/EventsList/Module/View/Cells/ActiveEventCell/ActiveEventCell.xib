@@ -164,6 +164,9 @@
                 <outlet property="statusIconImageView" destination="YPn-Kz-3M3" id="S7I-3P-5mo"/>
                 <outlet property="statusIconView" destination="4xO-TR-dKH" id="OCT-b5-WxL"/>
                 <outlet property="statusTitle" destination="Omb-t3-88e" id="tLA-TL-8cA"/>
+                <outlet property="statusView" destination="hWa-g7-LM8" id="ucg-4K-3RD"/>
+                <outlet property="statusViewLeadingConstraint" destination="Pt4-fx-1NQ" id="LZK-bl-p21"/>
+                <outlet property="statusViewTrailingConstraint" destination="z7Y-nu-wvK" id="kK2-X3-WmW"/>
                 <outlet property="titleLabel" destination="khE-mr-KdL" id="smk-tF-2hA"/>
             </connections>
             <point key="canvasLocation" x="150.72463768115944" y="137.27678571428569"/>

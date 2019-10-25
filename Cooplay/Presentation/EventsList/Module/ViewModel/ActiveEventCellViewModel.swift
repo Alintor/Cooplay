@@ -33,7 +33,7 @@ struct ActiveEventCellViewModel {
         imagePath = model.game.imagePath
         if let status = model.me.status {
             var statusTitle = NSLocalizedString("common.statuses.\(status.rawValue).full", comment: "")
-            statusIcon = UIImage(named: "status.\(status.rawValue)")
+            statusIcon = UIImage(named: "status.big.\(status.rawValue)")
             statusColor = UIColor(named: "status.\(status.rawValue)")
             if let lateness = model.me.lateness {
                 statusTitle = "\(statusTitle) \(R.string.localizable.commonLateTime(lateness))"

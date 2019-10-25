@@ -125,22 +125,22 @@ struct R: Rswift.Validatable {
   struct image {
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
-    /// Image `status.declined.small`.
-    static let statusDeclinedSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined.small")
-    /// Image `status.declined`.
-    static let statusDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.declined")
-    /// Image `status.late`.
-    static let statusLate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.late")
-    /// Image `status.maybe.small`.
-    static let statusMaybeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.maybe.small")
-    /// Image `status.maybe`.
-    static let statusMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.maybe")
-    /// Image `status.ontime.small`.
-    static let statusOntimeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.ontime.small")
-    /// Image `status.ontime`.
-    static let statusOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.ontime")
-    /// Image `status.unknown.small`.
-    static let statusUnknownSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.unknown.small")
+    /// Image `status.big.declined`.
+    static let statusBigDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.big.declined")
+    /// Image `status.big.late`.
+    static let statusBigLate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.big.late")
+    /// Image `status.big.maybe`.
+    static let statusBigMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.big.maybe")
+    /// Image `status.big.ontime`.
+    static let statusBigOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.big.ontime")
+    /// Image `status.small.declined`.
+    static let statusSmallDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.declined")
+    /// Image `status.small.maybe`.
+    static let statusSmallMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.maybe")
+    /// Image `status.small.ontime`.
+    static let statusSmallOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.ontime")
+    /// Image `status.small.unknown`.
+    static let statusSmallUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.unknown")
     /// Image `status.unknown`.
     static let statusUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.unknown")
     
@@ -149,49 +149,49 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.commonDetails, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.declined", bundle: ..., traitCollection: ...)`
-    static func statusDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusDeclined, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.big.declined", bundle: ..., traitCollection: ...)`
+    static func statusBigDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusBigDeclined, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.declined.small", bundle: ..., traitCollection: ...)`
-    static func statusDeclinedSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusDeclinedSmall, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.big.late", bundle: ..., traitCollection: ...)`
+    static func statusBigLate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusBigLate, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.late", bundle: ..., traitCollection: ...)`
-    static func statusLate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusLate, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.big.maybe", bundle: ..., traitCollection: ...)`
+    static func statusBigMaybe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusBigMaybe, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.maybe", bundle: ..., traitCollection: ...)`
-    static func statusMaybe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusMaybe, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.big.ontime", bundle: ..., traitCollection: ...)`
+    static func statusBigOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusBigOntime, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.maybe.small", bundle: ..., traitCollection: ...)`
-    static func statusMaybeSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusMaybeSmall, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.small.declined", bundle: ..., traitCollection: ...)`
+    static func statusSmallDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallDeclined, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.ontime", bundle: ..., traitCollection: ...)`
-    static func statusOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusOntime, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.small.maybe", bundle: ..., traitCollection: ...)`
+    static func statusSmallMaybe(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallMaybe, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "status.ontime.small", bundle: ..., traitCollection: ...)`
-    static func statusOntimeSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusOntimeSmall, compatibleWith: traitCollection)
+    /// `UIImage(named: "status.small.ontime", bundle: ..., traitCollection: ...)`
+    static func statusSmallOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallOntime, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.small.unknown", bundle: ..., traitCollection: ...)`
+    static func statusSmallUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallUnknown, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.unknown", bundle: ..., traitCollection: ...)`
     static func statusUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusUnknown, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "status.unknown.small", bundle: ..., traitCollection: ...)`
-    static func statusUnknownSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.statusUnknownSmall, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

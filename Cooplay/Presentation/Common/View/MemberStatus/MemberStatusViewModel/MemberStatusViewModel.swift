@@ -21,7 +21,7 @@ final class MemberStatusViewModel: AvatarViewModel {
             lateTime = "\(lateness)"
         }
         if let status = model.status {
-            statusIcon = UIImage(named: "status.\(status.rawValue).small")
+            statusIcon = UIImage(named: "status.small.\(status.rawValue)")
             statusColor = UIColor(named: "status.\(status.rawValue)")
         }
     }

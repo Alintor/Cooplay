@@ -20,8 +20,22 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var lateTimeLabel: UILabel!
     @IBOutlet weak var statusIconImageView: UIImageView!
     @IBOutlet weak var statusIconView: UIView!
+    @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var membersView: UIStackView!
     @IBOutlet weak var statusIconWidthConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
+        statusView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
+    @objc func statusTapped() {
+        let stateContextView = StatusContextView(contextType: .overTarget, delegate: self, handler: nil)
+        stateContextView.showMenu(size: .small, type: .agreement)
+    }
+    
     
 }
 
@@ -35,7 +49,7 @@ extension EventCell: ModelTransfer {
         lateTimeLabel.text = model.lateTime
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
-        statusIconWidthConstraint.isActive = model.lateTime == nil
+        statusIconWidthConstraint?.isActive = model.lateTime == nil
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {
@@ -60,5 +74,12 @@ extension EventCell: ModelTransfer {
                 ])
             membersView.addArrangedSubview(avatarView)
         }
+    }
+}
+
+extension EventCell: StatusContextDelegate {
+    
+    var targetView: UIView {
+        return statusView
     }
 }

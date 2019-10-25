@@ -16,11 +16,11 @@ struct User: Codable {
         declined,
         unknown
         
-        var acceptStatuses: [Status] {
+        static var acceptStatuses: [Status] {
             return [.ontime, .maybe, .declined]
         }
         
-        var confirmStatuses: [Status] {
+        static var confirmStatuses: [Status] {
             return [.ontime, .late, .declined]
         }
     }

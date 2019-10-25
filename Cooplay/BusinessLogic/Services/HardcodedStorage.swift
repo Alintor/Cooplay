@@ -92,6 +92,13 @@ final class HardcodedStorage {
         HardcodedConstants.eventNow,
         HardcodedConstants.eventFuture1,
         HardcodedConstants.eventFuture2,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
+        HardcodedConstants.eventFuture3,
         HardcodedConstants.eventFuture3
     ]
     

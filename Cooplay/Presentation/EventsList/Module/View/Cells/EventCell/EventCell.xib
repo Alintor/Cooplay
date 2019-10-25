@@ -91,6 +91,7 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" name="shape.background"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="mn6-Ey-aWX" firstAttribute="centerY" secondItem="zZa-Lg-VXX" secondAttribute="centerY" id="1uZ-Of-sXs"/>
                                     <constraint firstItem="V1W-sB-krX" firstAttribute="centerY" secondItem="zZa-Lg-VXX" secondAttribute="centerY" id="2jH-1J-EJb"/>
@@ -153,6 +154,7 @@
                 <outlet property="statusIconView" destination="V1W-sB-krX" id="H1u-re-vdg"/>
                 <outlet property="statusIconWidthConstraint" destination="7Di-QB-BgT" id="Rai-tK-pbt"/>
                 <outlet property="statusTitle" destination="mn6-Ey-aWX" id="piU-Yk-st5"/>
+                <outlet property="statusView" destination="zZa-Lg-VXX" id="1Ol-cA-PAc"/>
                 <outlet property="titleLabel" destination="EfM-KA-OBn" id="CQ0-ve-gHG"/>
             </connections>
             <point key="canvasLocation" x="165.21739130434784" y="177.45535714285714"/>

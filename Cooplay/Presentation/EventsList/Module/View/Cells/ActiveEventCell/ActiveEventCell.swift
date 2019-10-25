@@ -21,6 +21,45 @@ class ActiveEventCell: UITableViewCell {
     @IBOutlet weak var statusIconView: UIView!
     @IBOutlet weak var membersView: UIStackView!
     @IBOutlet weak var blockView: UIView!
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var statusViewTrailingConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
+        tap.minimumPressDuration = 0
+        statusView.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapHandler(gesture: UITapGestureRecognizer) {
+        
+        // handle touch down and touch up events separately
+        if gesture.state == .began {
+            print(statusView.frame)
+            UIView.animate(withDuration: 0.1) {
+                self.statusView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }
+            
+        } else if  gesture.state == .ended {
+            let touchLocation = gesture.location(in: statusView)
+            print(touchLocation)
+            print(statusView.frame)
+            if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.95) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.95) {
+                UIView.animate(withDuration: 0.1) {
+                    self.statusView.transform = .identity
+                }
+                
+                let stateContextView = StatusContextView(contextType: .moveToBottom, delegate: self, handler: nil)
+                stateContextView.showMenu(size: .large, type: .confirmation)
+            } else {
+                UIView.animate(withDuration: 0.1) {
+                    self.statusView.transform = .identity
+                }
+            }
+            
+        }
+    }
     
 }
 
@@ -61,4 +100,45 @@ extension ActiveEventCell: ModelTransfer {
     }
 }
 
+extension ActiveEventCell: StatusContextDelegate {
+    
+    var targetView: UIView {
+        return statusView
+    }
+    
+    func transformTargetView(_ tranform: Bool) {
+        if tranform {
+            statusViewLeadingConstraint.constant = 0
+            statusViewTrailingConstraint.constant = 0
+            statusView.layer.cornerRadius = 12
+        } else {
+            statusViewLeadingConstraint.constant = 16
+            statusViewTrailingConstraint.constant = 16
+            statusView.layer.cornerRadius = 8
+        }
+    }
+    
+    func prepareView(completion: @escaping () -> Void) {
+        statusViewLeadingConstraint.constant = 0
+        statusViewTrailingConstraint.constant = 0
+        statusView.layer.cornerRadius = 12
+        UIView.animate(withDuration: 0.1, animations: {
+            self.statusView.layer.cornerRadius = 12
+            self.statusView.backgroundColor = R.color.block()
+            self.layoutIfNeeded()
+        }) { (_) in
+            completion()
+        }
+    }
+    
+    func restoreView() {
+        statusViewLeadingConstraint.constant = 16
+        statusViewTrailingConstraint.constant = 16
+        UIView.animate(withDuration: 0.1) {
+            self.statusView.layer.cornerRadius = 8
+            self.statusView.backgroundColor = R.color.shapeBackground()
+            self.layoutIfNeeded()
+        }
+    }
+}
 

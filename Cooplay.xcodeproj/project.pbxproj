@@ -53,6 +53,9 @@
 		A8D1D28623572B6400DA1089 /* MemberStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D1D28523572B6400DA1089 /* MemberStatusView.xib */; };
 		A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D28723572B7300DA1089 /* MemberStatusView.swift */; };
 		A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2892357306800DA1089 /* MemberStatusViewModel.swift */; };
+		A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */; };
+		A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D298235F002B00DA1089 /* StatusMenuView.swift */; };
+		A8D1D29F2361884000DA1089 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D29E2361884000DA1089 /* UIView.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
@@ -104,6 +107,9 @@
 		A8D1D28523572B6400DA1089 /* MemberStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberStatusView.xib; sourceTree = "<group>"; };
 		A8D1D28723572B7300DA1089 /* MemberStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberStatusView.swift; sourceTree = "<group>"; };
 		A8D1D2892357306800DA1089 /* MemberStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberStatusViewModel.swift; sourceTree = "<group>"; };
+		A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusContextView.swift; sourceTree = "<group>"; };
+		A8D1D298235F002B00DA1089 /* StatusMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuView.swift; sourceTree = "<group>"; };
+		A8D1D29E2361884000DA1089 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8D1D293235EEEAC00DA1089 /* StateContextView */,
 				A8D1D28223572B2700DA1089 /* MemberStatus */,
 				A82FF2BE2346F48F00EE1807 /* Avatar */,
 			);
@@ -395,6 +402,7 @@
 				A8D1D2732356F91900DA1089 /* UISearchBar.swift */,
 				A8D1D2752356F93600DA1089 /* UITabBarItem.swift */,
 				A8D1D2772356F96300DA1089 /* UITextField.swift */,
+				A8D1D29E2361884000DA1089 /* UIView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -519,6 +527,15 @@
 				A8D1D28723572B7300DA1089 /* MemberStatusView.swift */,
 			);
 			path = MemberStatusView;
+			sourceTree = "<group>";
+		};
+		A8D1D293235EEEAC00DA1089 /* StateContextView */ = {
+			isa = PBXGroup;
+			children = (
+				A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */,
+				A8D1D298235F002B00DA1089 /* StatusMenuView.swift */,
+			);
+			path = StateContextView;
 			sourceTree = "<group>";
 		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
@@ -683,7 +700,9 @@
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
+				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
+				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
@@ -718,6 +737,7 @@
 				7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
+				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
 			);
@@ -858,6 +878,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VUYXTXW3JY;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -875,6 +896,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VUYXTXW3JY;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
