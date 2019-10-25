@@ -32,9 +32,9 @@ class StatusMenuView: UIView {
         var items: [User.Status] {
             switch self {
             case .agreement:
-                return User.Status.acceptStatuses
+                return User.Status.agreementStatuses
             case .confirmation:
-                return User.Status.confirmStatuses
+                return User.Status.confirmationStatuses
             }
         }
     }
@@ -176,12 +176,12 @@ class StatusMenuView: UIView {
             imageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             itemView.heightAnchor.constraint(equalToConstant: menuSize.itemHeight)
         ])
-        titleLabel.text = NSLocalizedString("common.statuses.\(status.rawValue).full", comment: "")
-        imageView.image = UIImage(named: "status.big.\(status.rawValue)")
+        titleLabel.text = status.title()
+        imageView.image = status.icon()
         switch status {
         case .declined:
-            titleLabel.textColor = R.color.statusDeclined()
-            imageView.tintColor = R.color.statusDeclined()
+            titleLabel.textColor = R.color.red()
+            imageView.tintColor = R.color.red()
         default:
             titleLabel.textColor = R.color.textPrimary()
             imageView.tintColor = R.color.textPrimary()
@@ -195,8 +195,11 @@ class StatusMenuView: UIView {
     
     private func configureItem(_ itemView: UIView, status: User.Status) {
         switch status {
-        case .ontime:
+        case .accepted:
             acceptedItemView = itemView
+            itemsStackView.addArrangedSubview(itemView)
+        case .ontime:
+            ontimeItemView = itemView
             itemsStackView.addArrangedSubview(itemView)
         case .maybe:
             maybeItemView = itemView
@@ -306,13 +309,13 @@ class StatusMenuView: UIView {
                 && touchLocation.y <= (itemView.frame.height) {
                 switch itemView {
                 case acceptedItemView:
+                    handler?(.accepted)
+                case ontimeItemView:
                     handler?(.ontime)
                 case maybeItemView:
                     handler?(.maybe)
                 case declinedItemView:
                     handler?(.declined)
-                case ontimeItemView:
-                    handler?(.ontime)
                 case lateItemView:
                     lateLeadingConstraint?.constant = -menuSize.width
                     UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
@@ -325,7 +328,7 @@ class StatusMenuView: UIView {
                             let text = label.text,
                             let lateTime = Int(text)
                         else { continue }
-                        handler?(.late)
+                        handler?(.late(minutes: lateTime))
                     }
                 }
             }

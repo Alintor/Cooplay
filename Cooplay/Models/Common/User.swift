@@ -6,28 +6,150 @@
 //  Copyright © 2019 Ovchinnikov. All rights reserved.
 //
 
+import UIKit
+
 struct User: Codable {
     
-    enum Status: String, Codable {
+    enum State: String, Codable {
         
-        case ontime,
+        case accepted,
         maybe,
-        late,
+        declined,
+        unknown
+    }
+    
+    enum Status {
+        
+        case accepted,
+        ontime,
+        maybe,
+        late(minutes: Int?),
         declined,
         unknown
         
-        static var acceptStatuses: [Status] {
-            return [.ontime, .maybe, .declined]
+        static var agreementStatuses: [Status] {
+            return [.accepted, .maybe, .declined]
         }
         
-        static var confirmStatuses: [Status] {
-            return [.ontime, .late, .declined]
+        static var confirmationStatuses: [Status] {
+            return [.ontime, .late(minutes: nil), .declined]
+        }
+        
+        var color: UIColor? {
+            switch self {
+            case .accepted,
+                 .ontime:
+                return R.color.green()
+            case .maybe,
+                 .late:
+                return R.color.yellow()
+            case .declined:
+                return R.color.red()
+            case .unknown:
+                return R.color.grey()
+            }
+        }
+        
+        func icon(isSmall: Bool = false) -> UIImage? {
+            switch self {
+            case .accepted,
+                 .ontime:
+                return isSmall ? R.image.statusSmallOntime() : R.image.statusNormalOntime()
+            case .maybe:
+                return isSmall ? R.image.statusSmallMaybe() : R.image.statusNormalMaybe()
+            case .late:
+                return isSmall ? nil : R.image.statusNormalLate()
+            case .declined:
+                return isSmall ? R.image.statusSmallDeclined() : R.image.statusNormalDeclined()
+            case .unknown:
+                return isSmall ? R.image.statusSmallUnknown() : R.image.statusNormalUnknown()
+            }
+        }
+        
+        func title(isShort: Bool = false) -> String {
+            switch self {
+            case .accepted:
+                return isShort ? R.string.localizable.statusAcceptedShort() : R.string.localizable.statusAcceptedFull()
+            case .ontime:
+                return isShort ? R.string.localizable.statusOntimeShort() : R.string.localizable.statusOntimeFull()
+            case .maybe:
+                return isShort ? R.string.localizable.statusMaybeShort() : R.string.localizable.statusMaybeFull()
+            case .late(let minutes):
+                guard let minutes = minutes else { return R.string.localizable.statusLateShort() }
+                return isShort ? R.string.localizable.statusLateShort() : R.string.localizable.statusLateFull(minutes)
+            case .declined:
+                return isShort ? R.string.localizable.statusDeclinedShort() : R.string.localizable.statusDeclinedFull()
+            case .unknown:
+                return isShort ? R.string.localizable.statusUnknownShort() : R.string.localizable.statusUnknownFull()
+            }
+        }
+        
+        var lateTime: Int? {
+            switch self {
+            case .late(let minutes):
+                return minutes
+            default:
+                return nil
+            }
+        }
+        
+        var lateTimeString: String? {
+            guard let lateTime = lateTime else { return nil }
+            return "\(lateTime)"
         }
     }
     
     let id: String
     let name: String
     let avatarPath: String?
-    let status: Status?
-    let lateness: Int?
+    var state: State?
+    var lateness: Int?
+    
+    var status: Status? {
+        get {
+            if let lateness = lateness {
+                if lateness == 0 {
+                    return .ontime
+                } else {
+                    return .late(minutes: lateness)
+                }
+            } else {
+                guard let state = state else { return nil }
+                switch state {
+                case .accepted: return .accepted
+                case .maybe: return .maybe
+                case .declined: return.declined
+                case .unknown: return .unknown
+                }
+            }
+        }
+        
+        set {
+            guard let status = newValue else {
+                state = nil
+                lateness = nil
+                return
+            }
+            switch status {
+            case .accepted:
+                state = .accepted
+                lateness = nil
+            case .ontime:
+                state = .accepted
+                lateness = 0
+            case .maybe:
+                state = .maybe
+                lateness = nil
+            case .late(let minutes):
+                state = .accepted
+                lateness = minutes
+            case .declined:
+                state = .declined
+                lateness = nil
+            case .unknown:
+                state = .unknown
+                lateness = nil
+            }
+        }
+    }
 }

@@ -45,8 +45,8 @@ final class EventsListPresenter {
             guard let `self` = self else { return }
             switch result {
             case .success(let events):
-                self.configureInvitedSection(with: events.filter({ $0.me.status == .unknown }))
-                let acceptedEvents = events.filter({ $0.me.status != .unknown && $0.me.status != .declined })
+                self.configureInvitedSection(with: events.filter({ $0.me.state == .unknown }))
+                let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
                 if let activeEvent = acceptedEvents.first {
                     self.configureActiveSection(with: activeEvent)
                 }

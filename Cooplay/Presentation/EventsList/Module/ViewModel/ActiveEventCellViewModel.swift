@@ -31,15 +31,9 @@ struct ActiveEventCellViewModel {
         title = model.game.name
         date = model.date.displayString
         imagePath = model.game.imagePath
-        if let status = model.me.status {
-            var statusTitle = NSLocalizedString("common.statuses.\(status.rawValue).full", comment: "")
-            statusIcon = UIImage(named: "status.big.\(status.rawValue)")
-            statusColor = UIColor(named: "status.\(status.rawValue)")
-            if let lateness = model.me.lateness {
-                statusTitle = "\(statusTitle) \(R.string.localizable.commonLateTime(lateness))"
-            }
-            self.statusTitle = statusTitle
-        }
+        statusIcon = model.me.status?.icon()
+        statusColor = model.me.status?.color
+        statusTitle = model.me.status?.title()
         // TODO: Sort members
         let memberViewModels = model.members.map { MemberStatusViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount

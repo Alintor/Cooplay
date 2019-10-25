@@ -9,17 +9,21 @@
 "tableName" = "Localizable";
 
 // MARK: - Common
-"common.statuses.ontime" = "Пойду";
-"common.statuses.maybe" = "Возможно";
-"common.statuses.late" = "Опоздаю";
-"common.statuses.declined" = "Не пойду";
-"common.statuses.unknown" = "Приглашен";
-"common.statuses.ontime.full" = "Приду вовремя";
-"common.statuses.maybe.full" = "Возможно, пойду";
-"common.statuses.late.full" = "Опоздаю";
-"common.statuses.declined.full" = "Не пойду";
-"common.statuses.unknown.full" = "Приглашен";
-"common.lateTime" = "на %d мин.";
+
+
+// MARK: - Status
+"status.accepted.short" = "Пойду";
+"status.ontime.short" = "Вовремя";
+"status.maybe.short" = "Возможно";
+"status.late.short" = "Опоздаю";
+"status.declined.short" = "Не пойду";
+"status.unknown.short" = "Приглашен";
+"status.accepted.full" = "Приду вовремя";
+"status.ontime.full" = "Приду вовремя";
+"status.maybe.full" = "Возможно, пойду";
+"status.late.full" = "Опоздаю на %d мин";
+"status.declined.full" = "Не пойду";
+"status.unknown.full" = "Приглашен";
 
 // MARK: - Events list
 "eventsList.title" = "Все события";

@@ -17,13 +17,9 @@ final class MemberStatusViewModel: AvatarViewModel {
     
     override init(with model: User) {
         super.init(with: model)
-        if let lateness = model.lateness {
-            lateTime = "\(lateness)"
-        }
-        if let status = model.status {
-            statusIcon = UIImage(named: "status.small.\(status.rawValue)")
-            statusColor = UIColor(named: "status.\(status.rawValue)")
-        }
+        lateTime = model.status?.lateTimeString
+        statusIcon = model.status?.icon(isSmall: true)
+        statusColor = model.status?.color
     }
     
 }

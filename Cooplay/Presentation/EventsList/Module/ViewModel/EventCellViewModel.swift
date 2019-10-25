@@ -32,14 +32,10 @@ struct EventCellViewModel {
         title = model.game.name
         date = model.date.displayString
         imagePath = model.game.imagePath
-        if let lateness = model.me.lateness {
-            lateTime = "\(lateness)"
-        }
-        if let status = model.me.status {
-            statusTitle = NSLocalizedString("common.statuses.\(status.rawValue)", comment: "")
-            statusIcon = UIImage(named: "status.small.\(status.rawValue)")
-            statusColor = UIColor(named: "status.\(status.rawValue)")
-        }
+        lateTime = model.me.status?.lateTimeString
+        statusTitle = model.me.status?.title(isShort: true)
+        statusIcon = model.me.status?.icon(isSmall: true)
+        statusColor = model.me.status?.color
         // TODO: Sort members
         let memberViewModels = model.members.map { AvatarViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
