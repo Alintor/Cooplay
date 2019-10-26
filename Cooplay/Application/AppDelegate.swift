@@ -17,17 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.barStyle = .blackOpaque
-        navigationBarAppearance.barTintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
-        navigationBarAppearance.isTranslucent = false
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
+            navigationBarAppearance.standardAppearance = appearance
+            navigationBarAppearance.compactAppearance = appearance
+            navigationBarAppearance.scrollEdgeAppearance = appearance
+        } else {
+            navigationBarAppearance.barStyle = .blackOpaque
+            navigationBarAppearance.barTintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
+            navigationBarAppearance.isTranslucent = false
+        }
+        
         navigationBarAppearance.tintColor = .white
-        
-        let headerFooterViewAppearance = UITableViewHeaderFooterView.appearance()
-        headerFooterViewAppearance.tintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
-        let headerFooterLabel = UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-        headerFooterLabel.textColor = UIColor(red: 0.58, green: 0.61, blue: 0.65, alpha: 1)
-        headerFooterLabel.font = UIFont(name: "SFProDisplay-Regular", size: 8)
-        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(

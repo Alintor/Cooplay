@@ -29,7 +29,7 @@ extension ActivityIndicatorView where Self: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            self.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height / 3)
+            self.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height / 2)
         ])
     }
 }

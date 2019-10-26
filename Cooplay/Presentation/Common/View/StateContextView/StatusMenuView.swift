@@ -130,7 +130,7 @@ class StatusMenuView: UIView {
     private func configureView() {
         self.backgroundColor = .clear
         let backgroundView = UIView(frame: .zero)
-        backgroundView.backgroundColor = menuSize.backgroundColor
+        backgroundView.backgroundColor = .clear
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -281,6 +281,8 @@ class StatusMenuView: UIView {
     @objc func tapHandler(gesture: UITapGestureRecognizer) {
         guard let itemView = gesture.view else { return }
         if gesture.state == .began {
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
             UIView.animate(withDuration: 0.1) {
                 itemView.backgroundColor = self.menuSize.selectionColor
             }
@@ -298,7 +300,7 @@ class StatusMenuView: UIView {
                     self.layoutIfNeeded()
                 })
             }
-            
+            latenessItemView?.backgroundColor = .clear
             UIView.animate(withDuration: 0.1) {
                 itemView.backgroundColor = self.menuSize.backgroundColor
             }

@@ -169,7 +169,8 @@ class StatusContextView: UIView {
         self.menuTransform = menuTransform
         menuView.alpha = 0
         delegate.setTargetView(hide: true)
-        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
         UIView.animate(withDuration: 0.7, delay: contextType.delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.menuView?.transform = .identity
             self.menuView?.alpha = 1
@@ -182,12 +183,16 @@ class StatusContextView: UIView {
                     window.frame.height - window.safeAreaInsets.bottom - targetView.frame.height - Constant.menuIndent
             }
         })
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.blurEffectView.alpha = 1
+        }) { (_) in
+            generator.impactOccurred()
         }
     }
     
     @objc func close() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
         self.menuViewYConstraint?.isActive = false
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.menuView?.transform = self.menuTransform!
@@ -207,6 +212,7 @@ class StatusContextView: UIView {
                 )
             },
             completion: { _ in
+                generator.impactOccurred()
                 self.delegate?.restoreView()
                 self.delegate?.setTargetView(hide: false)
                 self.removeFromSuperview()

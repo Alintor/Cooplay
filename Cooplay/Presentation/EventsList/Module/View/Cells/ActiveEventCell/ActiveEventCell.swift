@@ -75,16 +75,18 @@ extension ActiveEventCell: ModelTransfer {
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {
-            let avatarView = MemberStatusView(
-                frame: CGRect(x: 0, y: 0, width: avatarDiameter, height: avatarDiameter)
-            )
+//            let avatarView = MemberStatusView(
+//                frame: CGRect(x: 0, y: 0, width: avatarDiameter, height: avatarDiameter)
+//            )
+//            member.borderColor = blockView.backgroundColor
+//            avatarView.update(with: member)
+//            NSLayoutConstraint.activate([
+//                avatarView.heightAnchor.constraint(equalToConstant: avatarDiameter),
+//                avatarView.widthAnchor.constraint(equalToConstant: avatarDiameter)
+//                ])
             member.borderColor = blockView.backgroundColor
-            avatarView.update(with: member)
-            NSLayoutConstraint.activate([
-                avatarView.heightAnchor.constraint(equalToConstant: avatarDiameter),
-                avatarView.widthAnchor.constraint(equalToConstant: avatarDiameter)
-                ])
-            membersView.addArrangedSubview(avatarView)
+            let memberStatusView = MemberStatusView(with: member)
+            membersView.addArrangedSubview(memberStatusView)
         }
         if let otherCount = model.otherCount {
             let avatarView = AvatarView(

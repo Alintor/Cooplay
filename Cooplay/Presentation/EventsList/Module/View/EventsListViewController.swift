@@ -39,6 +39,13 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
+        manager.registerNiblessHeader(EventSectionHeaderView.self)
+        manager.heightForHeader(withItem: String.self) { _, _ in
+            return UITableView.automaticDimension
+        }
+        manager.estimatedHeightForHeader(withItem: String.self) { _, _ in
+            return 50
+        }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(1) }
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }

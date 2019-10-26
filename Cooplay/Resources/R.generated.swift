@@ -195,7 +195,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -203,8 +203,6 @@ struct R: Rswift.Validatable {
     static let avatarView = _R.nib._AvatarView()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
-    /// Nib `MemberStatusView`.
-    static let memberStatusView = _R.nib._MemberStatusView()
     
     /// `UINib(name: "ActiveEventCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.activeEventCell) instead")
@@ -224,12 +222,6 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.eventCell)
     }
     
-    /// `UINib(name: "MemberStatusView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.memberStatusView) instead")
-    static func memberStatusView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.memberStatusView)
-    }
-    
     static func activeEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
       return R.nib.activeEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
     }
@@ -240,10 +232,6 @@ struct R: Rswift.Validatable {
     
     static func eventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
-    }
-    
-    static func memberStatusView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.memberStatusView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
     fileprivate init() {}
@@ -469,17 +457,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _MemberStatusView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "MemberStatusView"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       fileprivate init() {}
