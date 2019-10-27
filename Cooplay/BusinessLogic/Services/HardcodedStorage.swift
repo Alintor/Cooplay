@@ -11,37 +11,41 @@ enum HardcodedConstants {
     static let overwatch = Game(
         slug: "overwatch",
         name: "Overwatch",
-        imagePath: "https://media.rawg.io/media/games/4ea/4ea507ceebeabb43edbc09468f5aaac6.jpg"
+        coverPath: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rcb.jpg",
+        previewImagePath: "https://images.igdb.com/igdb/image/upload/t_original/xcyoi025lvvwnnrdargv.jpg"
     )
     static let destiny = Game(
         slug: "destiny-2",
         name: "Destiny 2",
-        imagePath: "https://media.rawg.io/media/games/1d5/1d553996f8c07c06d5f5e526c65d33a4.jpg"
+        coverPath: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1p7h.jpg",
+        previewImagePath: nil
     )
     static let apex = Game(
         slug: "apex-legends",
         name: "Apex Legends",
-        imagePath: "https://media.rawg.io/media/games/b72/b7233d5d5b1e75e86bb860ccc7aeca85.jpg"
+        coverPath: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1n6r.jpg",
+        previewImagePath: nil
     )
     static let divinity = Game(
         slug: "divinity-original-sin-2",
         name: "Divinity: Original Sin 2",
-        imagePath: "https://media.rawg.io/media/games/424/424facd40f4eb1f2794fe4b4bb28a277.jpg"
+        coverPath: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbs.jpg",
+        previewImagePath: nil
     )
     
-    static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, state: .accepted, lateness: 0)
-    static let me_unknown = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, state: .unknown, lateness: nil)
-    static let me_late = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, state: .accepted, lateness: 15)
-    static let me_maybe = User(id: "daffhdfgd", name: "Alintor", avatarPath: nil, state: .maybe, lateness: nil)
-    static let nilo_ontime = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, state: .accepted, lateness: 0)
-    static let nilo_late = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, state: .accepted, lateness: 15)
-    static let nilo_decline = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: nil, state: .declined, lateness: nil)
-    static let madik_ontime = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, state: .accepted, lateness: 0)
-    static let madik_decline = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, state: .declined, lateness: nil)
-    static let madik_maybe = User(id: "tyiiyoir", name: "Madik_b", avatarPath: nil, state: .maybe, lateness: nil)
+    static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .accepted, lateness: 0)
+    static let me_unknown = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .unknown, lateness: nil)
+    static let me_late = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .accepted, lateness: 15)
+    static let me_maybe = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .maybe, lateness: nil)
+    static let nilo_ontime = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: "https://tekutiger.files.wordpress.com/2017/06/myversion-hanzo-icon-1500x1500.jpg", state: .accepted, lateness: 0)
+    static let nilo_late = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: "https://tekutiger.files.wordpress.com/2017/06/myversion-hanzo-icon-1500x1500.jpg", state: .accepted, lateness: 15)
+    static let nilo_decline = User(id: "jhdfgsd", name: "Zharmakin", avatarPath: "https://tekutiger.files.wordpress.com/2017/06/myversion-hanzo-icon-1500x1500.jpg", state: .declined, lateness: nil)
+    static let madik_ontime = User(id: "tyiiyoir", name: "Madik_b", avatarPath: "https://avatarfiles.alphacoders.com/616/61600.jpg", state: .accepted, lateness: 0)
+    static let madik_decline = User(id: "tyiiyoir", name: "Madik_b", avatarPath: "https://avatarfiles.alphacoders.com/616/61600.jpg", state: .declined, lateness: nil)
+    static let madik_maybe = User(id: "tyiiyoir", name: "Madik_b", avatarPath: "https://avatarfiles.alphacoders.com/616/61600.jpg", state: .maybe, lateness: nil)
     static let rika_ontime = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, state: .accepted, lateness: 0)
     static let rika_maybe = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, state: .maybe, lateness: nil)
-    static let random1 = User(id: "cvnvrdger", name: "Dude", avatarPath: nil, state: .accepted, lateness: 0)
+    static let random1 = User(id: "sdgjhfdx", name: "Dude", avatarPath: nil, state: .accepted, lateness: 0)
     static let random2 = User(id: "tryuyrteruy", name: "Lalka", avatarPath: nil, state: .accepted, lateness: 0)
     static let random3 = User(id: "bnhgdfjghs", name: "Nagibator", avatarPath: nil, state: .accepted, lateness: 0)
     static let random4 = User(id: "fghrgjbvccssew", name: "Boom", avatarPath: nil, state: .accepted, lateness: nil)
@@ -77,7 +81,7 @@ enum HardcodedConstants {
         me: me_ontime
     )
     static let eventFuture3 = Event(
-        game: overwatch,
+        game: divinity,
         date: "2019-10-25 22:45:00".convertServerDate!,
         members: [nilo_ontime, rika_ontime, madik_maybe, random1, random4, random2],
         me: me_maybe
@@ -92,13 +96,6 @@ final class HardcodedStorage {
         HardcodedConstants.eventNow,
         HardcodedConstants.eventFuture1,
         HardcodedConstants.eventFuture2,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
-        HardcodedConstants.eventFuture3,
         HardcodedConstants.eventFuture3
     ]
     

@@ -12,7 +12,7 @@ protocol StatusContextDelegate: class {
     
     var targetView: UIView { get }
     func prepareView(completion: @escaping () -> Void)
-    func restoreView()
+    func restoreView(with selectedStatus: User.Status?)
 }
 
 extension StatusContextDelegate {
@@ -37,7 +37,7 @@ extension StatusContextDelegate {
         completion()
     }
     
-    func restoreView() {}
+    func restoreView(with selectedStatus: User.Status?) {}
 }
 
 class StatusContextView: UIView {
@@ -78,6 +78,7 @@ class StatusContextView: UIView {
     private let contextType: ContextType
     private weak var delegate: StatusContextDelegate?
     private var handler: ((_ status: User.Status) -> Void)?
+    private var selectedStatus: User.Status?
     
     init(contextType: ContextType, delegate: StatusContextDelegate?, handler: ((_ status: User.Status) -> Void)?) {
         self.contextType = contextType
@@ -119,6 +120,7 @@ class StatusContextView: UIView {
         self.addSubview(targetView)
         
         let  menuView = StatusMenuView(size: menuSize, type: menuType) { [weak self] status in
+            self?.selectedStatus = status
             self?.handler?(status)
             self?.close()
         }
@@ -213,7 +215,7 @@ class StatusContextView: UIView {
             },
             completion: { _ in
                 generator.impactOccurred()
-                self.delegate?.restoreView()
+                self.delegate?.restoreView(with: self.selectedStatus)
                 self.delegate?.setTargetView(hide: false)
                 self.removeFromSuperview()
             }

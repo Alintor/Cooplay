@@ -11,7 +11,7 @@ import DTModelStorage
 
 class EventCell: UITableViewCell {
     
-    static let defaultHeight: CGFloat = 114
+    static let defaultHeight: CGFloat = 126
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -81,5 +81,17 @@ extension EventCell: StatusContextDelegate {
     
     var targetView: UIView {
         return statusView
+    }
+    
+    func restoreView(with selectedStatus: User.Status?) {
+        guard let status = selectedStatus else { return }
+        self.statusIconWidthConstraint?.isActive = status.lateTime == nil
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.statusTitle.text = status.title(isShort: true)
+            self.lateTimeLabel.text = status.lateTimeString
+            self.statusIconImageView.image = status.icon(isSmall: true)
+            self.statusIconView.backgroundColor = status.color
+            self.layoutIfNeeded()
+        })
     }
 }

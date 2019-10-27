@@ -112,12 +112,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 11 images.
+  /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
-    /// Image `common.arrow`.
-    static let commonArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrow")
+    /// Image `common.arrowDown`.
+    static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
+    /// Image `common.gamepadArrow`.
+    static let commonGamepadArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gamepadArrow")
     /// Image `status.normal.declined`.
     static let statusNormalDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.declined")
     /// Image `status.normal.late`.
@@ -137,14 +139,19 @@ struct R: Rswift.Validatable {
     /// Image `status.small.unknown`.
     static let statusSmallUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.unknown")
     
-    /// `UIImage(named: "common.arrow", bundle: ..., traitCollection: ...)`
-    static func commonArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.commonArrow, compatibleWith: traitCollection)
+    /// `UIImage(named: "common.arrowDown", bundle: ..., traitCollection: ...)`
+    static func commonArrowDown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonArrowDown, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.details", bundle: ..., traitCollection: ...)`
     static func commonDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonDetails, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.gamepadArrow", bundle: ..., traitCollection: ...)`
+    static func commonGamepadArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonGamepadArrow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.normal.declined", bundle: ..., traitCollection: ...)`
@@ -420,10 +427,15 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
   }
   
-  struct nib {
-    struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _ActiveEventCell.validate()
+    }
+    
+    struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = ActiveEventCell
       
       let bundle = R.hostingBundle
@@ -432,6 +444,15 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "common.arrowDown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.arrowDown' is used in nib 'ActiveEventCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}

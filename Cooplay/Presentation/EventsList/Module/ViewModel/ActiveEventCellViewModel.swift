@@ -17,12 +17,14 @@ struct ActiveEventCellViewModel {
     
     var title: String
     var date: String
-    var imagePath: String
+    var coverPath: String
+    var previewPath: String?
     var statusTitle: String?
     var statusIcon: UIImage?
     var statusColor: UIColor?
     var members: [MemberStatusViewModel]
     var otherCount: Int?
+    var avatarViewModel: AvatarViewModel
     
     let model: Event
     
@@ -30,10 +32,12 @@ struct ActiveEventCellViewModel {
         self.model = model
         title = model.game.name
         date = model.date.displayString
-        imagePath = model.game.imagePath
+        coverPath = model.game.coverPath
+        previewPath = model.game.previewImagePath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
         statusTitle = model.me.status?.title()
+        avatarViewModel = AvatarViewModel(with: model.me)
         // TODO: Sort members
         let memberViewModels = model.members.map { MemberStatusViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount

@@ -15,13 +15,16 @@ class ActiveEventCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var gameImageView: UIImageView!
+    @IBOutlet weak var gameCoverImageView: UIImageView!
+    @IBOutlet weak var gamePreviewImageView: UIImageView!
     @IBOutlet weak var statusTitle: UILabel!
     @IBOutlet weak var statusIconImageView: UIImageView!
     @IBOutlet weak var statusIconView: UIView!
     @IBOutlet weak var membersView: UIStackView!
     @IBOutlet weak var blockView: UIView!
     @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var avatarView: AvatarView!
+    @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var statusViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var statusViewTrailingConstraint: NSLayoutConstraint!
     
@@ -68,22 +71,17 @@ extension ActiveEventCell: ModelTransfer {
     func update(with model: ActiveEventCellViewModel) {
         titleLabel.text = model.title
         dateLabel.text = model.date
-        gameImageView.setImage(withPath: model.imagePath)
+        gameCoverImageView.setImage(withPath: model.coverPath)
+        if let previewPath = model.previewPath {
+            gamePreviewImageView.setImage(withPath: previewPath)
+        }
+        avatarView.update(with: model.avatarViewModel)
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {
-//            let avatarView = MemberStatusView(
-//                frame: CGRect(x: 0, y: 0, width: avatarDiameter, height: avatarDiameter)
-//            )
-//            member.borderColor = blockView.backgroundColor
-//            avatarView.update(with: member)
-//            NSLayoutConstraint.activate([
-//                avatarView.heightAnchor.constraint(equalToConstant: avatarDiameter),
-//                avatarView.widthAnchor.constraint(equalToConstant: avatarDiameter)
-//                ])
             member.borderColor = blockView.backgroundColor
             let memberStatusView = MemberStatusView(with: member)
             membersView.addArrangedSubview(memberStatusView)
@@ -108,37 +106,32 @@ extension ActiveEventCell: StatusContextDelegate {
         return statusView
     }
     
-    func transformTargetView(_ tranform: Bool) {
-        if tranform {
-            statusViewLeadingConstraint.constant = 0
-            statusViewTrailingConstraint.constant = 0
-            statusView.layer.cornerRadius = 12
-        } else {
-            statusViewLeadingConstraint.constant = 16
-            statusViewTrailingConstraint.constant = 16
-            statusView.layer.cornerRadius = 8
-        }
-    }
-    
     func prepareView(completion: @escaping () -> Void) {
-        statusViewLeadingConstraint.constant = 0
-        statusViewTrailingConstraint.constant = 0
+        statusViewLeadingConstraint.constant = -6
+        statusViewTrailingConstraint.constant = -6
         statusView.layer.cornerRadius = 12
         UIView.animate(withDuration: 0.1, animations: {
             self.statusView.layer.cornerRadius = 12
             self.statusView.backgroundColor = R.color.block()
+            self.arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
             self.layoutIfNeeded()
         }) { (_) in
             completion()
         }
     }
     
-    func restoreView() {
-        statusViewLeadingConstraint.constant = 16
-        statusViewTrailingConstraint.constant = 16
+    func restoreView(with selectedStatus: User.Status?) {
+        statusViewLeadingConstraint.constant = 10
+        statusViewTrailingConstraint.constant = 10
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
+            self.arrowImageView.transform = .identity
+            if let status = selectedStatus {
+                self.statusTitle.text = status.title()
+                self.statusIconImageView.image = status.icon()
+                self.statusIconView.backgroundColor = status.color
+            }
             self.layoutIfNeeded()
         })
     }

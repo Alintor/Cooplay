@@ -13,6 +13,7 @@ import DTModelStorage
 class EventSectionHeaderView: UITableViewHeaderFooterView {
     
     var titleLabel: UILabel
+    var isFirstDrawing = true
     
     override init(reuseIdentifier: String?) {
         titleLabel = UILabel(frame: .zero)
@@ -37,6 +38,8 @@ class EventSectionHeaderView: UITableViewHeaderFooterView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        guard isFirstDrawing else { return }
+        isFirstDrawing = false
         self.transform = CGAffineTransform(translationX: -rect.size.width, y: 0)
         self.backgroundColor = .clear
         self.tintColor = .clear

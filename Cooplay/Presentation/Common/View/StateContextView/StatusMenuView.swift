@@ -49,7 +49,7 @@ class StatusMenuView: UIView {
             case .small:
                 return UIScreen.main.bounds.width / 1.5
             case .large:
-                return UIScreen.main.bounds.width - 32
+                return UIScreen.main.bounds.width - 20
             }
         }
         

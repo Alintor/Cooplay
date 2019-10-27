@@ -31,7 +31,7 @@ struct EventCellViewModel {
         self.model = model
         title = model.game.name
         date = model.date.displayString
-        imagePath = model.game.imagePath
+        imagePath = model.game.coverPath
         lateTime = model.me.status?.lateTimeString
         statusTitle = model.me.status?.title(isShort: true)
         statusIcon = model.me.status?.icon(isSmall: true)

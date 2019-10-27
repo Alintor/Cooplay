@@ -19,7 +19,7 @@ import UIKit
         static let textVerticalIndent: CGFloat = 3
         static let textHorizontalIndent: CGFloat = 3
         static let statusViewCornerRadius: CGFloat = 6
-        static let statusBorderCornerRadius: CGFloat = 7
+        static let statusBorderCornerRadius: CGFloat = 8
     }
     
     private let avatarView: AvatarView
