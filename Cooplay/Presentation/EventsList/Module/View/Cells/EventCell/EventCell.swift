@@ -30,6 +30,17 @@ class EventCell: UITableViewCell {
         statusView.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        guard selected && !isHighlighted else { return }
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }) { (_) in
+            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                self.transform = .identity
+            })
+        }
+    }
+    
     
     @objc func statusTapped() {
         let stateContextView = StatusContextView(contextType: .overTarget, delegate: self, handler: nil)

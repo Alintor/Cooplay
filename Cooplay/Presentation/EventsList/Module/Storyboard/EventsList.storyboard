@@ -23,13 +23,40 @@
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUk-yh-E37">
+                                <rect key="frame" x="309" y="601" width="56" height="56"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common.plus" translatesAutoresizingMaskIntoConstraints="NO" id="qis-d5-ofC">
+                                        <rect key="frame" x="20" y="20" width="16" height="16"/>
+                                        <color key="tintColor" name="text.primary"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="Chn-XM-Njd"/>
+                                            <constraint firstAttribute="width" constant="16" id="TFH-26-RQO"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="action.accent"/>
+                                <constraints>
+                                    <constraint firstItem="qis-d5-ofC" firstAttribute="centerY" secondItem="ZUk-yh-E37" secondAttribute="centerY" id="1Pr-WE-ZdM"/>
+                                    <constraint firstAttribute="height" constant="56" id="YbK-6e-QgZ"/>
+                                    <constraint firstAttribute="width" constant="56" id="fq7-bx-Byb"/>
+                                    <constraint firstItem="qis-d5-ofC" firstAttribute="centerX" secondItem="ZUk-yh-E37" secondAttribute="centerX" id="qVJ-iO-3bQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="8lo-xa-vj7" secondAttribute="bottom" id="0vP-CL-Z6A"/>
                             <constraint firstItem="8lo-xa-vj7" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" id="6U0-fi-4jI"/>
                             <constraint firstItem="8lo-xa-vj7" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="Vdt-fK-WVF"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="ZUk-yh-E37" secondAttribute="bottom" constant="10" id="dde-gy-B2D"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="8lo-xa-vj7" secondAttribute="trailing" id="wQl-TO-QfD"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="ZUk-yh-E37" secondAttribute="trailing" constant="10" id="wjC-69-lVB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
                     </view>
@@ -39,6 +66,8 @@
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButtonTrailingConstraint" destination="wjC-69-lVB" id="9Bb-dd-8bA"/>
+                        <outlet property="actionButtonView" destination="ZUk-yh-E37" id="7EW-Fr-LR3"/>
                         <outlet property="tableView" destination="8lo-xa-vj7" id="ffN-dd-5bX"/>
                     </connections>
                 </viewController>
@@ -48,8 +77,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="common.plus" width="16" height="16"/>
+        <namedColor name="action.accent">
+            <color red="0.29803921568627451" green="0.61960784313725492" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="background">
             <color red="0.090196078431372548" green="0.098039215686274508" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text.primary">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
