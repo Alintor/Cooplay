@@ -46,6 +46,9 @@ class StatusContextView: UIView {
         
         static let menuAnimationScale: CGFloat = 0.8
         static let menuIndent: CGFloat = 8
+        static let blurAnimationDuration: TimeInterval = 0.3
+        static let targetMovingDuration: TimeInterval = 0.7
+        static let targetMovingSpringDamping: CGFloat = 0.7
     }
     
     enum ContextType {
@@ -53,12 +56,39 @@ class StatusContextView: UIView {
         case moveToBottom
         case overTarget
         
-        var delay: TimeInterval {
+        var menuShowingDelay: TimeInterval {
             switch self {
             case .overTarget:
                 return 0
             case .moveToBottom:
                 return 0.35
+            }
+        }
+        
+        var menuShowingDuration: TimeInterval {
+            switch self {
+            case .overTarget:
+                return 0.7
+            case .moveToBottom:
+                return 0.7
+            }
+        }
+        
+        var menuHidingDuration: TimeInterval {
+            switch self {
+            case .overTarget:
+                return 0.3
+            case .moveToBottom:
+                return 0.3
+            }
+        }
+        
+        var menuSpringDamping: CGFloat {
+            switch self {
+            case .overTarget:
+                return 0.7
+            case .moveToBottom:
+                return 0.7
             }
         }
     }
@@ -173,19 +203,19 @@ class StatusContextView: UIView {
         delegate.setTargetView(hide: true)
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()
-        UIView.animate(withDuration: 0.7, delay: contextType.delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: contextType.menuShowingDuration, delay: contextType.menuShowingDelay, usingSpringWithDamping: contextType.menuSpringDamping, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.menuView?.transform = .identity
             self.menuView?.alpha = 1
             //self.blurEffectView.alpha = 1
         })
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            //self.blurEffectView.alpha = 1
-            if self.contextType == .moveToBottom {
+        if self.contextType == .moveToBottom {
+            UIView.animate(withDuration: Constant.targetMovingDuration, delay: 0, usingSpringWithDamping: Constant.targetMovingSpringDamping, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                //self.blurEffectView.alpha = 1
                 targetView.frame.origin.y =
-                    window.frame.height - window.safeAreaInsets.bottom - targetView.frame.height - Constant.menuIndent
-            }
-        })
-        UIView.animate(withDuration: 0.3, animations: {
+                window.frame.height - window.safeAreaInsets.bottom - targetView.frame.height - Constant.menuIndent
+            })
+        }
+        UIView.animate(withDuration: Constant.blurAnimationDuration, animations: {
             self.blurEffectView.alpha = 1
         }) { (_) in
             generator.impactOccurred()
@@ -196,13 +226,13 @@ class StatusContextView: UIView {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()
         self.menuViewYConstraint?.isActive = false
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: contextType.menuHidingDuration, delay: 0, options: .curveEaseOut, animations: {
             self.menuView?.transform = self.menuTransform!
             self.menuView?.alpha = 0
             //self.blurEffectView.alpha = 0
         })
         UIView.animate(
-            withDuration: 0.3,
+            withDuration: Constant.blurAnimationDuration,
             delay: 0,
             options: .curveEaseOut,
             animations: {
