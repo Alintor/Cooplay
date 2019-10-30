@@ -44,11 +44,11 @@ class StatusContextView: UIView {
     
     private enum Constant {
         
-        static let menuAnimationScale: CGFloat = 0.8
+        static let menuAnimationScale: CGFloat = 0.85
         static let menuIndent: CGFloat = 8
-        static let blurAnimationDuration: TimeInterval = 0.3
-        static let targetMovingDuration: TimeInterval = 0.7
-        static let targetMovingSpringDamping: CGFloat = 0.7
+        static let blurAnimationDuration: TimeInterval = 0.25
+        static let targetMovingDuration: TimeInterval = 0.5
+        static let targetMovingSpringDamping: CGFloat = 0.75
     }
     
     enum ContextType {
@@ -61,25 +61,25 @@ class StatusContextView: UIView {
             case .overTarget:
                 return 0
             case .moveToBottom:
-                return 0.35
+                return 0.3
             }
         }
         
         var menuShowingDuration: TimeInterval {
             switch self {
             case .overTarget:
-                return 0.7
+                return 0.35
             case .moveToBottom:
-                return 0.7
+                return 0.3
             }
         }
         
         var menuHidingDuration: TimeInterval {
             switch self {
             case .overTarget:
-                return 0.3
+                return 0.15
             case .moveToBottom:
-                return 0.3
+                return 0.2
             }
         }
         
@@ -88,7 +88,7 @@ class StatusContextView: UIView {
             case .overTarget:
                 return 0.7
             case .moveToBottom:
-                return 0.7
+                return 0.75
             }
         }
     }
