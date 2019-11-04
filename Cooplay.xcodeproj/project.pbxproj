@@ -41,6 +41,7 @@
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
+		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
 		A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26F2356F8C800DA1089 /* UILabel.swift */; };
@@ -97,6 +98,7 @@
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		A8D1D26F2356F8C800DA1089 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 			children = (
 				A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */,
 				A8D1D298235F002B00DA1089 /* StatusMenuView.swift */,
+				A8CB076A236876D800168EB6 /* MenuItem.swift */,
 			);
 			path = StateContextView;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
+				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,

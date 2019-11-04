@@ -44,7 +44,7 @@ class EventCell: UITableViewCell {
     
     @objc func statusTapped() {
         let stateContextView = StatusContextView(contextType: .overTarget, delegate: self, handler: nil)
-        stateContextView.showMenu(size: .small, type: .agreement)
+        stateContextView.showMenu(size: .small, type: .statuses(type: .agreement, actionHandler: nil))
     }
     
     
@@ -94,8 +94,8 @@ extension EventCell: StatusContextDelegate {
         return statusView
     }
     
-    func restoreView(with selectedStatus: User.Status?) {
-        guard let status = selectedStatus else { return }
+    func restoreView(with menuItem: MenuItem?) {
+        guard let status = menuItem?.value as? User.Status else { return }
         self.statusIconWidthConstraint?.isActive = status.lateTime == nil
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusTitle.text = status.title(isShort: true)

@@ -66,7 +66,7 @@ class ActiveEventCell: UITableViewCell {
                 }
                 
                 let stateContextView = StatusContextView(contextType: .moveToBottom, delegate: self, handler: nil)
-                stateContextView.showMenu(size: .large, type: .confirmation)
+                stateContextView.showMenu(size: .large, type: .statuses(type: .confirmation, actionHandler: nil))
             } else {
                 UIView.animate(withDuration: 0.1) {
                     self.statusView.transform = .identity
@@ -132,14 +132,14 @@ extension ActiveEventCell: StatusContextDelegate {
         }
     }
     
-    func restoreView(with selectedStatus: User.Status?) {
+    func restoreView(with menuItem: MenuItem?) {
         statusViewLeadingConstraint.constant = 10
         statusViewTrailingConstraint.constant = 10
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
             self.arrowImageView.transform = .identity
-            if let status = selectedStatus {
+            if let status = menuItem?.value as? User.Status {
                 self.statusTitle.text = status.title()
                 self.statusIconImageView.image = status.icon()
                 self.statusIconView.backgroundColor = status.color

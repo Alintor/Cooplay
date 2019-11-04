@@ -15,7 +15,8 @@ class StatusMenuView: UIView {
         static let latenessItems = [15, 30, 45, 60]
         static let lineColor = R.color.textSecondary()?.withAlphaComponent(0.6)
         static let lineHeight: CGFloat = 0.5
-        static let latenessAnimateDuration: TimeInterval = 0.3
+        static let latenessAnimateDuration: TimeInterval = 0.7
+        static let latenessSpringDamping: CGFloat = 0.8
         static let selectionDuration: TimeInterval = 0.1
         static let latenessMovingBoard: CGFloat = 0.5
         static let itemEdgeIndent: CGFloat = 16
@@ -26,15 +27,12 @@ class StatusMenuView: UIView {
     
     enum MenuType {
         
-        case agreement
-        case confirmation
+        case statuses(type: StatusMenuItem.StatusesType, actionHandler: ((_ status: User.Status) -> Void)?)
         
-        var items: [User.Status] {
+        var items: [MenuItem] {
             switch self {
-            case .agreement:
-                return User.Status.agreementStatuses
-            case .confirmation:
-                return User.Status.confirmationStatuses
+            case .statuses(let type, let actionHandler):
+                return type.items.map { StatusMenuItem(status: $0, actionHandler: actionHandler) }
             }
         }
     }
@@ -96,28 +94,22 @@ class StatusMenuView: UIView {
     
     // MARK: - Properties
     
-    var acceptedItemView: UIView?
-    var maybeItemView: UIView?
-    var declinedItemView: UIView?
-    var ontimeItemView: UIView?
-    var lateItemView: UIView?
-    var latenessItemView: UIView?
-    
-    var lateLeadingConstraint: NSLayoutConstraint?
+    var menuItems = [MenuItemContainer]()
+    var scrollableViews = [MenuScrollableContainer]()
     
     let itemsStackView = UIStackView(frame: .zero)
     let menuSize: MenuSize
-    var handler: ((_ status: User.Status) -> Void)?
+    var handler: ((_ menuItem: MenuItem) -> Void)?
     
     // MARK: - Init
     
-    init(size: MenuSize, type: MenuType, handler: ((_ status: User.Status) -> Void)?) {
+    init(size: MenuSize, type: MenuType, handler: ((_ menuItem: MenuItem) -> Void)?) {
         self.menuSize = size
         self.handler = handler
         super.init(frame: .zero)
         configureView()
         for item in type.items {
-            addMenuItem(status: item)
+            addMenuItem(item)
         }
     }
     
@@ -154,7 +146,7 @@ class StatusMenuView: UIView {
         ])
     }
     
-    func addMenuItem(status: User.Status) {
+    func addMenuItem(_ item: MenuItem) {
         let itemView = UIView(frame: .zero)
         itemView.clipsToBounds = true
         let titleLabel = UILabel(frame: .zero)
@@ -176,104 +168,104 @@ class StatusMenuView: UIView {
             imageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             itemView.heightAnchor.constraint(equalToConstant: menuSize.itemHeight)
         ])
-        titleLabel.text = status.title()
-        imageView.image = status.icon()
-        switch status {
-        case .declined:
-            titleLabel.textColor = R.color.red()
-            imageView.tintColor = R.color.red()
-        default:
-            titleLabel.textColor = R.color.textPrimary()
-            imageView.tintColor = R.color.textPrimary()
+        titleLabel.text = item.title
+        imageView.image = item.icon
+        titleLabel.textColor = item.titleColor
+        imageView.tintColor = item.iconColor
+        if item.needBottomLine {
             itemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
-            
         }
         itemView.backgroundColor = menuSize.backgroundColor
-        configureItem(itemView, status: status)
+        configureItemView(itemView, item: item)
         itemView.sizeToFit()
     }
     
-    private func configureItem(_ itemView: UIView, status: User.Status) {
-        switch status {
-        case .accepted:
-            acceptedItemView = itemView
-            itemsStackView.addArrangedSubview(itemView)
-        case .ontime:
-            ontimeItemView = itemView
-            itemsStackView.addArrangedSubview(itemView)
-        case .maybe:
-            maybeItemView = itemView
-            itemsStackView.addArrangedSubview(itemView)
-        case .declined:
-            declinedItemView = itemView
-            itemsStackView.addArrangedSubview(itemView)
-        case .late:
-            lateItemView = itemView
-            let latenessStackView = UIStackView(frame: .zero)
-            latenessStackView.axis = .horizontal
-            latenessStackView.alignment = .fill
-            latenessStackView.distribution = .fillEqually
-            latenessStackView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                latenessStackView.heightAnchor.constraint(equalToConstant: menuSize.itemHeight)
-            ])
-            for lateItem in Constant.latenessItems {
-                let lateItemView = UIView(frame: .zero)
-                lateItemView.backgroundColor = menuSize.backgroundColor
-                let titleLabel = UILabel(frame: .zero)
-                titleLabel.font = UIFont.systemFont(ofSize: menuSize.fontSize)
-                titleLabel.textColor = R.color.textPrimary()
-                titleLabel.textAlignment = .center
-                titleLabel.text = "\(lateItem)"
-                lateItemView.addSubview(titleLabel)
-                titleLabel.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    titleLabel.topAnchor.constraint(equalTo: lateItemView.topAnchor),
-                    titleLabel.bottomAnchor.constraint(equalTo: lateItemView.bottomAnchor),
-                    titleLabel.trailingAnchor.constraint(equalTo: lateItemView.trailingAnchor),
-                    titleLabel.leadingAnchor.constraint(equalTo: lateItemView.leadingAnchor)
-                ])
-                lateItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
-                if lateItem != Constant.latenessItems.last {
-                    lateItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .right)
-                }
-                latenessStackView.addArrangedSubview(lateItemView)
-                let tapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
-                tapGestureRecognizer.minimumPressDuration = 0
-                tapGestureRecognizer.delegate = self
-                lateItemView.addGestureRecognizer(tapGestureRecognizer)
-            }
-            let latenessItemView = UIView(frame: .zero)
-            latenessItemView.backgroundColor = .clear
-            latenessItemView.addSubview(itemView)
-            latenessItemView.addSubview(latenessStackView)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-            latenessStackView.translatesAutoresizingMaskIntoConstraints = false
-            let lateLeadingConstraint = itemView.leadingAnchor.constraint(equalTo: latenessItemView.leadingAnchor)
-            self.lateLeadingConstraint = lateLeadingConstraint
-            itemsStackView.addArrangedSubview(latenessItemView)
-            NSLayoutConstraint.activate([
-                latenessItemView.widthAnchor.constraint(equalTo: self.widthAnchor),
-                lateLeadingConstraint,
-                latenessStackView.leadingAnchor.constraint(equalTo: itemView.trailingAnchor),
-                itemView.widthAnchor.constraint(equalTo: latenessItemView.widthAnchor),
-                latenessStackView.widthAnchor.constraint(equalTo: latenessItemView.widthAnchor),
-                itemView.topAnchor.constraint(equalTo: latenessItemView.topAnchor),
-                latenessStackView.topAnchor.constraint(equalTo: latenessItemView.topAnchor),
-                itemView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor),
-                latenessStackView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor)
-            ])
-            latenessItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
-            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
-            panGestureRecognizer.delegate = self
-            latenessItemView.addGestureRecognizer(panGestureRecognizer)
-            self.latenessItemView = latenessItemView
-        default: break
-        }
+    private func configureItemView(_ itemView: UIView, item: MenuItem) {
         let tapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
         tapGestureRecognizer.minimumPressDuration = 0
         tapGestureRecognizer.delegate = self
         itemView.addGestureRecognizer(tapGestureRecognizer)
+        guard let scrollItems = item.scrollItems else {
+            itemsStackView.addArrangedSubview(itemView)
+            menuItems.append(MenuItemContainer(
+                item: item,
+                itemView: itemView,
+                scrollableContainer: nil)
+            )
+            return
+        }
+        
+        let latenessStackView = UIStackView(frame: .zero)
+        latenessStackView.axis = .horizontal
+        latenessStackView.alignment = .fill
+        latenessStackView.distribution = .fillEqually
+        latenessStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            latenessStackView.heightAnchor.constraint(equalToConstant: menuSize.itemHeight)
+        ])
+        for lateItem in scrollItems {
+            let lateItemView = UIView(frame: .zero)
+            lateItemView.backgroundColor = menuSize.backgroundColor
+            let titleLabel = UILabel(frame: .zero)
+            titleLabel.font = UIFont.systemFont(ofSize: menuSize.fontSize)
+            titleLabel.textColor = lateItem.titleColor
+            titleLabel.textAlignment = .center
+            titleLabel.text = lateItem.title
+            lateItemView.addSubview(titleLabel)
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: lateItemView.topAnchor),
+                titleLabel.bottomAnchor.constraint(equalTo: lateItemView.bottomAnchor),
+                titleLabel.trailingAnchor.constraint(equalTo: lateItemView.trailingAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: lateItemView.leadingAnchor)
+            ])
+            lateItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
+            if !lateItem.isEqual(scrollItems.last)  {
+                lateItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .right)
+            }
+            latenessStackView.addArrangedSubview(lateItemView)
+            let tapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
+            tapGestureRecognizer.minimumPressDuration = 0
+            tapGestureRecognizer.delegate = self
+            lateItemView.addGestureRecognizer(tapGestureRecognizer)
+            menuItems.append(MenuItemContainer(
+                item: lateItem,
+                itemView: lateItemView,
+                scrollableContainer: nil)
+            )
+        }
+        let latenessItemView = UIView(frame: .zero)
+        latenessItemView.backgroundColor = .clear
+        latenessItemView.addSubview(itemView)
+        latenessItemView.addSubview(latenessStackView)
+        itemView.translatesAutoresizingMaskIntoConstraints = false
+        latenessStackView.translatesAutoresizingMaskIntoConstraints = false
+        let lateLeadingConstraint = itemView.leadingAnchor.constraint(equalTo: latenessItemView.leadingAnchor)
+        itemsStackView.addArrangedSubview(latenessItemView)
+        NSLayoutConstraint.activate([
+            latenessItemView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            lateLeadingConstraint,
+            latenessStackView.leadingAnchor.constraint(equalTo: itemView.trailingAnchor),
+            itemView.widthAnchor.constraint(equalTo: latenessItemView.widthAnchor),
+            latenessStackView.widthAnchor.constraint(equalTo: latenessItemView.widthAnchor),
+            itemView.topAnchor.constraint(equalTo: latenessItemView.topAnchor),
+            latenessStackView.topAnchor.constraint(equalTo: latenessItemView.topAnchor),
+            itemView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor),
+            latenessStackView.bottomAnchor.constraint(equalTo: latenessItemView.bottomAnchor)
+        ])
+        latenessItemView.addLine(color: Constant.lineColor, height: Constant.lineHeight, position: .bottom)
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
+        panGestureRecognizer.delegate = self
+        latenessItemView.addGestureRecognizer(panGestureRecognizer)
+        //self.latenessItemView = latenessItemView
+        let scrollableContainer = MenuScrollableContainer(scrollableView: latenessItemView, scrollableConstraint: lateLeadingConstraint)
+        menuItems.append(MenuItemContainer(
+            item: item,
+            itemView: itemView,
+            scrollableContainer: scrollableContainer)
+        )
+        scrollableViews.append(scrollableContainer)
+
     }
     
     // MARK: - Gesture handlers
@@ -283,25 +275,12 @@ class StatusMenuView: UIView {
         if gesture.state == .began {
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
-            UIView.animate(withDuration: 0.1) {
+            UIView.animate(withDuration: Constant.selectionDuration) {
                 itemView.backgroundColor = self.menuSize.selectionColor
             }
         }
         if  gesture.state == .ended {
-            if
-                let lateLeadingConstraint = lateLeadingConstraint,
-                lateLeadingConstraint.constant < 0 || lateLeadingConstraint.constant > -(menuSize.width + 10) {
-                if abs(lateLeadingConstraint.constant) < menuSize.width * Constant.latenessMovingBoard {
-                    lateLeadingConstraint.constant = 0
-                } else {
-                    lateLeadingConstraint.constant = -menuSize.width
-                }
-                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    self.layoutIfNeeded()
-                })
-            }
-            latenessItemView?.backgroundColor = .clear
-            UIView.animate(withDuration: 0.1) {
+            UIView.animate(withDuration: Constant.selectionDuration) {
                 itemView.backgroundColor = self.menuSize.backgroundColor
             }
             let touchLocation = gesture.location(in: itemView)
@@ -309,64 +288,53 @@ class StatusMenuView: UIView {
                 && touchLocation.x <= (itemView.frame.width)
                 && touchLocation.y > 0
                 && touchLocation.y <= (itemView.frame.height) {
-                switch itemView {
-                case acceptedItemView:
-                    handler?(.accepted)
-                case ontimeItemView:
-                    handler?(.ontime)
-                case maybeItemView:
-                    handler?(.maybe)
-                case declinedItemView:
-                    handler?(.declined)
-                case lateItemView:
-                    lateLeadingConstraint?.constant = -menuSize.width
-                    UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                guard let item = menuItems.first(where: { $0.itemView == itemView }) else { return }
+                switch item.item.selectAction {
+                case .handleAction:
+                    handler?(item.item)
+                    item.item.handleAction()
+                case .showItems:
+                    item.scrollableContainer?.scrollableConstraint.constant = -menuSize.width
+                    UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         self.layoutIfNeeded()
                     })
-                default:
-                    for subview in itemView.subviews {
-                        guard
-                            let label = subview as? UILabel,
-                            let text = label.text,
-                            let lateTime = Int(text)
-                        else { continue }
-                        handler?(.late(minutes: lateTime))
-                    }
                 }
             }
         }
     }
     
     @objc func panHandler(gesture: UIPanGestureRecognizer) {
-        guard let itemView = gesture.view else { return }
-        if gesture.state == .changed, let lateLeadingConstraint = lateLeadingConstraint, lateLeadingConstraint.constant < 0 {
-            guard let targetView = latenessItemView else { return }
-            let touchLocation = gesture.location(in: targetView)
-            if touchLocation.x >= 0 && touchLocation.x <= (targetView.frame.width) && touchLocation.y > 0 && touchLocation.y <= (targetView.frame.height) {
-                itemView.backgroundColor = self.menuSize.backgroundColor
-                let translation = gesture.translation(in: targetView)
-                let inset = -menuSize.width + translation.x
-                if inset <= -menuSize.width {
+        guard let itemView = gesture.view  else { return }
+        if gesture.state == .changed {
+            for scrollableContainer in scrollableViews {
+                let targetView = scrollableContainer.scrollableView
+                let touchLocation = gesture.location(in: targetView)
+                if scrollableContainer.scrollableConstraint.constant < 0, touchLocation.x >= 0 && touchLocation.x <= (targetView.frame.width) && touchLocation.y > 0 && touchLocation.y <= (targetView.frame.height) {
+                    itemView.backgroundColor = self.menuSize.backgroundColor
+                    let translation = gesture.translation(in: targetView)
+                    let inset = -menuSize.width + translation.x
+                    if inset <= -menuSize.width {
+                        gesture.state = .ended
+                    }
+                    if abs(inset) < menuSize.width * Constant.latenessMovingBoard || inset > 0 {
+                        scrollableContainer.scrollableConstraint.constant = 0
+                        UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                            self.layoutIfNeeded()
+                        })
+                    } else {
+                        scrollableContainer.scrollableConstraint.constant = inset
+                    }
+                } else {
                     gesture.state = .ended
-                }
-                if abs(inset) < menuSize.width * Constant.latenessMovingBoard || inset > 0 {
-                    lateLeadingConstraint.constant = 0
-                    UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    if abs(scrollableContainer.scrollableConstraint.constant) < menuSize.width * Constant.latenessMovingBoard {
+                        scrollableContainer.scrollableConstraint.constant = 0
+                    } else {
+                        scrollableContainer.scrollableConstraint.constant = -menuSize.width
+                    }
+                    UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         self.layoutIfNeeded()
                     })
-                } else {
-                    lateLeadingConstraint.constant = inset
                 }
-            } else {
-                gesture.state = .ended
-                if abs(lateLeadingConstraint.constant) < menuSize.width * Constant.latenessMovingBoard {
-                    lateLeadingConstraint.constant = 0
-                } else {
-                    lateLeadingConstraint.constant = -menuSize.width
-                }
-                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    self.layoutIfNeeded()
-                })
             }
         }
     }
