@@ -20,8 +20,11 @@ class EventSectionHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         titleLabel.font = UIFont.systemFont(ofSize: 17)
         titleLabel.textColor = R.color.textSecondary()
-        self.backgroundColor = R.color.background()
-        self.tintColor = R.color.background()
+        self.backgroundColor = .clear
+        self.tintColor = .clear
+        let backgroundView = UIView(frame: self.frame)
+        backgroundView.backgroundColor = R.color.background()
+        self.backgroundView = backgroundView
         self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -41,13 +44,11 @@ class EventSectionHeaderView: UITableViewHeaderFooterView {
         guard isFirstDrawing else { return }
         isFirstDrawing = false
         self.transform = CGAffineTransform(translationX: -rect.size.width, y: 0)
-        self.backgroundColor = .clear
-        self.tintColor = .clear
+        self.backgroundView?.backgroundColor = .clear
         UIView.animate(withDuration: 0.8, delay: 0.6, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.transform = .identity
         }) { _ in
-            self.backgroundColor = R.color.background()
-            self.tintColor = R.color.background()
+            self.backgroundView?.backgroundColor = R.color.background()
         }
     }
 }

@@ -97,7 +97,7 @@ extension EventCell: StatusContextDelegate {
     func restoreView(with menuItem: MenuItem?) {
         guard let status = menuItem?.value as? User.Status else { return }
         self.statusIconWidthConstraint?.isActive = status.lateTime == nil
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusTitle.text = status.title(isShort: true)
             self.lateTimeLabel.text = status.lateTimeString
             self.statusIconImageView.image = status.icon(isSmall: true)

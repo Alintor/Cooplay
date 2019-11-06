@@ -135,7 +135,7 @@ extension ActiveEventCell: StatusContextDelegate {
     func restoreView(with menuItem: MenuItem?) {
         statusViewLeadingConstraint.constant = 10
         statusViewTrailingConstraint.constant = 10
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
             self.arrowImageView.transform = .identity
