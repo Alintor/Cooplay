@@ -209,7 +209,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -217,6 +217,10 @@ struct R: Rswift.Validatable {
     static let avatarView = _R.nib._AvatarView()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
+    /// Nib `InventedHeaderView`.
+    static let inventedHeaderView = _R.nib._InventedHeaderView()
+    /// Nib `InvitedEventCell`.
+    static let invitedEventCell = _R.nib._InvitedEventCell()
     
     /// `UINib(name: "ActiveEventCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.activeEventCell) instead")
@@ -236,6 +240,18 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.eventCell)
     }
     
+    /// `UINib(name: "InventedHeaderView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.inventedHeaderView) instead")
+    static func inventedHeaderView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.inventedHeaderView)
+    }
+    
+    /// `UINib(name: "InvitedEventCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.invitedEventCell) instead")
+    static func invitedEventCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.invitedEventCell)
+    }
+    
     static func activeEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
       return R.nib.activeEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
     }
@@ -246,6 +262,14 @@ struct R: Rswift.Validatable {
     
     static func eventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+    }
+    
+    static func inventedHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.inventedHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+    
+    static func invitedEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.invitedEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
     fileprivate init() {}
@@ -283,7 +307,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
     struct localizable {
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -317,6 +341,8 @@ struct R: Rswift.Validatable {
       static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
       static let statusUnknownShort = Rswift.StringResource(key: "status.unknown.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашения
+      static let eventsListSectionsInvented = Rswift.StringResource(key: "eventsList.sections.invented", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
@@ -402,6 +428,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.unknown.short", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Приглашения
+      static func eventsListSectionsInvented(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.invented", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Приду вовремя
       static func statusAcceptedFull(_: Void = ()) -> String {
         return NSLocalizedString("status.accepted.full", bundle: R.hostingBundle, comment: "")
@@ -440,6 +471,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _ActiveEventCell.validate()
+      try _InvitedEventCell.validate()
     }
     
     struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -485,6 +517,38 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _InventedHeaderView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "InventedHeaderView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _InvitedEventCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "InvitedEventCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "common.details", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.details' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}

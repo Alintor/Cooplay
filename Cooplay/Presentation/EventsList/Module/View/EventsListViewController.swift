@@ -7,6 +7,7 @@
 
 import DTTableViewManager
 import DTModelStorage
+import iCarousel
 
 final class EventsListViewController: UIViewController, EventsListViewInput, DTTableViewManageable {
     @IBOutlet weak var actionButtonView: UIView!
@@ -47,12 +48,12 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
                 print("Event selected!")
             }
             manager.didHighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
                 })
             }
             manager.didUnhighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     cell.transform = .identity
                 })
             }
@@ -69,12 +70,12 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(1) }
             manager.didHighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
                 })
             }
             manager.didUnhighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     cell.transform = .identity
                 })
             }
@@ -106,28 +107,33 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         configureProfileView()
     }
     
+    func setInvitations(show: Bool, dataSource: iCarouselDataSource) {
+        guard show else {
+            tableView.tableHeaderView = nil
+            return
+        }
+        tableView.tableHeaderView = InventedHeaderView(dataSource: dataSource)
+        updateHeaderViewHeight()
+    }
+    
     func showItems() {
         tableView.isHidden = false
-        var sectionHeaders = [UIView]()
-        for sectionIndex in 0...tableView.numberOfSections - 1 {
-            if let sectionHeader = tableView.headerView(forSection: sectionIndex) {
-                sectionHeader.alpha = 0
-                sectionHeaders.append(sectionHeader)
-            }
-        }
         var delay: TimeInterval = 0
+        if let inventedHeaderView = tableView.tableHeaderView as? InventedHeaderView {
+            inventedHeaderView.animateTitle()
+            inventedHeaderView.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
+            UIView.animate(withDuration: 0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                inventedHeaderView.transform = .identity
+            }) { (_) in
+                //inventedHeaderView.animateTitle()
+            }
+            delay += 0.2
+        }
         for cell in tableView.visibleCells {
             cell.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
             UIView.animate(withDuration: 0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                 cell.transform = .identity
-            }) { (_) in
-                guard cell == self.tableView.visibleCells.last else { return }
-                for sectionHeader in sectionHeaders {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        sectionHeader.alpha = 1
-                    })
-                }
-            }
+            })
             delay += 0.2
         }
     }
@@ -215,5 +221,15 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             heightConstraint,
             widthConstraint
         ])
+    }
+    
+    private func updateHeaderViewHeight() {
+        guard let headerView = tableView.tableHeaderView else { return }
+        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        if headerView.frame.size.height != size.height {
+            headerView.frame.size.height = size.height
+            tableView.tableHeaderView = headerView
+            tableView.layoutIfNeeded()
+        }
     }
 }

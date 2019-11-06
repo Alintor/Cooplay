@@ -27,6 +27,7 @@
 
 // MARK: - Events list
 "eventsList.title" = "Все события";
+"eventsList.sections.invented" = "Приглашения";
 "eventsList.sections.active" = "Ближайшее событие";
 "eventsList.sections.future" = "Будущие события";
 "eventsList.sections.declined" = "Отказался";

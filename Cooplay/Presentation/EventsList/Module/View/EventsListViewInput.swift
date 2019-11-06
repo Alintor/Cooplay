@@ -6,6 +6,7 @@
 //
 
 import DTModelStorage
+import iCarousel
 
 protocol EventsListViewInput: class, ActivityIndicatorRenderer {
 
@@ -20,4 +21,5 @@ protocol EventsListViewInput: class, ActivityIndicatorRenderer {
     func setupInitialState()
     func updateProfile(with model: AvatarViewModel)
     func showItems()
+    func setInvitations(show: Bool, dataSource: iCarouselDataSource)
 }

@@ -15,8 +15,8 @@ class StatusMenuView: UIView {
         static let latenessItems = [15, 30, 45, 60]
         static let lineColor = R.color.textSecondary()?.withAlphaComponent(0.6)
         static let lineHeight: CGFloat = 0.5
-        static let latenessAnimateDuration: TimeInterval = 0.7
-        static let latenessSpringDamping: CGFloat = 0.8
+        static let latenessAnimateDuration: TimeInterval = 0.35
+        static let latenessSpringDamping: CGFloat = 0.9
         static let selectionDuration: TimeInterval = 0.1
         static let latenessMovingBoard: CGFloat = 0.5
         static let itemEdgeIndent: CGFloat = 16

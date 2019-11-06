@@ -93,6 +93,7 @@ final class HardcodedStorage {
     private var events = [
         HardcodedConstants.eventInvitation1,
         HardcodedConstants.eventInvitation2,
+        HardcodedConstants.eventInvitation2,
         HardcodedConstants.eventNow,
         HardcodedConstants.eventFuture1,
         HardcodedConstants.eventFuture2,

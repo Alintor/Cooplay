@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InventedHeaderView" customModule="Cooplay" customModuleProvider="target">
+            <connections>
+                <outlet property="carousel" destination="8Tk-WF-7U1" id="7bt-TI-xxu"/>
+                <outlet property="titleLabel" destination="KeF-3U-2MA" id="luW-KL-Tw9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="182"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeF-3U-2MA">
+                    <rect key="frame" x="16" y="16" width="343" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="text.secondary"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTextKey" value="eventsList.sections.invented"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tk-WF-7U1" customClass="iCarousel">
+                    <rect key="frame" x="0.0" y="56" width="375" height="110"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="T2g-gg-xek"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="background"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Tk-WF-7U1" secondAttribute="trailing" id="4Gh-Cs-eX6"/>
+                <constraint firstAttribute="bottom" secondItem="8Tk-WF-7U1" secondAttribute="bottom" constant="16" id="FkO-Ns-BG5"/>
+                <constraint firstItem="8Tk-WF-7U1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QOy-SL-FA6"/>
+                <constraint firstItem="8Tk-WF-7U1" firstAttribute="top" secondItem="KeF-3U-2MA" secondAttribute="bottom" constant="12" id="fxf-pO-oo3"/>
+                <constraint firstItem="KeF-3U-2MA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="lTs-6v-2JV"/>
+                <constraint firstItem="KeF-3U-2MA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="nBB-Ui-CWa"/>
+                <constraint firstAttribute="trailing" secondItem="KeF-3U-2MA" secondAttribute="trailing" constant="16" id="zyF-W6-2rm"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="306.69642857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="background">
+            <color red="0.090196078431372548" green="0.098039215686274508" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text.secondary">
+            <color red="0.57647058823529407" green="0.61176470588235299" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

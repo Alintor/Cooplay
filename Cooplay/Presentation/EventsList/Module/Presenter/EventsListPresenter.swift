@@ -6,8 +6,9 @@
 //
 
 import DTModelStorage
+import iCarousel
 
-final class EventsListPresenter {
+final class EventsListPresenter: NSObject {
     
     private enum Constant {
         
@@ -39,6 +40,10 @@ final class EventsListPresenter {
     // MARK: - Private
     
     private var dataSource: MemoryStorage!
+    private var events = [Event]()
+    private var inventedEvents: [Event] {
+        return events.filter({ $0.me.state == .unknown })
+    }
     
     private func fetchEvents() {
         view.showProgress(indicatorType: .arrows)
@@ -47,6 +52,7 @@ final class EventsListPresenter {
             self.view.hideProgress()
             switch result {
             case .success(let events):
+                self.events = events
                 self.configureInvitedSection(with: events.filter({ $0.me.state == .unknown }))
                 let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
                 if let activeEvent = acceptedEvents.first {
@@ -61,11 +67,7 @@ final class EventsListPresenter {
     }
     
     private func configureInvitedSection(with events: [Event]) {
-//        dataSource.setItems(events.map({ EventCellViewModel(with: $0)}), forSection: Constant.Section.invited)
-//        dataSource.setSectionHeaderModel(
-//            R.string.localizable.eventsListSectionsInvited(),
-//            forSection: Constant.Section.invited
-//        )
+        view.setInvitations(show: !inventedEvents.isEmpty, dataSource: self)
     }
     
     private func configureActiveSection(with event: Event) {
@@ -82,6 +84,22 @@ final class EventsListPresenter {
             R.string.localizable.eventsListSectionsFuture(),
             forSection: Constant.Section.future
         )
+    }
+}
+
+// MARK: - iCarouselDataSource
+
+extension EventsListPresenter: iCarouselDataSource {
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return inventedEvents.count
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let itemView = view as? InvitedEventCell ?? InvitedEventCell(isSmall: inventedEvents.count > 1)
+        let item = inventedEvents[index]
+        itemView.update(with: EventCellViewModel(with: item))
+        return itemView
     }
 }
 

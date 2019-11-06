@@ -59,6 +59,10 @@
 		A8D1D29F2361884000DA1089 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D29E2361884000DA1089 /* UIView.swift */; };
 		A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */; };
 		A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */; };
+		A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DFD4E7237292DF00F48B37 /* InvitedEventCell.swift */; };
+		A8DFD4EA237292EA00F48B37 /* InvitedEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8DFD4E9237292EA00F48B37 /* InvitedEventCell.xib */; };
+		A8DFD4ED2372AA4100F48B37 /* InventedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8DFD4EC2372AA4100F48B37 /* InventedHeaderView.xib */; };
+		A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
@@ -116,6 +120,10 @@
 		A8D1D29E2361884000DA1089 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorRenderer.swift; sourceTree = "<group>"; };
 		A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowsActivityIndicatorView.swift; sourceTree = "<group>"; };
+		A8DFD4E7237292DF00F48B37 /* InvitedEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCell.swift; sourceTree = "<group>"; };
+		A8DFD4E9237292EA00F48B37 /* InvitedEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitedEventCell.xib; sourceTree = "<group>"; };
+		A8DFD4EC2372AA4100F48B37 /* InventedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventedHeaderView.xib; sourceTree = "<group>"; };
+		A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventedHeaderView.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -141,6 +149,7 @@
 		29C76481B7BAAB90E6F28ED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8DFD4EB2372A9FC00F48B37 /* HeaderVIew */,
 				A82FF2D02347160600EE1807 /* Cells */,
 				D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */,
 				16F78D0DA3753B15C262B74E /* EventsListViewController.swift */,
@@ -425,6 +434,7 @@
 		A82FF2D02347160600EE1807 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A8DFD4E6237292A800F48B37 /* InvitedEventCell */,
 				A8641A182364499800BD3EAA /* EventSectionHeader */,
 				A8D1D279235706CA00DA1089 /* ActiveEventCell */,
 				A82FF2D12347180700EE1807 /* EventCell */,
@@ -571,6 +581,24 @@
 			path = ActivityIndicatorViews;
 			sourceTree = "<group>";
 		};
+		A8DFD4E6237292A800F48B37 /* InvitedEventCell */ = {
+			isa = PBXGroup;
+			children = (
+				A8DFD4E7237292DF00F48B37 /* InvitedEventCell.swift */,
+				A8DFD4E9237292EA00F48B37 /* InvitedEventCell.xib */,
+			);
+			path = InvitedEventCell;
+			sourceTree = "<group>";
+		};
+		A8DFD4EB2372A9FC00F48B37 /* HeaderVIew */ = {
+			isa = PBXGroup;
+			children = (
+				A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */,
+				A8DFD4EC2372AA4100F48B37 /* InventedHeaderView.xib */,
+			);
+			path = HeaderVIew;
+			sourceTree = "<group>";
+		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,7 +673,9 @@
 				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
 				A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
+				A8DFD4ED2372AA4100F48B37 /* InventedHeaderView.xib in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
+				A8DFD4EA237292EA00F48B37 /* InvitedEventCell.xib in Resources */,
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
@@ -703,7 +733,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -738,6 +768,7 @@
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
+				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
@@ -765,6 +796,7 @@
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
+				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
