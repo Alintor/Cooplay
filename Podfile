@@ -10,6 +10,8 @@ target 'Cooplay' do
   pod 'Kingfisher', '~> 5.8.1'
   pod 'SwiftDate', '~> 4.5.1'
   pod 'DTTableViewManager', '~> 6.0'
+  pod 'DTCollectionViewManager', '~> 6.0'
+  pod 'iCarousel', '~> 1.8.3'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 

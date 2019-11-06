@@ -1,9 +1,12 @@
 PODS:
+  - DTCollectionViewManager (6.6.0):
+    - DTModelStorage (~> 7.4.0)
   - DTModelStorage (7.4.1):
     - DTModelStorage/Core (= 7.4.1)
   - DTModelStorage/Core (7.4.1)
   - DTTableViewManager (6.6.0):
     - DTModelStorage (~> 7.4.0)
+  - iCarousel (1.8.3)
   - Kingfisher (5.8.1):
     - Kingfisher/Core (= 5.8.1)
   - Kingfisher/Core (5.8.1)
@@ -18,7 +21,9 @@ PODS:
     - Swinject (~> 2.6)
 
 DEPENDENCIES:
+  - DTCollectionViewManager (~> 6.0)
   - DTTableViewManager (~> 6.0)
+  - iCarousel (~> 1.8.3)
   - Kingfisher (~> 5.8.1)
   - LightRoute (from `https://github.com/SpectralDragon/LightRoute.git`)
   - PluggableAppDelegate (~> 1.3.0)
@@ -29,8 +34,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - DTCollectionViewManager
     - DTModelStorage
     - DTTableViewManager
+    - iCarousel
     - Kingfisher
     - PluggableAppDelegate
     - R.swift
@@ -49,8 +56,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SpectralDragon/LightRoute.git
 
 SPEC CHECKSUMS:
+  DTCollectionViewManager: 4e01bd1e97a5ca1a6f529dd0a2608ef52c98400d
   DTModelStorage: 558e0c60bdc0bb5d37ec8f04772f29641183ddb9
   DTTableViewManager: df3c7fa735d1b8baac3e547d90f5b02221eda72e
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
   LightRoute: db57625eed1e3ca42cd102ef5846bb871f4ed208
   PluggableAppDelegate: 94c85bf821d85661c843a86e1aafe0cc12a62634
@@ -60,6 +69,6 @@ SPEC CHECKSUMS:
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: dc77d35eccd8e5fc8eedbfd07286d3e98e9623e6
+PODFILE CHECKSUM: 3575f61da1f31767748a1f7e9022ac0711b03650
 
 COCOAPODS: 1.6.1
