@@ -51,26 +51,17 @@ class ActiveEventCell: UITableViewCell {
         
         // handle touch down and touch up events separately
         if gesture.state == .began {
-            print(statusView.frame)
-            UIView.animate(withDuration: 0.1) {
-                self.statusView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            }
+            self.statusView.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
             
         } else if  gesture.state == .ended {
             let touchLocation = gesture.location(in: statusView)
-            print(touchLocation)
-            print(statusView.frame)
-            if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.95) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.95) {
-                UIView.animate(withDuration: 0.1) {
-                    self.statusView.transform = .identity
-                }
+            if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.98) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.98) {
+                self.statusView.transform = .identity
                 
-                let stateContextView = StatusContextView(contextType: .moveToBottom, delegate: self, handler: nil)
+                let stateContextView = StatusContextView(contextType: .moveToBottom, delegate: self)
                 stateContextView.showMenu(size: .large, type: .statuses(type: .confirmation, actionHandler: nil))
             } else {
-                UIView.animate(withDuration: 0.1) {
-                    self.statusView.transform = .identity
-                }
+                self.statusView.transform = .identity
             }
             
         }
@@ -152,6 +143,6 @@ extension ActiveEventCell: StatusContextDelegate {
 extension ActiveEventCell {
 
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        return false
     }
 }

@@ -79,7 +79,33 @@ final class EventsListPresenter: NSObject {
     }
     
     private func configureFutureSection(with events: [Event]) {
-        dataSource.setItems(events.map({ EventCellViewModel(with: $0)}), forSection: Constant.Section.future)
+        var viewModels = [EventCellViewModel]()
+        for event in events {
+            let viewModel = EventCellViewModel(with: event) { [weak self] delegate in
+                guard let `self` = self else { return }
+                self.router.showContextMenu(
+                    delegate: delegate,
+                    contextType: .overTarget,
+                    menuSize: .small,
+                    menuType: .statuses(
+                        type: .agreement,
+                        actionHandler: { status in
+                            switch status {
+                            case .declined:
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                                    try? self?.dataSource.removeItem(EventCellViewModel(with: event, statusAction: nil))
+                                }
+                                
+                            default: break
+                            }
+                        }
+                    )
+                )
+            }
+            viewModels.append(viewModel)
+        }
+        
+        dataSource.setItems(viewModels, forSection: Constant.Section.future)
         dataSource.setSectionHeaderModel(
             R.string.localizable.eventsListSectionsFuture(),
             forSection: Constant.Section.future
@@ -97,8 +123,23 @@ extension EventsListPresenter: iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let itemView = view as? InvitedEventCell ?? InvitedEventCell(isSmall: inventedEvents.count > 1)
-        let item = inventedEvents[index]
-        itemView.update(with: EventCellViewModel(with: item))
+        var item = inventedEvents[index]
+        itemView.update(with: EventCellViewModel(with: item, statusAction: { [weak self] delegate in
+            guard let `self` = self else { return }
+            self.router.showContextMenu(
+                delegate: delegate,
+                contextType: .overTarget,
+                menuSize: .small,
+                menuType: .statuses(
+                    type: .agreement,
+                    actionHandler: { status in
+                        item.me.status = status
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                            self?.view.removeInvitation(index: index)
+                            try? self?.dataSource.insertItem(EventCellViewModel(with: item, statusAction: nil), to: IndexPath(item: 0, section: Constant.Section.future))
+                        }
+                    }))
+        }))
         return itemView
     }
 }

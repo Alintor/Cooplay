@@ -50,3 +50,10 @@ struct ActiveEventCellViewModel {
         }
     }
 }
+
+extension ActiveEventCellViewModel: Equatable {
+    
+    static func == (lhs: ActiveEventCellViewModel, rhs: ActiveEventCellViewModel) -> Bool {
+        return lhs.model == rhs.model
+    }
+}

@@ -13,5 +13,12 @@ struct Event: Codable {
     let game: Game
     let date: Date
     let members: [User]
-    let me: User
+    var me: User
+}
+
+extension Event: Equatable {
+    
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return lhs.date == rhs.date
+    }
 }

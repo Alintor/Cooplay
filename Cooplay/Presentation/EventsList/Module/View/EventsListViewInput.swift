@@ -22,4 +22,5 @@ protocol EventsListViewInput: class, ActivityIndicatorRenderer {
     func updateProfile(with model: AvatarViewModel)
     func showItems()
     func setInvitations(show: Bool, dataSource: iCarouselDataSource)
+    func removeInvitation(index: Int)
 }

@@ -24,11 +24,13 @@ struct EventCellViewModel {
     var statusColor: UIColor?
     var members: [AvatarViewModel]
     var otherCount: Int?
+    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
     
     let model: Event
     
-    init(with model: Event) {
+    init(with model: Event, statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?) {
         self.model = model
+        self.statusAction = statusAction
         title = model.game.name
         date = model.date.displayString
         imagePath = model.game.coverPath
@@ -46,5 +48,12 @@ struct EventCellViewModel {
             members = memberViewModels
             self.otherCount = nil
         }
+    }
+}
+
+extension EventCellViewModel: Equatable {
+    
+    static func == (lhs: EventCellViewModel, rhs: EventCellViewModel) -> Bool {
+        return lhs.model == rhs.model
     }
 }

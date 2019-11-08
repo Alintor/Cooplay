@@ -24,6 +24,8 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var membersView: UIStackView!
     @IBOutlet weak var statusIconWidthConstraint: NSLayoutConstraint!
     
+    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
@@ -43,8 +45,7 @@ class EventCell: UITableViewCell {
     
     
     @objc func statusTapped() {
-        let stateContextView = StatusContextView(contextType: .overTarget, delegate: self, handler: nil)
-        stateContextView.showMenu(size: .small, type: .statuses(type: .agreement, actionHandler: nil))
+        statusAction?(self)
     }
     
     
@@ -61,6 +62,7 @@ extension EventCell: ModelTransfer {
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
         statusIconWidthConstraint?.isActive = model.lateTime == nil
+        self.statusAction = model.statusAction
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {

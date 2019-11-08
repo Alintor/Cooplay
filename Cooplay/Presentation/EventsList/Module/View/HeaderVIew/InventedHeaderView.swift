@@ -46,6 +46,10 @@ final class InventedHeaderView: UIView {
         })
     }
     
+    func removeItem(index: Int) {
+        carousel.removeItem(at: index, animated: true)
+    }
+    
     // MARK: - Private
     
     private func loadNIB() {

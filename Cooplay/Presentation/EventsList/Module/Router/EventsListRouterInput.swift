@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol EventsListRouterInput {
+protocol EventsListRouterInput: ContextMenuRouter {
 
 }

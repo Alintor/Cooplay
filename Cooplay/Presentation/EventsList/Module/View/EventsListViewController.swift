@@ -88,6 +88,8 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
                 self?.actionButtonView.transform = .identity
             })
         }
+        manager.tableViewUpdater?.deleteRowAnimation = .fade
+        manager.tableViewUpdater?.insertRowAnimation = .middle
         if let dataSource = manager.storage as? MemoryStorage {
             dataSourceIsReady?(dataSource)
         }
@@ -114,6 +116,11 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         }
         tableView.tableHeaderView = InventedHeaderView(dataSource: dataSource)
         updateHeaderViewHeight()
+    }
+    
+    func removeInvitation(index: Int) {
+        let inventedHeader = tableView.tableHeaderView as? InventedHeaderView
+        inventedHeader?.removeItem(index: index)
     }
     
     func showItems() {
@@ -152,6 +159,11 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     override func viewWillDisappear(_ animated: Bool) {
         avatarView?.removeConstraints(avatarView?.constraints ?? [])
         avatarView?.removeFromSuperview()
+    }
+    
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateHeaderViewHeight()
     }
     
     // MARK: - Actions

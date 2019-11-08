@@ -107,14 +107,12 @@ class StatusContextView: UIView {
     private var menuTransform: CGAffineTransform?
     private let contextType: ContextType
     private weak var delegate: StatusContextDelegate?
-    private var handler: ((_ status: User.Status) -> Void)?
     private var selectedMenuItem: MenuItem?
     
-    init(contextType: ContextType, delegate: StatusContextDelegate?, handler: ((_ status: User.Status) -> Void)?) {
+    init(contextType: ContextType, delegate: StatusContextDelegate?) {
         self.contextType = contextType
         super.init(frame: .zero)
         self.delegate = delegate
-        self.handler = handler
         guard let window = StatusContextView.topWindow else { return }
         self.frame = window.frame
         blurEffectView.frame = self.frame
@@ -151,7 +149,6 @@ class StatusContextView: UIView {
         
         let  menuView = StatusMenuView(size: menuSize, type: menuType) { [weak self] menuItem in
             self?.selectedMenuItem = menuItem
-            //self?.handler?(status)
             self?.close()
         }
         self.menuView = menuView

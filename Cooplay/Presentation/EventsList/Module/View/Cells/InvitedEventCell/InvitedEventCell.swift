@@ -23,6 +23,8 @@ final class InvitedEventCell: UIView {
     @IBOutlet weak var actionsView: UIView!
     @IBOutlet weak var membersView: UIStackView!
     
+    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    
     private var view: UIView!
     
     // MARK: - Init
@@ -44,8 +46,7 @@ final class InvitedEventCell: UIView {
     
     
     @objc func actionsTapped() {
-        let stateContextView = StatusContextView(contextType: .overTarget, delegate: self, handler: nil)
-        stateContextView.showMenu(size: .small, type: .statuses(type: .agreement, actionHandler: nil))
+        statusAction?(self)
     }
     
     // MARK: - Interface
@@ -54,6 +55,7 @@ final class InvitedEventCell: UIView {
         titleLabel.text = model.title
         dateLabel.text = model.date
         gameImageView.setImage(withPath: model.imagePath)
+        self.statusAction = model.statusAction
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {

@@ -36,6 +36,7 @@
 		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
+		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
@@ -95,6 +96,7 @@
 		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		A82FF2BC2346F3AB00EE1807 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A860277723757654004E45AB /* Router */,
 				A82FF2BD2346F3BA00EE1807 /* View */,
 			);
 			path = Common;
@@ -475,6 +478,14 @@
 				A82FF2DC2347492B00EE1807 /* String.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		A860277723757654004E45AB /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A860277823757676004E45AB /* ContextMenuRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		A8641A182364499800BD3EAA /* EventSectionHeader */ = {
@@ -801,6 +812,7 @@
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
 				A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */,
+				A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */,
 				A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */,
 				840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */,
 				13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */,

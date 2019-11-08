@@ -29,13 +29,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-Ep-q1h">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peb-iD-dT8">
+                                <rect key="frame" x="0.0" y="0.0" width="370" height="134"/>
+                                <color key="backgroundColor" name="background"/>
+                            </view>
+                            <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-Ep-q1h">
                                 <rect key="frame" x="0.0" y="0.0" width="370" height="134"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Pql-f8-fZr">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="systemUltraThinMaterialDark"/>
+                                <blurEffect style="regular"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
@@ -200,6 +204,9 @@
                         <constraints>
                             <constraint firstItem="GY5-KP-kDE" firstAttribute="leading" secondItem="WHC-EB-fRR" secondAttribute="leading" id="0gu-Ky-ed2"/>
                             <constraint firstItem="v6i-Ep-q1h" firstAttribute="leading" secondItem="WHC-EB-fRR" secondAttribute="leading" id="2Ky-5b-zo7"/>
+                            <constraint firstItem="peb-iD-dT8" firstAttribute="leading" secondItem="v6i-Ep-q1h" secondAttribute="leading" id="9qk-Fv-z3X"/>
+                            <constraint firstItem="peb-iD-dT8" firstAttribute="top" secondItem="v6i-Ep-q1h" secondAttribute="top" id="Bzr-2N-9OT"/>
+                            <constraint firstItem="peb-iD-dT8" firstAttribute="bottom" secondItem="v6i-Ep-q1h" secondAttribute="bottom" id="DhR-fg-a2W"/>
                             <constraint firstItem="lYy-yq-Zaf" firstAttribute="top" secondItem="WHC-EB-fRR" secondAttribute="top" id="GfD-Ki-NVN"/>
                             <constraint firstItem="AaY-9X-U7I" firstAttribute="centerY" secondItem="oOs-Zl-tLz" secondAttribute="centerY" id="Kyg-Tn-xNr"/>
                             <constraint firstAttribute="trailing" secondItem="v6i-Ep-q1h" secondAttribute="trailing" id="LdS-9Z-A6N"/>
@@ -212,6 +219,7 @@
                             <constraint firstItem="oOs-Zl-tLz" firstAttribute="leading" secondItem="WHC-EB-fRR" secondAttribute="leading" constant="10" id="daA-N3-rt9"/>
                             <constraint firstItem="lYy-yq-Zaf" firstAttribute="bottom" secondItem="WHC-EB-fRR" secondAttribute="centerY" constant="16" id="f16-Rs-WbM"/>
                             <constraint firstItem="AaY-9X-U7I" firstAttribute="leading" secondItem="oOs-Zl-tLz" secondAttribute="trailing" constant="12" id="lQ7-6I-X4X"/>
+                            <constraint firstItem="peb-iD-dT8" firstAttribute="trailing" secondItem="v6i-Ep-q1h" secondAttribute="trailing" id="lmG-nd-qhu"/>
                             <constraint firstItem="lYy-yq-Zaf" firstAttribute="leading" secondItem="WHC-EB-fRR" secondAttribute="leading" id="nMR-Kz-9p9"/>
                             <constraint firstAttribute="trailing" secondItem="AaY-9X-U7I" secondAttribute="trailing" constant="10" id="oMg-Kj-4ce"/>
                             <constraint firstItem="oOs-Zl-tLz" firstAttribute="top" secondItem="WHC-EB-fRR" secondAttribute="top" constant="10" id="qCu-D8-MWa"/>
@@ -256,6 +264,9 @@
     </objects>
     <resources>
         <image name="common.arrowDown" width="10" height="6"/>
+        <namedColor name="background">
+            <color red="0.090196078431372548" green="0.098039215686274508" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="block">
             <color red="0.16078431372549021" green="0.17254901960784313" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
