@@ -14,9 +14,10 @@ final class EventsListPresenter: NSObject {
         
         enum Section {
             
-            static let active = 0
-            static let future = 1
-            static let declined = 2
+            static let invitations = 0
+            static let active = 1
+            static let future = 2
+            static let declined = 3
         }
     }
 
@@ -101,7 +102,19 @@ final class EventsListPresenter: NSObject {
     }
     
     private func configureInvitedSection() {
-        view.setInvitations(show: !inventedEvents.isEmpty, dataSource: self)
+        //view.setInvitations(show: !inventedEvents.isEmpty, dataSource: self)
+        let sectionHeader = inventedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+            title: R.string.localizable.eventsListSectionsInvited(),
+            itemsCount: inventedEvents.count,
+            showItems: true,
+            toggleAction: nil
+        )
+        let items = inventedEvents.isEmpty ? [] : [InvitationsHeaderCellViewModel(dataSource: self)]
+        dataSource.setItems(items, forSection: Constant.Section.invitations)
+        dataSource.setSectionHeaderModel(
+            sectionHeader,
+            forSection: Constant.Section.invitations
+        )
     }
     
     private func configureActiveSection() {

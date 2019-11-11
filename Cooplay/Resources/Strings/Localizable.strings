@@ -31,4 +31,4 @@
 "eventsList.sections.active" = "Ближайшее событие";
 "eventsList.sections.future" = "Будущие события";
 "eventsList.sections.declined" = "Откланенные события";
-"eventsList.sections.invited" = "Приглашен";
+"eventsList.sections.invited" = "Приглашения";

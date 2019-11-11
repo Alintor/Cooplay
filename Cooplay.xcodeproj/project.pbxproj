@@ -39,6 +39,9 @@
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
 		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
 		A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */; };
+		A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */; };
+		A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */; };
+		A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844BDEB2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
@@ -102,6 +105,9 @@
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
 		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
 		A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderViewModel.swift"; sourceTree = "<group>"; };
+		A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsHeaderCell.swift; sourceTree = "<group>"; };
+		A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationsHeaderCell.xib; sourceTree = "<group>"; };
+		A844BDEB2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -443,6 +449,7 @@
 		A82FF2D02347160600EE1807 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A844BDE62379A10F00EE4A3E /* InvitationsHeaderCell */,
 				A8DFD4E6237292A800F48B37 /* InvitedEventCell */,
 				A8641A182364499800BD3EAA /* EventSectionHeader */,
 				A8D1D279235706CA00DA1089 /* ActiveEventCell */,
@@ -467,6 +474,7 @@
 				A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */,
 				A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */,
 				A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */,
+				A844BDEB2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -486,6 +494,15 @@
 				A82FF2DC2347492B00EE1807 /* String.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		A844BDE62379A10F00EE4A3E /* InvitationsHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */,
+				A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */,
+			);
+			path = InvitationsHeaderCell;
 			sourceTree = "<group>";
 		};
 		A860277723757654004E45AB /* Router */ = {
@@ -699,6 +716,7 @@
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
+				A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +808,7 @@
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
+				A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
@@ -815,6 +834,7 @@
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
+				A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */,
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,

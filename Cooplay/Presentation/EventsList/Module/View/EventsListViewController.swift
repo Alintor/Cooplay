@@ -42,8 +42,13 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         actionButtonView.addGestureRecognizer(tapGestureRecognizer)
         navigationController?.navigationBar.prefersLargeTitles = true
         manager.startManaging(withDelegate: self)
-        manager.configureEvents(for: ActiveEventCell.self) { cellType, modelType in
+        manager.configureEvents(for: InvitationsHeaderCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(0) }
+            manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
+            manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
+        }
+        manager.configureEvents(for: ActiveEventCell.self) { cellType, modelType in
+            manager.register(cellType) { $0.condition = .section(1) }
             manager.didSelect(cellType) { (cell, model, _) in
                 print("Event selected!")
             }
@@ -75,7 +80,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             return 50
         }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
-            manager.register(cellType) { $0.condition = .section(1) }
+            manager.register(cellType) { $0.condition = .section(2) }
             manager.didHighlight(cellType) { (cell, _, _) in
                 UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
@@ -90,7 +95,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
-            manager.register(cellType) { $0.condition = .section(2) }
+            manager.register(cellType) { $0.condition = .section(3) }
             manager.didHighlight(cellType) { (cell, _, _) in
                 UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                     cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)

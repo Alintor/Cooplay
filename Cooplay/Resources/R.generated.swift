@@ -216,7 +216,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -226,6 +226,8 @@ struct R: Rswift.Validatable {
     static let eventCell = _R.nib._EventCell()
     /// Nib `InventedHeaderView`.
     static let inventedHeaderView = _R.nib._InventedHeaderView()
+    /// Nib `InvitationsHeaderCell`.
+    static let invitationsHeaderCell = _R.nib._InvitationsHeaderCell()
     /// Nib `InvitedEventCell`.
     static let invitedEventCell = _R.nib._InvitedEventCell()
     
@@ -253,6 +255,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.inventedHeaderView)
     }
     
+    /// `UINib(name: "InvitationsHeaderCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.invitationsHeaderCell) instead")
+    static func invitationsHeaderCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.invitationsHeaderCell)
+    }
+    
     /// `UINib(name: "InvitedEventCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.invitedEventCell) instead")
     static func invitedEventCell(_: Void = ()) -> UIKit.UINib {
@@ -273,6 +281,10 @@ struct R: Rswift.Validatable {
     
     static func inventedHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.inventedHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+    
+    static func invitationsHeaderCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> InvitationsHeaderCell? {
+      return R.nib.invitationsHeaderCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? InvitationsHeaderCell
     }
     
     static func invitedEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -343,13 +355,13 @@ struct R: Rswift.Validatable {
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
-      static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Приглашен
       static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
       static let statusUnknownShort = Rswift.StringResource(key: "status.unknown.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашения
       static let eventsListSectionsInvented = Rswift.StringResource(key: "eventsList.sections.invented", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашения
+      static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
@@ -421,11 +433,6 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Приглашен
-      static func eventsListSectionsInvited(_: Void = ()) -> String {
-        return NSLocalizedString("eventsList.sections.invited", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Приглашен
       static func statusUnknownFull(_: Void = ()) -> String {
         return NSLocalizedString("status.unknown.full", bundle: R.hostingBundle, comment: "")
       }
@@ -438,6 +445,11 @@ struct R: Rswift.Validatable {
       /// Value: Приглашения
       static func eventsListSectionsInvented(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.invented", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приглашения
+      static func eventsListSectionsInvited(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.invited", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приду вовремя
@@ -536,6 +548,17 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _InvitationsHeaderCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "InvitationsHeaderCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> InvitationsHeaderCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? InvitationsHeaderCell
       }
       
       fileprivate init() {}
