@@ -122,14 +122,10 @@ final class EventsListPresenter: NSObject {
             }))
         }
         dataSource.setItems(events, forSection: Constant.Section.active)
-        if let sectionTitle = sectionTitle {
-            dataSource.setSectionHeaderModel(
-                sectionTitle,
-                forSection: Constant.Section.active
-            )
-        } else {
-            dataSource.deleteSections(IndexSet(integer: Constant.Section.active))
-        }
+        dataSource.setSectionHeaderModel(
+            sectionTitle,
+            forSection: Constant.Section.active
+        )
         
     }
     
@@ -152,27 +148,20 @@ final class EventsListPresenter: NSObject {
             }
             viewModels.append(viewModel)
         }
+        let sectionHeader = furureEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+            title: R.string.localizable.eventsListSectionsFuture(),
+            itemsCount: furureEvents.count,
+            showItems: true,
+            toggleAction: nil
+        )
         dataSource.setItems(viewModels, forSection: Constant.Section.future)
-        if !furureEvents.isEmpty {
-            dataSource.setSectionHeaderModel(
-                EventSectionСollapsibleHeaderViewModel(
-                    title: R.string.localizable.eventsListSectionsFuture(),
-                    itemsCount: furureEvents.count,
-                    showItems: true,
-                    toggleAction: nil
-                ),
-                forSection: Constant.Section.future
-            )
-        } else {
-            dataSource.deleteSections(IndexSet(integer: Constant.Section.future))
-        }
+        dataSource.setSectionHeaderModel(
+            sectionHeader,
+            forSection: Constant.Section.future
+        )
     }
     
     private func configureDeclinedSection() {
-        guard !declinedEvents.isEmpty else {
-            dataSource.deleteSections(IndexSet(integer: Constant.Section.declined))
-            return
-        }
         var viewModels = [EventCellViewModel]()
         for var event in declinedEvents {
             let viewModel = EventCellViewModel(with: event) { [weak self] delegate in
@@ -192,23 +181,22 @@ final class EventsListPresenter: NSObject {
             viewModels.append(viewModel)
         }
         dataSource.setItems(showDeclinedEvents ? viewModels : [], forSection: Constant.Section.declined)
-        if !furureEvents.isEmpty {
-            dataSource.setSectionHeaderModel(
-                EventSectionСollapsibleHeaderViewModel(
-                    title: R.string.localizable.eventsListSectionsDeclined(),
-                    itemsCount: declinedEvents.count,
-                    showItems: showDeclinedEvents,
-                    toggleAction: { [weak self] in
-                        guard let `self` = self else { return }
-                        self.showDeclinedEvents = !self.showDeclinedEvents
-                        self.configureDeclinedSection()
-                    }
-                ),
-                forSection: Constant.Section.declined
-            )
-        } else {
-            dataSource.deleteSections(IndexSet(integer: Constant.Section.future))
-        }
+        
+        let sectionHeader = declinedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+            title: R.string.localizable.eventsListSectionsDeclined(),
+            itemsCount: declinedEvents.count,
+            showItems: showDeclinedEvents,
+            toggleAction: { [weak self] in
+                guard let `self` = self else { return }
+                self.showDeclinedEvents = !self.showDeclinedEvents
+                self.configureDeclinedSection()
+            }
+        )
+        
+        dataSource.setSectionHeaderModel(
+            sectionHeader,
+            forSection: Constant.Section.declined
+        )
     }
 }
 
