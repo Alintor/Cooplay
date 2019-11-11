@@ -89,8 +89,6 @@ extension EventSectionСollapsibleHeaderView: ModelTransfer {
         self.toggleAction = model.toggleAction
         arrowImageView.isHidden = model.toggleAction == nil
         arrowImageView.transform = .identity
-        if !model.showItems {
-            arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
-        }
+        arrowImageView.image = model.showItems ? R.image.commonArrowDown() : R.image.commonArrowUp()
     }
 }
