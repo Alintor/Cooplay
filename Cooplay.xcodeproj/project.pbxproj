@@ -36,6 +36,7 @@
 		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
+		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
@@ -96,6 +97,7 @@
 		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -459,6 +461,7 @@
 			children = (
 				A82FF2D72347228600EE1807 /* EventCellViewModel.swift */,
 				A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */,
+				A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				A82FF2E023474C2700EE1807 /* Date.swift in Sources */,
 				7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
+				A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,

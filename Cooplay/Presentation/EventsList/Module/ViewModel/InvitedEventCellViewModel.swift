@@ -1,47 +1,50 @@
 //
-//  ActiveEventCellViewModel.swift
+//  InvitedEventCellViewModel.swift
 //  Cooplay
 //
-//  Created by Alexandr on 16/10/2019.
+//  Created by Alexandr on 11/11/2019.
 //  Copyright © 2019 Ovchinnikov. All rights reserved.
 //
 
 import UIKit
 
-struct ActiveEventCellViewModel {
+struct InvitedEventCellViewModel {
     
     private enum Constant {
         
-        static let maxMembersCount = 4
+        static let maxMembersCount = 3
+    }
+    
+    enum Action {
+        case accept
+        case details(delegate: StatusContextDelegate?)
     }
     
     var title: String
     var date: String
-    var coverPath: String
-    var previewPath: String?
+    var imagePath: String
     var statusTitle: String?
+    var lateTime: String?
     var statusIcon: UIImage?
     var statusColor: UIColor?
-    var members: [MemberStatusViewModel]
+    var members: [AvatarViewModel]
     var otherCount: Int?
-    var avatarViewModel: AvatarViewModel
-    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    var statusAction: ((_ action: Action) -> Void)?
     
     let model: Event
     
-    init(with model: Event, statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?) {
+    init(with model: Event, statusAction: ((_ action: Action) -> Void)?) {
         self.model = model
         self.statusAction = statusAction
         title = model.game.name
         date = model.date.displayString
-        coverPath = model.game.coverPath
-        previewPath = model.game.previewImagePath
-        statusIcon = model.me.status?.icon()
+        imagePath = model.game.coverPath
+        lateTime = model.me.status?.lateTimeString
+        statusTitle = model.me.status?.title(isShort: true)
+        statusIcon = model.me.status?.icon(isSmall: true)
         statusColor = model.me.status?.color
-        statusTitle = model.me.status?.title()
-        avatarViewModel = AvatarViewModel(with: model.me)
         // TODO: Sort members
-        let memberViewModels = model.members.map { MemberStatusViewModel(with: $0) }
+        let memberViewModels = model.members.map { AvatarViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
         if otherCount > 1 {
             members = Array(memberViewModels.prefix(Constant.maxMembersCount))
@@ -53,9 +56,9 @@ struct ActiveEventCellViewModel {
     }
 }
 
-extension ActiveEventCellViewModel: Equatable {
+extension InvitedEventCellViewModel: Equatable {
     
-    static func == (lhs: ActiveEventCellViewModel, rhs: ActiveEventCellViewModel) -> Bool {
+    static func == (lhs: InvitedEventCellViewModel, rhs: InvitedEventCellViewModel) -> Bool {
         return lhs.model == rhs.model
     }
 }

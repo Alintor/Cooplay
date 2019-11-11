@@ -23,7 +23,11 @@ final class InvitedEventCell: UIView {
     @IBOutlet weak var actionsView: UIView!
     @IBOutlet weak var membersView: UIStackView!
     
-    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    @IBOutlet weak var acceptTitleView: UIView!
+    @IBOutlet weak var acceptImageView: UIImageView!
+    
+    
+    var statusAction: ((_ action: InvitedEventCellViewModel.Action) -> Void)?
     
     private var view: UIView!
     
@@ -32,8 +36,10 @@ final class InvitedEventCell: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNIB()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(actionsTapped))
-        actionsView.addGestureRecognizer(tapGestureRecognizer)
+        let actionsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(actionsTapped))
+        actionsView.addGestureRecognizer(actionsTapGestureRecognizer)
+        let acceptTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(acceptViewTapped))
+        acceptView.addGestureRecognizer(acceptTapGestureRecognizer)
     }
     
     required init?(coder: NSCoder) {
@@ -46,16 +52,29 @@ final class InvitedEventCell: UIView {
     
     
     @objc func actionsTapped() {
-        statusAction?(self)
+        statusAction?(.details(delegate: self))
+    }
+    
+    @objc func acceptViewTapped() {
+        statusAction?(.accept)
+        acceptTitleView.alpha = 0
+        acceptImageView.transform = CGAffineTransform(rotationAngle: .pi)
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.acceptTitleView.isHidden = true
+            self.acceptImageView.isHidden = false
+            self.acceptImageView.transform = .identity
+        })
     }
     
     // MARK: - Interface
     
-    func update(with model: EventCellViewModel) {
+    func update(with model: InvitedEventCellViewModel) {
         titleLabel.text = model.title
         dateLabel.text = model.date
         gameImageView.setImage(withPath: model.imagePath)
         self.statusAction = model.statusAction
+        acceptTitleView.isHidden = false
+        acceptImageView.isHidden = true
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {

@@ -28,6 +28,8 @@ class ActiveEventCell: UITableViewCell {
     @IBOutlet weak var statusViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var statusViewTrailingConstraint: NSLayoutConstraint!
     
+    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
@@ -57,9 +59,7 @@ class ActiveEventCell: UITableViewCell {
             let touchLocation = gesture.location(in: statusView)
             if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.98) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.98) {
                 self.statusView.transform = .identity
-                
-                let stateContextView = StatusContextView(contextType: .moveToBottom, delegate: self)
-                stateContextView.showMenu(size: .large, type: .statuses(type: .confirmation, actionHandler: nil))
+                statusAction?(self)
             } else {
                 self.statusView.transform = .identity
             }
@@ -82,6 +82,7 @@ extension ActiveEventCell: ModelTransfer {
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
+        self.statusAction = model.statusAction
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {

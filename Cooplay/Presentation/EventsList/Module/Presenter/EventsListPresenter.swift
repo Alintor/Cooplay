@@ -40,9 +40,35 @@ final class EventsListPresenter: NSObject {
     // MARK: - Private
     
     private var dataSource: MemoryStorage!
-    private var events = [Event]()
+    private var events = [Event]() {
+        didSet {
+            events = events.sorted(by: { $0.date < $1.date })
+        }
+    }
     private var inventedEvents: [Event] {
         return events.filter({ $0.me.state == .unknown })
+    }
+    private var acceptedEvents: [Event] {
+        return events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
+    }
+    private var activeEvent: Event? {
+        return acceptedEvents.first
+    }
+    private var furureEvents: [Event] {
+        if activeEvent == nil {
+            return acceptedEvents
+        } else {
+            return acceptedEvents.suffix(acceptedEvents.count - 1)
+        }
+    }
+    
+    private func updateEvent(_ event: Event) {
+        if let index = events.firstIndex(of: event) {
+            events[index] = event
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                self?.configureSections()
+            }
+        }
     }
     
     private func fetchEvents() {
@@ -53,12 +79,7 @@ final class EventsListPresenter: NSObject {
             switch result {
             case .success(let events):
                 self.events = events
-                self.configureInvitedSection(with: events.filter({ $0.me.state == .unknown }))
-                let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
-                if let activeEvent = acceptedEvents.first {
-                    self.configureActiveSection(with: activeEvent)
-                }
-                self.configureFutureSection(with: acceptedEvents.suffix(acceptedEvents.count - 1))
+                self.configureSections()
                 self.view.showItems()
             case .failure(let error):
                 break
@@ -66,50 +87,73 @@ final class EventsListPresenter: NSObject {
         }
     }
     
-    private func configureInvitedSection(with events: [Event]) {
+    private func configureSections() {
+        configureInvitedSection()
+        configureActiveSection()
+        configureFutureSection()
+    }
+    
+    private func configureInvitedSection() {
         view.setInvitations(show: !inventedEvents.isEmpty, dataSource: self)
     }
     
-    private func configureActiveSection(with event: Event) {
-        dataSource.setItems([ActiveEventCellViewModel(with: event)], forSection: Constant.Section.active)
-        dataSource.setSectionHeaderModel(
-            R.string.localizable.eventsListSectionsActive(),
-            forSection: Constant.Section.active
-        )
+    private func configureActiveSection() {
+        var events = [ActiveEventCellViewModel]()
+        var sectionTitle: String?
+        if var activeEvent = activeEvent {
+            sectionTitle = R.string.localizable.eventsListSectionsActive()
+            events.append(ActiveEventCellViewModel(with: activeEvent, statusAction: { [weak self] delegate in
+                self?.router.showContextMenu(
+                    delegate: delegate,
+                    contextType: .moveToBottom,
+                    menuSize: .large,
+                    menuType: .statuses(type: .confirmation, actionHandler: { status in
+                        activeEvent.me.status = status
+                        self?.updateEvent(activeEvent)
+                    })
+                )
+            }))
+        }
+        dataSource.setItems(events, forSection: Constant.Section.active)
+        if let sectionTitle = sectionTitle {
+            dataSource.setSectionHeaderModel(
+                sectionTitle,
+                forSection: Constant.Section.active
+            )
+        } else {
+            dataSource.deleteSections(IndexSet(integer: Constant.Section.active))
+        }
+        
     }
     
-    private func configureFutureSection(with events: [Event]) {
+    private func configureFutureSection() {
         var viewModels = [EventCellViewModel]()
-        for event in events {
+        for var event in furureEvents {
             let viewModel = EventCellViewModel(with: event) { [weak self] delegate in
-                guard let `self` = self else { return }
-                self.router.showContextMenu(
+                self?.router.showContextMenu(
                     delegate: delegate,
                     contextType: .overTarget,
                     menuSize: .small,
                     menuType: .statuses(
                         type: .agreement,
                         actionHandler: { status in
-                            switch status {
-                            case .declined:
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                                    try? self?.dataSource.removeItem(EventCellViewModel(with: event, statusAction: nil))
-                                }
-                                
-                            default: break
-                            }
+                            event.me.status = status
+                            self?.updateEvent(event)
                         }
                     )
                 )
             }
             viewModels.append(viewModel)
         }
-        
         dataSource.setItems(viewModels, forSection: Constant.Section.future)
-        dataSource.setSectionHeaderModel(
-            R.string.localizable.eventsListSectionsFuture(),
-            forSection: Constant.Section.future
-        )
+        if !furureEvents.isEmpty {
+            dataSource.setSectionHeaderModel(
+                R.string.localizable.eventsListSectionsFuture(),
+                forSection: Constant.Section.future
+            )
+        } else {
+            dataSource.deleteSections(IndexSet(integer: Constant.Section.future))
+        }
     }
 }
 
@@ -124,21 +168,25 @@ extension EventsListPresenter: iCarouselDataSource {
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let itemView = view as? InvitedEventCell ?? InvitedEventCell(isSmall: inventedEvents.count > 1)
         var item = inventedEvents[index]
-        itemView.update(with: EventCellViewModel(with: item, statusAction: { [weak self] delegate in
-            guard let `self` = self else { return }
-            self.router.showContextMenu(
-                delegate: delegate,
-                contextType: .overTarget,
-                menuSize: .small,
-                menuType: .statuses(
-                    type: .agreement,
-                    actionHandler: { status in
-                        item.me.status = status
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                            self?.view.removeInvitation(index: index)
-                            try? self?.dataSource.insertItem(EventCellViewModel(with: item, statusAction: nil), to: IndexPath(item: 0, section: Constant.Section.future))
+        itemView.update(with: InvitedEventCellViewModel(with: item, statusAction: { [weak self] action in
+            switch action {
+            case .accept:
+                item.me.status = .accepted
+                self?.updateEvent(item)
+            case .details(let delegate):
+                self?.router.showContextMenu(
+                    delegate: delegate,
+                    contextType: .overTarget,
+                    menuSize: .small,
+                    menuType: .statuses(
+                        type: .agreement,
+                        actionHandler: { status in
+                            item.me.status = status
+                            self?.updateEvent(item)
                         }
-                    }))
+                    )
+                )
+            }
         }))
         return itemView
     }

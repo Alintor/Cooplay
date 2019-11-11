@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitedEventCell" customModule="Cooplay" customModuleProvider="target">
             <connections>
+                <outlet property="acceptImageView" destination="Ptt-a9-3rv" id="6Pt-Nd-6DO"/>
+                <outlet property="acceptTitleView" destination="QLL-3k-0I9" id="ZEZ-SQ-i72"/>
                 <outlet property="acceptView" destination="6k8-6W-GoI" id="XXa-Lc-d57"/>
                 <outlet property="actionsView" destination="utH-gq-vYI" id="7c9-nr-bBh"/>
                 <outlet property="dateLabel" destination="5VG-U5-gtt" id="ZNe-re-svt"/>
@@ -58,13 +60,13 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AM-gV-Uny">
-                            <rect key="frame" x="92" y="14" width="237" height="21"/>
+                            <rect key="frame" x="92" y="14" width="237" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="text.primary"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-U5-gtt">
-                            <rect key="frame" x="92" y="37" width="237" height="16"/>
+                            <rect key="frame" x="92" y="36.5" width="237" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" name="text.primary"/>
                             <nil key="highlightedColor"/>
@@ -95,22 +97,47 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-6W-GoI">
                             <rect key="frame" x="224" y="70" width="65" height="26"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNL-7N-O0t">
-                                    <rect key="frame" x="16" y="5" width="33" height="16"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" name="block"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTextKey" value="status.accepted.short"/>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAT-rw-tPD">
+                                    <rect key="frame" x="0.0" y="0.0" width="65" height="26"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLL-3k-0I9">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="26"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNL-7N-O0t">
+                                                    <rect key="frame" x="16" y="5" width="33" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" name="block"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTextKey" value="status.accepted.short"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MNL-7N-O0t" secondAttribute="trailing" constant="16" id="CRh-CB-Jhf"/>
+                                                <constraint firstItem="MNL-7N-O0t" firstAttribute="centerY" secondItem="QLL-3k-0I9" secondAttribute="centerY" id="bbx-3d-0PY"/>
+                                                <constraint firstItem="MNL-7N-O0t" firstAttribute="leading" secondItem="QLL-3k-0I9" secondAttribute="leading" constant="16" id="dIY-v9-m3v"/>
+                                            </constraints>
+                                        </view>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.ontime" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-a9-3rv">
+                                            <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            <color key="tintColor" name="block"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="26" id="cKY-gA-p8U"/>
+                                                <constraint firstAttribute="height" constant="26" id="yHo-k6-jeh"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" name="green"/>
                             <constraints>
-                                <constraint firstItem="MNL-7N-O0t" firstAttribute="leading" secondItem="6k8-6W-GoI" secondAttribute="leading" constant="16" id="IsV-02-EMy"/>
-                                <constraint firstAttribute="trailing" secondItem="MNL-7N-O0t" secondAttribute="trailing" constant="16" id="XT8-ny-iPk"/>
+                                <constraint firstItem="LAT-rw-tPD" firstAttribute="leading" secondItem="6k8-6W-GoI" secondAttribute="leading" id="1t3-Pl-56z"/>
+                                <constraint firstAttribute="trailing" secondItem="LAT-rw-tPD" secondAttribute="trailing" id="41b-1D-t3z"/>
+                                <constraint firstItem="LAT-rw-tPD" firstAttribute="top" secondItem="6k8-6W-GoI" secondAttribute="top" id="7Fe-1W-XmW"/>
+                                <constraint firstAttribute="bottom" secondItem="LAT-rw-tPD" secondAttribute="bottom" id="YN5-43-Xt2"/>
                                 <constraint firstAttribute="height" constant="26" id="bVM-eZ-6pD"/>
-                                <constraint firstItem="MNL-7N-O0t" firstAttribute="centerY" secondItem="6k8-6W-GoI" secondAttribute="centerY" id="sX3-xP-ypX"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -167,6 +194,7 @@
     </objects>
     <resources>
         <image name="common.details" width="24" height="24"/>
+        <image name="status.normal.ontime" width="24" height="24"/>
         <namedColor name="block">
             <color red="0.16078431372549021" green="0.17254901960784313" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
