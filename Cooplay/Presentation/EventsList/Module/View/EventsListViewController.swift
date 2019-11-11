@@ -61,10 +61,17 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
         manager.registerNiblessHeader(EventSectionHeaderView.self)
+        manager.registerNiblessHeader(EventSectionСollapsibleHeaderView.self)
         manager.heightForHeader(withItem: String.self) { _, _ in
             return UITableView.automaticDimension
         }
+        manager.heightForHeader(withItem: EventSectionСollapsibleHeaderViewModel.self) { _, _ in
+            return UITableView.automaticDimension
+        }
         manager.estimatedHeightForHeader(withItem: String.self) { _, _ in
+            return 50
+        }
+        manager.estimatedHeightForHeader(withItem: EventSectionСollapsibleHeaderViewModel.self) { _, _ in
             return 50
         }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
@@ -82,7 +89,21 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
-        
+        manager.configureEvents(for: EventCell.self) { cellType, modelType in
+            manager.register(cellType) { $0.condition = .section(2) }
+            manager.didHighlight(cellType) { (cell, _, _) in
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+                })
+            }
+            manager.didUnhighlight(cellType) { (cell, _, _) in
+                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    cell.transform = .identity
+                })
+            }
+            manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
+            manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
+        }
         manager.tableViewUpdater?.didUpdateContent = { [weak self] storage in
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                 self?.actionButtonView.transform = .identity

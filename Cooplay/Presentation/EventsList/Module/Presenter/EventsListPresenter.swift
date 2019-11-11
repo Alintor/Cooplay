@@ -16,6 +16,7 @@ final class EventsListPresenter: NSObject {
             
             static let active = 0
             static let future = 1
+            static let declined = 2
         }
     }
 
@@ -61,6 +62,11 @@ final class EventsListPresenter: NSObject {
             return acceptedEvents.suffix(acceptedEvents.count - 1)
         }
     }
+    private var declinedEvents: [Event] {
+        return events.filter({ $0.me.state == .declined })
+    }
+    
+    private var showDeclinedEvents: Bool = true
     
     private func updateEvent(_ event: Event) {
         if let index = events.firstIndex(of: event) {
@@ -91,6 +97,7 @@ final class EventsListPresenter: NSObject {
         configureInvitedSection()
         configureActiveSection()
         configureFutureSection()
+        configureDeclinedSection()
     }
     
     private func configureInvitedSection() {
@@ -148,8 +155,56 @@ final class EventsListPresenter: NSObject {
         dataSource.setItems(viewModels, forSection: Constant.Section.future)
         if !furureEvents.isEmpty {
             dataSource.setSectionHeaderModel(
-                R.string.localizable.eventsListSectionsFuture(),
+                EventSectionСollapsibleHeaderViewModel(
+                    title: R.string.localizable.eventsListSectionsFuture(),
+                    itemsCount: furureEvents.count,
+                    showItems: true,
+                    toggleAction: nil
+                ),
                 forSection: Constant.Section.future
+            )
+        } else {
+            dataSource.deleteSections(IndexSet(integer: Constant.Section.future))
+        }
+    }
+    
+    private func configureDeclinedSection() {
+        guard !declinedEvents.isEmpty else {
+            dataSource.deleteSections(IndexSet(integer: Constant.Section.declined))
+            return
+        }
+        var viewModels = [EventCellViewModel]()
+        for var event in declinedEvents {
+            let viewModel = EventCellViewModel(with: event) { [weak self] delegate in
+                self?.router.showContextMenu(
+                    delegate: delegate,
+                    contextType: .overTarget,
+                    menuSize: .small,
+                    menuType: .statuses(
+                        type: .agreement,
+                        actionHandler: { status in
+                            event.me.status = status
+                            self?.updateEvent(event)
+                        }
+                    )
+                )
+            }
+            viewModels.append(viewModel)
+        }
+        dataSource.setItems(showDeclinedEvents ? viewModels : [], forSection: Constant.Section.declined)
+        if !furureEvents.isEmpty {
+            dataSource.setSectionHeaderModel(
+                EventSectionСollapsibleHeaderViewModel(
+                    title: R.string.localizable.eventsListSectionsDeclined(),
+                    itemsCount: declinedEvents.count,
+                    showItems: showDeclinedEvents,
+                    toggleAction: { [weak self] in
+                        guard let `self` = self else { return }
+                        self.showDeclinedEvents = !self.showDeclinedEvents
+                        self.configureDeclinedSection()
+                    }
+                ),
+                forSection: Constant.Section.declined
             )
         } else {
             dataSource.deleteSections(IndexSet(integer: Constant.Section.future))

@@ -37,6 +37,8 @@
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
+		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
+		A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
@@ -98,6 +100,8 @@
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
+		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
+		A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderViewModel.swift"; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,6 +466,7 @@
 				A82FF2D72347228600EE1807 /* EventCellViewModel.swift */,
 				A8D1D2802357243C00DA1089 /* ActiveEventCellViewModel.swift */,
 				A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */,
+				A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */,
+				A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */,
 			);
 			path = EventSectionHeader;
 			sourceTree = "<group>";
@@ -790,6 +796,7 @@
 				A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */,
 				A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */,
 				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
+				A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
@@ -804,6 +811,7 @@
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
+				A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,

@@ -9,7 +9,6 @@
 import UIKit
 import DTModelStorage
 
-
 class EventSectionHeaderView: UITableViewHeaderFooterView {
     
     var titleLabel: UILabel

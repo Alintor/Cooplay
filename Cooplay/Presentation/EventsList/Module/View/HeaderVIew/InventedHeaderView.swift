@@ -17,6 +17,7 @@ final class InventedHeaderView: UIView {
     }
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var itemsCountLabel: UILabel!
     @IBOutlet weak var carousel: iCarousel!
     
     private var view: UIView!
@@ -31,6 +32,7 @@ final class InventedHeaderView: UIView {
         carousel.isPagingEnabled = true
         carousel.bounces = false
         configureOffset()
+        itemsCountLabel.text = "\(carousel.numberOfItems)"
     }
     
     required init?(coder: NSCoder) {
@@ -41,8 +43,10 @@ final class InventedHeaderView: UIView {
     
     func animateTitle() {
         titleLabel.transform = CGAffineTransform(translationX: -frame.size.width, y: 0)
+        itemsCountLabel.transform = CGAffineTransform(translationX: -frame.size.width, y: 0)
         UIView.animate(withDuration: 0.8, delay: 0.6, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.titleLabel.transform = .identity
+            self.itemsCountLabel.transform = .identity
         })
     }
     

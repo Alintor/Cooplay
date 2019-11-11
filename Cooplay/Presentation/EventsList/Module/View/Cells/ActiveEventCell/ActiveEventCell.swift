@@ -77,6 +77,8 @@ extension ActiveEventCell: ModelTransfer {
         gameCoverImageView.setImage(withPath: model.coverPath)
         if let previewPath = model.previewPath {
             gamePreviewImageView.setImage(withPath: previewPath)
+        } else {
+            gamePreviewImageView.image = nil
         }
         avatarView.update(with: model.avatarViewModel)
         statusTitle.text = model.statusTitle
