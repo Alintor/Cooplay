@@ -350,7 +350,7 @@ struct R: Rswift.Validatable {
       static let statusLateShort = Rswift.StringResource(key: "status.late.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %d мин
       static let statusLateFull = Rswift.StringResource(key: "status.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Откланенные события
+      /// Value: Отклоненные события
       static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -422,7 +422,7 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("status.late.full", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// Value: Откланенные события
+      /// Value: Отклоненные события
       static func eventsListSectionsDeclined(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.declined", bundle: R.hostingBundle, comment: "")
       }

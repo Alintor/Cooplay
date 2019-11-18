@@ -59,7 +59,9 @@ final class InvitedEventCell: UIView {
         statusAction?(.accept)
         acceptTitleView.alpha = 0
         acceptImageView.transform = CGAffineTransform(rotationAngle: .pi)
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.acceptTitleView.isHidden = true
             self.acceptImageView.isHidden = false
             self.acceptImageView.transform = .identity

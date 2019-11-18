@@ -32,9 +32,9 @@ class ActiveEventCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
-        tap.minimumPressDuration = 0
-        tap.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        //tap.minimumPressDuration = 0
+        //tap.delegate = self
         statusView.addGestureRecognizer(tap)
     }
     
@@ -50,21 +50,21 @@ class ActiveEventCell: UITableViewCell {
     }
     
     @objc func tapHandler(gesture: UITapGestureRecognizer) {
-        
-        // handle touch down and touch up events separately
-        if gesture.state == .began {
-            self.statusView.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-            
-        } else if  gesture.state == .ended {
-            let touchLocation = gesture.location(in: statusView)
-            if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.98) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.98) {
-                self.statusView.transform = .identity
-                statusAction?(self)
-            } else {
-                self.statusView.transform = .identity
-            }
-            
-        }
+        statusAction?(self)
+//        // handle touch down and touch up events separately
+//        if gesture.state == .began {
+//            self.statusView.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+//
+//        } else if  gesture.state == .ended {
+//            let touchLocation = gesture.location(in: statusView)
+//            if touchLocation.x >= 0 && touchLocation.x <= (statusView.frame.width / 0.98) && touchLocation.y > 0 && touchLocation.y <= (statusView.frame.height / 0.98) {
+//                self.statusView.transform = .identity
+//                statusAction?(self)
+//            } else {
+//                self.statusView.transform = .identity
+//            }
+//
+//        }
     }
     
 }
@@ -140,12 +140,5 @@ extension ActiveEventCell: StatusContextDelegate {
             }
             self.layoutIfNeeded()
         })
-    }
-}
-
-extension ActiveEventCell {
-
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
     }
 }
