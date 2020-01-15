@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol EventDetailsRouterInput {
+protocol EventDetailsRouterInput: ContextMenuRouter {
 
 }

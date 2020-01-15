@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearance = UINavigationBar.appearance()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
+            appearance.shadowColor = .clear
             appearance.backgroundColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
             navigationBarAppearance.standardAppearance = appearance
             navigationBarAppearance.compactAppearance = appearance
@@ -27,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationBarAppearance.barStyle = .blackOpaque
             navigationBarAppearance.barTintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
             navigationBarAppearance.isTranslucent = false
+            navigationBarAppearance.shadowImage = UIImage()
         }
         
-        navigationBarAppearance.tintColor = .white
+        navigationBarAppearance.tintColor = R.color.actionAccent()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(

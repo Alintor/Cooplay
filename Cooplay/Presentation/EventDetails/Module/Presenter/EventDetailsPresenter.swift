@@ -15,7 +15,21 @@ final class EventDetailsPresenter {
         didSet {
             // Configure view out
             view.viewIsReady = { [weak self] in
-                self?.view.setupInitialState()
+                guard let `self` = self else { return }
+                self.view.setupInitialState()
+                self.view.update(with: EventDetailsViewModel(with: self.event))
+            }
+            view.statusAction = { [weak self] delegate in
+                self?.router.showContextMenu(
+                    delegate: delegate,
+                    contextType: .overTarget,
+                    menuSize: .large,
+                    menuType: .statuses(type: .confirmation, actionHandler: { status in
+                        guard let `self` = self else { return }
+                        self.event.me.status = status
+                        self.view.update(with: EventDetailsViewModel(with: self.event))
+                    })
+                )
             }
         }
     }

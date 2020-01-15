@@ -45,6 +45,7 @@
 		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
+		A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */; };
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
 		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
 		A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */; };
@@ -120,6 +121,7 @@
 		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
 		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
 		A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderViewModel.swift"; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 		A8DFD4EC2372AA4100F48B37 /* InventedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventedHeaderView.xib; sourceTree = "<group>"; };
 		A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventedHeaderView.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
-		B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = EventDetails.storyboard; sourceTree = "<group>"; };
+		B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventDetails.storyboard; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		20D31A81EFD206B67989161C /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A833EF5623CF2200009FCD73 /* ViewModel */,
 				9B038475057B97AB6346B309 /* Assembly */,
 				927F03D8ED52D20D15612DCD /* Storyboard */,
 				85292EDCDAB83F4DF88F5E0F /* View */,
@@ -190,7 +193,6 @@
 				8F76D27FC1C2E9DAC601409A /* Interactor */,
 				51647A748D0B4B6EDB19BDF6 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -258,7 +260,6 @@
 				076A0E0D3606DF1BC2253229 /* EventDetailsRouterInput.swift */,
 				0311D471408EFD16D53DE3A0 /* EventDetailsRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -276,7 +277,6 @@
 			children = (
 				20D31A81EFD206B67989161C /* Module */,
 			);
-			name = EventDetails;
 			path = EventDetails;
 			sourceTree = "<group>";
 		};
@@ -304,7 +304,6 @@
 				7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */,
 				5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -314,7 +313,6 @@
 				8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */,
 				CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -323,7 +321,6 @@
 			children = (
 				B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -332,7 +329,6 @@
 			children = (
 				2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -588,6 +584,14 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		A833EF5623CF2200009FCD73 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A844BDE62379A10F00EE4A3E /* InvitationsHeaderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,7 +746,6 @@
 				683A0458E64A95F369916DFA /* EventDetailsModuleInput.swift */,
 				6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -874,7 +877,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -966,6 +969,7 @@
 				A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */,
 				3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */,
 				71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */,
+				A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */,
 				0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */,
 				8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */,
 			);

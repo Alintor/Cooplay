@@ -615,7 +615,13 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "common.arrowDown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.arrowDown' is used in storyboard 'EventDetails', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetails', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'EventDetails', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'EventDetails', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'EventDetails', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'EventDetails', but couldn't be loaded.") }
         }
         if _R.storyboard.eventDetails().eventDetailsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventDetailsViewController' could not be loaded from storyboard 'EventDetails' as 'EventDetailsViewController'.") }
       }

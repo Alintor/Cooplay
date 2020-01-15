@@ -11,8 +11,10 @@ protocol EventDetailsViewInput: class {
 
     var output: EventDetailsModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
+    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)? { get set }
 
     // MARK: - View in
 
     func setupInitialState()
+    func update(with model: EventDetailsViewModel)
 }
