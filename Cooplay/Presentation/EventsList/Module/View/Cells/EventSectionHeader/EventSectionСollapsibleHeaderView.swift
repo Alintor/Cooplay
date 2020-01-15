@@ -85,7 +85,11 @@ extension EventSectionСollapsibleHeaderView: ModelTransfer {
 
     func update(with model: EventSectionСollapsibleHeaderViewModel) {
         titleLabel.text = model.title
-        itemsCountLabel.text = "\(model.itemsCount)"
+        if let itemsCount = model.itemsCount {
+            itemsCountLabel.text = "\(itemsCount)"
+        } else {
+            itemsCountLabel.text = nil
+        }
         self.toggleAction = model.toggleAction
         arrowImageView.isHidden = model.toggleAction == nil
         arrowImageView.transform = .identity

@@ -11,11 +11,11 @@ import UIKit
 struct EventSectionСollapsibleHeaderViewModel {
     
     let title: String
-    let itemsCount: Int
+    let itemsCount: Int?
     let showItems: Bool
     let toggleAction: (() -> Void)?
     
-    init(title: String, itemsCount: Int, showItems: Bool, toggleAction: (() -> Void)?) {
+    init(title: String, itemsCount: Int?, showItems: Bool, toggleAction: (() -> Void)?) {
         self.title = title
         self.itemsCount = itemsCount
         self.showItems = showItems

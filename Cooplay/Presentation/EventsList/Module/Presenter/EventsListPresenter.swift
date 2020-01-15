@@ -102,7 +102,6 @@ final class EventsListPresenter: NSObject {
     }
     
     private func configureInvitedSection() {
-        //view.setInvitations(show: !inventedEvents.isEmpty, dataSource: self)
         let sectionHeader = inventedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
             title: R.string.localizable.eventsListSectionsInvited(),
             itemsCount: inventedEvents.count,
@@ -119,9 +118,14 @@ final class EventsListPresenter: NSObject {
     
     private func configureActiveSection() {
         var events = [ActiveEventCellViewModel]()
-        var sectionTitle: String?
+        var sectionHeader: EventSectionСollapsibleHeaderViewModel?
         if var activeEvent = activeEvent {
-            sectionTitle = R.string.localizable.eventsListSectionsActive()
+            sectionHeader = EventSectionСollapsibleHeaderViewModel(
+                title: R.string.localizable.eventsListSectionsActive(),
+                itemsCount: nil,
+                showItems: true,
+                toggleAction: nil
+            )
             events.append(ActiveEventCellViewModel(with: activeEvent, statusAction: { [weak self] delegate in
                 self?.router.showContextMenu(
                     delegate: delegate,
@@ -136,7 +140,7 @@ final class EventsListPresenter: NSObject {
         }
         dataSource.setItems(events, forSection: Constant.Section.active)
         dataSource.setSectionHeaderModel(
-            sectionTitle,
+            sectionHeader,
             forSection: Constant.Section.active
         )
         

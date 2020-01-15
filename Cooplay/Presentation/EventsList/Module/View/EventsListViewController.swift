@@ -10,8 +10,6 @@ import DTModelStorage
 import iCarousel
 
 final class EventsListViewController: UIViewController, EventsListViewInput, DTTableViewManageable {
-    @IBOutlet weak var actionButtonView: UIView!
-    @IBOutlet weak var actionButtonTrailingConstraint: NSLayoutConstraint!
     
     private enum Constant {
         
@@ -19,8 +17,21 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         static let profileTrailingIndent: CGFloat = 16
         static let profilewBottomIndent: CGFloat = 12
         static let profileTopIndent: CGFloat = 4
+        static let cellHightlightAnimationDuration: TimeInterval = 0.1
+        static let cellHightlightAnimationDamping: CGFloat = 0.8
+        static let cellHightlightAnimationTransformScale: CGFloat = 0.98
+        static let actionButtonInset: CGFloat = 66
+        static let actionButtonShowingAnimationDuration: TimeInterval = 1
+        static let actionButtonShowingAnimationDamping: CGFloat = 0.7
+        static let actionButtonHightlightAnimationDuration: TimeInterval = 0.1
+        static let actionButtonHightlightTransformScale: CGFloat = 0.9
+        static let eventItemShowingDelay: TimeInterval = 0.2
+        static let eventItemShowingAnimationDuration: TimeInterval = 0.8
+        static let eventItemShowingAnimationDamping: CGFloat = 0.8
     }
-
+    
+    @IBOutlet weak var actionButtonView: UIView!
+    @IBOutlet weak var actionButtonTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
     private var avatarView: AvatarView?
@@ -35,8 +46,11 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 
     func setupInitialState() {
         tableView.isHidden = true
-        tableView.contentInset.bottom = 66
-        actionButtonView.transform = CGAffineTransform(translationX: 66, y: 0)
+        tableView.contentInset.bottom = Constant.actionButtonInset
+        actionButtonView.transform = CGAffineTransform(
+            translationX: Constant.actionButtonInset,
+            y: 0
+        )
         let tapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(actionButtonTapHandler))
         tapGestureRecognizer.minimumPressDuration = 0
         actionButtonView.addGestureRecognizer(tapGestureRecognizer)
@@ -53,19 +67,35 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
                 print("Event selected!")
             }
             manager.didHighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-                })
+                UIView.animate(
+                    withDuration: Constant.cellHightlightAnimationDuration,
+                    delay: 0,
+                    usingSpringWithDamping: Constant.cellHightlightAnimationDamping,
+                    initialSpringVelocity: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        cell.transform = CGAffineTransform(
+                            scaleX: Constant.cellHightlightAnimationTransformScale,
+                            y: Constant.cellHightlightAnimationTransformScale
+                        )
+                    }
+                )
             }
             manager.didUnhighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = .identity
-                })
+                UIView.animate(
+                    withDuration: Constant.cellHightlightAnimationDuration,
+                    delay: 0,
+                    usingSpringWithDamping: Constant.cellHightlightAnimationDamping,
+                    initialSpringVelocity: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        cell.transform = .identity
+                    }
+                )
             }
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
-        manager.registerNiblessHeader(EventSectionHeaderView.self)
         manager.registerNiblessHeader(EventSectionСollapsibleHeaderView.self)
         manager.heightForHeader(withItem: String.self) { _, _ in
             return UITableView.automaticDimension
@@ -73,46 +103,53 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         manager.heightForHeader(withItem: EventSectionСollapsibleHeaderViewModel.self) { _, _ in
             return UITableView.automaticDimension
         }
-        manager.estimatedHeightForHeader(withItem: String.self) { _, _ in
-            return 50
-        }
         manager.estimatedHeightForHeader(withItem: EventSectionСollapsibleHeaderViewModel.self) { _, _ in
             return 50
         }
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(2) }
-            manager.didHighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-                })
-            }
-            manager.didUnhighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = .identity
-                })
-            }
-            manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
-            manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
-        }
-        manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(3) }
             manager.didHighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-                })
+                UIView.animate(
+                    withDuration: Constant.cellHightlightAnimationDuration,
+                    delay: 0,
+                    usingSpringWithDamping: Constant.cellHightlightAnimationDamping,
+                    initialSpringVelocity: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        cell.transform = CGAffineTransform(
+                            scaleX: Constant.cellHightlightAnimationTransformScale,
+                            y: Constant.cellHightlightAnimationTransformScale
+                        )
+                    }
+                )
             }
             manager.didUnhighlight(cellType) { (cell, _, _) in
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                    cell.transform = .identity
-                })
+                UIView.animate(
+                    withDuration: Constant.cellHightlightAnimationDuration,
+                    delay: 0,
+                    usingSpringWithDamping: Constant.cellHightlightAnimationDamping,
+                    initialSpringVelocity: 0,
+                    options: .curveEaseOut,
+                    animations: {
+                        cell.transform = .identity
+                    }
+                )
             }
             manager.heightForCell(withItem: modelType) { _, _ in return UITableView.automaticDimension }
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
         manager.tableViewUpdater?.didUpdateContent = { [weak self] storage in
-            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                self?.actionButtonView.transform = .identity
-            })
+            UIView.animate(
+                withDuration: Constant.actionButtonShowingAnimationDuration,
+                delay: 0,
+                usingSpringWithDamping: Constant.actionButtonShowingAnimationDamping,
+                initialSpringVelocity: 0,
+                options: .curveEaseOut,
+                animations: {
+                    self?.actionButtonView.transform = .identity
+                }
+            )
         }
         manager.tableViewUpdater?.deleteRowAnimation = .fade
         manager.tableViewUpdater?.insertRowAnimation = .middle
@@ -135,39 +172,22 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         configureProfileView()
     }
     
-    func setInvitations(show: Bool, dataSource: iCarouselDataSource) {
-        guard show else {
-            tableView.tableHeaderView = nil
-            return
-        }
-        tableView.tableHeaderView = InventedHeaderView(dataSource: dataSource)
-        updateHeaderViewHeight()
-    }
-    
-    func removeInvitation(index: Int) {
-        let inventedHeader = tableView.tableHeaderView as? InventedHeaderView
-        inventedHeader?.removeItem(index: index)
-    }
-    
     func showItems() {
         tableView.isHidden = false
         var delay: TimeInterval = 0
-        if let inventedHeaderView = tableView.tableHeaderView as? InventedHeaderView {
-            inventedHeaderView.animateTitle()
-            inventedHeaderView.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
-            UIView.animate(withDuration: 0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                inventedHeaderView.transform = .identity
-            }) { (_) in
-                //inventedHeaderView.animateTitle()
-            }
-            delay += 0.2
-        }
         for cell in tableView.visibleCells {
             cell.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
-            UIView.animate(withDuration: 0.8, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                cell.transform = .identity
-            })
-            delay += 0.2
+            UIView.animate(
+                withDuration: Constant.eventItemShowingAnimationDuration,
+                delay: delay,
+                usingSpringWithDamping: Constant.eventItemShowingAnimationDamping,
+                initialSpringVelocity: 0,
+                options: .curveEaseOut,
+                animations: {
+                    cell.transform = .identity
+                }
+            )
+            delay += Constant.eventItemShowingDelay
         }
     }
 
@@ -198,17 +218,22 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         
         if gesture.state == .began {
             UIView.animate(withDuration: 0.1) {
-                self.actionButtonView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.actionButtonView.transform = CGAffineTransform(
+                    scaleX: Constant.actionButtonHightlightTransformScale,
+                    y: Constant.actionButtonHightlightTransformScale
+                )
             }
         }
         if  gesture.state == .ended {
             let touchLocation = gesture.location(in: actionButtonView)
-            if touchLocation.x >= 0 && touchLocation.x <= (actionButtonView.frame.width / 0.9) && touchLocation.y > 0 && touchLocation.y <= (actionButtonView.frame.height / 0.9) {
-                UIView.animate(withDuration: 0.1) {
+            if touchLocation.x >= 0
+                && touchLocation.x <= (actionButtonView.frame.width / Constant.actionButtonHightlightTransformScale)
+                && touchLocation.y > 0 && touchLocation.y <= (actionButtonView.frame.height / Constant.actionButtonHightlightTransformScale) {
+                UIView.animate(withDuration: Constant.actionButtonHightlightAnimationDuration) {
                     self.actionButtonView.transform = .identity
                 }
             } else {
-                UIView.animate(withDuration: 0.1) {
+                UIView.animate(withDuration: Constant.actionButtonHightlightAnimationDuration) {
                     self.actionButtonView.transform = .identity
                 }
             }
