@@ -18,8 +18,9 @@ final class ApplicationAssembly {
             EventServiceAssemblyContainer(),
             
             // Modules
-            EventsListAssemblyContainer()
-            ])
+            EventsListAssemblyContainer(),
+            EventDetailsAssemblyContainer()
+        ])
     }
 }
 

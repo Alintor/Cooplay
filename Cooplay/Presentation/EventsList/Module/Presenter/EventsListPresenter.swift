@@ -34,6 +34,9 @@ final class EventsListPresenter: NSObject {
             view.dataSourceIsReady = { [weak self] dataSource in
                 self?.dataSource = dataSource
             }
+            view.itemSelected = { [weak self] event in
+                self?.router.openEvent(event)
+            }
         }
     }
     var interactor: EventsListInteractorInput!
@@ -108,7 +111,14 @@ final class EventsListPresenter: NSObject {
             showItems: true,
             toggleAction: nil
         )
-        let items = inventedEvents.isEmpty ? [] : [InvitationsHeaderCellViewModel(dataSource: self)]
+        let selectionAction: ((_ index: Int) -> Void)? = { [weak self] index in
+            guard let `self` = self else { return }
+            self.router.openEvent(self.inventedEvents[index])
+        }
+        let items = inventedEvents.isEmpty ? [] : [InvitationsHeaderCellViewModel(
+            dataSource: self,
+            selectionAction: selectionAction
+        )]
         dataSource.setItems(items, forSection: Constant.Section.invitations)
         dataSource.setSectionHeaderModel(
             sectionHeader,

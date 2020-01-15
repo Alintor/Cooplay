@@ -41,6 +41,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     var output: EventsListModuleInput?
     var viewIsReady: (() -> Void)?
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
+    var itemSelected: ((_ event: Event) -> Void)?
 
     // MARK: - View in
 
@@ -63,8 +64,8 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         }
         manager.configureEvents(for: ActiveEventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(1) }
-            manager.didSelect(cellType) { (cell, model, _) in
-                print("Event selected!")
+            manager.didSelect(cellType) { [weak self] (cell, model, _) in
+                self?.itemSelected?(model.model)
             }
             manager.didHighlight(cellType) { (cell, _, _) in
                 UIView.animate(
@@ -109,6 +110,9 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
         manager.configureEvents(for: EventCell.self) { cellType, modelType in
             manager.register(cellType) { $0.condition = .section(2) }
             manager.register(cellType) { $0.condition = .section(3) }
+            manager.didSelect(cellType) { [weak self] (cell, model, _) in
+                self?.itemSelected?(model.model)
+            }
             manager.didHighlight(cellType) { (cell, _, _) in
                 UIView.animate(
                     withDuration: Constant.cellHightlightAnimationDuration,
@@ -199,12 +203,22 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 	}
     
     override func viewDidAppear(_ animated: Bool) {
-        configureProfileView()
+        super.viewDidAppear(animated)
+        //configureProfileView()
+        //avatarView?.isHidden = false
+        UIView.animate(withDuration: 0.1) {
+            self.avatarView?.alpha = 1
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        avatarView?.removeConstraints(avatarView?.constraints ?? [])
-        avatarView?.removeFromSuperview()
+        super.viewWillDisappear(animated)
+//        avatarView?.removeConstraints(avatarView?.constraints ?? [])
+//        avatarView?.removeFromSuperview()
+        //avatarView?.isHidden = true
+        UIView.animate(withDuration: 0.1) {
+            self.avatarView?.alpha = 0
+        }
     }
     
     override public func viewDidLayoutSubviews() {

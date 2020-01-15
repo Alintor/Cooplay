@@ -16,4 +16,14 @@ final class EventsListRouter {
 
 extension EventsListRouter: EventsListRouterInput {
 
+    func openEvent(_ event: Event) {
+        try? transitionHandler.forStoryboard(
+            factory: StoryboardFactory(storyboard: R.storyboard.eventDetails()),
+            to: EventDetailsModuleInput.self
+        )
+        .to(preferred: .navigation(style: .push))
+        .then { moduleInput in
+            moduleInput.configure(with: event)
+        }
+    }
 }

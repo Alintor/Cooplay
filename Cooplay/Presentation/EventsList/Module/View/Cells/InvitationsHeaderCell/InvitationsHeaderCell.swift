@@ -15,6 +15,7 @@ class InvitationsHeaderCell: UITableViewCell {
     static let defaultHeight: CGFloat = 126
 
     @IBOutlet weak var carousel: iCarousel!
+    private var selectionAction: ((_ index: Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +41,7 @@ class InvitationsHeaderCell: UITableViewCell {
 extension InvitationsHeaderCell: ModelTransfer {
 
     func update(with model: InvitationsHeaderCellViewModel) {
+        self.selectionAction = model.selectionAction
         carousel.dataSource = model.dataSource
         carousel.delegate = self
         carousel.isPagingEnabled = true
@@ -55,4 +57,7 @@ extension InvitationsHeaderCell: iCarouselDelegate {
         configureOffset()
     }
     
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        selectionAction?(index)
+    }
 }

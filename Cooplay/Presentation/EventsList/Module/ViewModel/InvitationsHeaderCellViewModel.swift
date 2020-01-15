@@ -11,8 +11,10 @@ import iCarousel
 struct InvitationsHeaderCellViewModel {
     
     let dataSource: iCarouselDataSource
+    let selectionAction: ((_ index: Int) -> Void)?
     
-    init(dataSource: iCarouselDataSource) {
+    init(dataSource: iCarouselDataSource, selectionAction: ((_ index: Int) -> Void)?) {
         self.dataSource = dataSource
+        self.selectionAction = selectionAction
     }
 }
