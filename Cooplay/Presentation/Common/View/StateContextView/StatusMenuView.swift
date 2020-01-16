@@ -28,11 +28,14 @@ class StatusMenuView: UIView {
     enum MenuType {
         
         case statuses(type: StatusMenuItem.StatusesType, actionHandler: ((_ status: User.Status) -> Void)?)
+        case eventMemberActions(actionHandler: ((_ actionType: EventMemberMenuItem.ActionType) -> Void)?)
         
         var items: [MenuItem] {
             switch self {
             case .statuses(let type, let actionHandler):
                 return type.items.map { StatusMenuItem(status: $0, actionHandler: actionHandler) }
+            case .eventMemberActions(let actionHandler):
+                return EventMemberMenuItem.ActionType.allCases.map { EventMemberMenuItem(actionType: $0, actionHandler: actionHandler) }
             }
         }
     }

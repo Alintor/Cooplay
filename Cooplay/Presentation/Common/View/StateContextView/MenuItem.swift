@@ -183,3 +183,81 @@ struct StatusLatenessMenuItem: MenuItem {
     }
 }
 
+struct EventMemberMenuItem: MenuItem {
+    
+    enum ActionType: CaseIterable {
+        case makeOwner
+        case delete
+    }
+    
+    let actionType: ActionType
+    let actionHandler: ((_ actionType: ActionType) -> Void)?
+    
+    init(actionType: ActionType, actionHandler: ((_ actionType: ActionType) -> Void)?) {
+        self.actionType = actionType
+        self.actionHandler = actionHandler
+    }
+    
+    var title: String {
+        switch actionType {
+        case .makeOwner:
+            return R.string.localizable.eventMemberMenuItemMakeOwner()
+        case .delete:
+            return R.string.localizable.eventMemberMenuItemDelete()
+        }
+    }
+    
+    var icon: UIImage? {
+        switch actionType {
+        case .makeOwner:
+            return R.image.commonSmallCrown()
+        case .delete:
+            return R.image.statusNormalDeclined()
+        }
+    }
+    
+    var titleColor: UIColor? {
+        switch actionType {
+        case .makeOwner:
+            return R.color.textPrimary()
+        case .delete:
+            return R.color.red()
+        }
+    }
+    
+    var iconColor: UIColor? {
+        switch actionType {
+        case .makeOwner:
+            return R.color.yellow()
+        case .delete:
+            return R.color.red()
+        }
+    }
+    
+    var scrollItems: [MenuItem]? {
+        return nil
+    }
+    
+    var selectAction: MenuItemAction {
+        return .handleAction
+    }
+    
+    var needBottomLine: Bool {
+        switch actionType {
+        case .delete:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    var value: Any {
+        return actionType
+    }
+    
+    func handleAction() {
+        actionHandler?(actionType)
+    }
+    
+    
+}

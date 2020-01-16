@@ -5,9 +5,10 @@
 //  Created by Alexandr Ovchinnikov on 15/01/2020.
 //
 
-import UIKit
+import DTTableViewManager
+import DTModelStorage
 
-final class EventDetailsViewController: UIViewController, EventDetailsViewInput {
+final class EventDetailsViewController: UIViewController, EventDetailsViewInput, DTTableViewManageable {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,16 +21,37 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput 
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var arrowImageView: UIImageView!
     
+    var editButton: UIBarButtonItem?
+    var addMemberView: UIView?
+    
     // MARK: - View out
 
     var output: EventDetailsModuleInput?
     var viewIsReady: (() -> Void)?
     var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
+    var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
+    var itemSelected: ((_ item: EventDetailsCellViewModel, _ delegate: StatusContextDelegate?) -> Void)?
 
     // MARK: - View in
 
     func setupInitialState() {
         navigationItem.largeTitleDisplayMode = .never
+        editButton = UIBarButtonItem(image: R.image.commonEdit(), style: .plain, target: self, action: #selector(editButtonTapped))
+        navigationItem.rightBarButtonItem = editButton
+        addMemberView = tableView.tableFooterView
+        manager.startManaging(withDelegate: self)
+        manager.configureEvents(for: EventDetailsMemberCell.self) { cellType, _ in
+            manager.register(cellType)
+            manager.didSelect(cellType) { [weak self] cell, model, _ in
+                self?.itemSelected?(model, cell)
+            }
+        }
+        manager.tableViewUpdater?.didUpdateContent = { [weak self] update in
+            self?.tableView.isHidden = false
+        }
+        if let dataSource = manager.storage as? MemoryStorage {
+            dataSourceIsReady?(dataSource)
+        }
     }
     
     func update(with model: EventDetailsViewModel) {
@@ -40,6 +62,8 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput 
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
+        navigationItem.rightBarButtonItem = model.showEditButton ? editButton : nil
+        tableView.tableFooterView = model.showEditButton ? addMemberView : nil
     }
 
 	// MARK: - Life cycle
@@ -58,6 +82,12 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput 
     
     @IBAction func statusViewTapped(_ sender: UITapGestureRecognizer) {
         statusAction?(self)
+    }
+    @IBAction func addMemberViewTapped(_ sender: UITapGestureRecognizer) {
+    }
+    
+    @objc func editButtonTapped() {
+        
     }
     
     // MARK: - Private

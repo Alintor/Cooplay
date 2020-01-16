@@ -25,6 +25,10 @@
 "status.declined.full" = "Не пойду";
 "status.unknown.full" = "Приглашен";
 
+// MARK: - EventMemberMenuItem
+"eventMemberMenuItem.makeOwner" = "Сделать лидером";
+"eventMemberMenuItem.delete" = "Исключить";
+
 // MARK: - Events list
 "eventsList.title" = "Все события";
 "eventsList.sections.invented" = "Приглашения";
@@ -32,3 +36,7 @@
 "eventsList.sections.future" = "Будущие события";
 "eventsList.sections.declined" = "Отклоненные события";
 "eventsList.sections.invited" = "Приглашения";
+
+// MARK: - Events Details
+"eventDetails.cell.lateness" = "+%@ мин";
+"eventDetails.addMemberLabel.title" = "Добавить участников";

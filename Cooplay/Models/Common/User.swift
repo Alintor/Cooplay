@@ -104,6 +104,7 @@ struct User: Codable {
     let avatarPath: String?
     var state: State?
     var lateness: Int?
+    var isOwner: Bool?
     
     var status: Status? {
         get {

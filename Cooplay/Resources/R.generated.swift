@@ -112,7 +112,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 14 images.
+  /// This `R.image` struct is generated, and contains static references to 17 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -120,10 +120,16 @@ struct R: Rswift.Validatable {
     static let commonArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowUp")
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
+    /// Image `common.edit`.
+    static let commonEdit = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.edit")
     /// Image `common.gamepadArrow`.
     static let commonGamepadArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gamepadArrow")
+    /// Image `common.normal.crown`.
+    static let commonNormalCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.normal.crown")
     /// Image `common.plus`.
     static let commonPlus = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.plus")
+    /// Image `common.small.crown`.
+    static let commonSmallCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.small.crown")
     /// Image `status.normal.declined`.
     static let statusNormalDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.declined")
     /// Image `status.normal.late`.
@@ -158,14 +164,29 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.commonDetails, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.edit", bundle: ..., traitCollection: ...)`
+    static func commonEdit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonEdit, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.gamepadArrow", bundle: ..., traitCollection: ...)`
     static func commonGamepadArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonGamepadArrow, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.normal.crown", bundle: ..., traitCollection: ...)`
+    static func commonNormalCrown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonNormalCrown, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.plus", bundle: ..., traitCollection: ...)`
     static func commonPlus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonPlus, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.small.crown", bundle: ..., traitCollection: ...)`
+    static func commonSmallCrown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonSmallCrown, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.normal.declined", bundle: ..., traitCollection: ...)`
@@ -216,7 +237,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -224,6 +245,8 @@ struct R: Rswift.Validatable {
     static let avatarView = _R.nib._AvatarView()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
+    /// Nib `EventDetailsMemberCell`.
+    static let eventDetailsMemberCell = _R.nib._EventDetailsMemberCell()
     /// Nib `InventedHeaderView`.
     static let inventedHeaderView = _R.nib._InventedHeaderView()
     /// Nib `InvitationsHeaderCell`.
@@ -247,6 +270,12 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.eventCell) instead")
     static func eventCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.eventCell)
+    }
+    
+    /// `UINib(name: "EventDetailsMemberCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.eventDetailsMemberCell) instead")
+    static func eventDetailsMemberCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.eventDetailsMemberCell)
     }
     
     /// `UINib(name: "InventedHeaderView", in: bundle)`
@@ -277,6 +306,10 @@ struct R: Rswift.Validatable {
     
     static func eventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+    }
+    
+    static func eventDetailsMemberCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventDetailsMemberCell? {
+      return R.nib.eventDetailsMemberCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventDetailsMemberCell
     }
     
     static func inventedHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -333,8 +366,10 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
+      /// Value: +%@ мин
+      static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ближайшее событие
@@ -349,6 +384,10 @@ struct R: Rswift.Validatable {
       static let statusMaybeFull = Rswift.StringResource(key: "status.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Добавить участников
+      static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Исключить
+      static let eventMemberMenuItemDelete = Rswift.StringResource(key: "eventMemberMenuItem.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let statusDeclinedFull = Rswift.StringResource(key: "status.declined.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
@@ -373,6 +412,13 @@ struct R: Rswift.Validatable {
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сделать лидером
+      static let eventMemberMenuItemMakeOwner = Rswift.StringResource(key: "eventMemberMenuItem.makeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: +%@ мин
+      static func eventDetailsCellLateness(_ value1: String) -> String {
+        return String(format: NSLocalizedString("eventDetails.cell.lateness", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
@@ -407,6 +453,16 @@ struct R: Rswift.Validatable {
       /// Value: Все события
       static func eventsListTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Добавить участников
+      static func eventDetailsAddMemberLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eventDetails.addMemberLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Исключить
+      static func eventMemberMenuItemDelete(_: Void = ()) -> String {
+        return NSLocalizedString("eventMemberMenuItem.delete", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не пойду
@@ -469,6 +525,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.ontime.full", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Сделать лидером
+      static func eventMemberMenuItemMakeOwner(_: Void = ()) -> String {
+        return NSLocalizedString("eventMemberMenuItem.makeOwner", bundle: R.hostingBundle, comment: "")
+      }
+      
       fileprivate init() {}
     }
     
@@ -497,6 +558,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _ActiveEventCell.validate()
+      try _EventDetailsMemberCell.validate()
       try _InvitedEventCell.validate()
     }
     
@@ -544,6 +606,26 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _EventDetailsMemberCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "EventDetailsMemberCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventDetailsMemberCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventDetailsMemberCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "common.normal.crown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.normal.crown' is used in nib 'EventDetailsMemberCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "yellow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'yellow' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}
@@ -616,7 +698,9 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "common.arrowDown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.arrowDown' is used in storyboard 'EventDetails', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "common.plus", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.plus' is used in storyboard 'EventDetails', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'EventDetails', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetails', but couldn't be loaded.") }
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'EventDetails', but couldn't be loaded.") }
           if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'EventDetails', but couldn't be loaded.") }

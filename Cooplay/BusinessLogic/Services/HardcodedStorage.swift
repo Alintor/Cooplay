@@ -33,7 +33,7 @@ enum HardcodedConstants {
         previewImagePath: nil
     )
     
-    static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .accepted, lateness: 0)
+    static let me_ontime = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .accepted, lateness: 0, isOwner: true)
     static let me_unknown = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .unknown, lateness: nil)
     static let me_late = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .accepted, lateness: 15)
     static let me_maybe = User(id: "daffhdfgd", name: "Alintor", avatarPath: "https://avatarfiles.alphacoders.com/177/thumb-177425.jpg", state: .maybe, lateness: nil)
@@ -45,7 +45,7 @@ enum HardcodedConstants {
     static let madik_maybe = User(id: "tyiiyoir", name: "Madik_b", avatarPath: "https://avatarfiles.alphacoders.com/616/61600.jpg", state: .maybe, lateness: nil)
     static let rika_ontime = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, state: .accepted, lateness: 0)
     static let rika_maybe = User(id: "cvnbvjl", name: "Rika_Aga", avatarPath: nil, state: .maybe, lateness: nil)
-    static let random1 = User(id: "sdgjhfdx", name: "Dude", avatarPath: nil, state: .accepted, lateness: 0)
+    static let random1 = User(id: "sdgjhfdx", name: "Dude", avatarPath: nil, state: .accepted, lateness: 0, isOwner: true)
     static let random2 = User(id: "tryuyrteruy", name: "Lalka", avatarPath: nil, state: .accepted, lateness: 0)
     static let random3 = User(id: "bnhgdfjghs", name: "Nagibator", avatarPath: nil, state: .accepted, lateness: 0)
     static let random4 = User(id: "fghrgjbvccssew", name: "Boom", avatarPath: nil, state: .accepted, lateness: nil)
