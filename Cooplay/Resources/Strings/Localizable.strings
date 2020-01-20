@@ -40,3 +40,17 @@
 // MARK: - Events Details
 "eventDetails.cell.lateness" = "+%@ мин";
 "eventDetails.addMemberLabel.title" = "Добавить участников";
+
+// MARK: - New Event
+"newEvent.title" = "Создание события";
+"newEvent.chooseGameLabel.title" = "Во что";
+"newEvent.chooseDayLabel.title" = "Когда";
+"newEvent.chooseTimeLabel.title" = "Во сколько";
+"newEvent.chooseMembersLabel.title" = "С кем";
+"newEvent.selectGameButton.choose.title" = "Выбрать игру";
+"newEvent.selectGameButton.change.title" = "Изменить игру";
+"newEvent.selectMembersButton.choose.title" = "Выбрать участников";
+"newEvent.selectMembersButton.change.title" = "Изменить участников";
+"newEvent.todayButton.title" = "Сегодня";
+"newEvent.tomorrowButton.title" = "Завтра";
+"newEvent.mainAction.title" = "Создать событие";

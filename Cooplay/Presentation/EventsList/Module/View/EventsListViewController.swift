@@ -42,6 +42,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     var viewIsReady: (() -> Void)?
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
     var itemSelected: ((_ event: Event) -> Void)?
+    var newEventAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -243,9 +244,15 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             if touchLocation.x >= 0
                 && touchLocation.x <= (actionButtonView.frame.width / Constant.actionButtonHightlightTransformScale)
                 && touchLocation.y > 0 && touchLocation.y <= (actionButtonView.frame.height / Constant.actionButtonHightlightTransformScale) {
-                UIView.animate(withDuration: Constant.actionButtonHightlightAnimationDuration) {
-                    self.actionButtonView.transform = .identity
-                }
+                UIView.animate(
+                    withDuration: Constant.actionButtonHightlightAnimationDuration,
+                    animations: {
+                        self.actionButtonView.transform = .identity
+                    },
+                    completion: { [weak self] (_) in
+                        self?.newEventAction?()
+                    }
+                )
             } else {
                 UIView.animate(withDuration: Constant.actionButtonHightlightAnimationDuration) {
                     self.actionButtonView.transform = .identity

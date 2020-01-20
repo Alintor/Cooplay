@@ -112,12 +112,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 18 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.arrowUp`.
     static let commonArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowUp")
+    /// Image `common.calendar`.
+    static let commonCalendar = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.calendar")
     /// Image `common.details`.
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
     /// Image `common.edit`.
@@ -157,6 +159,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.arrowUp", bundle: ..., traitCollection: ...)`
     static func commonArrowUp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonArrowUp, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.calendar", bundle: ..., traitCollection: ...)`
+    static func commonCalendar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonCalendar, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.details", bundle: ..., traitCollection: ...)`
@@ -337,7 +344,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `EventDetails`.
     static let eventDetails = _R.storyboard.eventDetails()
@@ -345,6 +352,8 @@ struct R: Rswift.Validatable {
     static let eventsList = _R.storyboard.eventsList()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
+    /// Storyboard `NewEvent`.
+    static let newEvent = _R.storyboard.newEvent()
     
     /// `UIStoryboard(name: "EventDetails", bundle: ...)`
     static func eventDetails(_: Void = ()) -> UIKit.UIStoryboard {
@@ -361,12 +370,17 @@ struct R: Rswift.Validatable {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
     }
     
+    /// `UIStoryboard(name: "NewEvent", bundle: ...)`
+    static func newEvent(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
+    }
+    
     fileprivate init() {}
   }
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 35 localization keys.
     struct localizable {
       /// Value: +%@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -376,6 +390,10 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Будущие события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Во сколько
+      static let newEventChooseTimeLabelTitle = Rswift.StringResource(key: "newEvent.chooseTimeLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Во что
+      static let newEventChooseGameLabelTitle = Rswift.StringResource(key: "newEvent.chooseGameLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вовремя
       static let statusOntimeShort = Rswift.StringResource(key: "status.ontime.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Возможно
@@ -384,10 +402,22 @@ struct R: Rswift.Validatable {
       static let statusMaybeFull = Rswift.StringResource(key: "status.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выбрать игру
+      static let newEventSelectGameButtonChooseTitle = Rswift.StringResource(key: "newEvent.selectGameButton.choose.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выбрать участников
+      static let newEventSelectMembersButtonChooseTitle = Rswift.StringResource(key: "newEvent.selectMembersButton.choose.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Завтра
+      static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Изменить игру
+      static let newEventSelectGameButtonChangeTitle = Rswift.StringResource(key: "newEvent.selectGameButton.change.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Изменить участников
+      static let newEventSelectMembersButtonChangeTitle = Rswift.StringResource(key: "newEvent.selectMembersButton.change.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Исключить
       static let eventMemberMenuItemDelete = Rswift.StringResource(key: "eventMemberMenuItem.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Когда
+      static let newEventChooseDayLabelTitle = Rswift.StringResource(key: "newEvent.chooseDayLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let statusDeclinedFull = Rswift.StringResource(key: "status.declined.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
@@ -412,8 +442,16 @@ struct R: Rswift.Validatable {
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: С кем
+      static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
       static let eventMemberMenuItemMakeOwner = Rswift.StringResource(key: "eventMemberMenuItem.makeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сегодня
+      static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создание события
+      static let newEventTitle = Rswift.StringResource(key: "newEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать событие
+      static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: +%@ мин
       static func eventDetailsCellLateness(_ value1: String) -> String {
@@ -433,6 +471,16 @@ struct R: Rswift.Validatable {
       /// Value: Будущие события
       static func eventsListSectionsFuture(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Во сколько
+      static func newEventChooseTimeLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.chooseTimeLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Во что
+      static func newEventChooseGameLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.chooseGameLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Вовремя
@@ -455,14 +503,44 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Выбрать игру
+      static func newEventSelectGameButtonChooseTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.selectGameButton.choose.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Выбрать участников
+      static func newEventSelectMembersButtonChooseTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.selectMembersButton.choose.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Добавить участников
       static func eventDetailsAddMemberLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventDetails.addMemberLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Завтра
+      static func newEventTomorrowButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.tomorrowButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Изменить игру
+      static func newEventSelectGameButtonChangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.selectGameButton.change.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Изменить участников
+      static func newEventSelectMembersButtonChangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.selectMembersButton.change.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Исключить
       static func eventMemberMenuItemDelete(_: Void = ()) -> String {
         return NSLocalizedString("eventMemberMenuItem.delete", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Когда
+      static func newEventChooseDayLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.chooseDayLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не пойду
@@ -525,9 +603,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.ontime.full", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: С кем
+      static func newEventChooseMembersLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.chooseMembersLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Сделать лидером
       static func eventMemberMenuItemMakeOwner(_: Void = ()) -> String {
         return NSLocalizedString("eventMemberMenuItem.makeOwner", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сегодня
+      static func newEventTodayButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.todayButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создание события
+      static func newEventTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создать событие
+      static func newEventMainActionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("newEvent.mainAction.title", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -683,6 +781,7 @@ struct _R: Rswift.Validatable {
       try eventDetails.validate()
       try eventsList.validate()
       try launchScreen.validate()
+      try newEvent.validate()
     }
     
     struct eventDetails: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -747,6 +846,32 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct newEvent: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = NewEventViewController
+      
+      let bundle = R.hostingBundle
+      let name = "NewEvent"
+      let newEventViewController = StoryboardViewControllerResource<NewEventViewController>(identifier: "NewEventViewController")
+      
+      func newEventViewController(_: Void = ()) -> NewEventViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: newEventViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "common.calendar", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.calendar' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
+        }
+        if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
       }
       
       fileprivate init() {}

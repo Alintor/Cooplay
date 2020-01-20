@@ -37,6 +37,9 @@ final class EventsListPresenter: NSObject {
             view.itemSelected = { [weak self] event in
                 self?.router.openEvent(event)
             }
+            view.newEventAction = { [weak self] in
+                self?.router.openNewEvent()
+            }
         }
     }
     var interactor: EventsListInteractorInput!

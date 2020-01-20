@@ -16,6 +16,7 @@ protocol EventsListViewInput: class, ActivityIndicatorRenderer {
     var viewIsReady: (() -> Void)? { get set }
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)? { get set }
     var itemSelected: ((_ event: Event) -> Void)? { get set }
+    var newEventAction: (() -> Void)? { get set }
 
     // MARK: - View in
 

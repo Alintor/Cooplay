@@ -10,4 +10,5 @@ import Foundation
 protocol EventsListRouterInput: ContextMenuRouter {
 
     func openEvent(_ event: Event)
+    func openNewEvent()
 }
