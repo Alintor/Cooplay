@@ -380,7 +380,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 35 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
     struct localizable {
       /// Value: +%@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -402,6 +402,8 @@ struct R: Rswift.Validatable {
       static let statusMaybeFull = Rswift.StringResource(key: "status.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выбрать %@
+      static let commonChoose = Rswift.StringResource(key: "common.choose", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбрать игру
       static let newEventSelectGameButtonChooseTitle = Rswift.StringResource(key: "newEvent.selectGameButton.choose.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбрать участников
@@ -428,6 +430,8 @@ struct R: Rswift.Validatable {
       static let statusLateFull = Rswift.StringResource(key: "status.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отклоненные события
       static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отмена
+      static let commonCancel = Rswift.StringResource(key: "common.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
@@ -503,6 +507,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Выбрать %@
+      static func commonChoose(_ value1: String) -> String {
+        return String(format: NSLocalizedString("common.choose", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Value: Выбрать игру
       static func newEventSelectGameButtonChooseTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.selectGameButton.choose.title", bundle: R.hostingBundle, comment: "")
@@ -566,6 +575,11 @@ struct R: Rswift.Validatable {
       /// Value: Отклоненные события
       static func eventsListSectionsDeclined(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.declined", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Отмена
+      static func commonCancel(_: Void = ()) -> String {
+        return NSLocalizedString("common.cancel", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Пойду

@@ -19,6 +19,11 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     @IBOutlet weak var dateTomorrowLabel: UILabel!
     @IBOutlet weak var dateCalendarView: UIView!
     @IBOutlet weak var dateCalendarIcon: UIImageView!
+    
+    @IBOutlet weak var dateCalendarLabelsView: UIView!
+    @IBOutlet weak var dateCalendarDayLabel: UILabel!
+    @IBOutlet weak var dateCalendarMonthLabel: UILabel!
+    
     @IBOutlet var dateTodayTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var dateTomorrowTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var dateCalendarTapGestureRecognizer: UITapGestureRecognizer!
@@ -27,6 +32,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
 
     var output: NewEventModuleInput?
     var viewIsReady: (() -> Void)?
+    var calendarAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -37,6 +43,19 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         timePicker.subviews[0].subviews[2].backgroundColor = .clear
         mainActionButton.isEnabled = false
         mainActionButton.alpha = 0.5
+    }
+    
+    func updateDayDate(with model: NewEventDayDateViewModel) {
+        dateCalendarDayLabel.text = model.day
+        dateCalendarMonthLabel.text = model.month
+        dateCalendarView.layer.borderWidth = 2
+        dateCalendarView.layer.borderColor = R.color.actionAccent()?.cgColor
+        dateCalendarIcon.isHidden = true
+        dateCalendarLabelsView.isHidden = false
+        dateTodayView.layer.borderWidth = 0
+        dateTodayLabel.textColor = R.color.actionAccent()
+        dateTomorrowView.layer.borderWidth = 0
+        dateTomorrowLabel.textColor = R.color.actionAccent()
     }
 
 	// MARK: - Life cycle
@@ -68,7 +87,8 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             dateTomorrowView.layer.borderWidth = 0
             dateTomorrowLabel.textColor = R.color.actionAccent()
             dateCalendarView.layer.borderWidth = 0
-            dateCalendarIcon.tintColor = R.color.actionAccent()
+            dateCalendarLabelsView.isHidden = true
+            dateCalendarIcon.isHidden = false
         case dateTomorrowTapGestureRecognizer:
             dateTomorrowView.layer.borderWidth = 2
             dateTomorrowView.layer.borderColor = R.color.actionAccent()?.cgColor
@@ -76,15 +96,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             dateTodayView.layer.borderWidth = 0
             dateTodayLabel.textColor = R.color.actionAccent()
             dateCalendarView.layer.borderWidth = 0
-            dateCalendarIcon.tintColor = R.color.actionAccent()
+            dateCalendarLabelsView.isHidden = true
+            dateCalendarIcon.isHidden = false
         case dateCalendarTapGestureRecognizer:
-            dateCalendarView.layer.borderWidth = 2
-            dateCalendarView.layer.borderColor = R.color.actionAccent()?.cgColor
-            dateCalendarIcon.tintColor = R.color.textPrimary()
-            dateTodayView.layer.borderWidth = 0
-            dateTodayLabel.textColor = R.color.actionAccent()
-            dateTomorrowView.layer.borderWidth = 0
-            dateTomorrowLabel.textColor = R.color.actionAccent()
+            calendarAction?()
         default: break
         }
     }

@@ -57,6 +57,8 @@
 		A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */; };
 		A833EF5E23D0344B009FCD73 /* EventDetailsMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */; };
 		A833EF6023D03AB7009FCD73 /* EventDetailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5F23D03AB7009FCD73 /* EventDetailsCellViewModel.swift */; };
+		A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */; };
+		A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */; };
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
 		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
 		A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */; };
@@ -144,6 +146,8 @@
 		A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberCell.swift; sourceTree = "<group>"; };
 		A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsMemberCell.xib; sourceTree = "<group>"; };
 		A833EF5F23D03AB7009FCD73 /* EventDetailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsCellViewModel.swift; sourceTree = "<group>"; };
+		A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRenderer.swift; sourceTree = "<group>"; };
+		A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDayDateViewModel.swift; sourceTree = "<group>"; };
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
 		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
 		A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderViewModel.swift"; sourceTree = "<group>"; };
@@ -189,7 +193,7 @@
 		D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListModuleInput.swift; sourceTree = "<group>"; };
 		E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListAssemblyContainer.swift; sourceTree = "<group>"; };
 		E745154B2CD6788A3DF7107D /* NewEventInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventInteractorInput.swift; sourceTree = "<group>"; };
-		EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = NewEvent.storyboard; sourceTree = "<group>"; };
+		EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NewEvent.storyboard; sourceTree = "<group>"; };
 		F2B2EDD44F2946E8B369EF30 /* NewEventModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventModuleInput.swift; sourceTree = "<group>"; };
 		F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouterInput.swift; sourceTree = "<group>"; };
 		F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouter.swift; sourceTree = "<group>"; };
@@ -213,7 +217,6 @@
 			children = (
 				299C1A0052FC28C701E9EC12 /* Module */,
 			);
-			name = NewEvent;
 			path = NewEvent;
 			sourceTree = "<group>";
 		};
@@ -234,6 +237,7 @@
 		299C1A0052FC28C701E9EC12 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A833EF6423D811D3009FCD73 /* ViewModel */,
 				765BDF0D296C623C8E7C1434 /* Assembly */,
 				8826BFE015D3B19E2D9B8BB5 /* Storyboard */,
 				FA0DA1FE8395265440EA8F17 /* View */,
@@ -241,7 +245,6 @@
 				FC72439CEC52D7A20705D28F /* Interactor */,
 				8E1BDB10801B3429E66EE61B /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -286,7 +289,6 @@
 				F2B2EDD44F2946E8B369EF30 /* NewEventModuleInput.swift */,
 				413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -362,7 +364,6 @@
 			children = (
 				57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -381,7 +382,6 @@
 			children = (
 				EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -391,7 +391,6 @@
 				FB16D454B7A44CDE57867C60 /* NewEventRouterInput.swift */,
 				6E0D10E1251B7AD0DE10A4A4 /* NewEventRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -555,6 +554,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A833EF6123D709CA009FCD73 /* CalendarViewRenderer */,
 				A8D1D2A22362EB3600DA1089 /* ActivityIndicator */,
 				A8D1D293235EEEAC00DA1089 /* StateContextView */,
 				A8D1D28223572B2700DA1089 /* MemberStatus */,
@@ -697,6 +697,22 @@
 				A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */,
 			);
 			path = EventDetailsMemberCell;
+			sourceTree = "<group>";
+		};
+		A833EF6123D709CA009FCD73 /* CalendarViewRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */,
+			);
+			path = CalendarViewRenderer;
+			sourceTree = "<group>";
+		};
+		A833EF6423D811D3009FCD73 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A844BDE62379A10F00EE4A3E /* InvitationsHeaderCell */ = {
@@ -862,7 +878,6 @@
 				4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */,
 				786065F4CF69350607C85260 /* NewEventViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -872,7 +887,6 @@
 				E745154B2CD6788A3DF7107D /* NewEventInteractorInput.swift */,
 				69A0F1870E22CCA04BE2CEAE /* NewEventInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -968,6 +982,7 @@
 				"${BUILT_PRODUCTS_DIR}/DTCollectionViewManager/DTCollectionViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/DTModelStorage/DTModelStorage.framework",
 				"${BUILT_PRODUCTS_DIR}/DTTableViewManager/DTTableViewManager.framework",
+				"${BUILT_PRODUCTS_DIR}/KDCalendar/KDCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LightRoute/LightRoute.framework",
 				"${BUILT_PRODUCTS_DIR}/PluggableAppDelegate/PluggableAppDelegate.framework",
@@ -982,6 +997,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCollectionViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTModelStorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTTableViewManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightRoute.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PluggableAppDelegate.framework",
@@ -1006,7 +1022,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1104,12 +1120,14 @@
 				0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */,
 				8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */,
 				7DDE8BAE6A9418F2027B7589 /* NewEventAssemblyContainer.swift in Sources */,
+				A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */,
 				401E916B8DEE7282058BEA68 /* NewEventViewInput.swift in Sources */,
 				FC00D21A6F25B2CC2665244E /* NewEventViewController.swift in Sources */,
 				076714ABB069198F2DC195E1 /* NewEventModuleInput.swift in Sources */,
 				665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */,
 				BAD206ED4B70F2E178C4EE53 /* NewEventInteractorInput.swift in Sources */,
 				35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */,
+				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 			);

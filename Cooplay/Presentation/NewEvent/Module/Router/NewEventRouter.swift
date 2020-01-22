@@ -16,4 +16,8 @@ final class NewEventRouter {
 
 extension NewEventRouter: NewEventRouterInput {
 
+    func showCalendar(handler: ((_ date: Date) -> Void)?) {
+        let calendarRenderer = CalendarViewRenderer()
+        calendarRenderer.show(handler: handler)
+    }
 }

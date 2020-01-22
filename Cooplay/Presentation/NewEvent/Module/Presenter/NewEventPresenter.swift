@@ -17,6 +17,11 @@ final class NewEventPresenter {
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
             }
+            view.calendarAction = { [weak self] in
+                self?.router.showCalendar{ [weak self] date in
+                    self?.view.updateDayDate(with: NewEventDayDateViewModel(date: date))
+                }
+            }
         }
     }
     var interactor: NewEventInteractorInput!

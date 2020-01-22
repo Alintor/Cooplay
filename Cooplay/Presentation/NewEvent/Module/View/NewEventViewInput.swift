@@ -11,8 +11,10 @@ protocol NewEventViewInput: class {
 
     var output: NewEventModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
+    var calendarAction: (() -> Void)? { get set }
 
     // MARK: - View in
 
     func setupInitialState()
+    func updateDayDate(with model: NewEventDayDateViewModel)
 }

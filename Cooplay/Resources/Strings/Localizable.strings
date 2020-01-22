@@ -9,7 +9,8 @@
 "tableName" = "Localizable";
 
 // MARK: - Common
-
+"common.cancel" = "Отмена";
+"common.choose" = "Выбрать %@";
 
 // MARK: - Status
 "status.accepted.short" = "Пойду";
