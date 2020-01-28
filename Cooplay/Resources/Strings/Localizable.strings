@@ -48,10 +48,12 @@
 "newEvent.chooseDayLabel.title" = "Когда";
 "newEvent.chooseTimeLabel.title" = "Во сколько";
 "newEvent.chooseMembersLabel.title" = "С кем";
-"newEvent.selectGameButton.choose.title" = "Выбрать игру";
-"newEvent.selectGameButton.change.title" = "Изменить игру";
-"newEvent.selectMembersButton.choose.title" = "Выбрать участников";
-"newEvent.selectMembersButton.change.title" = "Изменить участников";
+"newEvent.searchGameButton.title" = "Поиск игры";
+"newEvent.searchMembersButton.title" = "Поиск участников";
 "newEvent.todayButton.title" = "Сегодня";
 "newEvent.tomorrowButton.title" = "Завтра";
 "newEvent.mainAction.title" = "Создать событие";
+
+// MARK: - Search Game
+"searchGame.title" = "Поиск игры";
+"searchGame.closeButton.title" = "Отмена";

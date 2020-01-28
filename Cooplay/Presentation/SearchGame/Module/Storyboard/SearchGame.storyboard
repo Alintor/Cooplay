@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rGT-np-7OK">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Game View Controller-->
+        <scene sceneID="RwB-kv-zVW">
+            <objects>
+                <viewController storyboardIdentifier="SearchGameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="SearchGameViewController" customModule="Cooplay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eFS-jM-hgH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcA-cZ-D0o">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="barTintColor" name="block"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="NcA-cZ-D0o" firstAttribute="trailing" secondItem="OR5-3f-pbR" secondAttribute="trailing" id="Um4-LQ-LZS"/>
+                            <constraint firstItem="NcA-cZ-D0o" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="bZd-fY-MT7"/>
+                            <constraint firstItem="NcA-cZ-D0o" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" id="noJ-zK-K5t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BHk-nz-CMy">
+                        <barButtonItem key="leftBarButtonItem" id="R78-A4-KdZ">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="searchGame.closeButton.title"/>
+                            </userDefinedRuntimeAttributes>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="searchGame.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="NcA-cZ-D0o" id="fNI-aB-WkS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4YY-0r-yoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="background">
+            <color red="0.090196078431372548" green="0.098039215686274508" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="block">
+            <color red="0.16078431372549021" green="0.17254901960784313" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

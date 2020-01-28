@@ -12,6 +12,8 @@ protocol NewEventViewInput: class {
     var output: NewEventModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
     var calendarAction: (() -> Void)? { get set }
+    var searchGameAction: (() -> Void)? { get set }
+    var searchMembersAction: (() -> Void)? { get set }
 
     // MARK: - View in
 

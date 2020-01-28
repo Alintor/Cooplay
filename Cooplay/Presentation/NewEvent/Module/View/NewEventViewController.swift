@@ -33,6 +33,8 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     var output: NewEventModuleInput?
     var viewIsReady: (() -> Void)?
     var calendarAction: (() -> Void)?
+    var searchGameAction: (() -> Void)?
+    var searchMembersAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -41,6 +43,8 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         dateTodayView.layer.borderColor = R.color.actionAccent()?.cgColor
         timePicker.subviews[0].subviews[1].backgroundColor = .clear
         timePicker.subviews[0].subviews[2].backgroundColor = .clear
+        timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
+        timePicker.tintColor = R.color.textPrimary()
         mainActionButton.isEnabled = false
         mainActionButton.alpha = 0.5
     }
@@ -68,11 +72,11 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     // MARK: - Actions
     
     @IBAction func selectGameButtonTapped() {
-        
+        searchGameAction?()
     }
     
     @IBAction func selectMembersButtonTapped() {
-        
+        searchMembersAction?()
     }
     @IBAction func mainActionButtonTapped() {
         

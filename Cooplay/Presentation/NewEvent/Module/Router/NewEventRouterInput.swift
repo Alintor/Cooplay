@@ -10,4 +10,5 @@ import Foundation
 protocol NewEventRouterInput {
 
     func showCalendar(handler: ((_ date: Date) -> Void)?)
+    func openGameSearch()
 }

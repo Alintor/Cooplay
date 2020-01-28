@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.shadowColor = .clear
-            appearance.backgroundColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
+            appearance.backgroundColor = R.color.background()
             navigationBarAppearance.standardAppearance = appearance
             navigationBarAppearance.compactAppearance = appearance
             navigationBarAppearance.scrollEdgeAppearance = appearance
         } else {
             navigationBarAppearance.barStyle = .blackOpaque
-            navigationBarAppearance.barTintColor = UIColor(red: 23.0/255, green: 25.0/255, blue: 31.0/255, alpha: 1)
+            navigationBarAppearance.barTintColor = R.color.background()
             navigationBarAppearance.isTranslucent = false
             navigationBarAppearance.shadowImage = UIImage()
         }

@@ -22,6 +22,9 @@ final class NewEventPresenter {
                     self?.view.updateDayDate(with: NewEventDayDateViewModel(date: date))
                 }
             }
+            view.searchGameAction = { [weak self] in
+                self?.router.openGameSearch()
+            }
         }
     }
     var interactor: NewEventInteractorInput!

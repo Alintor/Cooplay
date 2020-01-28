@@ -42,7 +42,7 @@
                                                             <color key="titleColor" name="action.accent"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="newEvent.selectGameButton.choose.title"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="newEvent.searchGameButton.title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="selectGameButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="6Z4-RY-etU"/>
@@ -304,7 +304,7 @@
                                                             <color key="titleColor" name="action.accent"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="newEvent.selectMembersButton.choose.title"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="newEvent.searchMembersButton.title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="selectMembersButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="uop-g5-9GY"/>

@@ -20,7 +20,8 @@ final class ApplicationAssembly {
             // Modules
             EventsListAssemblyContainer(),
             EventDetailsAssemblyContainer(),
-            NewEventAssemblyContainer()
+            NewEventAssemblyContainer(),
+            SearchGameAssemblyContainer()
         ])
     }
 }

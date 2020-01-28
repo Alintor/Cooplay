@@ -9,22 +9,32 @@
 /* Begin PBXBuildFile section */
 		03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB16D454B7A44CDE57867C60 /* NewEventRouterInput.swift */; };
 		076714ABB069198F2DC195E1 /* NewEventModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B2EDD44F2946E8B369EF30 /* NewEventModuleInput.swift */; };
+		093A16C976BACE4E81F72F0C /* SearchGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0AE6701207E820B5D99889 /* SearchGame.storyboard */; };
 		0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A0E0D3606DF1BC2253229 /* EventDetailsRouterInput.swift */; };
 		13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E18459CE62AE534539FD03 /* EventsListPresenter.swift */; };
+		1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3B9961492A5CFC66D4DCA0 /* SearchGameViewController.swift */; };
 		1CA013E50D30486B7988E250 /* EventDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */; };
 		24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */; };
+		2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */; };
 		35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A0F1870E22CCA04BE2CEAE /* NewEventInteractor.swift */; };
 		3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */; };
 		401E916B8DEE7282058BEA68 /* NewEventViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */; };
+		41FA9E25CE1B3C9D9318C734 /* SearchGameInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */; };
+		45DC225DF352CB29186999D5 /* SearchGameViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */; };
 		565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */; };
+		581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */; };
 		5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */; };
+		5F7E65747CE06D37B089542A /* SearchGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */; };
+		63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */; };
 		665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */; };
 		71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */; };
+		797453345E495E760948D98D /* SearchGameRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */; };
 		79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */; };
 		7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */; };
 		7DDE8BAE6A9418F2027B7589 /* NewEventAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */; };
 		7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */; };
 		81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */; };
+		821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */; };
 		826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */; };
 		840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */; };
 		8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311D471408EFD16D53DE3A0 /* EventDetailsRouter.swift */; };
@@ -104,10 +114,14 @@
 /* Begin PBXFileReference section */
 		0311D471408EFD16D53DE3A0 /* EventDetailsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsRouter.swift; sourceTree = "<group>"; };
 		076A0E0D3606DF1BC2253229 /* EventDetailsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsRouterInput.swift; sourceTree = "<group>"; };
+		092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameViewInput.swift; sourceTree = "<group>"; };
 		0EA6DED6AE53EB86801DC0B1 /* Pods-Cooplay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.release.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.release.xcconfig"; sourceTree = "<group>"; };
 		16F78D0DA3753B15C262B74E /* EventsListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractor.swift; sourceTree = "<group>"; };
 		2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsAssemblyContainer.swift; sourceTree = "<group>"; };
+		31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameRouterInput.swift; sourceTree = "<group>"; };
+		3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameRouter.swift; sourceTree = "<group>"; };
+		3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameModuleInput.swift; sourceTree = "<group>"; };
 		413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventPresenter.swift; sourceTree = "<group>"; };
 		4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventViewInput.swift; sourceTree = "<group>"; };
 		57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventAssemblyContainer.swift; sourceTree = "<group>"; };
@@ -120,7 +134,10 @@
 		7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsViewInput.swift; sourceTree = "<group>"; };
 		786065F4CF69350607C85260 /* NewEventViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cooplay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameInteractor.swift; sourceTree = "<group>"; };
 		8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractorInput.swift; sourceTree = "<group>"; };
+		97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameInteractorInput.swift; sourceTree = "<group>"; };
+		9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameAssemblyContainer.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -187,13 +204,16 @@
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventDetails.storyboard; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
+		C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGamePresenter.swift; sourceTree = "<group>"; };
 		CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
 		D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewInput.swift; sourceTree = "<group>"; };
 		D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListModuleInput.swift; sourceTree = "<group>"; };
+		DE0AE6701207E820B5D99889 /* SearchGame.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = SearchGame.storyboard; sourceTree = "<group>"; };
 		E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListAssemblyContainer.swift; sourceTree = "<group>"; };
 		E745154B2CD6788A3DF7107D /* NewEventInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventInteractorInput.swift; sourceTree = "<group>"; };
 		EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NewEvent.storyboard; sourceTree = "<group>"; };
+		EE3B9961492A5CFC66D4DCA0 /* SearchGameViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameViewController.swift; sourceTree = "<group>"; };
 		F2B2EDD44F2946E8B369EF30 /* NewEventModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventModuleInput.swift; sourceTree = "<group>"; };
 		F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouterInput.swift; sourceTree = "<group>"; };
 		F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouter.swift; sourceTree = "<group>"; };
@@ -218,6 +238,26 @@
 				299C1A0052FC28C701E9EC12 /* Module */,
 			);
 			path = NewEvent;
+			sourceTree = "<group>";
+		};
+		156A022E3E982C6AADB95FF4 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */,
+				7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */,
+			);
+			name = Interactor;
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		18B06803C614C070C1639DDB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */,
+				C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */,
+			);
+			name = Presenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		20D31A81EFD206B67989161C /* Module */ = {
@@ -341,6 +381,15 @@
 			path = EventDetails;
 			sourceTree = "<group>";
 		};
+		60DDDBDAE322BC22496502F5 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DE0AE6701207E820B5D99889 /* SearchGame.storyboard */,
+			);
+			name = Storyboard;
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		618666405E3843E32A72C4E0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +468,16 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
+		A7FB4F2825B0D2AA0FE6C797 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */,
+				3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */,
+			);
+			name = Router;
+			path = Router;
+			sourceTree = "<group>";
+		};
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +485,7 @@
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 				5C6E24950482FD9B716412DB /* EventDetails */,
 				0CE58F0F4085592415E85151 /* NewEvent */,
+				BF452587466D36F09D1E7251 /* SearchGame */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -855,12 +915,44 @@
 			path = HeaderVIew;
 			sourceTree = "<group>";
 		};
+		BF452587466D36F09D1E7251 /* SearchGame */ = {
+			isa = PBXGroup;
+			children = (
+				DA9743F74E96E293D3103F98 /* Module */,
+			);
+			name = SearchGame;
+			path = SearchGame;
+			sourceTree = "<group>";
+		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8307F3D114191110A36AC83 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */,
+			);
+			name = Assembly;
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		DA9743F74E96E293D3103F98 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D8307F3D114191110A36AC83 /* Assembly */,
+				60DDDBDAE322BC22496502F5 /* Storyboard */,
+				E96A61620C57AE391C08141B /* View */,
+				18B06803C614C070C1639DDB /* Presenter */,
+				156A022E3E982C6AADB95FF4 /* Interactor */,
+				A7FB4F2825B0D2AA0FE6C797 /* Router */,
+			);
+			name = Module;
+			path = Module;
 			sourceTree = "<group>";
 		};
 		DAB11B0D0BC47AD026579A3C /* Presenter */ = {
@@ -870,6 +962,16 @@
 				6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E96A61620C57AE391C08141B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */,
+				EE3B9961492A5CFC66D4DCA0 /* SearchGameViewController.swift */,
+			);
+			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA0DA1FE8395265440EA8F17 /* View */ = {
@@ -966,6 +1068,7 @@
 				A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */,
 				1CA013E50D30486B7988E250 /* EventDetails.storyboard in Resources */,
 				5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */,
+				093A16C976BACE4E81F72F0C /* SearchGame.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,7 +1125,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				$SRCROOT/Cooplay/Resources/R.generated.swift,
+				"$SRCROOT/Cooplay/Resources/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1130,6 +1233,15 @@
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
+				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
+				45DC225DF352CB29186999D5 /* SearchGameViewInput.swift in Sources */,
+				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
+				581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */,
+				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
+				41FA9E25CE1B3C9D9318C734 /* SearchGameInteractorInput.swift in Sources */,
+				5F7E65747CE06D37B089542A /* SearchGameInteractor.swift in Sources */,
+				797453345E495E760948D98D /* SearchGameRouterInput.swift in Sources */,
+				2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

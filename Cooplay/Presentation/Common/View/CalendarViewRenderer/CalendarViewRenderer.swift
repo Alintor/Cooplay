@@ -222,6 +222,7 @@ class CalendarViewRenderer: UIView {
         calendarView.marksWeekends = false
         calendarView.multipleSelectionEnable = false
         calendarView.direction = .vertical
+        calendarView.enableDeslection = false
         calendarView.dataSource = self
         calendarView.delegate = self
     }
