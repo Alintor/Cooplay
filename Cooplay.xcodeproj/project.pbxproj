@@ -88,7 +88,6 @@
 		A87CF41623E04165004189D3 /* NewEventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41523E04165004189D3 /* NewEventDataSource.swift */; };
 		A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41923E046A0004189D3 /* NewEventGameCell.swift */; };
 		A87CF41C23E046A0004189D3 /* NewEventGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF41A23E046A0004189D3 /* NewEventGameCell.xib */; };
-		A87CF41E23E126AE004189D3 /* NewEventGamesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */; };
 		A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */; };
 		A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
@@ -196,7 +195,6 @@
 		A87CF41523E04165004189D3 /* NewEventDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDataSource.swift; sourceTree = "<group>"; };
 		A87CF41923E046A0004189D3 /* NewEventGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameCell.swift; sourceTree = "<group>"; };
 		A87CF41A23E046A0004189D3 /* NewEventGameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventGameCell.xib; sourceTree = "<group>"; };
-		A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGamesDataSource.swift; sourceTree = "<group>"; };
 		A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameCellViewModel.swift; sourceTree = "<group>"; };
 		A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCellViewModel.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -790,8 +788,8 @@
 			isa = PBXGroup;
 			children = (
 				A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */,
-				A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */,
 				A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */,
+				A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -879,7 +877,6 @@
 			isa = PBXGroup;
 			children = (
 				A87CF41523E04165004189D3 /* NewEventDataSource.swift */,
-				A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1153,6 +1150,7 @@
 				"${BUILT_PRODUCTS_DIR}/LightRoute/LightRoute.framework",
 				"${BUILT_PRODUCTS_DIR}/PluggableAppDelegate/PluggableAppDelegate.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
@@ -1168,6 +1166,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightRoute.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PluggableAppDelegate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
@@ -1239,7 +1238,6 @@
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
 				A87CF41123E03D5C004189D3 /* UserService.swift in Sources */,
-				A87CF41E23E126AE004189D3 /* NewEventGamesDataSource.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,

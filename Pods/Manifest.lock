@@ -18,6 +18,7 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
+  - SkeletonView (1.8.2)
   - SwiftDate (4.5.1)
   - Swinject (2.6.2)
   - SwinjectStoryboard (2.2.0):
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - LightRoute (from `https://github.com/SpectralDragon/LightRoute.git`)
   - PluggableAppDelegate (~> 1.3.0)
   - R.swift (~> 5.0.3)
+  - SkeletonView (~> 1.8.2)
   - SwiftDate (~> 4.5.1)
   - Swinject (~> 2.6.2)
   - SwinjectStoryboard (~> 2.2.0)
@@ -47,6 +49,7 @@ SPEC REPOS:
     - PluggableAppDelegate
     - R.swift
     - R.swift.Library
+    - SkeletonView
     - SwiftDate
     - Swinject
     - SwinjectStoryboard
@@ -71,10 +74,11 @@ SPEC CHECKSUMS:
   PluggableAppDelegate: 94c85bf821d85661c843a86e1aafe0cc12a62634
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  SkeletonView: bb27c39857e5492136f02ee8a3aa78de55d12ecd
   SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: c0f5dfded273fc5f938042faca8c44b812053988
+PODFILE CHECKSUM: e7e775ef3da0e1cfbe6a260c5ed221f878bd17df
 
 COCOAPODS: 1.6.1

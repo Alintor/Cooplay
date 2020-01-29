@@ -24,4 +24,6 @@ protocol NewEventViewInput: class {
     func setGamesDataSource(_ dataSource: UICollectionViewDataSource)
     func showGames(_ isShow: Bool)
     func updateGames()
+    func showGamesLoading()
+    func hideGamesLoading()
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class NewEventGameCell: UICollectionViewCell {
     
@@ -22,8 +23,11 @@ class NewEventGameCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-        //tap.minimumPressDuration = 0
-        //tap.delegate = self
+        self.isSkeletonable = true
+        blockView.isSkeletonable = true
+        coverImageView.isSkeletonable = true
+        coverMaskView.isSkeletonable = true
+        statusView.isHidden = true
         blockView.addGestureRecognizer(tap)
     }
     
@@ -33,6 +37,8 @@ class NewEventGameCell: UICollectionViewCell {
     }
     
     private func configureStatus() {
+        statusView.isHidden = false
+        coverImageView.isHidden = false
         if isGameSelected {
             blockView.backgroundColor = R.color.actionAccent()
             coverMaskView.isHidden = true

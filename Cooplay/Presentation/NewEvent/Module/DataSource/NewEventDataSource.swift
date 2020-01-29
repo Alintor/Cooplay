@@ -46,7 +46,7 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
     }
     
     private func setItemSelected(_ isSelected: Bool, item: T) {
-        guard !multipleSelection && isSelected else { return }
+        if !multipleSelection && !isSelected { return }
         guard let index = activeItemsViewModels.firstIndex(where: { $0.model == item }) else { return }
         if !multipleSelection {
             activeItemsViewModels = activeItemsViewModels.map({

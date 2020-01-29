@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class NewEventViewController: UIViewController, NewEventViewInput {
 
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var gamesCollectionView: UICollectionView!
+    @IBOutlet weak var gamesView: UIView!
     @IBOutlet weak var selectGameButton: UIButton!
     @IBOutlet weak var selectMembersButton: UIButton!
     @IBOutlet weak var mainActionButton: UIButton!
@@ -54,6 +57,25 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         )
     }
     
+    func showGamesLoading() {
+        gamesCollectionView.isSkeletonable = true
+        gamesCollectionView.dataSource = self
+        gamesCollectionView.prepareSkeleton { (_) in
+            let gradient = SkeletonGradient(baseColor: R.color.block()!, secondaryColor: R.color.shapeBackground()!)
+            let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+            self.gamesCollectionView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
+        }
+        selectGameButton.isEnabled = false
+        selectGameButton.alpha = 0.5
+    }
+    
+    func hideGamesLoading() {
+        gamesCollectionView.stopSkeletonAnimation()
+        gamesCollectionView.hideSkeleton()
+        selectGameButton.isEnabled = true
+        selectGameButton.alpha = 1
+    }
+    
     func updateDayDate(with model: NewEventDayDateViewModel) {
         dateCalendarDayLabel.text = model.day
         dateCalendarMonthLabel.text = model.month
@@ -73,7 +95,27 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
     
     func showGames(_ isShow: Bool) {
-        gamesCollectionView.isHidden = !isShow
+        UIView.animate(
+            withDuration: isShow ? 0.3 : 0,
+            delay: isShow ? 0.2 : 0,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.gamesCollectionView.alpha = isShow ? 1 : 0
+        })
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.gamesView.isHidden = !isShow
+                self.stackView.layoutIfNeeded()
+            }
+        )
+        
     }
     
     func updateGames() {
@@ -124,6 +166,26 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             calendarAction?()
         default: break
         }
+    }
+}
+
+extension NewEventViewController: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return R.reuseIdentifier.newEventGameCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier, for: indexPath)
+        return cell
     }
     
     

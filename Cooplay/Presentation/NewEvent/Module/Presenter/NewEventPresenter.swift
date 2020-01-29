@@ -36,8 +36,10 @@ final class NewEventPresenter {
     private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
     
     private func fetchOfftenGames() {
+        view.showGamesLoading()
         interactor.fetchOfftenGames { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideGamesLoading()
             switch result {
             case .success(let games):
                 self.gamesDataSours = NewEventDataSource(
