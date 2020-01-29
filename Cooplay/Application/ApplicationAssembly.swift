@@ -16,6 +16,8 @@ final class ApplicationAssembly {
             
             // Services
             EventServiceAssemblyContainer(),
+            UserServiceAssemblyContainer(),
+            GamesServiceAssemblyContainer(),
             
             // Modules
             EventsListAssemblyContainer(),

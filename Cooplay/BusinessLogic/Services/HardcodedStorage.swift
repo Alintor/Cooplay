@@ -99,8 +99,32 @@ final class HardcodedStorage {
         HardcodedConstants.eventFuture3
     ]
     
+    private var games = [
+        HardcodedConstants.overwatch,
+        HardcodedConstants.destiny,
+        HardcodedConstants.apex,
+        HardcodedConstants.divinity
+    ]
+    
+    private var users = [
+        HardcodedConstants.me_ontime,
+        HardcodedConstants.nilo_late,
+        HardcodedConstants.rika_ontime,
+        HardcodedConstants.madik_maybe
+    ]
+    
     func fetchEvents() -> [Event] {
         
         return events
+    }
+    
+    func fetchOfftenGames() -> [Game] {
+        
+        return games
+    }
+    
+    func fetchOfftenMembers() -> [User] {
+        
+        return users
     }
 }

@@ -16,6 +16,7 @@ final class NewEventPresenter {
             // Configure view out
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
+                self?.fetchOfftenGames()
             }
             view.calendarAction = { [weak self] in
                 self?.router.showCalendar{ [weak self] date in
@@ -29,6 +30,30 @@ final class NewEventPresenter {
     }
     var interactor: NewEventInteractorInput!
     var router: NewEventRouterInput!
+    
+    // MARK: - Private
+    
+    private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
+    
+    private func fetchOfftenGames() {
+        interactor.fetchOfftenGames { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let games):
+                self.gamesDataSours = NewEventDataSource(
+                    offtenItems: games,
+                    multipleSelection: false,
+                    selectAction: { [weak self] selectedGames in
+                        self?.view.updateGames()
+                    }
+                )
+                self.view.setGamesDataSource(self.gamesDataSours)
+                self.view.showGames(!games.isEmpty)
+            case .failure(let error):
+                break
+            }
+        }
+    }
 }
 
 // MARK: - NewEventModuleInput

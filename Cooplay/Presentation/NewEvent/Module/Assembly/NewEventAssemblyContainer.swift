@@ -12,7 +12,11 @@ final class NewEventAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(NewEventInteractor.self) { r in
-			let interactor = NewEventInteractor(eventService: r.resolve(EventServiceType.self))
+            let interactor = NewEventInteractor(
+                eventService: r.resolve(EventServiceType.self),
+                gamesService: r.resolve(GamesServiceType.self),
+                userService: r.resolve(UserServiceType.self)
+            )
 
 			return interactor
 		}

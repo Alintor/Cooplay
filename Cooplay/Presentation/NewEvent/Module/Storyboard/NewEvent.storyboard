@@ -58,6 +58,21 @@
                                                     <constraint firstAttribute="height" constant="56" id="ram-fJ-rbP"/>
                                                 </constraints>
                                             </view>
+                                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hv9-d1-c4m">
+                                                <rect key="frame" x="0.0" y="56" width="375" height="90"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="oIA-YX-ZPA"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="10" id="ymS-hu-XVm">
+                                                    <size key="itemSize" width="52" height="66"/>
+                                                    <size key="estimatedItemSize" width="56" height="70"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="24" minY="0.0" maxX="24" maxY="20"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ih1-W0-hgr">
                                                 <rect key="frame" x="0.0" y="56" width="375" height="1"/>
                                                 <color key="backgroundColor" name="block"/>
@@ -393,6 +408,7 @@
                         <outlet property="dateTomorrowLabel" destination="vnA-vw-0Ix" id="fEJ-dT-u0G"/>
                         <outlet property="dateTomorrowTapGestureRecognizer" destination="b9s-tW-HsX" id="weR-Fp-eVd"/>
                         <outlet property="dateTomorrowView" destination="Ri0-87-rJP" id="Mas-CJ-Mdv"/>
+                        <outlet property="gamesCollectionView" destination="Hv9-d1-c4m" id="SeE-Ee-1JZ"/>
                         <outlet property="mainActionButton" destination="Ho3-zU-51s" id="LVL-LX-jNm"/>
                         <outlet property="selectGameButton" destination="rBr-Cl-gdg" id="ggV-lx-Lek"/>
                         <outlet property="selectMembersButton" destination="GhJ-ml-9pB" id="qEQ-XO-rOo"/>

@@ -9,4 +9,6 @@ import Foundation
 
 protocol NewEventInteractorInput: class {
 
+    func fetchOfftenGames(completion: @escaping (Result<[Game], NewEventError>) -> Void)
+    func fetchOfftenMembers(completion: @escaping (Result<[User], NewEventError>) -> Void)
 }

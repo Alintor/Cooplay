@@ -81,6 +81,16 @@
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
+		A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF40C23E03CD8004189D3 /* GamesService.swift */; };
+		A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF40E23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift */; };
+		A87CF41123E03D5C004189D3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41023E03D5C004189D3 /* UserService.swift */; };
+		A87CF41323E03D69004189D3 /* UserServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41223E03D69004189D3 /* UserServiceAssemblyContainer.swift */; };
+		A87CF41623E04165004189D3 /* NewEventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41523E04165004189D3 /* NewEventDataSource.swift */; };
+		A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41923E046A0004189D3 /* NewEventGameCell.swift */; };
+		A87CF41C23E046A0004189D3 /* NewEventGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF41A23E046A0004189D3 /* NewEventGameCell.xib */; };
+		A87CF41E23E126AE004189D3 /* NewEventGamesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */; };
+		A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */; };
+		A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -179,6 +189,16 @@
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A87CF40C23E03CD8004189D3 /* GamesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesService.swift; sourceTree = "<group>"; };
+		A87CF40E23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesServiceAssemblyContainer.swift; sourceTree = "<group>"; };
+		A87CF41023E03D5C004189D3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		A87CF41223E03D69004189D3 /* UserServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceAssemblyContainer.swift; sourceTree = "<group>"; };
+		A87CF41523E04165004189D3 /* NewEventDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDataSource.swift; sourceTree = "<group>"; };
+		A87CF41923E046A0004189D3 /* NewEventGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameCell.swift; sourceTree = "<group>"; };
+		A87CF41A23E046A0004189D3 /* NewEventGameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventGameCell.xib; sourceTree = "<group>"; };
+		A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGamesDataSource.swift; sourceTree = "<group>"; };
+		A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameCellViewModel.swift; sourceTree = "<group>"; };
+		A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCellViewModel.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -209,7 +229,7 @@
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
 		D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewInput.swift; sourceTree = "<group>"; };
 		D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListModuleInput.swift; sourceTree = "<group>"; };
-		DE0AE6701207E820B5D99889 /* SearchGame.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = SearchGame.storyboard; sourceTree = "<group>"; };
+		DE0AE6701207E820B5D99889 /* SearchGame.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = SearchGame.storyboard; sourceTree = "<group>"; };
 		E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListAssemblyContainer.swift; sourceTree = "<group>"; };
 		E745154B2CD6788A3DF7107D /* NewEventInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventInteractorInput.swift; sourceTree = "<group>"; };
 		EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NewEvent.storyboard; sourceTree = "<group>"; };
@@ -246,7 +266,6 @@
 				97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */,
 				7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -256,7 +275,6 @@
 				3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */,
 				C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -277,6 +295,7 @@
 		299C1A0052FC28C701E9EC12 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF41423E04129004189D3 /* DataSource */,
 				A833EF6423D811D3009FCD73 /* ViewModel */,
 				765BDF0D296C623C8E7C1434 /* Assembly */,
 				8826BFE015D3B19E2D9B8BB5 /* Storyboard */,
@@ -386,7 +405,6 @@
 			children = (
 				DE0AE6701207E820B5D99889 /* SearchGame.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -474,7 +492,6 @@
 				31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */,
 				3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -579,6 +596,8 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF40B23E03CB7004189D3 /* User */,
+				A87CF40A23E03CAD004189D3 /* Games */,
 				A82FF2B02346068A00EE1807 /* Event */,
 				A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */,
 			);
@@ -771,6 +790,8 @@
 			isa = PBXGroup;
 			children = (
 				A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */,
+				A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */,
+				A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -834,6 +855,50 @@
 				A877020023336E6E002EA095 /* ViewController.swift */,
 			);
 			path = Cooplay;
+			sourceTree = "<group>";
+		};
+		A87CF40A23E03CAD004189D3 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF40C23E03CD8004189D3 /* GamesService.swift */,
+				A87CF40E23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		A87CF40B23E03CB7004189D3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF41023E03D5C004189D3 /* UserService.swift */,
+				A87CF41223E03D69004189D3 /* UserServiceAssemblyContainer.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		A87CF41423E04129004189D3 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF41523E04165004189D3 /* NewEventDataSource.swift */,
+				A87CF41D23E126AE004189D3 /* NewEventGamesDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		A87CF41723E04657004189D3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF41823E04663004189D3 /* NewEventGameCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A87CF41823E04663004189D3 /* NewEventGameCell */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF41923E046A0004189D3 /* NewEventGameCell.swift */,
+				A87CF41A23E046A0004189D3 /* NewEventGameCell.xib */,
+			);
+			path = NewEventGameCell;
 			sourceTree = "<group>";
 		};
 		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
@@ -920,7 +985,6 @@
 			children = (
 				DA9743F74E96E293D3103F98 /* Module */,
 			);
-			name = SearchGame;
 			path = SearchGame;
 			sourceTree = "<group>";
 		};
@@ -937,7 +1001,6 @@
 			children = (
 				9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -951,7 +1014,6 @@
 				156A022E3E982C6AADB95FF4 /* Interactor */,
 				A7FB4F2825B0D2AA0FE6C797 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -970,13 +1032,13 @@
 				092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */,
 				EE3B9961492A5CFC66D4DCA0 /* SearchGameViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
 		FA0DA1FE8395265440EA8F17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF41723E04657004189D3 /* Cells */,
 				4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */,
 				786065F4CF69350607C85260 /* NewEventViewController.swift */,
 			);
@@ -1065,6 +1127,7 @@
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
+				A87CF41C23E046A0004189D3 /* NewEventGameCell.xib in Resources */,
 				A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */,
 				1CA013E50D30486B7988E250 /* EventDetails.storyboard in Resources */,
 				5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */,
@@ -1125,7 +1188,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1164,6 +1227,7 @@
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */,
+				A87CF41323E03D69004189D3 /* UserServiceAssemblyContainer.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
@@ -1174,6 +1238,8 @@
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
+				A87CF41123E03D5C004189D3 /* UserService.swift in Sources */,
+				A87CF41E23E126AE004189D3 /* NewEventGamesDataSource.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
@@ -1186,15 +1252,19 @@
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */,
+				A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
+				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */,
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
+				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
+				A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
 				A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */,
@@ -1226,6 +1296,7 @@
 				A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */,
 				401E916B8DEE7282058BEA68 /* NewEventViewInput.swift in Sources */,
 				FC00D21A6F25B2CC2665244E /* NewEventViewController.swift in Sources */,
+				A87CF41623E04165004189D3 /* NewEventDataSource.swift in Sources */,
 				076714ABB069198F2DC195E1 /* NewEventModuleInput.swift in Sources */,
 				665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */,
 				BAD206ED4B70F2E178C4EE53 /* NewEventInteractorInput.swift in Sources */,
@@ -1234,6 +1305,7 @@
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
+				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,
 				45DC225DF352CB29186999D5 /* SearchGameViewInput.swift in Sources */,
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */,

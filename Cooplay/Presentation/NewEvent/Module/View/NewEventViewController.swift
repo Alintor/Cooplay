@@ -9,6 +9,7 @@ import UIKit
 
 final class NewEventViewController: UIViewController, NewEventViewInput {
 
+    @IBOutlet weak var gamesCollectionView: UICollectionView!
     @IBOutlet weak var selectGameButton: UIButton!
     @IBOutlet weak var selectMembersButton: UIButton!
     @IBOutlet weak var mainActionButton: UIButton!
@@ -47,6 +48,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         timePicker.tintColor = R.color.textPrimary()
         mainActionButton.isEnabled = false
         mainActionButton.alpha = 0.5
+        gamesCollectionView.register(
+            UINib(resource: R.nib.newEventGameCell),
+            forCellWithReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier
+        )
     }
     
     func updateDayDate(with model: NewEventDayDateViewModel) {
@@ -60,6 +65,19 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         dateTodayLabel.textColor = R.color.actionAccent()
         dateTomorrowView.layer.borderWidth = 0
         dateTomorrowLabel.textColor = R.color.actionAccent()
+    }
+    
+    func setGamesDataSource(_ dataSource: UICollectionViewDataSource) {
+        gamesCollectionView.dataSource = dataSource
+        gamesCollectionView.reloadData()
+    }
+    
+    func showGames(_ isShow: Bool) {
+        gamesCollectionView.isHidden = !isShow
+    }
+    
+    func updateGames() {
+        gamesCollectionView.reloadData()
     }
 
 	// MARK: - Life cycle

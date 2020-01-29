@@ -5,6 +5,8 @@
 //  Created by Alexandr Ovchinnikov on 20/01/2020.
 //
 
+import UIKit
+
 protocol NewEventViewInput: class {
 
     // MARK: - View out
@@ -19,4 +21,7 @@ protocol NewEventViewInput: class {
 
     func setupInitialState()
     func updateDayDate(with model: NewEventDayDateViewModel)
+    func setGamesDataSource(_ dataSource: UICollectionViewDataSource)
+    func showGames(_ isShow: Bool)
+    func updateGames()
 }

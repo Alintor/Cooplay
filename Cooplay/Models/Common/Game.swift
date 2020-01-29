@@ -13,3 +13,10 @@ struct Game: Codable {
     let coverPath: String
     let previewImagePath: String?
 }
+
+extension Game: Equatable {
+    
+    static func == (lhs: Game, rhs: Game) -> Bool {
+        return lhs.slug == rhs.slug
+    }
+}
