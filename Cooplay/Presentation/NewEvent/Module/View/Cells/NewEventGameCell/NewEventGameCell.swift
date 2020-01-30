@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SkeletonView
 
-class NewEventGameCell: UICollectionViewCell {
+class NewEventGameCell: UICollectionViewCell, Skeletonable {
     
     @IBOutlet weak var blockView: UIView!
     @IBOutlet weak var coverImageView: UIImageView!
@@ -20,14 +19,15 @@ class NewEventGameCell: UICollectionViewCell {
     var isGameSelected: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
     
+    var skeletonView: UIView?
+    
+    var targetView: UIView {
+        return blockView
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-        self.isSkeletonable = true
-        blockView.isSkeletonable = true
-        coverImageView.isSkeletonable = true
-        coverMaskView.isSkeletonable = true
-        statusView.isHidden = true
         blockView.addGestureRecognizer(tap)
     }
     
@@ -60,6 +60,7 @@ extension NewEventGameCell: ConfigurableCell {
     typealias T = NewEventGameCellViewModel
     
     func configure(model: NewEventGameCellViewModel) {
+        self.hideSkeleton()
         self.isGameSelected = model.isSelected
         self.selectAction = model.selectAction
         coverImageView.setImage(withPath: model.coverPath, placeholder: R.image.commonGameCover())

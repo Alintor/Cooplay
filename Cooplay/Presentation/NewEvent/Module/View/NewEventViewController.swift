@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 
 final class NewEventViewController: UIViewController, NewEventViewInput {
 
@@ -58,20 +57,13 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
     
     func showGamesLoading() {
-        gamesCollectionView.isSkeletonable = true
         gamesCollectionView.dataSource = self
-        gamesCollectionView.prepareSkeleton { (_) in
-            let gradient = SkeletonGradient(baseColor: R.color.block()!, secondaryColor: R.color.shapeBackground()!)
-            let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
-            self.gamesCollectionView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
-        }
+
         selectGameButton.isEnabled = false
         selectGameButton.alpha = 0.5
     }
     
     func hideGamesLoading() {
-        gamesCollectionView.stopSkeletonAnimation()
-        gamesCollectionView.hideSkeleton()
         selectGameButton.isEnabled = true
         selectGameButton.alpha = 1
     }
@@ -169,22 +161,25 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
 }
 
-extension NewEventViewController: SkeletonCollectionViewDataSource {
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return R.reuseIdentifier.newEventGameCell.identifier
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
+extension NewEventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier, for: indexPath)
+        if let cell = cell as? Skeletonable {
+            let color = SkeletonGradient(baseColor: R.color.block()!)
+            let animation = SkeletonAnimation(
+                direction: .leftRight,
+                sizeMultiplier: 3,
+                duration: 0.3,
+                startDelay: CFTimeInterval(Float(indexPath.row) * 0.1),
+                intervalDelay: 1.5
+            )
+            cell.showSkeleton(color: color, animation: animation)
+        }
         return cell
     }
     

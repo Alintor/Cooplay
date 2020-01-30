@@ -13,7 +13,6 @@ target 'Cooplay' do
   pod 'DTCollectionViewManager', '~> 6.0'
   pod 'iCarousel', '~> 1.8.3'
   pod 'KDCalendar', '~> 1.8.9'
-  pod "SkeletonView", '~> 1.8.2'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 
