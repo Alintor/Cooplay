@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let appearance = UINavigationBarAppearance()
             appearance.shadowColor = .clear
             appearance.backgroundColor = R.color.background()
+            appearance.titleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
+            appearance.largeTitleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
             navigationBarAppearance.standardAppearance = appearance
             navigationBarAppearance.compactAppearance = appearance
             navigationBarAppearance.scrollEdgeAppearance = appearance
@@ -29,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationBarAppearance.barTintColor = R.color.background()
             navigationBarAppearance.isTranslucent = false
             navigationBarAppearance.shadowImage = UIImage()
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
+            navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
         }
         
         navigationBarAppearance.tintColor = R.color.actionAccent()

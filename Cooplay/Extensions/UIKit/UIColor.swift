@@ -37,20 +37,32 @@ extension UIColor {
     }
     
     var complementaryColor: UIColor {
-        return isLight ? darker : lighter
+        return isLight ? darker() : lighter()
     }
     
-    var lighter: UIColor {
-        return adjust(by: 1.35)
+    func lighter(by percentage: CGFloat = 1.35) -> UIColor {
+        return self.adjust(by: percentage)
     }
     
-    var darker: UIColor {
-        return adjust(by: 0.94)
+    func darker(by percentage: CGFloat = 0.95) -> UIColor {
+        return self.adjust(by: percentage )
     }
     
     func adjust(by percent: CGFloat) -> UIColor {
+        
         var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        return UIColor(hue: h, saturation: s, brightness: b * percent, alpha: a)
+          if self.getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
+           return UIColor(hue: h, saturation: s, brightness: b * percent, alpha: a)
+          }
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+            return UIColor(
+                red: min(red + (percent - 1) / 5, 1.0),
+                green: min(green + (percent - 1) / 5, 1.0),
+                blue: min(blue + (percent - 1) / 5, 1.0),
+                alpha: alpha
+            )
+        }
+        return self
     }
 }

@@ -29,6 +29,9 @@ class NewEventGameCell: UICollectionViewCell, Skeletonable {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         blockView.addGestureRecognizer(tap)
+        statusView.isHidden = true
+        coverImageView.isHidden = true
+        coverMaskView.isHidden = true
     }
     
     @objc func tapHandler(gesture: UITapGestureRecognizer) {

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Ovchinnikov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum GlobalConstant {
     
@@ -16,6 +16,11 @@ enum GlobalConstant {
             case serverDate = "yyyy-MM-dd HH:mm:ss",
             time = "HH:mm"
         }
+    }
+    
+    static var screenWidth: CGFloat = UIApplication.shared.statusBarFrame.size.width
+    static var isSmallScreen: Bool {
+        return screenWidth < 370.0
     }
 }
 

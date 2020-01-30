@@ -22,7 +22,8 @@ final class SearchGameViewController: UIViewController, SearchGameViewInput {
             let appearance = UINavigationBarAppearance()
             appearance.backgroundColor = R.color.block()
             appearance.shadowColor = R.color.block()
-            
+            appearance.titleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
+            appearance.largeTitleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.compactAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance

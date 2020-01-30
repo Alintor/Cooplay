@@ -13,7 +13,10 @@ final class InventedHeaderView: UIView {
     
     private enum Constant {
         
-        static let size = CGSize(width: 375, height: 182)
+        static let size = CGSize(
+            width: GlobalConstant.screenWidth,
+            height: 182
+        )
     }
     
     @IBOutlet weak var titleLabel: UILabel!

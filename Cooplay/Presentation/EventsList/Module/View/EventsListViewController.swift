@@ -47,6 +47,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     // MARK: - View in
 
     func setupInitialState() {
+        navigationController?.view.backgroundColor = R.color.background()
         tableView.isHidden = true
         tableView.contentInset.bottom = Constant.actionButtonInset
         actionButtonView.transform = CGAffineTransform(
