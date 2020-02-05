@@ -107,6 +107,7 @@
 		A87CF46123EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF46023EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift */; };
 		A87CF46423EACC0D004189D3 /* SearchEmptyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF46223EACC0D004189D3 /* SearchEmptyResultCell.swift */; };
 		A87CF46523EACC0D004189D3 /* SearchEmptyResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF46323EACC0D004189D3 /* SearchEmptyResultCell.xib */; };
+		A87CF46823EACF70004189D3 /* NewEventTimeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF46723EACF70004189D3 /* NewEventTimeButtonView.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -231,6 +232,7 @@
 		A87CF46023EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyResultCellViewModel.swift; sourceTree = "<group>"; };
 		A87CF46223EACC0D004189D3 /* SearchEmptyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyResultCell.swift; sourceTree = "<group>"; };
 		A87CF46323EACC0D004189D3 /* SearchEmptyResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEmptyResultCell.xib; sourceTree = "<group>"; };
+		A87CF46723EACF70004189D3 /* NewEventTimeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTimeButtonView.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,14 @@
 			path = SearchEmptyResultCell;
 			sourceTree = "<group>";
 		};
+		A87CF46623EACF00004189D3 /* TimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF46723EACF70004189D3 /* NewEventTimeButtonView.swift */,
+			);
+			path = TimePicker;
+			sourceTree = "<group>";
+		};
 		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1150,6 +1160,7 @@
 		FA0DA1FE8395265440EA8F17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF46623EACF00004189D3 /* TimePicker */,
 				A87CF41723E04657004189D3 /* Cells */,
 				4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */,
 				786065F4CF69350607C85260 /* NewEventViewController.swift */,
@@ -1370,6 +1381,7 @@
 				A87CF44923EA6A57004189D3 /* SearchSectionHeaderViewModel.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */,
+				A87CF46823EACF70004189D3 /* NewEventTimeButtonView.swift in Sources */,
 				A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,

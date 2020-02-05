@@ -25,6 +25,7 @@ extension UserServiceError: LocalizedError {
 protocol UserServiceType {
     
     func fetchOfftenMembers(completion: @escaping (Result<[User], UserServiceError>) -> Void)
+    func fetchOfftenTime(completion: @escaping (Result<Date, UserServiceError>) -> Void)
 }
 
 
@@ -45,6 +46,12 @@ extension UserService: UserServiceType {
                 completion(.success(members))
             }
             
+        }
+    }
+    
+    func fetchOfftenTime(completion: @escaping (Result<Date, UserServiceError>) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            completion(.success(Date()))
         }
     }
 }

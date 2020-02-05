@@ -17,6 +17,7 @@ final class NewEventPresenter {
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
                 self?.fetchOfftenGames()
+                self?.fetchOfftenTime()
             }
             view.calendarAction = { [weak self] in
                 self?.router.showCalendar{ [weak self] date in
@@ -57,6 +58,19 @@ final class NewEventPresenter {
                 )
                 self.view.setGamesDataSource(self.gamesDataSours)
                 self.view.showGames(!games.isEmpty)
+            case .failure(let error):
+                break
+            }
+        }
+    }
+    
+    private func fetchOfftenTime() {
+        view.showTimeLoading()
+        interactor.fetchOfftenTime { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let time):
+                self.view.setTime(time ?? Date())
             case .failure(let error):
                 break
             }

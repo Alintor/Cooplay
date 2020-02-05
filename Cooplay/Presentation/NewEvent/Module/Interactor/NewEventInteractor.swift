@@ -59,4 +59,15 @@ extension NewEventInteractor: NewEventInteractorInput {
             }
         }
     }
+    
+    func fetchOfftenTime(completion: @escaping (Result<Date?, NewEventError>) -> Void) {
+        userService?.fetchOfftenTime { result in
+            switch result {
+            case .success(let time):
+                completion(.success(time))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        }
+    }
 }

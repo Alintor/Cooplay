@@ -15,7 +15,8 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     @IBOutlet weak var selectGameButton: UIButton!
     @IBOutlet weak var selectMembersButton: UIButton!
     @IBOutlet weak var mainActionButton: UIButton!
-    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var timeView: NewEventTimeButtonView!
+    
     @IBOutlet weak var dateTodayView: UIView!
     @IBOutlet weak var dateTodayLabel: UILabel!
     @IBOutlet weak var dateTomorrowView: UIView!
@@ -44,10 +45,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     func setupInitialState() {
         dateTodayView.layer.borderWidth = 2
         dateTodayView.layer.borderColor = R.color.actionAccent()?.cgColor
-        timePicker.subviews[0].subviews[1].backgroundColor = .clear
-        timePicker.subviews[0].subviews[2].backgroundColor = .clear
-        timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
-        timePicker.tintColor = R.color.textPrimary()
+//        timePicker.subviews[0].subviews[1].backgroundColor = .clear
+//        timePicker.subviews[0].subviews[2].backgroundColor = .clear
+//        timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
+//        timePicker.tintColor = R.color.textPrimary()
         mainActionButton.isEnabled = false
         mainActionButton.alpha = 0.5
         gamesCollectionView.register(
@@ -66,6 +67,23 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     func hideGamesLoading() {
         selectGameButton.isEnabled = true
         selectGameButton.alpha = 1
+    }
+    
+    func showTimeLoading() {
+        let color = SkeletonGradient(baseColor: R.color.block()!)
+        let animation = SkeletonAnimation(
+            direction: .leftRight,
+            sizeMultiplier: 3,
+            duration: 1.5,
+            intervalDelay: 0.3
+        )
+        timeView.showSkeleton(color: color, animation: animation)
+        timeView.isUserInteractionEnabled = false
+    }
+    
+    func setTime(_ time: Date) {
+        timeView.setTime(time)
+        timeView.isUserInteractionEnabled = true
     }
     
     func updateDayDate(with model: NewEventDayDateViewModel) {
@@ -161,6 +179,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         default: break
         }
     }
+    
+    @IBAction func timeViewTapped(_ sender: UITapGestureRecognizer) {
+    }
+    
 }
 
 extension NewEventViewController: UICollectionViewDataSource {

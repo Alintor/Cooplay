@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xno-Zl-yxI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="470"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUy-JP-fpW">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -287,34 +287,37 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-go-lWf">
-                                                <rect key="frame" x="0.0" y="332" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="332" width="375" height="80"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="aZf-4d-dxu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                                        <color key="tintColor" name="text.primary"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKU-4Y-iaC" customClass="NewEventTimeButtonView" customModule="Cooplay" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="0.0" width="327" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="byV-Wx-d5P"/>
+                                                            <constraint firstAttribute="height" constant="56" id="jLq-ro-g3g"/>
                                                         </constraints>
-                                                    </datePicker>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="jQe-7D-A7T" appends="YES" id="o5G-dk-7Wu"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="aZf-4d-dxu" secondAttribute="trailing" id="F9U-yn-qJv"/>
-                                                    <constraint firstAttribute="bottom" secondItem="aZf-4d-dxu" secondAttribute="bottom" id="KQN-ea-Egf"/>
-                                                    <constraint firstItem="aZf-4d-dxu" firstAttribute="leading" secondItem="Xlp-go-lWf" secondAttribute="leading" id="RMK-rC-hS4"/>
-                                                    <constraint firstAttribute="height" constant="100" id="Swr-H2-hgy"/>
-                                                    <constraint firstItem="aZf-4d-dxu" firstAttribute="top" secondItem="Xlp-go-lWf" secondAttribute="top" id="cx1-33-xcX"/>
+                                                    <constraint firstItem="tKU-4Y-iaC" firstAttribute="top" secondItem="Xlp-go-lWf" secondAttribute="top" id="UZm-DU-4r5"/>
+                                                    <constraint firstItem="tKU-4Y-iaC" firstAttribute="leading" secondItem="Xlp-go-lWf" secondAttribute="leading" constant="24" id="WHU-J1-aSa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tKU-4Y-iaC" secondAttribute="trailing" constant="24" id="doi-IR-0bY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tKU-4Y-iaC" secondAttribute="bottom" constant="24" id="nqz-32-FI7"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiQ-TA-yfo">
-                                                <rect key="frame" x="0.0" y="432" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="412" width="375" height="1"/>
                                                 <color key="backgroundColor" name="block"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="CwM-d3-k0F"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xh5-Yb-mGs">
-                                                <rect key="frame" x="0.0" y="433" width="375" height="56"/>
+                                                <rect key="frame" x="0.0" y="413" width="375" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F80-UV-ds9">
                                                         <rect key="frame" x="24" y="16" width="48" height="24"/>
@@ -349,7 +352,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fle-PF-Ib3">
-                                                <rect key="frame" x="0.0" y="489" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="469" width="375" height="1"/>
                                                 <color key="backgroundColor" name="block"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="chW-RI-2tp"/>
@@ -427,7 +430,7 @@
                         <outlet property="selectGameButton" destination="rBr-Cl-gdg" id="ggV-lx-Lek"/>
                         <outlet property="selectMembersButton" destination="GhJ-ml-9pB" id="qEQ-XO-rOo"/>
                         <outlet property="stackView" destination="Xno-Zl-yxI" id="XBG-9v-HN1"/>
-                        <outlet property="timePicker" destination="aZf-4d-dxu" id="KvJ-IF-BfO"/>
+                        <outlet property="timeView" destination="tKU-4Y-iaC" id="Gzd-hz-CjW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4YY-0r-yoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,6 +447,11 @@
                 <tapGestureRecognizer id="SsC-lX-j4p">
                     <connections>
                         <action selector="dateViewTapped:" destination="rGT-np-7OK" id="Th4-eP-5lw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="jQe-7D-A7T">
+                    <connections>
+                        <action selector="timeViewTapped:" destination="rGT-np-7OK" id="548-zb-wwe"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

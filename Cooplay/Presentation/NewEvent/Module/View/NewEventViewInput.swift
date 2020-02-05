@@ -26,4 +26,6 @@ protocol NewEventViewInput: class {
     func updateGames()
     func showGamesLoading()
     func hideGamesLoading()
+    func showTimeLoading()
+    func setTime(_ time: Date)
 }

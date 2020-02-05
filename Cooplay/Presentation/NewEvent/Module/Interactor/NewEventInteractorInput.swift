@@ -11,4 +11,5 @@ protocol NewEventInteractorInput: class {
 
     func fetchOfftenGames(completion: @escaping (Result<[Game], NewEventError>) -> Void)
     func fetchOfftenMembers(completion: @escaping (Result<[User], NewEventError>) -> Void)
+    func fetchOfftenTime(completion: @escaping (Result<Date?, NewEventError>) -> Void)
 }
