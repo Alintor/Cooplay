@@ -21,9 +21,10 @@ extension NewEventRouter: NewEventRouterInput {
         calendarRenderer.show(handler: handler)
     }
     
-    func openGameSearch() {
+    func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?) {
         guard let transitionHandler = transitionHandler as? UIViewController else { return }
         let searchGameViewController = R.storyboard.searchGame.searchGameViewController()!
+        searchGameViewController.output?.configure(offtenGames: offtenGames, selectionHandler: selectionHandler)
         let navigationController = UINavigationController(rootViewController: searchGameViewController)
         transitionHandler.present(navigationController, animated: true, completion: nil)
     }

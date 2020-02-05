@@ -25,6 +25,7 @@ extension GamesServiceError: LocalizedError {
 protocol GamesServiceType {
     
     func fetchOfftenGames(completion: @escaping (Result<[Game], GamesServiceError>) -> Void)
+    func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void)
 }
 
 
@@ -45,6 +46,14 @@ extension GamesService: GamesServiceType {
                 completion(.success(games))
             }
             
+        }
+    }
+    
+    func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void) {
+        if let games = storage?.fetchOfftenGames().filter({ $0.name.lowercased().contains(searchValue.lowercased())}) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                completion(.success(games))
+            }
         }
     }
 }

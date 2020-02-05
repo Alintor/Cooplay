@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol SearchGameRouterInput {
+protocol SearchGameRouterInput: CloseableRouter {
 
 }

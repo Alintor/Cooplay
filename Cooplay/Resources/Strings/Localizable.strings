@@ -57,3 +57,9 @@
 // MARK: - Search Game
 "searchGame.title" = "Поиск игры";
 "searchGame.closeButton.title" = "Отмена";
+"searchGame.searchBar.placeholder" = "Название игры";
+"searchGame.sections.offten" = "Частые игры";
+"searchGame.sections.searchResults" = "Результаты поиска";
+"searchGame.emptyResults.title" = "Не получилось найти игру =(";
+"searchGame.emptySate.title" = "Ищите игры по названию";
+"searchGame.emptySate.description" = "Например, введите 'Overwatch' и посмотрите, что будет =)";

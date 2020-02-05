@@ -16,10 +16,10 @@ struct NewEventGameCellViewModel: NewEventCellViewModel {
     
     let model: Game
     
-    init(model: Game, selectAction: ((_ isSelected: Bool) -> Void)?) {
+    init(model: Game, isSelected: Bool, selectAction: ((_ isSelected: Bool) -> Void)?) {
         self.model = model
         self.selectAction = selectAction
         coverPath = model.coverPath
-        isSelected = false
+        self.isSelected = isSelected
     }
 }

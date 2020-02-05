@@ -16,7 +16,7 @@ protocol ConfigurableCell {
 
 final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:ConfigurableCell>: NSObject, UICollectionViewDataSource where P.T == V, V.T == T {
     
-    private let offtenItems: [T]
+    let offtenItems: [T]
     private var activeItemsViewModels: [V] = [V]()
     private let multipleSelection: Bool
     private let selectAction: ((_ items: [T]) -> Void)?
@@ -37,8 +37,8 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
     }
     
     func setupViewModels(items: [T], selected: Bool) {
-        activeItemsViewModels = items.map({ item -> V in
-            V(model: item, selectAction: { [weak self] (isSelected) in
+        activeItemsViewModels = items.map({ [weak self] item -> V in
+            V(model: item, isSelected: selected, selectAction: { [weak self] (isSelected) in
                 self?.setItemSelected(isSelected, item: item)
             })
         })
@@ -70,7 +70,6 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
         if let cell = cell as? P {
             cell.configure(model: activeItemsViewModels[indexPath.row])
         }
-        cell.layoutIfNeeded()
         return cell
     }
 }

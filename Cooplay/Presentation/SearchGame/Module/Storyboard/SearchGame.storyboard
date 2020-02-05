@@ -21,12 +21,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <color key="barTintColor" name="block"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedPlaceholderKey" value="searchGame.searchBar.placeholder"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="rGT-np-7OK" id="fGV-Ev-CiW"/>
+                                </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-o4-RiK">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
+                            <constraint firstItem="6dj-o4-RiK" firstAttribute="top" secondItem="NcA-cZ-D0o" secondAttribute="bottom" id="JBg-BB-O89"/>
                             <constraint firstItem="NcA-cZ-D0o" firstAttribute="trailing" secondItem="OR5-3f-pbR" secondAttribute="trailing" id="Um4-LQ-LZS"/>
                             <constraint firstItem="NcA-cZ-D0o" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="bZd-fY-MT7"/>
+                            <constraint firstItem="6dj-o4-RiK" firstAttribute="bottom" secondItem="OR5-3f-pbR" secondAttribute="bottom" id="d60-fg-xDX"/>
+                            <constraint firstItem="6dj-o4-RiK" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="iLP-pq-4mg"/>
+                            <constraint firstItem="6dj-o4-RiK" firstAttribute="trailing" secondItem="OR5-3f-pbR" secondAttribute="trailing" id="ijN-yx-mdL"/>
                             <constraint firstItem="NcA-cZ-D0o" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" id="noJ-zK-K5t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
@@ -36,6 +50,9 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="searchGame.closeButton.title"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="rGT-np-7OK" id="eUJ-2f-BhX"/>
+                            </connections>
                         </barButtonItem>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="searchGame.title"/>
@@ -43,11 +60,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="NcA-cZ-D0o" id="fNI-aB-WkS"/>
+                        <outlet property="tableView" destination="6dj-o4-RiK" id="OAj-90-Wy2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4YY-0r-yoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="132"/>
+            <point key="canvasLocation" x="132" y="131.78410794602701"/>
         </scene>
     </scenes>
     <resources>

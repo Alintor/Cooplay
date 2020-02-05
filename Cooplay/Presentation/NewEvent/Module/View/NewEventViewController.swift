@@ -111,7 +111,9 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
     
     func updateGames() {
-        gamesCollectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.gamesCollectionView.reloadData()
+        }
     }
 
 	// MARK: - Life cycle
@@ -182,6 +184,5 @@ extension NewEventViewController: UICollectionViewDataSource {
         }
         return cell
     }
-    
     
 }

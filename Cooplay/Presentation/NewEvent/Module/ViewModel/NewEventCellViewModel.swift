@@ -15,5 +15,5 @@ protocol NewEventCellViewModel {
     var isSelected: Bool { get set }
     var selectAction: ((_ isSelected: Bool) -> Void)? { get }
     var model: T { get }
-    init(model: T, selectAction: ((_ isSelected: Bool) -> Void)?)
+    init(model: T, isSelected: Bool, selectAction: ((_ isSelected: Bool) -> Void)?)
 }

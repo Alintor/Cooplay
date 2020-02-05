@@ -12,7 +12,7 @@ final class SearchGameAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(SearchGameInteractor.self) { r in
-			let interactor = SearchGameInteractor()
+            let interactor = SearchGameInteractor(gamesService: r.resolve(GamesServiceType.self))
 
 			return interactor
 		}

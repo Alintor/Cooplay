@@ -7,4 +7,5 @@
 
 protocol SearchGameModuleInput: class {
 
+    func configure(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?)
 }

@@ -24,7 +24,13 @@ final class NewEventPresenter {
                 }
             }
             view.searchGameAction = { [weak self] in
-                self?.router.openGameSearch()
+                self?.router.openGameSearch(
+                    offtenGames: self?.gamesDataSours.offtenItems,
+                    selectionHandler: { selectedGame in
+                        self?.gamesDataSours.setupViewModels(items: [selectedGame], selected: true)
+                        self?.view.showGames(true)
+                    }
+                )
             }
         }
     }
