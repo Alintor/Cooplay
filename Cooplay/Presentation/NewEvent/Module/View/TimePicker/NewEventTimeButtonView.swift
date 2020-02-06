@@ -80,16 +80,4 @@ final class NewEventTimeButtonView: UIView, Skeletonable {
         timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
         timeLabel.text = timeFormatter.string(from: date)
     }
-    
-    func rotateArrrow() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
-        })
-    }
-    
-    func restoreArrow() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.arrowImageView.transform = .identity
-        })
-    }
 }

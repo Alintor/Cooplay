@@ -32,6 +32,9 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     @IBOutlet var dateTomorrowTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var dateCalendarTapGestureRecognizer: UITapGestureRecognizer!
     
+    @IBOutlet weak var timeViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timeViewTrailingConstraint: NSLayoutConstraint!
+    
     // MARK: - View out
 
     var output: NewEventModuleInput?
@@ -213,7 +216,28 @@ extension NewEventViewController: UICollectionViewDataSource {
 
 extension NewEventViewController: NewEventTimePickerViewDelegate {
     
+    
     var timeButtonView: UIView {
         return timeView
+    }
+    
+    func prepareView(completion: @escaping () -> Void) {
+        timeViewLeadingConstraint.constant = 10
+        timeViewTrailingConstraint.constant = 10
+        UIView.animate(withDuration: 0.1, animations: {
+            self.timeView.arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
+            self.view.layoutIfNeeded()
+        }) { (_) in
+            completion()
+        }
+    }
+    
+    func restoreView() {
+        timeViewLeadingConstraint.constant = 24
+        timeViewTrailingConstraint.constant = 24
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.timeView.arrowImageView.transform = .identity
+            self.view.layoutIfNeeded()
+        })
     }
 }

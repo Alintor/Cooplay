@@ -431,6 +431,8 @@
                         <outlet property="selectMembersButton" destination="GhJ-ml-9pB" id="qEQ-XO-rOo"/>
                         <outlet property="stackView" destination="Xno-Zl-yxI" id="XBG-9v-HN1"/>
                         <outlet property="timeView" destination="tKU-4Y-iaC" id="Gzd-hz-CjW"/>
+                        <outlet property="timeViewLeadingConstraint" destination="WHU-J1-aSa" id="aUL-6G-eCv"/>
+                        <outlet property="timeViewTrailingConstraint" destination="doi-IR-0bY" id="Kos-SK-mxk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4YY-0r-yoY" userLabel="First Responder" sceneMemberID="firstResponder"/>

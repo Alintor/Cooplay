@@ -11,6 +11,8 @@ import UIKit
 protocol NewEventTimePickerViewDelegate: class {
     
     var timeButtonView: UIView { get }
+    func prepareView(completion: @escaping () -> Void)
+    func restoreView()
 }
 
 extension NewEventTimePickerViewDelegate {
@@ -62,16 +64,23 @@ final class NewEventTimePickerView: UIView {
     }
     
     func show(startTime: Date = Date()) {
+        topWindow?.addSubview(self)
+        delegate?.prepareView { [weak self] in
+            self?.showViews(startTime: startTime)
+        }
+    }
+    
+    private func showViews(startTime: Date) {
         guard
             let window = topWindow,
             let delegate = delegate
         else { return }
-        window.addSubview(self)
         let width = self.frame.width - 20
         let timeButtonView = NewEventTimeButtonView(
             frame: CGRect(origin: delegate.timeButtonViewGlobalPoint, size: delegate.timeButtonViewSize)
         )
         timeButtonView.setTime(startTime)
+        timeButtonView.arrowImageView.image = R.image.commonArrowUp()
         let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(close))
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(close))
         blurEffectView.addGestureRecognizer(tapGestureRecognizer1)
@@ -118,7 +127,6 @@ final class NewEventTimePickerView: UIView {
         generator.prepare()
         timeButtonView.frame.size.width = width
         timeButtonView.center.x = window.center.x
-        timeButtonView.rotateArrrow()
         UIView.animate(withDuration: 0.3, delay: 0.3, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.timePickerBlockView?.transform = .identity
             self.timePickerBlockView?.alpha = 1
@@ -135,11 +143,10 @@ final class NewEventTimePickerView: UIView {
         }
     }
     
-    @objc func close() {
+    @objc private func close() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()
         self.blockViewYConstraint?.isActive = false
-        timeButtonView?.restoreArrow()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.timePickerBlockView?.transform = self.blockTransform!
             self.timePickerBlockView?.alpha = 0
@@ -159,12 +166,13 @@ final class NewEventTimePickerView: UIView {
             completion: { _ in
                 generator.impactOccurred()
                 self.delegate?.setTimeButtonView(hide: false)
+                self.delegate?.restoreView()
                 self.removeFromSuperview()
             }
         )
     }
     
-    @objc func timePickerValueChanged(_ sender: UIDatePicker) {
+    @objc private func timePickerValueChanged(_ sender: UIDatePicker) {
         timeButtonView?.setTime(sender.date)
         timeHandler?(sender.date)
     }
