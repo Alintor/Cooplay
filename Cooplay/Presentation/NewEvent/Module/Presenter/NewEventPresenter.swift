@@ -33,6 +33,13 @@ final class NewEventPresenter {
                     }
                 )
             }
+            view.timePickerAction = { [weak self] in
+                guard let `self` = self else { return }
+                self.router.showTimePicker(startTime: self.time) { [weak self] (time) in
+                    self?.time = time
+                    self?.view.setTime(time)
+                }
+            }
         }
     }
     var interactor: NewEventInteractorInput!
@@ -41,6 +48,7 @@ final class NewEventPresenter {
     // MARK: - Private
     
     private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
+    private var time: Date!
     
     private func fetchOfftenGames() {
         view.showGamesLoading()
@@ -68,9 +76,11 @@ final class NewEventPresenter {
         view.showTimeLoading()
         interactor.fetchOfftenTime { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideTimeLoading()
             switch result {
             case .success(let time):
                 self.view.setTime(time ?? Date())
+                self.time = time ?? Date()
             case .failure(let error):
                 break
             }

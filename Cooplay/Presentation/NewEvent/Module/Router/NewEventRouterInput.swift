@@ -10,5 +10,6 @@ import Foundation
 protocol NewEventRouterInput {
 
     func showCalendar(handler: ((_ date: Date) -> Void)?)
+    func showTimePicker(startTime: Date, handler: ((_ date: Date) -> Void)?)
     func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?)
 }

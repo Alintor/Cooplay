@@ -37,6 +37,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     var output: NewEventModuleInput?
     var viewIsReady: (() -> Void)?
     var calendarAction: (() -> Void)?
+    var timePickerAction: (() -> Void)?
     var searchGameAction: (() -> Void)?
     var searchMembersAction: (() -> Void)?
 
@@ -45,10 +46,6 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     func setupInitialState() {
         dateTodayView.layer.borderWidth = 2
         dateTodayView.layer.borderColor = R.color.actionAccent()?.cgColor
-//        timePicker.subviews[0].subviews[1].backgroundColor = .clear
-//        timePicker.subviews[0].subviews[2].backgroundColor = .clear
-//        timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
-//        timePicker.tintColor = R.color.textPrimary()
         mainActionButton.isEnabled = false
         mainActionButton.alpha = 0.5
         gamesCollectionView.register(
@@ -73,7 +70,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         let color = SkeletonGradient(baseColor: R.color.block()!)
         let animation = SkeletonAnimation(
             direction: .leftRight,
-            sizeMultiplier: 3,
+            sizeMultiplier: 2,
             duration: 1.5,
             intervalDelay: 0.3
         )
@@ -81,9 +78,13 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         timeView.isUserInteractionEnabled = false
     }
     
+    func hideTimeLoading() {
+        timeView.hideSkeleton()
+        timeView.isUserInteractionEnabled = true
+    }
+    
     func setTime(_ time: Date) {
         timeView.setTime(time)
-        timeView.isUserInteractionEnabled = true
     }
     
     func updateDayDate(with model: NewEventDayDateViewModel) {
@@ -181,6 +182,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
     
     @IBAction func timeViewTapped(_ sender: UITapGestureRecognizer) {
+        timePickerAction?()
     }
     
 }
@@ -207,4 +209,11 @@ extension NewEventViewController: UICollectionViewDataSource {
         return cell
     }
     
+}
+
+extension NewEventViewController: NewEventTimePickerViewDelegate {
+    
+    var timeButtonView: UIView {
+        return timeView
+    }
 }

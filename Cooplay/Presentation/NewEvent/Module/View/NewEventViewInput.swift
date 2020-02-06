@@ -14,6 +14,7 @@ protocol NewEventViewInput: class {
     var output: NewEventModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
     var calendarAction: (() -> Void)? { get set }
+    var timePickerAction: (() -> Void)? { get set }
     var searchGameAction: (() -> Void)? { get set }
     var searchMembersAction: (() -> Void)? { get set }
 
@@ -27,5 +28,6 @@ protocol NewEventViewInput: class {
     func showGamesLoading()
     func hideGamesLoading()
     func showTimeLoading()
+    func hideTimeLoading()
     func setTime(_ time: Date)
 }
