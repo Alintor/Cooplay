@@ -28,6 +28,9 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     @IBOutlet weak var dateCalendarDayLabel: UILabel!
     @IBOutlet weak var dateCalendarMonthLabel: UILabel!
     
+    @IBOutlet weak var membersCollectionView: UICollectionView!
+    @IBOutlet weak var membersView: UIView!
+    
     @IBOutlet var dateTodayTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var dateTomorrowTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var dateCalendarTapGestureRecognizer: UITapGestureRecognizer!
@@ -54,6 +57,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         gamesCollectionView.register(
             UINib(resource: R.nib.newEventGameCell),
             forCellWithReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier
+        )
+        membersCollectionView.register(
+            UINib(resource: R.nib.newEventMemberCell),
+            forCellWithReuseIdentifier: R.reuseIdentifier.newEventMemberCell.identifier
         )
     }
     
@@ -135,6 +142,41 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     func updateGames() {
         DispatchQueue.main.async { [weak self] in
             self?.gamesCollectionView.reloadData()
+        }
+    }
+    
+    func setMembersDataSource(_ dataSource: UICollectionViewDataSource) {
+        membersCollectionView.dataSource = dataSource
+        membersCollectionView.reloadData()
+    }
+    
+    func showMembers(_ isShow: Bool) {
+        UIView.animate(
+            withDuration: isShow ? 0.3 : 0,
+            delay: isShow ? 0.2 : 0,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.membersCollectionView.alpha = isShow ? 1 : 0
+        })
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.membersView.isHidden = !isShow
+                self.stackView.layoutIfNeeded()
+            }
+        )
+        
+    }
+    
+    func updateMembers() {
+        DispatchQueue.main.async { [weak self] in
+            self?.membersCollectionView.reloadData()
         }
     }
 

@@ -12,6 +12,7 @@ import UIKit
 protocol ConfigurableCell {
     associatedtype T
     func configure(model: T)
+    static var reuseIdentifier: String { get }
 }
 
 final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:ConfigurableCell>: NSObject, UICollectionViewDataSource where P.T == V, V.T == T {
@@ -66,7 +67,7 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: P.reuseIdentifier, for: indexPath)
         if let cell = cell as? P {
             cell.configure(model: activeItemsViewModels[indexPath.row])
         }

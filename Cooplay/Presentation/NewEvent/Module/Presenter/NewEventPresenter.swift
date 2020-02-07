@@ -17,6 +17,7 @@ final class NewEventPresenter {
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
                 self?.fetchOfftenGames()
+                self?.fetchOfftenMembers()
                 self?.fetchOfftenTime()
             }
             view.calendarAction = { [weak self] in
@@ -48,6 +49,7 @@ final class NewEventPresenter {
     // MARK: - Private
     
     private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
+    private var membersDataSours: NewEventDataSource<User, NewEventMemberCellViewModel, NewEventMemberCell>!
     private var time: Date!
     
     private func fetchOfftenGames() {
@@ -66,6 +68,26 @@ final class NewEventPresenter {
                 )
                 self.view.setGamesDataSource(self.gamesDataSours)
                 self.view.showGames(!games.isEmpty)
+            case .failure(let error):
+                break
+            }
+        }
+    }
+    
+    private func fetchOfftenMembers() {
+        interactor.fetchOfftenMembers { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let members):
+                self.membersDataSours = NewEventDataSource(
+                    offtenItems: members,
+                    multipleSelection: true,
+                    selectAction: { [weak self] selectedMembers in
+                        self?.view.updateMembers()
+                    }
+                )
+                self.view.setMembersDataSource(self.membersDataSours)
+                self.view.showMembers(!members.isEmpty)
             case .failure(let error):
                 break
             }

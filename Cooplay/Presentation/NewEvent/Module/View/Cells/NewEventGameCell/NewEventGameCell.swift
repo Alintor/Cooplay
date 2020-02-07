@@ -73,4 +73,8 @@ extension NewEventGameCell: ConfigurableCell {
         }
         configureStatus()
     }
+    
+    static var reuseIdentifier: String {
+        return R.reuseIdentifier.newEventGameCell.identifier
+    }
 }

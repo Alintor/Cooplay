@@ -251,7 +251,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 10 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -269,6 +269,8 @@ struct R: Rswift.Validatable {
     static let invitedEventCell = _R.nib._InvitedEventCell()
     /// Nib `NewEventGameCell`.
     static let newEventGameCell = _R.nib._NewEventGameCell()
+    /// Nib `NewEventMemberCell`.
+    static let newEventMemberCell = _R.nib._NewEventMemberCell()
     /// Nib `SearchEmptyResultCell`.
     static let searchEmptyResultCell = _R.nib._SearchEmptyResultCell()
     /// Nib `SearchGameCell`.
@@ -322,6 +324,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.newEventGameCell)
     }
     
+    /// `UINib(name: "NewEventMemberCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.newEventMemberCell) instead")
+    static func newEventMemberCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.newEventMemberCell)
+    }
+    
     /// `UINib(name: "SearchEmptyResultCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.searchEmptyResultCell) instead")
     static func searchEmptyResultCell(_: Void = ()) -> UIKit.UINib {
@@ -366,6 +374,10 @@ struct R: Rswift.Validatable {
       return R.nib.newEventGameCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventGameCell
     }
     
+    static func newEventMemberCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventMemberCell? {
+      return R.nib.newEventMemberCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventMemberCell
+    }
+    
     static func searchEmptyResultCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchEmptyResultCell? {
       return R.nib.searchEmptyResultCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchEmptyResultCell
     }
@@ -377,7 +389,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `ActiveEventCell`.
     static let activeEventCell: Rswift.ReuseIdentifier<ActiveEventCell> = Rswift.ReuseIdentifier(identifier: "ActiveEventCell")
@@ -385,6 +397,8 @@ struct R: Rswift.Validatable {
     static let eventCell: Rswift.ReuseIdentifier<EventCell> = Rswift.ReuseIdentifier(identifier: "EventCell")
     /// Reuse identifier `NewEventGameCell`.
     static let newEventGameCell: Rswift.ReuseIdentifier<NewEventGameCell> = Rswift.ReuseIdentifier(identifier: "NewEventGameCell")
+    /// Reuse identifier `NewEventMemberCell`.
+    static let newEventMemberCell: Rswift.ReuseIdentifier<NewEventMemberCell> = Rswift.ReuseIdentifier(identifier: "NewEventMemberCell")
     /// Reuse identifier `SearchEmptyResultCell`.
     static let searchEmptyResultCell: Rswift.ReuseIdentifier<SearchEmptyResultCell> = Rswift.ReuseIdentifier(identifier: "SearchEmptyResultCell")
     /// Reuse identifier `SearchGameCell`.
@@ -771,6 +785,7 @@ struct _R: Rswift.Validatable {
       try _EventDetailsMemberCell.validate()
       try _InvitedEventCell.validate()
       try _NewEventGameCell.validate()
+      try _NewEventMemberCell.validate()
     }
     
     struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -902,6 +917,27 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _NewEventMemberCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = NewEventMemberCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "NewEventMemberCell"
+      let name = "NewEventMemberCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventMemberCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventMemberCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "status.small.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.ontime' is used in nib 'NewEventMemberCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
         }
       }
       

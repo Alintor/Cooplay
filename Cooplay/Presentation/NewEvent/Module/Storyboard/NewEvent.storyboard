@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xno-Zl-yxI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="470"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="566"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUy-JP-fpW">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -351,8 +351,33 @@
                                                     <constraint firstItem="F80-UV-ds9" firstAttribute="centerY" secondItem="Xh5-Yb-mGs" secondAttribute="centerY" id="qVI-cM-fnq"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVx-5Z-Z2m">
+                                                <rect key="frame" x="0.0" y="469" width="375" height="96"/>
+                                                <subviews>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QTY-vY-DL5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="10" id="zIk-NR-28o">
+                                                            <size key="itemSize" width="60" height="72"/>
+                                                            <size key="estimatedItemSize" width="60" height="72"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="24" minY="0.0" maxX="24" maxY="24"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells/>
+                                                    </collectionView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="QTY-vY-DL5" secondAttribute="bottom" id="FSs-if-2cp"/>
+                                                    <constraint firstItem="QTY-vY-DL5" firstAttribute="leading" secondItem="vVx-5Z-Z2m" secondAttribute="leading" id="M8k-bM-IRs"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QTY-vY-DL5" secondAttribute="trailing" id="NRB-UW-Qjb"/>
+                                                    <constraint firstAttribute="height" constant="96" id="eop-dg-ObL"/>
+                                                    <constraint firstItem="QTY-vY-DL5" firstAttribute="top" secondItem="vVx-5Z-Z2m" secondAttribute="top" id="iO8-4p-BOZ"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fle-PF-Ib3">
-                                                <rect key="frame" x="0.0" y="469" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="565" width="375" height="1"/>
                                                 <color key="backgroundColor" name="block"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="chW-RI-2tp"/>
@@ -427,6 +452,8 @@
                         <outlet property="gamesCollectionView" destination="Hv9-d1-c4m" id="SeE-Ee-1JZ"/>
                         <outlet property="gamesView" destination="Q9P-b6-eqE" id="89P-Uy-o0L"/>
                         <outlet property="mainActionButton" destination="Ho3-zU-51s" id="LVL-LX-jNm"/>
+                        <outlet property="membersCollectionView" destination="QTY-vY-DL5" id="LkW-4i-zDo"/>
+                        <outlet property="membersView" destination="vVx-5Z-Z2m" id="50Y-Qo-ZOb"/>
                         <outlet property="selectGameButton" destination="rBr-Cl-gdg" id="ggV-lx-Lek"/>
                         <outlet property="selectMembersButton" destination="GhJ-ml-9pB" id="qEQ-XO-rOo"/>
                         <outlet property="stackView" destination="Xno-Zl-yxI" id="XBG-9v-HN1"/>
