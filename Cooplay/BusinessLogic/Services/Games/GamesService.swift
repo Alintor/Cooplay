@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import Moya
 
 enum GamesServiceError: Error {
     
@@ -31,9 +33,11 @@ protocol GamesServiceType {
 
 final class GamesService {
     
+    private let provider: APIProviderType?
     private let storage: HardcodedStorage?
     
-    init(storage: HardcodedStorage?) {
+    init(provider: APIProviderType?, storage: HardcodedStorage?) {
+        self.provider = provider
         self.storage = storage
     }
 }
@@ -50,9 +54,29 @@ extension GamesService: GamesServiceType {
     }
     
     func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void) {
-        if let games = storage?.fetchOfftenGames().filter({ $0.name.lowercased().contains(searchValue.lowercased())}) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                completion(.success(games))
+        provider?.sendRequest(requestSpecification: GamesSpecification.search(value: searchValue)
+        ) { (result: Result<JSON, MoyaError>) in
+            switch result {
+            case .success(let response):
+                let games = response.array?.map({ json -> Game in
+                    var coverPath: String? = nil
+                    if let imagId = json["cover"]["image_id"].string {
+                        coverPath = "https://images.igdb.com/igdb/image/upload/t_cover_big/\(imagId).jpg"
+                    }
+                    var previewImagePath: String? = nil
+                    if let imagId = json["screenshots"].array?.first?["image_id"].string {
+                        previewImagePath = "https://images.igdb.com/igdb/image/upload/t_original/\(imagId).jpg"
+                    }
+                    return Game(
+                        slug: json["slug"].stringValue,
+                        name: json["name"].stringValue,
+                        coverPath: coverPath,
+                        previewImagePath: previewImagePath
+                    )
+                })
+                completion(.success(games ?? []))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
             }
         }
     }

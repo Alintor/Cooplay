@@ -10,7 +10,7 @@ struct Game: Codable {
     
     let slug: String
     let name: String
-    let coverPath: String
+    let coverPath: String?
     let previewImagePath: String?
 }
 

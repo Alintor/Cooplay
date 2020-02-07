@@ -17,7 +17,7 @@ struct ActiveEventCellViewModel {
     
     var title: String
     var date: String
-    var coverPath: String
+    var coverPath: String?
     var previewPath: String?
     var statusTitle: String?
     var statusIcon: UIImage?

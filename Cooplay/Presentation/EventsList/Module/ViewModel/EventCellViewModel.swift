@@ -17,7 +17,7 @@ struct EventCellViewModel {
     
     var title: String
     var date: String
-    var imagePath: String
+    var imagePath: String?
     var statusTitle: String?
     var lateTime: String?
     var statusIcon: UIImage?

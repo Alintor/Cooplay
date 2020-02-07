@@ -109,6 +109,13 @@
 		A87CF46523EACC0D004189D3 /* SearchEmptyResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF46323EACC0D004189D3 /* SearchEmptyResultCell.xib */; };
 		A87CF46823EACF70004189D3 /* NewEventTimeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF46723EACF70004189D3 /* NewEventTimeButtonView.swift */; };
 		A87CF46A23EBB5E3004189D3 /* NewEventTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF46923EBB5E3004189D3 /* NewEventTimePickerView.swift */; };
+		A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47223EC1156004189D3 /* AuthorizationHandler.swift */; };
+		A87CF47523EC1248004189D3 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47423EC1248004189D3 /* APIProvider.swift */; };
+		A87CF47723EC12C8004189D3 /* APIRequestSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47623EC12C8004189D3 /* APIRequestSpecification.swift */; };
+		A87CF47923EC1518004189D3 /* APIProviderAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47823EC1518004189D3 /* APIProviderAssemblyContainer.swift */; };
+		A87CF47B23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47A23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift */; };
+		A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47D23EC1884004189D3 /* GamesSpecification.swift */; };
+		A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF48A23ED6C82004189D3 /* Configuration.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -235,6 +242,14 @@
 		A87CF46323EACC0D004189D3 /* SearchEmptyResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEmptyResultCell.xib; sourceTree = "<group>"; };
 		A87CF46723EACF70004189D3 /* NewEventTimeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTimeButtonView.swift; sourceTree = "<group>"; };
 		A87CF46923EBB5E3004189D3 /* NewEventTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTimePickerView.swift; sourceTree = "<group>"; };
+		A87CF47223EC1156004189D3 /* AuthorizationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
+		A87CF47423EC1248004189D3 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
+		A87CF47623EC12C8004189D3 /* APIRequestSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestSpecification.swift; sourceTree = "<group>"; };
+		A87CF47823EC1518004189D3 /* APIProviderAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProviderAssemblyContainer.swift; sourceTree = "<group>"; };
+		A87CF47A23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationHandlerAssemblyContainer.swift; sourceTree = "<group>"; };
+		A87CF47D23EC1884004189D3 /* GamesSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSpecification.swift; sourceTree = "<group>"; };
+		A87CF48923ED6B60004189D3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A87CF48A23ED6C82004189D3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -582,6 +597,8 @@
 		A82FF2A02345E97400EE1807 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF46E23EC1107004189D3 /* Network */,
+				A87CF46F23EC111D004189D3 /* Specifications */,
 				A82FF2AF2346065300EE1807 /* Services */,
 			);
 			path = BusinessLogic;
@@ -608,6 +625,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2A42345EA3B00EE1807 /* Private */,
+				A87CF48A23ED6C82004189D3 /* Configuration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -615,6 +633,7 @@
 		A82FF2A42345EA3B00EE1807 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				A87CF48923ED6B60004189D3 /* Config.xcconfig */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1023,6 +1042,50 @@
 			path = TimePicker;
 			sourceTree = "<group>";
 		};
+		A87CF46E23EC1107004189D3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF47123EC113F004189D3 /* AuthorizationHandler */,
+				A87CF47023EC112F004189D3 /* APIProvider */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A87CF46F23EC111D004189D3 /* Specifications */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF47623EC12C8004189D3 /* APIRequestSpecification.swift */,
+				A87CF47C23EC186C004189D3 /* Games */,
+			);
+			path = Specifications;
+			sourceTree = "<group>";
+		};
+		A87CF47023EC112F004189D3 /* APIProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF47423EC1248004189D3 /* APIProvider.swift */,
+				A87CF47823EC1518004189D3 /* APIProviderAssemblyContainer.swift */,
+			);
+			path = APIProvider;
+			sourceTree = "<group>";
+		};
+		A87CF47123EC113F004189D3 /* AuthorizationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF47223EC1156004189D3 /* AuthorizationHandler.swift */,
+				A87CF47A23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift */,
+			);
+			path = AuthorizationHandler;
+			sourceTree = "<group>";
+		};
+		A87CF47C23EC186C004189D3 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				A87CF47D23EC1884004189D3 /* GamesSpecification.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
 		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1273,30 +1336,38 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cooplay/Pods-Cooplay-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCollectionViewManager/DTCollectionViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/DTModelStorage/DTModelStorage.framework",
 				"${BUILT_PRODUCTS_DIR}/DTTableViewManager/DTTableViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCalendar/KDCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LightRoute/LightRoute.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PluggableAppDelegate/PluggableAppDelegate.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCollectionViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTModelStorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTTableViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightRoute.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PluggableAppDelegate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
@@ -1355,11 +1426,13 @@
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */,
+				A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */,
 				A87CF45C23EAC371004189D3 /* EmptyStateView.swift in Sources */,
 				A87CF41323E03D69004189D3 /* UserServiceAssemblyContainer.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A87CF46A23EBB5E3004189D3 /* NewEventTimePickerView.swift in Sources */,
 				A877020123336E6E002EA095 /* ViewController.swift in Sources */,
+				A87CF47923EC1518004189D3 /* APIProviderAssemblyContainer.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
 				A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */,
 				A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */,
@@ -1382,10 +1455,12 @@
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
+				A87CF47523EC1248004189D3 /* APIProvider.swift in Sources */,
 				A87CF44923EA6A57004189D3 /* SearchSectionHeaderViewModel.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */,
 				A87CF46823EACF70004189D3 /* NewEventTimeButtonView.swift in Sources */,
+				A87CF47723EC12C8004189D3 /* APIRequestSpecification.swift in Sources */,
 				A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
@@ -1420,6 +1495,7 @@
 				A833EF6023D03AB7009FCD73 /* EventDetailsCellViewModel.swift in Sources */,
 				A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */,
 				24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */,
+				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
@@ -1432,6 +1508,7 @@
 				3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */,
 				71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */,
 				A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */,
+				A87CF47B23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift in Sources */,
 				A87CF44C23EA6DF0004189D3 /* KeyboardHandler.swift in Sources */,
 				0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */,
 				8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */,
@@ -1447,6 +1524,7 @@
 				A87CF45A23EAC18B004189D3 /* EmptyStateHandler.swift in Sources */,
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
+				A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
 				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,
@@ -1477,6 +1555,7 @@
 /* Begin XCBuildConfiguration section */
 		A877020B23336E6F002EA095 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87CF48923ED6B60004189D3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1538,6 +1617,7 @@
 		};
 		A877020C23336E6F002EA095 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87CF48923ED6B60004189D3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -14,6 +14,10 @@ final class ApplicationAssembly {
     class var assembler: Assembler {
         return Assembler([
             
+            // Network
+            AuthorizationHandlerAssemblyContainer(),
+            APIProviderAssemblyContainer(),
+            
             // Services
             EventServiceAssemblyContainer(),
             UserServiceAssemblyContainer(),

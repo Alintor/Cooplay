@@ -13,7 +13,7 @@ final class GamesServiceAssemblyContainer: Assembly {
     
     func assemble(container: Container) {
         container.register(GamesServiceType.self) { r in
-            return GamesService(storage: HardcodedStorage())
+            return GamesService(provider: r.resolve(APIProviderType.self), storage: HardcodedStorage())
         }
     }
 }

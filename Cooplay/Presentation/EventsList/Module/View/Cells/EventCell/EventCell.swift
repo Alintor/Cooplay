@@ -56,7 +56,11 @@ extension EventCell: ModelTransfer {
     func update(with model: EventCellViewModel) {
         titleLabel.text = model.title
         dateLabel.text = model.date
-        gameImageView.setImage(withPath: model.imagePath)
+        if let imagePath = model.imagePath {
+            gameImageView.setImage(withPath: imagePath, placeholder: R.image.commonGameCover())
+        } else {
+            gameImageView.image = R.image.commonGameCover()
+        }
         statusTitle.text = model.statusTitle
         lateTimeLabel.text = model.lateTime
         statusIconImageView.image = model.statusIcon

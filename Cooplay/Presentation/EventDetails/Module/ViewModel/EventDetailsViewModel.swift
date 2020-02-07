@@ -12,7 +12,7 @@ struct EventDetailsViewModel {
     
     var title: String
     var date: String
-    var coverPath: String
+    var coverPath: String?
     var statusTitle: String?
     var statusIcon: UIImage?
     var statusColor: UIColor?

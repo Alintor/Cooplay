@@ -66,7 +66,11 @@ extension NewEventGameCell: ConfigurableCell {
         self.hideSkeleton()
         self.isGameSelected = model.isSelected
         self.selectAction = model.selectAction
-        coverImageView.setImage(withPath: model.coverPath, placeholder: R.image.commonGameCover())
+        if let coverPath = model.coverPath {
+            coverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover())
+        } else {
+            coverImageView.image = R.image.commonGameCover()
+        }
         configureStatus()
     }
 }

@@ -73,7 +73,11 @@ final class InvitedEventCell: UIView {
     func update(with model: InvitedEventCellViewModel) {
         titleLabel.text = model.title
         dateLabel.text = model.date
-        gameImageView.setImage(withPath: model.imagePath)
+        if let imagePath = model.imagePath {
+            gameImageView.setImage(withPath: imagePath, placeholder: R.image.commonGameCover())
+        } else {
+            gameImageView.image = R.image.commonGameCover()
+        }
         self.statusAction = model.statusAction
         acceptTitleView.isHidden = false
         acceptImageView.isHidden = true

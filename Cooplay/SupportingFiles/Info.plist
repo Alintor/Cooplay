@@ -39,5 +39,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>DBGamesUserKey</key>
+    <string>${IGDB_API_KEY}</string>
 </dict>
 </plist>

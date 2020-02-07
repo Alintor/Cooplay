@@ -57,7 +57,11 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     func update(with model: EventDetailsViewModel) {
         titleLabel.text = model.title
         dateLabel.text = model.date
-        gameCoverImageView.setImage(withPath: model.coverPath)
+        if let coverPath = model.coverPath {
+            gameCoverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover())
+        } else {
+            gameCoverImageView.image = R.image.commonGameCover()
+        }
         avatarView.update(with: model.avatarViewModel)
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
