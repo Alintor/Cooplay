@@ -621,13 +621,13 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		A82FF2A32345EA3700EE1807 /* Configuration */ = {
+		A82FF2A32345EA3700EE1807 /* AppConfiguration */ = {
 			isa = PBXGroup;
 			children = (
 				A82FF2A42345EA3B00EE1807 /* Private */,
 				A87CF48A23ED6C82004189D3 /* Configuration.swift */,
 			);
-			path = Configuration;
+			path = AppConfiguration;
 			sourceTree = "<group>";
 		};
 		A82FF2A42345EA3B00EE1807 /* Private */ = {
@@ -906,7 +906,7 @@
 			children = (
 				A82FF2C72346F7F700EE1807 /* Extensions */,
 				A82FF2B323460E6100EE1807 /* Constants */,
-				A82FF2A32345EA3700EE1807 /* Configuration */,
+				A82FF2A32345EA3700EE1807 /* AppConfiguration */,
 				A82FF2A22345E98600EE1807 /* Application */,
 				A82FF2A12345E97900EE1807 /* Models */,
 				A82FF2A02345E97400EE1807 /* BusinessLogic */,

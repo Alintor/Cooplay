@@ -74,4 +74,4 @@ fastlane/report.xml
 
 # Private files
 
-Cooplay/Configuration/Private/
+Cooplay/AppConfiguration/Private/
