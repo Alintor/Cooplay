@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class NewEventMemberCell: UICollectionViewCell, Skeletonable {
     
@@ -26,6 +27,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
     
     var isMemberSelected: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
+    var generator: UIImpactFeedbackGenerator?
     
     var skeletonViews: [UIView]?
     
@@ -41,14 +43,17 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isUserInteractionEnabled = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.addGestureRecognizer(tap)
     }
     
     @objc func tapHandler(gesture: UITapGestureRecognizer) {
         isMemberSelected = !isMemberSelected
+        generator?.impactOccurred()
         setupState(animate: true) {
             self.selectAction?(self.isMemberSelected)
+            self.generator?.prepare()
         }
     }
     
@@ -70,7 +75,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
             return
         }
         self.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.configureStatus()
             self.layoutIfNeeded()
         }, completion: { (_) in
@@ -82,6 +87,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
     private func configureStatus() {
         if isMemberSelected {
             nameLabel.textColor = R.color.textPrimary()
+            firstNameLetterLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
             avatarBlockView.layer.borderWidth = 2
             avatarBlockView.layer.borderColor = R.color.actionAccent()?.cgColor
             avatarImageView.layer.cornerRadius = 22
@@ -92,6 +98,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
             statusImageView.isHidden = false
         } else {
             nameLabel.textColor = R.color.textSecondary()
+            firstNameLetterLabel.transform = .identity
             avatarBlockView.layer.borderWidth = 0
             avatarBlockView.layer.borderColor = UIColor.clear.cgColor
             avatarImageView.layer.cornerRadius = 26
@@ -117,7 +124,11 @@ extension NewEventMemberCell: ConfigurableCell {
     typealias T = NewEventMemberCellViewModel
     
     func configure(model: NewEventMemberCellViewModel) {
+        generator = UIImpactFeedbackGenerator(style: .medium)
+        generator?.prepare()
+        self.isUserInteractionEnabled = true
         self.hideSkeleton()
+        firstNameLetterLabel.transform = .identity
         nameLabel.text = model.name
         let attributedString = NSMutableAttributedString(string: model.name)
         attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(-0.5), range: NSRange(location: 0, length: attributedString.length))
