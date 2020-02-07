@@ -16,10 +16,10 @@ final class NewEventTimeButtonView: UIView, Skeletonable {
     var iconImageView: UIImageView!
     var arrowImageView: UIImageView!
     
-    var skeletonView: UIView?
+    var skeletonViews: [UIView]?
     
-    var targetView: UIView {
-        return self
+    var targetViews: [(view: UIView, cornerRadius: CGFloat)] {
+        return [(self, self.layer.cornerRadius)]
     }
     
     override init(frame: CGRect) {

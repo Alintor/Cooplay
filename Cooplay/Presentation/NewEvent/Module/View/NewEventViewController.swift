@@ -179,6 +179,18 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             self?.membersCollectionView.reloadData()
         }
     }
+    
+    func showMembersLoading() {
+        membersCollectionView.dataSource = self
+
+        selectMembersButton.isEnabled = false
+        selectMembersButton.alpha = 0.5
+    }
+    
+    func hideMembersLoading() {
+        selectMembersButton.isEnabled = true
+        selectMembersButton.alpha = 1
+    }
 
 	// MARK: - Life cycle
 
@@ -239,7 +251,17 @@ extension NewEventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.newEventGameCell.identifier, for: indexPath)
+        var reuseIdentifier: String {
+            switch collectionView {
+            case gamesCollectionView:
+                return R.reuseIdentifier.newEventGameCell.identifier
+            case membersCollectionView:
+                return R.reuseIdentifier.newEventMemberCell.identifier
+            default:
+                fatalError("Unknown collectionView in NewEventViewController")
+            }
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         if let cell = cell as? Skeletonable {
             let color = SkeletonGradient(baseColor: R.color.block()!)
             let animation = SkeletonAnimation(

@@ -30,6 +30,8 @@ protocol NewEventViewInput: class {
     func setMembersDataSource(_ dataSource: UICollectionViewDataSource)
     func showMembers(_ isShow: Bool)
     func updateMembers()
+    func showMembersLoading()
+    func hideMembersLoading()
     func showTimeLoading()
     func hideTimeLoading()
     func setTime(_ time: Date)

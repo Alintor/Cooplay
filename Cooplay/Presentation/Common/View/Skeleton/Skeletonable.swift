@@ -10,32 +10,49 @@ import UIKit
 
 protocol Skeletonable: class {
     
-    var skeletonView: UIView? { get set }
-    var targetView: UIView { get }
+    var skeletonViews: [UIView]? { get set }
+    var targetViews: [(view: UIView, cornerRadius: CGFloat)] { get }
     func showSkeleton(color: SkeletonGradient, animation: SkeletonAnimation)
     func hideSkeleton()
+    func prepereView()
+    func restoreView()
+}
+
+extension Skeletonable {
+    
+    func prepereView() {}
+    func restoreView() {}
 }
 
 extension Skeletonable {
     
     func showSkeleton(color: SkeletonGradient, animation: SkeletonAnimation) {
-        let skeletonView = UIView(frame: targetView.bounds)
-        skeletonView.layer.cornerRadius = targetView.layer.cornerRadius
-        targetView.addSubview(skeletonView)
-        let gradient = CAGradientLayer(layer: skeletonView.layer)
-        gradient.colors = color.colors
-        gradient.startPoint = animation.direction.startPoint().to
-        gradient.endPoint = animation.direction.endPoint().to
-        gradient.frame = skeletonView.bounds
-        gradient.cornerRadius = targetView.layer.cornerRadius
-        skeletonView.layer.insertSublayer(gradient, at: 0)
-        self.skeletonView = skeletonView
-        gradient.add(animation.animation, forKey: nil)
+        prepereView()
+        skeletonViews = []
+        for targetView in targetViews {
+            let skeletonView = UIView(frame: targetView.view.bounds)
+            skeletonView.layer.cornerRadius = targetView.cornerRadius
+            targetView.view.addSubview(skeletonView)
+            let gradient = CAGradientLayer(layer: skeletonView.layer)
+            gradient.colors = color.colors
+            gradient.startPoint = animation.direction.startPoint().to
+            gradient.endPoint = animation.direction.endPoint().to
+            gradient.frame = skeletonView.bounds
+            gradient.cornerRadius = targetView.cornerRadius
+            skeletonView.layer.insertSublayer(gradient, at: 0)
+            skeletonViews?.append(skeletonView)
+            gradient.add(animation.animation, forKey: nil)
+        }
+        
     }
     
     func hideSkeleton() {
-        skeletonView?.layer.removeAllAnimations()
-        skeletonView?.removeFromSuperview()
-        skeletonView = nil
+        guard let skeletonViews = skeletonViews else { return }
+        for skeletonView in skeletonViews {
+            skeletonView.layer.removeAllAnimations()
+            skeletonView.removeFromSuperview()
+        }
+        self.skeletonViews = nil
+        restoreView()
     }
 }

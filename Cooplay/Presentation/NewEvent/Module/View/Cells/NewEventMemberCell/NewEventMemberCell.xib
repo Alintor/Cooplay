@@ -118,7 +118,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utz-FD-s3c">
-                        <rect key="frame" x="0.0" y="54" width="60" height="18"/>
+                        <rect key="frame" x="0.0" y="56" width="60" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="5Qs-6V-6fz"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -132,8 +135,8 @@
                 <constraint firstItem="zrq-zG-Mg2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PhJ-k0-Aa2"/>
                 <constraint firstAttribute="trailing" secondItem="Utz-FD-s3c" secondAttribute="trailing" id="Qqu-RO-9SI"/>
                 <constraint firstAttribute="trailing" secondItem="zrq-zG-Mg2" secondAttribute="trailing" constant="4" id="QwL-KK-qxK"/>
-                <constraint firstAttribute="bottom" secondItem="Utz-FD-s3c" secondAttribute="bottom" id="bl8-3c-k8i"/>
-                <constraint firstItem="Utz-FD-s3c" firstAttribute="top" secondItem="zrq-zG-Mg2" secondAttribute="bottom" constant="2" id="rkC-47-IxI"/>
+                <constraint firstAttribute="bottom" secondItem="Utz-FD-s3c" secondAttribute="bottom" constant="2" id="bl8-3c-k8i"/>
+                <constraint firstItem="Utz-FD-s3c" firstAttribute="top" secondItem="zrq-zG-Mg2" secondAttribute="bottom" constant="4" id="rkC-47-IxI"/>
                 <constraint firstItem="Utz-FD-s3c" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yY8-X8-CpW"/>
                 <constraint firstItem="zrq-zG-Mg2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="z64-b9-UAD"/>
             </constraints>

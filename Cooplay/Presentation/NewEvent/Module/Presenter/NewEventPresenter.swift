@@ -75,8 +75,10 @@ final class NewEventPresenter {
     }
     
     private func fetchOfftenMembers() {
+        self.view.showMembersLoading()
         interactor.fetchOfftenMembers { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideMembersLoading()
             switch result {
             case .success(let members):
                 self.membersDataSours = NewEventDataSource(

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NewEventMemberCell: UICollectionViewCell {
+class NewEventMemberCell: UICollectionViewCell, Skeletonable {
+    
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarBlockView: UIView!
@@ -25,6 +26,17 @@ class NewEventMemberCell: UICollectionViewCell {
     
     var isMemberSelected: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
+    
+    var skeletonViews: [UIView]?
+    
+    var targetViews: [(view: UIView, cornerRadius: CGFloat)] {
+        return [
+            (avatarBlockView, avatarBlockView.layer.cornerRadius),
+            (nameLabel, 7)
+        ]
+    }
+    
+    
     
 
     override func awakeFromNib() {
@@ -90,6 +102,14 @@ class NewEventMemberCell: UICollectionViewCell {
             statusImageView.isHidden = true
         }
     }
+    
+    func prepereView() {
+        statusBlockView.isHidden = true
+    }
+    
+    func restoreView() {
+        statusBlockView.isHidden = false
+    }
 
 }
 
@@ -97,6 +117,7 @@ extension NewEventMemberCell: ConfigurableCell {
     typealias T = NewEventMemberCellViewModel
     
     func configure(model: NewEventMemberCellViewModel) {
+        self.hideSkeleton()
         nameLabel.text = model.name
         let attributedString = NSMutableAttributedString(string: model.name)
         attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(-0.5), range: NSRange(location: 0, length: attributedString.length))

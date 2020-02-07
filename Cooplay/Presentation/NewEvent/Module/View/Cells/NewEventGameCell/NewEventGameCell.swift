@@ -19,10 +19,10 @@ class NewEventGameCell: UICollectionViewCell, Skeletonable {
     var isGameSelected: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
     
-    var skeletonView: UIView?
+    var skeletonViews: [UIView]?
     
-    var targetView: UIView {
-        return blockView
+    var targetViews: [(view: UIView, cornerRadius: CGFloat)] {
+        return [(blockView, blockView.layer.cornerRadius)]
     }
     
     override func awakeFromNib() {
