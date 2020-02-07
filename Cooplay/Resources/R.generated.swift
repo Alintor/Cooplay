@@ -112,6 +112,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `Config.xcconfig`.
+    static let configXcconfig = Rswift.FileResource(bundle: R.hostingBundle, name: "Config", pathExtension: "xcconfig")
+    
+    /// `bundle.url(forResource: "Config", withExtension: "xcconfig")`
+    static func configXcconfig(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.configXcconfig
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.image` struct is generated, and contains static references to 19 images.
   struct image {
     /// Image `common.arrowDown`.
@@ -938,6 +952,8 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "status.small.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.ontime' is used in nib 'NewEventMemberCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
         }
       }
       

@@ -119,6 +119,7 @@
 		A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */; };
 		A87CF49223ED71E2004189D3 /* NewEventMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */; };
 		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
+		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -1338,6 +1339,7 @@
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
 				A87CF41C23E046A0004189D3 /* NewEventGameCell.xib in Resources */,
 				A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */,
+				A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */,
 				1CA013E50D30486B7988E250 /* EventDetails.storyboard in Resources */,
 				5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */,
 				093A16C976BACE4E81F72F0C /* SearchGame.storyboard in Resources */,
@@ -1575,7 +1577,6 @@
 /* Begin XCBuildConfiguration section */
 		A877020B23336E6F002EA095 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A87CF48923ED6B60004189D3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1637,7 +1638,6 @@
 		};
 		A877020C23336E6F002EA095 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A87CF48923ED6B60004189D3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

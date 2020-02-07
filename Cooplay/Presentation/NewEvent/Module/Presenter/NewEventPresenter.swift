@@ -83,9 +83,10 @@ final class NewEventPresenter {
                     offtenItems: members,
                     multipleSelection: true,
                     selectAction: { [weak self] selectedMembers in
-                        self?.view.updateMembers()
+                        //self?.view.updateMembers()
                     }
                 )
+                self.view.updateMembers()
                 self.view.setMembersDataSource(self.membersDataSours)
                 self.view.showMembers(!members.isEmpty)
             case .failure(let error):

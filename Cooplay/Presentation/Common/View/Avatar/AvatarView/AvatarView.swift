@@ -35,6 +35,8 @@ import UIKit
         backgroundView.backgroundColor = model.backgroundColor
         if let imagePath = model.avatarPath {
             iconImageView.setImage(withPath: imagePath)
+        } else {
+            iconImageView.image = nil
         }
         configureView()
     }

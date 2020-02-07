@@ -110,7 +110,8 @@ final class HardcodedStorage {
         HardcodedConstants.me_ontime,
         HardcodedConstants.nilo_late,
         HardcodedConstants.rika_ontime,
-        HardcodedConstants.madik_maybe
+        HardcodedConstants.madik_maybe,
+        HardcodedConstants.random3
     ]
     
     func fetchEvents() -> [Event] {
