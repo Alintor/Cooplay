@@ -421,7 +421,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `EventDetails`.
     static let eventDetails = _R.storyboard.eventDetails()
@@ -433,6 +433,8 @@ struct R: Rswift.Validatable {
     static let newEvent = _R.storyboard.newEvent()
     /// Storyboard `SearchGame`.
     static let searchGame = _R.storyboard.searchGame()
+    /// Storyboard `SearchMembers`.
+    static let searchMembers = _R.storyboard.searchMembers()
     
     /// `UIStoryboard(name: "EventDetails", bundle: ...)`
     static func eventDetails(_: Void = ()) -> UIKit.UIStoryboard {
@@ -457,6 +459,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "SearchGame", bundle: ...)`
     static func searchGame(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.searchGame)
+    }
+    
+    /// `UIStoryboard(name: "SearchMembers", bundle: ...)`
+    static func searchMembers(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.searchMembers)
     }
     
     fileprivate init() {}
@@ -998,6 +1005,7 @@ struct _R: Rswift.Validatable {
       try launchScreen.validate()
       try newEvent.validate()
       try searchGame.validate()
+      try searchMembers.validate()
     }
     
     struct eventDetails: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -1110,6 +1118,28 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchGame', but couldn't be loaded.") }
         }
         if _R.storyboard.searchGame().searchGameViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchGameViewController' could not be loaded from storyboard 'SearchGame' as 'SearchGameViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct searchMembers: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = SearchMembersViewController
+      
+      let bundle = R.hostingBundle
+      let name = "SearchMembers"
+      let searchMembersViewController = StoryboardViewControllerResource<SearchMembersViewController>(identifier: "SearchMembersViewController")
+      
+      func searchMembersViewController(_: Void = ()) -> SearchMembersViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchMembersViewController)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
+        }
+        if _R.storyboard.searchMembers().searchMembersViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchMembersViewController' could not be loaded from storyboard 'SearchMembers' as 'SearchMembersViewController'.") }
       }
       
       fileprivate init() {}

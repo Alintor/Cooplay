@@ -34,6 +34,16 @@ final class NewEventPresenter {
                     }
                 )
             }
+            view.searchMembersAction = { [weak self] in
+                self?.router.openMembersSearch(
+                    offtenMembers: self?.membersDataSours.offtenItems,
+                    selectionHandler: { selectedMembers in
+                        self?.membersDataSours.setupViewModels(items: selectedMembers, selected: true)
+                        self?.view.updateMembers()
+                        self?.view.showMembers(true)
+                    }
+                )
+            }
             view.timePickerAction = { [weak self] in
                 guard let `self` = self else { return }
                 self.router.showTimePicker(startTime: self.time) { [weak self] (time) in

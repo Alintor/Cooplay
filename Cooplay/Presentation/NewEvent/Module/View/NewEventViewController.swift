@@ -38,6 +38,11 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     @IBOutlet weak var timeViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var timeViewTrailingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var mainActionBackgroundView: UIView!
+    
+    var generator = UIImpactFeedbackGenerator(style: .medium)
+    
+    
     // MARK: - View out
 
     var output: NewEventModuleInput?
@@ -62,6 +67,13 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             UINib(resource: R.nib.newEventMemberCell),
             forCellWithReuseIdentifier: R.reuseIdentifier.newEventMemberCell.identifier
         )
+        let gradient = CAGradientLayer(layer: mainActionBackgroundView.layer)
+        gradient.colors = [R.color.background()!.withAlphaComponent(0).cgColor, R.color.background()!.cgColor]
+        gradient.startPoint = CGPoint(x:1, y:0)
+        gradient.endPoint = CGPoint(x:1, y:0.3)
+        gradient.frame = mainActionBackgroundView.bounds
+        mainActionBackgroundView.layer.insertSublayer(gradient, at: 0)
+        generator.prepare()
     }
     
     func showGamesLoading() {
@@ -213,6 +225,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     }
     
     @IBAction func dateViewTapped(_ sender: UITapGestureRecognizer) {
+        generator.impactOccurred()
         switch sender {
         case dateTodayTapGestureRecognizer:
             dateTodayView.layer.borderWidth = 2
@@ -236,6 +249,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             calendarAction?()
         default: break
         }
+        generator.prepare()
     }
     
     @IBAction func timeViewTapped(_ sender: UITapGestureRecognizer) {

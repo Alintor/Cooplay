@@ -27,7 +27,8 @@ final class ApplicationAssembly {
             EventsListAssemblyContainer(),
             EventDetailsAssemblyContainer(),
             NewEventAssemblyContainer(),
-            SearchGameAssemblyContainer()
+            SearchGameAssemblyContainer(),
+            SearchMembersAssemblyContainer()
         ])
     }
 }

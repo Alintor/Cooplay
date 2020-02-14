@@ -34,4 +34,12 @@ extension NewEventRouter: NewEventRouterInput {
         let navigationController = UINavigationController(rootViewController: searchGameViewController)
         transitionHandler.present(navigationController, animated: true, completion: nil)
     }
+    
+    func openMembersSearch(offtenMembers: [User]?, selectionHandler: ((_ members: [User]) -> Void)?) {
+        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        let searchMembersViewController = R.storyboard.searchMembers.searchMembersViewController()!
+        searchMembersViewController.output?.configure(offtenMembers: offtenMembers, selectionHandler: selectionHandler)
+        let navigationController = UINavigationController(rootViewController: searchMembersViewController)
+        transitionHandler.present(navigationController, animated: true, completion: nil)
+    }
 }

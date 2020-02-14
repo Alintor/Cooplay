@@ -59,6 +59,7 @@ class CalendarViewRenderer: UIView {
     private let confirmButton: UIButton
     private var selectedDate: Date!
     private var handler: ((_ date: Date) -> Void)?
+    private var generator = UIImpactFeedbackGenerator(style: .medium)
     
     private var topWindow: UIWindow? {
         for window in UIApplication.shared.windows.reversed() {
@@ -172,6 +173,7 @@ class CalendarViewRenderer: UIView {
     }
     
     func show(handler: ((_ date: Date) -> Void)?) {
+        generator.prepare()
         self.handler = handler
         guard let window = topWindow else { return }
         window.addSubview(self)
@@ -249,6 +251,7 @@ class CalendarViewRenderer: UIView {
     }
     
     @objc func confirmAction() {
+        generator.impactOccurred()
         handler?(selectedDate)
         close()
     }
