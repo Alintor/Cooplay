@@ -12,7 +12,7 @@ final class SearchMembersAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(SearchMembersInteractor.self) { r in
-			let interactor = SearchMembersInteractor()
+            let interactor = SearchMembersInteractor(userService: r.resolve(UserServiceType.self))
 
 			return interactor
 		}

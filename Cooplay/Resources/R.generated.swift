@@ -126,7 +126,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 20 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -142,6 +142,8 @@ struct R: Rswift.Validatable {
     static let commonGameCover = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gameCover")
     /// Image `common.gamepadArrow`.
     static let commonGamepadArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gamepadArrow")
+    /// Image `common.link`.
+    static let commonLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link")
     /// Image `common.normal.crown`.
     static let commonNormalCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.normal.crown")
     /// Image `common.plus`.
@@ -200,6 +202,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.gamepadArrow", bundle: ..., traitCollection: ...)`
     static func commonGamepadArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonGamepadArrow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.link", bundle: ..., traitCollection: ...)`
+    static func commonLink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonLink, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.normal.crown", bundle: ..., traitCollection: ...)`
@@ -265,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 12 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -289,6 +296,8 @@ struct R: Rswift.Validatable {
     static let searchEmptyResultCell = _R.nib._SearchEmptyResultCell()
     /// Nib `SearchGameCell`.
     static let searchGameCell = _R.nib._SearchGameCell()
+    /// Nib `SearchMembersCell`.
+    static let searchMembersCell = _R.nib._SearchMembersCell()
     
     /// `UINib(name: "ActiveEventCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.activeEventCell) instead")
@@ -356,6 +365,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.searchGameCell)
     }
     
+    /// `UINib(name: "SearchMembersCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.searchMembersCell) instead")
+    static func searchMembersCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.searchMembersCell)
+    }
+    
     static func activeEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
       return R.nib.activeEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
     }
@@ -400,10 +415,14 @@ struct R: Rswift.Validatable {
       return R.nib.searchGameCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchGameCell
     }
     
+    static func searchMembersCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchMembersCell? {
+      return R.nib.searchMembersCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchMembersCell
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 7 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `ActiveEventCell`.
     static let activeEventCell: Rswift.ReuseIdentifier<ActiveEventCell> = Rswift.ReuseIdentifier(identifier: "ActiveEventCell")
@@ -417,6 +436,8 @@ struct R: Rswift.Validatable {
     static let searchEmptyResultCell: Rswift.ReuseIdentifier<SearchEmptyResultCell> = Rswift.ReuseIdentifier(identifier: "SearchEmptyResultCell")
     /// Reuse identifier `SearchGameCell`.
     static let searchGameCell: Rswift.ReuseIdentifier<SearchGameCell> = Rswift.ReuseIdentifier(identifier: "SearchGameCell")
+    /// Reuse identifier `SearchMembersCell`.
+    static let searchMembersCell: Rswift.ReuseIdentifier<SearchMembersCell> = Rswift.ReuseIdentifier(identifier: "SearchMembersCell")
     
     fileprivate init() {}
   }
@@ -471,7 +492,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 43 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 54 localization keys.
     struct localizable {
       /// Value: +%@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -493,16 +514,24 @@ struct R: Rswift.Validatable {
       static let statusMaybeFull = Rswift.StringResource(key: "status.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выбранные
+      static let searchMembersSectionsSelected = Rswift.StringResource(key: "searchMembers.sections.selected", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбрать %@
       static let commonChoose = Rswift.StringResource(key: "common.choose", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Готово
+      static let searchMembersDoneButtonTitle = Rswift.StringResource(key: "searchMembers.doneButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Завтра
       static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Или пригласите по ссылке
+      static let searchMembersEmptySateDescription = Rswift.StringResource(key: "searchMembers.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Исключить
       static let eventMemberMenuItemDelete = Rswift.StringResource(key: "eventMemberMenuItem.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ищите игры по названию
       static let searchGameEmptySateTitle = Rswift.StringResource(key: "searchGame.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ищите участников по нику
+      static let searchMembersEmptySateTitle = Rswift.StringResource(key: "searchMembers.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Когда
       static let newEventChooseDayLabelTitle = Rswift.StringResource(key: "newEvent.chooseDayLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
@@ -515,6 +544,10 @@ struct R: Rswift.Validatable {
       static let statusDeclinedShort = Rswift.StringResource(key: "status.declined.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не получилось найти игру =(
       static let searchGameEmptyResultsTitle = Rswift.StringResource(key: "searchGame.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не получилось найти человека =(
+      static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ник пользователя
+      static let searchMembersSearchBarPlaceholder = Rswift.StringResource(key: "searchMembers.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
       static let statusLateShort = Rswift.StringResource(key: "status.late.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %d мин
@@ -525,14 +558,20 @@ struct R: Rswift.Validatable {
       static let commonCancel = Rswift.StringResource(key: "common.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена
       static let searchGameCloseButtonTitle = Rswift.StringResource(key: "searchGame.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отмена
+      static let searchMembersCloseButtonTitle = Rswift.StringResource(key: "searchMembers.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
       static let newEventSearchGameButtonTitle = Rswift.StringResource(key: "newEvent.searchGameButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
       static let searchGameTitle = Rswift.StringResource(key: "searchGame.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск участников
       static let newEventSearchMembersButtonTitle = Rswift.StringResource(key: "newEvent.searchMembersButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Поиск участников
+      static let searchMembersTitle = Rswift.StringResource(key: "searchMembers.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пригласить по ссылке
+      static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
       static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
@@ -547,6 +586,8 @@ struct R: Rswift.Validatable {
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Результаты поиска
       static let searchGameSectionsSearchResults = Rswift.StringResource(key: "searchGame.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Результаты поиска
+      static let searchMembersSectionsSearchResults = Rswift.StringResource(key: "searchMembers.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: С кем
       static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
@@ -559,6 +600,8 @@ struct R: Rswift.Validatable {
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые игры
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Частые участники
+      static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: +%@ мин
       static func eventDetailsCellLateness(_ value1: String) -> String {
@@ -610,9 +653,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Выбранные
+      static func searchMembersSectionsSelected(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.sections.selected", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Выбрать %@
       static func commonChoose(_ value1: String) -> String {
         return String(format: NSLocalizedString("common.choose", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: Готово
+      static func searchMembersDoneButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.doneButton.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Добавить участников
@@ -625,6 +678,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("newEvent.tomorrowButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Или пригласите по ссылке
+      static func searchMembersEmptySateDescription(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptySate.description", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Исключить
       static func eventMemberMenuItemDelete(_: Void = ()) -> String {
         return NSLocalizedString("eventMemberMenuItem.delete", bundle: R.hostingBundle, comment: "")
@@ -633,6 +691,11 @@ struct R: Rswift.Validatable {
       /// Value: Ищите игры по названию
       static func searchGameEmptySateTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.emptySate.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Ищите участников по нику
+      static func searchMembersEmptySateTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptySate.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Когда
@@ -665,6 +728,16 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchGame.emptyResults.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Не получилось найти человека =(
+      static func searchMembersEmptyResultsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptyResults.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Ник пользователя
+      static func searchMembersSearchBarPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.searchBar.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Опоздаю
       static func statusLateShort(_: Void = ()) -> String {
         return NSLocalizedString("status.late.short", bundle: R.hostingBundle, comment: "")
@@ -690,6 +763,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchGame.closeButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Отмена
+      static func searchMembersCloseButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.closeButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Поиск игры
       static func newEventSearchGameButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.searchGameButton.title", bundle: R.hostingBundle, comment: "")
@@ -705,9 +783,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("newEvent.searchMembersButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Поиск участников
+      static func searchMembersTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Пойду
       static func statusAcceptedShort(_: Void = ()) -> String {
         return NSLocalizedString("status.accepted.short", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Пригласить по ссылке
+      static func searchMembersInviteByLinkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.inviteByLink.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приглашен
@@ -745,6 +833,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchGame.sections.searchResults", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Результаты поиска
+      static func searchMembersSectionsSearchResults(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.sections.searchResults", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: С кем
       static func newEventChooseMembersLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.chooseMembersLabel.title", bundle: R.hostingBundle, comment: "")
@@ -773,6 +866,11 @@ struct R: Rswift.Validatable {
       /// Value: Частые игры
       static func searchGameSectionsOfften(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.sections.offten", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Частые участники
+      static func searchMembersSectionsOfften(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.sections.offten", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -807,6 +905,7 @@ struct _R: Rswift.Validatable {
       try _InvitedEventCell.validate()
       try _NewEventGameCell.validate()
       try _NewEventMemberCell.validate()
+      try _SearchMembersCell.validate()
     }
     
     struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -995,6 +1094,28 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _SearchMembersCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = SearchMembersCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "SearchMembersCell"
+      let name = "SearchMembersCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchMembersCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchMembersCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "status.normal.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.ontime' is used in nib 'SearchMembersCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -1135,9 +1256,12 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "common.link", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.link' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
         }
         if _R.storyboard.searchMembers().searchMembersViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchMembersViewController' could not be loaded from storyboard 'SearchMembers' as 'SearchMembersViewController'.") }
       }

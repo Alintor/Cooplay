@@ -7,5 +7,5 @@
 
 protocol SearchMembersModuleInput: class {
 
-    func configure(offtenMembers: [User]?, selectionHandler: ((_ members: [User]) -> Void)?)
+    func configure(offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?)
 }

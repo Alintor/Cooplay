@@ -13,7 +13,7 @@ struct SearchGameCellViewModel {
     let coverPath: String?
     let title: String
     
-    let model: Game?
+    let model: Game
     
     init(with model: Game) {
         self.model = model

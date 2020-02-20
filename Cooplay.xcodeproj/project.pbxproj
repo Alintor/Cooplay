@@ -81,6 +81,10 @@
 		A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */; };
 		A844BDEA2379A13500EE4A3E /* InvitationsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */; };
 		A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844BDEB2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift */; };
+		A84694F123FD482B00139CF4 /* SearchMembersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84694F023FD482B00139CF4 /* SearchMembersDataSource.swift */; };
+		A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84694F323FE326500139CF4 /* SearchMembersCell.swift */; };
+		A84694F623FE326500139CF4 /* SearchMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84694F423FE326500139CF4 /* SearchMembersCell.xib */; };
+		A84694F923FE329200139CF4 /* SearchMembersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
@@ -228,6 +232,10 @@
 		A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsHeaderCell.swift; sourceTree = "<group>"; };
 		A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationsHeaderCell.xib; sourceTree = "<group>"; };
 		A844BDEB2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsHeaderCellViewModel.swift; sourceTree = "<group>"; };
+		A84694F023FD482B00139CF4 /* SearchMembersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersDataSource.swift; sourceTree = "<group>"; };
+		A84694F323FE326500139CF4 /* SearchMembersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersCell.swift; sourceTree = "<group>"; };
+		A84694F423FE326500139CF4 /* SearchMembersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMembersCell.xib; sourceTree = "<group>"; };
+		A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersCellViewModel.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,7 +312,7 @@
 		CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
 		D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewInput.swift; sourceTree = "<group>"; };
-		D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = SearchMembers.storyboard; sourceTree = "<group>"; };
+		D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = SearchMembers.storyboard; sourceTree = "<group>"; };
 		D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersModuleInput.swift; sourceTree = "<group>"; };
 		D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListModuleInput.swift; sourceTree = "<group>"; };
 		DE0AE6701207E820B5D99889 /* SearchGame.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = SearchGame.storyboard; sourceTree = "<group>"; };
@@ -362,7 +370,6 @@
 				01E8B8288EF8F619E429CC93 /* SearchMembersInteractorInput.swift */,
 				79BAC2EAD2A307D9BE930F82 /* SearchMembersInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -435,7 +442,6 @@
 			children = (
 				F8AF5B9D4D1AED494709B7B6 /* Module */,
 			);
-			name = SearchMembers;
 			path = SearchMembers;
 			sourceTree = "<group>";
 		};
@@ -495,7 +501,6 @@
 				D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */,
 				3D395FC4A8FBEACD280F58FF /* SearchMembersPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -530,7 +535,6 @@
 				A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */,
 				86A889EE756D6F91345972F5 /* SearchMembersRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -564,10 +568,10 @@
 		871F878F4C1E04B74C1F8787 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A84694F223FE323F00139CF4 /* Cell */,
 				8DE46FF7CDB32C7FB80E6F31 /* SearchMembersViewInput.swift */,
 				1A79931A103631F40291D269 /* SearchMembersViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -602,7 +606,6 @@
 			children = (
 				D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -949,6 +952,31 @@
 				A844BDE82379A13500EE4A3E /* InvitationsHeaderCell.xib */,
 			);
 			path = InvitationsHeaderCell;
+			sourceTree = "<group>";
+		};
+		A84694EF23FD47F400139CF4 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A84694F023FD482B00139CF4 /* SearchMembersDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		A84694F223FE323F00139CF4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A84694F323FE326500139CF4 /* SearchMembersCell.swift */,
+				A84694F423FE326500139CF4 /* SearchMembersCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A84694F723FE326A00139CF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A860277723757654004E45AB /* Router */ = {
@@ -1323,6 +1351,8 @@
 		F8AF5B9D4D1AED494709B7B6 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A84694F723FE326A00139CF4 /* ViewModel */,
+				A84694EF23FD47F400139CF4 /* DataSource */,
 				FED560A6D6793A8B6891CC50 /* Assembly */,
 				90D8E8A33F1EE331232AAC91 /* Storyboard */,
 				871F878F4C1E04B74C1F8787 /* View */,
@@ -1330,7 +1360,6 @@
 				1C88F8410D8A542BBF4DDFCE /* Interactor */,
 				7147C640B38DF2130BC95A90 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -1359,7 +1388,6 @@
 			children = (
 				2EE148A0244FFC3E47E4C775 /* SearchMembersAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -1430,6 +1458,7 @@
 				A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
 				A87CF44123E977BA004189D3 /* SearchGameCell.xib in Resources */,
+				A84694F623FE326500139CF4 /* SearchMembersCell.xib in Resources */,
 				A8DFD4ED2372AA4100F48B37 /* InventedHeaderView.xib in Resources */,
 				A833EF5E23D0344B009FCD73 /* EventDetailsMemberCell.xib in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
@@ -1510,7 +1539,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1593,9 +1622,11 @@
 				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A87CF43B23E97541004189D3 /* CloseableRouter.swift in Sources */,
 				A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */,
+				A84694F923FE329200139CF4 /* SearchMembersCellViewModel.swift in Sources */,
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
+				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
@@ -1645,6 +1676,7 @@
 				665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */,
 				BAD206ED4B70F2E178C4EE53 /* NewEventInteractorInput.swift in Sources */,
 				35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */,
+				A84694F123FD482B00139CF4 /* SearchMembersDataSource.swift in Sources */,
 				A87CF45A23EAC18B004189D3 /* EmptyStateHandler.swift in Sources */,
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,

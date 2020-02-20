@@ -114,6 +114,17 @@ final class HardcodedStorage {
         HardcodedConstants.random3
     ]
     
+    private var allUsers = [
+        HardcodedConstants.me_ontime,
+        HardcodedConstants.nilo_late,
+        HardcodedConstants.rika_ontime,
+        HardcodedConstants.madik_maybe,
+        HardcodedConstants.random1,
+        HardcodedConstants.random2,
+        HardcodedConstants.random3,
+        HardcodedConstants.random4
+    ]
+    
     func fetchEvents() -> [Event] {
         
         return events
@@ -127,5 +138,9 @@ final class HardcodedStorage {
     func fetchOfftenMembers() -> [User] {
         
         return users
+    }
+    
+    func fetchAllUsers() -> [User] {
+        return allUsers
     }
 }

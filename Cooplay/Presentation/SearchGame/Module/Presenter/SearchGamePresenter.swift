@@ -26,8 +26,7 @@ final class SearchGamePresenter {
                 self.showOfftenGames()
             }
             view.itemSelected = { [weak self] item in
-                guard let game = item.model else { return }
-                self?.selectionHandler?(game)
+                self?.selectionHandler?(item.model)
                 self?.router.close(animated: true)
                 
             }

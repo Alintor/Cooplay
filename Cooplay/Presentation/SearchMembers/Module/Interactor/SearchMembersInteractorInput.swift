@@ -9,4 +9,5 @@ import Foundation
 
 protocol SearchMembersInteractorInput: class {
 
+    func searchMember(_ searchValue: String, completion: @escaping (Result<[User], SearchMembersError>) -> Void)
 }

@@ -22,7 +22,7 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
     private let multipleSelection: Bool
     private let selectAction: ((_ items: [T]) -> Void)?
     
-    private var selectedItems: [T] {
+    var selectedItems: [T] {
         return activeItemsViewModels.filter({ $0.isSelected }).map({ $0.model })
     }
     
