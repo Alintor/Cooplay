@@ -13,6 +13,7 @@ struct NewEventMemberCellViewModel: NewEventCellViewModel {
     var name: String
     var avatarViewModel: AvatarViewModel
     var isSelected: Bool
+    var prevState: Bool?
     var selectAction: ((_ isSelected: Bool) -> Void)?
     
     let model: User

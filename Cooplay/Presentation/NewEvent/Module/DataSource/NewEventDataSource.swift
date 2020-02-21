@@ -52,6 +52,7 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
         if !multipleSelection {
             activeItemsViewModels = activeItemsViewModels.map({
                 var item = $0
+                item.prevState = $0.isSelected
                 item.isSelected = false
                 return item
             })

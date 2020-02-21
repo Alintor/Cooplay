@@ -9,9 +9,10 @@
 import UIKit
 
 struct NewEventGameCellViewModel: NewEventCellViewModel {
-    
+
     let coverPath: String?
     var isSelected: Bool
+    var prevState: Bool?
     let selectAction: ((_ isSelected: Bool) -> Void)?
     
     let model: Game

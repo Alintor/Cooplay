@@ -261,7 +261,14 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
 extension NewEventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        switch collectionView {
+        case gamesCollectionView:
+            return 4
+        case membersCollectionView:
+            return 5
+        default:
+            fatalError("Unknown collectionView in NewEventViewController")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -123,20 +123,23 @@ final class SearchGameViewController: UIViewController, SearchGameViewInput, DTT
 
 extension SearchGameViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        NSObject.cancelPreviousPerformRequests(
-            withTarget: self,
-            selector: #selector(searchBarTextDidChange(_:)),
-            object: searchText
-        )
-        perform(
-            #selector(searchBarTextDidChange(_:)),
-            with: searchText,
-            afterDelay: 0.3
-        )
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        NSObject.cancelPreviousPerformRequests(
+//            withTarget: self,
+//            selector: #selector(searchBarTextDidChange(_:)),
+//            object: searchText
+//        )
+//        perform(
+//            #selector(searchBarTextDidChange(_:)),
+//            with: searchText,
+//            afterDelay: 0.3
+//        )
+//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            searchGame?(searchText)
+        }
         searchBar.resignFirstResponder()
     }
     

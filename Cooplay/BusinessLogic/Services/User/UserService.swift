@@ -59,7 +59,7 @@ extension UserService: UserServiceType {
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void) {
         if let members = storage?.fetchOfftenMembers() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion(.success(members.filter({ $0.name.contains(searchValue) })))
+                completion(.success(members.filter({ $0.name.lowercased().contains(searchValue.lowercased()) })))
             }
             
         }

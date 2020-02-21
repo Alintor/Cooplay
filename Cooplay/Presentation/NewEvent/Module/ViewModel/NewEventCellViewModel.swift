@@ -12,6 +12,7 @@ protocol NewEventCellViewModel {
     
     associatedtype T
     
+    var prevState: Bool? { get set }
     var isSelected: Bool { get set }
     var selectAction: ((_ isSelected: Bool) -> Void)? { get }
     var model: T { get }
