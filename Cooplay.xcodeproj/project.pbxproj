@@ -85,6 +85,8 @@
 		A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84694F323FE326500139CF4 /* SearchMembersCell.swift */; };
 		A84694F623FE326500139CF4 /* SearchMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84694F423FE326500139CF4 /* SearchMembersCell.xib */; };
 		A84694F923FE329200139CF4 /* SearchMembersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */; };
+		A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84695142410F1CC00139CF4 /* NewEventInfoResponse.swift */; };
+		A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8469517241103F500139CF4 /* NewEventRequest.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
@@ -236,6 +238,8 @@
 		A84694F323FE326500139CF4 /* SearchMembersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersCell.swift; sourceTree = "<group>"; };
 		A84694F423FE326500139CF4 /* SearchMembersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMembersCell.xib; sourceTree = "<group>"; };
 		A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersCellViewModel.swift; sourceTree = "<group>"; };
+		A84695142410F1CC00139CF4 /* NewEventInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventInfoResponse.swift; sourceTree = "<group>"; };
+		A8469517241103F500139CF4 /* NewEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRequest.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Cooplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -696,6 +700,8 @@
 		A82FF2A12345E97900EE1807 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A84695162411035F00139CF4 /* Request */,
+				A84695132410F17700139CF4 /* Response */,
 				A82FF2AE2345FBD700EE1807 /* Common */,
 			);
 			path = Models;
@@ -977,6 +983,22 @@
 				A84694F823FE329200139CF4 /* SearchMembersCellViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A84695132410F17700139CF4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				A84695142410F1CC00139CF4 /* NewEventInfoResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		A84695162411035F00139CF4 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A8469517241103F500139CF4 /* NewEventRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		A860277723757654004E45AB /* Router */ = {
@@ -1655,6 +1677,7 @@
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
+				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,
 				565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */,
 				A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */,
 				79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */,
@@ -1680,6 +1703,7 @@
 				A87CF45A23EAC18B004189D3 /* EmptyStateHandler.swift in Sources */,
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
+				A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */,
 				A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,

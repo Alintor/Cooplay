@@ -24,8 +24,7 @@ extension UserServiceError: LocalizedError {
 
 protocol UserServiceType {
     
-    func fetchOfftenMembers(completion: @escaping (Result<[User], UserServiceError>) -> Void)
-    func fetchOfftenTime(completion: @escaping (Result<Date, UserServiceError>) -> Void)
+    func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void)
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void)
 }
 
@@ -41,27 +40,21 @@ final class UserService {
 
 extension UserService: UserServiceType {
     
-    func fetchOfftenMembers(completion: @escaping (Result<[User], UserServiceError>) -> Void) {
-        if let members = storage?.fetchOfftenMembers() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                completion(.success(members))
-            }
-            
-        }
-    }
-    
-    func fetchOfftenTime(completion: @escaping (Result<Date, UserServiceError>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            completion(.success(Date()))
-        }
-    }
-    
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void) {
         if let members = storage?.fetchOfftenMembers() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 completion(.success(members.filter({ $0.name.lowercased().contains(searchValue.lowercased()) })))
             }
             
+        }
+    }
+    
+    func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void) {
+        let members = storage?.fetchOfftenMembers() ?? []
+        let games = storage?.fetchOfftenGames() ?? []
+        let response = NewEventOfftenDataResponse(members: members, games: games, time: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            completion(.success(response))
         }
     }
 }

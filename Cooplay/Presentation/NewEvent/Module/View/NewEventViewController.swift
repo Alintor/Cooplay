@@ -51,6 +51,9 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     var timePickerAction: (() -> Void)?
     var searchGameAction: (() -> Void)?
     var searchMembersAction: (() -> Void)?
+    var dateTodaySelected: (() -> Void)?
+    var dateTomorrowSelected : (() -> Void)?
+    var mainAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -74,35 +77,6 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         gradient.frame = mainActionBackgroundView.bounds
         mainActionBackgroundView.layer.insertSublayer(gradient, at: 0)
         generator.prepare()
-    }
-    
-    func showGamesLoading() {
-        gamesCollectionView.dataSource = self
-
-        selectGameButton.isEnabled = false
-        selectGameButton.alpha = 0.5
-    }
-    
-    func hideGamesLoading() {
-        selectGameButton.isEnabled = true
-        selectGameButton.alpha = 1
-    }
-    
-    func showTimeLoading() {
-        let color = SkeletonGradient(baseColor: R.color.block()!)
-        let animation = SkeletonAnimation(
-            direction: .leftRight,
-            sizeMultiplier: 2,
-            duration: 1.5,
-            intervalDelay: 0.3
-        )
-        timeView.showSkeleton(color: color, animation: animation)
-        timeView.isUserInteractionEnabled = false
-    }
-    
-    func hideTimeLoading() {
-        timeView.hideSkeleton()
-        timeView.isUserInteractionEnabled = true
     }
     
     func setTime(_ time: Date) {
@@ -192,16 +166,36 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         }
     }
     
-    func showMembersLoading() {
+    func showLoading() {
         membersCollectionView.dataSource = self
-
         selectMembersButton.isEnabled = false
         selectMembersButton.alpha = 0.5
+        gamesCollectionView.dataSource = self
+        selectGameButton.isEnabled = false
+        selectGameButton.alpha = 0.5
+        let color = SkeletonGradient(baseColor: R.color.block()!)
+        let animation = SkeletonAnimation(
+            direction: .leftRight,
+            sizeMultiplier: 2,
+            duration: 1.5,
+            intervalDelay: 0.3
+        )
+        timeView.showSkeleton(color: color, animation: animation)
+        timeView.isUserInteractionEnabled = false
     }
     
-    func hideMembersLoading() {
+    func hideLoading() {
         selectMembersButton.isEnabled = true
         selectMembersButton.alpha = 1
+        selectGameButton.isEnabled = true
+        selectGameButton.alpha = 1
+        timeView.hideSkeleton()
+        timeView.isUserInteractionEnabled = true
+    }
+    
+    func setCreateButtonEnabled(_ isEnabled: Bool) {
+        mainActionButton.isEnabled = isEnabled
+        mainActionButton.alpha = isEnabled ? 1 : 0.5
     }
 
 	// MARK: - Life cycle
@@ -221,7 +215,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         searchMembersAction?()
     }
     @IBAction func mainActionButtonTapped() {
-        
+        mainAction?()
     }
     
     @IBAction func dateViewTapped(_ sender: UITapGestureRecognizer) {
@@ -236,6 +230,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             dateCalendarView.layer.borderWidth = 0
             dateCalendarLabelsView.isHidden = true
             dateCalendarIcon.isHidden = false
+            dateTodaySelected?()
         case dateTomorrowTapGestureRecognizer:
             dateTomorrowView.layer.borderWidth = 2
             dateTomorrowView.layer.borderColor = R.color.actionAccent()?.cgColor
@@ -245,6 +240,7 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
             dateCalendarView.layer.borderWidth = 0
             dateCalendarLabelsView.isHidden = true
             dateCalendarIcon.isHidden = false
+            dateTomorrowSelected?()
         case dateCalendarTapGestureRecognizer:
             calendarAction?()
         default: break

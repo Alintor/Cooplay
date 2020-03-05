@@ -24,12 +24,10 @@ extension NewEventError: LocalizedError {
 final class NewEventInteractor {
 
     private let eventService: EventServiceType?
-    private let gamesService: GamesServiceType?
     private let userService: UserServiceType?
     
-    init(eventService: EventServiceType?, gamesService: GamesServiceType?, userService: UserServiceType?) {
+    init(eventService: EventServiceType?, userService: UserServiceType?) {
         self.eventService = eventService
-        self.gamesService = gamesService
         self.userService = userService
     }
 }
@@ -37,37 +35,22 @@ final class NewEventInteractor {
 // MARK: - NewEventInteractorInput
 
 extension NewEventInteractor: NewEventInteractorInput {
-
-    func fetchOfftenGames(completion: @escaping (Result<[Game], NewEventError>) -> Void) {
-        gamesService?.fetchOfftenGames { result in
+    
+    func fetchofftenData(completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void) {
+        userService?.fetchOfftenData { result in
             switch result {
-            case .success(let games):
-                completion(.success(games))
+            case .success(let response):
+                completion(.success(response))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }
         }
     }
     
-    func fetchOfftenMembers(completion: @escaping (Result<[User], NewEventError>) -> Void) {
-        userService?.fetchOfftenMembers { result in
-            switch result {
-            case .success(let members):
-                completion(.success(members))
-            case .failure(let error):
-                completion(.failure(.unhandled(error: error)))
-            }
-        }
-    }
-    
-    func fetchOfftenTime(completion: @escaping (Result<Date?, NewEventError>) -> Void) {
-        userService?.fetchOfftenTime { result in
-            switch result {
-            case .success(let time):
-                completion(.success(time))
-            case .failure(let error):
-                completion(.failure(.unhandled(error: error)))
-            }
-        }
+    func isReady(_ request: NewEventRequest) -> Bool {
+        guard
+            let date = request.date, !date.isEmpty,
+            request.game != nil else { return false }
+        return true
     }
 }

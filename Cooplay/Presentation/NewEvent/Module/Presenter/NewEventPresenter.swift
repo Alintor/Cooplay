@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import SwiftDate
 
 final class NewEventPresenter {
+    
+    private enum Constant {
+        
+        static let defaultTime = Calendar.current.date(bySettingHour: 21, minute: 00, second: 0, of: Date())!
+    }
 
     // MARK: - Properties
 
@@ -16,12 +22,18 @@ final class NewEventPresenter {
             // Configure view out
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
-                self?.fetchOfftenGames()
-                self?.fetchOfftenMembers()
-                self?.fetchOfftenTime()
+                self?.fetchOfftenData()
+            }
+            view.dateTodaySelected = { [weak self] in
+                self?.request.setDate(Date())
+            }
+            view.dateTomorrowSelected = { [weak self] in
+                let tomorrow = Date() + 1.days
+                self?.request.setDate(tomorrow)
             }
             view.calendarAction = { [weak self] in
-                self?.router.showCalendar{ [weak self] date in
+                self?.router.showCalendar(selectedDate: self?.request.getDate()){ [weak self] date in
+                    self?.request.setDate(date)
                     self?.view.updateDayDate(with: NewEventDayDateViewModel(date: date))
                 }
             }
@@ -29,6 +41,7 @@ final class NewEventPresenter {
                 self?.router.openGameSearch(
                     offtenGames: self?.gamesDataSours.offtenItems,
                     selectionHandler: { selectedGame in
+                        self?.request.game = selectedGame
                         self?.gamesDataSours.setupViewModels(items: [selectedGame], selected: true)
                         self?.view.showGames(true)
                     }
@@ -45,13 +58,20 @@ final class NewEventPresenter {
                         self?.view.showMembers(true)
                     }
                 )
+                
             }
             view.timePickerAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.router.showTimePicker(startTime: self.time) { [weak self] (time) in
-                    self?.time = time
-                    self?.view.setTime(time)
+                guard
+                    let `self` = self,
+                    let time = self.request.getDate()
+                else { return }
+                self.router.showTimePicker(startTime: time, enableMinimumTime: Date().day == time.day) { [weak self] (time) in
+                    self?.request.setTime(time)
                 }
+            }
+            view.mainAction = { [weak self] in
+                self?.request.members = self?.membersDataSours.selectedItems
+                print(self!.request)
             }
         }
     }
@@ -62,62 +82,42 @@ final class NewEventPresenter {
     
     private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
     private var membersDataSours: NewEventDataSource<User, NewEventMemberCellViewModel, NewEventMemberCell>!
-    private var time: Date!
+    private var request = NewEventRequest() {
+        didSet {
+            view.setCreateButtonEnabled(interactor.isReady(request))
+            if let time = request.getDate() {
+                view.setTime(time)
+            }
+        }
+    }
     
-    private func fetchOfftenGames() {
-        view.showGamesLoading()
-        interactor.fetchOfftenGames { [weak self] result in
+    private func fetchOfftenData() {
+        view.showLoading()
+        interactor.fetchofftenData { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideGamesLoading()
+            self.view.hideLoading()
             switch result {
-            case .success(let games):
+            case .success(let response):
                 self.gamesDataSours = NewEventDataSource(
-                    offtenItems: games,
+                    offtenItems: response.games,
                     multipleSelection: false,
                     selectAction: { [weak self] selectedGames in
+                        self?.request.game = selectedGames.first
                         self?.view.updateGames()
                     }
                 )
                 self.view.setGamesDataSource(self.gamesDataSours)
-                self.view.showGames(!games.isEmpty)
-            case .failure(let error):
-                break
-            }
-        }
-    }
-    
-    private func fetchOfftenMembers() {
-        self.view.showMembersLoading()
-        interactor.fetchOfftenMembers { [weak self] result in
-            guard let `self` = self else { return }
-            self.view.hideMembersLoading()
-            switch result {
-            case .success(let members):
+                self.view.showGames(!response.games.isEmpty)
                 self.membersDataSours = NewEventDataSource(
-                    offtenItems: members,
+                    offtenItems: response.members,
                     multipleSelection: true,
-                    selectAction: { [weak self] selectedMembers in
-                        //self?.view.updateMembers()
-                    }
+                    selectAction: nil
                 )
                 self.view.updateMembers()
                 self.view.setMembersDataSource(self.membersDataSours)
-                self.view.showMembers(!members.isEmpty)
-            case .failure(let error):
-                break
-            }
-        }
-    }
-    
-    private func fetchOfftenTime() {
-        view.showTimeLoading()
-        interactor.fetchOfftenTime { [weak self] result in
-            guard let `self` = self else { return }
-            self.view.hideTimeLoading()
-            switch result {
-            case .success(let time):
-                self.view.setTime(time ?? Date())
-                self.time = time ?? Date()
+                self.view.showMembers(!response.members.isEmpty)
+                let time = response.time?.convertServerDate ?? Constant.defaultTime
+                self.request.setTime(time)
             case .failure(let error):
                 break
             }

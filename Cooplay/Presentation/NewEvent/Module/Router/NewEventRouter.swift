@@ -16,15 +16,15 @@ final class NewEventRouter {
 
 extension NewEventRouter: NewEventRouterInput {
 
-    func showCalendar(handler: ((_ date: Date) -> Void)?) {
+    func showCalendar(selectedDate: Date?, handler: ((_ date: Date) -> Void)?) {
         let calendarRenderer = CalendarViewRenderer()
-        calendarRenderer.show(handler: handler)
+        calendarRenderer.show(selectedDate: selectedDate, handler: handler)
     }
     
-    func showTimePicker(startTime: Date, handler: ((_ date: Date) -> Void)?) {
+    func showTimePicker(startTime: Date, enableMinimumTime: Bool, handler: ((_ date: Date) -> Void)?) {
         guard let delegate = transitionHandler as? NewEventTimePickerViewDelegate else { return }
         let timePickerView = NewEventTimePickerView(delegate: delegate, timeHandler: handler)
-        timePickerView.show(startTime: startTime)
+        timePickerView.show(startTime: startTime, enableMinimumTime: enableMinimumTime)
     }
     
     func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?) {

@@ -14,7 +14,6 @@ final class NewEventAssemblyContainer: Assembly {
 		container.register(NewEventInteractor.self) { r in
             let interactor = NewEventInteractor(
                 eventService: r.resolve(EventServiceType.self),
-                gamesService: r.resolve(GamesServiceType.self),
                 userService: r.resolve(UserServiceType.self)
             )
 

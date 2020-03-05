@@ -26,7 +26,6 @@ extension GamesServiceError: LocalizedError {
 
 protocol GamesServiceType {
     
-    func fetchOfftenGames(completion: @escaping (Result<[Game], GamesServiceError>) -> Void)
     func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void)
 }
 
@@ -44,36 +43,12 @@ final class GamesService {
 
 extension GamesService: GamesServiceType {
     
-    func fetchOfftenGames(completion: @escaping (Result<[Game], GamesServiceError>) -> Void) {
-        if let games = storage?.fetchOfftenGames() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion(.success(games))
-            }
-            
-        }
-    }
-    
     func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void) {
         provider?.sendRequest(requestSpecification: GamesSpecification.search(value: searchValue)
         ) { (result: Result<JSON, MoyaError>) in
             switch result {
             case .success(let response):
-                let games = response.array?.map({ json -> Game in
-                    var coverPath: String? = nil
-                    if let imagId = json["cover"]["image_id"].string {
-                        coverPath = "https://images.igdb.com/igdb/image/upload/t_cover_big/\(imagId).jpg"
-                    }
-                    var previewImagePath: String? = nil
-                    if let imagId = json["screenshots"].array?.first?["image_id"].string {
-                        previewImagePath = "https://images.igdb.com/igdb/image/upload/t_original/\(imagId).jpg"
-                    }
-                    return Game(
-                        slug: json["slug"].stringValue,
-                        name: json["name"].stringValue,
-                        coverPath: coverPath,
-                        previewImagePath: previewImagePath
-                    )
-                })
+                let games = response.array?.map({ Game(with: $0)})
                 completion(.success(games ?? []))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))

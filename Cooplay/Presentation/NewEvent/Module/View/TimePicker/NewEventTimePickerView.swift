@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 protocol NewEventTimePickerViewDelegate: class {
     
@@ -63,14 +64,14 @@ final class NewEventTimePickerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func show(startTime: Date = Date()) {
+    func show(startTime: Date = Date(), enableMinimumTime: Bool) {
         topWindow?.addSubview(self)
         delegate?.prepareView { [weak self] in
-            self?.showViews(startTime: startTime)
+            self?.showViews(startTime: startTime, enableMinimumTime: enableMinimumTime)
         }
     }
     
-    private func showViews(startTime: Date) {
+    private func showViews(startTime: Date, enableMinimumTime: Bool) {
         guard
             let window = topWindow,
             let delegate = delegate
@@ -101,6 +102,9 @@ final class NewEventTimePickerView: UIView {
         timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
         timePicker.tintColor = R.color.textPrimary()
         timePicker.setDate(startTime, animated: false)
+        if enableMinimumTime {
+            timePicker.minimumDate = Date() + 10.minutes
+        }
         timePicker.addTarget(self, action: #selector(timePickerValueChanged(_:)), for: .valueChanged)
         self.timePicker = timePicker
         timePickerBlockView.addSubview(timePicker)

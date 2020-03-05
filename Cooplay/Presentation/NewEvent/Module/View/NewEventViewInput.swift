@@ -17,6 +17,9 @@ protocol NewEventViewInput: class {
     var timePickerAction: (() -> Void)? { get set }
     var searchGameAction: (() -> Void)? { get set }
     var searchMembersAction: (() -> Void)? { get set }
+    var dateTodaySelected: (() -> Void)? { get set }
+    var dateTomorrowSelected: (() -> Void)? { get set }
+    var mainAction: (() -> Void)? { get set }
 
     // MARK: - View in
 
@@ -25,14 +28,11 @@ protocol NewEventViewInput: class {
     func setGamesDataSource(_ dataSource: UICollectionViewDataSource)
     func showGames(_ isShow: Bool)
     func updateGames()
-    func showGamesLoading()
-    func hideGamesLoading()
     func setMembersDataSource(_ dataSource: UICollectionViewDataSource)
     func showMembers(_ isShow: Bool)
     func updateMembers()
-    func showMembersLoading()
-    func hideMembersLoading()
-    func showTimeLoading()
-    func hideTimeLoading()
     func setTime(_ time: Date)
+    func showLoading()
+    func hideLoading()
+    func setCreateButtonEnabled(_ isEnabled: Bool)
 }

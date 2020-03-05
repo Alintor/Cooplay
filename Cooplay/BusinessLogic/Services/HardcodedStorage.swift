@@ -52,37 +52,37 @@ enum HardcodedConstants {
     
     static let eventInvitation1 = Event(
         game: divinity,
-        date: "2019-10-29 20:30:00".convertServerDate!,
+        date: "2019-10-29 20:30:00 +0700".convertServerDate!,
         members: [nilo_ontime, rika_ontime],
         me: me_unknown
     )
     static let eventInvitation2 = Event(
         game: overwatch,
-        date: "2019-11-02 22:15:00".convertServerDate!,
+        date: "2019-11-02 22:15:00 +0700".convertServerDate!,
         members: [nilo_ontime, rika_ontime, madik_maybe],
         me: me_unknown
     )
     static let eventNow = Event(
         game: overwatch,
-        date: "2019-10-4 21:00:00".convertServerDate!,
+        date: "2019-10-4 21:00:00 +0700".convertServerDate!,
         members: [nilo_late, rika_ontime, madik_maybe],
         me: me_ontime
     )
     static let eventFuture1 = Event(
         game: apex,
-        date: "2019-10-5 22:00:00".convertServerDate!,
+        date: "2019-10-5 22:00:00 +0700".convertServerDate!,
         members: [nilo_ontime, rika_ontime],
         me: me_late
     )
     static let eventFuture2 = Event(
         game: destiny,
-        date: "2019-10-19 21:10:00".convertServerDate!,
+        date: "2019-10-19 21:10:00 +0700".convertServerDate!,
         members: [nilo_ontime, rika_maybe, madik_ontime],
         me: me_ontime
     )
     static let eventFuture3 = Event(
         game: divinity,
-        date: "2019-10-25 22:45:00".convertServerDate!,
+        date: "2019-10-25 22:45:00 +0700".convertServerDate!,
         members: [nilo_ontime, rika_ontime, madik_maybe, random1, random4, random2],
         me: me_maybe
     )

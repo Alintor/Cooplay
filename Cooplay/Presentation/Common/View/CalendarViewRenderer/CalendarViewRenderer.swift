@@ -172,13 +172,13 @@ class CalendarViewRenderer: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func show(handler: ((_ date: Date) -> Void)?) {
+    func show(selectedDate: Date?, handler: ((_ date: Date) -> Void)?) {
         generator.prepare()
         self.handler = handler
         guard let window = topWindow else { return }
         window.addSubview(self)
         calendarView.reloadData()
-        calendarView.selectDate(Date())
+        calendarView.selectDate(selectedDate ?? Date())
         blockView.transform = CGAffineTransform(
             scaleX: Constant.Block.transformScale,
             y: Constant.Block.transformScale
