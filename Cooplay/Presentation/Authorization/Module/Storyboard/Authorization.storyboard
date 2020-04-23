@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rGT-np-7OK">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Authorization View Controller-->
+        <scene sceneID="RwB-kv-zVW">
+            <objects>
+                <viewController storyboardIdentifier="AuthorizationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="AuthorizationViewController" customModule="Cooplay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eFS-jM-hgH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jz8-YO-A2d">
+                                <rect key="frame" x="24" y="116" width="66.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" name="text.primary"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTextKey" value="authorization.title"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Rq-fi-3oK">
+                                <rect key="frame" x="24" y="181.5" width="327" height="55"/>
+                                <color key="backgroundColor" name="input"/>
+                                <color key="tintColor" name="action.accent"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="BQa-ib-LSu"/>
+                                </constraints>
+                                <color key="textColor" name="text.primary"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" textContentType="email"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="rGT-np-7OK" id="cpM-1t-sY7"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V3Y-ka-zYZ">
+                                <rect key="frame" x="24" y="268.5" width="327" height="55"/>
+                                <color key="backgroundColor" name="input"/>
+                                <color key="tintColor" name="action.accent"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="o9G-eT-ek0"/>
+                                </constraints>
+                                <color key="textColor" name="text.primary"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" name="red"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="rGT-np-7OK" id="LYL-fs-h2Z"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDh-Ys-khP">
+                                <rect key="frame" x="293" y="339.5" width="58" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" name="action.accent"/>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="authorization.recoveryPasswordButton.title"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="revoveryPasswordButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="Z9R-mo-IGt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1F-NZg">
+                                <rect key="frame" x="24" y="407.5" width="327" height="55"/>
+                                <color key="backgroundColor" name="action.accent"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="XM9-sg-NON"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" name="text.primary"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitleKey" value="authorization.actionButton.title"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="T5d-ji-XE9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbS-0S-SVm">
+                                <rect key="frame" x="24" y="595" width="327" height="24"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" name="text.primary"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Lpc-Rd-SY9" appends="YES" id="hDc-sD-Bwo"/>
+                                </connections>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-OF-1ZI">
+                                <rect key="frame" x="311" y="284" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="2pS-1P-RlM"/>
+                                    <constraint firstAttribute="width" constant="24" id="hRL-de-7Gm"/>
+                                </constraints>
+                                <color key="tintColor" name="text.secondary"/>
+                                <state key="normal" image="common.show"/>
+                                <connections>
+                                    <action selector="togglePasswordSecurityButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="bO5-RS-1px"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="2Rq-fi-3oK" firstAttribute="top" secondItem="jz8-YO-A2d" secondAttribute="bottom" constant="32" id="00R-UH-F3p"/>
+                            <constraint firstItem="V3Y-ka-zYZ" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="1y7-RQ-3gN"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="vbS-0S-SVm" secondAttribute="bottom" constant="48" id="21F-FQ-HAN"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="IDh-Ys-khP" secondAttribute="trailing" constant="24" id="5EQ-SI-1mr"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="IbR-1F-NZg" secondAttribute="trailing" constant="24" id="78R-5v-rDd"/>
+                            <constraint firstItem="vbS-0S-SVm" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Ahe-LW-B9K"/>
+                            <constraint firstItem="V3Y-ka-zYZ" firstAttribute="top" secondItem="2Rq-fi-3oK" secondAttribute="bottom" constant="32" id="C1Q-qQ-LBz"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="24" id="Kbn-OF-uzu"/>
+                            <constraint firstItem="IbR-1F-NZg" firstAttribute="top" secondItem="IDh-Ys-khP" secondAttribute="bottom" constant="32" id="Kgd-oT-ZTW"/>
+                            <constraint firstItem="XgY-OF-1ZI" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="-16" id="OBF-oi-j9a"/>
+                            <constraint firstItem="jz8-YO-A2d" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" priority="250" constant="116" id="OEg-Vf-3Cj"/>
+                            <constraint firstItem="IDh-Ys-khP" firstAttribute="top" secondItem="V3Y-ka-zYZ" secondAttribute="bottom" constant="16" id="OFR-Zk-h9Q"/>
+                            <constraint firstItem="vbS-0S-SVm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IbR-1F-NZg" secondAttribute="bottom" constant="16" id="SNm-dj-BMw"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="2Rq-fi-3oK" secondAttribute="trailing" constant="24" id="SZN-X0-XPy"/>
+                            <constraint firstItem="2Rq-fi-3oK" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Xdx-iR-xfi"/>
+                            <constraint firstItem="IbR-1F-NZg" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Z6A-Bh-GR4"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="vbS-0S-SVm" secondAttribute="trailing" constant="24" id="eYl-gr-mOc"/>
+                            <constraint firstItem="XgY-OF-1ZI" firstAttribute="centerY" secondItem="V3Y-ka-zYZ" secondAttribute="centerY" id="nEz-JG-EJR"/>
+                            <constraint firstItem="jz8-YO-A2d" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="vpu-78-FRx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="IbR-1F-NZg" id="muo-Fc-fEa"/>
+                        <outlet property="emailTextField" destination="2Rq-fi-3oK" id="5uA-GW-Pl0"/>
+                        <outlet property="passwordTextField" destination="V3Y-ka-zYZ" id="iBZ-ZZ-kZB"/>
+                        <outlet property="registerMessageLabel" destination="vbS-0S-SVm" id="pH8-7B-58g"/>
+                        <outlet property="titleLabel" destination="jz8-YO-A2d" id="24b-Q9-pEU"/>
+                        <outlet property="togglePasswordSecurityButton" destination="XgY-OF-1ZI" id="T8c-6f-JS1"/>
+                        <outlet property="topConstraint" destination="OEg-Vf-3Cj" id="5tI-86-NLx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4YY-0r-yoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lpc-Rd-SY9">
+                    <connections>
+                        <action selector="registerMessageTapped:" destination="rGT-np-7OK" id="eOv-S3-TeI"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="132" y="132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="common.show" width="24" height="24"/>
+        <namedColor name="action.accent">
+            <color red="0.29803921568627451" green="0.61960784313725492" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="background">
+            <color red="0.090196078431372548" green="0.098039215686274508" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="input">
+            <color red="0.054901960784313725" green="0.058823529411764705" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red">
+            <color red="0.92941176470588238" green="0.41568627450980394" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text.primary">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text.secondary">
+            <color red="0.57647058823529407" green="0.61176470588235299" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

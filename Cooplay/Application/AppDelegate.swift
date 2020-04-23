@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(
-            rootViewController: R.storyboard.eventsList.eventsListViewController()!
+            rootViewController: R.storyboard.intro.introViewController()!
         )
         return true
     }

@@ -77,3 +77,15 @@
 "searchMembers.emptySate.title" = "Ищите участников по нику";
 "searchMembers.emptySate.description" = "Или пригласите по ссылке";
 
+// MARK: - Intro
+"intro.authButton.title" = "Войти";
+"intro.registerButton.title" = "Создать аккаунт";
+
+// MARK: - Authorization
+"authorization.title" = "Вход";
+"authorization.emailTextField.placeholder" = "Email";
+"authorization.passwordTextField.placeholder" = "Пароль";
+"authorization.recoveryPasswordButton.title" = "Забыли пароль?";
+"authorization.actionButton.title" = "Войти";
+"authorization.registerMessage" = "Нет аккаунта? Создать аккаунт";
+"authorization.registerMessage.highlight" = "Создать аккаунт";

@@ -46,4 +46,13 @@ extension UITextField {
                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
         }
     }
+    
+    func setPaddingPoints(left: CGFloat, right: CGFloat) {
+        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: left, height: self.frame.size.height))
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: right, height: self.frame.size.height))
+        self.leftView = leftPaddingView
+        self.leftViewMode = .always
+        self.rightView = rightPaddingView
+        self.rightViewMode = .always
+    }
 }

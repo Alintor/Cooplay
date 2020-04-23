@@ -11,28 +11,36 @@
 		076714ABB069198F2DC195E1 /* NewEventModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B2EDD44F2946E8B369EF30 /* NewEventModuleInput.swift */; };
 		093A16C976BACE4E81F72F0C /* SearchGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0AE6701207E820B5D99889 /* SearchGame.storyboard */; };
 		0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A0E0D3606DF1BC2253229 /* EventDetailsRouterInput.swift */; };
+		11767463794E542D95159DBE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A026A602BF2FBBBD8FAAF0 /* AuthorizationViewController.swift */; };
 		13C2397E561E118C61089D9C /* EventsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E18459CE62AE534539FD03 /* EventsListPresenter.swift */; };
 		1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3B9961492A5CFC66D4DCA0 /* SearchGameViewController.swift */; };
 		1CA013E50D30486B7988E250 /* EventDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */; };
+		201BB7A47568CE81B2C8BD86 /* AuthorizationRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362A36B6BB6C7725491C2932 /* AuthorizationRouterInput.swift */; };
 		237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */; };
 		24CE747C0566B86CF25D5FA4 /* EventsListRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */; };
 		24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A889EE756D6F91345972F5 /* SearchMembersRouter.swift */; };
 		2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */; };
 		303827CF46D19270A5278605 /* SearchMembersViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46FF7CDB32C7FB80E6F31 /* SearchMembersViewInput.swift */; };
 		341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79931A103631F40291D269 /* SearchMembersViewController.swift */; };
+		351F372BDD3BB5F9921C0FB8 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B393C9EC3ACEE8D50DBCE2 /* AuthorizationInteractor.swift */; };
 		35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A0F1870E22CCA04BE2CEAE /* NewEventInteractor.swift */; };
 		3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */; };
 		401E916B8DEE7282058BEA68 /* NewEventViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */; };
 		41FA9E25CE1B3C9D9318C734 /* SearchGameInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */; };
 		45DC225DF352CB29186999D5 /* SearchGameViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */; };
+		4D87A27A6FC9081E6A4E73A7 /* AuthorizationModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7DA74CA6B7E0861C356039 /* AuthorizationModuleInput.swift */; };
+		4FDA935176965623F40888D7 /* AuthorizationAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B436F1D2A93554B26EAF3434 /* AuthorizationAssemblyContainer.swift */; };
 		565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */; };
 		581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */; };
 		593E03886B9DF42553A5ED89 /* SearchMembersInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E8B8288EF8F619E429CC93 /* SearchMembersInteractorInput.swift */; };
 		5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACA22E6B93DAE0FF2B0E801 /* NewEvent.storyboard */; };
 		5F7E65747CE06D37B089542A /* SearchGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */; };
+		60947CF71B5EC0EEDA734DD1 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF6C6777F61506239C9D4B3 /* AuthorizationRouter.swift */; };
 		63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */; };
 		665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */; };
+		6C32ACCA88B63DB330A36492 /* IntroRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0817C44C08C4189E1A89FF /* IntroRouterInput.swift */; };
 		71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */; };
+		7388A80D4F5276385187AD3E /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027018D2A795F606A0E7DF94 /* IntroViewController.swift */; };
 		797453345E495E760948D98D /* SearchGameRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */; };
 		79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */; };
 		7DB64F4707350447EB574368 /* EventsListInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */; };
@@ -42,12 +50,17 @@
 		821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */; };
 		826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */; };
 		840F45A281750C1F724974A1 /* EventsListModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870143F1DE7E415769F4306 /* EventsListModuleInput.swift */; };
+		85EA62FD3EB479EF667DAD70 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D07961F9139C117048224CA /* Authorization.storyboard */; };
+		8BFD4252EC161E0E39BDB067 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3BB527D978D030EEB4A044 /* Intro.storyboard */; };
 		8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311D471408EFD16D53DE3A0 /* EventDetailsRouter.swift */; };
 		98B8582462DD89E9C7DF7A80 /* EventDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683A0458E64A95F369916DFA /* EventDetailsModuleInput.swift */; };
+		99C9F715D8E8A80F5230160D /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18C255CA6F1B5BA22619112 /* AuthorizationPresenter.swift */; };
 		9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F78D0DA3753B15C262B74E /* EventsListViewController.swift */; };
 		9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0D10E1251B7AD0DE10A4A4 /* NewEventRouter.swift */; };
 		A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */; };
+		A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */; };
 		A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */; };
+		A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76412DBC892C6722585C8 /* IntroViewInput.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
@@ -156,11 +169,18 @@
 		A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */; };
 		A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */; };
 		A9BE04C2BD803B7CECDE30AD /* SearchMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */; };
+		B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34D038F7C64E7E6CF06E95 /* IntroPresenter.swift */; };
+		B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53391B867F4E1FB83192516D /* IntroInteractor.swift */; };
 		BAD206ED4B70F2E178C4EE53 /* NewEventInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E745154B2CD6788A3DF7107D /* NewEventInteractorInput.swift */; };
+		BBB9E51B9E7F9DFF46E8461D /* IntroModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E3CD3497D6B748BB3F540 /* IntroModuleInput.swift */; };
+		BDD22E613E3FFA15D35F6A27 /* AuthorizationInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24A261DF9EBA1F854B4A27 /* AuthorizationInteractorInput.swift */; };
 		C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */; };
+		CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD82A35082CF6F1CDB4541 /* IntroRouter.swift */; };
 		D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231ABFDE27D6EA24396F185 /* EventsListAssemblyContainer.swift */; };
 		E25B2574C4DE6D80EFDC53D6 /* SearchMembersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D395FC4A8FBEACD280F58FF /* SearchMembersPresenter.swift */; };
+		E9456A35C9DA0C9889661651 /* AuthorizationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF9392455013028A62B57F4 /* AuthorizationViewInput.swift */; };
 		F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6192823AD722584C5D6A8 /* EventsListInteractor.swift */; };
+		F76A38D86DB1BA56E4E749EB /* IntroInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAA3FF4F96F54CD11D1093D /* IntroInteractorInput.swift */; };
 		F93E4F6BC2FFE77340DEF9DE /* SearchMembersAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE148A0244FFC3E47E4C775 /* SearchMembersAssemblyContainer.swift */; };
 		FC00D21A6F25B2CC2665244E /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786065F4CF69350607C85260 /* NewEventViewController.swift */; };
 		FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC2EAD2A307D9BE930F82 /* SearchMembersInteractor.swift */; };
@@ -168,9 +188,12 @@
 
 /* Begin PBXFileReference section */
 		01E8B8288EF8F619E429CC93 /* SearchMembersInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersInteractorInput.swift; sourceTree = "<group>"; };
+		027018D2A795F606A0E7DF94 /* IntroViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		0311D471408EFD16D53DE3A0 /* EventDetailsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsRouter.swift; sourceTree = "<group>"; };
 		076A0E0D3606DF1BC2253229 /* EventDetailsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsRouterInput.swift; sourceTree = "<group>"; };
 		092A94DE0BF4A8DDB55B47D3 /* SearchGameViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameViewInput.swift; sourceTree = "<group>"; };
+		0A0817C44C08C4189E1A89FF /* IntroRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroRouterInput.swift; sourceTree = "<group>"; };
+		0D7DA74CA6B7E0861C356039 /* AuthorizationModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationModuleInput.swift; sourceTree = "<group>"; };
 		0EA6DED6AE53EB86801DC0B1 /* Pods-Cooplay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.release.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.release.xcconfig"; sourceTree = "<group>"; };
 		16F78D0DA3753B15C262B74E /* EventsListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		1A79931A103631F40291D269 /* SearchMembersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersViewController.swift; sourceTree = "<group>"; };
@@ -178,29 +201,38 @@
 		2EE148A0244FFC3E47E4C775 /* SearchMembersAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersAssemblyContainer.swift; sourceTree = "<group>"; };
 		2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsAssemblyContainer.swift; sourceTree = "<group>"; };
 		31B60E968EE447E6A3B9BB30 /* SearchGameRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameRouterInput.swift; sourceTree = "<group>"; };
+		362A36B6BB6C7725491C2932 /* AuthorizationRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationRouterInput.swift; sourceTree = "<group>"; };
 		3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameRouter.swift; sourceTree = "<group>"; };
 		3D395FC4A8FBEACD280F58FF /* SearchMembersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersPresenter.swift; sourceTree = "<group>"; };
 		3D682020490EB44D09DE32CE /* SearchGameModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameModuleInput.swift; sourceTree = "<group>"; };
 		413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventPresenter.swift; sourceTree = "<group>"; };
 		4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventViewInput.swift; sourceTree = "<group>"; };
+		4CE76412DBC892C6722585C8 /* IntroViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroViewInput.swift; sourceTree = "<group>"; };
+		4D07961F9139C117048224CA /* Authorization.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = Authorization.storyboard; sourceTree = "<group>"; };
+		53391B867F4E1FB83192516D /* IntroInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroInteractor.swift; sourceTree = "<group>"; };
 		57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventAssemblyContainer.swift; sourceTree = "<group>"; };
 		5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		58E18459CE62AE534539FD03 /* EventsListPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListPresenter.swift; sourceTree = "<group>"; };
+		5FF9392455013028A62B57F4 /* AuthorizationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationViewInput.swift; sourceTree = "<group>"; };
 		683A0458E64A95F369916DFA /* EventDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsModuleInput.swift; sourceTree = "<group>"; };
 		69A0F1870E22CCA04BE2CEAE /* NewEventInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventInteractor.swift; sourceTree = "<group>"; };
 		6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsPresenter.swift; sourceTree = "<group>"; };
 		6E0D10E1251B7AD0DE10A4A4 /* NewEventRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventRouter.swift; sourceTree = "<group>"; };
+		6EAA3FF4F96F54CD11D1093D /* IntroInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroInteractorInput.swift; sourceTree = "<group>"; };
 		7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsViewInput.swift; sourceTree = "<group>"; };
 		786065F4CF69350607C85260 /* NewEventViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		79BAC2EAD2A307D9BE930F82 /* SearchMembersInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersInteractor.swift; sourceTree = "<group>"; };
 		7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cooplay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0B7D74F31B8222761B8978 /* SearchGameInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameInteractor.swift; sourceTree = "<group>"; };
 		86A889EE756D6F91345972F5 /* SearchMembersRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersRouter.swift; sourceTree = "<group>"; };
+		880E3CD3497D6B748BB3F540 /* IntroModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroModuleInput.swift; sourceTree = "<group>"; };
 		8DE46FF7CDB32C7FB80E6F31 /* SearchMembersViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersViewInput.swift; sourceTree = "<group>"; };
 		8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractorInput.swift; sourceTree = "<group>"; };
 		97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameInteractorInput.swift; sourceTree = "<group>"; };
+		9A3BB527D978D030EEB4A044 /* Intro.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = Intro.storyboard; sourceTree = "<group>"; };
 		9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameAssemblyContainer.swift; sourceTree = "<group>"; };
 		A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersRouterInput.swift; sourceTree = "<group>"; };
+		A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroAssemblyContainer.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -287,6 +319,7 @@
 		A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCell.swift; sourceTree = "<group>"; };
 		A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventMemberCell.xib; sourceTree = "<group>"; };
 		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
+		A8A026A602BF2FBBBD8FAAF0 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -310,11 +343,17 @@
 		A8DFD4EC2372AA4100F48B37 /* InventedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventedHeaderView.xib; sourceTree = "<group>"; };
 		A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventedHeaderView.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
+		ADF6C6777F61506239C9D4B3 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		B0E1472F4ADA4AFC3137CA92 /* EventDetails.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventDetails.storyboard; sourceTree = "<group>"; };
+		B18C255CA6F1B5BA22619112 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
+		B436F1D2A93554B26EAF3434 /* AuthorizationAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationAssemblyContainer.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGamePresenter.swift; sourceTree = "<group>"; };
+		C8B393C9EC3ACEE8D50DBCE2 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
+		CB24A261DF9EBA1F854B4A27 /* AuthorizationInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorInput.swift; sourceTree = "<group>"; };
 		CD6CC99161B3B6BE97E5D1DD /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = EventsList.storyboard; sourceTree = "<group>"; };
+		CEAD82A35082CF6F1CDB4541 /* IntroRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroRouter.swift; sourceTree = "<group>"; };
 		D17E8393F3A67C933D36F4DA /* EventsListViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListViewInput.swift; sourceTree = "<group>"; };
 		D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = SearchMembers.storyboard; sourceTree = "<group>"; };
 		D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersModuleInput.swift; sourceTree = "<group>"; };
@@ -328,6 +367,7 @@
 		F750B1AB809009EC60D7869D /* EventsListRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouterInput.swift; sourceTree = "<group>"; };
 		F93861AA1E906EB8104B0ED2 /* EventsListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListRouter.swift; sourceTree = "<group>"; };
 		FB16D454B7A44CDE57867C60 /* NewEventRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventRouterInput.swift; sourceTree = "<group>"; };
+		FC34D038F7C64E7E6CF06E95 /* IntroPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +431,16 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		26DC52CBC338D53CD8F97057 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				362A36B6BB6C7725491C2932 /* AuthorizationRouterInput.swift */,
+				ADF6C6777F61506239C9D4B3 /* AuthorizationRouter.swift */,
+			);
+			name = Router;
+			path = Router;
+			sourceTree = "<group>";
+		};
 		299C1A0052FC28C701E9EC12 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,12 +467,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2A179131F0C7EA978BEC0659 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9A3BB527D978D030EEB4A044 /* Intro.storyboard */,
+			);
+			name = Storyboard;
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		2E6E6E73E704500B36C74145 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				CD83474AD5A4FB2BE789AD92 /* EventsList.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		2EE1E8EEB0A1DCADE4702DA8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				880E3CD3497D6B748BB3F540 /* IntroModuleInput.swift */,
+				FC34D038F7C64E7E6CF06E95 /* IntroPresenter.swift */,
+			);
+			name = Presenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		341ED12C318527A07E987A11 /* Assembly */ = {
@@ -439,6 +508,15 @@
 				3F5C5305CF1A7BD6D04DB03F /* Module */,
 			);
 			path = EventsList;
+			sourceTree = "<group>";
+		};
+		3D8E49900C38329C3C9FAFB4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4D07961F9139C117048224CA /* Authorization.storyboard */,
+			);
+			name = Storyboard;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		3DA964026DC3A5F7765016B8 /* SearchMembers */ = {
@@ -490,6 +568,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		518F0FE06E72E67217448E76 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				EC9F420D57ADD6AC478E2581 /* Module */,
+			);
+			name = Intro;
+			path = Intro;
+			sourceTree = "<group>";
+		};
 		58304493DDCCDAD996EFB47C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +620,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		651F171CC14AF017E28C6ED9 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */,
+			);
+			name = Assembly;
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		7147C640B38DF2130BC95A90 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +653,16 @@
 				57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		7F3737323BD03124E3B89454 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0D7DA74CA6B7E0861C356039 /* AuthorizationModuleInput.swift */,
+				B18C255CA6F1B5BA22619112 /* AuthorizationPresenter.swift */,
+			);
+			name = Presenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		85292EDCDAB83F4DF88F5E0F /* View */ = {
@@ -621,12 +727,41 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		93BEAB679F91C5E2BF723CDD /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				6EAA3FF4F96F54CD11D1093D /* IntroInteractorInput.swift */,
+				53391B867F4E1FB83192516D /* IntroInteractor.swift */,
+			);
+			name = Interactor;
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		9B038475057B97AB6346B309 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
 				2F2F951A70F1051F45F5BE2E /* EventDetailsAssemblyContainer.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		9D25D21BE415CF8E92AEFBC6 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				A8BC67E73DEF16775012A961 /* Module */,
+			);
+			name = Authorization;
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		A4F4091707A90EBC444D53BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CE76412DBC892C6722585C8 /* IntroViewInput.swift */,
+				027018D2A795F606A0E7DF94 /* IntroViewController.swift */,
+			);
+			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		A7FB4F2825B0D2AA0FE6C797 /* Router */ = {
@@ -647,6 +782,8 @@
 				0CE58F0F4085592415E85151 /* NewEvent */,
 				BF452587466D36F09D1E7251 /* SearchGame */,
 				3DA964026DC3A5F7765016B8 /* SearchMembers */,
+				518F0FE06E72E67217448E76 /* Intro */,
+				9D25D21BE415CF8E92AEFBC6 /* Authorization */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1233,6 +1370,20 @@
 			path = NewEventMemberCell;
 			sourceTree = "<group>";
 		};
+		A8BC67E73DEF16775012A961 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				ACFC2A67ACF8F347CB8B2F97 /* Assembly */,
+				3D8E49900C38329C3C9FAFB4 /* Storyboard */,
+				C23BAD8BC86662AFC99F84C1 /* View */,
+				7F3737323BD03124E3B89454 /* Presenter */,
+				EC799C74FAF652FA4C85224A /* Interactor */,
+				26DC52CBC338D53CD8F97057 /* Router */,
+			);
+			name = Module;
+			path = Module;
+			sourceTree = "<group>";
+		};
 		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1312,12 +1463,31 @@
 			path = HeaderVIew;
 			sourceTree = "<group>";
 		};
+		ACFC2A67ACF8F347CB8B2F97 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				B436F1D2A93554B26EAF3434 /* AuthorizationAssemblyContainer.swift */,
+			);
+			name = Assembly;
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		BF452587466D36F09D1E7251 /* SearchGame */ = {
 			isa = PBXGroup;
 			children = (
 				DA9743F74E96E293D3103F98 /* Module */,
 			);
 			path = SearchGame;
+			sourceTree = "<group>";
+		};
+		C23BAD8BC86662AFC99F84C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5FF9392455013028A62B57F4 /* AuthorizationViewInput.swift */,
+				A8A026A602BF2FBBBD8FAAF0 /* AuthorizationViewController.swift */,
+			);
+			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
@@ -1370,6 +1540,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		EC799C74FAF652FA4C85224A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				CB24A261DF9EBA1F854B4A27 /* AuthorizationInteractorInput.swift */,
+				C8B393C9EC3ACEE8D50DBCE2 /* AuthorizationInteractor.swift */,
+			);
+			name = Interactor;
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		EC9F420D57ADD6AC478E2581 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				651F171CC14AF017E28C6ED9 /* Assembly */,
+				2A179131F0C7EA978BEC0659 /* Storyboard */,
+				A4F4091707A90EBC444D53BE /* View */,
+				2EE1E8EEB0A1DCADE4702DA8 /* Presenter */,
+				93BEAB679F91C5E2BF723CDD /* Interactor */,
+				FF5F2B46535EB0029B444FB9 /* Router */,
+			);
+			name = Module;
+			path = Module;
+			sourceTree = "<group>";
+		};
 		F8AF5B9D4D1AED494709B7B6 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -1411,6 +1605,16 @@
 				2EE148A0244FFC3E47E4C775 /* SearchMembersAssemblyContainer.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		FF5F2B46535EB0029B444FB9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				0A0817C44C08C4189E1A89FF /* IntroRouterInput.swift */,
+				CEAD82A35082CF6F1CDB4541 /* IntroRouter.swift */,
+			);
+			name = Router;
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1497,6 +1701,8 @@
 				5DB7FF03D961D3EB733E4C86 /* NewEvent.storyboard in Resources */,
 				093A16C976BACE4E81F72F0C /* SearchGame.storyboard in Resources */,
 				A9BE04C2BD803B7CECDE30AD /* SearchMembers.storyboard in Resources */,
+				8BFD4252EC161E0E39BDB067 /* Intro.storyboard in Resources */,
+				85EA62FD3EB479EF667DAD70 /* Authorization.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,7 +1767,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				$SRCROOT/Cooplay/Resources/R.generated.swift,
+				"$SRCROOT/Cooplay/Resources/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1726,6 +1932,24 @@
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
 				237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
+				A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */,
+				A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */,
+				7388A80D4F5276385187AD3E /* IntroViewController.swift in Sources */,
+				BBB9E51B9E7F9DFF46E8461D /* IntroModuleInput.swift in Sources */,
+				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
+				F76A38D86DB1BA56E4E749EB /* IntroInteractorInput.swift in Sources */,
+				B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */,
+				6C32ACCA88B63DB330A36492 /* IntroRouterInput.swift in Sources */,
+				CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */,
+				4FDA935176965623F40888D7 /* AuthorizationAssemblyContainer.swift in Sources */,
+				E9456A35C9DA0C9889661651 /* AuthorizationViewInput.swift in Sources */,
+				11767463794E542D95159DBE /* AuthorizationViewController.swift in Sources */,
+				4D87A27A6FC9081E6A4E73A7 /* AuthorizationModuleInput.swift in Sources */,
+				99C9F715D8E8A80F5230160D /* AuthorizationPresenter.swift in Sources */,
+				BDD22E613E3FFA15D35F6A27 /* AuthorizationInteractorInput.swift in Sources */,
+				351F372BDD3BB5F9921C0FB8 /* AuthorizationInteractor.swift in Sources */,
+				201BB7A47568CE81B2C8BD86 /* AuthorizationRouterInput.swift in Sources */,
+				60947CF71B5EC0EEDA734DD1 /* AuthorizationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
