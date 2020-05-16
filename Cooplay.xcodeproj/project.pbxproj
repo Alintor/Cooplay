@@ -61,6 +61,10 @@
 		A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */; };
 		A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */; };
 		A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76412DBC892C6722585C8 /* IntroViewInput.swift */; };
+		A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E8162470076D005DFAF0 /* AuthorizationField.swift */; };
+		A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81824701F66005DFAF0 /* UIApplication.swift */; };
+		A815E81B24701FBA005DFAF0 /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */; };
+		A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81C24701FDF005DFAF0 /* StartRoutable.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
@@ -208,7 +212,7 @@
 		413A9F6D35A9081EEF310F5D /* NewEventPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventPresenter.swift; sourceTree = "<group>"; };
 		4A1630FFFE6316F54032A19B /* NewEventViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventViewInput.swift; sourceTree = "<group>"; };
 		4CE76412DBC892C6722585C8 /* IntroViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroViewInput.swift; sourceTree = "<group>"; };
-		4D07961F9139C117048224CA /* Authorization.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = Authorization.storyboard; sourceTree = "<group>"; };
+		4D07961F9139C117048224CA /* Authorization.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		53391B867F4E1FB83192516D /* IntroInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroInteractor.swift; sourceTree = "<group>"; };
 		57ECD61FED7E6AEEC8CF2046 /* NewEventAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NewEventAssemblyContainer.swift; sourceTree = "<group>"; };
 		5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
@@ -229,10 +233,14 @@
 		8DE46FF7CDB32C7FB80E6F31 /* SearchMembersViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersViewInput.swift; sourceTree = "<group>"; };
 		8E6B100AB58943D31D0FD4DE /* EventDetailsInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractorInput.swift; sourceTree = "<group>"; };
 		97596F54E79106402642CDD4 /* SearchGameInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameInteractorInput.swift; sourceTree = "<group>"; };
-		9A3BB527D978D030EEB4A044 /* Intro.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = Intro.storyboard; sourceTree = "<group>"; };
+		9A3BB527D978D030EEB4A044 /* Intro.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
 		9E71C02C6A0EC55771549AAE /* SearchGameAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGameAssemblyContainer.swift; sourceTree = "<group>"; };
 		A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersRouterInput.swift; sourceTree = "<group>"; };
 		A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroAssemblyContainer.swift; sourceTree = "<group>"; };
+		A815E8162470076D005DFAF0 /* AuthorizationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationField.swift; sourceTree = "<group>"; };
+		A815E81824701F66005DFAF0 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
+		A815E81C24701FDF005DFAF0 /* StartRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRoutable.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -437,7 +445,6 @@
 				362A36B6BB6C7725491C2932 /* AuthorizationRouterInput.swift */,
 				ADF6C6777F61506239C9D4B3 /* AuthorizationRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -472,7 +479,6 @@
 			children = (
 				9A3BB527D978D030EEB4A044 /* Intro.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -490,7 +496,6 @@
 				880E3CD3497D6B748BB3F540 /* IntroModuleInput.swift */,
 				FC34D038F7C64E7E6CF06E95 /* IntroPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -515,7 +520,6 @@
 			children = (
 				4D07961F9139C117048224CA /* Authorization.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -573,7 +577,6 @@
 			children = (
 				EC9F420D57ADD6AC478E2581 /* Module */,
 			);
-			name = Intro;
 			path = Intro;
 			sourceTree = "<group>";
 		};
@@ -625,7 +628,6 @@
 			children = (
 				A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -661,7 +663,6 @@
 				0D7DA74CA6B7E0861C356039 /* AuthorizationModuleInput.swift */,
 				B18C255CA6F1B5BA22619112 /* AuthorizationPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -733,7 +734,6 @@
 				6EAA3FF4F96F54CD11D1093D /* IntroInteractorInput.swift */,
 				53391B867F4E1FB83192516D /* IntroInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -750,7 +750,6 @@
 			children = (
 				A8BC67E73DEF16775012A961 /* Module */,
 			);
-			name = Authorization;
 			path = Authorization;
 			sourceTree = "<group>";
 		};
@@ -760,7 +759,6 @@
 				4CE76412DBC892C6722585C8 /* IntroViewInput.swift */,
 				027018D2A795F606A0E7DF94 /* IntroViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -771,6 +769,14 @@
 				3C721EB3219B2E2A689F9B57 /* SearchGameRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		A815E81524700752005DFAF0 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				A815E8162470076D005DFAF0 /* AuthorizationField.swift */,
+			);
+			path = Fields;
 			sourceTree = "<group>";
 		};
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
@@ -981,6 +987,7 @@
 				A8D1D2772356F96300DA1089 /* UITextField.swift */,
 				A8D1D29E2361884000DA1089 /* UIView.swift */,
 				A87CF45D23EAC718004189D3 /* UITableView.swift */,
+				A815E81824701F66005DFAF0 /* UIApplication.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1144,6 +1151,8 @@
 				A860277823757676004E45AB /* ContextMenuRouter.swift */,
 				A87CF43823E97526004189D3 /* Router.swift */,
 				A87CF43A23E97541004189D3 /* CloseableRouter.swift */,
+				A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */,
+				A815E81C24701FDF005DFAF0 /* StartRoutable.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1373,6 +1382,7 @@
 		A8BC67E73DEF16775012A961 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A815E81524700752005DFAF0 /* Fields */,
 				ACFC2A67ACF8F347CB8B2F97 /* Assembly */,
 				3D8E49900C38329C3C9FAFB4 /* Storyboard */,
 				C23BAD8BC86662AFC99F84C1 /* View */,
@@ -1380,7 +1390,6 @@
 				EC799C74FAF652FA4C85224A /* Interactor */,
 				26DC52CBC338D53CD8F97057 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -1468,7 +1477,6 @@
 			children = (
 				B436F1D2A93554B26EAF3434 /* AuthorizationAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -1486,7 +1494,6 @@
 				5FF9392455013028A62B57F4 /* AuthorizationViewInput.swift */,
 				A8A026A602BF2FBBBD8FAAF0 /* AuthorizationViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1546,7 +1553,6 @@
 				CB24A261DF9EBA1F854B4A27 /* AuthorizationInteractorInput.swift */,
 				C8B393C9EC3ACEE8D50DBCE2 /* AuthorizationInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -1560,7 +1566,6 @@
 				93BEAB679F91C5E2BF723CDD /* Interactor */,
 				FF5F2B46535EB0029B444FB9 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -1613,7 +1618,6 @@
 				0A0817C44C08C4189E1A89FF /* IntroRouterInput.swift */,
 				CEAD82A35082CF6F1CDB4541 /* IntroRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -1767,7 +1771,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1816,6 +1820,7 @@
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
 				A8D1D2812357243C00DA1089 /* ActiveEventCellViewModel.swift in Sources */,
 				A8D1D2A42362EBD500DA1089 /* ActivityIndicatorRenderer.swift in Sources */,
+				A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */,
 				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
 				A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
@@ -1834,6 +1839,7 @@
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
+				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A87CF47523EC1248004189D3 /* APIProvider.swift in Sources */,
 				A87CF44923EA6A57004189D3 /* SearchSectionHeaderViewModel.swift in Sources */,
@@ -1928,6 +1934,7 @@
 				341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */,
 				A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */,
 				E25B2574C4DE6D80EFDC53D6 /* SearchMembersPresenter.swift in Sources */,
+				A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */,
 				593E03886B9DF42553A5ED89 /* SearchMembersInteractorInput.swift in Sources */,
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
 				237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */,
@@ -1949,6 +1956,7 @@
 				BDD22E613E3FFA15D35F6A27 /* AuthorizationInteractorInput.swift in Sources */,
 				351F372BDD3BB5F9921C0FB8 /* AuthorizationInteractor.swift in Sources */,
 				201BB7A47568CE81B2C8BD86 /* AuthorizationRouterInput.swift in Sources */,
+				A815E81B24701FBA005DFAF0 /* TransitionHandler.swift in Sources */,
 				60947CF71B5EC0EEDA734DD1 /* AuthorizationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

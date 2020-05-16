@@ -10,6 +10,23 @@ import UIKit
 
 extension UITextField {
     
+    enum FieldState {
+        case normal
+        case error
+        case highlighted
+        
+        var color: CGColor? {
+            switch self {
+            case .normal:
+                return R.color.shapeBackground()?.cgColor
+            case .error:
+                return R.color.red()?.cgColor
+            case .highlighted:
+                return R.color.actionAccent()?.cgColor
+            }
+        }
+    }
+    
     @IBInspectable var localizedPlaceholderKey: String {
         get {
             return ""
@@ -54,5 +71,9 @@ extension UITextField {
         self.leftViewMode = .always
         self.rightView = rightPaddingView
         self.rightViewMode = .always
+    }
+    
+    func setState(_ state: FieldState) {
+        self.layer.borderColor = state.color
     }
 }

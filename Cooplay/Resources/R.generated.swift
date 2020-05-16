@@ -529,14 +529,18 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 63 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 66 localization keys.
     struct localizable {
       /// Value: +%@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let authorizationEmailTextFieldPlaceholder = Rswift.StringResource(key: "authorization.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Email введён не верно
+      static let authorizationErrorEmailIncorret = Rswift.StringResource(key: "authorization.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Аккаунта на данном Email не существует
+      static let authorizationErrorEmailNotExist = Rswift.StringResource(key: "authorization.error.email.notExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ближайшее событие
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Будущие события
@@ -593,6 +597,8 @@ struct R: Rswift.Validatable {
       static let searchGameEmptyResultsTitle = Rswift.StringResource(key: "searchGame.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не получилось найти человека =(
       static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Неверный пароль
+      static let authorizationErrorPasswordWrong = Rswift.StringResource(key: "authorization.error.password.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Нет аккаунта? Создать аккаунт
       static let authorizationRegisterMessage = Rswift.StringResource(key: "authorization.registerMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ник пользователя
@@ -668,9 +674,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorization.emailTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Email введён не верно
+      static func authorizationErrorEmailIncorret(_: Void = ()) -> String {
+        return NSLocalizedString("authorization.error.email.incorret", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
         return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Аккаунта на данном Email не существует
+      static func authorizationErrorEmailNotExist(_: Void = ()) -> String {
+        return NSLocalizedString("authorization.error.email.notExist", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Ближайшее событие
@@ -811,6 +827,11 @@ struct R: Rswift.Validatable {
       /// Value: Не получилось найти человека =(
       static func searchMembersEmptyResultsTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.emptyResults.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Неверный пароль
+      static func authorizationErrorPasswordWrong(_: Void = ()) -> String {
+        return NSLocalizedString("authorization.error.password.wrong", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Нет аккаунта? Создать аккаунт

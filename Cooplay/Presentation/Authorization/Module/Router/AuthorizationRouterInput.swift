@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AuthorizationRouterInput {
+protocol AuthorizationRouterInput: StartRoutable {
 
 }

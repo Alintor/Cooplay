@@ -45,6 +45,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="textFieldEditingChanged:" destination="rGT-np-7OK" eventType="editingChanged" id="ZeY-fW-UkM"/>
                                     <outlet property="delegate" destination="rGT-np-7OK" id="cpM-1t-sY7"/>
                                 </connections>
                             </textField>
@@ -70,6 +71,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="textFieldEditingChanged:" destination="rGT-np-7OK" eventType="editingChanged" id="6xf-EB-7CL"/>
                                     <outlet property="delegate" destination="rGT-np-7OK" id="LYL-fs-h2Z"/>
                                 </connections>
                             </textField>
@@ -85,7 +87,11 @@
                                     <action selector="revoveryPasswordButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="Z9R-mo-IGt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1F-NZg">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-0I-VGb">
+                                <rect key="frame" x="24" y="408.5" width="327" height="55"/>
+                                <color key="backgroundColor" name="background"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1F-NZg">
                                 <rect key="frame" x="24" y="408.5" width="327" height="55"/>
                                 <color key="backgroundColor" name="action.accent"/>
                                 <constraints>
@@ -139,6 +145,10 @@
                                 <color key="textColor" red="1" green="0.2274509804" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9c6-Db-Ft9">
+                                <rect key="frame" x="315" y="199" width="20" height="20"/>
+                                <color key="color" name="text.primary"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
@@ -149,16 +159,21 @@
                             <constraint firstItem="V3Y-ka-zYZ" firstAttribute="top" secondItem="eou-0h-JPH" secondAttribute="bottom" constant="13" id="65o-9W-8Fa"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="IbR-1F-NZg" secondAttribute="trailing" constant="24" id="78R-5v-rDd"/>
                             <constraint firstItem="vbS-0S-SVm" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Ahe-LW-B9K"/>
+                            <constraint firstItem="bPT-0I-VGb" firstAttribute="trailing" secondItem="IbR-1F-NZg" secondAttribute="trailing" id="ET7-Hj-P2s"/>
+                            <constraint firstItem="bPT-0I-VGb" firstAttribute="leading" secondItem="IbR-1F-NZg" secondAttribute="leading" id="IEz-4A-Yyg"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="24" id="Kbn-OF-uzu"/>
                             <constraint firstItem="IbR-1F-NZg" firstAttribute="top" secondItem="IDh-Ys-khP" secondAttribute="bottom" constant="32" id="Kgd-oT-ZTW"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="TXu-zS-695" secondAttribute="trailing" constant="32" id="O9k-Yv-XeC"/>
                             <constraint firstItem="XgY-OF-1ZI" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="-16" id="OBF-oi-j9a"/>
                             <constraint firstItem="jz8-YO-A2d" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" priority="250" constant="116" id="OEg-Vf-3Cj"/>
+                            <constraint firstItem="bPT-0I-VGb" firstAttribute="top" secondItem="IbR-1F-NZg" secondAttribute="top" id="Qht-XR-UUc"/>
                             <constraint firstItem="vbS-0S-SVm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IbR-1F-NZg" secondAttribute="bottom" constant="16" id="SNm-dj-BMw"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="2Rq-fi-3oK" secondAttribute="trailing" constant="24" id="SZN-X0-XPy"/>
                             <constraint firstItem="TXu-zS-695" firstAttribute="bottom" secondItem="IDh-Ys-khP" secondAttribute="top" id="TWN-ts-D8F"/>
                             <constraint firstItem="2Rq-fi-3oK" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Xdx-iR-xfi"/>
                             <constraint firstItem="IbR-1F-NZg" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Z6A-Bh-GR4"/>
+                            <constraint firstItem="9c6-Db-Ft9" firstAttribute="centerY" secondItem="2Rq-fi-3oK" secondAttribute="centerY" id="aWw-WI-BHR"/>
+                            <constraint firstItem="2Rq-fi-3oK" firstAttribute="trailing" secondItem="9c6-Db-Ft9" secondAttribute="trailing" constant="16" id="e4k-RD-O4U"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="vbS-0S-SVm" secondAttribute="trailing" constant="24" id="eYl-gr-mOc"/>
                             <constraint firstItem="eou-0h-JPH" firstAttribute="top" secondItem="2Rq-fi-3oK" secondAttribute="bottom" constant="2" id="gbF-Bb-y2e"/>
                             <constraint firstItem="TXu-zS-695" firstAttribute="top" secondItem="V3Y-ka-zYZ" secondAttribute="bottom" constant="2" id="i3D-Yg-nZr"/>
@@ -167,6 +182,7 @@
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="eou-0h-JPH" secondAttribute="trailing" constant="32" id="s0G-im-SeJ"/>
                             <constraint firstItem="TXu-zS-695" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="32" id="sae-dC-sDZ"/>
                             <constraint firstItem="eou-0h-JPH" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="32" id="tft-ZE-Ae3"/>
+                            <constraint firstItem="bPT-0I-VGb" firstAttribute="bottom" secondItem="IbR-1F-NZg" secondAttribute="bottom" id="vWu-85-NN3"/>
                             <constraint firstItem="jz8-YO-A2d" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="vpu-78-FRx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
@@ -178,9 +194,12 @@
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="IbR-1F-NZg" id="muo-Fc-fEa"/>
+                        <outlet property="emailErrorLabel" destination="eou-0h-JPH" id="eAo-PX-ais"/>
+                        <outlet property="emailSpinner" destination="9c6-Db-Ft9" id="AVH-ds-yMF"/>
                         <outlet property="emailTextField" destination="2Rq-fi-3oK" id="5uA-GW-Pl0"/>
                         <outlet property="mainButtonBottomConstraint" destination="pfM-jt-1st" id="di4-OI-r2u"/>
                         <outlet property="mainButtonTopConstraint" destination="Kgd-oT-ZTW" id="9TA-cd-ldM"/>
+                        <outlet property="passwordErrorLabel" destination="TXu-zS-695" id="Pie-zk-6qE"/>
                         <outlet property="passwordTextField" destination="V3Y-ka-zYZ" id="iBZ-ZZ-kZB"/>
                         <outlet property="registerMessageLabel" destination="vbS-0S-SVm" id="pH8-7B-58g"/>
                         <outlet property="titleLabel" destination="jz8-YO-A2d" id="24b-Q9-pEU"/>

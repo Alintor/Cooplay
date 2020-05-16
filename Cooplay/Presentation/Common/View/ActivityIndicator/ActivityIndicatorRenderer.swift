@@ -11,6 +11,7 @@ import UIKit
 private enum ActivityIndicatorRendererConstant {
     
     static let viewTag = 13246
+    static let backgroundTag = 43632352
 }
 
 protocol ActivityIndicatorView: class {
@@ -54,11 +55,22 @@ protocol ActivityIndicatorRenderer {
 
 extension ActivityIndicatorRenderer where Self: UIViewController {
     
+    var topWindow: UIWindow? {
+        for window in UIApplication.shared.windows.reversed() {
+            if window.windowLevel == UIWindow.Level.normal && window.isKeyWindow && window.frame != CGRect.zero { return window }
+        }
+        return nil
+    }
+    
     
     
     func showProgress(indicatorType: ActivityIndicatorType = .arrows) {
-        view.isUserInteractionEnabled = false
+        guard let view = topWindow else { return }
         let activityView = indicatorType.view
+        let backgroundView = UIView(frame: view.frame)
+        backgroundView.backgroundColor = R.color.background()?.withAlphaComponent(0.9)
+        backgroundView.tag = ActivityIndicatorRendererConstant.backgroundTag
+        view.addSubview(backgroundView)
         activityView.addToView(view)
         view.layoutIfNeeded()
         activityView.start()
@@ -66,12 +78,15 @@ extension ActivityIndicatorRenderer where Self: UIViewController {
     }
     
     func hideProgress() {
-        view.isUserInteractionEnabled = true
+        guard let view = topWindow else { return }
         if let activityView = view.viewWithTag(ActivityIndicatorRendererConstant.viewTag) {
             if let activityView = activityView as? ActivityIndicatorView {
                 activityView.stop()
             }
             activityView.removeFromSuperview()
+        }
+        if let backgroundView = view.viewWithTag(ActivityIndicatorRendererConstant.backgroundTag) {
+            backgroundView.removeFromSuperview()
         }
     }
 }

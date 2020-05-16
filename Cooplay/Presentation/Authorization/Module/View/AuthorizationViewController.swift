@@ -16,15 +16,21 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         static let animationDelay: TimeInterval = 0.05
         static let keyboardHeightKey = "KeyboardHeight"
         static let durationKey = "Duration"
+        static let textFieldLeftPadding: CGFloat = 16
+        static let textFieldRightPadding: CGFloat = 42
+        static let passworSecurityAnimationDuration: TimeInterval = 0.2
     }
 
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var registerMessageLabel: UILabel!
     @IBOutlet weak var togglePasswordSecurityButton: UIButton!
+    @IBOutlet weak var emailSpinner: UIActivityIndicatorView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainButtonTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainButtonBottomConstraint: NSLayoutConstraint!
@@ -36,23 +42,36 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
 
     var output: AuthorizationModuleInput?
     var viewIsReady: (() -> Void)?
+    var fieldValueChanged: ((_ field: AuthorizationField) -> Void)?
+    var nextAction: (() -> Void)?
+    var checkEmail: (() -> Void)?
+    var passwordRecoveryAction: (() -> Void)?
+    var registrationAction: (() -> Void)?
 
     // MARK: - View in
 
     func setupInitialState() {
         registerForKeyboardEvents()
+        setNextButtonEnabled(false)
+        hideEmailChecking()
         emailTextField.attributedPlaceholder = NSAttributedString(
             string: R.string.localizable.authorizationEmailTextFieldPlaceholder(),
             attributes: [NSAttributedString.Key.foregroundColor: R.color.textSecondary()!]
         )
-        emailTextField.layer.borderColor = R.color.shapeBackground()?.cgColor
-        emailTextField.setPaddingPoints(left: 16, right: 16)
+        emailTextField.setState(.normal)
+        emailTextField.setPaddingPoints(
+            left: Constant.textFieldLeftPadding,
+            right: Constant.textFieldRightPadding
+        )
         passwordTextField.attributedPlaceholder = NSAttributedString(
             string: R.string.localizable.authorizationPasswordTextFieldPlaceholder(),
             attributes: [NSAttributedString.Key.foregroundColor: R.color.textSecondary()!]
         )
-        passwordTextField.layer.borderColor = R.color.shapeBackground()?.cgColor
-        passwordTextField.setPaddingPoints(left: 16, right: 48)
+        passwordTextField.setState(.normal)
+        passwordTextField.setPaddingPoints(
+            left: Constant.textFieldLeftPadding,
+            right: Constant.textFieldRightPadding
+        )
         let registerMessage = R.string.localizable.authorizationRegisterMessage()
         let registerMessageAttributed = NSMutableAttributedString(string: registerMessage)
         if let range = registerMessage.range(
@@ -64,6 +83,48 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             )
         }
         registerMessageLabel.attributedText = registerMessageAttributed
+    }
+    
+    func showErrorMessage(_ message: String, forField field: AuthorizationField) {
+        switch field {
+        case .email:
+            emailTextField.setState(.error)
+            emailErrorLabel.text = message
+        case .password:
+            passwordTextField.setState(.error)
+            passwordErrorLabel.text = message
+        }
+    }
+    
+    func cleanErrorMessage(forField field: AuthorizationField) {
+        switch field {
+        case .email:
+            emailTextField.setState(.normal)
+            emailErrorLabel.text = " "
+        case .password:
+            passwordTextField.setState(.normal)
+            passwordErrorLabel.text = " "
+        }
+    }
+    
+    func cleanErrorMessages() {
+        cleanErrorMessage(forField: .email(value: nil))
+        cleanErrorMessage(forField: .password(value: nil))
+    }
+    
+    func setNextButtonEnabled(_ isEnabled: Bool) {
+        actionButton.isEnabled = isEnabled
+        actionButton.alpha = isEnabled ? 1 : 0.5
+    }
+    
+    func showEmailChecking() {
+        emailSpinner.isHidden = false
+        emailSpinner.startAnimating()
+    }
+    
+    func hideEmailChecking() {
+        emailSpinner.stopAnimating()
+        emailSpinner.isHidden = true
     }
 
 	// MARK: - Life cycle
@@ -148,14 +209,16 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     
     @IBAction func actionButtonTapped() {
         view.endEditing(true)
+        guard actionButton.isEnabled else { return }
+        nextAction?()
     }
     
     @IBAction func revoveryPasswordButtonTapped() {
-    
+        passwordRecoveryAction?()
     }
     
     @IBAction func registerMessageTapped(_ sender: Any) {
-    
+        registrationAction?()
     }
     
     @IBAction func togglePasswordSecurityButtonTapped() {
@@ -164,15 +227,26 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         let image = secureTextEntry ? R.image.commonShow() : R.image.commonHide()
         self.togglePasswordSecurityButton.setImage(image, for: .normal)
     }
+    
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        let value = sender.text
+        switch sender {
+        case emailTextField:
+            fieldValueChanged?(.email(value: value))
+        case passwordTextField:
+            fieldValueChanged?(.password(value: value))
+        default: break
+        }
+    }
 }
 
 extension AuthorizationViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = R.color.actionAccent()?.cgColor
+        textField.setState(.highlighted)
         switch textField {
         case passwordTextField:
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
                 self.togglePasswordSecurityButton.alpha = 1
             }
         default: break
@@ -180,12 +254,14 @@ extension AuthorizationViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = R.color.shapeBackground()?.cgColor
+        textField.setState(.normal)
         switch textField {
         case passwordTextField:
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
                 self.togglePasswordSecurityButton.alpha = 0
             }
+        case emailTextField:
+            checkEmail?()
         default: break
         }
     }

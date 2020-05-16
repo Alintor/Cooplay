@@ -89,3 +89,6 @@
 "authorization.actionButton.title" = "Войти";
 "authorization.registerMessage" = "Нет аккаунта? Создать аккаунт";
 "authorization.registerMessage.highlight" = "Создать аккаунт";
+"authorization.error.email.incorret" = "Email введён не верно";
+"authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
+"authorization.error.password.wrong" = "Неверный пароль";
