@@ -8,6 +8,15 @@
 import UIKit
 
 final class AuthorizationViewController: UIViewController, AuthorizationViewInput {
+    
+    private enum Constant {
+        
+        static let topConstraint: CGFloat = 116
+        static let mainButtonBottomConstraint: CGFloat = GlobalConstant.isSmallScreen ? 8 : 16
+        static let animationDelay: TimeInterval = 0.05
+        static let keyboardHeightKey = "KeyboardHeight"
+        static let durationKey = "Duration"
+    }
 
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,6 +26,8 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     @IBOutlet weak var registerMessageLabel: UILabel!
     @IBOutlet weak var togglePasswordSecurityButton: UIButton!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainButtonBottomConstraint: NSLayoutConstraint!
     
     var keyboardWillShowObserver: NSObjectProtocol?
     var keyboardWillHideObserver: NSObjectProtocol?
@@ -68,12 +79,49 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     
     // MARK: - KeyboardHandler
     
+    private var prevKeyboardHeight: CGFloat = 0
+    private var prevDuration: TimeInterval = 0
+    
     func keyboardWillShow(keyboardHeight: CGFloat, duration: TimeInterval) {
+        var duration = duration
+        if duration == 0 {
+            duration = prevDuration
+        }
+        var userInfo: [String: Any] = [
+            Constant.keyboardHeightKey: prevKeyboardHeight,
+            Constant.durationKey: duration - Constant.animationDelay
+        ]
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(animateKeyboardShowing),
+            object: userInfo
+        )
+        userInfo[Constant.keyboardHeightKey] = keyboardHeight
+        perform(
+            #selector(animateKeyboardShowing),
+            with: userInfo,
+            afterDelay: Constant.animationDelay
+        )
+        prevKeyboardHeight = keyboardHeight
+        prevDuration = duration
+    }
+    
+    @objc func animateKeyboardShowing(userInfo: [String: Any]) {
+        guard
+            let keyboardHeight = userInfo[Constant.keyboardHeightKey] as? CGFloat,
+            let duration = userInfo[Constant.durationKey] as? TimeInterval
+        else { return }
         topConstraint.constant = 0
+        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
+        mainButtonBottomConstraint.isActive = true
+        mainButtonTopConstraint.isActive = false
         UIView.animate(
             withDuration: duration,
             animations: { [weak self] in
                 self?.titleLabel.alpha = 0
+                if GlobalConstant.isSmallScreen {
+                    self?.titleLabel.text = nil
+                }
                 self?.view.layoutIfNeeded()
             },
             completion: { [weak self] (_) in
@@ -83,10 +131,15 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     }
     
     func keyboardWillHide(keyboardHeight: CGFloat, duration: TimeInterval) {
-        topConstraint.constant = 116
+        topConstraint.constant = Constant.topConstraint
+        mainButtonBottomConstraint.isActive = false
+        mainButtonTopConstraint.isActive = true
         navigationItem.title = nil
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1
+            if GlobalConstant.isSmallScreen {
+                self?.titleLabel.text = R.string.localizable.authorizationTitle()
+            }
             self?.view.layoutIfNeeded()
         }
     }

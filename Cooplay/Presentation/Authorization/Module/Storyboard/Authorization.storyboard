@@ -35,7 +35,7 @@
                                 </constraints>
                                 <color key="textColor" name="text.primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartQuotesType="no" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -49,7 +49,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V3Y-ka-zYZ">
-                                <rect key="frame" x="24" y="268.5" width="327" height="55"/>
+                                <rect key="frame" x="24" y="267.5" width="327" height="55"/>
                                 <color key="backgroundColor" name="input"/>
                                 <color key="tintColor" name="action.accent"/>
                                 <constraints>
@@ -57,7 +57,7 @@
                                 </constraints>
                                 <color key="textColor" name="text.primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" smartQuotesType="no" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -74,7 +74,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDh-Ys-khP">
-                                <rect key="frame" x="293" y="339.5" width="58" height="36"/>
+                                <rect key="frame" x="293" y="340.5" width="58" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" name="action.accent"/>
                                 <state key="normal" title="Button"/>
@@ -86,13 +86,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1F-NZg">
-                                <rect key="frame" x="24" y="407.5" width="327" height="55"/>
+                                <rect key="frame" x="24" y="408.5" width="327" height="55"/>
                                 <color key="backgroundColor" name="action.accent"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="XM9-sg-NON"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title=" ">
                                     <color key="titleColor" name="text.primary"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -116,7 +116,7 @@
                                 </connections>
                             </label>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-OF-1ZI">
-                                <rect key="frame" x="311" y="284" width="24" height="24"/>
+                                <rect key="frame" x="311" y="283" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="2pS-1P-RlM"/>
                                     <constraint firstAttribute="width" constant="24" id="hRL-de-7Gm"/>
@@ -127,6 +127,18 @@
                                     <action selector="togglePasswordSecurityButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="bO5-RS-1px"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-0h-JPH">
+                                <rect key="frame" x="32" y="238.5" width="311" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="red"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXu-zS-695">
+                                <rect key="frame" x="32" y="324.5" width="311" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.2274509804" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
@@ -134,27 +146,41 @@
                             <constraint firstItem="V3Y-ka-zYZ" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="1y7-RQ-3gN"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="vbS-0S-SVm" secondAttribute="bottom" constant="48" id="21F-FQ-HAN"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="IDh-Ys-khP" secondAttribute="trailing" constant="24" id="5EQ-SI-1mr"/>
+                            <constraint firstItem="V3Y-ka-zYZ" firstAttribute="top" secondItem="eou-0h-JPH" secondAttribute="bottom" constant="13" id="65o-9W-8Fa"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="IbR-1F-NZg" secondAttribute="trailing" constant="24" id="78R-5v-rDd"/>
                             <constraint firstItem="vbS-0S-SVm" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Ahe-LW-B9K"/>
-                            <constraint firstItem="V3Y-ka-zYZ" firstAttribute="top" secondItem="2Rq-fi-3oK" secondAttribute="bottom" constant="32" id="C1Q-qQ-LBz"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="24" id="Kbn-OF-uzu"/>
                             <constraint firstItem="IbR-1F-NZg" firstAttribute="top" secondItem="IDh-Ys-khP" secondAttribute="bottom" constant="32" id="Kgd-oT-ZTW"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="TXu-zS-695" secondAttribute="trailing" constant="32" id="O9k-Yv-XeC"/>
                             <constraint firstItem="XgY-OF-1ZI" firstAttribute="trailing" secondItem="V3Y-ka-zYZ" secondAttribute="trailing" constant="-16" id="OBF-oi-j9a"/>
                             <constraint firstItem="jz8-YO-A2d" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" priority="250" constant="116" id="OEg-Vf-3Cj"/>
-                            <constraint firstItem="IDh-Ys-khP" firstAttribute="top" secondItem="V3Y-ka-zYZ" secondAttribute="bottom" constant="16" id="OFR-Zk-h9Q"/>
                             <constraint firstItem="vbS-0S-SVm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IbR-1F-NZg" secondAttribute="bottom" constant="16" id="SNm-dj-BMw"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="2Rq-fi-3oK" secondAttribute="trailing" constant="24" id="SZN-X0-XPy"/>
+                            <constraint firstItem="TXu-zS-695" firstAttribute="bottom" secondItem="IDh-Ys-khP" secondAttribute="top" id="TWN-ts-D8F"/>
                             <constraint firstItem="2Rq-fi-3oK" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Xdx-iR-xfi"/>
                             <constraint firstItem="IbR-1F-NZg" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="Z6A-Bh-GR4"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="vbS-0S-SVm" secondAttribute="trailing" constant="24" id="eYl-gr-mOc"/>
+                            <constraint firstItem="eou-0h-JPH" firstAttribute="top" secondItem="2Rq-fi-3oK" secondAttribute="bottom" constant="2" id="gbF-Bb-y2e"/>
+                            <constraint firstItem="TXu-zS-695" firstAttribute="top" secondItem="V3Y-ka-zYZ" secondAttribute="bottom" constant="2" id="i3D-Yg-nZr"/>
                             <constraint firstItem="XgY-OF-1ZI" firstAttribute="centerY" secondItem="V3Y-ka-zYZ" secondAttribute="centerY" id="nEz-JG-EJR"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="IbR-1F-NZg" secondAttribute="bottom" constant="203.5" id="pfM-jt-1st"/>
+                            <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="eou-0h-JPH" secondAttribute="trailing" constant="32" id="s0G-im-SeJ"/>
+                            <constraint firstItem="TXu-zS-695" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="32" id="sae-dC-sDZ"/>
+                            <constraint firstItem="eou-0h-JPH" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="32" id="tft-ZE-Ae3"/>
                             <constraint firstItem="jz8-YO-A2d" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="vpu-78-FRx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pfM-jt-1st"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="IbR-1F-NZg" id="muo-Fc-fEa"/>
                         <outlet property="emailTextField" destination="2Rq-fi-3oK" id="5uA-GW-Pl0"/>
+                        <outlet property="mainButtonBottomConstraint" destination="pfM-jt-1st" id="di4-OI-r2u"/>
+                        <outlet property="mainButtonTopConstraint" destination="Kgd-oT-ZTW" id="9TA-cd-ldM"/>
                         <outlet property="passwordTextField" destination="V3Y-ka-zYZ" id="iBZ-ZZ-kZB"/>
                         <outlet property="registerMessageLabel" destination="vbS-0S-SVm" id="pH8-7B-58g"/>
                         <outlet property="titleLabel" destination="jz8-YO-A2d" id="24b-Q9-pEU"/>
@@ -169,7 +195,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="132" y="132"/>
+            <point key="canvasLocation" x="132" y="131.78410794602701"/>
         </scene>
     </scenes>
     <resources>
