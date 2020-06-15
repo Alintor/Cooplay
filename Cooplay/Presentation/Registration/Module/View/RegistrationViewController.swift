@@ -1,17 +1,17 @@
 //
-//  AuthorizationViewController.swift
+//  RegistrationViewController.swift
 //  Cooplay
 //
-//  Created by Alexandr Ovchinnikov on 22/04/2020.
+//  Created by Alexandr Ovchinnikov on 27/05/2020.
 //
 
 import UIKit
 
-final class AuthorizationViewController: UIViewController, AuthorizationViewInput {
+final class RegistrationViewController: UIViewController, RegistrationViewInput {
     
     private enum Constant {
         
-        static let topConstraint: CGFloat = 116
+        static let topConstraint: CGFloat = GlobalConstant.isSmallScreen ? 24 : 70
         static let mainButtonBottomConstraint: CGFloat = GlobalConstant.isSmallScreen ? 8 : 16
         static let animationDelay: TimeInterval = 0.05
         static let keyboardHeightKey = "KeyboardHeight"
@@ -20,42 +20,55 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         static let textFieldRightPadding: CGFloat = 42
         static let passworSecurityAnimationDuration: TimeInterval = 0.2
     }
-
     
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var passwordSymbolsCountErrorLabel: UILabel!
+    @IBOutlet weak var passwordSymbolsCountErrorImageView: UIImageView!
+    @IBOutlet weak var passwordBigSymbolsErrorLabel: UILabel!
+    @IBOutlet weak var passwordBigSymbolsErrorImageView: UIImageView!
+    @IBOutlet weak var passwordNumericSymbolErrorLabel: UILabel!
+    @IBOutlet weak var passwordNumericSymbolErrorImageView: UIImageView!
+    @IBOutlet weak var passwordConfirmTextField: UITextField!
+    @IBOutlet weak var passwordConfirmErrorLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var registerMessageLabel: UILabel!
+    @IBOutlet weak var loginMessageLabel: UILabel!
     @IBOutlet weak var togglePasswordSecurityButton: UIButton!
+    @IBOutlet weak var togglePasswordConfirmSecurityButton: UIButton!
     @IBOutlet weak var emailSpinner: UIActivityIndicatorView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainButtonTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainActionBackgroundView: UIView!
     
     var keyboardWillShowObserver: NSObjectProtocol?
     var keyboardWillHideObserver: NSObjectProtocol?
-    
+
     // MARK: - View out
 
-    var output: AuthorizationModuleInput?
+    var output: RegistrationModuleInput?
     var viewIsReady: (() -> Void)?
-    var fieldValueChanged: ((_ field: AuthorizationField) -> Void)?
-    var nextAction: (() -> Void)?
-    var checkEmail: (() -> Void)?
-    var passwordRecoveryAction: (() -> Void)?
-    var registrationAction: (() -> Void)?
 
     // MARK: - View in
 
     func setupInitialState() {
         registerForKeyboardEvents()
         setNextButtonEnabled(false)
+        topConstraint.constant = Constant.topConstraint
         hideEmailChecking()
+        let gradient = CAGradientLayer(layer: mainActionBackgroundView.layer)
+        gradient.colors = [R.color.background()!.withAlphaComponent(0).cgColor, R.color.background()!.cgColor]
+        gradient.startPoint = CGPoint(x:1, y:0)
+        gradient.endPoint = CGPoint(x:1, y:0.3)
+        gradient.frame = mainActionBackgroundView.bounds
+        mainActionBackgroundView.layer.insertSublayer(gradient, at: 0)
+        passwordSymbolsCountErrorLabel.text = R.string.localizable.registrationPasswordSymbolsCountLabelTitle(8)
         emailTextField.attributedPlaceholder = NSAttributedString(
-            string: R.string.localizable.authorizationEmailTextFieldPlaceholder(),
+            string: R.string.localizable.registrationEmailTextFieldPlaceholder(),
             attributes: [NSAttributedString.Key.foregroundColor: R.color.textSecondary()!]
         )
         emailTextField.setState(.normal)
@@ -64,7 +77,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             right: Constant.textFieldRightPadding
         )
         passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: R.string.localizable.authorizationPasswordTextFieldPlaceholder(),
+            string: R.string.localizable.registrationPasswordTextFieldPlaceholder(),
             attributes: [NSAttributedString.Key.foregroundColor: R.color.textSecondary()!]
         )
         passwordTextField.setState(.normal)
@@ -72,44 +85,26 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             left: Constant.textFieldLeftPadding,
             right: Constant.textFieldRightPadding
         )
-        let registerMessage = R.string.localizable.authorizationRegisterMessage()
-        let registerMessageAttributed = NSMutableAttributedString(string: registerMessage)
-        if let range = registerMessage.range(
-            of: R.string.localizable.authorizationRegisterMessageHighlight()) {
-            registerMessageAttributed.addAttribute(
+        passwordConfirmTextField.attributedPlaceholder = NSAttributedString(
+            string: R.string.localizable.registrationPasswordConfirmTextFieldPlaceholder(),
+            attributes: [NSAttributedString.Key.foregroundColor: R.color.textSecondary()!]
+        )
+        passwordConfirmTextField.setState(.normal)
+        passwordConfirmTextField.setPaddingPoints(
+            left: Constant.textFieldLeftPadding,
+            right: Constant.textFieldRightPadding
+        )
+        let loginMessage = R.string.localizable.registrationLoginMessage()
+        let loginMessageAttributed = NSMutableAttributedString(string: loginMessage)
+        if let range = loginMessage.range(
+            of: R.string.localizable.registrationLoginMessageHighlight()) {
+            loginMessageAttributed.addAttribute(
                 .foregroundColor,
                 value: R.color.actionAccent()!,
-                range: NSRange(range, in: registerMessage)
+                range: NSRange(range, in: loginMessage)
             )
         }
-        registerMessageLabel.attributedText = registerMessageAttributed
-    }
-    
-    func showErrorMessage(_ message: String, forField field: AuthorizationField) {
-        switch field {
-        case .email:
-            emailTextField.setState(.error)
-            emailErrorLabel.text = message
-        case .password:
-            passwordTextField.setState(.error)
-            passwordErrorLabel.text = message
-        }
-    }
-    
-    func cleanErrorMessage(forField field: AuthorizationField) {
-        switch field {
-        case .email:
-            emailTextField.setState(.normal)
-            emailErrorLabel.text = " "
-        case .password:
-            passwordTextField.setState(.normal)
-            passwordErrorLabel.text = " "
-        }
-    }
-    
-    func cleanErrorMessages() {
-        cleanErrorMessage(forField: .email(value: nil))
-        cleanErrorMessage(forField: .password(value: nil))
+        loginMessageLabel.attributedText = loginMessageAttributed
     }
     
     func setNextButtonEnabled(_ isEnabled: Bool) {
@@ -172,6 +167,14 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             let keyboardHeight = userInfo[Constant.keyboardHeightKey] as? CGFloat,
             let duration = userInfo[Constant.durationKey] as? TimeInterval
         else { return }
+        let contentInset = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: keyboardHeight + actionButton.frame.height
+                + Constant.mainButtonBottomConstraint * 2,
+            right: 0
+        )
+        scrollView.contentInset = contentInset
         topConstraint.constant = 0
         mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
         mainButtonBottomConstraint.isActive = true
@@ -186,12 +189,13 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
                 self?.view.layoutIfNeeded()
             },
             completion: { [weak self] (_) in
-                self?.navigationItem.title = R.string.localizable.authorizationTitle()
+                self?.navigationItem.title = R.string.localizable.registrationTitle()
             }
         )
     }
     
     func keyboardWillHide(keyboardHeight: CGFloat, duration: TimeInterval) {
+        scrollView.contentInset = .zero
         topConstraint.constant = Constant.topConstraint
         mainButtonBottomConstraint.isActive = false
         mainButtonTopConstraint.isActive = true
@@ -199,7 +203,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1
             if GlobalConstant.isSmallScreen {
-                self?.titleLabel.text = R.string.localizable.authorizationTitle()
+                self?.titleLabel.text = R.string.localizable.registrationTitle()
             }
             self?.view.layoutIfNeeded()
         }
@@ -210,62 +214,98 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     @IBAction func actionButtonTapped() {
         view.endEditing(true)
         guard actionButton.isEnabled else { return }
-        nextAction?()
+        //nextAction?()
     }
     
-    @IBAction func revoveryPasswordButtonTapped() {
-        passwordRecoveryAction?()
+    
+    @IBAction func loginMessageTapped(_ sender: Any) {
+        //registrationAction?()
     }
     
-    @IBAction func registerMessageTapped(_ sender: Any) {
-        registrationAction?()
-    }
-    
-    @IBAction func backgroundViewTapped() {
-        view.endEditing(true)
-    }
-    
-    @IBAction func togglePasswordSecurityButtonTapped() {
-        let secureTextEntry = !passwordTextField.isSecureTextEntry
-        passwordTextField.isSecureTextEntry = secureTextEntry
+    @IBAction func togglePasswordSecurityButtonTapped(_ sender: UIButton) {
+        var secureTextEntry = true
+        switch sender {
+        case togglePasswordSecurityButton:
+            secureTextEntry = !passwordTextField.isSecureTextEntry
+            passwordTextField.isSecureTextEntry = secureTextEntry
+        case togglePasswordConfirmSecurityButton:
+            secureTextEntry = !passwordConfirmTextField.isSecureTextEntry
+            passwordConfirmTextField.isSecureTextEntry = secureTextEntry
+        default:
+            break
+        }
         let image = secureTextEntry ? R.image.commonShow() : R.image.commonHide()
-        self.togglePasswordSecurityButton.setImage(image, for: .normal)
+        sender.setImage(image, for: .normal)
     }
     
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
-        let value = sender.text
-        switch sender {
-        case emailTextField:
-            fieldValueChanged?(.email(value: value))
-        case passwordTextField:
-            fieldValueChanged?(.password(value: value))
-        default: break
-        }
+//        let value = sender.text
+//        switch sender {
+//        case emailTextField:
+//            fieldValueChanged?(.email(value: value))
+//        case passwordTextField:
+//            fieldValueChanged?(.password(value: value))
+//        default: break
+//        }
     }
 }
 
-extension AuthorizationViewController: UITextFieldDelegate {
+extension RegistrationViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.setState(.highlighted)
+        switch textField {
+        case passwordTextField:
+            let text = passwordTextField.text
+            if text == nil || text!.isEmpty {
+                textField.setState(.highlighted)
+            }
+        default:
+            textField.setState(.highlighted)
+        }
         switch textField {
         case passwordTextField:
             UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
                 self.togglePasswordSecurityButton.alpha = 1
             }
+        case passwordConfirmTextField:
+        UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
+            self.togglePasswordConfirmSecurityButton.alpha = 1
+        }
         default: break
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.setState(.normal)
+        switch textField {
+        case passwordTextField:
+            let text = passwordTextField.text
+            if text == nil || text!.isEmpty {
+                textField.setState(.normal)
+                passwordSymbolsCountErrorLabel.textColor = R.color.textSecondary()
+                passwordBigSymbolsErrorLabel.textColor = R.color.textSecondary()
+                passwordNumericSymbolErrorLabel.textColor = R.color.textSecondary()
+                passwordSymbolsCountErrorImageView.tintColor = R.color.textSecondary()
+                passwordBigSymbolsErrorImageView.tintColor = R.color.textSecondary()
+                passwordNumericSymbolErrorImageView.tintColor = R.color.textSecondary()
+                passwordSymbolsCountErrorImageView.image = R.image.statusNormalOntime()
+                passwordBigSymbolsErrorImageView.image = R.image.statusNormalOntime()
+                passwordNumericSymbolErrorImageView.image = R.image.statusNormalOntime()
+            }
+        default:
+            textField.setState(.normal)
+        }
         switch textField {
         case passwordTextField:
             UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
                 self.togglePasswordSecurityButton.alpha = 0
             }
+        case passwordConfirmTextField:
+        UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
+            self.togglePasswordConfirmSecurityButton.alpha = 0
+        }
         case emailTextField:
-            checkEmail?()
+            //checkEmail?()
+            break
         default: break
         }
     }
@@ -275,6 +315,8 @@ extension AuthorizationViewController: UITextFieldDelegate {
         case emailTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
+            passwordConfirmTextField.becomeFirstResponder()
+        case passwordConfirmTextField:
             actionButtonTapped()
         default:
             textField.resignFirstResponder()

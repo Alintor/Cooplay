@@ -30,7 +30,8 @@ final class ApplicationAssembly {
             SearchGameAssemblyContainer(),
             SearchMembersAssemblyContainer(),
             IntroAssemblyContainer(),
-            AuthorizationAssemblyContainer()
+            AuthorizationAssemblyContainer(),
+            RegistrationAssemblyContainer()
         ])
     }
 }

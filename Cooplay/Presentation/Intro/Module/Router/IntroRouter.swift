@@ -26,6 +26,11 @@ extension IntroRouter: IntroRouterInput {
     }
     
     func openRegistration() {
-        
+        try? transitionHandler.forStoryboard(
+            factory: StoryboardFactory(storyboard: R.storyboard.registration()),
+            to: RegistrationModuleInput.self
+        )
+        .to(preferred: .navigation(style: .push))
+        .perform()
     }
 }

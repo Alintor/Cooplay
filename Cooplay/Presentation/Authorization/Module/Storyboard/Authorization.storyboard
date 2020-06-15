@@ -35,7 +35,7 @@
                                 </constraints>
                                 <color key="textColor" name="text.primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" smartQuotesType="no" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" smartQuotesType="no" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -58,7 +58,7 @@
                                 </constraints>
                                 <color key="textColor" name="text.primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" smartQuotesType="no" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES" smartQuotesType="no" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -151,6 +151,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2Rq-fi-3oK" firstAttribute="top" secondItem="jz8-YO-A2d" secondAttribute="bottom" constant="32" id="00R-UH-F3p"/>
                             <constraint firstItem="V3Y-ka-zYZ" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="1y7-RQ-3gN"/>
@@ -191,6 +192,9 @@
                                 <exclude reference="pfM-jt-1st"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="D1c-WD-0eM" appends="YES" id="76k-rL-pgq"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="IbR-1F-NZg" id="muo-Fc-fEa"/>
@@ -211,6 +215,11 @@
                 <tapGestureRecognizer id="Lpc-Rd-SY9">
                     <connections>
                         <action selector="registerMessageTapped:" destination="rGT-np-7OK" id="eOv-S3-TeI"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="D1c-WD-0eM">
+                    <connections>
+                        <action selector="backgroundViewTapped" destination="rGT-np-7OK" id="nea-0Y-uev"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

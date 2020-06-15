@@ -465,7 +465,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 8 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 9 storyboards.
   struct storyboard {
     /// Storyboard `Authorization`.
     static let authorization = _R.storyboard.authorization()
@@ -479,6 +479,8 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `NewEvent`.
     static let newEvent = _R.storyboard.newEvent()
+    /// Storyboard `Registration`.
+    static let registration = _R.storyboard.registration()
     /// Storyboard `SearchGame`.
     static let searchGame = _R.storyboard.searchGame()
     /// Storyboard `SearchMembers`.
@@ -514,6 +516,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
     }
     
+    /// `UIStoryboard(name: "Registration", bundle: ...)`
+    static func registration(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.registration)
+    }
+    
     /// `UIStoryboard(name: "SearchGame", bundle: ...)`
     static func searchGame(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.searchGame)
@@ -529,20 +536,30 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 66 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 79 localization keys.
     struct localizable {
+      /// Value: %d символов
+      static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: +%@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let authorizationEmailTextFieldPlaceholder = Rswift.StringResource(key: "authorization.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Email
+      static let registrationEmailTextFieldPlaceholder = Rswift.StringResource(key: "registration.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email введён не верно
       static let authorizationErrorEmailIncorret = Rswift.StringResource(key: "authorization.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Email введён не верно
+      static let registrationErrorEmailIncorret = Rswift.StringResource(key: "registration.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Аккаунт уже существует
+      static let registrationErrorEmailAlreadyExist = Rswift.StringResource(key: "registration.error.email.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Аккаунта на данном Email не существует
       static let authorizationErrorEmailNotExist = Rswift.StringResource(key: "authorization.error.email.notExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ближайшее событие
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Большая буква
+      static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Будущие события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во сколько
@@ -559,6 +576,8 @@ struct R: Rswift.Validatable {
       static let authorizationActionButtonTitle = Rswift.StringResource(key: "authorization.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Войти
       static let introAuthButtonTitle = Rswift.StringResource(key: "intro.authButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Войти
+      static let registrationLoginMessageHighlight = Rswift.StringResource(key: "registration.loginMessage.highlight", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
@@ -615,8 +634,12 @@ struct R: Rswift.Validatable {
       static let searchGameCloseButtonTitle = Rswift.StringResource(key: "searchGame.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена
       static let searchMembersCloseButtonTitle = Rswift.StringResource(key: "searchMembers.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пароли не совпадают
+      static let registrationErrorPasswordConfirmWrong = Rswift.StringResource(key: "registration.error.passwordConfirm.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароль
       static let authorizationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "authorization.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Подтвердите пароль
+      static let registrationPasswordConfirmTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordConfirmTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
       static let newEventSearchGameButtonTitle = Rswift.StringResource(key: "newEvent.searchGameButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
@@ -641,6 +664,8 @@ struct R: Rswift.Validatable {
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Придумайте пароль
+      static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Результаты поиска
       static let searchGameSectionsSearchResults = Rswift.StringResource(key: "searchGame.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Результаты поиска
@@ -657,12 +682,25 @@ struct R: Rswift.Validatable {
       static let authorizationRegisterMessageHighlight = Rswift.StringResource(key: "authorization.registerMessage.highlight", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
       static let introRegisterButtonTitle = Rswift.StringResource(key: "intro.registerButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать аккаунт
+      static let registrationActionButtonTitle = Rswift.StringResource(key: "registration.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать аккаунт
+      static let registrationTitle = Rswift.StringResource(key: "registration.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать событие
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Уже есть аккаунт? Войти
+      static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Цифра
+      static let registrationPasswordNumericSymbolsLabelTitle = Rswift.StringResource(key: "registration.passwordNumericSymbolsLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые игры
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
       static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: %d символов
+      static func registrationPasswordSymbolsCountLabelTitle(_ value1: Int) -> String {
+        return String(format: NSLocalizedString("registration.passwordSymbolsCountLabel.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// Value: +%@ мин
       static func eventDetailsCellLateness(_ value1: String) -> String {
@@ -674,14 +712,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorization.emailTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Email
+      static func registrationEmailTextFieldPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("registration.emailTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Email введён не верно
       static func authorizationErrorEmailIncorret(_: Void = ()) -> String {
         return NSLocalizedString("authorization.error.email.incorret", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Email введён не верно
+      static func registrationErrorEmailIncorret(_: Void = ()) -> String {
+        return NSLocalizedString("registration.error.email.incorret", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
         return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Аккаунт уже существует
+      static func registrationErrorEmailAlreadyExist(_: Void = ()) -> String {
+        return NSLocalizedString("registration.error.email.alreadyExist", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Аккаунта на данном Email не существует
@@ -692,6 +745,11 @@ struct R: Rswift.Validatable {
       /// Value: Ближайшее событие
       static func eventsListSectionsActive(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.active", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Большая буква
+      static func registrationPasswordBigSymbolLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("registration.passwordBigSymbolLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Будущие события
@@ -732,6 +790,11 @@ struct R: Rswift.Validatable {
       /// Value: Войти
       static func introAuthButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("intro.authButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Войти
+      static func registrationLoginMessageHighlight(_: Void = ()) -> String {
+        return NSLocalizedString("registration.loginMessage.highlight", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Все события
@@ -874,9 +937,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchMembers.closeButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Пароли не совпадают
+      static func registrationErrorPasswordConfirmWrong(_: Void = ()) -> String {
+        return NSLocalizedString("registration.error.passwordConfirm.wrong", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Пароль
       static func authorizationPasswordTextFieldPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("authorization.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Подтвердите пароль
+      static func registrationPasswordConfirmTextFieldPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("registration.passwordConfirmTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Поиск игры
@@ -939,6 +1012,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.ontime.full", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Придумайте пароль
+      static func registrationPasswordTextFieldPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("registration.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Результаты поиска
       static func searchGameSectionsSearchResults(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.sections.searchResults", bundle: R.hostingBundle, comment: "")
@@ -979,9 +1057,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("intro.registerButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Создать аккаунт
+      static func registrationActionButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("registration.actionButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создать аккаунт
+      static func registrationTitle(_: Void = ()) -> String {
+        return NSLocalizedString("registration.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Создать событие
       static func newEventMainActionTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.mainAction.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Уже есть аккаунт? Войти
+      static func registrationLoginMessage(_: Void = ()) -> String {
+        return NSLocalizedString("registration.loginMessage", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Цифра
+      static func registrationPasswordNumericSymbolsLabelTitle(_: Void = ()) -> String {
+        return NSLocalizedString("registration.passwordNumericSymbolsLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Частые игры
@@ -1248,6 +1346,7 @@ struct _R: Rswift.Validatable {
       try intro.validate()
       try launchScreen.validate()
       try newEvent.validate()
+      try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
     }
@@ -1391,6 +1490,34 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
         }
         if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct registration: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = RegistrationViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Registration"
+      let registrationViewController = StoryboardViewControllerResource<RegistrationViewController>(identifier: "RegistrationViewController")
+      
+      func registrationViewController(_: Void = ()) -> RegistrationViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: registrationViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "common.show", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.show' is used in storyboard 'Registration', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "status.normal.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.ontime' is used in storyboard 'Registration', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Registration', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Registration', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "input", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'input' is used in storyboard 'Registration', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "red", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red' is used in storyboard 'Registration', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Registration', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'Registration', but couldn't be loaded.") }
+        }
+        if _R.storyboard.registration().registrationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'registrationViewController' could not be loaded from storyboard 'Registration' as 'RegistrationViewController'.") }
       }
       
       fileprivate init() {}

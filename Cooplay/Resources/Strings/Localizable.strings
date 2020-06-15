@@ -92,3 +92,18 @@
 "authorization.error.email.incorret" = "Email введён не верно";
 "authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
 "authorization.error.password.wrong" = "Неверный пароль";
+
+// MARK: - Registration
+"registration.title" = "Создать аккаунт";
+"registration.emailTextField.placeholder" = "Email";
+"registration.passwordTextField.placeholder" = "Придумайте пароль";
+"registration.passwordConfirmTextField.placeholder" = "Подтвердите пароль";
+"registration.actionButton.title" = "Создать аккаунт";
+"registration.loginMessage" = "Уже есть аккаунт? Войти";
+"registration.loginMessage.highlight" = "Войти";
+"registration.passwordSymbolsCountLabel.title" = "%d символов";
+"registration.passwordBigSymbolLabel.title" = "Большая буква";
+"registration.passwordNumericSymbolsLabel.title" = "Цифра";
+"registration.error.email.incorret" = "Email введён не верно";
+"registration.error.email.alreadyExist" = "Аккаунт уже существует";
+"registration.error.passwordConfirm.wrong" = "Пароли не совпадают";

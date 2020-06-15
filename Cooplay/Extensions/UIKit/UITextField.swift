@@ -14,6 +14,7 @@ extension UITextField {
         case normal
         case error
         case highlighted
+        case correct
         
         var color: CGColor? {
             switch self {
@@ -23,6 +24,8 @@ extension UITextField {
                 return R.color.red()?.cgColor
             case .highlighted:
                 return R.color.actionAccent()?.cgColor
+            case .correct:
+                return R.color.green()?.cgColor
             }
         }
     }
