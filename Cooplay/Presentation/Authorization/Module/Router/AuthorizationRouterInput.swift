@@ -9,4 +9,6 @@ import Foundation
 
 protocol AuthorizationRouterInput: StartRoutable {
 
+    func openRegistration(with email: String?)
+    func clearNavigationStack()
 }

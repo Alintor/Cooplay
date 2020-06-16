@@ -7,4 +7,5 @@
 
 protocol AuthorizationModuleInput: class {
 
+    func configure(with email: String?)
 }

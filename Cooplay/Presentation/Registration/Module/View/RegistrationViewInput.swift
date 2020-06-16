@@ -29,4 +29,5 @@ protocol RegistrationViewInput: KeyboardHandler, ActivityIndicatorRenderer {
     func setBigSymbolsErrorState(_ state: PasswordValidationState)
     func setNumericSymbolErrorState(_ state: PasswordValidationState)
     func setState(_ state: PasswordValidationState, forField field: RegistrationField)
+    func setEmail(_ text: String)
 }

@@ -27,4 +27,5 @@ protocol AuthorizationViewInput: KeyboardHandler, ActivityIndicatorRenderer {
     func setNextButtonEnabled(_ isEnabled: Bool)
     func showEmailChecking()
     func hideEmailChecking()
+    func setEmail(_ text: String)
 }

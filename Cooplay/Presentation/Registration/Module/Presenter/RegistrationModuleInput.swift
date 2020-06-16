@@ -7,4 +7,5 @@
 
 protocol RegistrationModuleInput: class {
 
+    func configure(with email: String?)
 }

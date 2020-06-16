@@ -64,8 +64,8 @@ extension AuthorizationInteractor: AuthorizationInteractorInput {
             return
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            completion(.failure(.incorrectEmail(message: R.string.localizable.authorizationErrorEmailNotExist())))
-            //completion(.success(()))
+//            completion(.failure(.incorrectEmail(message: R.string.localizable.authorizationErrorEmailNotExist())))
+            completion(.success(()))
         }
     }
 }

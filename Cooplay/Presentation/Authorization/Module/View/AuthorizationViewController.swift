@@ -126,6 +126,11 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         emailSpinner.stopAnimating()
         emailSpinner.isHidden = true
     }
+    
+    func setEmail(_ text: String) {
+        emailTextField.text = text
+        checkEmail?()
+    }
 
 	// MARK: - Life cycle
 

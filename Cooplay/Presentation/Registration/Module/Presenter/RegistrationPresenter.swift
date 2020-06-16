@@ -16,8 +16,13 @@ final class RegistrationPresenter {
             // Configure view out
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
+                self?.router.clearNavigationStack()
+                if let email = self?.email {
+                    self?.view.setEmail(email)
+                }
             }
             view.loginAction = { [weak self] in
+                self?.router.openAuthorization(with: self?.email)
             }
             view.nextAction = { [weak self] in
                 self?.view.cleanErrorMessages()
@@ -135,4 +140,7 @@ final class RegistrationPresenter {
 
 extension RegistrationPresenter: RegistrationModuleInput {
 
+    func configure(with email: String?) {
+        self.email = email
+    }
 }

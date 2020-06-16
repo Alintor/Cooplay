@@ -9,4 +9,6 @@ import Foundation
 
 protocol RegistrationRouterInput {
 
+    func openAuthorization(with email: String?)
+    func clearNavigationStack()
 }

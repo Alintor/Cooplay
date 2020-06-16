@@ -227,6 +227,11 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
             textField.setState(.normal)
         }
     }
+    
+    func setEmail(_ text: String) {
+        emailTextField.text = text
+        checkEmail?()
+    }
 
 	// MARK: - Life cycle
 
