@@ -11,4 +11,5 @@ protocol EventsListRouterInput: ContextMenuRouter {
 
     func openEvent(_ event: Event)
     func openNewEvent()
+    func openProfile()
 }

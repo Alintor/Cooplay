@@ -107,3 +107,7 @@
 "registration.error.email.incorret" = "Email введён не верно";
 "registration.error.email.alreadyExist" = "Аккаунт уже существует";
 "registration.error.passwordConfirm.wrong" = "Пароли не совпадают";
+
+// MARK: - Profile
+"profile.title" = "Профиль";
+"profile.exitButton.title" = "Сменить профиль";

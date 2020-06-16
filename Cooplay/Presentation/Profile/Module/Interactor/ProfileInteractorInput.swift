@@ -9,4 +9,5 @@ import Foundation
 
 protocol ProfileInteractorInput: class {
 
+    func logout()
 }

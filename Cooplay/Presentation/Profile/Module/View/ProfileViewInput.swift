@@ -11,6 +11,7 @@ protocol ProfileViewInput: class {
 
     var output: ProfileModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
+    var exitAction: (() -> Void)? { get set }
 
     // MARK: - View in
 

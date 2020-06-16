@@ -17,6 +17,10 @@ final class ProfilePresenter {
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
             }
+            view.exitAction = { [weak self] in
+                self?.interactor.logout()
+                self?.router.openIntro()
+            }
         }
     }
     var interactor: ProfileInteractorInput!

@@ -465,7 +465,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 9 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 11 storyboards.
   struct storyboard {
     /// Storyboard `Authorization`.
     static let authorization = _R.storyboard.authorization()
@@ -479,6 +479,10 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `NewEvent`.
     static let newEvent = _R.storyboard.newEvent()
+    /// Storyboard `Personalisation`.
+    static let personalisation = _R.storyboard.personalisation()
+    /// Storyboard `Profile`.
+    static let profile = _R.storyboard.profile()
     /// Storyboard `Registration`.
     static let registration = _R.storyboard.registration()
     /// Storyboard `SearchGame`.
@@ -516,6 +520,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
     }
     
+    /// `UIStoryboard(name: "Personalisation", bundle: ...)`
+    static func personalisation(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.personalisation)
+    }
+    
+    /// `UIStoryboard(name: "Profile", bundle: ...)`
+    static func profile(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.profile)
+    }
+    
     /// `UIStoryboard(name: "Registration", bundle: ...)`
     static func registration(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.registration)
@@ -536,7 +550,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 79 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -666,6 +680,8 @@ struct R: Rswift.Validatable {
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Профиль
+      static let profileTitle = Rswift.StringResource(key: "profile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Результаты поиска
       static let searchGameSectionsSearchResults = Rswift.StringResource(key: "searchGame.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Результаты поиска
@@ -676,6 +692,8 @@ struct R: Rswift.Validatable {
       static let eventMemberMenuItemMakeOwner = Rswift.StringResource(key: "eventMemberMenuItem.makeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сегодня
       static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сменить профиль
+      static let profileExitButtonTitle = Rswift.StringResource(key: "profile.exitButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создание события
       static let newEventTitle = Rswift.StringResource(key: "newEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
@@ -1017,6 +1035,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Профиль
+      static func profileTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profile.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Результаты поиска
       static func searchGameSectionsSearchResults(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.sections.searchResults", bundle: R.hostingBundle, comment: "")
@@ -1040,6 +1063,11 @@ struct R: Rswift.Validatable {
       /// Value: Сегодня
       static func newEventTodayButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.todayButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сменить профиль
+      static func profileExitButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profile.exitButton.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Создание события
@@ -1346,6 +1374,8 @@ struct _R: Rswift.Validatable {
       try intro.validate()
       try launchScreen.validate()
       try newEvent.validate()
+      try personalisation.validate()
+      try profile.validate()
       try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
@@ -1490,6 +1520,48 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
         }
         if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct personalisation: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = PersonalisationViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Personalisation"
+      let personalisationViewController = StoryboardViewControllerResource<PersonalisationViewController>(identifier: "PersonalisationViewController")
+      
+      func personalisationViewController(_: Void = ()) -> PersonalisationViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: personalisationViewController)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.personalisation().personalisationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'personalisationViewController' could not be loaded from storyboard 'Personalisation' as 'PersonalisationViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct profile: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = ProfileViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Profile"
+      let profileViewController = StoryboardViewControllerResource<ProfileViewController>(identifier: "ProfileViewController")
+      
+      func profileViewController(_: Void = ()) -> ProfileViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: profileViewController)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Profile', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Profile', but couldn't be loaded.") }
+        }
+        if _R.storyboard.profile().profileViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.") }
       }
       
       fileprivate init() {}

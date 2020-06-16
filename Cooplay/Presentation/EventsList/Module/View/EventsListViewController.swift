@@ -43,6 +43,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
     var itemSelected: ((_ event: Event) -> Void)?
     var newEventAction: (() -> Void)?
+    var profileAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -172,6 +173,9 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
                 width: Constant.profileDiameter,
                 height: Constant.profileDiameter
             ))
+            avatarView?.addGestureRecognizer(
+                UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
+            )
             // TODO: Set action
         }
         avatarView?.update(with: model)
@@ -260,6 +264,10 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
                 }
             }
         }
+    }
+    
+    @objc func avatarViewTapped() {
+        profileAction?()
     }
     
     // MARK: - Private

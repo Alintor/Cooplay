@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ProfileRouterInput {
+protocol ProfileRouterInput: GuestRoutable {
 
 }

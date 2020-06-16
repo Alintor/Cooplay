@@ -40,6 +40,9 @@ final class EventsListPresenter: NSObject {
             view.newEventAction = { [weak self] in
                 self?.router.openNewEvent()
             }
+            view.profileAction = { [weak self] in
+                self?.router.openProfile()
+            }
         }
     }
     var interactor: EventsListInteractorInput!

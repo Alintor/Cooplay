@@ -13,6 +13,7 @@ final class ProfileViewController: UIViewController, ProfileViewInput {
 
     var output: ProfileModuleInput?
     var viewIsReady: (() -> Void)?
+    var exitAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -26,4 +27,11 @@ final class ProfileViewController: UIViewController, ProfileViewInput {
 		super.viewDidLoad()
 		viewIsReady?()
 	}
+    
+    // MARK: - Actions
+    
+    @IBAction func exitButtonTapped(_ sender: Any) {
+        exitAction?()
+    }
+    
 }

@@ -35,4 +35,13 @@ extension EventsListRouter: EventsListRouterInput {
         .to(preferred: .navigation(style: .push))
         .perform()
     }
+    
+    func openProfile() {
+        try? transitionHandler.forStoryboard(
+            factory: StoryboardFactory(storyboard: R.storyboard.profile()),
+            to: ProfileModuleInput.self
+        )
+        .to(preferred: .navigation(style: .push))
+        .perform()
+    }
 }
