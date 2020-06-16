@@ -108,6 +108,16 @@
 "registration.error.email.alreadyExist" = "Аккаунт уже существует";
 "registration.error.passwordConfirm.wrong" = "Пароли не совпадают";
 
+// MARK: - Personalisation
+"personalisation.title" = "Персонализация";
+"personalisation.actionButton.title" = "Подтвердить";
+"personalisation.changeButton.title" = "Изменить";
+"personalisation.nickNameTextField.placeholder" = "Никнейм";
+"personalisation.error.nickname.minSymbols" = "Минимум %d символа";
+"personalisation.error.nickname.maxSymbols" = "Максимум %d символов";
+"personalisation.error.nickname.alreadyExist" = "Такой ник уже занят";
+"personalisation.error.nickname.space" = "Не должно быть пробелов";
+
 // MARK: - Profile
 "profile.title" = "Профиль";
 "profile.exitButton.title" = "Сменить профиль";

@@ -115,7 +115,7 @@
                                 <rect key="frame" x="24" y="595" width="327" height="24"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" name="text.primary"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Lpc-Rd-SY9" appends="YES" id="hDc-sD-Bwo"/>

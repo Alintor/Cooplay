@@ -7,4 +7,5 @@
 
 protocol PersonalisationModuleInput: class {
 
+    func configure(with user: User)
 }

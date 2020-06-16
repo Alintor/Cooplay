@@ -11,4 +11,5 @@ protocol RegistrationRouterInput {
 
     func openAuthorization(with email: String?)
     func clearNavigationStack()
+    func openPersonalisation(with user: User)
 }

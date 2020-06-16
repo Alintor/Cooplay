@@ -298,7 +298,7 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKU-4Y-iaC" customClass="NewEventTimeButtonView" customModule="Cooplay" customModuleProvider="target">
                                                         <rect key="frame" x="24" y="0.0" width="327" height="56"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="56" id="jLq-ro-g3g"/>

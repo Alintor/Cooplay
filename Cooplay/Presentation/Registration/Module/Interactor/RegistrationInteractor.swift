@@ -104,9 +104,17 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     func register(
         email: String?,
         password: String?,
-        completion: @escaping (Result<Void, RegistrationError>) -> Void) {
+        completion: @escaping (Result<User, RegistrationError>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion(.success(()))
+            let user = User(
+                id: "fdsswdfersdqardesf",
+                name: nil,
+                avatarPath: nil,
+                state: nil,
+                lateness: nil,
+                isOwner: nil
+            )
+            completion(.success(user))
         }
     }
 }

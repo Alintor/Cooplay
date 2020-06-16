@@ -82,6 +82,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
                 range: NSRange(range, in: registerMessage)
             )
         }
+        registerMessageLabel.textColor = R.color.textPrimary()
         registerMessageLabel.attributedText = registerMessageAttributed
     }
     

@@ -100,7 +100,7 @@ struct User: Codable {
     }
     
     let id: String
-    let name: String
+    var name: String!
     let avatarPath: String?
     var state: State?
     var lateness: Int?

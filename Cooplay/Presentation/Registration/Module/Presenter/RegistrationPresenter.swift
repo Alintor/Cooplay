@@ -102,8 +102,8 @@ final class RegistrationPresenter {
             guard let `self` = self else { return }
             self.view.hideProgress()
             switch result {
-            case .success:
-                break
+            case .success(let user):
+                self.router.openPersonalisation(with: user)
             case .failure(let error):
                 self.handleError(error)
             }

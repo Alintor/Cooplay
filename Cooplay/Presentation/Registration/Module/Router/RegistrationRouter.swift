@@ -32,4 +32,13 @@ extension RegistrationRouter: RegistrationRouterInput {
         navigationStack?.remove(at: 1)
         navigationStack.map { viewController.navigationController?.viewControllers = $0 }
     }
+    
+    func openPersonalisation(with user: User) {
+        try? transitionHandler.forStoryboard(
+            factory: StoryboardFactory(storyboard: R.storyboard.personalisation()),
+            to: PersonalisationModuleInput.self
+        )
+        .to(preferred: .navigation(style: .push))
+        .then({ $0.configure(with: user) })
+    }
 }

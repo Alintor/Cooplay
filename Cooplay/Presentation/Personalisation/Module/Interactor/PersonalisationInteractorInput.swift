@@ -9,4 +9,6 @@ import Foundation
 
 protocol PersonalisationInteractorInput: class {
 
+    func validateNickName(_ nickname: String) -> PersonalisationError?
+    func setNickname(_ nickname: String, completion: @escaping (Result<Void, PersonalisationError>) -> Void)
 }

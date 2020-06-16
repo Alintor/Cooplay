@@ -87,7 +87,7 @@
                                             <outlet property="delegate" destination="rGT-np-7OK" id="l6r-C9-aMw"/>
                                         </connections>
                                     </textField>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsZ-MU-9Kv">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsZ-MU-9Kv">
                                         <rect key="frame" x="311" y="237" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="RT1-rN-HJj"/>
@@ -195,7 +195,7 @@
                                         <color key="textColor" name="red"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x29-mW-rHF">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x29-mW-rHF">
                                         <rect key="frame" x="311" y="323" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Oqe-2H-JwQ"/>
@@ -262,7 +262,7 @@
                                 <rect key="frame" x="24" y="595" width="327" height="24"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" name="text.primary"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="eX2-Y8-fH1" appends="YES" id="vvI-2l-Cw9"/>

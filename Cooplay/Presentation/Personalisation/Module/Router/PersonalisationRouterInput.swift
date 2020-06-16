@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PersonalisationRouterInput {
+protocol PersonalisationRouterInput: StartRoutable {
 
 }

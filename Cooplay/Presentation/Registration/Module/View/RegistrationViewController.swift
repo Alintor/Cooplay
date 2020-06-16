@@ -108,6 +108,7 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
                 range: NSRange(range, in: loginMessage)
             )
         }
+        loginMessageLabel.textColor = R.color.textPrimary()
         loginMessageLabel.attributedText = loginMessageAttributed
     }
     
