@@ -52,6 +52,10 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
 
     var output: RegistrationModuleInput?
     var viewIsReady: (() -> Void)?
+    var fieldValueChanged: ((_ field: RegistrationField) -> Void)?
+    var nextAction: (() -> Void)?
+    var checkEmail: (() -> Void)?
+    var loginAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -120,6 +124,108 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
     func hideEmailChecking() {
         emailSpinner.stopAnimating()
         emailSpinner.isHidden = true
+    }
+    
+    func showErrorMessage(_ message: String, forField field: RegistrationField) {
+        switch field {
+        case .email:
+            emailErrorLabel.text = message
+            emailTextField.setState(.error)
+        case .confirmPassword:
+            passwordConfirmErrorLabel.text = message
+            passwordConfirmTextField.setState(.error)
+        case .password:
+            break
+        }
+    }
+    
+    func cleanErrorMessage(forField field: RegistrationField) {
+        switch field {
+        case .email:
+            emailErrorLabel.text = " "
+            emailTextField.setState(.normal)
+        case .confirmPassword:
+            passwordConfirmErrorLabel.text = " "
+            passwordConfirmTextField.setState(.normal)
+        case .password:
+            break
+        }
+    }
+    
+    func cleanErrorMessages() {
+        cleanErrorMessage(forField: .email(value: nil))
+        cleanErrorMessage(forField: .confirmPassword(value: nil))
+    }
+    
+    func setSymbolsCountErrorState(_ state: PasswordValidationState) {
+        switch state {
+        case .correct:
+            passwordSymbolsCountErrorLabel.textColor = R.color.green()
+            passwordSymbolsCountErrorImageView.tintColor = R.color.green()
+            passwordSymbolsCountErrorImageView.image = R.image.statusNormalOntime()
+        case .error:
+            passwordSymbolsCountErrorLabel.textColor = R.color.red()
+            passwordSymbolsCountErrorImageView.tintColor = R.color.red()
+            passwordSymbolsCountErrorImageView.image = R.image.statusNormalDeclined()
+        case .clear:
+            passwordSymbolsCountErrorLabel.textColor = R.color.textSecondary()
+            passwordSymbolsCountErrorImageView.tintColor = R.color.textSecondary()
+            passwordSymbolsCountErrorImageView.image = R.image.statusNormalOntime()
+        }
+    }
+    
+    func setBigSymbolsErrorState(_ state: PasswordValidationState) {
+        switch state {
+        case .correct:
+            passwordBigSymbolsErrorLabel.textColor = R.color.green()
+            passwordBigSymbolsErrorImageView.tintColor = R.color.green()
+            passwordBigSymbolsErrorImageView.image = R.image.statusNormalOntime()
+        case .error:
+            passwordBigSymbolsErrorLabel.textColor = R.color.red()
+            passwordBigSymbolsErrorImageView.tintColor = R.color.red()
+            passwordBigSymbolsErrorImageView.image = R.image.statusNormalDeclined()
+        case .clear:
+            passwordBigSymbolsErrorLabel.textColor = R.color.textSecondary()
+            passwordBigSymbolsErrorImageView.tintColor = R.color.textSecondary()
+            passwordBigSymbolsErrorImageView.image = R.image.statusNormalOntime()
+        }
+    }
+    
+    func setNumericSymbolErrorState(_ state: PasswordValidationState) {
+        switch state {
+        case .correct:
+            passwordNumericSymbolErrorLabel.textColor = R.color.green()
+            passwordNumericSymbolErrorImageView.tintColor = R.color.green()
+            passwordNumericSymbolErrorImageView.image = R.image.statusNormalOntime()
+        case .error:
+            passwordNumericSymbolErrorLabel.textColor = R.color.red()
+            passwordNumericSymbolErrorImageView.tintColor = R.color.red()
+            passwordNumericSymbolErrorImageView.image = R.image.statusNormalDeclined()
+        case .clear:
+            passwordNumericSymbolErrorLabel.textColor = R.color.textSecondary()
+            passwordNumericSymbolErrorImageView.tintColor = R.color.textSecondary()
+            passwordNumericSymbolErrorImageView.image = R.image.statusNormalOntime()
+        }
+    }
+    
+    func setState(_ state: PasswordValidationState, forField field: RegistrationField) {
+        let textField: UITextField
+        switch field {
+        case .email:
+            textField = emailTextField
+        case .password:
+            textField = passwordTextField
+        case .confirmPassword:
+            textField = passwordConfirmTextField
+        }
+        switch state {
+        case .correct:
+            textField.setState(.correct)
+        case .error:
+            textField.setState(.error)
+        case .clear:
+            textField.setState(.normal)
+        }
     }
 
 	// MARK: - Life cycle
@@ -214,12 +320,12 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
     @IBAction func actionButtonTapped() {
         view.endEditing(true)
         guard actionButton.isEnabled else { return }
-        //nextAction?()
+        nextAction?()
     }
     
     
     @IBAction func loginMessageTapped(_ sender: Any) {
-        //registrationAction?()
+        loginAction?()
     }
     
     @IBAction func togglePasswordSecurityButtonTapped(_ sender: UIButton) {
@@ -239,29 +345,23 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
     }
     
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
-//        let value = sender.text
-//        switch sender {
-//        case emailTextField:
-//            fieldValueChanged?(.email(value: value))
-//        case passwordTextField:
-//            fieldValueChanged?(.password(value: value))
-//        default: break
-//        }
+        let value = sender.text
+        switch sender {
+        case emailTextField:
+            fieldValueChanged?(.email(value: value))
+        case passwordTextField:
+            fieldValueChanged?(.password(value: value))
+        case passwordConfirmTextField:
+            fieldValueChanged?(.confirmPassword(value: value))
+        default: break
+        }
     }
 }
 
 extension RegistrationViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField {
-        case passwordTextField:
-            let text = passwordTextField.text
-            if text == nil || text!.isEmpty {
-                textField.setState(.highlighted)
-            }
-        default:
-            textField.setState(.highlighted)
-        }
+        textField.setState(.highlighted)
         switch textField {
         case passwordTextField:
             UIView.animate(withDuration: Constant.passworSecurityAnimationDuration) {
@@ -277,19 +377,11 @@ extension RegistrationViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
-        case passwordTextField:
-            let text = passwordTextField.text
+        case passwordTextField,
+             passwordConfirmTextField:
+            let text = textField.text
             if text == nil || text!.isEmpty {
                 textField.setState(.normal)
-                passwordSymbolsCountErrorLabel.textColor = R.color.textSecondary()
-                passwordBigSymbolsErrorLabel.textColor = R.color.textSecondary()
-                passwordNumericSymbolErrorLabel.textColor = R.color.textSecondary()
-                passwordSymbolsCountErrorImageView.tintColor = R.color.textSecondary()
-                passwordBigSymbolsErrorImageView.tintColor = R.color.textSecondary()
-                passwordNumericSymbolErrorImageView.tintColor = R.color.textSecondary()
-                passwordSymbolsCountErrorImageView.image = R.image.statusNormalOntime()
-                passwordBigSymbolsErrorImageView.image = R.image.statusNormalOntime()
-                passwordNumericSymbolErrorImageView.image = R.image.statusNormalOntime()
             }
         default:
             textField.setState(.normal)
@@ -304,8 +396,7 @@ extension RegistrationViewController: UITextFieldDelegate {
             self.togglePasswordConfirmSecurityButton.alpha = 0
         }
         case emailTextField:
-            //checkEmail?()
-            break
+            checkEmail?()
         default: break
         }
     }

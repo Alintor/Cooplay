@@ -71,6 +71,8 @@
 		A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81824701F66005DFAF0 /* UIApplication.swift */; };
 		A815E81B24701FBA005DFAF0 /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */; };
 		A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81C24701FDF005DFAF0 /* StartRoutable.swift */; };
+		A81AD11F24976510009D07A3 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD11E24976510009D07A3 /* RegistrationField.swift */; };
+		A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD12124976711009D07A3 /* PasswordValidationState.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
@@ -258,6 +260,8 @@
 		A815E81824701F66005DFAF0 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
 		A815E81C24701FDF005DFAF0 /* StartRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRoutable.swift; sourceTree = "<group>"; };
+		A81AD11E24976510009D07A3 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationField.swift; sourceTree = "<group>"; };
+		A81AD12124976711009D07A3 /* PasswordValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationState.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -375,7 +379,7 @@
 		B436F1D2A93554B26EAF3434 /* AuthorizationAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationAssemblyContainer.swift; sourceTree = "<group>"; };
 		BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooplay.debug.xcconfig"; path = "Target Support Files/Pods-Cooplay/Pods-Cooplay.debug.xcconfig"; sourceTree = "<group>"; };
 		C39374E00FFF2317E7D7D6A1 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
-		C5E5B00799686980F59B976C /* Registration.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; path = Registration.storyboard; sourceTree = "<group>"; };
+		C5E5B00799686980F59B976C /* Registration.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		C816B390445486E80FD83CB1 /* SearchGamePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchGamePresenter.swift; sourceTree = "<group>"; };
 		C8B393C9EC3ACEE8D50DBCE2 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
 		CB24A261DF9EBA1F854B4A27 /* AuthorizationInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorInput.swift; sourceTree = "<group>"; };
@@ -450,7 +454,6 @@
 			children = (
 				ED9F48A107FD0B61A25355A8 /* Module */,
 			);
-			name = Registration;
 			path = Registration;
 			sourceTree = "<group>";
 		};
@@ -473,7 +476,6 @@
 			children = (
 				C5E5B00799686980F59B976C /* Registration.storyboard */,
 			);
-			name = Storyboard;
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
@@ -607,7 +609,6 @@
 				08B2A8E8FF92759C50B02C96 /* RegistrationModuleInput.swift */,
 				C39374E00FFF2317E7D7D6A1 /* RegistrationPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -825,6 +826,22 @@
 				A815E8162470076D005DFAF0 /* AuthorizationField.swift */,
 			);
 			path = Fields;
+			sourceTree = "<group>";
+		};
+		A81AD11D249764FB009D07A3 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				A81AD11E24976510009D07A3 /* RegistrationField.swift */,
+			);
+			path = Fields;
+			sourceTree = "<group>";
+		};
+		A81AD120249766E3009D07A3 /* States */ = {
+			isa = PBXGroup;
+			children = (
+				A81AD12124976711009D07A3 /* PasswordValidationState.swift */,
+			);
+			path = States;
 			sourceTree = "<group>";
 		};
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
@@ -1535,7 +1552,6 @@
 				4FB5AC4DC79FDF076640482F /* RegistrationInteractorInput.swift */,
 				9A8486B4B5958A51AC04C145 /* RegistrationInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -1562,7 +1578,6 @@
 				21402F3797C0B8C38E8980CD /* RegistrationViewInput.swift */,
 				ADECE44E6FAF7D13AE56EC24 /* RegistrationViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1580,7 +1595,6 @@
 				723DC245303E6BC354686377 /* RegistrationRouterInput.swift */,
 				A14CCCC4648AC7C9E4E20809 /* RegistrationRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -1620,7 +1634,6 @@
 			children = (
 				19157E2EC1041680A77D0376 /* RegistrationAssemblyContainer.swift */,
 			);
-			name = Assembly;
 			path = Assembly;
 			sourceTree = "<group>";
 		};
@@ -1660,6 +1673,8 @@
 		ED9F48A107FD0B61A25355A8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A81AD120249766E3009D07A3 /* States */,
+				A81AD11D249764FB009D07A3 /* Fields */,
 				E4F3525C39633916F1E45830 /* Assembly */,
 				23C5B23B3CF89EAE85C21222 /* Storyboard */,
 				CBB8C46CB09ED07ED21DF1C6 /* View */,
@@ -1667,7 +1682,6 @@
 				BE41BD826C6B026F2B9B3F67 /* Interactor */,
 				D7FA3BD3402894C22CDD85A0 /* Router */,
 			);
-			name = Module;
 			path = Module;
 			sourceTree = "<group>";
 		};
@@ -1874,7 +1888,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1928,6 +1942,7 @@
 				A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A87CF44723EA682A004189D3 /* SearchSectionHeaderView.swift in Sources */,
+				A81AD11F24976510009D07A3 /* RegistrationField.swift in Sources */,
 				A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */,
 				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
 				A87CF41123E03D5C004189D3 /* UserService.swift in Sources */,
@@ -1941,6 +1956,7 @@
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
+				A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
