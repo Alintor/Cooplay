@@ -32,6 +32,12 @@ final class PersonalisationInteractor {
         static let maxSymbols = 12
         static let wrongSymbol = " "
     }
+    
+    private var userService: UserServiceType?
+    
+    init(userService: UserServiceType?) {
+        self.userService = userService
+    }
 
 }
 
@@ -53,6 +59,13 @@ extension PersonalisationInteractor: PersonalisationInteractorInput {
     }
     
     func setNickname(_ nickname: String, completion: @escaping (Result<Void, PersonalisationError>) -> Void) {
-        completion(.success(()))
+        userService?.setNickname(nickname) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        }
     }
 }

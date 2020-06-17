@@ -12,7 +12,7 @@ final class PersonalisationAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(PersonalisationInteractor.self) { r in
-			let interactor = PersonalisationInteractor()
+            let interactor = PersonalisationInteractor(userService: r.resolve(UserServiceType.self))
 
 			return interactor
 		}

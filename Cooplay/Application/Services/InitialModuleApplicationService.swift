@@ -18,12 +18,14 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
         return ApplicationAssembly.assembler.resolver as? Container
     }
     private lazy var authorizationService = container!.resolve(AuthorizationServiceType.self)!
+    private lazy var userService = container!.resolve(UserServiceType.self)!
     
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         setupInitialModule()
+        checkProficeExistanse()
         firstLaunchSetup()
         return true
     }
@@ -39,6 +41,29 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
             UIApplication.setRootViewController(UINavigationController(
                 rootViewController: R.storyboard.intro.introViewController()!
             ))
+        }
+    }
+    
+    private func checkProficeExistanse() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        userService.checkProfileExistanse { [weak self] (result) in
+            switch result {
+            case .success(let exist):
+                guard let `self` = self, !exist else { return }
+                let user = User(id: userId, name: nil, avatarPath: nil, state: nil, lateness: nil, isOwner: nil)
+                // TODO:
+                let personalisation = R.storyboard.personalisation.personalisationViewController()!
+                personalisation.output?.configure(with: user)
+                if #available(iOS 13.0, *) {
+                    personalisation.isModalInPresentation = true
+                }
+                self.window?.rootViewController?.present(
+                    UINavigationController(rootViewController: personalisation),
+                    animated: true,
+                    completion: nil
+                )
+            case .failure: break
+            }
         }
     }
     
