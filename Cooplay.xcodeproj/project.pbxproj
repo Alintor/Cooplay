@@ -196,7 +196,8 @@
 		A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */; };
 		A8FB1CCA24989F84001C9355 /* GuestRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CC924989F84001C9355 /* GuestRoutable.swift */; };
 		A8FB1CCD2499CFEE001C9355 /* AppearanceApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */; };
-		A8FB1CCF2499CFFE001C9355 /* StartModuleApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CCE2499CFFE001C9355 /* StartModuleApplicationService.swift */; };
+		A8FB1CCF2499CFFE001C9355 /* InitialModuleApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */; };
+		A8FB1CD12499D2E4001C9355 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */; };
 		A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */; };
 		A9BE04C2BD803B7CECDE30AD /* SearchMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */; };
 		AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39374E00FFF2317E7D7D6A1 /* RegistrationPresenter.swift */; };
@@ -405,7 +406,8 @@
 		A8DFD4EE2372AA4C00F48B37 /* InventedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventedHeaderView.swift; sourceTree = "<group>"; };
 		A8FB1CC924989F84001C9355 /* GuestRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestRoutable.swift; sourceTree = "<group>"; };
 		A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceApplicationService.swift; sourceTree = "<group>"; };
-		A8FB1CCE2499CFFE001C9355 /* StartModuleApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartModuleApplicationService.swift; sourceTree = "<group>"; };
+		A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialModuleApplicationService.swift; sourceTree = "<group>"; };
+		A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "AppConfiguration/Private/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9AAFEEA8C9F4F2B74D19600 /* ProfileViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewInput.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		ADECE44E6FAF7D13AE56EC24 /* RegistrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1397,6 +1399,7 @@
 		A87701FD23336E6E002EA095 /* Cooplay */ = {
 			isa = PBXGroup;
 			children = (
+				A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */,
 				A82FF2C72346F7F700EE1807 /* Extensions */,
 				A82FF2B323460E6100EE1807 /* Constants */,
 				A82FF2A32345EA3700EE1807 /* AppConfiguration */,
@@ -1686,7 +1689,7 @@
 			isa = PBXGroup;
 			children = (
 				A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */,
-				A8FB1CCE2499CFFE001C9355 /* StartModuleApplicationService.swift */,
+				A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2017,6 +2020,7 @@
 				A87CF49223ED71E2004189D3 /* NewEventMemberCell.xib in Resources */,
 				A8DFD4EA237292EA00F48B37 /* InvitedEventCell.xib in Resources */,
 				A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */,
+				A8FB1CD12499D2E4001C9355 /* GoogleService-Info.plist in Resources */,
 				7F1C72E77A81931B8AE29312 /* EventsList.storyboard in Resources */,
 				A82FF2D52347193000EE1807 /* EventCell.xib in Resources */,
 				A87CF41C23E046A0004189D3 /* NewEventGameCell.xib in Resources */,
@@ -2045,40 +2049,58 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cooplay/Pods-Cooplay-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCollectionViewManager/DTCollectionViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/DTModelStorage/DTModelStorage.framework",
 				"${BUILT_PRODUCTS_DIR}/DTTableViewManager/DTTableViewManager.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCalendar/KDCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LightRoute/LightRoute.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PluggableAppDelegate/PluggableAppDelegate.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/abseil/absl.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCollectionViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTModelStorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTTableViewManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightRoute.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PluggableAppDelegate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/absl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2233,7 +2255,7 @@
 				A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */,
 				401E916B8DEE7282058BEA68 /* NewEventViewInput.swift in Sources */,
 				FC00D21A6F25B2CC2665244E /* NewEventViewController.swift in Sources */,
-				A8FB1CCF2499CFFE001C9355 /* StartModuleApplicationService.swift in Sources */,
+				A8FB1CCF2499CFFE001C9355 /* InitialModuleApplicationService.swift in Sources */,
 				A87CF41623E04165004189D3 /* NewEventDataSource.swift in Sources */,
 				076714ABB069198F2DC195E1 /* NewEventModuleInput.swift in Sources */,
 				665F3AE923A83FCCD912F272 /* NewEventPresenter.swift in Sources */,

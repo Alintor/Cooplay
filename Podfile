@@ -15,6 +15,9 @@ target 'Cooplay' do
   pod 'KDCalendar', '~> 1.8.9'
   pod 'Moya', '~> 13.0.1'
   pod 'SwiftyJSON', '~> 5.0.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 

@@ -15,7 +15,7 @@ final class AppDelegate: PluggableApplicationDelegate {
     override var services: [ApplicationService] {
         return [
             AppearanceApplicationService(),
-            StartModuleApplicationService()
+            InitialModuleApplicationService()
         ]
     }
     
