@@ -41,7 +41,12 @@ final class RegistrationInteractor {
         static let minPasswordSymbolsCount = 8
         static let numericSymbols = "0123456789"
     }
-
+    
+    private let authorizationService: AuthorizationServiceType?
+    
+    init(authorizationService: AuthorizationServiceType?) {
+        self.authorizationService = authorizationService
+    }
 }
 
 // MARK: - RegistrationInteractorInput
@@ -95,9 +100,19 @@ extension RegistrationInteractor: RegistrationInteractorInput {
             ))
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            completion(.failure(.incorrectEmail(message: R.string.localizable.registrationErrorEmailAlreadyExist())))
-            completion(.success(()))
+        authorizationService?.checkAccountExistence(email: email) { result in
+            switch result {
+            case .success(let isExist):
+                if isExist {
+                    completion(.failure(.incorrectEmail(
+                        message: R.string.localizable.registrationErrorEmailAlreadyExist()))
+                    )
+                } else {
+                    completion(.success(()))
+                }
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
         }
     }
     
@@ -105,16 +120,14 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         email: String?,
         password: String?,
         completion: @escaping (Result<User, RegistrationError>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let user = User(
-                id: "fdsswdfersdqardesf",
-                name: nil,
-                avatarPath: nil,
-                state: nil,
-                lateness: nil,
-                isOwner: nil
-            )
-            completion(.success(user))
+        guard let email = email, let password = password else { return }
+        authorizationService?.createAccaunt(email: email, password: password) { result in
+            switch result {
+            case .success(let user):
+                completion(.success(user))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
         }
     }
 }

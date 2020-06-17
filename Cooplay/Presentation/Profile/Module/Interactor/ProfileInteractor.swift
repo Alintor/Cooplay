@@ -9,6 +9,11 @@ import Foundation
 
 final class ProfileInteractor {
 
+    private let authorizationService: AuthorizationServiceType?
+    
+    init(authorizationService: AuthorizationServiceType?) {
+        self.authorizationService = authorizationService
+    }
 }
 
 // MARK: - ProfileInteractorInput
@@ -16,6 +21,6 @@ final class ProfileInteractor {
 extension ProfileInteractor: ProfileInteractorInput {
 
     func logout() {
-        
+        authorizationService?.logout()
     }
 }

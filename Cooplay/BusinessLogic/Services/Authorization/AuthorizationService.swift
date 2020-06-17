@@ -12,6 +12,7 @@ import Firebase
 enum AuthorizationServiceError: Error {
     
     case unknownError
+    case authorizationError(error: Error)
     case unhandled(error: Error)
 }
 
@@ -19,6 +20,7 @@ extension AuthorizationServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .authorizationError(let error): return error.localizedDescription
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -65,7 +67,16 @@ extension AuthorizationService: AuthorizationServiceType {
         email: String,
         password: String,
         completion: @escaping (Result<Void, AuthorizationServiceError>) -> Void) {
-        
+        firebaseAuth.signIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                completion(.failure(.authorizationError(error: error)))
+            }
+            if result != nil {
+                completion(.success(()))
+            } else {
+                completion(.failure(.unknownError))
+            }
+        }
     }
     
     func createAccaunt(
@@ -100,7 +111,11 @@ extension AuthorizationService: AuthorizationServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             }
-            completion(.success(methods?.isEmpty != true))
+            if let methods = methods {
+                completion(.success(!methods.isEmpty))
+            } else {
+                completion(.success(false))
+            }
         }
     }
     

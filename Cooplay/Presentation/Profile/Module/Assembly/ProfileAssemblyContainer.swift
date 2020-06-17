@@ -12,7 +12,9 @@ final class ProfileAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(ProfileInteractor.self) { r in
-			let interactor = ProfileInteractor()
+			let interactor = ProfileInteractor(
+                authorizationService: r.resolve(AuthorizationServiceType.self)
+            )
 
 			return interactor
 		}

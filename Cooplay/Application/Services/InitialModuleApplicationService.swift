@@ -17,7 +17,7 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
     private var container: Container? {
         return ApplicationAssembly.assembler.resolver as? Container
     }
-    //private lazy var authorizationService = container!.resolve(AuthorizationNetworkService.self)!
+    private lazy var authorizationService = container!.resolve(AuthorizationServiceType.self)!
     
     func application(
         _ application: UIApplication,
@@ -31,9 +31,15 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
     // MARK: - Private
     
     private func setupInitialModule() {
-        UIApplication.setRootViewController(UINavigationController(
-            rootViewController: R.storyboard.intro.introViewController()!
-        ))
+        if authorizationService.isLoggedIn {
+            UIApplication.setRootViewController(UINavigationController(
+                rootViewController: R.storyboard.eventsList.eventsListViewController()!)
+            )
+        } else {
+            UIApplication.setRootViewController(UINavigationController(
+                rootViewController: R.storyboard.intro.introViewController()!
+            ))
+        }
     }
     
     private func firstLaunchSetup() {

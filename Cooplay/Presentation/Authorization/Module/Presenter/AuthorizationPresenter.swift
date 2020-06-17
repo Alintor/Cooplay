@@ -94,7 +94,7 @@ final class AuthorizationPresenter {
         case .multipleErrors(let errors):
             errors.forEach { self.showError($0) }
         case .unhandled(let error):
-            break
+            print(error.localizedDescription)
             // TODO:
         }
     }

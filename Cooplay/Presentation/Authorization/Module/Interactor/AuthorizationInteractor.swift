@@ -13,6 +13,16 @@ enum AuthorizationError: Error {
     case incorrectPassword(message: String)
     case multipleErrors(errors: [AuthorizationError])
     case unhandled(error: Error)
+    
+    static func fromServiceError(_ error: AuthorizationServiceError) -> AuthorizationError {
+        switch error {
+        case .authorizationError:
+            return .incorrectPassword(
+                message: R.string.localizable.authorizationErrorPasswordWrong())
+        default:
+            return .unhandled(error: error)
+        }
+    }
 }
 
 extension AuthorizationError: LocalizedError {
@@ -29,6 +39,12 @@ extension AuthorizationError: LocalizedError {
 }
 
 final class AuthorizationInteractor {
+    
+    private let authorizationService: AuthorizationServiceType?
+    
+    init(authorizationService: AuthorizationServiceType?) {
+        self.authorizationService = authorizationService
+    }
 
 }
 
@@ -48,9 +64,14 @@ extension AuthorizationInteractor: AuthorizationInteractorInput {
         email: String?,
         password: String?,
         completion: @escaping (Result<Void, AuthorizationError>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            //completion(.failure(.incorrectPassword(message: R.string.localizable.authorizationErrorPasswordWrong())))
-            completion(.success(()))
+        guard let email = email, let password = password else { return }
+        authorizationService?.login(email: email, password: password) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.fromServiceError(error)))
+            }
         }
     }
     
@@ -63,9 +84,19 @@ extension AuthorizationInteractor: AuthorizationInteractorInput {
             ))
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            completion(.failure(.incorrectEmail(message: R.string.localizable.authorizationErrorEmailNotExist())))
-            completion(.success(()))
+        authorizationService?.checkAccountExistence(email: email) { result in
+            switch result {
+            case .success(let isExist):
+                if isExist {
+                    completion(.success(()))
+                } else {
+                    completion(.failure(.incorrectEmail(
+                        message: R.string.localizable.authorizationErrorEmailNotExist()))
+                    )
+                }
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
         }
     }
 }

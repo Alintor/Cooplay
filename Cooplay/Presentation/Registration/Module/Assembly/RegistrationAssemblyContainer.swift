@@ -12,7 +12,9 @@ final class RegistrationAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(RegistrationInteractor.self) { r in
-			let interactor = RegistrationInteractor()
+			let interactor = RegistrationInteractor(
+                authorizationService: r.resolve(AuthorizationServiceType.self)
+            )
 
 			return interactor
 		}
