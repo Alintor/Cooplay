@@ -198,6 +198,8 @@
 		A8FB1CCD2499CFEE001C9355 /* AppearanceApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */; };
 		A8FB1CCF2499CFFE001C9355 /* InitialModuleApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */; };
 		A8FB1CD12499D2E4001C9355 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */; };
+		A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD32499D868001C9355 /* AuthorizationService.swift */; };
+		A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */; };
 		A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */; };
 		A9BE04C2BD803B7CECDE30AD /* SearchMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */; };
 		AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39374E00FFF2317E7D7D6A1 /* RegistrationPresenter.swift */; };
@@ -408,6 +410,8 @@
 		A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceApplicationService.swift; sourceTree = "<group>"; };
 		A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialModuleApplicationService.swift; sourceTree = "<group>"; };
 		A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "AppConfiguration/Private/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A8FB1CD32499D868001C9355 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceAssemblyContainer.swift; sourceTree = "<group>"; };
 		A9AAFEEA8C9F4F2B74D19600 /* ProfileViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewInput.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		ADECE44E6FAF7D13AE56EC24 /* RegistrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1100,6 +1104,7 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A8FB1CD22499D7DD001C9355 /* Authorization */,
 				A87CF40B23E03CB7004189D3 /* User */,
 				A87CF40A23E03CAD004189D3 /* Games */,
 				A82FF2B02346068A00EE1807 /* Event */,
@@ -1694,6 +1699,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A8FB1CD22499D7DD001C9355 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				A8FB1CD32499D868001C9355 /* AuthorizationService.swift */,
+				A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
 		ACFC2A67ACF8F347CB8B2F97 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -2153,6 +2167,7 @@
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
+				A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */,
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */,
@@ -2184,6 +2199,7 @@
 				A87CF42923E1987D004189D3 /* SkeletonGradient.swift in Sources */,
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
+				A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,

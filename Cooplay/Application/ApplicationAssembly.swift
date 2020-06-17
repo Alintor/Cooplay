@@ -19,6 +19,7 @@ final class ApplicationAssembly {
             APIProviderAssemblyContainer(),
             
             // Services
+            AuthorizationServiceAssemblyContainer(),
             EventServiceAssemblyContainer(),
             UserServiceAssemblyContainer(),
             GamesServiceAssemblyContainer(),
