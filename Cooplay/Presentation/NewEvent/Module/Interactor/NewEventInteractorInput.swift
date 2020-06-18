@@ -9,6 +9,12 @@ import Foundation
 
 protocol NewEventInteractorInput: class {
 
-    func fetchofftenData(completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void)
     func isReady(_ request: NewEventRequest) -> Bool
+    func fetchofftenData(
+        completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void
+    )
+    func createNewEvent(
+        _ request: NewEventRequest,
+        completion: @escaping (Result<Void, NewEventError>) -> Void
+    )
 }

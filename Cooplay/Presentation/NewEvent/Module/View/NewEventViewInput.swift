@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NewEventViewInput: class {
+protocol NewEventViewInput: class, ActivityIndicatorRenderer {
 
     // MARK: - View out
 

@@ -36,7 +36,15 @@ final class NewEventInteractor {
 
 extension NewEventInteractor: NewEventInteractorInput {
     
-    func fetchofftenData(completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void) {
+    func isReady(_ request: NewEventRequest) -> Bool {
+        guard
+            let date = request.date, !date.isEmpty,
+            request.game != nil else { return false }
+        return true
+    }
+    
+    func fetchofftenData(
+        completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void) {
         userService?.fetchOfftenData { result in
             switch result {
             case .success(let response):
@@ -47,10 +55,16 @@ extension NewEventInteractor: NewEventInteractorInput {
         }
     }
     
-    func isReady(_ request: NewEventRequest) -> Bool {
-        guard
-            let date = request.date, !date.isEmpty,
-            request.game != nil else { return false }
-        return true
+    func createNewEvent(
+        _ request: NewEventRequest,
+        completion: @escaping (Result<Void, NewEventError>) -> Void) {
+        eventService?.createNewEvent(request, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
     }
 }

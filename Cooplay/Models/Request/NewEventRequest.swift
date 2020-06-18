@@ -11,9 +11,14 @@ import SwiftDate
 
 struct NewEventRequest: Codable {
     
+    var id: String
     var game: Game?
     var date: String?
     var members: [User]?
+    
+    init(id: String) {
+        self.id = id
+    }
     
     func getDate() -> Date? {
         date?.convertServerDate

@@ -71,7 +71,7 @@ final class NewEventPresenter {
             }
             view.mainAction = { [weak self] in
                 self?.request.members = self?.membersDataSours.selectedItems
-                print(self!.request)
+                self?.createNewEvent()
             }
         }
     }
@@ -82,7 +82,7 @@ final class NewEventPresenter {
     
     private var gamesDataSours: NewEventDataSource<Game, NewEventGameCellViewModel, NewEventGameCell>!
     private var membersDataSours: NewEventDataSource<User, NewEventMemberCellViewModel, NewEventMemberCell>!
-    private var request = NewEventRequest() {
+    private var request = NewEventRequest(id: UUID().uuidString) {
         didSet {
             view.setCreateButtonEnabled(interactor.isReady(request))
             if let time = request.getDate() {
@@ -119,7 +119,23 @@ final class NewEventPresenter {
                 let time = response.time?.convertServerDate ?? Constant.defaultTime
                 self.request.setTime(time)
             case .failure(let error):
-                break
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func createNewEvent() {
+        view.showProgress(indicatorType: .arrows)
+        interactor.createNewEvent(request) { [weak self] result in
+            guard let `self` = self else { return }
+            self.view.hideProgress()
+            switch result {
+            case .success:
+                self.router.close(animated: true)
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
             }
         }
     }

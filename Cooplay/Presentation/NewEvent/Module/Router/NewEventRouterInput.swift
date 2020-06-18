@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NewEventRouterInput {
+protocol NewEventRouterInput: CloseableRouter {
 
     func showCalendar(selectedDate: Date?, handler: ((_ date: Date) -> Void)?)
     func showTimePicker(startTime: Date, enableMinimumTime: Bool, handler: ((_ date: Date) -> Void)?)

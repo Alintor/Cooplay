@@ -51,16 +51,11 @@ final class UserService {
 extension UserService: UserServiceType {
     
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void) {
-//        if let members = storage?.fetchOfftenMembers() {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                completion(.success(members.filter({ $0.name.lowercased().contains(searchValue.lowercased()) })))
-//            }
-//
-//        }
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         firestore.collection("Users").getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
+                return
             }
             let users = snapshot?.documents.compactMap({
                 return try? FirestoreDecoder.decode($0.data(), to: User.self)
@@ -87,9 +82,9 @@ extension UserService: UserServiceType {
         firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
+                return
             }
             if let snapshot = snapshot, snapshot.exists {
-                print(snapshot.data())
                 completion(.success(true))
             } else {
                 completion(.success(false))
