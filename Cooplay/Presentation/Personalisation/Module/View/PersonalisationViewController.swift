@@ -40,7 +40,6 @@ final class PersonalisationViewController: UIViewController, PersonalisationView
     func setupInitialState() {
         registerForKeyboardEvents()
         navigationItem.setHidesBackButton(true, animated: false)
-        nickNameTextField.becomeFirstResponder()
         setConfirmButtonEnabled(false)
         nickNameTextField.attributedPlaceholder = NSAttributedString(
             string: R.string.localizable.personalisationNickNameTextFieldPlaceholder(),
@@ -81,6 +80,12 @@ final class PersonalisationViewController: UIViewController, PersonalisationView
 		viewIsReady?()
 	}
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        nickNameTextField.becomeFirstResponder()
+        
+    }
+    
     deinit {
         unregisterFromKeyboardEvents()
     }
@@ -113,14 +118,16 @@ final class PersonalisationViewController: UIViewController, PersonalisationView
             UIView.animate(
                 withDuration: duration,
                 animations: { [weak self] in
-                    self?.titleLabel.alpha = 0
                     if GlobalConstant.isSmallScreen {
+                        self?.titleLabel.alpha = 0
                         self?.titleLabel.text = " "
                     }
                     self?.view.layoutIfNeeded()
                 },
                 completion: { [weak self] (_) in
-                    self?.navigationItem.title = R.string.localizable.personalisationTitle()
+                    if GlobalConstant.isSmallScreen {
+                        self?.navigationItem.title = R.string.localizable.personalisationTitle()
+                    }
                 }
             )
         }
