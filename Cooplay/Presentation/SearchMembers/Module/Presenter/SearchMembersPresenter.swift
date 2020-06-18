@@ -94,6 +94,7 @@ final class SearchMembersPresenter {
             guard let `self` = self else { return }
             switch result {
                 case .success(let members):
+                    self.searchResults = members
                     self.showSearchResults(members)
                 case .failure(let error):
                     // TODO:
