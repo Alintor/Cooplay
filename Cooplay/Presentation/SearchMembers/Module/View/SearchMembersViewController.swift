@@ -196,6 +196,7 @@ final class SearchMembersViewController: UIViewController, SearchMembersViewInpu
 extension SearchMembersViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // TODO: Fix this
         NSObject.cancelPreviousPerformRequests(
             withTarget: self,
             selector: #selector(searchBarTextDidChange(_:)),
@@ -209,6 +210,7 @@ extension SearchMembersViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchMember?(searchBar.text ?? "")
         searchBar.resignFirstResponder()
     }
     

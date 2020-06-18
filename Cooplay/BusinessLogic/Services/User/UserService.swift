@@ -51,12 +51,26 @@ final class UserService {
 extension UserService: UserServiceType {
     
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void) {
-        if let members = storage?.fetchOfftenMembers() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion(.success(members.filter({ $0.name.lowercased().contains(searchValue.lowercased()) })))
+//        if let members = storage?.fetchOfftenMembers() {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                completion(.success(members.filter({ $0.name.lowercased().contains(searchValue.lowercased()) })))
+//            }
+//
+//        }
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        firestore.collection("Users").getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
             }
-            
+            let users = snapshot?.documents.compactMap({
+                return try? FirestoreDecoder.decode($0.data(), to: User.self)
+            })
+            let filteredUsers = users?.filter({
+                $0.name.lowercased().contains(searchValue.lowercased()) && $0.id != userId
+            })
+            completion(.success(filteredUsers ?? []))
         }
+        
     }
     
     func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void) {
