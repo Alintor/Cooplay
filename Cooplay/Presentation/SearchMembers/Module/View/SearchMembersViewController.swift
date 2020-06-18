@@ -172,8 +172,8 @@ final class SearchMembersViewController: UIViewController, SearchMembersViewInpu
             bottom: keyboardHeight,
             right: 0
         )
-        tableView.contentInset = contentInset
         hideHeaderView(true)
+        tableView.contentInset = contentInset
     }
     
     func keyboardWillHide(keyboardHeight: CGFloat, duration: TimeInterval) {
@@ -186,6 +186,7 @@ final class SearchMembersViewController: UIViewController, SearchMembersViewInpu
     private func hideHeaderView(_ isHide: Bool) {
         guard let headerView = tableView.tableHeaderView else { return }
         let height: CGFloat = isHide ? 0 : 56
+        headerView.isHidden = isHide
         headerView.frame.size.height = height
         tableView.tableHeaderView = headerView
         tableView.layoutIfNeeded()

@@ -34,4 +34,27 @@ final class EventDetailsInteractor {
 
 extension EventDetailsInteractor: EventDetailsInteractorInput {
 
+    func changeStatus(
+        for event: Event,
+        completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService?.changeStatus(for: event, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void) {
+        eventService?.fetchEvent(id: id, completion: { result in
+            switch result {
+            case .success(let event):
+                completion(.success(event))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
 }

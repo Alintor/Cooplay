@@ -7,18 +7,24 @@
 //
 
 import Foundation
+import SwiftDate
 
 struct Event: Codable {
     
+    let id: String
     let game: Game
     let date: Date
     let members: [User]
     var me: User
+    
+    var isActive: Bool {
+        return (date - GlobalConstant.eventActivePeriod.hour) <= Date()
+    }
 }
 
 extension Event: Equatable {
     
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.date == rhs.date
+        return lhs.id == rhs.id
     }
 }

@@ -37,6 +37,8 @@
 "eventsList.sections.future" = "Будущие события";
 "eventsList.sections.declined" = "Отклоненные события";
 "eventsList.sections.invited" = "Приглашения";
+"eventsList.emptySate.title" = "Здесь будут все ваши события";
+"eventsList.emptySate.description" = "Вы можете создать событие сами, и пригласить друзей";
 
 // MARK: - Events Details
 "eventDetails.cell.lateness" = "+%@ мин";

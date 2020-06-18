@@ -29,7 +29,7 @@ final class EventsListPresenter: NSObject {
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
                 self?.fetchEvents()
-                self?.view.updateProfile(with: AvatarViewModel(with: HardcodedConstants.me_ontime))
+                self?.fetchProfile()
             }
             view.dataSourceIsReady = { [weak self] dataSource in
                 self?.dataSource = dataSource
@@ -63,13 +63,13 @@ final class EventsListPresenter: NSObject {
         return events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
     }
     private var activeEvent: Event? {
-        return acceptedEvents.first
+        return acceptedEvents.first { $0.isActive }
     }
     private var furureEvents: [Event] {
-        if activeEvent == nil {
-            return acceptedEvents
+        if let activeEvent = activeEvent {
+            return acceptedEvents.filter { $0.id != activeEvent.id }
         } else {
-            return acceptedEvents.suffix(acceptedEvents.count - 1)
+            return acceptedEvents
         }
     }
     private var declinedEvents: [Event] {
@@ -79,10 +79,25 @@ final class EventsListPresenter: NSObject {
     private var showDeclinedEvents: Bool = true
     
     private func updateEvent(_ event: Event) {
-        if let index = events.firstIndex(of: event) {
-            events[index] = event
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                self?.configureSections()
+        interactor.changeStatus(for: event) { [weak self] result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchProfile() {
+        interactor.fetchProfile { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let user):
+                self.view.updateProfile(with: AvatarViewModel(with: user))
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
             }
         }
     }
@@ -98,7 +113,8 @@ final class EventsListPresenter: NSObject {
                 self.configureSections()
                 self.view.showItems()
             case .failure(let error):
-                break
+                // TODO:
+                print(error.localizedDescription)
             }
         }
     }
@@ -171,7 +187,7 @@ final class EventsListPresenter: NSObject {
                     contextType: .overTarget,
                     menuSize: .small,
                     menuType: .statuses(
-                        type: .agreement,
+                        type: event.isActive ? .confirmation : .agreement,
                         actionHandler: { status in
                             event.me.status = status
                             self?.updateEvent(event)

@@ -26,6 +26,7 @@ extension UITableView {
     }
     
     func reloadEmptyState(_ emptyState: EmptyStateHandler?) {
+        self.isScrollEnabled = !isEmpty
         if let emptyState = emptyState, isEmpty {
             setEmptyState(emptyState)
         } else {

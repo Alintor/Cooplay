@@ -13,8 +13,5 @@ protocol NewEventInteractorInput: class {
     func fetchofftenData(
         completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void
     )
-    func createNewEvent(
-        _ request: NewEventRequest,
-        completion: @escaping (Result<Void, NewEventError>) -> Void
-    )
+    func createNewEvent(_ request: NewEventRequest)
 }

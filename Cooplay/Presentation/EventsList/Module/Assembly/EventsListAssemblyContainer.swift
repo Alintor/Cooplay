@@ -12,7 +12,10 @@ final class EventsListAssemblyContainer: Assembly {
 
 	func assemble(container: Container) {
 		container.register(EventsListInteractor.self) { r in
-            let interactor = EventsListInteractor(eventService: r.resolve(EventServiceType.self))
+            let interactor = EventsListInteractor(
+                eventService: r.resolve(EventServiceType.self),
+                userService: r.resolve(UserServiceType.self)
+            )
 
 			return interactor
 		}

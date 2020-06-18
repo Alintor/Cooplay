@@ -55,16 +55,7 @@ extension NewEventInteractor: NewEventInteractorInput {
         }
     }
     
-    func createNewEvent(
-        _ request: NewEventRequest,
-        completion: @escaping (Result<Void, NewEventError>) -> Void) {
-        eventService?.createNewEvent(request, completion: { result in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(.unhandled(error: error)))
-            }
-        })
+    func createNewEvent(_ request: NewEventRequest) {
+        eventService?.createNewEvent(request)
     }
 }

@@ -202,6 +202,7 @@
 		A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */; };
 		A8FB1CD9249A166D001C9355 /* FirestoreDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD8249A166D001C9355 /* FirestoreDecoder.swift */; };
 		A8FB1CDB249A503F001C9355 /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CDA249A503F001C9355 /* Codable.swift */; };
+		A8FB1CDD249B4BA9001C9355 /* EventFirebaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CDC249B4BA9001C9355 /* EventFirebaseResponse.swift */; };
 		A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D89A1858833234C9FB492 /* EventDetailsPresenter.swift */; };
 		A9BE04C2BD803B7CECDE30AD /* SearchMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A30C089C2FCD187682C342 /* SearchMembers.storyboard */; };
 		AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39374E00FFF2317E7D7D6A1 /* RegistrationPresenter.swift */; };
@@ -416,6 +417,7 @@
 		A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceAssemblyContainer.swift; sourceTree = "<group>"; };
 		A8FB1CD8249A166D001C9355 /* FirestoreDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDecoder.swift; sourceTree = "<group>"; };
 		A8FB1CDA249A503F001C9355 /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
+		A8FB1CDC249B4BA9001C9355 /* EventFirebaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFirebaseResponse.swift; sourceTree = "<group>"; };
 		A9AAFEEA8C9F4F2B74D19600 /* ProfileViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewInput.swift; sourceTree = "<group>"; };
 		AB8F77D78D04E1B4520D7CEB /* EventsListInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventsListInteractorInput.swift; sourceTree = "<group>"; };
 		ADECE44E6FAF7D13AE56EC24 /* RegistrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1355,6 +1357,7 @@
 			isa = PBXGroup;
 			children = (
 				A84695142410F1CC00139CF4 /* NewEventInfoResponse.swift */,
+				A8FB1CDC249B4BA9001C9355 /* EventFirebaseResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2343,6 +2346,7 @@
 				3580E7DAC4263F63643A247A /* RegistrationAssemblyContainer.swift in Sources */,
 				6BFEE0A36FCC8A4CA4FF5959 /* RegistrationViewInput.swift in Sources */,
 				347EB5EAF2A482F908CBFC6A /* RegistrationViewController.swift in Sources */,
+				A8FB1CDD249B4BA9001C9355 /* EventFirebaseResponse.swift in Sources */,
 				D981FB30355C62D1B517C2CA /* RegistrationModuleInput.swift in Sources */,
 				AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */,
 				5704115E2D455D22A81C8EFD /* RegistrationInteractorInput.swift in Sources */,

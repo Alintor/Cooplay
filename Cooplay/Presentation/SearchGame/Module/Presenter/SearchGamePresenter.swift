@@ -47,8 +47,10 @@ final class SearchGamePresenter {
     private var selectionHandler: ((_ game: Game) -> Void)?
     
     private func searchGame(_ searchValue: String) {
+        view.showProgress(indicatorType: .arrows)
         interactor.searchGame(searchValue) { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success(let games):
                 self.showSearchResults(games)

@@ -24,9 +24,11 @@ extension EventsListError: LocalizedError {
 final class EventsListInteractor {
 
     private let eventService: EventServiceType?
+    private let userService: UserServiceType?
     
-    init(eventService: EventServiceType?) {
+    init(eventService: EventServiceType?, userService: UserServiceType?) {
         self.eventService = eventService
+        self.userService = userService
     }
 }
 
@@ -43,5 +45,29 @@ extension EventsListInteractor: EventsListInteractorInput {
                 completion(.failure(.unhandled(error: error)))
             }
         }
+    }
+    
+    func fetchProfile(completion: @escaping (Result<User, EventsListError>) -> Void) {
+        userService?.fetchProfile(completion: { result in
+            switch result {
+            case .success(let user):
+                completion(.success(user))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
+    func changeStatus(
+        for event: Event,
+        completion: @escaping (Result<Void, EventsListError>) -> Void) {
+        eventService?.changeStatus(for: event, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
     }
 }

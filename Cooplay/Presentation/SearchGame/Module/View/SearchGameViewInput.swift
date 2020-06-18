@@ -7,7 +7,7 @@
 
 import DTModelStorage
 
-protocol SearchGameViewInput: KeyboardHandler {
+protocol SearchGameViewInput: KeyboardHandler, ActivityIndicatorRenderer {
 
     // MARK: - View out
 

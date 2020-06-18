@@ -12,5 +12,5 @@ struct NewEventOfftenDataResponse: Codable {
     
     let members: [User]
     let games: [Game]
-    let time: String?
+    let time: Date?
 }

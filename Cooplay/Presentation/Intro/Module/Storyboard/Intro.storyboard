@@ -57,6 +57,10 @@
                                     <action selector="authButtonTapped" destination="rGT-np-7OK" eventType="touchUpInside" id="0xi-Z7-D6h"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common.logo" translatesAutoresizingMaskIntoConstraints="NO" id="dyh-FH-hCv">
+                                <rect key="frame" x="94" y="80" width="187.5" height="136"/>
+                                <color key="tintColor" name="text.primary"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
@@ -64,7 +68,10 @@
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="6MW-AA-EuQ" secondAttribute="trailing" constant="24" id="VuO-30-7aj"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="9ff-BB-nwn" secondAttribute="trailing" constant="24" id="ifW-qM-uP5"/>
                             <constraint firstItem="9ff-BB-nwn" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="24" id="lBY-wv-yiq"/>
+                            <constraint firstItem="dyh-FH-hCv" firstAttribute="centerX" secondItem="OR5-3f-pbR" secondAttribute="centerX" id="uod-iM-FX9"/>
                             <constraint firstItem="6MW-AA-EuQ" firstAttribute="top" secondItem="9ff-BB-nwn" secondAttribute="bottom" constant="16" id="wmq-ww-Bkw"/>
+                            <constraint firstItem="dyh-FH-hCv" firstAttribute="width" secondItem="eFS-jM-hgH" secondAttribute="width" multiplier="0.5" id="z3w-2X-n5R"/>
+                            <constraint firstItem="dyh-FH-hCv" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" constant="80" id="zBH-iD-Ca0"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="6MW-AA-EuQ" secondAttribute="bottom" constant="80" id="zhu-iX-gDD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
@@ -76,6 +83,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="common.logo" width="740" height="136"/>
         <namedColor name="action.accent">
             <color red="0.29803921568627451" green="0.61960784313725492" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

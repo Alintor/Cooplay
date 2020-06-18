@@ -22,6 +22,7 @@ enum GlobalConstant {
     static var isSmallScreen: Bool {
         return screenWidth < 370.0
     }
+    static var eventActivePeriod = 3
 }
 
 var localizableUITableName = "Localizable"

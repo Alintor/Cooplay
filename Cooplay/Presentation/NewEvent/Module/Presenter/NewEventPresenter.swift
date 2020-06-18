@@ -116,7 +116,7 @@ final class NewEventPresenter {
                 self.view.updateMembers()
                 self.view.setMembersDataSource(self.membersDataSours)
                 self.view.showMembers(!response.members.isEmpty)
-                let time = response.time?.convertServerDate ?? Constant.defaultTime
+                let time = response.time ?? Constant.defaultTime
                 self.request.setTime(time)
             case .failure(let error):
                 // TODO:
@@ -126,18 +126,8 @@ final class NewEventPresenter {
     }
     
     private func createNewEvent() {
-        view.showProgress(indicatorType: .arrows)
-        interactor.createNewEvent(request) { [weak self] result in
-            guard let `self` = self else { return }
-            self.view.hideProgress()
-            switch result {
-            case .success:
-                self.router.close(animated: true)
-            case .failure(let error):
-                // TODO:
-                print(error.localizedDescription)
-            }
-        }
+        interactor.createNewEvent(request)
+        self.router.close(animated: true)
     }
 }
 

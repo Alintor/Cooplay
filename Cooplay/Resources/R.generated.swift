@@ -143,7 +143,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 23 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -165,6 +165,8 @@ struct R: Rswift.Validatable {
     static let commonHide = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.hide")
     /// Image `common.link`.
     static let commonLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link")
+    /// Image `common.logo`.
+    static let commonLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.logo")
     /// Image `common.normal.crown`.
     static let commonNormalCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.normal.crown")
     /// Image `common.plus`.
@@ -173,6 +175,8 @@ struct R: Rswift.Validatable {
     static let commonShow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.show")
     /// Image `common.small.crown`.
     static let commonSmallCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.small.crown")
+    /// Image `eventsList.emptyState`.
+    static let eventsListEmptyState = Rswift.ImageResource(bundle: R.hostingBundle, name: "eventsList.emptyState")
     /// Image `status.normal.declined`.
     static let statusNormalDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.declined")
     /// Image `status.normal.late`.
@@ -242,6 +246,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.commonLink, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.logo", bundle: ..., traitCollection: ...)`
+    static func commonLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonLogo, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.normal.crown", bundle: ..., traitCollection: ...)`
     static func commonNormalCrown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonNormalCrown, compatibleWith: traitCollection)
@@ -260,6 +269,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.small.crown", bundle: ..., traitCollection: ...)`
     static func commonSmallCrown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonSmallCrown, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "eventsList.emptyState", bundle: ..., traitCollection: ...)`
+    static func eventsListEmptyState(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eventsListEmptyState, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.normal.declined", bundle: ..., traitCollection: ...)`
@@ -565,7 +579,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 89 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 91 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -611,6 +625,8 @@ struct R: Rswift.Validatable {
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
       static let authorizationTitle = Rswift.StringResource(key: "authorization.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы можете создать событие сами, и пригласить друзей
+      static let eventsListEmptySateDescription = Rswift.StringResource(key: "eventsList.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбранные
       static let searchMembersSectionsSelected = Rswift.StringResource(key: "searchMembers.sections.selected", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбрать %@
@@ -623,6 +639,8 @@ struct R: Rswift.Validatable {
       static let authorizationRecoveryPasswordButtonTitle = Rswift.StringResource(key: "authorization.recoveryPasswordButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Завтра
       static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Здесь будут все ваши события
+      static let eventsListEmptySateTitle = Rswift.StringResource(key: "eventsList.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Или пригласите по ссылке
@@ -856,6 +874,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorization.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Вы можете создать событие сами, и пригласить друзей
+      static func eventsListEmptySateDescription(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.emptySate.description", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Выбранные
       static func searchMembersSectionsSelected(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.sections.selected", bundle: R.hostingBundle, comment: "")
@@ -884,6 +907,11 @@ struct R: Rswift.Validatable {
       /// Value: Завтра
       static func newEventTomorrowButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.tomorrowButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Здесь будут все ваши события
+      static func eventsListEmptySateTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.emptySate.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Изменить
@@ -1543,6 +1571,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "common.logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.logo' is used in storyboard 'Intro', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Intro', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Intro', but couldn't be loaded.") }

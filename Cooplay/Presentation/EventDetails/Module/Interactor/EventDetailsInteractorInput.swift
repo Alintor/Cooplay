@@ -9,4 +9,9 @@ import Foundation
 
 protocol EventDetailsInteractorInput: class {
 
+    func changeStatus(
+        for event: Event,
+        completion: @escaping (Result<Void, EventDetailsError>) -> Void
+    )
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void)
 }

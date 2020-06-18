@@ -13,6 +13,13 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     
     private enum Constant {
         
+        enum Empty {
+            
+            static let image = R.image.eventsListEmptyState()
+            static let title = R.string.localizable.eventsListEmptySateTitle()
+            static let description = R.string.localizable.eventsListEmptySateDescription()
+        }
+        
         static let profileDiameter: CGFloat = 32
         static let profileTrailingIndent: CGFloat = 16
         static let profilewBottomIndent: CGFloat = 12
@@ -35,6 +42,12 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     @IBOutlet weak var tableView: UITableView!
     
     private var avatarView: AvatarView?
+    
+    private lazy var emptyState = EmptyStateHandler(
+        image: Constant.Empty.image,
+        title: Constant.Empty.title,
+        descriptionText: Constant.Empty.description
+    )
     
     // MARK: - View out
 
@@ -147,6 +160,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
             manager.estimatedHeightForCell(withItem: modelType) { _, _ in return cellType.defaultHeight }
         }
         manager.tableViewUpdater?.didUpdateContent = { [weak self] storage in
+            self?.tableView.reloadEmptyState(self?.emptyState)
             UIView.animate(
                 withDuration: Constant.actionButtonShowingAnimationDuration,
                 delay: 0,
@@ -183,6 +197,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     }
     
     func showItems() {
+        guard tableView.isHidden else { return }
         tableView.isHidden = false
         var delay: TimeInterval = 0
         for cell in tableView.visibleCells {

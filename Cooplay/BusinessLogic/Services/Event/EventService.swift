@@ -9,6 +9,7 @@
 
 import Foundation
 import Firebase
+import SwiftDate
 
 enum EventServiceError: Error {
     
@@ -29,8 +30,10 @@ extension EventServiceError: LocalizedError {
 protocol EventServiceType {
     
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void)
-    func createNewEvent(
-        _ request: NewEventRequest,
+    func createNewEvent(_ request: NewEventRequest)
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
+    func changeStatus(
+        for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void
     )
 }
@@ -53,18 +56,26 @@ final class EventService {
 extension EventService: EventServiceType {
     
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
-        
-        if let events = storage?.fetchEvents() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion(.success(events))
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+                return
             }
-            
+            let response = snapshot?.documents.compactMap({
+                return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
+            })
+            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
+                completion(.failure(.unknownError))
+                return
+            }
+            let filteredEvents = events.filter { $0.date >= (Date() - 1.hour)}
+            completion(.success(filteredEvents))
         }
+        
     }
     
-    func createNewEvent(
-        _ request: NewEventRequest,
-        completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+    func createNewEvent(_ request: NewEventRequest) {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         func createEvent(user: User) {
             var members = request.members?.map({ user -> User in
@@ -74,32 +85,54 @@ extension EventService: EventServiceType {
                 return member
             }) ?? []
             members.append(user)
-            var request = request
-            request.members = members
-            guard let data = request.dictionary else { return }
-            firestore.collection("Events").document(request.id).setData(data) { (error) in
-                if let error = error {
-                    completion(.failure(.unhandled(error: error)))
-                } else {
-                    completion(.success(()))
-                }
+            guard var data = request.dictionary else { return }
+            var membersDictionary = [String: Any]()
+            for member in members {
+                membersDictionary[member.id] = member.dictionary
             }
+            data["members"] = membersDictionary
+            firestore.collection("Events").document(request.id).setData(data)
             
         }
         firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
-                return
-            }
             if let data = snapshot?.data(),
                 var user = try? FirestoreDecoder.decode(data, to: User.self) {
                 user.status = .accepted
                 user.isOwner = true
                 createEvent(user: user)
+            }
+            
+        }
+    }
+    
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+                return
+            }
+            if let data = snapshot?.data(),
+                let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
+                completion(.success(event.getModel(userId: userId)))
             } else {
                 completion(.failure(.unknownError))
             }
-            
+        }
+    }
+    
+    func changeStatus(
+        for event: Event,
+        completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        firestore.collection("Events").document(event.id).updateData([
+            "members.\(event.me.id).lateness": event.me.lateness as Any,
+            "members.\(event.me.id).state": event.me.state?.rawValue as Any
+        ]) { (error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ final class EventDetailsPresenter {
                 guard let `self` = self else { return }
                 self.view.setupInitialState()
                 self.view.update(with: EventDetailsViewModel(with: self.event))
+                self.fetchEvent()
             }
             view.dataSourceIsReady = { [weak self] dataSource in
                 guard let `self` = self else { return }
@@ -25,14 +26,18 @@ final class EventDetailsPresenter {
                 self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0) })
             }
             view.statusAction = { [weak self] delegate in
-                self?.router.showContextMenu(
+                guard let `self` = self else { return }
+                self.router.showContextMenu(
                     delegate: delegate,
                     contextType: .overTarget,
                     menuSize: .large,
-                    menuType: .statuses(type: .confirmation, actionHandler: { status in
-                        guard let `self` = self else { return }
-                        self.event.me.status = status
-                        self.view.update(with: EventDetailsViewModel(with: self.event))
+                    menuType: .statuses(
+                        type: self.event.isActive ? .confirmation : .agreement,
+                        actionHandler: { [weak self] status in
+                            guard let `self` = self else { return }
+                            self.event.me.status = status
+                            self.view.update(with: EventDetailsViewModel(with: self.event))
+                            self.changeStatus()
                     })
                 )
             }
@@ -62,6 +67,33 @@ final class EventDetailsPresenter {
         }
     }
     private var members: [User]!
+    
+    private func fetchEvent() {
+        interactor.fetchEvent(id: self.event.id) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let event):
+                self.event = event
+                self.view.update(with: EventDetailsViewModel(with: self.event))
+                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0)})
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func changeStatus() {
+        interactor.changeStatus(for: self.event) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success: break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - EventDetailsModuleInput
