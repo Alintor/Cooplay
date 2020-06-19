@@ -295,7 +295,9 @@ class StatusMenuView: UIView {
                 switch item.item.selectAction {
                 case .handleAction:
                     handler?(item.item)
-                    item.item.handleAction()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        item.item.handleAction()
+                    }
                 case .showItems:
                     item.scrollableContainer?.scrollableConstraint.constant = -menuSize.width
                     UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
