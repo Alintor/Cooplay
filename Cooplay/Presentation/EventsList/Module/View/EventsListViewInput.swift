@@ -14,6 +14,7 @@ protocol EventsListViewInput: class, ActivityIndicatorRenderer {
 
     var output: EventsListModuleInput? { get set }
     var viewIsReady: (() -> Void)? { get set }
+    var viewDidAppear: (() -> Void)? { get set }
     var profileAction: (() -> Void)? { get set }
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)? { get set }
     var itemSelected: ((_ event: Event) -> Void)? { get set }

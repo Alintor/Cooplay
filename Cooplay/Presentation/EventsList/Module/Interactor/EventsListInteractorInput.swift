@@ -15,4 +15,6 @@ protocol EventsListInteractorInput: class {
         for event: Event,
         completion: @escaping (Result<Void, EventsListError>) -> Void
     )
+    func setupNotifications(events: [Event])
+    func updateAppBadge(inventedEventsCount: Int)
 }

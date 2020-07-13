@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import UIKit
+import UserNotifications
+import SwiftDate
+import Kingfisher
 
 enum EventsListError: Error {
     
@@ -69,5 +73,55 @@ extension EventsListInteractor: EventsListInteractorInput {
                 completion(.failure(.unhandled(error: error)))
             }
         })
+    }
+    
+    func setupNotifications(events: [Event]) {
+        let userNotificationCenter = UNUserNotificationCenter.current()
+        userNotificationCenter.removeAllPendingNotificationRequests()
+        for event in events {
+            if
+                let coverPath = event.game.coverPath,
+                let coverUrl = URL(string: coverPath) {
+                KingfisherManager.shared.retrieveImage(with: coverUrl) { [weak self] (result) in
+                    switch result {
+                    case .success(let imageResult):
+                        let attachment = UNNotificationAttachment.create(identifier: event.game.slug, image: imageResult.image, options: nil)
+                        self?.addNotification(event: event, attachment: attachment)
+                    case .failure:
+                        self?.addNotification(event: event, attachment: nil)
+                    }
+                }
+                
+            } else {
+                addNotification(event: event, attachment: nil)
+            }
+        }
+    }
+    
+    private func addNotification(event: Event, attachment: UNNotificationAttachment?) {
+        let userNotificationCenter = UNUserNotificationCenter.current()
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = R.string.localizable.notificationsStatusRemindTitle()
+        notificationContent.body = R.string.localizable.notificationsStatusRemindMessage(30, event.game.name)
+        notificationContent.userInfo = [
+            "type": NotificationType.statusRemind.rawValue
+        ]
+        if let eventData = try? JSONEncoder().encode(event) {
+            notificationContent.userInfo["event"] = eventData
+        }
+        if let attachment = attachment {
+            notificationContent.attachments = [attachment]
+        }
+        let triggerDate = Calendar.current.dateComponents(
+            [.year,.month,.day,.hour,.minute,.second,],
+            from: event.date - 30.minutes
+        )
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        let request = UNNotificationRequest(identifier: event.id, content: notificationContent, trigger: trigger)
+        userNotificationCenter.add(request, withCompletionHandler: nil)
+    }
+    
+    func updateAppBadge(inventedEventsCount: Int) {
+        UIApplication.shared.applicationIconBadgeNumber = inventedEventsCount
     }
 }

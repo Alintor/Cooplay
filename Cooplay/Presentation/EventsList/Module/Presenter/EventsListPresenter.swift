@@ -28,8 +28,10 @@ final class EventsListPresenter: NSObject {
             // Configure view out
             view.viewIsReady = { [weak self] in
                 self?.view.setupInitialState()
-                self?.fetchEvents()
                 self?.fetchProfile()
+            }
+            view.viewDidAppear  = { [weak self] in
+                self?.fetchEvents()
             }
             view.dataSourceIsReady = { [weak self] dataSource in
                 self?.dataSource = dataSource
@@ -50,6 +52,7 @@ final class EventsListPresenter: NSObject {
     
     // MARK: - Private
     
+    private var isFirstShowing = true
     private var dataSource: MemoryStorage!
     private var events = [Event]() {
         didSet {
@@ -103,7 +106,10 @@ final class EventsListPresenter: NSObject {
     }
     
     private func fetchEvents() {
-        view.showProgress(indicatorType: .arrows)
+        if isFirstShowing {
+            view.showProgress(indicatorType: .arrows)
+            isFirstShowing = false
+        }
         interactor.fetchEvents { [weak self] result in
             guard let `self` = self else { return }
             self.view.hideProgress()
@@ -112,6 +118,10 @@ final class EventsListPresenter: NSObject {
                 self.events = events
                 self.configureSections()
                 self.view.showItems()
+                self.interactor.updateAppBadge(inventedEventsCount: self.inventedEvents.count)
+                var furureEvents = self.furureEvents
+                self.activeEvent.map { furureEvents.append($0) }
+                self.interactor.setupNotifications(events: furureEvents)
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)

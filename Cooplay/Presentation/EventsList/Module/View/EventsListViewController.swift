@@ -53,6 +53,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 
     var output: EventsListModuleInput?
     var viewIsReady: (() -> Void)?
+    var viewDidAppear: (() -> Void)?
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
     var itemSelected: ((_ event: Event) -> Void)?
     var newEventAction: (() -> Void)?
@@ -225,6 +226,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewDidAppear?()
         //configureProfileView()
         //avatarView?.isHidden = false
         UIView.animate(withDuration: 0.1) {

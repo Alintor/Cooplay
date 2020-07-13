@@ -579,7 +579,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 91 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 93 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -699,6 +699,8 @@ struct R: Rswift.Validatable {
       static let personalisationTitle = Rswift.StringResource(key: "personalisation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите пароль
       static let registrationPasswordConfirmTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordConfirmTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Подтвердите свой статус
+      static let notificationsStatusRemindTitle = Rswift.StringResource(key: "notifications.statusRemind.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердить
       static let personalisationActionButtonTitle = Rswift.StringResource(key: "personalisation.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
@@ -755,6 +757,8 @@ struct R: Rswift.Validatable {
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Такой ник уже занят
       static let personalisationErrorNicknameAlreadyExist = Rswift.StringResource(key: "personalisation.error.nickname.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
+      static let notificationsStatusRemindMessage = Rswift.StringResource(key: "notifications.statusRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уже есть аккаунт? Войти
       static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Цифра
@@ -1059,6 +1063,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.passwordConfirmTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Подтвердите свой статус
+      static func notificationsStatusRemindTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notifications.statusRemind.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Подтвердить
       static func personalisationActionButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("personalisation.actionButton.title", bundle: R.hostingBundle, comment: "")
@@ -1197,6 +1206,11 @@ struct R: Rswift.Validatable {
       /// Value: Такой ник уже занят
       static func personalisationErrorNicknameAlreadyExist(_: Void = ()) -> String {
         return NSLocalizedString("personalisation.error.nickname.alreadyExist", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
+      static func notificationsStatusRemindMessage(_ value1: Int, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: Уже есть аккаунт? Войти
