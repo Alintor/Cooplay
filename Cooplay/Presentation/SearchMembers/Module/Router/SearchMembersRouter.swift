@@ -16,4 +16,9 @@ final class SearchMembersRouter {
 
 extension SearchMembersRouter: SearchMembersRouterInput {
 
+    func shareInventLink(_ link: URL) {
+        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        let activityViewController = UIActivityViewController(activityItems: [link], applicationActivities: nil)
+        transitionHandler.present(activityViewController, animated: true, completion: nil)
+    }
 }

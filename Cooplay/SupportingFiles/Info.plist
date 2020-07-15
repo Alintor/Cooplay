@@ -16,10 +16,31 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ovchinnikov.ruwus</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ruwus</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>DBGamesUserKey</key>
 	<string>${IGDB_API_KEY}</string>
+    <key>DynamicLinkDomain</key>
+    <string>${DYNAMIC_LINK_SCHEME}://${DYNAMIC_LINK_DOMAIN}</string>
+    <key>DynamicLinkCustomScheme</key>
+    <string>${DYNAMIC_LINK_CUSTOM_SCHEME}</string>
+    <key>AppleAppId</key>
+    <string>${APPLE_APP_ID}</string>
+    <key>OfficialSite</key>
+    <string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>

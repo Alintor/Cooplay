@@ -29,16 +29,34 @@ final class EventsListInteractor {
 
     private let eventService: EventServiceType?
     private let userService: UserServiceType?
+    private let defaultsStorage: DefaultsStorageType?
     
-    init(eventService: EventServiceType?, userService: UserServiceType?) {
+    init(eventService: EventServiceType?, userService: UserServiceType?, defaultsStorage: DefaultsStorageType?) {
         self.eventService = eventService
         self.userService = userService
+        self.defaultsStorage = defaultsStorage
     }
 }
 
 // MARK: - EventsListInteractorInput
 
 extension EventsListInteractor: EventsListInteractorInput {
+    
+    var showDeclinedEvents: Bool {
+        return defaultsStorage?.get(valueForKey: .showDeclinedEvents) as? Bool ?? true
+    }
+    
+    var inventLinkEventId: String? {
+        return defaultsStorage?.get(valueForKey: .inventLinkEventId) as? String
+    }
+    
+    func setDeclinedEvents(show: Bool) {
+        defaultsStorage?.set(value: show, forKey: .showDeclinedEvents)
+    }
+    
+    func clearInventLinkEventId() {
+        defaultsStorage?.remove(valueForKey: .inventLinkEventId)
+    }
 
     func fetchEvents(completion: @escaping (Result<[Event], EventsListError>) -> Void) {
         eventService?.fetchEvents { result in
@@ -56,6 +74,17 @@ extension EventsListInteractor: EventsListInteractorInput {
             switch result {
             case .success(let user):
                 completion(.success(user))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
+    func addEvent(eventId: String, completion: @escaping (Result<Event, EventsListError>) -> Void) {
+        eventService?.addEvent(eventId: eventId, completion: { (result) in
+            switch result {
+            case .success(let event):
+                completion(.success(event))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }

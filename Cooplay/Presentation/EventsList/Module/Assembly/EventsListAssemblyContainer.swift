@@ -14,7 +14,8 @@ final class EventsListAssemblyContainer: Assembly {
 		container.register(EventsListInteractor.self) { r in
             let interactor = EventsListInteractor(
                 eventService: r.resolve(EventServiceType.self),
-                userService: r.resolve(UserServiceType.self)
+                userService: r.resolve(UserServiceType.self),
+                defaultsStorage: r.resolve(DefaultsStorageType.self)
             )
 
 			return interactor

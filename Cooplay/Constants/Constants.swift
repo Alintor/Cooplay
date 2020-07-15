@@ -23,6 +23,7 @@ enum GlobalConstant {
         return screenWidth < 370.0
     }
     static var eventActivePeriod = 3
+    static var eventIdKey = "eventId"
 }
 
 var localizableUITableName = "Localizable"

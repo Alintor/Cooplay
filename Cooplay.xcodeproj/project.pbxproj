@@ -174,6 +174,12 @@
 		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
 		A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
 		A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
+		A89F96FE24BC490B0036B155 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FD24BC490B0036B155 /* URL.swift */; };
+		A89F970224BD7CEA0036B155 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A89F970124BD7CEA0036B155 /* AuthenticationServices.framework */; };
+		A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F970324BD86760036B155 /* DeepLinkApplicationService.swift */; };
+		A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972924BED14B0036B155 /* DefaultsStorage.swift */; };
+		A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */; };
+		A89F972E24BEEC820036B155 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972D24BEEC820036B155 /* Notification.swift */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
@@ -392,6 +398,13 @@
 		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
 		A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
 		A89F96FB24BC2DFF0036B155 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		A89F96FD24BC490B0036B155 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		A89F96FF24BC4D1D0036B155 /* Ruwus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ruwus.entitlements; sourceTree = "<group>"; };
+		A89F970124BD7CEA0036B155 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		A89F970324BD86760036B155 /* DeepLinkApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkApplicationService.swift; sourceTree = "<group>"; };
+		A89F972924BED14B0036B155 /* DefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorage.swift; sourceTree = "<group>"; };
+		A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageAssemblyContainer.swift; sourceTree = "<group>"; };
+		A89F972D24BEEC820036B155 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		A8A026A602BF2FBBBD8FAAF0 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
@@ -471,6 +484,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89F970224BD7CEA0036B155 /* AuthenticationServices.framework in Frameworks */,
 				C56A081CF34CA62526D03FF3 /* Pods_Cooplay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,6 +1073,7 @@
 		A82FF2A02345E97400EE1807 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				A89F972724BED1230036B155 /* Storages */,
 				A8FB1CD7249A1653001C9355 /* Utils */,
 				A87CF46E23EC1107004189D3 /* Network */,
 				A87CF46F23EC111D004189D3 /* Specifications */,
@@ -1278,6 +1293,8 @@
 				A82FF2DC2347492B00EE1807 /* String.swift */,
 				A8FB1CDA249A503F001C9355 /* Codable.swift */,
 				A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */,
+				A89F96FD24BC490B0036B155 /* URL.swift */,
+				A89F972D24BEEC820036B155 /* Notification.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1421,6 +1438,7 @@
 		A87701FD23336E6E002EA095 /* Cooplay */ = {
 			isa = PBXGroup;
 			children = (
+				A89F96FF24BC4D1D0036B155 /* Ruwus.entitlements */,
 				A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */,
 				A82FF2C72346F7F700EE1807 /* Extensions */,
 				A82FF2B323460E6100EE1807 /* Constants */,
@@ -1614,6 +1632,23 @@
 			path = NewEventMemberCell;
 			sourceTree = "<group>";
 		};
+		A89F972724BED1230036B155 /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				A89F972824BED13C0036B155 /* DefaultsStorage */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		A89F972824BED13C0036B155 /* DefaultsStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A89F972924BED14B0036B155 /* DefaultsStorage.swift */,
+				A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */,
+			);
+			path = DefaultsStorage;
+			sourceTree = "<group>";
+		};
 		A8BC67E73DEF16775012A961 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -1713,6 +1748,7 @@
 				A8FB1CCC2499CFEE001C9355 /* AppearanceApplicationService.swift */,
 				A8FB1CCE2499CFFE001C9355 /* InitialModuleApplicationService.swift */,
 				A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */,
+				A89F970324BD86760036B155 /* DeepLinkApplicationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1801,6 +1837,7 @@
 		D0DFD0D1889AEBF25C6681CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A89F970124BD7CEA0036B155 /* AuthenticationServices.framework */,
 				7D1952A5037E2BEBE7EC02B2 /* Pods_Cooplay.framework */,
 			);
 			name = Frameworks;
@@ -2190,6 +2227,7 @@
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
+				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
@@ -2229,6 +2267,7 @@
 				A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */,
+				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
@@ -2255,6 +2294,7 @@
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
+				A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */,
 				A87CF46123EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift in Sources */,
 				A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */,
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
@@ -2334,6 +2374,7 @@
 				237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
 				A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */,
+				A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */,
 				A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */,
 				A8FB1CDB249A503F001C9355 /* Codable.swift in Sources */,
 				7388A80D4F5276385187AD3E /* IntroViewController.swift in Sources */,
@@ -2362,6 +2403,7 @@
 				AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */,
 				5704115E2D455D22A81C8EFD /* RegistrationInteractorInput.swift in Sources */,
 				17A3D4E21AC10F58312EA8C1 /* RegistrationInteractor.swift in Sources */,
+				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
 				F76B7E567DBB809EECE69393 /* RegistrationRouterInput.swift in Sources */,
 				D271F1E6A5496C052EDBB18F /* RegistrationRouter.swift in Sources */,
 				7A4FBD8181074327467FCCCF /* PersonalisationAssemblyContainer.swift in Sources */,
@@ -2523,6 +2565,7 @@
 			baseConfigurationReference = BBB56DA1364DE814BF318F34 /* Pods-Cooplay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
@@ -2543,6 +2586,7 @@
 			baseConfigurationReference = 0EA6DED6AE53EB86801DC0B1 /* Pods-Cooplay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;

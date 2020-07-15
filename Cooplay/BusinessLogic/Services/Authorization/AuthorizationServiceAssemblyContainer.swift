@@ -16,7 +16,7 @@ final class AuthorizationServiceAssemblyContainer: Assembly {
         container.register(AuthorizationServiceType.self) { r in
             let firebaseAuth = Auth.auth()
             firebaseAuth.useAppLanguage()
-            return AuthorizationService(firebaseAuth: firebaseAuth)
+            return AuthorizationService(firebaseAuth: firebaseAuth, defaultsStorages: r.resolve(DefaultsStorageType.self))
         }
     }
 }

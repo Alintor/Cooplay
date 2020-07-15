@@ -50,6 +50,20 @@ final class EventsListPresenter: NSObject {
     var interactor: EventsListInteractorInput!
     var router: EventsListRouterInput!
     
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleInviteDeepLink),
+            name: .handleDeepLinkInvent,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Private
     
     private var isFirstShowing = true
@@ -79,7 +93,14 @@ final class EventsListPresenter: NSObject {
         return events.filter({ $0.me.state == .declined })
     }
     
-    private var showDeclinedEvents: Bool = true
+    private var showDeclinedEvents: Bool {
+        get {
+            return interactor.showDeclinedEvents
+        }
+        set {
+            interactor.setDeclinedEvents(show: newValue)
+        }
+    }
     
     private func updateEvent(_ event: Event) {
         interactor.changeStatus(for: event) { [weak self] result in
@@ -112,16 +133,17 @@ final class EventsListPresenter: NSObject {
         }
         interactor.fetchEvents { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
+            self.view?.hideProgress()
             switch result {
             case .success(let events):
                 self.events = events
                 self.configureSections()
-                self.view.showItems()
+                self.view?.showItems()
                 self.interactor.updateAppBadge(inventedEventsCount: self.inventedEvents.count)
                 var furureEvents = self.furureEvents
                 self.activeEvent.map { furureEvents.append($0) }
                 self.interactor.setupNotifications(events: furureEvents)
+                self.handleInviteDeepLink()
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)
@@ -256,6 +278,21 @@ final class EventsListPresenter: NSObject {
             sectionHeader,
             forSection: Constant.Section.declined
         )
+    }
+    
+    @objc private func handleInviteDeepLink() {
+        guard let eventId = interactor.inventLinkEventId else { return }
+        interactor.clearInventLinkEventId()
+        interactor.addEvent(eventId: eventId) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let event):
+                self.router.openEvent(event)
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

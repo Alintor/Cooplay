@@ -9,4 +9,5 @@ import Foundation
 
 protocol SearchMembersRouterInput: CloseableRouter {
 
+    func shareInventLink(_ link: URL)
 }

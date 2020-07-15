@@ -16,7 +16,8 @@ final class AppDelegate: PluggableApplicationDelegate {
         return [
             AppearanceApplicationService(),
             InitialModuleApplicationService(),
-            PushNotificationApplicationService()
+            PushNotificationApplicationService(),
+            DeepLinkApplicationService()
         ]
     }
     

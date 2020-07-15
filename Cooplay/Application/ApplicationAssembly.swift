@@ -18,6 +18,9 @@ final class ApplicationAssembly {
             AuthorizationHandlerAssemblyContainer(),
             APIProviderAssemblyContainer(),
             
+            // Storages
+            DefaultsStorageAssemblyContainer(),
+            
             // Services
             AuthorizationServiceAssemblyContainer(),
             EventServiceAssemblyContainer(),

@@ -50,6 +50,7 @@ final class NewEventPresenter {
             view.searchMembersAction = { [weak self] in
                 guard let `self` = self else { return }
                 self.router.openMembersSearch(
+                    eventId: self.request.id,
                     offtenMembers: self.membersDataSours.offtenItems,
                     selectedMembers: self.membersDataSours.selectedItems,
                     selectionHandler: { [weak self] selectedMembers in

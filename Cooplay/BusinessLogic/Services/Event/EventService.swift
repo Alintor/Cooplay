@@ -32,6 +32,7 @@ protocol EventServiceType {
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void)
     func createNewEvent(_ request: NewEventRequest)
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
+    func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
     func changeStatus(
         for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void
@@ -118,6 +119,45 @@ extension EventService: EventServiceType {
             } else {
                 completion(.failure(.unknownError))
             }
+        }
+    }
+    
+    func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        func addUserToEvent(user: User) {
+            guard let userDictionary = user.dictionary else { return }
+            firestore.collection("Events").document(eventId).updateData([
+                "members.\(user.id)": userDictionary
+            ]) { (error) in
+                if let error = error {
+                    completion(.failure(.unhandled(error: error)))
+                } else {
+                    getEvent(id: eventId)
+                }
+            }
+        }
+        func getEvent(id: String) {
+            firestore.collection("Events").document(id).getDocument { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(.unhandled(error: error)))
+                    return
+                }
+                if let data = snapshot?.data(),
+                    let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
+                    completion(.success(event.getModel(userId: userId)))
+                } else {
+                    completion(.failure(.unknownError))
+                }
+            }
+        }
+        firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
+            if let data = snapshot?.data(),
+                var user = try? FirestoreDecoder.decode(data, to: User.self) {
+                user.status = .unknown
+                user.isOwner = false
+                addUserToEvent(user: user)
+            }
+            
         }
     }
     

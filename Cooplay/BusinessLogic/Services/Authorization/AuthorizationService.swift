@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import UserNotifications
 
 enum AuthorizationServiceError: Error {
     
@@ -51,9 +52,11 @@ protocol AuthorizationServiceType {
 final class AuthorizationService {
     
     private let firebaseAuth: Auth
+    private let defaultsStorages: DefaultsStorageType?
     
-    init(firebaseAuth: Auth) {
+    init(firebaseAuth: Auth, defaultsStorages: DefaultsStorageType?) {
         self.firebaseAuth = firebaseAuth
+        self.defaultsStorages = defaultsStorages
     }
 }
 
@@ -121,5 +124,7 @@ extension AuthorizationService: AuthorizationServiceType {
     
     func logout() {
         try? firebaseAuth.signOut()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        defaultsStorages?.clear()
     }
 }

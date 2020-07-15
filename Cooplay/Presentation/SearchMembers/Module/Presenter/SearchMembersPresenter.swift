@@ -28,8 +28,9 @@ final class SearchMembersPresenter {
             }
             view.inviteAction = { [weak self] in
                 guard let `self` = self else { return }
-                // TODO:
-                print("Invite by link tapped")
+                self.interactor.generateInviteLink(eventId: self.eventId) { [weak self] (url) in
+                    self?.router.shareInventLink(url)
+                }
             }
             view.dataSourceIsReady = { [weak self] dataSource in
                 guard let `self` = self else { return }
@@ -51,6 +52,7 @@ final class SearchMembersPresenter {
     
     // MARK: - Private
     
+    private var eventId: String!
     private var offtenMembers: [User]!
     private var selectedMembers: [User]!
     private var dataSource: MemoryStorage!
@@ -141,7 +143,8 @@ final class SearchMembersPresenter {
 
 extension SearchMembersPresenter: SearchMembersModuleInput {
 
-    func configure(offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?) {
+    func configure(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?) {
+        self.eventId = eventId
         self.offtenMembers = offtenMembers ?? []
         self.selectedMembers = selectedMembers
         self.selectionHandler = selectionHandler
