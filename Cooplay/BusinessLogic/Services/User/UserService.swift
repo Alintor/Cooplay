@@ -35,6 +35,7 @@ protocol UserServiceType {
         completion: @escaping (Result<Void, UserServiceError>) -> Void
     )
     func fetchProfile(completion: @escaping (Result<User, UserServiceError>) -> Void)
+    func registerNotificationToken(_ token: String)
 }
 
 
@@ -179,5 +180,10 @@ extension UserService: UserServiceType {
                 completion(.failure(.unknownError))
             }
         }
+    }
+    
+    func registerNotificationToken(_ token: String) {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        firestore.collection("Users").document(userId).updateData(["notificationToken" : token])
     }
 }

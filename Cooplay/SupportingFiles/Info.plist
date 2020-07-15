@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppleAppId</key>
+	<string>${APPLE_APP_ID}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru</string>
 	<key>CFBundleExecutable</key>
@@ -33,19 +35,16 @@
 	<string>1</string>
 	<key>DBGamesUserKey</key>
 	<string>${IGDB_API_KEY}</string>
-    <key>DynamicLinkDomain</key>
-    <string>${DYNAMIC_LINK_SCHEME}://${DYNAMIC_LINK_DOMAIN}</string>
-    <key>DynamicLinkCustomScheme</key>
-    <string>${DYNAMIC_LINK_CUSTOM_SCHEME}</string>
-    <key>AppleAppId</key>
-    <string>${APPLE_APP_ID}</string>
-    <key>OfficialSite</key>
-    <string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
+	<key>DynamicLinkCustomScheme</key>
+	<string>${DYNAMIC_LINK_CUSTOM_SCHEME}</string>
+	<key>DynamicLinkDomain</key>
+	<string>${DYNAMIC_LINK_SCHEME}://${DYNAMIC_LINK_DOMAIN}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>OfficialSite</key>
+	<string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
