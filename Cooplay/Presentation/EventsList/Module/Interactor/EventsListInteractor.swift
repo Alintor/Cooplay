@@ -129,25 +129,40 @@ extension EventsListInteractor: EventsListInteractorInput {
     
     private func addNotification(event: Event, attachment: UNNotificationAttachment?) {
         let userNotificationCenter = UNUserNotificationCenter.current()
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = R.string.localizable.notificationsStatusRemindTitle()
-        notificationContent.body = R.string.localizable.notificationsStatusRemindMessage(30, event.game.name)
-        notificationContent.userInfo = [
+        let statusNotificationContent = UNMutableNotificationContent()
+        let eventStartNotificationContent = UNMutableNotificationContent()
+        statusNotificationContent.title = R.string.localizable.notificationsStatusRemindTitle()
+        eventStartNotificationContent.title = R.string.localizable.notificationsEventStartRemindTitle()
+        statusNotificationContent.body = R.string.localizable.notificationsStatusRemindMessage(30, event.game.name)
+        eventStartNotificationContent.body = R.string.localizable.notificationsEventStartRemindMessage(event.game.name)
+        statusNotificationContent.userInfo = [
+            "type": NotificationType.statusRemind.rawValue
+        ]
+        eventStartNotificationContent.userInfo = [
             "type": NotificationType.statusRemind.rawValue
         ]
         if let eventData = try? JSONEncoder().encode(event) {
-            notificationContent.userInfo["event"] = eventData
+            statusNotificationContent.userInfo["event"] = eventData
+            eventStartNotificationContent.userInfo["event"] = eventData
         }
         if let attachment = attachment {
-            notificationContent.attachments = [attachment]
+            statusNotificationContent.attachments = [attachment]
+            eventStartNotificationContent.attachments = [attachment]
         }
-        let triggerDate = Calendar.current.dateComponents(
+        let statusTriggerDate = Calendar.current.dateComponents(
             [.year,.month,.day,.hour,.minute,.second,],
             from: event.date - 30.minutes
         )
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        let request = UNNotificationRequest(identifier: event.id, content: notificationContent, trigger: trigger)
-        userNotificationCenter.add(request, withCompletionHandler: nil)
+        let eventStartTriggerDate = Calendar.current.dateComponents(
+            [.year,.month,.day,.hour,.minute,.second,],
+            from: event.date
+        )
+        let statusTrigger = UNCalendarNotificationTrigger(dateMatching: statusTriggerDate, repeats: false)
+        let eventStartTrigger = UNCalendarNotificationTrigger(dateMatching: eventStartTriggerDate, repeats: false)
+        let statusRequest = UNNotificationRequest(identifier: event.id, content: statusNotificationContent, trigger: statusTrigger)
+        let eventStartRequest = UNNotificationRequest(identifier: event.id + "0", content: eventStartNotificationContent, trigger: eventStartTrigger)
+        userNotificationCenter.add(statusRequest, withCompletionHandler: nil)
+        userNotificationCenter.add(eventStartRequest, withCompletionHandler: nil)
     }
     
     func updateAppBadge(inventedEventsCount: Int) {

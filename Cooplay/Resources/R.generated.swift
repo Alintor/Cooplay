@@ -579,7 +579,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 93 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 95 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -641,6 +641,8 @@ struct R: Rswift.Validatable {
       static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Здесь будут все ваши события
       static let eventsListEmptySateTitle = Rswift.StringResource(key: "eventsList.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Игра в %@ начинается. Если вы опаздываете, то уточните свой статус
+      static let notificationsEventStartRemindMessage = Rswift.StringResource(key: "notifications.eventStartRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Или пригласите по ссылке
@@ -743,6 +745,8 @@ struct R: Rswift.Validatable {
       static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сменить профиль
       static let profileExitButtonTitle = Rswift.StringResource(key: "profile.exitButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Событие начинается
+      static let notificationsEventStartRemindTitle = Rswift.StringResource(key: "notifications.eventStartRemind.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создание события
       static let newEventTitle = Rswift.StringResource(key: "newEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
@@ -916,6 +920,11 @@ struct R: Rswift.Validatable {
       /// Value: Здесь будут все ваши события
       static func eventsListEmptySateTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.emptySate.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Игра в %@ начинается. Если вы опаздываете, то уточните свой статус
+      static func notificationsEventStartRemindMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.eventStartRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Value: Изменить
@@ -1171,6 +1180,11 @@ struct R: Rswift.Validatable {
       /// Value: Сменить профиль
       static func profileExitButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("profile.exitButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Событие начинается
+      static func notificationsEventStartRemindTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notifications.eventStartRemind.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Создание события
