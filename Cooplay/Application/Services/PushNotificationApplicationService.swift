@@ -61,7 +61,8 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
     private func processNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
         guard let typeString = userInfo["type"] as? String, let notificationType = NotificationType(rawValue: typeString) else { return }
         switch notificationType {
-        case .statusRemind:
+        case .statusRemind,
+             .eventStart:
             guard let eventData = userInfo["event"] as? Data, let event = try? JSONDecoder().decode(Event.self, from: eventData) else { return }
             let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
             let eventDetailsViewController = R.storyboard.eventDetails.eventDetailsViewController()!
@@ -73,6 +74,20 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
             defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
             NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
+        case .statusChange:
+            guard
+                let eventJson = userInfo["event"] as? String,
+                let eventData =  eventJson.data(using: .utf16),
+                let eventResponse = try? JSONDecoder().decode(EventFirebaseResponse.self, from: eventData),
+                let userId = Auth.auth().currentUser?.uid
+            else { return }
+            let event = eventResponse.getModel(userId: userId)
+            let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
+            let eventDetailsViewController = R.storyboard.eventDetails.eventDetailsViewController()!
+            eventDetailsViewController.output?.configure(with: event)
+            let navigationController = UINavigationController(rootViewController: eventsViewController)
+            navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
+            UIApplication.setRootViewController(navigationController)
         }
     }
     
