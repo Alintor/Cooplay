@@ -63,7 +63,7 @@ final class EventDetailsPresenter {
     private var event: Event! {
         didSet {
             guard let event = event else { return }
-            self.members = event.members.sorted(by: { $0.name < $1.name }).sorted(by: { $0.isOwner == true || $1.isOwner == true})
+            self.members = event.members.sorted(by: { $0.name < $1.name }).sorted(by: { $0.isOwner == true && $1.isOwner != true})
         }
     }
     private var members: [User]!

@@ -41,7 +41,7 @@ struct ActiveEventCellViewModel {
         statusTitle = model.me.status?.title()
         avatarViewModel = AvatarViewModel(with: model.me)
         // TODO: Sort members
-        let memberViewModels = model.members.map { MemberStatusViewModel(with: $0) }
+        let memberViewModels = model.members.sorted(by: { $0.name < $1.name }).map { MemberStatusViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
         if otherCount > 1 {
             members = Array(memberViewModels.prefix(Constant.maxMembersCount))

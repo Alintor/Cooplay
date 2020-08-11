@@ -39,7 +39,7 @@ struct EventCellViewModel {
         statusIcon = model.me.status?.icon(isSmall: true)
         statusColor = model.me.status?.color
         // TODO: Sort members
-        let memberViewModels = model.members.map { AvatarViewModel(with: $0) }
+        let memberViewModels = model.members.sorted(by: { $0.name < $1.name }).map { AvatarViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
         if otherCount > 1 {
             members = Array(memberViewModels.prefix(Constant.maxMembersCount))
