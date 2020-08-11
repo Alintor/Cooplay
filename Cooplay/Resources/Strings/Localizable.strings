@@ -19,7 +19,7 @@
 "status.late.short" = "Опоздаю";
 "status.declined.short" = "Не пойду";
 "status.unknown.short" = "Приглашен";
-"status.accepted.full" = "Приду вовремя";
+"status.accepted.full" = "Пойду";
 "status.ontime.full" = "Приду вовремя";
 "status.maybe.full" = "Возможно, пойду";
 "status.late.full" = "Опоздаю на %d мин";

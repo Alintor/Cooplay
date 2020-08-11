@@ -58,6 +58,12 @@ final class EventsListPresenter: NSObject {
             name: .handleDeepLinkInvent,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(fetchEvents),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
     
     deinit {
@@ -126,7 +132,8 @@ final class EventsListPresenter: NSObject {
         }
     }
     
-    private func fetchEvents() {
+    @objc private func fetchEvents() {
+        guard dataSource != nil else { return }
         if isFirstShowing {
             view.showProgress(indicatorType: .arrows)
             isFirstShowing = false

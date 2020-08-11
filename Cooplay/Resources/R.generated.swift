@@ -714,6 +714,8 @@ struct R: Rswift.Validatable {
       /// Value: Поиск участников
       static let searchMembersTitle = Rswift.StringResource(key: "searchMembers.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
+      static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пригласить по ссылке
       static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -725,8 +727,6 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsInvented = Rswift.StringResource(key: "eventsList.sections.invented", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашения
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Приду вовремя
-      static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
@@ -1103,6 +1103,11 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Пойду
+      static func statusAcceptedFull(_: Void = ()) -> String {
+        return NSLocalizedString("status.accepted.full", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Пойду
       static func statusAcceptedShort(_: Void = ()) -> String {
         return NSLocalizedString("status.accepted.short", bundle: R.hostingBundle, comment: "")
       }
@@ -1130,11 +1135,6 @@ struct R: Rswift.Validatable {
       /// Value: Приглашения
       static func eventsListSectionsInvited(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.invited", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Приду вовремя
-      static func statusAcceptedFull(_: Void = ()) -> String {
-        return NSLocalizedString("status.accepted.full", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приду вовремя

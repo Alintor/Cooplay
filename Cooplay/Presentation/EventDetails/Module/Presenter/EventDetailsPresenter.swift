@@ -57,6 +57,19 @@ final class EventDetailsPresenter {
     var interactor: EventDetailsInteractorInput!
     var router: EventDetailsRouterInput!
     
+    init() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(fetchEvent),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Private
     
     private var dataSource: MemoryStorage!
@@ -68,7 +81,7 @@ final class EventDetailsPresenter {
     }
     private var members: [User]!
     
-    private func fetchEvent() {
+    @objc private func fetchEvent() {
         interactor.fetchEvent(id: self.event.id) { [weak self] result in
             guard let `self` = self else { return }
             switch result {

@@ -10,5 +10,7 @@ import Foundation
 
 enum NotificationType: String, Codable {
     case statusRemind
+    case statusChange
     case invitation
+    case eventStart
 }
