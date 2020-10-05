@@ -12,14 +12,14 @@ import UIKit
     
     private enum Constant {
         
-        static let size = CGSize(width: 40, height: 32)
-        static let fontSize: CGFloat = 8
-        static let statusViewSize = CGSize(width: 12, height: 12)
+        static let size = CGSize(width: 48, height: 40)
+        static let fontSize: CGFloat = 9
+        static let statusViewSize = CGSize(width: 16, height: 16)
         static let statusBorder: CGFloat = 2
         static let textVerticalIndent: CGFloat = 3
         static let textHorizontalIndent: CGFloat = 3
-        static let statusViewCornerRadius: CGFloat = 6
-        static let statusBorderCornerRadius: CGFloat = 8
+        static let statusViewCornerRadius: CGFloat = 8
+        static let statusBorderCornerRadius: CGFloat = 10
     }
     
     private let avatarView: AvatarView

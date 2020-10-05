@@ -52,8 +52,9 @@ struct User: Codable {
         
         func icon(isSmall: Bool = false) -> UIImage? {
             switch self {
-            case .accepted,
-                 .ontime:
+            case .accepted:
+                return isSmall ? R.image.statusSmallAccepted() : R.image.statusNormalAccepted()
+            case .ontime:
                 return isSmall ? R.image.statusSmallOntime() : R.image.statusNormalOntime()
             case .maybe:
                 return isSmall ? R.image.statusSmallMaybe() : R.image.statusNormalMaybe()

@@ -143,7 +143,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 25 images.
+  /// This `R.image` struct is generated, and contains static references to 27 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -177,6 +177,8 @@ struct R: Rswift.Validatable {
     static let commonSmallCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.small.crown")
     /// Image `eventsList.emptyState`.
     static let eventsListEmptyState = Rswift.ImageResource(bundle: R.hostingBundle, name: "eventsList.emptyState")
+    /// Image `status.normal.accepted`.
+    static let statusNormalAccepted = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.accepted")
     /// Image `status.normal.declined`.
     static let statusNormalDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.declined")
     /// Image `status.normal.late`.
@@ -187,6 +189,8 @@ struct R: Rswift.Validatable {
     static let statusNormalOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.ontime")
     /// Image `status.normal.unknown`.
     static let statusNormalUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.unknown")
+    /// Image `status.small.accepted`.
+    static let statusSmallAccepted = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.accepted")
     /// Image `status.small.declined`.
     static let statusSmallDeclined = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.declined")
     /// Image `status.small.maybe`.
@@ -276,6 +280,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.eventsListEmptyState, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "status.normal.accepted", bundle: ..., traitCollection: ...)`
+    static func statusNormalAccepted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusNormalAccepted, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "status.normal.declined", bundle: ..., traitCollection: ...)`
     static func statusNormalDeclined(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusNormalDeclined, compatibleWith: traitCollection)
@@ -299,6 +308,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "status.normal.unknown", bundle: ..., traitCollection: ...)`
     static func statusNormalUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusNormalUnknown, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.small.accepted", bundle: ..., traitCollection: ...)`
+    static func statusSmallAccepted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallAccepted, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.small.declined", bundle: ..., traitCollection: ...)`
@@ -1407,7 +1421,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "status.small.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.ontime' is used in nib 'NewEventGameCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "status.small.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.accepted' is used in nib 'NewEventGameCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
@@ -1429,7 +1443,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "status.small.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.ontime' is used in nib 'NewEventMemberCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "status.small.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.accepted' is used in nib 'NewEventMemberCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
