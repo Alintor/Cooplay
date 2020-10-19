@@ -15,9 +15,7 @@ final class APIProviderAssemblyContainer: Assembly {
             return APIProvider(
                 apiKey: "",
                 authorizationHandler: r.resolve(AuthorizationHandlerType.self),
-                defaultHeaders: [
-                    "user-key": AppConfiguration.userKey
-                ]
+                defaultHeaders: [:]
             )
         }
     }

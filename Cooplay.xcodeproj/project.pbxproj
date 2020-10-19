@@ -89,6 +89,7 @@
 		A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81C24701FDF005DFAF0 /* StartRoutable.swift */; };
 		A81AD11F24976510009D07A3 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD11E24976510009D07A3 /* RegistrationField.swift */; };
 		A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD12124976711009D07A3 /* PasswordValidationState.swift */; };
+		A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A829975A25370AAE00423D71 /* GameDBToken.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
@@ -310,6 +311,7 @@
 		A815E81C24701FDF005DFAF0 /* StartRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRoutable.swift; sourceTree = "<group>"; };
 		A81AD11E24976510009D07A3 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationField.swift; sourceTree = "<group>"; };
 		A81AD12124976711009D07A3 /* PasswordValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationState.swift; sourceTree = "<group>"; };
+		A829975A25370AAE00423D71 /* GameDBToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDBToken.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A82FF2AA2345F60F00EE1807 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -1089,6 +1091,7 @@
 				A84695132410F17700139CF4 /* Response */,
 				A82FF2AE2345FBD700EE1807 /* Common */,
 				A89F96FB24BC2DFF0036B155 /* NotificationType.swift */,
+				A829975A25370AAE00423D71 /* GameDBToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2354,6 +2357,7 @@
 				A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */,
 				A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
+				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
 				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,
 				45DC225DF352CB29186999D5 /* SearchGameViewInput.swift in Sources */,
@@ -2570,7 +2574,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -2593,7 +2597,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;

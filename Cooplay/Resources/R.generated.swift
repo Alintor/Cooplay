@@ -1494,7 +1494,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "status.normal.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.ontime' is used in nib 'SearchMembersCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'SearchMembersCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }

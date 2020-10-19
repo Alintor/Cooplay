@@ -37,6 +37,7 @@ class APIProvider {
         defaultHeaders: [String: String],
         responseDecoder: JSONDecoder = JSONDecoder(),
         callbackQueue: DispatchQueue? = DispatchQueue.main) {
+        responseDecoder.keyDecodingStrategy = .convertFromSnakeCase
         self.authorizationHandler = authorizationHandler
         self.responseDecoder = responseDecoder
         
@@ -86,7 +87,21 @@ class APIProvider {
                 }
             },
             callbackQueue: callbackQueue,
-            plugins: []
+            plugins: [
+                NetworkLoggerPlugin(
+                    verbose: true,
+                    cURL: true,
+                    output: { (separator: String, terminator: String, items: Any...) in
+                        items.forEach { if let message = $0 as? String { print(message) }}
+                    },
+                    responseDataFormatter: { data in
+                        do { return try JSONSerialization.data(
+                            withJSONObject: try JSONSerialization.jsonObject(with: data),
+                            options: .prettyPrinted)
+                        } catch { return data }
+                    }
+                )
+            ]
         )
     }
 }
