@@ -21,12 +21,6 @@ extension NewEventRouter: NewEventRouterInput {
         calendarRenderer.show(selectedDate: selectedDate, handler: handler)
     }
     
-    func showTimePicker(startTime: Date, enableMinimumTime: Bool, handler: ((_ date: Date) -> Void)?) {
-        guard let delegate = transitionHandler as? NewEventTimePickerViewDelegate else { return }
-        let timePickerView = NewEventTimePickerView(delegate: delegate, timeHandler: handler)
-        timePickerView.show(startTime: startTime, enableMinimumTime: enableMinimumTime)
-    }
-    
     func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?) {
         guard let transitionHandler = transitionHandler as? UIViewController else { return }
         let searchGameViewController = R.storyboard.searchGame.searchGameViewController()!

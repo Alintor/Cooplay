@@ -49,6 +49,7 @@
 // MARK: - Events Details
 "eventDetails.cell.lateness" = "+%@ мин";
 "eventDetails.addMemberLabel.title" = "Добавить участников";
+"eventDetails.edit.title" = "Редактирование";
 
 // MARK: - New Event
 "newEvent.title" = "Создание события";

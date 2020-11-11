@@ -1,5 +1,7 @@
 platform :ios, '11.0'
 
+source 'https://github.com/CocoaPods/Specs.git'
+
 target 'Cooplay' do
   use_frameworks!
 
@@ -20,6 +22,7 @@ target 'Cooplay' do
   pod 'Firebase/Firestore'
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Functions'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 

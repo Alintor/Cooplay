@@ -7,10 +7,9 @@
 
 import Foundation
 
-protocol NewEventRouterInput: CloseableRouter {
+protocol NewEventRouterInput: CloseableRouter, TimePickerRoutable {
 
     func showCalendar(selectedDate: Date?, handler: ((_ date: Date) -> Void)?)
-    func showTimePicker(startTime: Date, enableMinimumTime: Bool, handler: ((_ date: Date) -> Void)?)
     func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?)
     func openMembersSearch(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?)
 }

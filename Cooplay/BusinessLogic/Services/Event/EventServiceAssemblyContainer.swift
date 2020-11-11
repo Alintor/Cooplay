@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFunctions
 
 import Swinject
 
@@ -18,7 +19,9 @@ final class EventServiceAssemblyContainer: Assembly {
             return EventService(
                 storage: HardcodedStorage(),
                 firebaseAuth: Auth.auth(),
-                firestore: Firestore.firestore()
+                firestore: Firestore.firestore(),
+                firebaseFunctions: Functions.functions()
+                
             )
         }
     }

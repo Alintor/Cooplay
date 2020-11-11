@@ -78,10 +78,14 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             guard
                 let eventJson = userInfo["event"] as? String,
                 let eventData =  eventJson.data(using: .utf16),
-                let eventResponse = try? JSONDecoder().decode(EventFirebaseResponse.self, from: eventData),
-                let userId = Auth.auth().currentUser?.uid
+                var event = try? JSONDecoder().decode(Event.self, from: eventData),
+                let userId = Auth.auth().currentUser?.uid,
+                let index = event.members.firstIndex(where: { $0.id == userId })
             else { return }
-            let event = eventResponse.getModel(userId: userId)
+            let user = event.me
+            let me = event.members.remove(at: index)
+            event.me = me
+            event.members.append(user)
             let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
             let eventDetailsViewController = R.storyboard.eventDetails.eventDetailsViewController()!
             eventDetailsViewController.output?.configure(with: event)

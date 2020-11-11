@@ -114,7 +114,7 @@ final class NewEventPresenter {
                     multipleSelection: true,
                     selectAction: nil
                 )
-                self.view.updateMembers()
+                //self.view.updateMembers()
                 self.view.setMembersDataSource(self.membersDataSours)
                 self.view.showMembers(!response.members.isEmpty)
                 let time = response.time ?? Constant.defaultTime

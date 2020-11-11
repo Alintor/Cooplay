@@ -33,12 +33,12 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>DBGamesClientId</key>
+	<string>${IGDB_CLIENT_ID}</string>
+	<key>DBGamesClientSecret</key>
+	<string>${IGDB_CLIENT_SECRET}</string>
 	<key>DBGamesUserKey</key>
 	<string>${IGDB_API_KEY}</string>
-    <key>DBGamesClientSecret</key>
-    <string>${IGDB_CLIENT_SECRET}</string>
-    <key>DBGamesClientId</key>
-    <string>${IGDB_CLIENT_ID}</string>
 	<key>DynamicLinkCustomScheme</key>
 	<string>${DYNAMIC_LINK_CUSTOM_SCHEME}</string>
 	<key>DynamicLinkDomain</key>

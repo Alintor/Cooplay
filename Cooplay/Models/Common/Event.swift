@@ -12,9 +12,9 @@ import SwiftDate
 struct Event: Codable {
     
     let id: String
-    let game: Game
-    let date: Date
-    let members: [User]
+    var game: Game
+    var date: Date
+    var members: [User]
     var me: User
     
     var isActive: Bool {

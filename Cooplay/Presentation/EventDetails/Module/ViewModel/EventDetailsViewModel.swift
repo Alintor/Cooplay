@@ -17,7 +17,6 @@ struct EventDetailsViewModel {
     var statusIcon: UIImage?
     var statusColor: UIColor?
     var avatarViewModel: AvatarViewModel
-    var showEditButton: Bool
     
     init(with model: Event) {
         title = model.game.name
@@ -27,6 +26,5 @@ struct EventDetailsViewModel {
         statusColor = model.me.status?.color
         statusTitle = model.me.status?.title()
         avatarViewModel = AvatarViewModel(with: model.me)
-        showEditButton = model.me.isOwner == true
     }
 }

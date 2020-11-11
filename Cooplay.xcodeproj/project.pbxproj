@@ -131,6 +131,8 @@
 		A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8469517241103F500139CF4 /* NewEventRequest.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
+		A86D3672255A7E0D001FDBFC /* EventDetailsStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */; };
+		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
@@ -353,6 +355,8 @@
 		A8469517241103F500139CF4 /* NewEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRequest.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
+		A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsStateViewModel.swift; sourceTree = "<group>"; };
+		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Ruwus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruwus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1306,6 +1310,7 @@
 			isa = PBXGroup;
 			children = (
 				A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */,
+				A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */,
 				A833EF5F23D03AB7009FCD73 /* EventDetailsCellViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1407,6 +1412,7 @@
 				A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */,
 				A815E81C24701FDF005DFAF0 /* StartRoutable.swift */,
 				A8FB1CC924989F84001C9355 /* GuestRoutable.swift */,
+				A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -2288,6 +2294,7 @@
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
 				A87CF43923E97527004189D3 /* Router.swift in Sources */,
+				A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */,
 				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A87CF43B23E97541004189D3 /* CloseableRouter.swift in Sources */,
 				A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */,
@@ -2391,6 +2398,7 @@
 				6C32ACCA88B63DB330A36492 /* IntroRouterInput.swift in Sources */,
 				CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */,
 				4FDA935176965623F40888D7 /* AuthorizationAssemblyContainer.swift in Sources */,
+				A86D3672255A7E0D001FDBFC /* EventDetailsStateViewModel.swift in Sources */,
 				E9456A35C9DA0C9889661651 /* AuthorizationViewInput.swift in Sources */,
 				11767463794E542D95159DBE /* AuthorizationViewController.swift in Sources */,
 				4D87A27A6FC9081E6A4E73A7 /* AuthorizationModuleInput.swift in Sources */,
@@ -2574,7 +2582,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -2597,7 +2605,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;

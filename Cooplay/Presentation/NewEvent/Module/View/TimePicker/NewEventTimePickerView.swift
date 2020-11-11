@@ -12,7 +12,7 @@ import SwiftDate
 protocol NewEventTimePickerViewDelegate: class {
     
     var timeButtonView: UIView { get }
-    func prepareView(completion: @escaping () -> Void)
+    func prepareTimeView(completion: @escaping () -> Void)
     func restoreView()
 }
 
@@ -42,6 +42,8 @@ final class NewEventTimePickerView: UIView {
     private var blockViewYConstraint: NSLayoutConstraint?
     private var blockTransform: CGAffineTransform?
     
+    private var selectedTime: Date!
+    
     var topWindow: UIWindow? {
         for window in UIApplication.shared.windows.reversed() {
             if window.windowLevel == UIWindow.Level.normal && window.isKeyWindow && window.frame != CGRect.zero { return window }
@@ -64,14 +66,15 @@ final class NewEventTimePickerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func show(startTime: Date = Date(), enableMinimumTime: Bool) {
+    func show(startTime: Date = Date(), showDate: Bool, enableMinimumTime: Bool) {
+        selectedTime = startTime
         topWindow?.addSubview(self)
-        delegate?.prepareView { [weak self] in
-            self?.showViews(startTime: startTime, enableMinimumTime: enableMinimumTime)
+        delegate?.prepareTimeView { [weak self] in
+            self?.showViews(startTime: startTime, showDate: showDate, enableMinimumTime: enableMinimumTime)
         }
     }
     
-    private func showViews(startTime: Date, enableMinimumTime: Bool) {
+    private func showViews(startTime: Date, showDate: Bool, enableMinimumTime: Bool) {
         guard
             let window = topWindow,
             let delegate = delegate
@@ -83,7 +86,7 @@ final class NewEventTimePickerView: UIView {
         timeButtonView.setTime(startTime)
         timeButtonView.arrowImageView.image = R.image.commonArrowUp()
         let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(close))
-        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(close))
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(closeConfirm))
         blurEffectView.addGestureRecognizer(tapGestureRecognizer1)
         timeButtonView.addGestureRecognizer(tapGestureRecognizer2)
         self.timeButtonView = timeButtonView
@@ -97,7 +100,11 @@ final class NewEventTimePickerView: UIView {
         timePickerBlockView.translatesAutoresizingMaskIntoConstraints = false
         
         let timePicker = UIDatePicker(frame: .zero)
-        timePicker.datePickerMode = .time
+        if showDate {
+            timePicker.datePickerMode = .dateAndTime
+        } else {
+            timePicker.datePickerMode = .time
+        }
         timePicker.minuteInterval = 5
         timePicker.setValue(R.color.textPrimary(), forKeyPath: "textColor")
         timePicker.tintColor = R.color.textPrimary()
@@ -147,6 +154,11 @@ final class NewEventTimePickerView: UIView {
         }
     }
     
+    @objc private func closeConfirm() {
+        timeHandler?(selectedTime)
+        close()
+    }
+    
     @objc private func close() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()
@@ -178,7 +190,7 @@ final class NewEventTimePickerView: UIView {
     
     @objc private func timePickerValueChanged(_ sender: UIDatePicker) {
         timeButtonView?.setTime(sender.date)
-        timeHandler?(sender.date)
+        selectedTime = sender.date
     }
 }
 

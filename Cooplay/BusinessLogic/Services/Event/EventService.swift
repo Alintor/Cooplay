@@ -9,6 +9,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFunctions
 import SwiftDate
 
 enum EventServiceError: Error {
@@ -45,11 +46,13 @@ final class EventService {
     private let storage: HardcodedStorage?
     private let firebaseAuth: Auth
     private let firestore: Firestore
+    private let firebaseFunctions: Functions
     
-    init(storage: HardcodedStorage?, firebaseAuth: Auth, firestore: Firestore) {
+    init(storage: HardcodedStorage?, firebaseAuth: Auth, firestore: Firestore, firebaseFunctions: Functions) {
         self.storage = storage
         self.firebaseAuth = firebaseAuth
         self.firestore = firestore
+        self.firebaseFunctions = firebaseFunctions
     }
     
 }
@@ -167,12 +170,17 @@ extension EventService: EventServiceType {
         firestore.collection("Events").document(event.id).updateData([
             "members.\(event.me.id).lateness": event.me.lateness as Any,
             "members.\(event.me.id).state": event.me.state?.rawValue as Any
-        ]) { (error) in
+        ]) { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
                 completion(.success(()))
+                self?.sendChangeStatusNotification(for: event)
             }
         }
+    }
+    
+    private func sendChangeStatusNotification(for event: Event) {
+        firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
     }
 }

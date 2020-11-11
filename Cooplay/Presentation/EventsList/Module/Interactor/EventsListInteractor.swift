@@ -160,7 +160,7 @@ extension EventsListInteractor: EventsListInteractorInput {
         let statusTrigger = UNCalendarNotificationTrigger(dateMatching: statusTriggerDate, repeats: false)
         let eventStartTrigger = UNCalendarNotificationTrigger(dateMatching: eventStartTriggerDate, repeats: false)
         let statusRequest = UNNotificationRequest(identifier: event.id, content: statusNotificationContent, trigger: statusTrigger)
-        let eventStartRequest = UNNotificationRequest(identifier: event.id + "0", content: eventStartNotificationContent, trigger: eventStartTrigger)
+        let eventStartRequest = UNNotificationRequest(identifier: "0\(event.id)", content: eventStartNotificationContent, trigger: eventStartTrigger)
         userNotificationCenter.add(statusRequest, withCompletionHandler: nil)
         userNotificationCenter.add(eventStartRequest, withCompletionHandler: nil)
     }

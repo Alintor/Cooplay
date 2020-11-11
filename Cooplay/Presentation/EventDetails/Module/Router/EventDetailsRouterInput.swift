@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol EventDetailsRouterInput: ContextMenuRouter {
+protocol EventDetailsRouterInput: ContextMenuRouter, TimePickerRoutable {
 
 }

@@ -18,6 +18,7 @@ final class EventDetailsPresenter {
                 guard let `self` = self else { return }
                 self.view.setupInitialState()
                 self.view.update(with: EventDetailsViewModel(with: self.event))
+                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: false)
                 self.fetchEvent()
             }
             view.dataSourceIsReady = { [weak self] dataSource in
@@ -51,6 +52,24 @@ final class EventDetailsPresenter {
                         // TODO:
                     })
                 )
+            }
+            view.editAction = { [weak self] in
+                guard let `self` = self else { return }
+                self.view.updateState(with: EventDetailsStateViewModel(state: .edit, isOwner: self.event.me.isOwner), animated: true)
+            }
+            view.cancelAction = { [weak self] in
+                guard let `self` = self else { return }
+                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+            }
+            view.deleteAction = { [weak self] in
+                guard let `self` = self else { return }
+            }
+            view.changeGameAction = { [weak self] in
+                guard let `self` = self else { return }
+            }
+            view.changeDateAction = { [weak self] in
+                guard let `self` = self else { return }
+                //self.router.showTimePicker(startTime: self.event.date, enableMinimumTime: true, showDate: true, handler: nil)
             }
         }
     }

@@ -11,8 +11,17 @@ import DTModelStorage
 final class EventDetailsViewController: UIViewController, EventDetailsViewInput, DTTableViewManageable {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editInfoView: UIView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var infoStackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var gameChangeButtonView: UIView!
+    @IBOutlet weak var gameChangeButtonTitle: UILabel!
+    @IBOutlet weak var gameChangeButtonIcon: UIImageView!
+    @IBOutlet weak var dateChangeButtonView: UIView!
+    @IBOutlet weak var dateChangeButtonTitle: UILabel!
+    @IBOutlet weak var dateChangeButtonIcon: UIImageView!
     @IBOutlet weak var gameCoverImageView: UIImageView!
     @IBOutlet weak var statusTitle: UILabel!
     @IBOutlet weak var statusIconImageView: UIImageView!
@@ -22,6 +31,8 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     @IBOutlet weak var arrowImageView: UIImageView!
     
     var editButton: UIBarButtonItem?
+    var deleteButton: UIBarButtonItem?
+    var cancelButton: UIBarButtonItem?
     var addMemberView: UIView?
     
     // MARK: - View out
@@ -31,14 +42,23 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
     var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)?
     var itemSelected: ((_ item: EventDetailsCellViewModel, _ delegate: StatusContextDelegate?) -> Void)?
+    var editAction: (() -> Void)?
+    var deleteAction: (() -> Void)?
+    var cancelAction: (() -> Void)?
+    var changeGameAction: (() -> Void)?
+    var changeDateAction: (() -> Void)?
 
     // MARK: - View in
 
     func setupInitialState() {
         navigationItem.largeTitleDisplayMode = .never
         editButton = UIBarButtonItem(image: R.image.commonEdit(), style: .plain, target: self, action: #selector(editButtonTapped))
-        navigationItem.rightBarButtonItem = editButton
+        cancelButton = UIBarButtonItem(title: R.string.localizable.commonCancel(), style: .plain, target: self, action: #selector(cancelButtonTapped))
+        deleteButton = UIBarButtonItem(image: R.image.commonDelete(), style: .plain, target: self, action: #selector(deleteButtonTapped))
+        deleteButton?.tintColor = R.color.red()
         addMemberView = tableView.tableFooterView
+        addMemberView?.alpha = 0
+        tableView.tableFooterView = nil
         manager.startManaging(withDelegate: self)
         manager.configureEvents(for: EventDetailsMemberCell.self) { cellType, _ in
             manager.register(cellType)
@@ -56,7 +76,9 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     
     func update(with model: EventDetailsViewModel) {
         titleLabel.text = model.title
+        gameChangeButtonTitle.text = model.title
         dateLabel.text = model.date
+        dateChangeButtonTitle.text = model.date
         if let coverPath = model.coverPath {
             gameCoverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover())
         } else {
@@ -66,8 +88,91 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
-        navigationItem.rightBarButtonItem = model.showEditButton ? editButton : nil
-        tableView.tableFooterView = model.showEditButton ? addMemberView : nil
+    }
+    
+    func updateState(with model: EventDetailsStateViewModel, animated: Bool) {
+        navigationItem.title = model.title
+        navigationItem.rightBarButtonItem = model.showDeleteButton ? deleteButton : (model.showEditButton ? editButton : nil)
+        navigationItem.leftBarButtonItem = model.showCancelButton ? cancelButton : nil
+        tableView.layoutIfNeeded()
+        guard animated else {
+            self.editInfoView.isHidden = !model.showEditPanel
+            self.infoView.isHidden = model.showEditPanel
+            statusView.isUserInteractionEnabled = model.hideStatus ? false : true
+            statusView.alpha = model.hideStatus ? 0.3 : 1
+            tableView.tableFooterView = model.showEditPanel ? addMemberView : nil
+            return
+        }
+        let transformScale: CGFloat = 0.9
+        let hideAlpha: CGFloat = 0.5
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0,
+            options: .curveEaseIn,
+            animations: {
+                if model.showEditPanel {
+                    self.infoView.alpha = hideAlpha
+                    self.infoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
+                } else {
+                    self.editInfoView.alpha = hideAlpha
+                    self.editInfoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
+                }
+        }) { (_) in
+            self.editInfoView.isHidden = !model.showEditPanel
+            self.infoView.isHidden = model.showEditPanel
+            if model.showEditPanel {
+                self.editInfoView.alpha = hideAlpha
+                self.editInfoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
+                self.infoView.alpha = 1
+                self.infoView.transform = .identity
+            } else {
+                self.infoView.alpha = hideAlpha
+                self.infoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
+                self.editInfoView.alpha = 1
+                self.editInfoView.transform = .identity
+            }
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0,
+                options: .curveEaseOut,
+                animations: {
+                    if model.showEditPanel {
+                        self.editInfoView.alpha = 1
+                        self.editInfoView.transform = .identity
+                    } else {
+                        self.infoView.alpha = 1
+                        self.infoView.transform = .identity
+                    }
+            })
+        }
+        if model.showEditPanel {
+            addMemberView?.alpha = 0
+            tableView.tableFooterView = addMemberView
+            addMemberView?.transform = CGAffineTransform(scaleX: 1, y: 0.8).translatedBy(x: 0, y: -20)
+        }
+        UIView.animate(
+            withDuration: 0.2,
+            delay: model.showEditPanel ? 0.1 : 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.statusView.isUserInteractionEnabled = model.hideStatus ? false : true
+                self.statusView.alpha = model.hideStatus ? 0.3 : 1
+                self.addMemberView?.alpha = model.showEditPanel ? 1 : 0
+                self.addMemberView?.transform = model.showEditPanel ? .identity
+                    : CGAffineTransform(scaleX: 1, y: 0.8).translatedBy(x: 0, y: -20)
+            }
+        ) { (_) in
+            if !model.showEditPanel {
+                self.addMemberView?.transform = .identity
+                self.tableView.tableFooterView = nil
+                self.addMemberView?.alpha = 1
+                
+            }
+        }
     }
 
 	// MARK: - Life cycle
@@ -91,8 +196,25 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     }
     
     @objc func editButtonTapped() {
-        
+        editAction?()
     }
+    
+    @objc func deleteButtonTapped() {
+        deleteAction?()
+    }
+    
+    @objc func cancelButtonTapped() {
+        cancelAction?()
+    }
+    
+    @IBAction func changeGameButtonTapped(_ sender: UITapGestureRecognizer) {
+        changeGameAction?()
+    }
+    
+    @IBAction func changeDateButtonTapped(_ sender: UITapGestureRecognizer) {
+        changeDateAction?()
+    }
+    
     
     // MARK: - Private
     
@@ -130,5 +252,21 @@ extension EventDetailsViewController: StatusContextDelegate {
                 self.statusIconView.backgroundColor = status.color
             }
         })
+    }
+}
+
+extension EventDetailsViewController: NewEventTimePickerViewDelegate {
+    
+    
+    var timeButtonView: UIView {
+        return dateChangeButtonView
+    }
+    
+    func prepareTimeView(completion: @escaping () -> Void) {
+        completion()
+    }
+    
+    func restoreView() {
+        
     }
 }

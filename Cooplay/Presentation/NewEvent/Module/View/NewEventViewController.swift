@@ -302,7 +302,7 @@ extension NewEventViewController: NewEventTimePickerViewDelegate {
         return timeView
     }
     
-    func prepareView(completion: @escaping () -> Void) {
+    func prepareTimeView(completion: @escaping () -> Void) {
         timeViewLeadingConstraint.constant = 10
         timeViewTrailingConstraint.constant = 10
         UIView.animate(withDuration: 0.1, animations: {
