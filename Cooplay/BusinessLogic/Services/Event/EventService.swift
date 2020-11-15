@@ -38,6 +38,7 @@ protocol EventServiceType {
         for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void
     )
+    func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
 }
 
 
@@ -180,6 +181,19 @@ extension EventService: EventServiceType {
         }
     }
     
+    func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        firestore.collection("Events").document(event.id).updateData([
+            "game": game.dictionary as Any
+        ]) { [weak self] (error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    // MARK: - Notifications
     private func sendChangeStatusNotification(for event: Event) {
         firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
     }

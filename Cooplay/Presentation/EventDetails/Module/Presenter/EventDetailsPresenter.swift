@@ -66,6 +66,9 @@ final class EventDetailsPresenter {
             }
             view.changeGameAction = { [weak self] in
                 guard let `self` = self else { return }
+                self.router.openGameSearch(offtenGames: nil) { [weak self] newGame in
+                    self?.changeGame(newGame)
+                }
             }
             view.changeDateAction = { [weak self] in
                 guard let `self` = self else { return }
@@ -125,6 +128,21 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func changeGame(_ game: Game) {
+        interactor.changeGame(game, forEvent: event) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success: break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+        event.game = game
+        view.update(with: EventDetailsViewModel(with: self.event))
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }
 }
 

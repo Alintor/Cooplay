@@ -13,5 +13,6 @@ protocol EventDetailsInteractorInput: class {
         for event: Event,
         completion: @escaping (Result<Void, EventDetailsError>) -> Void
     )
+    func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void)
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void)
 }
