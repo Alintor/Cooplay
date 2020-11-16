@@ -12,12 +12,14 @@ struct SearchGameCellViewModel {
     
     let coverPath: String?
     let title: String
+    let isSelected: Bool
     
     let model: Game
     
-    init(with model: Game) {
+    init(with model: Game, isSelected: Bool) {
         self.model = model
         coverPath = model.coverPath
         title = model.name
+        self.isSelected = isSelected
     }
 }

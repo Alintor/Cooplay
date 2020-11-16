@@ -24,9 +24,11 @@ extension SearchGameError: LocalizedError {
 final class SearchGameInteractor {
     
     private let gamesService: GamesServiceType?
+    private let userService: UserServiceType?
     
-    init(gamesService: GamesServiceType?) {
+    init(gamesService: GamesServiceType?, userService: UserServiceType?) {
         self.gamesService = gamesService
+        self.userService = userService
     }
 
 }
@@ -40,6 +42,18 @@ extension SearchGameInteractor: SearchGameInteractorInput {
             switch result {
             case .success(let games):
                 completion(.success(games))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        }
+    }
+    
+    func fetchOfftenGames(
+        completion: @escaping (Result<[Game], SearchGameError>) -> Void) {
+        userService?.fetchOfftenData { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.games))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }

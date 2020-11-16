@@ -13,6 +13,8 @@ class SearchGameCell: UITableViewCell {
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var selectionView: UIView!
+    
     
 }
 
@@ -25,6 +27,10 @@ extension SearchGameCell: ModelTransfer {
         } else {
             coverImageView.image = R.image.commonGameCover()
         }
-        
+        selectionView.isHidden = !model.isSelected
+        self.isUserInteractionEnabled = !model.isSelected
+        coverImageView.alpha = model.isSelected ? 0.2 : 1
+        titleLabel.alpha = model.isSelected ? 0.2 : 1
+        selectionView.alpha = model.isSelected ? 0.2 : 1
     }
 }

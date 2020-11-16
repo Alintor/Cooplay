@@ -103,6 +103,8 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
             tableView.tableFooterView = model.showEditPanel ? addMemberView : nil
             return
         }
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
         let transformScale: CGFloat = 0.9
         let hideAlpha: CGFloat = 0.5
         UIView.animate(
@@ -118,6 +120,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
                     self.editInfoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
                 }
         }) { (_) in
+            generator.impactOccurred()
             self.editInfoView.isHidden = !model.showEditPanel
             self.infoView.isHidden = model.showEditPanel
             if model.showEditPanel {

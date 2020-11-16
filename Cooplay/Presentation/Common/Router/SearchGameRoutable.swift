@@ -10,15 +10,15 @@ import UIKit
 
 protocol SearchGameRoutable: Router {
     
-    func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?)
+    func openGameSearch(offtenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?)
 }
 
 extension SearchGameRoutable {
     
-    func openGameSearch(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?) {
+    func openGameSearch(offtenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?) {
         guard let transitionHandler = transitionHandler as? UIViewController else { return }
         let searchGameViewController = R.storyboard.searchGame.searchGameViewController()!
-        searchGameViewController.output?.configure(offtenGames: offtenGames, selectionHandler: selectionHandler)
+        searchGameViewController.output?.configure(offtenGames: offtenGames, selectedGame: selectedGame, selectionHandler: selectionHandler)
         let navigationController = UINavigationController(rootViewController: searchGameViewController)
         transitionHandler.present(navigationController, animated: true, completion: nil)
     }

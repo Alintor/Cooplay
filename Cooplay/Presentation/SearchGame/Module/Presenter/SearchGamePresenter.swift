@@ -44,10 +44,11 @@ final class SearchGamePresenter {
     
     private var dataSource: MemoryStorage!
     private var offtenGames: [Game]!
+    private var selectedGame: Game?
     private var selectionHandler: ((_ game: Game) -> Void)?
     
     private func searchGame(_ searchValue: String) {
-        view.showProgress(indicatorType: .arrows)
+        view.showProgress(indicatorType: .arrows, fullScreen: false)
         interactor.searchGame(searchValue) { [weak self] result in
             guard let `self` = self else { return }
             self.view.hideProgress()
@@ -62,9 +63,32 @@ final class SearchGamePresenter {
     }
     
     private func showOfftenGames() {
+        guard offtenGames != nil else {
+            fetchOfftenGames()
+            return
+        }
         let sectionHeader = offtenGames.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsOfften())
         dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
-        dataSource.setItems(offtenGames.map({ SearchGameCellViewModel(with: $0 )}), forSection: 0)
+        dataSource.setItems(
+            offtenGames.map({ SearchGameCellViewModel(with: $0, isSelected: self.selectedGame?.slug == $0.slug )}),
+            forSection: 0
+        )
+    }
+    
+    private func fetchOfftenGames() {
+        view.showProgress(indicatorType: .arrows, fullScreen: false)
+        interactor.fetchOfftenGames { [weak self] (result) in
+            guard let `self` = self else { return }
+            self.view.hideProgress()
+            switch result {
+            case .success(let games):
+                self.offtenGames = games
+            case .failure(let error):
+                self.offtenGames = []
+                // TODO:
+            }
+            self.showOfftenGames()
+        }
     }
     
     private func showSearchResults(_ games: [Game]) {
@@ -78,7 +102,10 @@ final class SearchGamePresenter {
                 forSection: 0
             )
         } else {
-            dataSource.setItems(games.map({ SearchGameCellViewModel(with: $0 )}), forSection: 0)
+            dataSource.setItems(
+                games.map({ SearchGameCellViewModel(with: $0, isSelected: self.selectedGame?.slug == $0.slug )}),
+                forSection: 0
+            )
         }
     }
     
@@ -89,8 +116,9 @@ final class SearchGamePresenter {
 
 extension SearchGamePresenter: SearchGameModuleInput {
 
-    func configure(offtenGames: [Game]?, selectionHandler: ((_ game: Game) -> Void)?) {
-        self.offtenGames =  offtenGames ?? []
+    func configure(offtenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?) {
+        self.offtenGames =  offtenGames
         self.selectionHandler = selectionHandler
+        self.selectedGame = selectedGame
     }
 }

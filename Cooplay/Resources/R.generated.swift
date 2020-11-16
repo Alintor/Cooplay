@@ -1307,6 +1307,7 @@ struct _R: Rswift.Validatable {
       try _InvitedEventCell.validate()
       try _NewEventGameCell.validate()
       try _NewEventMemberCell.validate()
+      try _SearchGameCell.validate()
       try _SearchMembersCell.validate()
     }
     
@@ -1482,7 +1483,7 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _SearchGameCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+    struct _SearchGameCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = SearchGameCell
       
       let bundle = R.hostingBundle
@@ -1491,6 +1492,16 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchGameCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchGameCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'SearchGameCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}

@@ -38,6 +38,10 @@ final class SearchGameViewController: UIViewController, SearchGameViewInput, DTT
         title: Constant.Empty.title,
         descriptionText: Constant.Empty.description
     )
+    
+    var activityIndicatorTargetView: UIView? {
+        return tableView
+    }
 
     // MARK: - View in
 

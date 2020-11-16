@@ -66,7 +66,7 @@ final class EventDetailsPresenter {
             }
             view.changeGameAction = { [weak self] in
                 guard let `self` = self else { return }
-                self.router.openGameSearch(offtenGames: nil) { [weak self] newGame in
+                self.router.openGameSearch(offtenGames: nil, selectedGame: self.event.game) { [weak self] newGame in
                     self?.changeGame(newGame)
                 }
             }

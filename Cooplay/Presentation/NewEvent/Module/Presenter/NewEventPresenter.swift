@@ -40,6 +40,7 @@ final class NewEventPresenter {
             view.searchGameAction = { [weak self] in
                 self?.router.openGameSearch(
                     offtenGames: self?.gamesDataSours.offtenItems,
+                    selectedGame: self?.gamesDataSours.selectedItems.first,
                     selectionHandler: { selectedGame in
                         self?.request.game = selectedGame
                         self?.gamesDataSours.setupViewModels(items: [selectedGame], selected: true)

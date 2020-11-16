@@ -19,18 +19,18 @@ protocol ActivityIndicatorView: class {
     func start()
     func stop()
     
-    func addToView(_ view: UIView)
+    func addToView(_ view: UIView, needIndent: Bool)
 }
 
 extension ActivityIndicatorView where Self: UIView {
     
-    func addToView(_ view: UIView) {
+    func addToView(_ view: UIView, needIndent: Bool) {
         self.tag = ActivityIndicatorRendererConstant.viewTag
         view.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            self.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height / 2)
+            self.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height / (needIndent ? 2.5 : 2))
         ])
     }
 }
@@ -49,11 +49,12 @@ enum ActivityIndicatorType {
 
 protocol ActivityIndicatorRenderer {
     
-    func showProgress(indicatorType: ActivityIndicatorType)
+    func showProgress(indicatorType: ActivityIndicatorType, fullScreen: Bool)
     func hideProgress()
+    var activityIndicatorTargetView: UIView? { get }
 }
 
-extension ActivityIndicatorRenderer where Self: UIViewController {
+extension ActivityIndicatorRenderer {
     
     var topWindow: UIWindow? {
         for window in UIApplication.shared.windows.reversed() {
@@ -62,31 +63,36 @@ extension ActivityIndicatorRenderer where Self: UIViewController {
         return nil
     }
     
+    var activityIndicatorTargetView: UIView? {
+        return (self as? UIViewController)?.view
+    }
     
-    
-    func showProgress(indicatorType: ActivityIndicatorType = .arrows) {
-        guard let view = topWindow else { return }
+    func showProgress(indicatorType: ActivityIndicatorType = .arrows, fullScreen: Bool = true) {
+        let targetView: UIView? = fullScreen ? topWindow : self.activityIndicatorTargetView
+        guard let view = targetView else { return }
         let activityView = indicatorType.view
-        let backgroundView = UIView(frame: view.frame)
+        let backgroundView = UIView(frame: view.bounds)
         backgroundView.backgroundColor = R.color.background()?.withAlphaComponent(0.9)
         backgroundView.tag = ActivityIndicatorRendererConstant.backgroundTag
         view.addSubview(backgroundView)
-        activityView.addToView(view)
+        activityView.addToView(view, needIndent: !fullScreen)
         view.layoutIfNeeded()
         activityView.start()
         
     }
     
     func hideProgress() {
-        guard let view = topWindow else { return }
-        if let activityView = view.viewWithTag(ActivityIndicatorRendererConstant.viewTag) {
-            if let activityView = activityView as? ActivityIndicatorView {
-                activityView.stop()
+        let targetViews: [UIView?] = [topWindow, self.activityIndicatorTargetView]
+        for view in targetViews {
+            if let activityView = view?.viewWithTag(ActivityIndicatorRendererConstant.viewTag) {
+                if let activityView = activityView as? ActivityIndicatorView {
+                    activityView.stop()
+                }
+                activityView.removeFromSuperview()
             }
-            activityView.removeFromSuperview()
-        }
-        if let backgroundView = view.viewWithTag(ActivityIndicatorRendererConstant.backgroundTag) {
-            backgroundView.removeFromSuperview()
+            if let backgroundView = view?.viewWithTag(ActivityIndicatorRendererConstant.backgroundTag) {
+                backgroundView.removeFromSuperview()
+            }
         }
     }
 }
