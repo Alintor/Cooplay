@@ -134,6 +134,10 @@
 		A86D3672255A7E0D001FDBFC /* EventDetailsStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */; };
 		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */; };
+		A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367B25627379001FDBFC /* TimeCarouselView.swift */; };
+		A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */; };
+		A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */; };
+		A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
@@ -359,6 +363,10 @@
 		A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsStateViewModel.swift; sourceTree = "<group>"; };
 		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameRoutable.swift; sourceTree = "<group>"; };
+		A86D367B25627379001FDBFC /* TimeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselView.swift; sourceTree = "<group>"; };
+		A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemView.swift; sourceTree = "<group>"; };
+		A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemModel.swift; sourceTree = "<group>"; };
+		A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselConfiguration.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Ruwus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruwus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1180,6 +1188,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A86D367A2562732E001FDBFC /* TimeCarousel */,
 				A87CF45823EAC0F6004189D3 /* EmptyState */,
 				A87CF44A23EA6DE7004189D3 /* KeyboardHandler */,
 				A87CF42323E19517004189D3 /* Skeleton */,
@@ -1427,6 +1436,17 @@
 				A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */,
 			);
 			path = EventSectionHeader;
+			sourceTree = "<group>";
+		};
+		A86D367A2562732E001FDBFC /* TimeCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				A86D367B25627379001FDBFC /* TimeCarouselView.swift */,
+				A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */,
+				A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */,
+				A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */,
+			);
+			path = TimeCarousel;
 			sourceTree = "<group>";
 		};
 		A87701F223336E6E002EA095 = {
@@ -2242,6 +2262,7 @@
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
+				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
@@ -2277,6 +2298,7 @@
 				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
 				A87CF42923E1987D004189D3 /* SkeletonGradient.swift in Sources */,
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
+				A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
@@ -2307,6 +2329,7 @@
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
 				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
+				A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
@@ -2342,6 +2365,7 @@
 				A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */,
 				79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */,
 				98B8582462DD89E9C7DF7A80 /* EventDetailsModuleInput.swift in Sources */,
+				A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */,
 				A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */,
 				3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */,
 				71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */,
