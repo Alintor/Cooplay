@@ -34,6 +34,7 @@ final class EventDetailsPresenter {
                     menuSize: .large,
                     menuType: .statuses(
                         type: self.event.isActive ? .confirmation : .agreement,
+                        date: self.event.date,
                         actionHandler: { [weak self] status in
                             guard let `self` = self else { return }
                             self.event.me.status = status

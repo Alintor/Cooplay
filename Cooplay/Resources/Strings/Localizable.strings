@@ -10,6 +10,7 @@
 
 // MARK: - Common
 "common.cancel" = "Отмена";
+"common.done" = "Готово";
 "common.choose" = "Выбрать %@";
 
 // MARK: - Status
@@ -31,6 +32,10 @@
 "notifications.statusRemind.message" = "У Вас через %d мин. игра в %@. Уточните свой статус для других участников";
 "notifications.eventStartRemind.title" = "Событие начинается";
 "notifications.eventStartRemind.message" = "Игра в %@ начинается. Если вы опаздываете, то уточните свой статус";
+
+// MARK: - Time carousel
+"timeCarouselPanel.latness.title" = "Приду к";
+"timeCarouselPanel.suggestion.title" = "Предлагаю";
 
 // MARK: - EventMemberMenuItem
 "eventMemberMenuItem.makeOwner" = "Сделать лидером";

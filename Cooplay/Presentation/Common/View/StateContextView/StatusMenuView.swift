@@ -27,13 +27,13 @@ class StatusMenuView: UIView {
     
     enum MenuType {
         
-        case statuses(type: StatusMenuItem.StatusesType, actionHandler: ((_ status: User.Status) -> Void)?)
+        case statuses(type: StatusMenuItem.StatusesType, date: Date, actionHandler: ((_ status: User.Status) -> Void)?)
         case eventMemberActions(actionHandler: ((_ actionType: EventMemberMenuItem.ActionType) -> Void)?)
         
         var items: [MenuItem] {
             switch self {
-            case .statuses(let type, let actionHandler):
-                return type.items.map { StatusMenuItem(status: $0, actionHandler: actionHandler) }
+            case .statuses(let type, let date, let actionHandler):
+                return type.items.map { StatusMenuItem(status: $0, date: date, actionHandler: actionHandler) }
             case .eventMemberActions(let actionHandler):
                 return EventMemberMenuItem.ActionType.allCases.map { EventMemberMenuItem(actionType: $0, actionHandler: actionHandler) }
             }
@@ -125,7 +125,7 @@ class StatusMenuView: UIView {
     private func configureView() {
         self.backgroundColor = .clear
         let backgroundView = UIView(frame: .zero)
-        backgroundView.backgroundColor = .clear
+        backgroundView.backgroundColor = menuSize.backgroundColor
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -180,7 +180,33 @@ class StatusMenuView: UIView {
         }
         itemView.backgroundColor = menuSize.backgroundColor
         configureItemView(itemView, item: item)
+        if let menuPanelItem = item.menuPanelItem {
+            addMenuPanelItem(menuPanelItem, menuItem: item)
+        }
         itemView.sizeToFit()
+    }
+    
+    private func addMenuPanelItem(_ menuPanelItem: MenuPanelItem, menuItem: MenuItem) {
+        itemsStackView.addArrangedSubview(menuPanelItem.panelView)
+        menuPanelItem.panelView.isHidden = true
+        menuPanelItem.panelView.alpha = 0
+        menuPanelItem.cancelHandler = { [weak self] in
+            guard let `self` = self else { return }
+            UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                menuPanelItem.panelView.isHidden = true
+                menuPanelItem.panelView.alpha = 0
+                for container in self.menuItems {
+                    container.itemView.isHidden = false
+                }
+                self.itemsStackView.layoutIfNeeded()
+            })
+        }
+        menuPanelItem.confirmHandler = { [weak self] in
+            self?.handler?(menuItem)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                menuItem.handleAction()
+            }
+        }
     }
     
     private func configureItemView(_ itemView: UIView, item: MenuItem) {
@@ -302,6 +328,15 @@ class StatusMenuView: UIView {
                     item.scrollableContainer?.scrollableConstraint.constant = -menuSize.width
                     UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         self.layoutIfNeeded()
+                    })
+                case .showPanel:
+                    UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                        item.item.menuPanelItem?.panelView.isHidden = false
+                        item.item.menuPanelItem?.panelView.alpha = 1
+                        for container in self.menuItems {
+                            container.itemView.isHidden = true
+                        }
+                        self.itemsStackView.layoutIfNeeded()
                     })
                 }
             }

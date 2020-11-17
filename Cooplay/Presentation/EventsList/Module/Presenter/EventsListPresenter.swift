@@ -202,7 +202,7 @@ final class EventsListPresenter: NSObject {
                     delegate: delegate,
                     contextType: .moveToBottom,
                     menuSize: .large,
-                    menuType: .statuses(type: .confirmation, actionHandler: { status in
+                    menuType: .statuses(type: .confirmation, date: activeEvent.date, actionHandler: { status in
                         activeEvent.me.status = status
                         self?.updateEvent(activeEvent)
                     })
@@ -227,6 +227,7 @@ final class EventsListPresenter: NSObject {
                     menuSize: .small,
                     menuType: .statuses(
                         type: event.isActive ? .confirmation : .agreement,
+                        date: event.date,
                         actionHandler: { status in
                             event.me.status = status
                             self?.updateEvent(event)
@@ -259,6 +260,7 @@ final class EventsListPresenter: NSObject {
                     menuSize: .small,
                     menuType: .statuses(
                         type: .agreement,
+                        date: event.date,
                         actionHandler: { status in
                             event.me.status = status
                             self?.updateEvent(event)
@@ -326,6 +328,7 @@ extension EventsListPresenter: iCarouselDataSource {
                     menuSize: .small,
                     menuType: .statuses(
                         type: .agreement,
+                        date: item.date,
                         actionHandler: { status in
                             item.me.status = status
                             self?.updateEvent(item)

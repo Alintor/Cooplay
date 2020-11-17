@@ -22,8 +22,16 @@ struct MenuScrollableContainer {
 }
 
 enum MenuItemAction {
-     case handleAction,
-    showItems
+    case handleAction,
+    showItems,
+    showPanel
+}
+
+protocol MenuPanelItem: class {
+    
+    var panelView: UIView { get }
+    var cancelHandler: (() -> Void)? { get set }
+    var confirmHandler: (() -> Void)? { get set }
 }
 
 protocol MenuItem {
@@ -34,6 +42,7 @@ protocol MenuItem {
     var iconColor: UIColor? { get }
     
     var scrollItems: [MenuItem]? { get }
+    var menuPanelItem: MenuPanelItem? { get }
     var selectAction: MenuItemAction { get }
     var needBottomLine: Bool { get }
     var value: Any { get }
@@ -67,11 +76,18 @@ struct StatusMenuItem: MenuItem {
     }
     
     let status: User.Status
+    let timeCarouselPanel: TimeCarouselPanel?
     let actionHandler: ((_ status: User.Status) -> Void)?
     
-    init(status: User.Status, actionHandler: ((_ status: User.Status) -> Void)?) {
+    init(status: User.Status, date: Date, actionHandler: ((_ status: User.Status) -> Void)?) {
         self.status = status
         self.actionHandler = actionHandler
+        switch status {
+        case .late:
+            timeCarouselPanel = TimeCarouselPanel(configuration: .init(type: .latness, date: date))
+        default:
+            timeCarouselPanel = nil
+        }
     }
     
     var title: String {
@@ -109,30 +125,45 @@ struct StatusMenuItem: MenuItem {
         }
     }
     
+    var menuPanelItem: MenuPanelItem? {
+        return timeCarouselPanel
+    }
+    
     var scrollItems: [MenuItem]? {
-        switch status {
-        case .late:
-            return [15, 30, 45, 60].map { StatusLatenessMenuItem(lateness: $0, actionHandler: actionHandler) }
-        default:
-            return nil
-        }
+        return nil
+//        switch status {
+//        case .late:
+//            return [15, 30, 45, 60].map { StatusLatenessMenuItem(lateness: $0, actionHandler: actionHandler) }
+//        default:
+//            return nil
+//        }
     }
     
     var selectAction: MenuItemAction {
         switch status {
         case .late:
-            return .showItems
+            return .showPanel
         default:
             return .handleAction
         }
     }
     
     var value: Any {
-        return status
+        switch status {
+        case .late:
+            return timeCarouselPanel?.status ?? status
+        default:
+            return status
+        }
     }
     
     func handleAction() {
-        actionHandler?(status)
+        switch status {
+        case .late:
+            actionHandler?(timeCarouselPanel?.status ?? status)
+        default:
+            actionHandler?(status)
+        }
     }
 }
 
@@ -159,6 +190,10 @@ struct StatusLatenessMenuItem: MenuItem {
     }
     
     var iconColor: UIColor? {
+        return nil
+    }
+    
+    var menuPanelItem: MenuPanelItem? {
         return nil
     }
     
@@ -232,6 +267,10 @@ struct EventMemberMenuItem: MenuItem {
         case .delete:
             return R.color.red()
         }
+    }
+    
+    var menuPanelItem: MenuPanelItem? {
+        return nil
     }
     
     var scrollItems: [MenuItem]? {

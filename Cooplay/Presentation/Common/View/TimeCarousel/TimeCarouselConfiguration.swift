@@ -132,6 +132,15 @@ struct TimeCarouselConfiguration {
         }
     }
     
+    var panelTitle: String {
+        switch type {
+        case .latness:
+            return R.string.localizable.timeCarouselPanelLatnessTitle()
+        case .suggestion:
+            return R.string.localizable.timeCarouselPanelSuggestionTitle()
+        }
+    }
+    
     private var isCurrentDateDisable: Bool {
         switch type {
         case .latness:

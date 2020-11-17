@@ -138,6 +138,7 @@
 		A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */; };
 		A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */; };
 		A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */; };
+		A86D36842563DDC3001FDBFC /* TimeCarouselPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020123336E6E002EA095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877020023336E6E002EA095 /* ViewController.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
@@ -367,6 +368,7 @@
 		A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemView.swift; sourceTree = "<group>"; };
 		A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemModel.swift; sourceTree = "<group>"; };
 		A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselConfiguration.swift; sourceTree = "<group>"; };
+		A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselPanel.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Ruwus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruwus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020023336E6E002EA095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1441,6 +1443,7 @@
 		A86D367A2562732E001FDBFC /* TimeCarousel */ = {
 			isa = PBXGroup;
 			children = (
+				A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */,
 				A86D367B25627379001FDBFC /* TimeCarouselView.swift */,
 				A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */,
 				A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */,
@@ -2296,6 +2299,7 @@
 				A87CF42723E195F7004189D3 /* SkeletonAnimation.swift in Sources */,
 				A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */,
 				A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */,
+				A86D36842563DDC3001FDBFC /* TimeCarouselPanel.swift in Sources */,
 				A87CF42923E1987D004189D3 /* SkeletonGradient.swift in Sources */,
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */,
