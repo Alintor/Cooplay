@@ -21,4 +21,8 @@ struct TimeCarouselItemModel {
     var isBig: Bool {
         sizeType.isBig
     }
+    
+    var date: Date {
+        return startDate + value.minutes
+    }
 }

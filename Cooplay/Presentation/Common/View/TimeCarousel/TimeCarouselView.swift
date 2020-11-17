@@ -15,34 +15,71 @@ class TimeCarouselView: UIView {
     let generator = UIImpactFeedbackGenerator(style: .light)
     var carousel: iCarousel
     var titleLabel: UILabel
+    var subtitleLabel: UILabel
     var pointLineConstraint: NSLayoutConstraint!
     var leftGradientView: UIView!
     var rightGradientView: UIView!
     var leftGradient: CAGradientLayer!
     var rightGradient: CAGradientLayer!
+    var nexButton: UIButton
+    var prevButton: UIButton
     
     var models: [TimeCarouselItemModel]
     var handler: ((TimeCarouselItemModel) -> Void)?
+    var configuration: TimeCarouselConfiguration
     
     init(with configuration: TimeCarouselConfiguration, handler: ((TimeCarouselItemModel) -> Void)?) {
+        // Setup
         models = configuration.items
         self.handler = handler
+        self.configuration = configuration
         carousel = iCarousel(frame: .zero)
+        carousel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel = UILabel()
+        subtitleLabel = UILabel()
+        nexButton = UIButton(type: .system)
+        prevButton = UIButton(type: .system)
         super.init(frame: .zero)
         self.backgroundColor = R.color.block()
-        titleLabel.font = UIFont.systemFont(ofSize: 22)
+        // Titles
+        titleLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 22, weight: .semibold)
         titleLabel.textColor = R.color.textPrimary()
+        titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        carousel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.font = UIFont.systemFont(ofSize: 13)
+        subtitleLabel.textColor = R.color.textSecondary()
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        let textStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        textStackView.axis = .vertical
+        textStackView.spacing = 1
+        textStackView.alignment = .center
+        textStackView.translatesAutoresizingMaskIntoConstraints = false
+        // Buttons
+        nexButton.setImage(R.image.commonPlus(), for: .normal)
+        nexButton.tintColor = R.color.actionAccent()
+        nexButton.backgroundColor = R.color.shapeBackground()
+        nexButton.layer.cornerRadius = 20
+        nexButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        nexButton.translatesAutoresizingMaskIntoConstraints = false
+        prevButton.setImage(R.image.commonMinus(), for: .normal)
+        prevButton.tintColor = R.color.actionAccent()
+        prevButton.backgroundColor = R.color.shapeBackground()
+        prevButton.layer.cornerRadius = 20
+        prevButton.addTarget(self, action: #selector(prevButtonTapped), for: .touchUpInside)
+        prevButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Point line
         let pointLine = UIView(frame: .zero)
         pointLine.backgroundColor = R.color.actionAccent()
         pointLine.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(titleLabel)
+        self.addSubview(textStackView)
         self.addSubview(carousel)
+        self.addSubview(nexButton)
+        self.addSubview(prevButton)
         self.addSubview(pointLine)
         pointLineConstraint = pointLine.bottomAnchor.constraint(equalTo: carousel.bottomAnchor, constant: -16)
-        
+        // Gradients
         leftGradientView = UIView(frame: .zero)
         rightGradientView = UIView(frame: .zero)
         leftGradientView.backgroundColor = .clear
@@ -63,10 +100,20 @@ class TimeCarouselView: UIView {
         rightGradientView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(leftGradientView)
         self.addSubview(rightGradientView)
+        // Constraints
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            carousel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            textStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            textStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            textStackView.widthAnchor.constraint(equalToConstant: 100),
+            nexButton.leadingAnchor.constraint(equalTo: textStackView.trailingAnchor, constant: 8),
+            nexButton.centerYAnchor.constraint(equalTo: textStackView.centerYAnchor),
+            nexButton.heightAnchor.constraint(equalToConstant: 40),
+            nexButton.widthAnchor.constraint(equalToConstant: 48),
+            prevButton.trailingAnchor.constraint(equalTo: textStackView.leadingAnchor, constant: -8),
+            prevButton.centerYAnchor.constraint(equalTo: textStackView.centerYAnchor),
+            prevButton.heightAnchor.constraint(equalToConstant: 40),
+            prevButton.widthAnchor.constraint(equalToConstant: 48),
+            carousel.topAnchor.constraint(equalTo: textStackView.bottomAnchor, constant: 20),
             carousel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
             carousel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
             carousel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
@@ -78,13 +125,13 @@ class TimeCarouselView: UIView {
             leftGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             leftGradientView.topAnchor.constraint(equalTo: carousel.topAnchor),
             leftGradientView.bottomAnchor.constraint(equalTo: carousel.bottomAnchor),
-            leftGradientView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / 5),
+            leftGradientView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / 8),
             rightGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             rightGradientView.topAnchor.constraint(equalTo: carousel.topAnchor),
             rightGradientView.bottomAnchor.constraint(equalTo: carousel.bottomAnchor),
-            rightGradientView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / 5),
+            rightGradientView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1 / 8),
         ])
-        titleLabel.text = "Hello"
+        // Carousel setup
         carousel.backgroundColor = .clear
         carousel.dataSource = self
         carousel.delegate = self
@@ -107,6 +154,38 @@ class TimeCarouselView: UIView {
         leftGradient.frame = leftGradientView.bounds
         rightGradient.frame = rightGradientView.bounds
     }
+    
+    @objc func nextButtonTapped() {
+        carousel.scrollToItem(at: carousel.currentItemIndex + 1, duration: 0.3)
+    }
+    
+    @objc func prevButtonTapped() {
+        carousel.scrollToItem(at: carousel.currentItemIndex - 1, duration: 0.3)
+    }
+    
+    private func setupButtons() {
+        let nextIndex = carousel.currentItemIndex + 1
+        let prevIndex = carousel.currentItemIndex - 1
+        if nextIndex < models.count {
+            nexButton.isEnabled = !models[nextIndex].isDisable
+        }
+        if prevIndex >= 0 {
+            prevButton.isEnabled = !models[prevIndex].isDisable
+        }
+    }
+    
+    private func returnToEnabledItems() {
+        guard
+            let startIndex = models.firstIndex(where: { $0.isDisable == false }),
+            let endIndex = models.lastIndex(where: { $0.isDisable == false })
+        else { return }
+        if carousel.currentItemIndex < startIndex {
+            carousel.scrollToItem(at: startIndex, duration: 0.1)
+        }
+        if carousel.currentItemIndex > endIndex {
+            carousel.scrollToItem(at: endIndex, duration: 0.1)
+        }
+    }
 }
 
 extension TimeCarouselView: iCarouselDataSource {
@@ -122,8 +201,6 @@ extension TimeCarouselView: iCarouselDataSource {
         cell.configure(with: model)
         return cell
     }
-    
-    
 }
 
 extension TimeCarouselView: iCarouselDelegate {
@@ -132,23 +209,13 @@ extension TimeCarouselView: iCarouselDelegate {
         generator.impactOccurred()
         let model = models[carousel.currentItemIndex]
         if model.isDisable {
-            guard
-                let startIndex = models.firstIndex(where: { $0.isDisable == false }),
-                let endIndex = models.lastIndex(where: { $0.isDisable == false })
-            else { return }
-            if carousel.currentItemIndex < startIndex {
-                carousel.scrollToItem(at: startIndex, duration: 0.1)
-            }
-            if carousel.currentItemIndex > endIndex {
-                carousel.scrollToItem(at: endIndex, duration: 0.1)
-            }
+            returnToEnabledItems()
         } else {
             handler?(model)
-            let newDate = model.startDate + model.value.minutes
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateStyle = .short
-            timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
-            titleLabel.text = timeFormatter.string(from: newDate)
+            setupButtons()
+            titleLabel.text = configuration.titleForItem(model)
+            subtitleLabel.text = configuration.subtitleForItem(model)
+            subtitleLabel.isHidden = subtitleLabel.text == nil
             pointLineConstraint.constant = model.isBig ? -8 : -16
             UIView.animate(withDuration: 0.1, animations: {
                 self.layoutIfNeeded()
@@ -169,32 +236,7 @@ extension TimeCarouselView: iCarouselDelegate {
     func carouselDidEndScrollingAnimation(_ carousel: iCarousel) {
         let model = models[carousel.currentItemIndex]
         if model.isDisable {
-            guard
-                let startIndex = models.firstIndex(where: { $0.isDisable == false }),
-                let endIndex = models.lastIndex(where: { $0.isDisable == false })
-            else { return }
-            if carousel.currentItemIndex < startIndex {
-                carousel.scrollToItem(at: startIndex, duration: 0.1)
-            }
-            if carousel.currentItemIndex > endIndex {
-                carousel.scrollToItem(at: endIndex, duration: 0.1)
-            }
+            returnToEnabledItems()
         }
     }
-    
-//    func carouselDidEndDragging(_ carousel: iCarousel, willDecelerate decelerate: Bool) {
-//        let model = models[carousel.currentItemIndex]
-//        if model.isFake {
-//            guard
-//                let startIndex = models.firstIndex(where: { $0.isFake == false }),
-//                let endIndex = models.lastIndex(where: { $0.isFake == false })
-//            else { return }
-//            if carousel.currentItemIndex < startIndex {
-//                carousel.scrollToItem(at: startIndex, duration: 0.1)
-//            }
-//            if carousel.currentItemIndex > endIndex {
-//                carousel.scrollToItem(at: endIndex, duration: 0.1)
-//            }
-//        }
-//    }
 }

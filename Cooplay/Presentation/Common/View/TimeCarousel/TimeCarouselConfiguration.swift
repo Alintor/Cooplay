@@ -99,8 +99,8 @@ struct TimeCarouselConfiguration {
             value: currentValue,
             sizeType: currentType,
             isDisable: isCurrentDateDisable,
-            nextDisable: isCurrentDateDisable,
-            prevDisable: isCurrentDateDisable,
+            nextDisable: nextItems.last == nil || isCurrentDateDisable,
+            prevDisable: prevItems.first == nil || isCurrentDateDisable,
             startDate: date
         )
         
@@ -111,6 +111,25 @@ struct TimeCarouselConfiguration {
         allItems.append(contentsOf: nextDisableItems)
         
         return allItems
+    }
+    
+    func titleForItem(_ item: TimeCarouselItemModel) -> String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .short
+        timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
+        return timeFormatter.string(from: item.date)
+    }
+    
+    func subtitleForItem(_ item: TimeCarouselItemModel) -> String? {
+        switch type {
+        case .suggestion:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.doesRelativeDateFormatting = true
+            return dateFormatter.string(from: item.date).lowercased()
+        case .latness:
+            return R.string.localizable.eventDetailsCellLateness("\(item.value)")
+        }
     }
     
     private var isCurrentDateDisable: Bool {
@@ -127,7 +146,7 @@ struct TimeCarouselConfiguration {
         case .latness:
             return 12
         case .suggestion:
-            return 36
+            return 144
         }
     }
     

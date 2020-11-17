@@ -143,7 +143,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 28 images.
+  /// This `R.image` struct is generated, and contains static references to 29 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -169,6 +169,8 @@ struct R: Rswift.Validatable {
     static let commonLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link")
     /// Image `common.logo`.
     static let commonLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.logo")
+    /// Image `common.minus`.
+    static let commonMinus = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.minus")
     /// Image `common.normal.crown`.
     static let commonNormalCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.normal.crown")
     /// Image `common.plus`.
@@ -260,6 +262,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.logo", bundle: ..., traitCollection: ...)`
     static func commonLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonLogo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.minus", bundle: ..., traitCollection: ...)`
+    static func commonMinus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonMinus, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.normal.crown", bundle: ..., traitCollection: ...)`
