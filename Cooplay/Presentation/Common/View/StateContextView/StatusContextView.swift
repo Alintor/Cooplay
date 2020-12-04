@@ -127,6 +127,11 @@ class StatusContextView: UIView {
     func showMenu(size: StatusMenuView.MenuSize, type: StatusMenuView.MenuType) {
         guard let window = StatusContextView.topWindow else { return }
         window.addSubview(self)
+        let  menuView = StatusMenuView(size: size, type: type) { [weak self] menuItem in
+            self?.selectedMenuItem = menuItem
+            self?.close()
+        }
+        self.menuView = menuView
         delegate?.prepareView {  [weak self] in
             self?.show(menuSize: size, menuType: type)
         }
@@ -147,44 +152,39 @@ class StatusContextView: UIView {
         self.targetView = targetView
         self.addSubview(targetView)
         
-        let  menuView = StatusMenuView(size: menuSize, type: menuType) { [weak self] menuItem in
-            self?.selectedMenuItem = menuItem
-            self?.close()
-        }
-        self.menuView = menuView
-        self.addSubview(menuView)
+        self.addSubview(menuView!)
         
-        menuView.translatesAutoresizingMaskIntoConstraints = false
+        menuView!.translatesAutoresizingMaskIntoConstraints = false
         var menuViewXConstraint: NSLayoutConstraint
         var menuViewYConstraint: NSLayoutConstraint
         var menuTransform = CGAffineTransform(scaleX: Constant.menuAnimationScale, y: Constant.menuAnimationScale)
         switch contextType {
         case .moveToBottom:
-            menuViewYConstraint = menuView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -Constant.menuIndent)
-            menuViewXConstraint = menuView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            menuViewYConstraint = menuView!.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -Constant.menuIndent)
+            menuViewXConstraint = menuView!.centerXAnchor.constraint(equalTo: self.centerXAnchor)
             menuTransform = menuTransform.translatedBy(x: 0, y: targetView.frame.height)
         case .overTarget:
             switch menuSize {
             case .large:
-                menuViewXConstraint = menuView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                menuViewXConstraint = menuView!.centerXAnchor.constraint(equalTo: self.centerXAnchor)
             case .small:
                 let leftEdgeDistance = targetView.frame.origin.x
                 let rightEdgeDistance = window.frame.size.width - (targetView.frame.origin.x + targetView.frame.size.width)
                 if leftEdgeDistance > rightEdgeDistance {
-                    menuViewXConstraint = menuView.trailingAnchor.constraint(equalTo: targetView.trailingAnchor)
+                    menuViewXConstraint = menuView!.trailingAnchor.constraint(equalTo: targetView.trailingAnchor)
                     menuTransform = menuTransform.translatedBy(x: targetView.frame.height, y: 0)
                 } else {
-                    menuViewXConstraint = menuView.leadingAnchor.constraint(equalTo: targetView.leadingAnchor)
+                    menuViewXConstraint = menuView!.leadingAnchor.constraint(equalTo: targetView.leadingAnchor)
                     menuTransform = menuTransform.translatedBy(x: -targetView.frame.height, y: 0)
                 }
             }
             let topEdgeDistance = targetView.frame.origin.y
             let bottomEdgeDistance = window.frame.size.height - (targetView.frame.origin.y + targetView.frame.size.height)
             if topEdgeDistance > bottomEdgeDistance {
-                menuViewYConstraint = menuView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -Constant.menuIndent)
+                menuViewYConstraint = menuView!.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -Constant.menuIndent)
                 menuTransform = menuTransform.translatedBy(x: 0, y: targetView.frame.height)
             } else {
-                menuViewYConstraint = menuView.topAnchor.constraint(equalTo: targetView.bottomAnchor, constant: 8)
+                menuViewYConstraint = menuView!.topAnchor.constraint(equalTo: targetView.bottomAnchor, constant: 8)
                 menuTransform = menuTransform.translatedBy(x: 0, y: -targetView.frame.height)
             }
         }
@@ -194,9 +194,9 @@ class StatusContextView: UIView {
             menuViewYConstraint
         ])
         
-        menuView.transform = menuTransform
+        menuView!.transform = menuTransform
         self.menuTransform = menuTransform
-        menuView.alpha = 0
+        menuView!.alpha = 0
         delegate.setTargetView(hide: true)
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()

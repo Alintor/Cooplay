@@ -330,6 +330,7 @@ class StatusMenuView: UIView {
                         self.layoutIfNeeded()
                     })
                 case .showPanel:
+                    item.item.menuPanelItem?.loadData()
                     UIView.animate(withDuration: Constant.latenessAnimateDuration, delay: 0, usingSpringWithDamping: Constant.latenessSpringDamping, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                         item.item.menuPanelItem?.panelView.isHidden = false
                         item.item.menuPanelItem?.panelView.alpha = 1

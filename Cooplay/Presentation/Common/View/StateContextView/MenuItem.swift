@@ -32,6 +32,7 @@ protocol MenuPanelItem: class {
     var panelView: UIView { get }
     var cancelHandler: (() -> Void)? { get set }
     var confirmHandler: (() -> Void)? { get set }
+    func loadData()
 }
 
 protocol MenuItem {

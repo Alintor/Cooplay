@@ -29,16 +29,22 @@ class TimeCarouselItemView: UIView {
             subview.removeFromSuperview()
         }
         let line1 = UIView(frame: .zero)
+        line1.layer.cornerRadius = 0.5
         line1.backgroundColor = model.prevDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         let line2 = UIView(frame: .zero)
+        line2.layer.cornerRadius = 0.5
         line2.backgroundColor = model.prevDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         let lineBig = UIView(frame: .zero)
+        lineBig.layer.cornerRadius = 0.5
         lineBig.backgroundColor = model.isDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         let line3 = UIView(frame: .zero)
+        line3.layer.cornerRadius = 0.5
         line3.backgroundColor = model.nextDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         let line4 = UIView(frame: .zero)
+        line4.layer.cornerRadius = 0.5
         line4.backgroundColor = model.nextDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         let line5 = UIView(frame: .zero)
+        line5.layer.cornerRadius = 0.5
         line5.backgroundColor = model.nextDisable ? R.color.textSecondary()?.withAlphaComponent(0.2) : R.color.textSecondary()
         line1.translatesAutoresizingMaskIntoConstraints = false
         line2.translatesAutoresizingMaskIntoConstraints = false

@@ -12,7 +12,7 @@ import SwiftDate
 
 class TimeCarouselView: UIView {
     
-    let generator = UIImpactFeedbackGenerator(style: .light)
+    var generator: UIImpactFeedbackGenerator?
     var carousel: iCarousel
     var titleLabel: UILabel
     var subtitleLabel: UILabel
@@ -45,10 +45,12 @@ class TimeCarouselView: UIView {
         titleLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 22, weight: .semibold)
         titleLabel.textColor = R.color.textPrimary()
         titleLabel.textAlignment = .center
+        titleLabel.text = " "
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = UIFont.systemFont(ofSize: 13)
         subtitleLabel.textColor = R.color.textSecondary()
         subtitleLabel.textAlignment = .center
+        subtitleLabel.text = " "
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         let textStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         textStackView.axis = .vertical
@@ -71,6 +73,7 @@ class TimeCarouselView: UIView {
         
         // Point line
         let pointLine = UIView(frame: .zero)
+        pointLine.layer.cornerRadius = 0.5
         pointLine.backgroundColor = R.color.actionAccent()
         pointLine.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(textStackView)
@@ -133,13 +136,14 @@ class TimeCarouselView: UIView {
         ])
         // Carousel setup
         carousel.backgroundColor = .clear
-        carousel.dataSource = self
-        carousel.delegate = self
-        carousel.reloadData()
+        //carousel.dataSource = self
+        //carousel.delegate = self
+        //carousel.reloadData()
         carousel.type = .cylinder
-        let index = models.firstIndex { $0.value == 0 } ?? 0
-        carousel.scrollToItem(at: index, animated: false)
-        generator.prepare()
+        //let index = models.firstIndex { $0.isDisable == false } ?? 0
+        //carousel.scrollToItem(at: index, animated: false)
+        //generator = UIImpactFeedbackGenerator(style: .light)
+        //generator?.prepare()
         //leftGradientView.isHidden = true
         //rightGradientView.isHidden = true
         //carousel.type = .cylinder
@@ -155,12 +159,22 @@ class TimeCarouselView: UIView {
         rightGradient.frame = rightGradientView.bounds
     }
     
+    func reloadData() {
+        carousel.dataSource = self
+        carousel.delegate = self
+        carousel.reloadData()
+        let index = models.firstIndex { $0.isDisable == false } ?? 0
+        carousel.scrollToItem(at: index, animated: false)
+        generator = UIImpactFeedbackGenerator(style: .light)
+        generator?.prepare()
+    }
+    
     @objc func nextButtonTapped() {
-        carousel.scrollToItem(at: carousel.currentItemIndex + 1, duration: 0.3)
+        carousel.scrollToItem(at: carousel.currentItemIndex + 1, duration: 0.2)
     }
     
     @objc func prevButtonTapped() {
-        carousel.scrollToItem(at: carousel.currentItemIndex - 1, duration: 0.3)
+        carousel.scrollToItem(at: carousel.currentItemIndex - 1, duration: 0.2)
     }
     
     private func setupButtons() {
@@ -206,11 +220,11 @@ extension TimeCarouselView: iCarouselDataSource {
 extension TimeCarouselView: iCarouselDelegate {
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        generator.impactOccurred()
         let model = models[carousel.currentItemIndex]
         if model.isDisable {
             returnToEnabledItems()
         } else {
+            generator?.impactOccurred()
             handler?(model)
             setupButtons()
             titleLabel.text = configuration.titleForItem(model)
@@ -227,7 +241,7 @@ extension TimeCarouselView: iCarouselDelegate {
         if option == .wrap {
             return 0
         } else if option == .arc {
-            return CGFloat(Double.pi / 1.5)
+            return CGFloat(Double.pi / 2)
         } else {
             return value
         }

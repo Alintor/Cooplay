@@ -11,6 +11,7 @@ import UIKit
 class TimeCarouselPanel: UIView {
     
     private var carouselItem: TimeCarouselItemModel!
+    private var timeCarouselView: TimeCarouselView!
     
     init(configuration: TimeCarouselConfiguration) {
         super.init(frame: .zero)
@@ -35,7 +36,7 @@ class TimeCarouselPanel: UIView {
         let line = UIView(frame: .zero)
         line.backgroundColor = R.color.shapeBackground()
         line.translatesAutoresizingMaskIntoConstraints = false
-        let timeCarouselView = TimeCarouselView(with: configuration) { [weak self] (item) in
+        timeCarouselView = TimeCarouselView(with: configuration) { [weak self] (item) in
             self?.carouselItem = item
         }
         timeCarouselView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,5 +87,9 @@ extension TimeCarouselPanel: MenuPanelItem {
     
     var panelView: UIView {
         return self
+    }
+    
+    func loadData() {
+        timeCarouselView.reloadData()
     }
 }
