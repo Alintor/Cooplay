@@ -226,6 +226,18 @@ struct EventMemberMenuItem: MenuItem {
         case delete
     }
     
+    enum MenuGroup {
+        
+        case editing
+        
+        var items: [ActionType] {
+            switch self {
+            case .editing:
+                return [.makeOwner, .delete]
+            }
+        }
+    }
+    
     let actionType: ActionType
     let actionHandler: ((_ actionType: ActionType) -> Void)?
     

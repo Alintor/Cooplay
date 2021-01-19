@@ -41,6 +41,13 @@ protocol EventServiceType {
     func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
     func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
+    func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
+    func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
+    func takeOwnerRulesToMember(
+        _ member: User,
+        forEvent event: Event,
+        completion: @escaping (Result<Void, EventServiceError>) -> Void
+    )
 }
 
 
@@ -207,6 +214,49 @@ extension EventService: EventServiceType {
     
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         firestore.collection("Events").document(event.id).delete { [weak self] (error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        firestore.collection("Events").document(event.id).updateData([
+            "members.\(member.id)": FieldValue.delete()
+        ]) { [weak self] error in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        guard event.me.isOwner == true else {
+            // TODO: Send error
+            return
+        }
+        firestore.collection("Event").document(event.id).updateData([
+            "members.\(member.id).isOwner": true,
+            "members.\(event.me.id).": false
+        ]) { [weak self] error in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        var membersData = [AnyHashable: Any]()
+        for member in members {
+            membersData["members.\(member.id)"] = member.dictionary
+        }
+        firestore.collection("Event").document(event.id).updateData(membersData) { [weak self] error in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {

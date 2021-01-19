@@ -49,7 +49,7 @@ final class EventDetailsPresenter {
                     delegate: delegate,
                     contextType: .overTarget,
                     menuSize: .small,
-                    menuType: .eventMemberActions(actionHandler: { (actionType) in
+                    menuType: .eventMemberActions(group: .editing, actionHandler: { (actionType) in
                         // TODO:
                     })
                 )
