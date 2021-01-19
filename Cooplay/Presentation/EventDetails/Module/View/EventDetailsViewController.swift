@@ -273,3 +273,9 @@ extension EventDetailsViewController: NewEventTimePickerViewDelegate {
         
     }
 }
+extension EventDetailsViewController: TimeCarouselContextDelegate {
+    
+    var targetButtonView: UIView {
+        return dateChangeButtonView
+    }
+}

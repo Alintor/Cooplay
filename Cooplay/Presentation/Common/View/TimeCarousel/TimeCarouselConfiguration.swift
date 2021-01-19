@@ -14,6 +14,7 @@ struct TimeCarouselConfiguration {
     enum TimeType {
         case latness
         case suggestion
+        case change
     }
     
     enum SizeType: Int {
@@ -122,7 +123,7 @@ struct TimeCarouselConfiguration {
     
     func subtitleForItem(_ item: TimeCarouselItemModel) -> String? {
         switch type {
-        case .suggestion:
+        case .suggestion, .change:
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.doesRelativeDateFormatting = true
@@ -132,12 +133,14 @@ struct TimeCarouselConfiguration {
         }
     }
     
-    var panelTitle: String {
+    var panelTitle: String? {
         switch type {
         case .latness:
             return R.string.localizable.timeCarouselPanelLatnessTitle()
         case .suggestion:
             return R.string.localizable.timeCarouselPanelSuggestionTitle()
+        case .change:
+            return R.string.localizable.timeCarouselPanelChangeTitle()
         }
     }
     
@@ -145,7 +148,7 @@ struct TimeCarouselConfiguration {
         switch type {
         case .latness:
             return true
-        case .suggestion:
+        case .suggestion, .change:
             return false
         }
     }
@@ -156,6 +159,8 @@ struct TimeCarouselConfiguration {
             return 12
         case .suggestion:
             return 144
+        case .change:
+            return 576
         }
     }
     
@@ -165,6 +170,8 @@ struct TimeCarouselConfiguration {
             return 0
         case .suggestion:
             return 36
+        case .change:
+            return 576
         }
     }
     

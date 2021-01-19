@@ -73,7 +73,9 @@ final class EventDetailsPresenter {
             }
             view.changeDateAction = { [weak self] in
                 guard let `self` = self else { return }
-                //self.router.showTimePicker(startTime: self.event.date, enableMinimumTime: true, showDate: true, handler: nil)
+                self.router.showCarousel(configuration: .init(type: .change, date: self.event.date)) { [weak self] (newDate) in
+                    self?.changeDate(newDate)
+                }
             }
         }
     }
@@ -135,13 +137,32 @@ final class EventDetailsPresenter {
         interactor.changeGame(game, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
-            case .success: break
+            case .success:
+                // TODO: Show success banner
+                break
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)
             }
         }
         event.game = game
+        view.update(with: EventDetailsViewModel(with: self.event))
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+    }
+    
+    private func changeDate(_ date: Date) {
+        interactor.changeDate(date, forEvent: event) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success:
+                // TODO: Show success banner
+                break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+        event.date = date
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }

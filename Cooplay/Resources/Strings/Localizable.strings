@@ -36,6 +36,7 @@
 // MARK: - Time carousel
 "timeCarouselPanel.latness.title" = "Приду к";
 "timeCarouselPanel.suggestion.title" = "Предлагаю";
+"timeCarouselPanel.change.title" = "Изменить";
 
 // MARK: - EventMemberMenuItem
 "eventMemberMenuItem.makeOwner" = "Сделать лидером";

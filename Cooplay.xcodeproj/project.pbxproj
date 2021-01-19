@@ -118,6 +118,8 @@
 		A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */; };
 		A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */; };
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
+		A8354D6C25B579E4008699E5 /* TimeCarouselRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */; };
+		A8354D6E25B58006008699E5 /* TimeCarouselContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8354D6D25B58006008699E5 /* TimeCarouselContextView.swift */; };
 		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
 		A83D43742379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */; };
 		A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */; };
@@ -348,6 +350,8 @@
 		A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRenderer.swift; sourceTree = "<group>"; };
 		A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDayDateViewModel.swift; sourceTree = "<group>"; };
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
+		A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselRoutable.swift; sourceTree = "<group>"; };
+		A8354D6D25B58006008699E5 /* TimeCarouselContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselContextView.swift; sourceTree = "<group>"; };
 		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
 		A83D43732379715A00DFFCF7 /* EventSectionСollapsibleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderViewModel.swift"; sourceTree = "<group>"; };
 		A844BDE72379A13500EE4A3E /* InvitationsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsHeaderCell.swift; sourceTree = "<group>"; };
@@ -1427,6 +1431,7 @@
 				A8FB1CC924989F84001C9355 /* GuestRoutable.swift */,
 				A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */,
 				A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */,
+				A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1444,6 +1449,7 @@
 			isa = PBXGroup;
 			children = (
 				A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */,
+				A8354D6D25B58006008699E5 /* TimeCarouselContextView.swift */,
 				A86D367B25627379001FDBFC /* TimeCarouselView.swift */,
 				A86D367D25627DB1001FDBFC /* TimeCarouselItemView.swift */,
 				A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */,
@@ -2335,6 +2341,7 @@
 				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
 				A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */,
 				D87DC53E1508FB298599B461 /* EventsListAssemblyContainer.swift in Sources */,
+				A8354D6C25B579E4008699E5 /* TimeCarouselRoutable.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
 				A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */,
@@ -2466,6 +2473,7 @@
 				0D360D3C8F42E89EFBEB3A3B /* ProfileViewInput.swift in Sources */,
 				780674E62151B8C1159411F7 /* ProfileViewController.swift in Sources */,
 				6A228B4CFD671E87BEA387DD /* ProfileModuleInput.swift in Sources */,
+				A8354D6E25B58006008699E5 /* TimeCarouselContextView.swift in Sources */,
 				A8FB1CCA24989F84001C9355 /* GuestRoutable.swift in Sources */,
 				1A982BDE9820DD8CCB1D5DBD /* ProfilePresenter.swift in Sources */,
 				7D8635871D8996D6B87A0541 /* ProfileInteractorInput.swift in Sources */,
@@ -2614,7 +2622,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -2637,7 +2645,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;

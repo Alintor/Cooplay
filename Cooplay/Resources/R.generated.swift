@@ -607,7 +607,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 99 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -675,6 +675,8 @@ struct R: Rswift.Validatable {
       static let notificationsEventStartRemindMessage = Rswift.StringResource(key: "notifications.eventStartRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Изменить
+      static let timeCarouselPanelChangeTitle = Rswift.StringResource(key: "timeCarouselPanel.change.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Или пригласите по ссылке
       static let searchMembersEmptySateDescription = Rswift.StringResource(key: "searchMembers.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Исключить
@@ -971,6 +973,11 @@ struct R: Rswift.Validatable {
       /// Value: Изменить
       static func personalisationChangeButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("personalisation.changeButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Изменить
+      static func timeCarouselPanelChangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("timeCarouselPanel.change.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Или пригласите по ссылке

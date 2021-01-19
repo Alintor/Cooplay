@@ -71,6 +71,10 @@ class TimeCarouselPanel: UIView {
         return .late(minutes: carouselItem.value)
     }
     
+    var date: Date {
+        return carouselItem.date
+    }
+    
     var cancelHandler: (() -> Void)?
     var confirmHandler: (() -> Void)?
     
