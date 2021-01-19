@@ -85,7 +85,7 @@ final class NewEventTimePickerView: UIView {
         )
         timeButtonView.setTime(startTime)
         timeButtonView.arrowImageView.image = R.image.commonArrowUp()
-        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(close))
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(closeConfirm))
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(closeConfirm))
         blurEffectView.addGestureRecognizer(tapGestureRecognizer1)
         timeButtonView.addGestureRecognizer(tapGestureRecognizer2)
