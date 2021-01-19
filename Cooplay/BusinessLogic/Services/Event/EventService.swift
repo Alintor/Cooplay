@@ -85,6 +85,10 @@ extension EventService: EventServiceType {
             }
             let filteredEvents = events.filter { $0.date >= (Date() - 1.hour)}
             completion(.success(filteredEvents))
+            let overdueEvents = events.filter { $0.date < (Date() - 6.months )}
+            for overdueEvent in overdueEvents {
+                self.deleteEvent(overdueEvent) { (_) in }
+            }
         }
         
     }
