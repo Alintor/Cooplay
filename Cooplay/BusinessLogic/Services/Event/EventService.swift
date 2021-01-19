@@ -195,7 +195,6 @@ extension EventService: EventServiceType {
     }
     
     func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("").document("").delete(completion: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
         firestore.collection("Events").document(event.id).updateData(["date": date]) { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
