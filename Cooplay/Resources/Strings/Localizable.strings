@@ -12,6 +12,7 @@
 "common.cancel" = "Отмена";
 "common.done" = "Готово";
 "common.choose" = "Выбрать %@";
+"common.delete" = "Удалить";
 
 // MARK: - Status
 "status.accepted.short" = "Пойду";
@@ -56,6 +57,7 @@
 "eventDetails.cell.lateness" = "+%@ мин";
 "eventDetails.addMemberLabel.title" = "Добавить участников";
 "eventDetails.edit.title" = "Редактирование";
+"eventDetails.deleteAlert.title" = "Вы действительно хотите удалить данное событие?";
 
 // MARK: - New Event
 "newEvent.title" = "Создание события";

@@ -83,6 +83,7 @@
 		A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */; };
 		A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76412DBC892C6722585C8 /* IntroViewInput.swift */; };
 		A8070A3924B831EB000C4E3A /* PushNotificationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */; };
+		A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */; };
 		A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E8162470076D005DFAF0 /* AuthorizationField.swift */; };
 		A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81824701F66005DFAF0 /* UIApplication.swift */; };
 		A815E81B24701FBA005DFAF0 /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */; };
@@ -315,6 +316,7 @@
 		A14CCCC4648AC7C9E4E20809 /* RegistrationRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroAssemblyContainer.swift; sourceTree = "<group>"; };
 		A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationApplicationService.swift; sourceTree = "<group>"; };
+		A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupRoutable.swift; sourceTree = "<group>"; };
 		A815E8162470076D005DFAF0 /* AuthorizationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationField.swift; sourceTree = "<group>"; };
 		A815E81824701F66005DFAF0 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		A815E81A24701FBA005DFAF0 /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
@@ -1432,6 +1434,7 @@
 				A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */,
 				A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */,
 				A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */,
+				A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -2370,6 +2373,7 @@
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
+				A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
 				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,
 				565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */,

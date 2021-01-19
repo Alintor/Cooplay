@@ -70,6 +70,17 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
         })
     }
     
+    func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService?.deleteEvent(event, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void) {
         eventService?.fetchEvent(id: id, completion: { result in
             switch result {

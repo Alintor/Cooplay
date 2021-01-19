@@ -7,7 +7,7 @@
 
 import DTModelStorage
 
-protocol EventDetailsViewInput: class {
+protocol EventDetailsViewInput: class, ActivityIndicatorRenderer {
 
     // MARK: - View out
 

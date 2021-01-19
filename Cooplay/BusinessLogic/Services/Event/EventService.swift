@@ -40,6 +40,7 @@ protocol EventServiceType {
     )
     func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
     func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
+    func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
 }
 
 
@@ -196,6 +197,16 @@ extension EventService: EventServiceType {
     
     func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         firestore.collection("Events").document(event.id).updateData(["date": date]) { [weak self] (error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        firestore.collection("Events").document(event.id).delete { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {

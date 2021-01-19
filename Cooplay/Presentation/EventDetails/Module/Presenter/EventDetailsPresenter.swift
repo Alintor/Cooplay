@@ -64,6 +64,12 @@ final class EventDetailsPresenter {
             }
             view.deleteAction = { [weak self] in
                 guard let `self` = self else { return }
+                self.router.showAlert(
+                    withMessage: R.string.localizable.eventDetailsDeleteAlertTitle(),
+                    actions: [Action(title: R.string.localizable.commonDelete(), handler: { [weak self] in
+                        self?.deleteEvent()
+                    })]
+                )
             }
             view.changeGameAction = { [weak self] in
                 guard let `self` = self else { return }
@@ -151,6 +157,7 @@ final class EventDetailsPresenter {
     }
     
     private func changeDate(_ date: Date) {
+        guard date != event.date else { return }
         interactor.changeDate(date, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -165,6 +172,21 @@ final class EventDetailsPresenter {
         event.date = date
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+    }
+    
+    private func deleteEvent() {
+        view.showProgress(indicatorType: .arrows, fullScreen: true)
+        interactor.deleteEvent(event) { [weak self] result in
+            guard let `self` = self else { return }
+            self.view.hideProgress()
+            switch result {
+            case .success:
+                self.router.close(animated: true)
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol EventDetailsRouterInput: ContextMenuRouter, TimePickerRoutable, SearchGameRoutable, TimeCarouselRoutable {
+protocol EventDetailsRouterInput:
+    ContextMenuRouter,
+    TimePickerRoutable,
+    SearchGameRoutable,
+    TimeCarouselRoutable,
+    PopupRoutable,
+    CloseableRouter {
 
 }

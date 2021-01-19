@@ -607,7 +607,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -653,6 +653,8 @@ struct R: Rswift.Validatable {
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
       static let authorizationTitle = Rswift.StringResource(key: "authorization.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы действительно хотите удалить данное событие?
+      static let eventDetailsDeleteAlertTitle = Rswift.StringResource(key: "eventDetails.deleteAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static let eventsListEmptySateDescription = Rswift.StringResource(key: "eventsList.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбранные
@@ -801,6 +803,8 @@ struct R: Rswift.Validatable {
       static let personalisationErrorNicknameAlreadyExist = Rswift.StringResource(key: "personalisation.error.nickname.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static let notificationsStatusRemindMessage = Rswift.StringResource(key: "notifications.statusRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Удалить
+      static let commonDelete = Rswift.StringResource(key: "common.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уже есть аккаунт? Войти
       static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Цифра
@@ -918,6 +922,11 @@ struct R: Rswift.Validatable {
       /// Value: Вход
       static func authorizationTitle(_: Void = ()) -> String {
         return NSLocalizedString("authorization.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вы действительно хотите удалить данное событие?
+      static func eventDetailsDeleteAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("eventDetails.deleteAlert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Вы можете создать событие сами, и пригласить друзей
@@ -1288,6 +1297,11 @@ struct R: Rswift.Validatable {
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static func notificationsStatusRemindMessage(_ value1: Int, _ value2: String) -> String {
         return String(format: NSLocalizedString("notifications.statusRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: Удалить
+      static func commonDelete(_: Void = ()) -> String {
+        return NSLocalizedString("common.delete", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Уже есть аккаунт? Войти
