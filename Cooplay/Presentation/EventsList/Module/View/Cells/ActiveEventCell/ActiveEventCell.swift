@@ -107,6 +107,13 @@ extension ActiveEventCell: ModelTransfer {
                 ])
             membersView.addArrangedSubview(avatarView)
         }
+        if model.members.count == 1, let member = model.members.first {
+            let memberNameLabel = UILabel(frame: .zero)
+            memberNameLabel.textColor = R.color.textSecondary()
+            memberNameLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+            memberNameLabel.text = member.model.name
+            membersView.addArrangedSubview(memberNameLabel)
+        }
     }
 }
 

@@ -12,7 +12,7 @@
         <!--Personalisation View Controller-->
         <scene sceneID="RwB-kv-zVW">
             <objects>
-                <viewController storyboardIdentifier="PersonalisationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="PersonalisationViewController" customModule="Cooplay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalisationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="PersonalisationViewController" customModule="Ruwus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFS-jM-hgH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FY0-zt-r0d">
                                 <rect key="frame" x="155.5" y="148" width="64" height="80"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSU-VV-hwd" customClass="AvatarView" customModule="Cooplay" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSU-VV-hwd" customClass="AvatarView" customModule="Ruwus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

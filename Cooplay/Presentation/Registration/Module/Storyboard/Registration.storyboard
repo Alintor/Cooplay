@@ -12,7 +12,7 @@
         <!--Registration View Controller-->
         <scene sceneID="RwB-kv-zVW">
             <objects>
-                <viewController storyboardIdentifier="RegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="RegistrationViewController" customModule="Cooplay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="RegistrationViewController" customModule="Ruwus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFS-jM-hgH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
                                         <color key="textColor" name="text.secondary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.ontime" translatesAutoresizingMaskIntoConstraints="NO" id="nnW-u8-Usk">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.accepted" translatesAutoresizingMaskIntoConstraints="NO" id="nnW-u8-Usk">
                                         <rect key="frame" x="65" y="280.5" width="12" height="12"/>
                                         <color key="tintColor" name="text.secondary"/>
                                         <constraints>
@@ -132,7 +132,7 @@
                                             <constraint firstAttribute="width" priority="250" constant="16" id="hEU-tg-lQL"/>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.ontime" translatesAutoresizingMaskIntoConstraints="NO" id="PpX-YW-aBs">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.accepted" translatesAutoresizingMaskIntoConstraints="NO" id="PpX-YW-aBs">
                                         <rect key="frame" x="126" y="280.5" width="12" height="12"/>
                                         <color key="tintColor" name="text.secondary"/>
                                         <constraints>
@@ -157,7 +157,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTextKey" value="registration.passwordNumericSymbolsLabel.title"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.ontime" translatesAutoresizingMaskIntoConstraints="NO" id="VPK-ZR-Jpy">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.accepted" translatesAutoresizingMaskIntoConstraints="NO" id="VPK-ZR-Jpy">
                                         <rect key="frame" x="187" y="280.5" width="12" height="12"/>
                                         <color key="tintColor" name="text.secondary"/>
                                         <constraints>
@@ -368,7 +368,7 @@
     </scenes>
     <resources>
         <image name="common.show" width="24" height="24"/>
-        <image name="status.normal.ontime" width="24" height="24"/>
+        <image name="status.normal.accepted" width="24" height="24"/>
         <namedColor name="action.accent">
             <color red="0.29803921568627451" green="0.61960784313725492" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
