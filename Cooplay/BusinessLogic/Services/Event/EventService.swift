@@ -195,9 +195,11 @@ extension EventService: EventServiceType {
     }
     
     func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("Events").document(event.id).updateData([
+        var data: [AnyHashable: Any] = [
             "game": game.dictionary as Any
-        ]) { [weak self] (error) in
+        ]
+        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
+        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
@@ -207,7 +209,9 @@ extension EventService: EventServiceType {
     }
     
     func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("Events").document(event.id).updateData(["date": date]) { [weak self] (error) in
+        var data: [AnyHashable: Any] = ["date": date]
+        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
+        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
@@ -253,6 +257,15 @@ extension EventService: EventServiceType {
                 completion(.success(()))
             }
         }
+    }
+    
+    func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
+        var membersData = [AnyHashable: Any]()
+        for member in members {
+            membersData["members.\(member.id).lateness"] = nil
+            membersData["members.\(member.id).state"] = User.State.unknown.rawValue
+        }
+        return membersData
     }
     
     func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {

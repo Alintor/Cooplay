@@ -127,8 +127,8 @@ extension UserService: UserServiceType {
                     }
                 }
             }
-            let membersSlice = members.sorted(by: { $0.count > $1.count }).map { $0.user }.prefix(5)
-            let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }.prefix(4)
+            let membersSlice = members.sorted(by: { $0.count > $1.count }).map { $0.user }
+            let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
             let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
             completion(.success(NewEventOfftenDataResponse(
                 members: Array(membersSlice),

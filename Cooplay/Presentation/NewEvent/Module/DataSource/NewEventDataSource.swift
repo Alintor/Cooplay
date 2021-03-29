@@ -26,12 +26,12 @@ final class NewEventDataSource<T: Equatable, V: NewEventCellViewModel, P:Configu
         return activeItemsViewModels.filter({ $0.isSelected }).map({ $0.model })
     }
     
-    init(offtenItems: [T], multipleSelection: Bool, selectAction: ((_ items: [T]) -> Void)?) {
+    init(offtenItems: [T], multipleSelection: Bool, showCount: Int, selectAction: ((_ items: [T]) -> Void)?) {
         self.offtenItems = offtenItems
         self.multipleSelection = multipleSelection
         self.selectAction = selectAction
         super.init()
-        self.setupViewModels(items: offtenItems, selected: false)
+        self.setupViewModels(items: Array(offtenItems.prefix(showCount)), selected: false)
         if !multipleSelection, let firstItem = offtenItems.first {
             self.setItemSelected(true, item: firstItem)
         }

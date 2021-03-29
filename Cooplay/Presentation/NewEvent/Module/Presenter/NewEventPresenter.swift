@@ -103,6 +103,7 @@ final class NewEventPresenter {
                 self.gamesDataSours = NewEventDataSource(
                     offtenItems: response.games,
                     multipleSelection: false,
+                    showCount: 4,
                     selectAction: { [weak self] selectedGames in
                         self?.request.game = selectedGames.first
                         self?.view.updateGames()
@@ -113,6 +114,7 @@ final class NewEventPresenter {
                 self.membersDataSours = NewEventDataSource(
                     offtenItems: response.members,
                     multipleSelection: true,
+                    showCount: 5,
                     selectAction: nil
                 )
                 //self.view.updateMembers()
