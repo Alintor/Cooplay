@@ -181,10 +181,11 @@ extension EventService: EventServiceType {
     func changeStatus(
         for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("Events").document(event.id).updateData([
-            "members.\(event.me.id).lateness": event.me.lateness as Any,
+        var data: [AnyHashable: Any] = [
             "members.\(event.me.id).state": event.me.state?.rawValue as Any
-        ]) { [weak self] (error) in
+        ]
+        data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
@@ -262,7 +263,7 @@ extension EventService: EventServiceType {
     func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
         var membersData = [AnyHashable: Any]()
         for member in members {
-            membersData["members.\(member.id).lateness"] = nil
+            membersData["members.\(member.id).lateness"] = FieldValue.delete()
             membersData["members.\(member.id).state"] = User.State.unknown.rawValue
         }
         return membersData

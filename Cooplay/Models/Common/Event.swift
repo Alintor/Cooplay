@@ -20,6 +20,18 @@ struct Event: Codable {
     var isActive: Bool {
         return (date - GlobalConstant.eventActivePeriod.hour) <= Date()
     }
+    
+    var isAgreed: Bool {
+        if case .unknown = me.status {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    var statusesType: StatusMenuItem.StatusesType {
+        return !isAgreed ? .agreement : (isActive ? .confirmation : .agreement)
+    }
 }
 
 extension Event: Equatable {

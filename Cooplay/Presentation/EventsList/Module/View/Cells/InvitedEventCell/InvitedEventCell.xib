@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitedEventCell" customModule="Cooplay" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitedEventCell" customModule="Ruwus" customModuleProvider="target">
             <connections>
                 <outlet property="acceptImageView" destination="Ptt-a9-3rv" id="6Pt-Nd-6DO"/>
                 <outlet property="acceptTitleView" destination="QLL-3k-0I9" id="ZEZ-SQ-i72"/>
@@ -120,7 +120,7 @@
                                                 <constraint firstItem="MNL-7N-O0t" firstAttribute="leading" secondItem="QLL-3k-0I9" secondAttribute="leading" constant="16" id="dIY-v9-m3v"/>
                                             </constraints>
                                         </view>
-                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.ontime" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-a9-3rv">
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status.normal.accepted" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-a9-3rv">
                                             <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                             <color key="tintColor" name="block"/>
                                             <constraints>
@@ -194,7 +194,7 @@
     </objects>
     <resources>
         <image name="common.details" width="24" height="24"/>
-        <image name="status.normal.ontime" width="24" height="24"/>
+        <image name="status.normal.accepted" width="24" height="24"/>
         <namedColor name="block">
             <color red="0.16078431372549021" green="0.17254901960784313" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1461,7 +1461,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "common.details", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.details' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "status.normal.ontime", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.ontime' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }

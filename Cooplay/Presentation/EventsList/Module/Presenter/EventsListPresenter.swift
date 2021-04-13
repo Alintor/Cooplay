@@ -86,7 +86,7 @@ final class EventsListPresenter: NSObject {
         return events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
     }
     private var activeEvent: Event? {
-        return acceptedEvents.first { $0.isActive }
+        return acceptedEvents.first
     }
     private var furureEvents: [Event] {
         if let activeEvent = activeEvent {
@@ -202,7 +202,7 @@ final class EventsListPresenter: NSObject {
                     delegate: delegate,
                     contextType: .moveToBottom,
                     menuSize: .large,
-                    menuType: .statuses(type: .confirmation, date: activeEvent.date, actionHandler: { status in
+                    menuType: .statuses(type: activeEvent.statusesType, date: activeEvent.date, actionHandler: { status in
                         activeEvent.me.status = status
                         self?.updateEvent(activeEvent)
                     })
@@ -226,7 +226,7 @@ final class EventsListPresenter: NSObject {
                     contextType: .overTarget,
                     menuSize: .small,
                     menuType: .statuses(
-                        type: event.isActive ? .confirmation : .agreement,
+                        type: event.statusesType,
                         date: event.date,
                         actionHandler: { status in
                             event.me.status = status

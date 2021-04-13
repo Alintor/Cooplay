@@ -76,7 +76,8 @@ import UIKit
             statusView.topAnchor.constraint(equalTo: statusBorderView.topAnchor, constant: Constant.statusBorder),
             statusView.bottomAnchor.constraint(equalTo: statusBorderView.bottomAnchor, constant: -Constant.statusBorder),
             statusView.leadingAnchor.constraint(equalTo: statusBorderView.leadingAnchor, constant: Constant.statusBorder),
-            statusView.trailingAnchor.constraint(equalTo: statusBorderView.trailingAnchor, constant: -Constant.statusBorder)
+            statusView.trailingAnchor.constraint(equalTo: statusBorderView.trailingAnchor, constant: -Constant.statusBorder),
+            statusView.widthAnchor.constraint(greaterThanOrEqualTo: statusView.heightAnchor)
         ])
         self.addSubview(statusBorderView)
         statusBorderView.translatesAutoresizingMaskIntoConstraints = false

@@ -22,7 +22,7 @@ enum GlobalConstant {
     static var isSmallScreen: Bool {
         return screenWidth < 370.0
     }
-    static var eventActivePeriod = 24
+    static var eventActivePeriod = 1
     static var eventIdKey = "eventId"
 }
 

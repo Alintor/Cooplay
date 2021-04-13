@@ -33,7 +33,7 @@ final class EventDetailsPresenter {
                     contextType: .overTarget,
                     menuSize: .large,
                     menuType: .statuses(
-                        type: self.event.isActive ? .confirmation : .agreement,
+                        type: self.event.statusesType,
                         date: self.event.date,
                         actionHandler: { [weak self] status in
                             guard let `self` = self else { return }
