@@ -46,6 +46,18 @@ extension SearchMembersInteractor: SearchMembersInteractorInput {
         }
     }
     
+    func fetchOftenMembers(
+        completion: @escaping (Result<[User], SearchMembersError>) -> Void) {
+        userService?.fetchOfftenData { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.members))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        }
+    }
+    
     func generateInviteLink(eventId: String, completion: @escaping (_ url: URL) -> Void) {
         let link = URL(string: "\(AppConfiguration.officialSite)event?\(GlobalConstant.eventIdKey)=\(eventId)")!
         let dynamicLinksDomainURIPrefix = AppConfiguration.dynamicLinkDomain

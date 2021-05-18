@@ -7,5 +7,5 @@
 
 protocol SearchMembersModuleInput: class {
 
-    func configure(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?)
+    func configure(eventId: String, offtenMembers: [User]?, selectedMembers: [User], isEditing: Bool, selectionHandler: ((_ members: [User]) -> Void)?)
 }

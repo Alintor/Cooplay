@@ -77,7 +77,7 @@ extension UserService: UserServiceType {
         // TODO:Add limits
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         var members = [(user: User, count: Int)]()
-        var games =  [(game: Game, count: Int)]()
+        var games =  [Game]()
         var times = [(time: Date, count: Int)]()
         firestore.collection("Events")
             .whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId)
@@ -94,7 +94,7 @@ extension UserService: UserServiceType {
                 return
             }
             let currentDate = Date()
-            for event in events {
+                for event in events.sorted(by: { $0.date > $1.date }) {
                 var time = event.date
                 let components = Calendar.current.dateComponents(in: .current, from: event.date)
                 if
@@ -103,13 +103,16 @@ extension UserService: UserServiceType {
                     let newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: currentDate) {
                     time = newDate
                 }
-                if let gameIndex = games.firstIndex(where: { $0.game == event.game }) {
-                    var count = games[gameIndex].count
-                    count += 1
-                    games[gameIndex] = (event.game, count)
-                } else {
-                    games.append((event.game, 1))
+                if !games.contains(event.game) {
+                    games.append(event.game)
                 }
+//                if let gameIndex = games.firstIndex(where: { $0.game == event.game }) {
+//                    var count = games[gameIndex].count
+//                    count += 1
+//                    games[gameIndex] = (event.game, count)
+//                } else {
+//                    games.append((event.game, 1))
+//                }
                 if let timeIndex = times.firstIndex(where: { $0.time == time }) {
                     var count = times[timeIndex].count
                     count += 1
@@ -128,11 +131,11 @@ extension UserService: UserServiceType {
                 }
             }
             let membersSlice = members.sorted(by: { $0.count > $1.count }).map { $0.user }
-            let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
+            //let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
             let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
             completion(.success(NewEventOfftenDataResponse(
                 members: Array(membersSlice),
-                games: Array(gamesSlice),
+                games: games,
                 time: time
             )))
         }

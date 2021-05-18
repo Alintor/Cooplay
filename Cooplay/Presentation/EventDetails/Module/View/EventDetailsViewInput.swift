@@ -21,6 +21,7 @@ protocol EventDetailsViewInput: class, ActivityIndicatorRenderer {
     var cancelAction: (() -> Void)? { get set }
     var changeGameAction: (() -> Void)? { get set }
     var changeDateAction: (() -> Void)? { get set }
+    var addMemberAction: (() -> Void)? { get set }
 
     // MARK: - View in
 

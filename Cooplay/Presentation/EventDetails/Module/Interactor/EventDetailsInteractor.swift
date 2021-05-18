@@ -70,6 +70,39 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
         })
     }
     
+    func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService?.removeMember(member, fromEvent: event, completion: { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
+    func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService?.addMembers(members, toEvent: event, completion: { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
+    func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService?.takeOwnerRulesToMember(member, forEvent: event, completion: { (result) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        })
+    }
+    
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
         eventService?.deleteEvent(event, completion: { result in
             switch result {

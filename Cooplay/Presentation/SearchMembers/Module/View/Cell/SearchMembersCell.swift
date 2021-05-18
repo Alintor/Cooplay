@@ -17,6 +17,7 @@ class SearchMembersCell: UITableViewCell {
     @IBOutlet weak var statusImageView: UIImageView!
     
     var isMemberSelected: Bool = false
+    var isBlocked: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
     
 
@@ -27,6 +28,7 @@ class SearchMembersCell: UITableViewCell {
     }
     
     @objc func tapHandler(gesture: UITapGestureRecognizer) {
+        guard !isBlocked else { return }
         isMemberSelected = !isMemberSelected
         setupState(animate: true) {
             self.selectAction?(self.isMemberSelected)
@@ -70,6 +72,10 @@ extension SearchMembersCell: ModelTransfer {
         nameLabel.text = model.name
         self.selectAction = model.selectionHandler
         isMemberSelected = model.isSelected
+        isBlocked = model.isBlocked
+        self.avatarView.alpha = model.isBlocked ? 0.2 : 1
+        self.nameLabel.alpha = model.isBlocked ? 0.2 : 1
+        self.statusView.alpha = model.isBlocked ? 0.2 : 1
         setupState(animate: false, completion: nil)
     }
 }

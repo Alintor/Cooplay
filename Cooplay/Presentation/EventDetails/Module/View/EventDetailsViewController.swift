@@ -47,6 +47,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     var cancelAction: (() -> Void)?
     var changeGameAction: (() -> Void)?
     var changeDateAction: (() -> Void)?
+    var addMemberAction: (() -> Void)?
 
     // MARK: - View in
 
@@ -196,6 +197,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
         statusAction?(self)
     }
     @IBAction func addMemberViewTapped(_ sender: UITapGestureRecognizer) {
+        addMemberAction?()
     }
     
     @objc func editButtonTapped() {

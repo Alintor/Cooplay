@@ -28,6 +28,7 @@ extension NewEventRouter: NewEventRouterInput {
             eventId: eventId,
             offtenMembers: offtenMembers,
             selectedMembers: selectedMembers,
+            isEditing: false,
             selectionHandler: selectionHandler
         )
         let navigationController = UINavigationController(rootViewController: searchMembersViewController)

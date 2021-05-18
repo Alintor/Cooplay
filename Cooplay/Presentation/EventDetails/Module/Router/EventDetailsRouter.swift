@@ -16,4 +16,17 @@ final class EventDetailsRouter {
 
 extension EventDetailsRouter: EventDetailsRouterInput {
 
+    func openMembersSearch(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?) {
+        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        let searchMembersViewController = R.storyboard.searchMembers.searchMembersViewController()!
+        searchMembersViewController.output?.configure(
+            eventId: eventId,
+            offtenMembers: offtenMembers,
+            selectedMembers: selectedMembers,
+            isEditing: true,
+            selectionHandler: selectionHandler
+        )
+        let navigationController = UINavigationController(rootViewController: searchMembersViewController)
+        transitionHandler.present(navigationController, animated: true, completion: nil)
+    }
 }

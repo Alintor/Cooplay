@@ -26,6 +26,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
     @IBOutlet weak var avatarViewTrailingConstraint: NSLayoutConstraint!
     
     var isMemberSelected: Bool = false
+    var isBlocked: Bool = false
     var selectAction: ((_ isSelected: Bool) -> Void)?
     var generator: UIImpactFeedbackGenerator?
     
@@ -49,6 +50,7 @@ class NewEventMemberCell: UICollectionViewCell, Skeletonable {
     }
     
     @objc func tapHandler(gesture: UITapGestureRecognizer) {
+        guard !isBlocked else { return }
         isMemberSelected = !isMemberSelected
         generator?.impactOccurred()
         setupState(animate: true) {
@@ -142,6 +144,11 @@ extension NewEventMemberCell: ConfigurableCell {
         }
         self.selectAction = model.selectAction
         isMemberSelected = model.isSelected
+        isBlocked = model.isBlocked
+        for targetView in targetViews {
+            targetView.view.alpha = model.isBlocked ? 0.2 : 1
+        }
+        statusView.alpha = model.isBlocked ? 0.2 : 1
         setupState(animate: false, completion: nil)
     }
     

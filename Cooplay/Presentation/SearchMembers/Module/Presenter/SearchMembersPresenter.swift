@@ -23,7 +23,7 @@ final class SearchMembersPresenter {
             }
             view.doneAction = { [weak self] in
                 guard let `self` = self else { return }
-                self.selectionHandler?(self.selectedMembersDataSource.items)
+                self.selectionHandler?(self.selectedMembersDataSource.selectedItems)
                 self.router.close(animated: true)
             }
             view.inviteAction = { [weak self] in
@@ -53,6 +53,7 @@ final class SearchMembersPresenter {
     // MARK: - Private
     
     private var eventId: String!
+    private var isEditing: Bool = false
     private var offtenMembers: [User]!
     private var selectedMembers: [User]!
     private var dataSource: MemoryStorage!
@@ -63,7 +64,7 @@ final class SearchMembersPresenter {
     private func setupSelectedMembers() {
         view.showSelectedMembers(!selectedMembers.isEmpty, animated: false)
         view.setDoneActionEnabled(!selectedMembers.isEmpty)
-        selectedMembersDataSource = SearchMembersDataSource(with: selectedMembers, selectAction: { [weak self] in
+        selectedMembersDataSource = SearchMembersDataSource(with: selectedMembers, isEditing: isEditing, selectAction: { [weak self] in
             guard let `self` = self else { return }
             self.updateSelectedMembers()
             self.updateMembersList()
@@ -74,13 +75,33 @@ final class SearchMembersPresenter {
     private func updateSelectedMembers() {
         view.updateSelectedMembers()
         view.showSelectedMembers(!self.selectedMembersDataSource.items.isEmpty, animated: true)
-        view.setDoneActionEnabled(!self.selectedMembersDataSource.items.isEmpty)
+        view.setDoneActionEnabled(!self.selectedMembersDataSource.selectedItems.isEmpty)
     }
     
     private func showOfftenMembers() {
+        guard offtenMembers != nil else {
+            fetchOftenMembers()
+            return
+        }
         let sectionHeader = offtenMembers.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsOfften())
         dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
         dataSource.setItems(setupViewModels(offtenMembers), forSection: 0)
+    }
+    
+    private func fetchOftenMembers() {
+        view.showProgress(indicatorType: .arrows, fullScreen: false)
+        interactor.fetchOftenMembers { [weak self] (result) in
+            guard let `self` = self else { return }
+            self.view.hideProgress()
+            switch result {
+            case .success(let members):
+                self.offtenMembers = members
+            case .failure(let error):
+                self.offtenMembers = []
+                // TODO:
+            }
+            self.showOfftenMembers()
+        }
     }
     
     private func updateMembersList() {
@@ -125,6 +146,7 @@ final class SearchMembersPresenter {
             SearchMembersCellViewModel(
                 with: member,
                 isSelected: self?.selectedMembersDataSource.items.contains(member) ?? false,
+                isBlocked: self?.selectedMembersDataSource.isBlockedItem(member) ?? false,
                 selectionHandler: { (isSelected) in
                     if isSelected {
                         self?.selectedMembersDataSource.addItem(member)
@@ -143,10 +165,11 @@ final class SearchMembersPresenter {
 
 extension SearchMembersPresenter: SearchMembersModuleInput {
 
-    func configure(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?) {
+    func configure(eventId: String, offtenMembers: [User]?, selectedMembers: [User], isEditing: Bool, selectionHandler: ((_ members: [User]) -> Void)?) {
         self.eventId = eventId
-        self.offtenMembers = offtenMembers ?? []
+        self.offtenMembers = offtenMembers
         self.selectedMembers = selectedMembers
+        self.isEditing = isEditing
         self.selectionHandler = selectionHandler
     }
 }

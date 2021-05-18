@@ -11,21 +11,31 @@ import UIKit
 final class SearchMembersDataSource: NSObject {
     
     private(set) var items: [User]
+    private let blockedItems: [User]
     private let selectAction: (() -> Void)?
     
-    init(with items: [User], selectAction: (() -> Void)?) {
+    var selectedItems: [User] {
+        return items.filter { !blockedItems.contains($0)}
+    }
+    
+    init(with items: [User], isEditing: Bool, selectAction: (() -> Void)?) {
         self.items = items
+        blockedItems = isEditing ? items : []
         self.selectAction = selectAction
     }
     
     func addItem(_ item: User) {
         guard items.firstIndex(where: { $0 == item }) == nil else { return }
-        items.append(item)
+        items.insert(item, at: 0)
     }
     
     func removeItem(_ item: User) {
         guard let index = items.firstIndex(where: { $0 == item }) else { return }
         items.remove(at: index)
+    }
+    
+    func isBlockedItem(_ item: User) -> Bool {
+        return blockedItems.contains(item)
     }
 }
 
@@ -41,6 +51,7 @@ extension SearchMembersDataSource: UICollectionViewDataSource {
             cell.configure(model: NewEventMemberCellViewModel(
                 model: item,
                 isSelected: true,
+                isBlocked: isBlockedItem(item),
                 selectAction: { [weak self] (_) in
                     self?.removeItem(item)
                     self?.selectAction?()

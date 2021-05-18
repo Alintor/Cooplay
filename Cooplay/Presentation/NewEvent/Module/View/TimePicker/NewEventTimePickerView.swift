@@ -100,6 +100,9 @@ final class NewEventTimePickerView: UIView {
         timePickerBlockView.translatesAutoresizingMaskIntoConstraints = false
         
         let timePicker = UIDatePicker(frame: .zero)
+        if #available(iOS 13.4, *) {
+            timePicker.preferredDatePickerStyle = .wheels
+        }
         if showDate {
             timePicker.datePickerMode = .dateAndTime
         } else {

@@ -15,4 +15,5 @@ protocol EventDetailsRouterInput:
     PopupRoutable,
     CloseableRouter {
 
+    func openMembersSearch(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?)
 }

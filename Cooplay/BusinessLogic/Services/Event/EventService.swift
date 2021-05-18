@@ -248,9 +248,9 @@ extension EventService: EventServiceType {
             // TODO: Send error
             return
         }
-        firestore.collection("Event").document(event.id).updateData([
+        firestore.collection("Events").document(event.id).updateData([
             "members.\(member.id).isOwner": true,
-            "members.\(event.me.id).": false
+            "members.\(event.me.id).isOwner": false
         ]) { [weak self] error in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
@@ -271,10 +271,11 @@ extension EventService: EventServiceType {
     
     func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         var membersData = [AnyHashable: Any]()
-        for member in members {
+        for var member in members {
+            member.status = .unknown
             membersData["members.\(member.id)"] = member.dictionary
         }
-        firestore.collection("Event").document(event.id).updateData(membersData) { [weak self] error in
+        firestore.collection("Events").document(event.id).updateData(membersData) { [weak self] error in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {

@@ -50,7 +50,12 @@ final class EventDetailsPresenter {
                     contextType: .overTarget,
                     menuSize: .small,
                     menuType: .eventMemberActions(group: .editing, actionHandler: { (actionType) in
-                        // TODO:
+                        switch actionType {
+                        case .delete:
+                            self?.removeMember(item.model)
+                        case .makeOwner:
+                            self?.takeOwnerRulesToMember(item.model)
+                        }
                     })
                 )
             }
@@ -82,6 +87,15 @@ final class EventDetailsPresenter {
                 self.router.showCarousel(configuration: .init(type: .change, date: self.event.date)) { [weak self] (newDate) in
                     self?.changeDate(newDate)
                 }
+            }
+            view.addMemberAction = { [weak self] in
+                guard let `self` = self else { return }
+                self.router.openMembersSearch(
+                    eventId: self.event.id,
+                    offtenMembers: nil,
+                    selectedMembers: self.event.members) { [weak self] (newMembers) in
+                        self?.addMembers(newMembers)
+                    }
             }
         }
     }
@@ -170,6 +184,60 @@ final class EventDetailsPresenter {
             }
         }
         event.date = date
+        view.update(with: EventDetailsViewModel(with: self.event))
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+    }
+    
+    private func addMembers(_ members: [User]) {
+        interactor.addMembers(members, toEvent: event) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success:
+                // TODO: Show success banner
+                break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+        event.members.append(contentsOf: members)
+        view.update(with: EventDetailsViewModel(with: self.event))
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+    }
+    
+    private func removeMember(_ member: User) {
+        interactor.removeMember(member, fromEvent: event) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success:
+                // TODO: Show success banner
+                break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+        event.members = event.members.filter({ $0.id != member.id })
+        view.update(with: EventDetailsViewModel(with: self.event))
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+    }
+    
+    private func takeOwnerRulesToMember(_ member: User) {
+        interactor.takeOwnerRulesToMember(member, forEvent: event) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success:
+                // TODO: Show success banner
+                break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+        event.me.isOwner = false
+        if let index = event.members.firstIndex(of: member) {
+            event.members[index].isOwner = true
+        }
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }
