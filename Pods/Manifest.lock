@@ -219,13 +219,13 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
-  - DTCollectionViewManager (6.6.0):
-    - DTModelStorage (~> 7.4.0)
-  - DTModelStorage (7.4.1):
-    - DTModelStorage/Core (= 7.4.1)
-  - DTModelStorage/Core (7.4.1)
-  - DTTableViewManager (6.6.0):
-    - DTModelStorage (~> 7.4.0)
+  - DTCollectionViewManager (8.2.0):
+    - DTModelStorage (~> 9.1.0)
+  - DTModelStorage (9.1.2):
+    - DTModelStorage/Core (= 9.1.2)
+  - DTModelStorage/Core (9.1.2)
+  - DTTableViewManager (8.0.1):
+    - DTModelStorage (~> 9.0)
   - Firebase/Analytics (6.27.0):
     - Firebase/Core
   - Firebase/Auth (6.27.0):
@@ -393,8 +393,8 @@ PODS:
     - Swinject (~> 2.6)
 
 DEPENDENCIES:
-  - DTCollectionViewManager (~> 6.0)
-  - DTTableViewManager (~> 6.0)
+  - DTCollectionViewManager (~> 8.2.0)
+  - DTTableViewManager
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/DynamicLinks
@@ -470,9 +470,9 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
-  DTCollectionViewManager: 4e01bd1e97a5ca1a6f529dd0a2608ef52c98400d
-  DTModelStorage: 558e0c60bdc0bb5d37ec8f04772f29641183ddb9
-  DTTableViewManager: df3c7fa735d1b8baac3e547d90f5b02221eda72e
+  DTCollectionViewManager: ebd58b6f77bd6aba86faeb278176bf98c4ae34f8
+  DTModelStorage: 63aee1d446c80a23b4332cabe2dbfa57fddeb5af
+  DTTableViewManager: 4dc4ad299b17090c9e53fa22f20f17373e7e136e
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
   FirebaseAnalytics: 0ea640473474f036cabbc2576e20c2d63671c92f
   FirebaseAuth: b85c064e0ac60f82486728d50a4803f235687302
@@ -509,6 +509,6 @@ SPEC CHECKSUMS:
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: 8bb06658ebd264c2b6a47b6092ff2283a5ed4179
+PODFILE CHECKSUM: bb66f69dc0b4d5a9db24de3310880548f16cee20
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

@@ -54,7 +54,7 @@
 "eventsList.emptySate.description" = "Вы можете создать событие сами, и пригласить друзей";
 
 // MARK: - Events Details
-"eventDetails.cell.lateness" = "+%@ мин";
+"eventDetails.cell.lateness" = "Опоздаю на %@ мин";
 "eventDetails.addMemberLabel.title" = "Добавить участников";
 "eventDetails.edit.title" = "Редактирование";
 "eventDetails.deleteAlert.title" = "Вы действительно хотите удалить данное событие?";

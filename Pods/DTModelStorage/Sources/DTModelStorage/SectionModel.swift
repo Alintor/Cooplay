@@ -26,11 +26,16 @@
 import Foundation
 
 /// Data holder for single section in `MemoryStorage`.
-open class SectionModel: Section, SupplementaryAccessible
+open class SectionModel: Section, SectionLocatable
 {
+    /// Returns item at index, if it exists, nil otherwise.
+    /// - Parameter index: Index to search for.
+    open func item(at index: Int) -> Any? {
+        guard items.count > index else { return nil }
+        return items[index]
+    }
+    
     /// Items for current section
-    /// - Warning: If you try to set new array to this property [T], the only way to do this without exception is to wrap it into items.map { $0 }. This is a workaround that exists because of Swift inability to cast [T] to [Any]. You can call `setItems` method instead of doing so.
-    /// - SeeAlso: `setItems:`
     open var items = [Any]()
     
     /// delegate, that knows about current section index in storage.
@@ -41,14 +46,18 @@ open class SectionModel: Section, SupplementaryAccessible
         return sectionLocationDelegate?.sectionIndex(for: self)
     }
 
+    @available(*, unavailable, message: "Please use storage.supplementaryModelProvider as a replacement.")
     /// Supplementaries dictionary.
     open var supplementaries = [String: [Int: Any]]()
     
-    /// Creates empty section model.
-    public init() {}
+    /// Creates section model.
+    public init(items: [Any] = []) {
+        self.items = items
+    }
     
+    @available(*, deprecated, message: "Please assign items using .items property directly.")
     /// Set items of specific time to items property.
-    /// - Note: This method exists because of inability of Swift to cast [T] to [Any]. It uses simple map underneath.
+    /// - Note: Historically, Swift was unable to cast [T] to [Any]. This method allowed to set items, using simple map underneath. In current Swift releases, you can directly set items using `section.items = newValue` syntax.
     open func setItems<T>(_ items: [T])
     {
         self.items = items.map { $0 }

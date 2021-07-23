@@ -24,6 +24,8 @@ enum GlobalConstant {
     }
     static var eventActivePeriod = 1
     static var eventIdKey = "eventId"
+    static var eventDurationHours = 3
+    static var eventOverdueMonths = 6
 }
 
 var localizableUITableName = "Localizable"

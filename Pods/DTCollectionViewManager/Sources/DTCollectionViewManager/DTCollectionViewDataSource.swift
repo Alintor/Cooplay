@@ -26,7 +26,7 @@
 import UIKit
 import DTModelStorage
 
-//swiftlint:disable:next type_name
+// swiftlint:disable:next type_name
 private class DummyCollectionViewCellThatPreventsAppFromCrashing: UICollectionViewCell {}
 
 /// Object, that implements `UICollectionViewDataSource` methods for `DTCollectionViewManager`.
@@ -45,12 +45,12 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
     
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storage?.sections[section].numberOfItems ?? 0
+        return storage?.numberOfItems(inSection: section) ?? 0
     }
     
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return storage?.sections.count ?? 0
+        return storage?.numberOfSections() ?? 0
     }
     
     /// Implementation of `UICollectionViewDataSource` protocol.
@@ -62,7 +62,7 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
         guard let cell = viewFactory?.cellForModel(model, atIndexPath: indexPath) else {
             return dummyCell(for: indexPath)
         }
-        _ = collectionViewReactions.performReaction(of: .cell,
+        _ = EventReaction.performReaction(from: viewFactory?.mappings ?? [],
                                                     signature: EventMethodSignature.configureCell.rawValue,
                                                     view: cell,
                                                     model: model,
@@ -73,22 +73,22 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
-        guard let model = RuntimeHelper.recursivelyUnwrapAnyValue((storage as? SupplementaryStorage)?.supplementaryModel(ofKind: kind, forSectionAt: indexPath) as Any) else {
+        guard let model = supplementaryModel(ofKind: kind, forSectionAt: indexPath) else {
             manager?.anomalyHandler.reportAnomaly(DTCollectionViewManagerAnomaly.nilSupplementaryModel(kind: kind, indexPath: indexPath))
             return UICollectionReusableView()
         }
         guard let view = viewFactory?.supplementaryViewOfKind(kind, forModel: model, atIndexPath: indexPath) else {
             return UICollectionReusableView()
         }
-        _ = collectionViewReactions.performReaction(of: .supplementaryView(kind: kind),
+        _ = EventReaction.performReaction(from: viewFactory?.mappings ?? [],
                                                     signature: EventMethodSignature.configureSupplementary.rawValue,
                                                     view: view,
                                                     model: model,
-                                                    location: indexPath)
+                                                    location: indexPath,
+                                                    supplementaryKind: kind)
         return view
     }
     
-    @available(iOS 9.0, *)
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         if let can = performCellReaction(.canMoveItemAtIndexPath, location: indexPath, provideCell: true) as? Bool {
@@ -97,7 +97,6 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
         return (delegate as? UICollectionViewDataSource)?.collectionView?(collectionView, canMoveItemAt: indexPath) ?? true
     }
     
-    @available(iOS 9.0, *)
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func collectionView(_ collectionView: UICollectionView, moveItemAt source: IndexPath, to destination: IndexPath) {
         _ = performNonCellReaction(.moveItemAtIndexPathToIndexPath, argumentOne: source, argumentTwo: destination)
@@ -106,16 +105,15 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
                                                                   to: destination)
     }
     
-    @available(tvOS 10.2, *)
+    #if swift(<5.4)
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func indexTitles(for collectionView: UICollectionView) -> [String]? {
-        if let reaction = collectionViewReactions.first(where: { $0.methodSignature == EventMethodSignature.indexTitlesForCollectionView.rawValue }) {
+        if let reaction = unmappedReactions.first(where: { $0.methodSignature == EventMethodSignature.indexTitlesForCollectionView.rawValue }) {
             return reaction.performWithArguments((0, 0, 0)) as? [String]
         }
         return (delegate as? UICollectionViewDataSource)?.indexTitles?(for: collectionView)
     }
     
-    @available(tvOS 10.2, *)
     /// Implementation of `UICollectionViewDataSource` protocol.
     open func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
         if let indexPath = performNonCellReaction(.indexPathForIndexTitleAtIndex, argumentOne: title, argumentTwo: index) as? IndexPath {
@@ -125,4 +123,25 @@ open class DTCollectionViewDataSource: DTCollectionViewDelegateWrapper, UICollec
                                                                           indexPathForIndexTitle: title,
                                                                           at: index) ?? IndexPath(item: 0, section: 0)
     }
+    #else
+    @available(iOS 14.0, tvOS 10.2, *)
+    /// Implementation of `UICollectionViewDataSource` protocol.
+    open func indexTitles(for collectionView: UICollectionView) -> [String]? {
+        if let reaction = unmappedReactions.first(where: { $0.methodSignature == EventMethodSignature.indexTitlesForCollectionView.rawValue }) {
+            return reaction.performWithArguments((0, 0, 0)) as? [String]
+        }
+        return (delegate as? UICollectionViewDataSource)?.indexTitles?(for: collectionView)
+    }
+    
+    @available(iOS 14.0, tvOS 10.2, *)
+    /// Implementation of `UICollectionViewDataSource` protocol.
+    open func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
+        if let indexPath = performNonCellReaction(.indexPathForIndexTitleAtIndex, argumentOne: title, argumentTwo: index) as? IndexPath {
+            return indexPath
+        }
+        return (delegate as? UICollectionViewDataSource)?.collectionView?(collectionView,
+                                                                          indexPathForIndexTitle: title,
+                                                                          at: index) ?? IndexPath(item: 0, section: 0)
+    }
+    #endif
 }

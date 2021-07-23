@@ -83,9 +83,9 @@ extension EventService: EventServiceType {
                 completion(.failure(.unknownError))
                 return
             }
-            let filteredEvents = events.filter { $0.date >= (Date() - 1.hour)}
+            let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hour)}
             completion(.success(filteredEvents))
-            let overdueEvents = events.filter { $0.date < (Date() - 6.months )}
+            let overdueEvents = events.filter { $0.date < (Date() - GlobalConstant.eventOverdueMonths.months )}
             for overdueEvent in overdueEvents {
                 self.deleteEvent(overdueEvent) { (_) in }
             }
@@ -189,8 +189,8 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
-                completion(.success(()))
                 self?.sendChangeStatusNotification(for: event)
+                completion(.success(()))
             }
         }
     }
@@ -204,6 +204,7 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendChangeEventGameNotification(for: event)
                 completion(.success(()))
             }
         }
@@ -216,6 +217,7 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendChangeEventDateNotification(for: event)
                 completion(.success(()))
             }
         }
@@ -226,6 +228,7 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendDeleteEventNotification(for: event)
                 completion(.success(()))
             }
         }
@@ -238,6 +241,7 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendRemoveMemberFromEventNotification(member: member, event: event)
                 completion(.success(()))
             }
         }
@@ -255,6 +259,7 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendTakeEventOwnerRulesNotification(member: member, event: event)
                 completion(.success(()))
             }
         }
@@ -279,13 +284,51 @@ extension EventService: EventServiceType {
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
+                self?.sendAddMembersToEventNotification(members: members, event: event)
                 completion(.success(()))
             }
         }
     }
     
     // MARK: - Notifications
+    
     private func sendChangeStatusNotification(for event: Event) {
         firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func sendChangeEventGameNotification(for event: Event) {
+        firebaseFunctions.httpsCallable("sendChangeEventGameNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func sendChangeEventDateNotification(for event: Event) {
+        firebaseFunctions.httpsCallable("sendChangeEventDateNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func sendDeleteEventNotification(for event: Event) {
+        firebaseFunctions.httpsCallable("sendDeleteEventNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func sendAddMembersToEventNotification(members: [User], event: Event) {
+        let data: [String: Any] = [
+            "members": members.map({ $0.dictionary }),
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendAddMembersToEventNotification").call(data) { (_, _) in }
+    }
+    
+    private func sendRemoveMemberFromEventNotification(member: User, event: Event) {
+        let data = [
+            "member":member.dictionary,
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendRemoveMemberFromEventNotification").call(data) { (_, _) in }
+    }
+    
+    private func sendTakeEventOwnerRulesNotification(member: User, event: Event) {
+        let data = [
+            "member":member.dictionary,
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendTakeEventOwnerRulesNotification").call(data) { (_, _) in }
     }
 }

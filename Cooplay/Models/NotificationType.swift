@@ -13,4 +13,7 @@ enum NotificationType: String, Codable {
     case statusChange
     case invitation
     case eventStart
+    case deleteEvent
+    case removeMember
+    case takeEventOwner
 }

@@ -38,8 +38,7 @@ open class TableViewUpdater : StorageUpdating {
     
     /// closure to be executed after content is updated
     open var didUpdateContent: ((StorageUpdate?) -> Void)?
-    
-#if swift(>=4.2)
+
     /// Insert section animation. Default - .none.
     open var insertSectionAnimation = UITableView.RowAnimation.none
     
@@ -57,25 +56,6 @@ open class TableViewUpdater : StorageUpdating {
     
     /// Reload row animation. Default - .automatic.
     open var reloadRowAnimation = UITableView.RowAnimation.automatic
-#else
-    /// Insert section animation. Default - .none.
-    open var insertSectionAnimation = UITableViewRowAnimation.none
-    
-    /// Delete section animation. Default - .automatic
-    open var deleteSectionAnimation = UITableViewRowAnimation.automatic
-    
-    /// Reload section animation. Default - .automatic.
-    open var reloadSectionAnimation = UITableViewRowAnimation.automatic
-    
-    /// Insert row animation. Default - .automatic.
-    open var insertRowAnimation = UITableViewRowAnimation.automatic
-    
-    /// Delete row animation. Default - .automatic.
-    open var deleteRowAnimation = UITableViewRowAnimation.automatic
-    
-    /// Reload row animation. Default - .automatic.
-    open var reloadRowAnimation = UITableViewRowAnimation.automatic
-#endif
 
     /// Closure to be executed, when reloading a row.
     ///
@@ -86,9 +66,13 @@ open class TableViewUpdater : StorageUpdating {
     /// When this property is true, move events will be animated as delete event and insert event.
     open var animateMoveAsDeleteAndInsert: Bool
     
+    @available(*, deprecated, message: "iOS 11 performBatchUpdates is superior then legacy update methods in every way. If for some reason you still need legacy behavior, please contact me through Github issue. This property may be removed in future release.")
     /// If turned on, `TableViewUpdater` will use `tableView.beginUpdates` and `tableView.endUpdates` methods instead of iOS/tvOS 11 `performBatchUpdates` method.
     /// Defaults to `false`.
     open var usesLegacyTableViewUpdateMethods = false
+    
+    /// If turned on, animates changes off screen, otherwise calls `tableView.reloadData` when update come offscreen. To verify if tableView is onscreen, `TableViewUpdater` compares tableView.window to nil. Defaults to true.
+    open var animateChangesOffScreen = true
     
     /// Creates updater with tableView.
     public init(tableView: UITableView, reloadRow: ((IndexPath, Any) -> Void)? = nil, animateMoveAsDeleteAndInsert: Bool = false) {
@@ -103,7 +87,13 @@ open class TableViewUpdater : StorageUpdating {
     {
         willUpdateContent?(update)
         
-        if #available(iOS 11, tvOS 11, *), !usesLegacyTableViewUpdateMethods {
+        if !animateChangesOffScreen, tableView?.window == nil {
+            tableView?.reloadData()
+            didUpdateContent?(update)
+            return
+        }
+        
+        if #available(tvOS 11, *), !usesLegacyTableViewUpdateMethods {
             tableView?.performBatchUpdates({ [weak self] in
                 if update.containsDeferredDatasourceUpdates {
                     update.applyDeferredDatasourceUpdates()

@@ -18,6 +18,8 @@ class EventDetailsMemberCell: UITableViewCell {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var latenessLabel: UILabel!
     @IBOutlet weak var ownerIconImageView: UIImageView!
+    @IBOutlet weak var statusDetailsView: UIView!
+    @IBOutlet weak var statusDetailsBlockView: UIView!
     
     @IBOutlet weak var blockLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var blockTrailingConstraint: NSLayoutConstraint!
@@ -25,6 +27,10 @@ class EventDetailsMemberCell: UITableViewCell {
     @IBOutlet weak var statusTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var lineHeightConstraint: NSLayoutConstraint!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        statusDetailsBlockView.roundCorners(topLeft: 4, topRight: 15, bottomLeft: 15, bottomRight: 15)
+    }
 }
 
 extension EventDetailsMemberCell: ModelTransfer {
@@ -32,6 +38,8 @@ extension EventDetailsMemberCell: ModelTransfer {
     func update(with model: EventDetailsCellViewModel) {
         nameLabel.text = model.name
         latenessLabel.text = model.lateness
+        statusDetailsBlockView.layer.mask = nil
+        statusDetailsView.isHidden = model.lateness == nil
         statusView.backgroundColor = model.statusColor
         statusImageView.image = model.statusIcon
         avatarView.update(with: model.avatarViewModel)

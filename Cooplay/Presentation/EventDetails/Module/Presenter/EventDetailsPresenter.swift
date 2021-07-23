@@ -154,6 +154,7 @@ final class EventDetailsPresenter {
     }
     
     private func changeGame(_ game: Game) {
+        event.game = game
         interactor.changeGame(game, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -165,13 +166,13 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        event.game = game
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }
     
     private func changeDate(_ date: Date) {
         guard date != event.date else { return }
+        event.date = date
         interactor.changeDate(date, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -183,12 +184,12 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        event.date = date
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }
     
     private func addMembers(_ members: [User]) {
+        event.members.append(contentsOf: members)
         interactor.addMembers(members, toEvent: event) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
@@ -200,7 +201,6 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        event.members.append(contentsOf: members)
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
     }
@@ -223,6 +223,10 @@ final class EventDetailsPresenter {
     }
     
     private func takeOwnerRulesToMember(_ member: User) {
+        event.me.isOwner = false
+        if let index = event.members.firstIndex(of: member) {
+            event.members[index].isOwner = true
+        }
         interactor.takeOwnerRulesToMember(member, forEvent: event) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
@@ -233,10 +237,6 @@ final class EventDetailsPresenter {
                 // TODO:
                 print(error.localizedDescription)
             }
-        }
-        event.me.isOwner = false
-        if let index = event.members.firstIndex(of: member) {
-            event.members[index].isOwner = true
         }
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)

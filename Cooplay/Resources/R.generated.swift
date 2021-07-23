@@ -611,8 +611,6 @@ struct R: Rswift.Validatable {
     struct localizable {
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: +%@ мин
-      static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let authorizationEmailTextFieldPlaceholder = Rswift.StringResource(key: "authorization.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
@@ -717,6 +715,8 @@ struct R: Rswift.Validatable {
       static let personalisationNickNameTextFieldPlaceholder = Rswift.StringResource(key: "personalisation.nickNameTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
       static let statusLateShort = Rswift.StringResource(key: "status.late.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Опоздаю на %@ мин
+      static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %d мин
       static let statusLateFull = Rswift.StringResource(key: "status.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отклоненные события
@@ -817,11 +817,6 @@ struct R: Rswift.Validatable {
       /// Value: %d символов
       static func registrationPasswordSymbolsCountLabelTitle(_ value1: Int) -> String {
         return String(format: NSLocalizedString("registration.passwordSymbolsCountLabel.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// Value: +%@ мин
-      static func eventDetailsCellLateness(_ value1: String) -> String {
-        return String(format: NSLocalizedString("eventDetails.cell.lateness", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Value: Email
@@ -1082,6 +1077,11 @@ struct R: Rswift.Validatable {
       /// Value: Опоздаю
       static func statusLateShort(_: Void = ()) -> String {
         return NSLocalizedString("status.late.short", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Опоздаю на %@ мин
+      static func eventDetailsCellLateness(_ value1: String) -> String {
+        return String(format: NSLocalizedString("eventDetails.cell.lateness", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Value: Опоздаю на %d мин
@@ -1421,6 +1421,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "common.normal.crown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.normal.crown' is used in nib 'EventDetailsMemberCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "yellow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'yellow' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
         }

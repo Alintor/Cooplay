@@ -29,24 +29,21 @@ import DTModelStorage
 
 #if os(iOS)
     
-@available(iOS 11.0, *)
 /// Object, that implements `UICollectionViewDropDelegate` methods for `DTCollectionViewManager`.
 open class DTCollectionViewDropDelegate : DTCollectionViewDelegateWrapper, UICollectionViewDropDelegate {
     override func delegateWasReset() {
-        // Currently, in Xcode beta 6 seed, this resetting of the delegate is unnecessary and causes super weird interactions with UICollectionViewDropDelegate methods such as invalidating UICollectionView layouts all the time while drop session is in progress.
+        // Currently, in Xcode 10, 11, 12, this resetting of the delegate is unnecessary and causes super weird interactions with UICollectionViewDropDelegate methods such as invalidating UICollectionView layouts all the time while drop session is in progress.
         
 //        collectionView?.dropDelegate = nil
 //        collectionView?.dropDelegate = self
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         _ = performNonCellReaction(.performDropWithCoordinator, argument: coordinator)
         (delegate as? UICollectionViewDropDelegate)?.collectionView(collectionView, performDropWith: coordinator)
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
         if let canHandle = performNonCellReaction(.canHandleDropSession, argument: session) as? Bool {
@@ -55,14 +52,12 @@ open class DTCollectionViewDropDelegate : DTCollectionViewDelegateWrapper, UICol
         return (delegate as? UICollectionViewDropDelegate)?.collectionView?(collectionView, canHandle: session) ?? true
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, dropSessionDidEnter session: UIDropSession) {
         _ = performNonCellReaction(.dropSessionDidEnter, argument: session)
         (delegate as? UICollectionViewDropDelegate)?.collectionView?(collectionView, dropSessionDidEnter: session)
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         if let proposal = performNonCellReaction(.dropSessionDidUpdate,
@@ -75,24 +70,21 @@ open class DTCollectionViewDropDelegate : DTCollectionViewDelegateWrapper, UICol
                                                                   withDestinationIndexPath: destinationIndexPath) ?? UICollectionViewDropProposal(operation: .cancel)
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
         _ = performNonCellReaction(.dropSessionDidExit, argument: session)
         (delegate as? UICollectionViewDropDelegate)?.collectionView?(collectionView, dropSessionDidExit: session)
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
         _ = performNonCellReaction(.dropSessionDidEnd, argument: session)
         (delegate as? UICollectionViewDropDelegate)?.collectionView?(collectionView, dropSessionDidEnd: session)
     }
     
-    @available(iOS 11.0, *)
     /// Implementation of `UICollectionViewDropDelegate` protocol.
     open func collectionView(_ collectionView: UICollectionView, dropPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
-        if let reaction = collectionViewReactions.first(where: { $0.methodSignature == EventMethodSignature.dropPreviewParametersForItemAtIndexPath.rawValue }) {
+        if let reaction = unmappedReactions.first(where: { $0.methodSignature == EventMethodSignature.dropPreviewParametersForItemAtIndexPath.rawValue }) {
             return reaction.performWithArguments((indexPath, 0, 0)) as? UIDragPreviewParameters
         }
         return (delegate as? UICollectionViewDropDelegate)?.collectionView?(collectionView,

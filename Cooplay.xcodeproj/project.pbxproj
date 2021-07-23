@@ -112,6 +112,7 @@
 		A82FF2DB234729C900EE1807 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2DA234729C900EE1807 /* Colors.xcassets */; };
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
+		A8301D3626AACFB700519768 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3526AACFB700519768 /* UIBezierPath.swift */; };
 		A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */; };
 		A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */; };
 		A833EF5E23D0344B009FCD73 /* EventDetailsMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */; };
@@ -345,6 +346,7 @@
 		A82FF2DA234729C900EE1807 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A8301D3526AACFB700519768 /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberCell.swift; sourceTree = "<group>"; };
 		A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsMemberCell.xib; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 				A8D1D29E2361884000DA1089 /* UIView.swift */,
 				A87CF45D23EAC718004189D3 /* UITableView.swift */,
 				A815E81824701F66005DFAF0 /* UIApplication.swift */,
+				A8301D3526AACFB700519768 /* UIBezierPath.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -2336,6 +2339,7 @@
 				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A87CF43B23E97541004189D3 /* CloseableRouter.swift in Sources */,
 				A844BDE92379A13500EE4A3E /* InvitationsHeaderCell.swift in Sources */,
+				A8301D3626AACFB700519768 /* UIBezierPath.swift in Sources */,
 				A84694F923FE329200139CF4 /* SearchMembersCellViewModel.swift in Sources */,
 				A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */,
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,

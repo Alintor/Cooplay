@@ -24,8 +24,6 @@
 // THE SOFTWARE.
 
 import UIKit
-import DTModelStorage
-
 
 /// Object, that implements `UITableViewDataSource` methods for `DTTableViewManager`.
 open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSource {
@@ -37,12 +35,12 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
     
     /// Implementation for `UITableViewDataSource` protocol
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storage?.sections[section].numberOfItems ?? 0
+        return storage?.numberOfItems(inSection: section) ?? 0
     }
     
     /// Implementation for `UITableViewDataSource` protocol
     open func numberOfSections(in tableView: UITableView) -> Int {
-        return storage?.sections.count ?? 0
+        return storage?.numberOfSections() ?? 0
     }
     
     /// Implementation for `UITableViewDataSource` protocol
@@ -54,7 +52,11 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
         guard let cell = viewFactory?.cellForModel(model, atIndexPath: indexPath) else {
             return UITableViewCell()
         }
-        _ = tableViewEventReactions.performReaction(of: .cell, signature: EventMethodSignature.configureCell.rawValue, view: cell, model: model, location: indexPath)
+        _ = EventReaction.performReaction(from: viewFactory?.mappings ?? [],
+                                                    signature: EventMethodSignature.configureCell.rawValue,
+                                                    view: cell,
+                                                    model: model,
+                                                    location: indexPath)
         return cell
     }
     
@@ -62,14 +64,14 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
     open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if configuration?.sectionHeaderStyle == .view { return nil }
         
-        return self.headerModel(forSection: section) as? String
+        return headerModel(forSection: section) as? String
     }
     
     /// Implementation for `UITableViewDataSource` protocol
     open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if configuration?.sectionFooterStyle == .view { return nil }
         
-        return self.footerModel(forSection: section) as? String
+        return footerModel(forSection: section) as? String
     }
     
     /// Implementation for `UITableViewDataSource` protocol
@@ -81,7 +83,6 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
         (delegate as? UITableViewDataSource)?.tableView?(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
     }
     
-#if swift(>=4.2)
     /// Implementation for `UITableViewDataSource` protocol
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         defer { (delegate as? UITableViewDataSource)?.tableView?(tableView, commit: editingStyle, forRowAt: indexPath) }
@@ -90,18 +91,6 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
                                          location: indexPath,
                                          provideCell: true)
     }
-#else
-    /// Implementation for `UITableViewDataSource` protocol
-    open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        defer { (delegate as? UITableViewDataSource)?.tableView?(tableView, commit: editingStyle, forRowAt: indexPath) }
-        _ = perform4ArgumentCellReaction(.commitEditingStyleForRowAtIndexPath,
-                                argument: editingStyle,
-                                location: indexPath,
-                                provideCell: true)
-    }
-#endif
-    
-    
     
     /// Implementation for `UITableViewDataSource` protocol
     open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -122,7 +111,7 @@ open class DTTableViewDataSource : DTTableViewDelegateWrapper, UITableViewDataSo
     #if os(iOS)
     /// Implementation for `UITableViewDataSource` protocol
     open func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if let _ = tableViewEventReactions.first(where: { $0.methodSignature == EventMethodSignature.sectionIndexTitlesForTableView.rawValue }) {
+        if let _ = unmappedReactions.first(where: { $0.methodSignature == EventMethodSignature.sectionIndexTitlesForTableView.rawValue }) {
             return performNonCellReaction(.sectionIndexTitlesForTableView) as? [String]
         }
         return (delegate as? UITableViewDataSource)?.sectionIndexTitles?(for: tableView) ?? nil

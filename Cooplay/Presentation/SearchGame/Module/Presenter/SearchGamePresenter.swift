@@ -68,7 +68,11 @@ final class SearchGamePresenter {
             return
         }
         let sectionHeader = offtenGames.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsOfften())
-        dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
+        //dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
+        dataSource.headerModelProvider = { index in
+            guard index == 0 else { return nil }
+            return sectionHeader
+        }
         dataSource.setItems(
             offtenGames.map({ SearchGameCellViewModel(with: $0, isSelected: self.selectedGame?.slug == $0.slug )}),
             forSection: 0
@@ -92,10 +96,14 @@ final class SearchGamePresenter {
     }
     
     private func showSearchResults(_ games: [Game]) {
-        dataSource.setSectionHeaderModel(
-            SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsSearchResults()),
-            forSection: 0
-        )
+//        dataSource.setSectionHeaderModel(
+//            SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsSearchResults()),
+//            forSection: 0
+//        )
+        dataSource.headerModelProvider = { index in
+            guard index == 0 else { return nil }
+            return SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsSearchResults())
+        }
         if games.isEmpty {
             dataSource.setItems(
                 [SearchEmptyResultCellViewModel(with: R.string.localizable.searchGameEmptyResultsTitle())],

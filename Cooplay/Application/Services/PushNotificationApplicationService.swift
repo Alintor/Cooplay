@@ -74,7 +74,8 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
             defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
             NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
-        case .statusChange:
+        case .statusChange,
+             .takeEventOwner:
             guard
                 let eventJson = userInfo["event"] as? String,
                 let eventData =  eventJson.data(using: .utf16),
@@ -92,6 +93,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             let navigationController = UINavigationController(rootViewController: eventsViewController)
             navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
             UIApplication.setRootViewController(navigationController)
+        default: break
         }
     }
     

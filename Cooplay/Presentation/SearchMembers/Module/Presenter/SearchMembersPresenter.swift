@@ -84,7 +84,11 @@ final class SearchMembersPresenter {
             return
         }
         let sectionHeader = offtenMembers.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsOfften())
-        dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
+        //dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
+        dataSource.headerModelProvider = { index in
+            guard index == 0 else { return nil }
+            return sectionHeader
+        }
         dataSource.setItems(setupViewModels(offtenMembers), forSection: 0)
     }
     
@@ -127,10 +131,14 @@ final class SearchMembersPresenter {
     }
     
     private func showSearchResults(_ members: [User]) {
-        dataSource.setSectionHeaderModel(
-            SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsSearchResults()),
-            forSection: 0
-        )
+//        dataSource.setSectionHeaderModel(
+//            SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsSearchResults()),
+//            forSection: 0
+//        )
+        dataSource.headerModelProvider = { index in
+            guard index == 0 else { return nil }
+            return SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsSearchResults())
+        }
         if members.isEmpty {
             dataSource.setItems(
                 [SearchEmptyResultCellViewModel(with: R.string.localizable.searchMembersEmptyResultsTitle())],

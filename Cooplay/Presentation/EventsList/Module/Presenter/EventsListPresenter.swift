@@ -163,6 +163,7 @@ final class EventsListPresenter: NSObject {
         configureActiveSection()
         configureFutureSection()
         configureDeclinedSection()
+        configureSectionsHeaders()
     }
     
     private func configureInvitedSection() {
@@ -181,10 +182,10 @@ final class EventsListPresenter: NSObject {
             selectionAction: selectionAction
         )]
         dataSource.setItems(items, forSection: Constant.Section.invitations)
-        dataSource.setSectionHeaderModel(
-            sectionHeader,
-            forSection: Constant.Section.invitations
-        )
+//        dataSource.setSectionHeaderModel(
+//            sectionHeader,
+//            forSection: Constant.Section.invitations
+//        )
     }
     
     private func configureActiveSection() {
@@ -210,10 +211,10 @@ final class EventsListPresenter: NSObject {
             }))
         }
         dataSource.setItems(events, forSection: Constant.Section.active)
-        dataSource.setSectionHeaderModel(
-            sectionHeader,
-            forSection: Constant.Section.active
-        )
+//        dataSource.setSectionHeaderModel(
+//            sectionHeader,
+//            forSection: Constant.Section.active
+//        )
         
     }
     
@@ -237,17 +238,17 @@ final class EventsListPresenter: NSObject {
             }
             viewModels.append(viewModel)
         }
-        let sectionHeader = furureEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
-            title: R.string.localizable.eventsListSectionsFuture(),
-            itemsCount: furureEvents.count,
-            showItems: true,
-            toggleAction: nil
-        )
-        dataSource.setItems(viewModels, forSection: Constant.Section.future)
-        dataSource.setSectionHeaderModel(
-            sectionHeader,
-            forSection: Constant.Section.future
-        )
+//        let sectionHeader = furureEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+//            title: R.string.localizable.eventsListSectionsFuture(),
+//            itemsCount: furureEvents.count,
+//            showItems: true,
+//            toggleAction: nil
+//        )
+//        dataSource.setItems(viewModels, forSection: Constant.Section.future)
+//        dataSource.setSectionHeaderModel(
+//            sectionHeader,
+//            forSection: Constant.Section.future
+//        )
     }
     
     private func configureDeclinedSection() {
@@ -272,7 +273,46 @@ final class EventsListPresenter: NSObject {
         }
         dataSource.setItems(showDeclinedEvents ? viewModels : [], forSection: Constant.Section.declined)
         
-        let sectionHeader = declinedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+//        let sectionHeader = declinedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+//            title: R.string.localizable.eventsListSectionsDeclined(),
+//            itemsCount: declinedEvents.count,
+//            showItems: showDeclinedEvents,
+//            toggleAction: { [weak self] in
+//                guard let `self` = self else { return }
+//                self.showDeclinedEvents = !self.showDeclinedEvents
+//                self.configureDeclinedSection()
+//            }
+//        )
+//
+//        dataSource.setSectionHeaderModel(
+//            sectionHeader,
+//            forSection: Constant.Section.declined
+//        )
+    }
+    
+    func configureSectionsHeaders() {
+        let invitedSectionHeader = inventedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+            title: R.string.localizable.eventsListSectionsInvited(),
+            itemsCount: inventedEvents.count,
+            showItems: true,
+            toggleAction: nil
+        )
+        var activeSectionHeader: EventSectionСollapsibleHeaderViewModel?
+        if activeEvent != nil {
+            activeSectionHeader = EventSectionСollapsibleHeaderViewModel(
+                title: R.string.localizable.eventsListSectionsActive(),
+                itemsCount: nil,
+                showItems: true,
+                toggleAction: nil
+            )
+        }
+        let futureSectionHeader = furureEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
+            title: R.string.localizable.eventsListSectionsFuture(),
+            itemsCount: furureEvents.count,
+            showItems: true,
+            toggleAction: nil
+        )
+        let declineSectionHeader = declinedEvents.isEmpty ? nil : EventSectionСollapsibleHeaderViewModel(
             title: R.string.localizable.eventsListSectionsDeclined(),
             itemsCount: declinedEvents.count,
             showItems: showDeclinedEvents,
@@ -282,11 +322,20 @@ final class EventsListPresenter: NSObject {
                 self.configureDeclinedSection()
             }
         )
-        
-        dataSource.setSectionHeaderModel(
-            sectionHeader,
-            forSection: Constant.Section.declined
-        )
+        dataSource.headerModelProvider = { index in
+            switch index {
+            case Constant.Section.invitations:
+                return invitedSectionHeader
+            case Constant.Section.active:
+                return activeSectionHeader
+            case Constant.Section.future:
+                return futureSectionHeader
+            case Constant.Section.declined:
+                return declineSectionHeader
+            default:
+                return nil
+            }
+        }
     }
     
     @objc private func handleInviteDeepLink() {

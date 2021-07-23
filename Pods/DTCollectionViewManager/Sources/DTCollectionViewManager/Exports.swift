@@ -1,9 +1,9 @@
 //
-//  SectionModel+ConvenienceGetters.swift
+//  Exports.swift
 //  DTCollectionViewManager
 //
-//  Created by Denys Telezhkin on 24.08.15.
-//  Copyright © 2015 Denys Telezhkin. All rights reserved.
+//  Created by Denys Telezhkin on 29.04.2020.
+//  Copyright © 2020 Denys Telezhkin. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +23,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
-import UIKit
-import DTModelStorage
-
-/// Convenience getters and setters for collection view header and footer models, used in UICollectionViewFlowLayout
-extension SectionModel
-{
-    /// Returns UICollectionView header model for current section
-    public var collectionHeaderModel : Any? {
-        get {
-            return supplementaryModel(ofKind: DTCollectionViewElementSectionHeader, atIndex: 0)
-        }
-        set {
-            setSupplementaryModel(newValue, forKind: DTCollectionViewElementSectionHeader, atIndex: 0)
-        }
-    }
-    
-    /// Returns UICollectionView footer model for current section
-    public var collectionFooterModel : Any? {
-        get {
-            return supplementaryModel(ofKind: DTCollectionViewElementSectionFooter, atIndex: 0)
-        }
-        set {
-            setSupplementaryModel(newValue, forKind: DTCollectionViewElementSectionFooter, atIndex: 0)
-        }
-    }
-}
+@_exported import DTModelStorage

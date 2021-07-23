@@ -27,40 +27,17 @@ import Foundation
 import CoreData
 import UIKit
 
-/// Private wrapper around `NSFetchedResultsSectionInfo` to conform to `Section` protocol
-private struct DTFetchedResultsSectionInfoWrapper: Section
-{
-    let fetchedObjects: [AnyObject]
-    let numberOfItems: Int
-    
-    var items : [Any] {
-        return fetchedObjects.map { $0 }
-    }
-}
-
-#if swift(>=4.2)
-/// Compatibility constant to support Swift 4.2 and higher
-public let DTCollectionViewElementSectionHeader = UICollectionView.elementKindSectionHeader
-/// Compatibility constant to support Swift 4.2 and higher
-public let DTCollectionViewElementSectionFooter = UICollectionView.elementKindSectionFooter
-#else
-/// Compatibility constant to support Swift 4.1 and lower
-public let DTCollectionViewElementSectionHeader = UICollectionElementKindSectionHeader
-/// Compatibility constant to support Swift 4.1 and lower
-public let DTCollectionViewElementSectionFooter = UICollectionElementKindSectionFooter
-#endif
-
 /// This class represents model storage in CoreData
 /// It uses NSFetchedResultsController to monitor all changes in CoreData and automatically notify delegate of any changes
-open class CoreDataStorage<T: NSFetchRequestResult> : BaseStorage, Storage, SupplementaryStorage, NSFetchedResultsControllerDelegate
+open class CoreDataStorage<T: NSFetchRequestResult> : BaseUpdateDeliveringStorage, Storage, NSFetchedResultsControllerDelegate
 {
     /// Fetched results controller of storage
     public let fetchedResultsController: NSFetchedResultsController<T>
     
-    /// Property, which defines, for which supplementary kinds NSFetchedResultsController section name should be used.
-    /// Defaults to [DTTableViewElementSectionHeader,UICollectionElementKindSectionHeader]
-    /// - Discussion: This is useful, for example, if you want section footers intead of headers to have section name in them.
-    open var displaySectionNameForSupplementaryKinds = [DTTableViewElementSectionHeader, DTCollectionViewElementSectionHeader]
+    @available(*, unavailable, message: "Please use storage.supplementaryModel closure to customize section supplementaries")
+    /// In the past, this property defined supplementaries to display with CoreDataStorage. Now, `storage.supplementaryModel` closure is used to do that.
+    /// Read https://github.com/DenTelezhkin/DTModelStorage/blob/master/Guides/8.0%20Migration%20Guide.md#supplementary-provider-rewrite for details of this change.
+    open var displaySectionNameForSupplementaryKinds = [""]
     
     /// Initialize CoreDataStorage with NSFetchedResultsController
     /// - Parameter fetchedResultsController: fetch results controller
@@ -69,18 +46,27 @@ open class CoreDataStorage<T: NSFetchRequestResult> : BaseStorage, Storage, Supp
         self.fetchedResultsController = fetchedResultsController
         super.init()
         self.fetchedResultsController.delegate = self
+        headerModelProvider = { index in
+            if let sections = self.fetchedResultsController.sections
+            {
+                return sections[index].name
+            }
+            return nil
+        }
     }
     
-    /// Sections of fetched results controller as required by Storage
-    /// - SeeAlso: `Storage`
-    /// - SeeAlso: `MemoryStorage`
-    open var sections: [Section]
-    {
-        if let sections = self.fetchedResultsController.sections
-        {
-            return sections.map { DTFetchedResultsSectionInfoWrapper(fetchedObjects: $0.objects as [AnyObject]? ?? [], numberOfItems: $0.numberOfObjects) }
+    /// Returns number of sections in storage.
+    open func numberOfSections() -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    /// Returns number of items in a given section
+    /// - Parameter section: given section.
+    open func numberOfItems(inSection section: Int) -> Int {
+        if (fetchedResultsController.sections?.count ?? 0) > section {
+            return fetchedResultsController.sections?[section].numberOfObjects ?? 0
         }
-        return []
+        return 0
     }
     
     // MARK: - Storage
@@ -90,26 +76,6 @@ open class CoreDataStorage<T: NSFetchRequestResult> : BaseStorage, Storage, Supp
     /// - Returns: model at indexPath or nil, if item not found
     open func item(at indexPath: IndexPath) -> Any? {
         return fetchedResultsController.object(at: indexPath)
-    }
-    
-    // MARK: - SupplementaryStorage
-    
-    /// Retrieve supplementary model of specific kind for section.
-    /// - Parameter kind: kind of supplementary model
-    /// - Parameter sectionIndexPath: index of section
-    /// - SeeAlso: `headerModelForSectionIndex`
-    /// - SeeAlso: `footerModelForSectionIndex`
-    open func supplementaryModel(ofKind kind: String, forSectionAt sectionIndexPath: IndexPath) -> Any?
-    {
-        if displaySectionNameForSupplementaryKinds.contains(kind)
-        {
-            if let sections = self.fetchedResultsController.sections
-            {
-                return sections[sectionIndexPath.section].name
-            }
-            return nil
-        }
-        return nil
     }
     
     // MARK: - NSFetchedResultsControllerDelegate
