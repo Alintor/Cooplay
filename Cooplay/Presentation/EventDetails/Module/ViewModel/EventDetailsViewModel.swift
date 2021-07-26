@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 struct EventDetailsViewModel {
     
@@ -17,6 +18,7 @@ struct EventDetailsViewModel {
     var statusIcon: UIImage?
     var statusColor: UIColor?
     var avatarViewModel: AvatarViewModel
+    var statusDetailsViewModel: StatusDetailsViewModel?
     var showGradient: BooleanLiteralType
     
     init(with model: Event) {
@@ -25,8 +27,16 @@ struct EventDetailsViewModel {
         coverPath = model.game.coverPath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
-        statusTitle = model.me.status?.title()
+        statusTitle = model.me.status?.title(event: model)
         avatarViewModel = AvatarViewModel(with: model.me)
         showGradient = model.isActive
+        
+        switch model.me.status {
+        case .suggestDate(let minutes):
+            let newDate = model.date + minutes.minutes
+            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
+        default:
+            break
+        }
     }
 }

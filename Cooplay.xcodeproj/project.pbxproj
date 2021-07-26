@@ -113,6 +113,8 @@
 		A82FF2DD2347492B00EE1807 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DC2347492B00EE1807 /* String.swift */; };
 		A82FF2E023474C2700EE1807 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2DF23474C2700EE1807 /* Date.swift */; };
 		A8301D3626AACFB700519768 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3526AACFB700519768 /* UIBezierPath.swift */; };
+		A8301D3E26AE8C8200519768 /* StatusDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3D26AE8C8200519768 /* StatusDetailsView.swift */; };
+		A8301D4026AE8D0C00519768 /* StatusDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3F26AE8D0C00519768 /* StatusDetailsViewModel.swift */; };
 		A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */; };
 		A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */; };
 		A833EF5E23D0344B009FCD73 /* EventDetailsMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */; };
@@ -347,6 +349,8 @@
 		A82FF2DC2347492B00EE1807 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A82FF2DF23474C2700EE1807 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A8301D3526AACFB700519768 /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
+		A8301D3D26AE8C8200519768 /* StatusDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailsView.swift; sourceTree = "<group>"; };
+		A8301D3F26AE8D0C00519768 /* StatusDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailsViewModel.swift; sourceTree = "<group>"; };
 		A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberCell.swift; sourceTree = "<group>"; };
 		A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsMemberCell.xib; sourceTree = "<group>"; };
@@ -1198,6 +1202,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8301D3C26AE89F200519768 /* StatusDetailsView */,
 				A86D367A2562732E001FDBFC /* TimeCarousel */,
 				A87CF45823EAC0F6004189D3 /* EmptyState */,
 				A87CF44A23EA6DE7004189D3 /* KeyboardHandler */,
@@ -1326,6 +1331,15 @@
 				A89F972D24BEEC820036B155 /* Notification.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		A8301D3C26AE89F200519768 /* StatusDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				A8301D3D26AE8C8200519768 /* StatusDetailsView.swift */,
+				A8301D3F26AE8D0C00519768 /* StatusDetailsViewModel.swift */,
+			);
+			path = StatusDetailsView;
 			sourceTree = "<group>";
 		};
 		A833EF5623CF2200009FCD73 /* ViewModel */ = {
@@ -2245,7 +2259,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2420,6 +2434,7 @@
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
+				A8301D3E26AE8C8200519768 /* StatusDetailsView.swift in Sources */,
 				41FA9E25CE1B3C9D9318C734 /* SearchGameInteractorInput.swift in Sources */,
 				A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */,
 				5F7E65747CE06D37B089542A /* SearchGameInteractor.swift in Sources */,
@@ -2440,6 +2455,7 @@
 				A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */,
 				A8FB1CDB249A503F001C9355 /* Codable.swift in Sources */,
 				7388A80D4F5276385187AD3E /* IntroViewController.swift in Sources */,
+				A8301D4026AE8D0C00519768 /* StatusDetailsViewModel.swift in Sources */,
 				BBB9E51B9E7F9DFF46E8461D /* IntroModuleInput.swift in Sources */,
 				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
 				F76A38D86DB1BA56E4E749EB /* IntroInteractorInput.swift in Sources */,

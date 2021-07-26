@@ -34,8 +34,8 @@ struct EventCellViewModel {
         title = model.game.name
         date = model.date.displayString
         imagePath = model.game.coverPath
-        lateTime = model.me.status?.lateTimeString
-        statusTitle = model.me.status?.title(isShort: true)
+        lateTime = model.me.status?.detailsString
+        statusTitle = model.me.status?.title(isShort: true, event: model)
         statusIcon = model.me.status?.icon(isSmall: true)
         statusColor = model.me.status?.color
         // TODO: Sort members

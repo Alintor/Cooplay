@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 struct ActiveEventCellViewModel {
     
@@ -25,6 +26,7 @@ struct ActiveEventCellViewModel {
     var members: [MemberStatusViewModel]
     var otherCount: Int?
     var avatarViewModel: AvatarViewModel
+    var statusDetailsViewModel: StatusDetailsViewModel?
     var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)?
     
     let model: Event
@@ -38,9 +40,16 @@ struct ActiveEventCellViewModel {
         previewPath = model.game.previewImagePath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
-        statusTitle = model.me.status?.title()
+        statusTitle = model.me.status?.title(event: model)
         avatarViewModel = AvatarViewModel(with: model.me)
-        // TODO: Sort members
+        
+        switch model.me.status {
+        case .suggestDate(let minutes):
+            let newDate = model.date + minutes.minutes
+            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
+        default:
+            break
+        }
         let memberViewModels = model.members.sorted(by: { $0.name < $1.name }).map { MemberStatusViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
         if otherCount > 1 {

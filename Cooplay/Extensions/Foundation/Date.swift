@@ -22,6 +22,14 @@ extension Date {
         return "\(dateFormatter.string(from: self)), \(timeFormatter.string(from: self))"
     }
     
+    var timeDisplayString: String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .short
+        timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
+        
+        return "\(timeFormatter.string(from: self))"
+    }
+    
     var UTCString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")

@@ -28,6 +28,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     @IBOutlet weak var statusIconImageView: UIImageView!
     @IBOutlet weak var statusIconView: UIView!
     @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusDetailsView: StatusDetailsView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
@@ -106,6 +107,10 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
         gradientView.isHidden = !model.showGradient
+        statusDetailsView.isHidden = model.statusDetailsViewModel == nil
+        if let statusDetailsViewModel = model.statusDetailsViewModel {
+            statusDetailsView.update(with: statusDetailsViewModel)
+        }
     }
     
     func updateState(with model: EventDetailsStateViewModel, animated: Bool) {
@@ -277,8 +282,8 @@ extension EventDetailsViewController: StatusContextDelegate {
     func restoreView(with menuItem: MenuItem?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.arrowImageView.transform = .identity
-            if let status = menuItem?.value as? User.Status {
-                self.statusTitle.text = status.title()
+            if let event = menuItem?.value as? Event, let status = event.me.status {
+                self.statusTitle.text = status.title(event: event)
                 self.statusIconImageView.image = status.icon()
                 self.statusIconView.backgroundColor = status.color
             }

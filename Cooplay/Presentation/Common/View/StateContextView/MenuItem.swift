@@ -79,20 +79,38 @@ struct StatusMenuItem: MenuItem {
     let status: User.Status
     let timeCarouselPanel: TimeCarouselPanel?
     let actionHandler: ((_ status: User.Status) -> Void)?
+    private let event: Event
     
-    init(status: User.Status, date: Date, actionHandler: ((_ status: User.Status) -> Void)?) {
+    init(status: User.Status, event: Event, actionHandler: ((_ status: User.Status) -> Void)?) {
         self.status = status
+        self.event = event
         self.actionHandler = actionHandler
+        let initialValue: Int
+        switch event.me.status {
+        case .late( let minutes):
+            initialValue = minutes ?? 0
+        case .suggestDate(let minutes):
+            initialValue = minutes
+        default:
+            initialValue = 0
+        }
         switch status {
         case .late:
-            timeCarouselPanel = TimeCarouselPanel(configuration: .init(type: .latness, date: date))
+            timeCarouselPanel = TimeCarouselPanel(configuration: .init(type: .latness, date: event.date, initialValue: initialValue))
+        case .suggestDate:
+            timeCarouselPanel = TimeCarouselPanel(configuration: .init(type: .suggestion, date: event.date, initialValue: initialValue))
         default:
             timeCarouselPanel = nil
         }
     }
     
     var title: String {
-        return status.title()
+        switch status {
+        case .suggestDate:
+            return R.string.localizable.statusSuggestDateShort()
+        default:
+            return status.title(event: event)
+        }
     }
     
     var icon: UIImage? {
@@ -142,7 +160,8 @@ struct StatusMenuItem: MenuItem {
     
     var selectAction: MenuItemAction {
         switch status {
-        case .late:
+        case .late,
+             .suggestDate:
             return .showPanel
         default:
             return .handleAction
@@ -150,17 +169,20 @@ struct StatusMenuItem: MenuItem {
     }
     
     var value: Any {
+        var changedEvent = event
         switch status {
-        case .late:
-            return timeCarouselPanel?.status ?? status
+        case .late,
+             .suggestDate:
+            changedEvent.me.status = timeCarouselPanel?.status ?? status
         default:
-            return status
+            changedEvent.me.status = status
         }
+        return changedEvent
     }
     
     func handleAction() {
         switch status {
-        case .late:
+        case .late, .suggestDate:
             actionHandler?(timeCarouselPanel?.status ?? status)
         default:
             actionHandler?(status)

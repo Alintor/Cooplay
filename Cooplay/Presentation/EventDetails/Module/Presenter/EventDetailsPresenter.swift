@@ -24,7 +24,7 @@ final class EventDetailsPresenter {
             view.dataSourceIsReady = { [weak self] dataSource in
                 guard let `self` = self else { return }
                 self.dataSource = dataSource
-                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0) })
+                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0, event: self.event) })
             }
             view.statusAction = { [weak self] delegate in
                 guard let `self` = self else { return }
@@ -34,7 +34,7 @@ final class EventDetailsPresenter {
                     menuSize: .large,
                     menuType: .statuses(
                         type: self.event.statusesType,
-                        date: self.event.date,
+                        event: self.event,
                         actionHandler: { [weak self] status in
                             guard let `self` = self else { return }
                             self.event.me.status = status
@@ -133,7 +133,7 @@ final class EventDetailsPresenter {
             case .success(let event):
                 self.event = event
                 self.view.update(with: EventDetailsViewModel(with: self.event))
-                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0)})
+                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0, event: self.event)})
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)

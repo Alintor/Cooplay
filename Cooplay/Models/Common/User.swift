@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 struct User: Codable {
     
@@ -24,11 +25,12 @@ struct User: Codable {
         ontime,
         maybe,
         late(minutes: Int?),
+        suggestDate(minutes: Int),
         declined,
         unknown
         
         static var agreementStatuses: [Status] {
-            return [.accepted, .maybe, .declined]
+            return [.accepted, .maybe, .suggestDate(minutes: 0), .declined]
         }
         
         static var confirmationStatuses: [Status] {
@@ -43,6 +45,8 @@ struct User: Codable {
             case .maybe,
                  .late:
                 return R.color.yellow()
+            case .suggestDate:
+                return R.color.actionAccent()
             case .declined:
                 return R.color.red()
             case .unknown:
@@ -60,6 +64,8 @@ struct User: Codable {
                 return isSmall ? R.image.statusSmallMaybe() : R.image.statusNormalMaybe()
             case .late:
                 return isSmall ? nil : R.image.statusNormalLate()
+            case.suggestDate:
+                return isSmall ? R.image.statusNormalLate() : R.image.statusNormalLate()
             case .declined:
                 return isSmall ? R.image.statusSmallDeclined() : R.image.statusNormalDeclined()
             case .unknown:
@@ -67,7 +73,7 @@ struct User: Codable {
             }
         }
         
-        func title(isShort: Bool = false) -> String {
+        func title(isShort: Bool = false, event: Event) -> String {
             switch self {
             case .accepted:
                 return isShort ? R.string.localizable.statusAcceptedShort() : R.string.localizable.statusAcceptedFull()
@@ -78,6 +84,9 @@ struct User: Codable {
             case .late(let minutes):
                 guard let minutes = minutes else { return R.string.localizable.statusLateShort() }
                 return isShort ? R.string.localizable.statusLateShort() : R.string.localizable.statusLateFull(minutes)
+            case .suggestDate(let minutes):
+                let newDate = event.date + minutes.minutes
+                return isShort ? newDate.timeDisplayString : R.string.localizable.statusSuggestDateFull()
             case .declined:
                 return isShort ? R.string.localizable.statusDeclinedShort() : R.string.localizable.statusDeclinedFull()
             case .unknown:
@@ -85,7 +94,7 @@ struct User: Codable {
             }
         }
         
-        var lateTime: Int? {
+        var details: Int? {
             switch self {
             case .late(let minutes):
                 return minutes
@@ -94,8 +103,8 @@ struct User: Codable {
             }
         }
         
-        var lateTimeString: String? {
-            guard let lateTime = lateTime else { return nil }
+        var detailsString: String? {
+            guard let lateTime = details else { return nil }
             return "\(lateTime)"
         }
     }
@@ -109,20 +118,30 @@ struct User: Codable {
     
     var status: Status? {
         get {
-            if let lateness = lateness {
-                if lateness == 0 {
-                    return .ontime
+            guard let state = state else { return nil }
+            switch state {
+            case .accepted:
+                if let lateness = lateness {
+                    if lateness == 0 {
+                        return .ontime
+                    } else {
+                        return .late(minutes: lateness)
+                    }
                 } else {
-                    return .late(minutes: lateness)
+                    return .accepted
                 }
-            } else {
-                guard let state = state else { return nil }
-                switch state {
-                case .accepted: return .accepted
-                case .maybe: return .maybe
-                case .declined: return.declined
-                case .unknown: return .unknown
+            case .maybe:
+                if let lateness = lateness {
+                    if lateness == 0 {
+                        return .maybe
+                    } else {
+                        return .suggestDate(minutes: lateness)
+                    }
+                } else {
+                    return .maybe
                 }
+            case .declined: return.declined
+            case .unknown: return .unknown
             }
         }
         
@@ -144,6 +163,9 @@ struct User: Codable {
                 lateness = nil
             case .late(let minutes):
                 state = .accepted
+                lateness = minutes
+            case .suggestDate(let minutes):
+                state = .maybe
                 lateness = minutes
             case .declined:
                 state = .declined

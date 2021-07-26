@@ -607,8 +607,10 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 106 localization keys.
     struct localizable {
+      /// Value: %@ мин
+      static let timeCarouselPanelLatnessValue = Rswift.StringResource(key: "timeCarouselPanel.latness.value", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %d символов
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
@@ -715,6 +717,8 @@ struct R: Rswift.Validatable {
       static let personalisationNickNameTextFieldPlaceholder = Rswift.StringResource(key: "personalisation.nickNameTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
       static let statusLateShort = Rswift.StringResource(key: "status.late.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Опоздаю на
+      static let timeCarouselPanelLatnessTitle = Rswift.StringResource(key: "timeCarouselPanel.latness.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %@ мин
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %d мин
@@ -753,6 +757,12 @@ struct R: Rswift.Validatable {
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Предлагаю
       static let timeCarouselPanelSuggestionTitle = Rswift.StringResource(key: "timeCarouselPanel.suggestion.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Предлагаю "%@"
+      static let eventDetailsCellSuggestDate = Rswift.StringResource(key: "eventDetails.cell.suggestDate", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Предлагаю в
+      static let statusSuggestDateFull = Rswift.StringResource(key: "status.suggestDate.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Предложить время
+      static let statusSuggestDateShort = Rswift.StringResource(key: "status.suggestDate.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пригласить по ссылке
       static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
@@ -765,8 +775,6 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Приду к
-      static let timeCarouselPanelLatnessTitle = Rswift.StringResource(key: "timeCarouselPanel.latness.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Профиль
@@ -813,6 +821,11 @@ struct R: Rswift.Validatable {
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
       static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: %@ мин
+      static func timeCarouselPanelLatnessValue(_ value1: String) -> String {
+        return String(format: NSLocalizedString("timeCarouselPanel.latness.value", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// Value: %d символов
       static func registrationPasswordSymbolsCountLabelTitle(_ value1: Int) -> String {
@@ -1079,6 +1092,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.late.short", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Опоздаю на
+      static func timeCarouselPanelLatnessTitle(_: Void = ()) -> String {
+        return NSLocalizedString("timeCarouselPanel.latness.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Опоздаю на %@ мин
       static func eventDetailsCellLateness(_ value1: String) -> String {
         return String(format: NSLocalizedString("eventDetails.cell.lateness", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
@@ -1174,6 +1192,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeCarouselPanel.suggestion.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Предлагаю "%@"
+      static func eventDetailsCellSuggestDate(_ value1: String) -> String {
+        return String(format: NSLocalizedString("eventDetails.cell.suggestDate", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: Предлагаю в
+      static func statusSuggestDateFull(_: Void = ()) -> String {
+        return NSLocalizedString("status.suggestDate.full", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Предложить время
+      static func statusSuggestDateShort(_: Void = ()) -> String {
+        return NSLocalizedString("status.suggestDate.short", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Пригласить по ссылке
       static func searchMembersInviteByLinkTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.inviteByLink.title", bundle: R.hostingBundle, comment: "")
@@ -1202,11 +1235,6 @@ struct R: Rswift.Validatable {
       /// Value: Приду вовремя
       static func statusOntimeFull(_: Void = ()) -> String {
         return NSLocalizedString("status.ontime.full", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Приду к
-      static func timeCarouselPanelLatnessTitle(_: Void = ()) -> String {
-        return NSLocalizedString("timeCarouselPanel.latness.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Придумайте пароль

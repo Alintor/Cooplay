@@ -163,7 +163,7 @@ class TimeCarouselView: UIView {
         carousel.dataSource = self
         carousel.delegate = self
         carousel.reloadData()
-        let index = models.firstIndex { $0.value >= 0 && $0.isDisable == false } ?? 0
+        let index = models.firstIndex { $0.value >= self.configuration.initialValue && $0.isDisable == false } ?? 0
         carousel.scrollToItem(at: index, animated: false)
         generator = UIImpactFeedbackGenerator(style: .light)
         generator?.prepare()

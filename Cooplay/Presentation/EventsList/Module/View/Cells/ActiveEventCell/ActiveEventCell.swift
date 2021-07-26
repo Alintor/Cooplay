@@ -25,6 +25,7 @@ class ActiveEventCell: UITableViewCell {
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var arrowImageView: UIImageView!
+    @IBOutlet weak var statusDetailsView: StatusDetailsView!
     @IBOutlet weak var statusViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var statusViewTrailingConstraint: NSLayoutConstraint!
     
@@ -89,6 +90,10 @@ extension ActiveEventCell: ModelTransfer {
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
         self.statusAction = model.statusAction
+        statusDetailsView.isHidden = model.statusDetailsViewModel == nil
+        if let statusDetailsViewModel = model.statusDetailsViewModel {
+            statusDetailsView.update(with: statusDetailsViewModel)
+        }
         let avatarDiameter = membersView.frame.size.height
         membersView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for member in model.members {
@@ -144,8 +149,8 @@ extension ActiveEventCell: StatusContextDelegate {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
             self.arrowImageView.transform = .identity
-            if let status = menuItem?.value as? User.Status {
-                self.statusTitle.text = status.title()
+            if let event = menuItem?.value as? Event, let status = event.me.status {
+                self.statusTitle.text = status.title(event: event)
                 self.statusIconImageView.image = status.icon()
                 self.statusIconView.backgroundColor = status.color
             }

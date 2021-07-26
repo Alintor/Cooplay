@@ -101,11 +101,11 @@ extension EventCell: StatusContextDelegate {
     }
     
     func restoreView(with menuItem: MenuItem?) {
-        guard let status = menuItem?.value as? User.Status else { return }
-        self.statusIconWidthConstraint?.isActive = status.lateTime == nil
+        guard let event = menuItem?.value as? Event, let status = event.me.status else { return }
+        self.statusIconWidthConstraint?.isActive = status.details == nil
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-            self.statusTitle.text = status.title(isShort: true)
-            self.lateTimeLabel.text = status.lateTimeString
+            self.statusTitle.text = status.title(isShort: true, event: event)
+            self.lateTimeLabel.text = status.detailsString
             self.statusIconImageView.image = status.icon(isSmall: true)
             self.statusIconView.backgroundColor = status.color
             self.layoutIfNeeded()

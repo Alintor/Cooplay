@@ -12,8 +12,10 @@ class TimeCarouselPanel: UIView {
     
     private var carouselItem: TimeCarouselItemModel!
     private var timeCarouselView: TimeCarouselView!
+    private var configuration: TimeCarouselConfiguration
     
     init(configuration: TimeCarouselConfiguration) {
+        self.configuration = configuration
         super.init(frame: .zero)
         self.backgroundColor = R.color.block()
         let cancelButton = UIButton(type: .system)
@@ -68,7 +70,14 @@ class TimeCarouselPanel: UIView {
     }
     
     var status: User.Status {
-        return .late(minutes: carouselItem.value)
+        switch configuration.type {
+        case .latness:
+            return .late(minutes: carouselItem.value)
+        case .suggestion:
+            return .suggestDate(minutes: carouselItem.value)
+        default:
+            return .accepted
+        }
     }
     
     var date: Date {

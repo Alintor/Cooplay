@@ -19,12 +19,14 @@
 "status.ontime.short" = "Вовремя";
 "status.maybe.short" = "Возможно";
 "status.late.short" = "Опоздаю";
+"status.suggestDate.short" = "Предложить время";
 "status.declined.short" = "Не пойду";
 "status.unknown.short" = "Приглашен";
 "status.accepted.full" = "Пойду";
 "status.ontime.full" = "Приду вовремя";
 "status.maybe.full" = "Возможно, пойду";
 "status.late.full" = "Опоздаю на %d мин";
+"status.suggestDate.full" = "Предлагаю в";
 "status.declined.full" = "Не пойду";
 "status.unknown.full" = "Приглашен";
 
@@ -35,9 +37,10 @@
 "notifications.eventStartRemind.message" = "Игра в %@ начинается. Если вы опаздываете, то уточните свой статус";
 
 // MARK: - Time carousel
-"timeCarouselPanel.latness.title" = "Приду к";
+"timeCarouselPanel.latness.title" = "Опоздаю на";
 "timeCarouselPanel.suggestion.title" = "Предлагаю";
 "timeCarouselPanel.change.title" = "Изменить";
+"timeCarouselPanel.latness.value" = "%@ мин";
 
 // MARK: - EventMemberMenuItem
 "eventMemberMenuItem.makeOwner" = "Сделать лидером";
@@ -55,6 +58,7 @@
 
 // MARK: - Events Details
 "eventDetails.cell.lateness" = "Опоздаю на %@ мин";
+"eventDetails.cell.suggestDate" = "Предлагаю \"%@\"";
 "eventDetails.addMemberLabel.title" = "Добавить участников";
 "eventDetails.edit.title" = "Редактирование";
 "eventDetails.deleteAlert.title" = "Вы действительно хотите удалить данное событие?";

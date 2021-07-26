@@ -72,12 +72,14 @@ struct TimeCarouselConfiguration {
         }
     }
     
-    private var type: TimeType
+    var type: TimeType
     private var date: Date
+    var initialValue: Int
     
-    init(type: TimeType, date: Date) {
+    init(type: TimeType, date: Date, initialValue: Int = 0) {
         self.type = type
         self.date = date
+        self.initialValue = initialValue
     }
     
     var items: [TimeCarouselItemModel] {
@@ -114,11 +116,16 @@ struct TimeCarouselConfiguration {
         return allItems
     }
     
-    func titleForItem(_ item: TimeCarouselItemModel) -> String {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = .short
-        timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
-        return timeFormatter.string(from: item.date)
+    func titleForItem(_ item: TimeCarouselItemModel) -> String {        
+        switch type {
+        case .suggestion, .change:
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateStyle = .short
+            timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
+            return timeFormatter.string(from: item.date)
+        case .latness:
+            return R.string.localizable.timeCarouselPanelLatnessValue("\(item.value)")
+        }
     }
     
     func subtitleForItem(_ item: TimeCarouselItemModel) -> String? {
@@ -129,7 +136,10 @@ struct TimeCarouselConfiguration {
             dateFormatter.doesRelativeDateFormatting = true
             return dateFormatter.string(from: item.date).lowercased()
         case .latness:
-            return R.string.localizable.eventDetailsCellLateness("\(item.value)")
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateStyle = .short
+            timeFormatter.dateFormat = GlobalConstant.Format.Date.time.rawValue
+            return timeFormatter.string(from: item.date)
         }
     }
     
