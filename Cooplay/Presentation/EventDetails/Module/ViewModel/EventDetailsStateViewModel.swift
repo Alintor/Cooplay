@@ -22,8 +22,9 @@ struct EventDetailsStateViewModel {
     let showEditPanel: Bool
     let hideStatus: Bool
     let title: String?
+    let showGradient: Bool
     
-    init(state: State, isOwner: Bool?) {
+    init(state: State, event: Event) {
         switch state {
         case .edit:
             showEditButton = false
@@ -32,13 +33,15 @@ struct EventDetailsStateViewModel {
             showEditPanel = true
             hideStatus = true
             title = R.string.localizable.eventDetailsEditTitle()
+            showGradient = false
         case .normal:
-            showEditButton = isOwner == true
+            showEditButton = event.me.isOwner == true
             showDeleteButton = false
             showCancelButton = false
             showEditPanel = false
             hideStatus = false
             title = nil
+            showGradient = event.isActive
         }
     }
 }

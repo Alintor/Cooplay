@@ -16,17 +16,23 @@ final class AppearanceApplicationService: NSObject, ApplicationService {
         let navigationBarAppearance = UINavigationBar.appearance()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
             appearance.shadowColor = .clear
-            appearance.backgroundColor = R.color.background()
+            //appearance.backgroundColor = R.color.background()
+            appearance.backgroundColor = .clear
+            appearance.shadowImage = UIImage()
             appearance.titleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
             appearance.largeTitleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
             navigationBarAppearance.standardAppearance = appearance
             navigationBarAppearance.compactAppearance = appearance
             navigationBarAppearance.scrollEdgeAppearance = appearance
         } else {
+            navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
             navigationBarAppearance.barStyle = .blackOpaque
-            navigationBarAppearance.barTintColor = R.color.background()
-            navigationBarAppearance.isTranslucent = false
+//            navigationBarAppearance.barTintColor = R.color.background()
+//            navigationBarAppearance.isTranslucent = false
+            navigationBarAppearance.barTintColor = .clear
+            navigationBarAppearance.isTranslucent = true
             navigationBarAppearance.shadowImage = UIImage()
             navigationBarAppearance.titleTextAttributes = [.foregroundColor: R.color.textPrimary()!]
             navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: R.color.textPrimary()!]

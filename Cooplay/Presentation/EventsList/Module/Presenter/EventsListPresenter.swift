@@ -244,7 +244,7 @@ final class EventsListPresenter: NSObject {
 //            showItems: true,
 //            toggleAction: nil
 //        )
-//        dataSource.setItems(viewModels, forSection: Constant.Section.future)
+        dataSource.setItems(viewModels, forSection: Constant.Section.future)
 //        dataSource.setSectionHeaderModel(
 //            sectionHeader,
 //            forSection: Constant.Section.future

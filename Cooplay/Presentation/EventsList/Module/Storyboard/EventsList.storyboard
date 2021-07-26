@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rGT-np-7OK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rGT-np-7OK">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--Events List View Controller-->
         <scene sceneID="RwB-kv-zVW">
             <objects>
-                <viewController storyboardIdentifier="EventsListViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="EventsListViewController" customModule="Cooplay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsListViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rGT-np-7OK" customClass="EventsListViewController" customModule="Ruwus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFS-jM-hgH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,16 +49,16 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="8lo-xa-vj7" secondAttribute="bottom" id="0vP-CL-Z6A"/>
-                            <constraint firstItem="8lo-xa-vj7" firstAttribute="top" secondItem="eFS-jM-hgH" secondAttribute="top" id="6U0-fi-4jI"/>
+                            <constraint firstItem="8lo-xa-vj7" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" id="6U0-fi-4jI"/>
                             <constraint firstItem="8lo-xa-vj7" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="Vdt-fK-WVF"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="ZUk-yh-E37" secondAttribute="bottom" constant="10" id="dde-gy-B2D"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="8lo-xa-vj7" secondAttribute="trailing" id="wQl-TO-QfD"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="ZUk-yh-E37" secondAttribute="trailing" constant="10" id="wjC-69-lVB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="OR5-3f-pbR"/>
                     </view>
                     <navigationItem key="navigationItem" id="4CQ-kT-Zlv">
                         <userDefinedRuntimeAttributes>

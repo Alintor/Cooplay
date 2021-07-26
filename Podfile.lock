@@ -391,6 +391,7 @@ PODS:
   - Swinject (2.6.2)
   - SwinjectStoryboard (2.2.0):
     - Swinject (~> 2.6)
+  - UIImageColors (2.1.0)
 
 DEPENDENCIES:
   - DTCollectionViewManager (~> 8.2.0)
@@ -412,6 +413,7 @@ DEPENDENCIES:
   - SwiftyJSON (~> 5.0.0)
   - Swinject (~> 2.6.2)
   - SwinjectStoryboard (~> 2.2.0)
+  - UIImageColors
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -432,6 +434,7 @@ SPEC REPOS:
     - SwiftyJSON
     - Swinject
     - SwinjectStoryboard
+    - UIImageColors
   trunk:
     - abseil
     - BoringSSL-GRPC
@@ -508,7 +511,8 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: bb66f69dc0b4d5a9db24de3310880548f16cee20
+PODFILE CHECKSUM: 28bb9ad4b56dfaf2097f2337a7a10173efa43d1b
 
 COCOAPODS: 1.10.1

@@ -23,6 +23,7 @@ target 'Cooplay' do
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/Messaging'
   pod 'Firebase/Functions'
+  pod 'UIImageColors'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 

@@ -18,7 +18,7 @@ final class EventDetailsPresenter {
                 guard let `self` = self else { return }
                 self.view.setupInitialState()
                 self.view.update(with: EventDetailsViewModel(with: self.event))
-                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: false)
+                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: false)
                 self.fetchEvent()
             }
             view.dataSourceIsReady = { [weak self] dataSource in
@@ -61,11 +61,11 @@ final class EventDetailsPresenter {
             }
             view.editAction = { [weak self] in
                 guard let `self` = self else { return }
-                self.view.updateState(with: EventDetailsStateViewModel(state: .edit, isOwner: self.event.me.isOwner), animated: true)
+                self.view.updateState(with: EventDetailsStateViewModel(state: .edit, event: self.event), animated: true)
             }
             view.cancelAction = { [weak self] in
                 guard let `self` = self else { return }
-                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
             }
             view.deleteAction = { [weak self] in
                 guard let `self` = self else { return }
@@ -167,7 +167,7 @@ final class EventDetailsPresenter {
             }
         }
         view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }
     
     private func changeDate(_ date: Date) {
@@ -185,7 +185,7 @@ final class EventDetailsPresenter {
             }
         }
         view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }
     
     private func addMembers(_ members: [User]) {
@@ -202,7 +202,7 @@ final class EventDetailsPresenter {
             }
         }
         view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }
     
     private func removeMember(_ member: User) {
@@ -219,7 +219,7 @@ final class EventDetailsPresenter {
         }
         event.members = event.members.filter({ $0.id != member.id })
         view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }
     
     private func takeOwnerRulesToMember(_ member: User) {
@@ -239,7 +239,7 @@ final class EventDetailsPresenter {
             }
         }
         view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, isOwner: self.event.me.isOwner), animated: true)
+        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }
     
     private func deleteEvent() {

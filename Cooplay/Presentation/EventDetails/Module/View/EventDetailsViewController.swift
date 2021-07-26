@@ -7,6 +7,7 @@
 
 import DTTableViewManager
 import DTModelStorage
+import UIImageColors
 
 final class EventDetailsViewController: UIViewController, EventDetailsViewInput, DTTableViewManageable {
 
@@ -29,6 +30,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var arrowImageView: UIImageView!
+    @IBOutlet weak var gradientView: UIView!
     
     var editButton: UIBarButtonItem?
     var deleteButton: UIBarButtonItem?
@@ -81,7 +83,21 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
         dateLabel.text = model.date
         dateChangeButtonTitle.text = model.date
         if let coverPath = model.coverPath {
-            gameCoverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover())
+            gameCoverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover()) { [weak self] image in
+                image.getColors(quality: .highest) { colors in
+                    guard let `self` = self, let colors = colors, model.showGradient else { return }
+                    let gradient = CAGradientLayer(layer: self.gradientView.layer)
+                    gradient.colors = [colors.secondary.cgColor, R.color.background()!.cgColor]
+                    gradient.locations = [0.0, 1.0]
+                    gradient.frame = self.gradientView.bounds
+                    self.gradientView.layer.insertSublayer(gradient, at: 0)
+                    self.gradientView.alpha = 0
+                    UIView.animate(withDuration: 0.2) { [weak self] in
+                        self?.gradientView.alpha = 0.3
+                        self?.navigationController?.navigationBar.tintColor = R.color.textPrimary()
+                    }
+                }
+            }
         } else {
             gameCoverImageView.image = R.image.commonGameCover()
         }
@@ -89,6 +105,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
         statusTitle.text = model.statusTitle
         statusIconImageView.image = model.statusIcon
         statusIconView.backgroundColor = model.statusColor
+        gradientView.isHidden = !model.showGradient
     }
     
     func updateState(with model: EventDetailsStateViewModel, animated: Bool) {
@@ -102,6 +119,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
             statusView.isUserInteractionEnabled = model.hideStatus ? false : true
             statusView.alpha = model.hideStatus ? 0.3 : 1
             tableView.tableFooterView = model.showEditPanel ? addMemberView : nil
+            gradientView.isHidden = !model.showGradient
             return
         }
         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -124,6 +142,7 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
             generator.impactOccurred()
             self.editInfoView.isHidden = !model.showEditPanel
             self.infoView.isHidden = model.showEditPanel
+            self.gradientView.isHidden = !model.showGradient
             if model.showEditPanel {
                 self.editInfoView.alpha = hideAlpha
                 self.editInfoView.transform = CGAffineTransform(scaleX: transformScale, y: transformScale)
@@ -145,9 +164,11 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
                     if model.showEditPanel {
                         self.editInfoView.alpha = 1
                         self.editInfoView.transform = .identity
+                        //self.gradientView.alpha = 0
                     } else {
                         self.infoView.alpha = 1
                         self.infoView.transform = .identity
+                        //self.gradientView.alpha = 0.3
                     }
             })
         }
@@ -189,6 +210,11 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateHeaderViewHeight()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.tintColor = R.color.actionAccent()
     }
     
     // MARK: - Actions

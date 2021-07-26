@@ -26,6 +26,8 @@ class EventDetailsMemberCell: UITableViewCell {
     @IBOutlet weak var avatarLeadingContraint: NSLayoutConstraint!
     @IBOutlet weak var statusTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var lineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blockBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stackViewBottomConstraint: NSLayoutConstraint!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -56,11 +58,15 @@ extension EventDetailsMemberCell: StatusContextDelegate {
     func prepareView(completion: @escaping () -> Void) {
         blockLeadingConstraint.constant = 11
         blockTrailingConstraint.constant = 10
+        blockBottomConstraint.constant = 11
         avatarLeadingContraint.constant = 14
         statusTrailingConstraint.constant = 14
+        stackViewBottomConstraint.constant = 0
+        
         UIView.animate(withDuration: 0.1, animations: {
             self.blockView.layer.cornerRadius = 12
             self.blockView.backgroundColor = R.color.block()
+            self.statusDetailsBlockView.alpha = 0
             self.layoutIfNeeded()
         }) { (_) in
             completion()
@@ -70,11 +76,21 @@ extension EventDetailsMemberCell: StatusContextDelegate {
     func restoreView(with menuItem: MenuItem?) {
         blockLeadingConstraint.constant = 0
         blockTrailingConstraint.constant = 0
+        blockBottomConstraint.constant = 0
         avatarLeadingContraint.constant = 24
         statusTrailingConstraint.constant = 24
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+        stackViewBottomConstraint.constant = 11
+        self.blockView.backgroundColor = .clear
+//        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+//            self.blockView.layer.cornerRadius = 0
+//            //self.blockView.backgroundColor = .clear
+//            self.statusDetailsBlockView.alpha = 1
+//            self.layoutIfNeeded()
+//        })
+        UIView.animate(withDuration: 0.1, animations: {
             self.blockView.layer.cornerRadius = 0
-            self.blockView.backgroundColor = R.color.background()
+            //self.blockView.backgroundColor = .clear
+            self.statusDetailsBlockView.alpha = 1
             self.layoutIfNeeded()
         })
     }

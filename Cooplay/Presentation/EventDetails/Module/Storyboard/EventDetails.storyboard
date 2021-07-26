@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UcS-KN-bdG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" name="background"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TXZ-S1-kPY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,7 +78,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bU7-cP-u3x">
                                                                     <rect key="frame" x="0.0" y="37.5" width="245" height="26.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                                    <color key="textColor" name="text.secondary"/>
+                                                                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -333,9 +337,13 @@
                         <constraints>
                             <constraint firstItem="9Pr-8G-3EN" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" constant="10" id="2zs-YB-Npu"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="9Pr-8G-3EN" secondAttribute="trailing" constant="10" id="Cm4-23-8q4"/>
+                            <constraint firstItem="UcS-KN-bdG" firstAttribute="top" secondItem="eFS-jM-hgH" secondAttribute="top" id="ESk-Sv-gQ3"/>
+                            <constraint firstAttribute="bottom" secondItem="UcS-KN-bdG" secondAttribute="bottom" id="G8F-Fu-SXR"/>
                             <constraint firstItem="TXZ-S1-kPY" firstAttribute="leading" secondItem="OR5-3f-pbR" secondAttribute="leading" id="Jff-0V-Vvu"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="trailing" secondItem="TXZ-S1-kPY" secondAttribute="trailing" id="LN6-4W-QUn"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="9Pr-8G-3EN" secondAttribute="bottom" constant="10" id="dQW-oU-uJk"/>
+                            <constraint firstItem="UcS-KN-bdG" firstAttribute="leading" secondItem="eFS-jM-hgH" secondAttribute="leading" id="qHC-5G-AnJ"/>
+                            <constraint firstAttribute="trailing" secondItem="UcS-KN-bdG" secondAttribute="trailing" id="qgh-3K-0QM"/>
                             <constraint firstItem="TXZ-S1-kPY" firstAttribute="top" secondItem="OR5-3f-pbR" secondAttribute="top" id="wIe-Uj-8OO"/>
                             <constraint firstItem="OR5-3f-pbR" firstAttribute="bottom" secondItem="TXZ-S1-kPY" secondAttribute="bottom" id="yPH-Ye-6K5"/>
                         </constraints>
@@ -352,6 +360,7 @@
                         <outlet property="gameChangeButtonTitle" destination="J6F-jF-iTV" id="wbo-nR-mh8"/>
                         <outlet property="gameChangeButtonView" destination="2Qw-gA-GXp" id="rgR-t8-tyJ"/>
                         <outlet property="gameCoverImageView" destination="fbr-08-h1e" id="zut-vD-K6j"/>
+                        <outlet property="gradientView" destination="UcS-KN-bdG" id="D6I-Dc-Ljd"/>
                         <outlet property="infoStackView" destination="wJ1-PQ-qbx" id="Uez-79-ch0"/>
                         <outlet property="infoView" destination="zvv-ZR-o3h" id="bvO-Za-JLe"/>
                         <outlet property="statusIconImageView" destination="xPc-pE-px3" id="kqV-Mn-xRs"/>
