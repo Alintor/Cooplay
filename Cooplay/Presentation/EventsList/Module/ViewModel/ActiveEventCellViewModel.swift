@@ -41,17 +41,6 @@ struct ActiveEventCellViewModel {
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
         avatarViewModel = AvatarViewModel(with: model.me)
-        if model.isActive {
-            switch model.me.status {
-            case .accepted, .maybe, .suggestDate, .unknown:
-                statusTitle = R.string.localizable.statusConfirmation()
-            default:
-                statusTitle = model.me.status?.title(event: model)
-            }
-        } else {
-            statusTitle = model.me.status?.title(event: model)
-        }
-        
         switch model.me.status {
         case .suggestDate(let minutes):
             let newDate = model.date + minutes.minutes
@@ -59,6 +48,18 @@ struct ActiveEventCellViewModel {
         default:
             break
         }
+        if model.isActive {
+            switch model.me.status {
+            case .accepted, .maybe, .suggestDate, .unknown:
+                statusTitle = R.string.localizable.statusConfirmation()
+                statusDetailsViewModel = nil
+            default:
+                statusTitle = model.me.status?.title(event: model)
+            }
+        } else {
+            statusTitle = model.me.status?.title(event: model)
+        }
+        
         let memberViewModels = model.members.sorted(by: { $0.name < $1.name }).map { MemberStatusViewModel(with: $0) }
         let otherCount = memberViewModels.count - Constant.maxMembersCount
         if otherCount > 1 {

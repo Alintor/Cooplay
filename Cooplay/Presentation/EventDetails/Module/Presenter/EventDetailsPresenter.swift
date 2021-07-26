@@ -127,8 +127,10 @@ final class EventDetailsPresenter {
     private var members: [User]!
     
     @objc private func fetchEvent() {
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.fetchEvent(id: self.event.id) { [weak self] result in
             guard let `self` = self else { return }
+            //self.view.hideProgress()
             switch result {
             case .success(let event):
                 self.event = event
@@ -142,8 +144,10 @@ final class EventDetailsPresenter {
     }
     
     private func changeStatus() {
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.changeStatus(for: self.event) { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success: break
             case .failure(let error):
@@ -155,8 +159,10 @@ final class EventDetailsPresenter {
     
     private func changeGame(_ game: Game) {
         event.game = game
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.changeGame(game, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -173,8 +179,10 @@ final class EventDetailsPresenter {
     private func changeDate(_ date: Date) {
         guard date != event.date else { return }
         event.date = date
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.changeDate(date, forEvent: event) { [weak self] result in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -190,8 +198,10 @@ final class EventDetailsPresenter {
     
     private func addMembers(_ members: [User]) {
         event.members.append(contentsOf: members)
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.addMembers(members, toEvent: event) { [weak self] (result) in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -206,8 +216,10 @@ final class EventDetailsPresenter {
     }
     
     private func removeMember(_ member: User) {
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.removeMember(member, fromEvent: event) { [weak self] (result) in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -226,8 +238,10 @@ final class EventDetailsPresenter {
         if let index = event.members.firstIndex(of: member) {
             event.members[index].isOwner = true
         }
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.takeOwnerRulesToMember(member, forEvent: event) { [weak self] (result) in
             guard let `self` = self else { return }
+            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner

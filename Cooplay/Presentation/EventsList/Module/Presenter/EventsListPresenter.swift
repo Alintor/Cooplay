@@ -109,7 +109,9 @@ final class EventsListPresenter: NSObject {
     }
     
     private func updateEvent(_ event: Event) {
+        self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.changeStatus(for: event) { [weak self] result in
+            self?.view.hideProgress()
             switch result {
             case .success: break
             case .failure(let error):
@@ -137,6 +139,8 @@ final class EventsListPresenter: NSObject {
         if isFirstShowing {
             view.showProgress(indicatorType: .arrows)
             isFirstShowing = false
+        } else {
+            self.view.showProgress(indicatorType: .line, fullScreen: true)
         }
         interactor.fetchEvents { [weak self] result in
             guard let `self` = self else { return }

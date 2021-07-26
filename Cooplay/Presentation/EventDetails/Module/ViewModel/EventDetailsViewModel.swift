@@ -27,10 +27,18 @@ struct EventDetailsViewModel {
         coverPath = model.game.coverPath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
+        switch model.me.status {
+        case .suggestDate(let minutes):
+            let newDate = model.date + minutes.minutes
+            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
+        default:
+            break
+        }
         if model.isActive {
             switch model.me.status {
             case .accepted, .maybe, .suggestDate, .unknown:
                 statusTitle = R.string.localizable.statusConfirmation()
+                statusDetailsViewModel = nil
             default:
                 statusTitle = model.me.status?.title(event: model)
             }
@@ -43,14 +51,6 @@ struct EventDetailsViewModel {
             showGradient = false
         default:
             showGradient = model.isActive
-        }
-        
-        switch model.me.status {
-        case .suggestDate(let minutes):
-            let newDate = model.date + minutes.minutes
-            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
-        default:
-            break
         }
     }
 }

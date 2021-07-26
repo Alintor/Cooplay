@@ -115,6 +115,7 @@
 		A8301D3626AACFB700519768 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3526AACFB700519768 /* UIBezierPath.swift */; };
 		A8301D3E26AE8C8200519768 /* StatusDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3D26AE8C8200519768 /* StatusDetailsView.swift */; };
 		A8301D4026AE8D0C00519768 /* StatusDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3F26AE8D0C00519768 /* StatusDetailsViewModel.swift */; };
+		A8301D4326AECA6200519768 /* LineActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D4226AECA6200519768 /* LineActivityIndicatorView.swift */; };
 		A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */; };
 		A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */; };
 		A833EF5E23D0344B009FCD73 /* EventDetailsMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */; };
@@ -351,6 +352,7 @@
 		A8301D3526AACFB700519768 /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		A8301D3D26AE8C8200519768 /* StatusDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailsView.swift; sourceTree = "<group>"; };
 		A8301D3F26AE8D0C00519768 /* StatusDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailsViewModel.swift; sourceTree = "<group>"; };
+		A8301D4226AECA6200519768 /* LineActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineActivityIndicatorView.swift; sourceTree = "<group>"; };
 		A833EF5723CF225C009FCD73 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		A833EF5B23D0344B009FCD73 /* EventDetailsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberCell.swift; sourceTree = "<group>"; };
 		A833EF5C23D0344B009FCD73 /* EventDetailsMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsMemberCell.xib; sourceTree = "<group>"; };
@@ -1342,6 +1344,14 @@
 			path = StatusDetailsView;
 			sourceTree = "<group>";
 		};
+		A8301D4126AEC9BB00519768 /* LineActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				A8301D4226AECA6200519768 /* LineActivityIndicatorView.swift */,
+			);
+			path = LineActivityIndicator;
+			sourceTree = "<group>";
+		};
 		A833EF5623CF2200009FCD73 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1773,6 +1783,7 @@
 			children = (
 				A8D1D2A32362EBD500DA1089 /* ActivityIndicatorRenderer.swift */,
 				A8D1D2A92362ED1600DA1089 /* ActivityIndicatorViews */,
+				A8301D4126AEC9BB00519768 /* LineActivityIndicator */,
 			);
 			path = ActivityIndicator;
 			sourceTree = "<group>";
@@ -2337,6 +2348,7 @@
 				A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */,
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
+				A8301D4326AECA6200519768 /* LineActivityIndicatorView.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A87CF47523EC1248004189D3 /* APIProvider.swift in Sources */,

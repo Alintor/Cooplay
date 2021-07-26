@@ -8,7 +8,7 @@
 
 import UIKit
 
-private enum ActivityIndicatorRendererConstant {
+enum ActivityIndicatorRendererConstant {
     
     static let viewTag = 13246
     static let backgroundTag = 43632352
@@ -38,11 +38,23 @@ extension ActivityIndicatorView where Self: UIView {
 enum ActivityIndicatorType {
     
     case arrows
+    case line
     
     var view: ActivityIndicatorView {
         switch self {
         case .arrows:
             return ArrowsActivityIndicatorView()
+        case .line:
+            return LineActivityIndicatorView()
+        }
+    }
+    
+    var needBackground: Bool {
+        switch self {
+        case .line:
+            return false
+        default:
+            return true
         }
     }
 }
@@ -71,10 +83,12 @@ extension ActivityIndicatorRenderer {
         let targetView: UIView? = fullScreen ? topWindow : self.activityIndicatorTargetView
         guard let view = targetView else { return }
         let activityView = indicatorType.view
-        let backgroundView = UIView(frame: view.bounds)
-        backgroundView.backgroundColor = R.color.background()?.withAlphaComponent(0.9)
-        backgroundView.tag = ActivityIndicatorRendererConstant.backgroundTag
-        view.addSubview(backgroundView)
+        if indicatorType.needBackground {
+            let backgroundView = UIView(frame: view.bounds)
+            backgroundView.backgroundColor = R.color.background()?.withAlphaComponent(0.9)
+            backgroundView.tag = ActivityIndicatorRendererConstant.backgroundTag
+            view.addSubview(backgroundView)
+        }
         activityView.addToView(view, needIndent: !fullScreen)
         view.layoutIfNeeded()
         activityView.start()
