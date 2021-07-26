@@ -27,9 +27,23 @@ struct EventDetailsViewModel {
         coverPath = model.game.coverPath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
-        statusTitle = model.me.status?.title(event: model)
+        if model.isActive {
+            switch model.me.status {
+            case .accepted, .maybe, .suggestDate, .unknown:
+                statusTitle = R.string.localizable.statusConfirmation()
+            default:
+                statusTitle = model.me.status?.title(event: model)
+            }
+        } else {
+            statusTitle = model.me.status?.title(event: model)
+        }
         avatarViewModel = AvatarViewModel(with: model.me)
-        showGradient = model.isActive
+        switch model.me.status {
+        case .unknown:
+            showGradient = false
+        default:
+            showGradient = model.isActive
+        }
         
         switch model.me.status {
         case .suggestDate(let minutes):

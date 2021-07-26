@@ -29,6 +29,7 @@
 "status.suggestDate.full" = "Предлагаю в";
 "status.declined.full" = "Не пойду";
 "status.unknown.full" = "Приглашен";
+"status.confirmation" = "Подтвердить статус";
 
 // MARK: - Notifications
 "notifications.statusRemind.title" = "Подтвердите свой статус";

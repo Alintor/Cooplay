@@ -607,7 +607,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 106 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 107 localization keys.
     struct localizable {
       /// Value: %@ мин
       static let timeCarouselPanelLatnessValue = Rswift.StringResource(key: "timeCarouselPanel.latness.value", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -743,6 +743,8 @@ struct R: Rswift.Validatable {
       static let notificationsStatusRemindTitle = Rswift.StringResource(key: "notifications.statusRemind.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердить
       static let personalisationActionButtonTitle = Rswift.StringResource(key: "personalisation.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Подтвердить статус
+      static let statusConfirmation = Rswift.StringResource(key: "status.confirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
       static let newEventSearchGameButtonTitle = Rswift.StringResource(key: "newEvent.searchGameButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
@@ -1155,6 +1157,11 @@ struct R: Rswift.Validatable {
       /// Value: Подтвердить
       static func personalisationActionButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("personalisation.actionButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Подтвердить статус
+      static func statusConfirmation(_: Void = ()) -> String {
+        return NSLocalizedString("status.confirmation", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Поиск игры

@@ -40,8 +40,17 @@ struct ActiveEventCellViewModel {
         previewPath = model.game.previewImagePath
         statusIcon = model.me.status?.icon()
         statusColor = model.me.status?.color
-        statusTitle = model.me.status?.title(event: model)
         avatarViewModel = AvatarViewModel(with: model.me)
+        if model.isActive {
+            switch model.me.status {
+            case .accepted, .maybe, .suggestDate, .unknown:
+                statusTitle = R.string.localizable.statusConfirmation()
+            default:
+                statusTitle = model.me.status?.title(event: model)
+            }
+        } else {
+            statusTitle = model.me.status?.title(event: model)
+        }
         
         switch model.me.status {
         case .suggestDate(let minutes):

@@ -223,7 +223,6 @@ final class EventDetailsPresenter {
     }
     
     private func takeOwnerRulesToMember(_ member: User) {
-        event.me.isOwner = false
         if let index = event.members.firstIndex(of: member) {
             event.members[index].isOwner = true
         }
@@ -238,6 +237,7 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
+        event.me.isOwner = false
         view.update(with: EventDetailsViewModel(with: self.event))
         view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
     }

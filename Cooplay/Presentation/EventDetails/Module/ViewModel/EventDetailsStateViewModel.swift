@@ -41,7 +41,12 @@ struct EventDetailsStateViewModel {
             showEditPanel = false
             hideStatus = false
             title = nil
-            showGradient = event.isActive
+            switch event.me.status {
+            case .unknown:
+                showGradient = false
+            default:
+                showGradient = event.isActive
+            }
         }
     }
 }
