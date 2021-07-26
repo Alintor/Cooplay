@@ -65,7 +65,7 @@ struct User: Codable {
             case .late:
                 return isSmall ? nil : R.image.statusNormalLate()
             case.suggestDate:
-                return isSmall ? R.image.statusNormalLate() : R.image.statusNormalLate()
+                return isSmall ? R.image.statusSmallSuggestDate() : R.image.statusNormalSuggestDate()
             case .declined:
                 return isSmall ? R.image.statusSmallDeclined() : R.image.statusNormalDeclined()
             case .unknown:

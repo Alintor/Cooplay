@@ -143,7 +143,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 29 images.
+  /// This `R.image` struct is generated, and contains static references to 31 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -191,6 +191,8 @@ struct R: Rswift.Validatable {
     static let statusNormalMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.maybe")
     /// Image `status.normal.ontime`.
     static let statusNormalOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.ontime")
+    /// Image `status.normal.suggestDate`.
+    static let statusNormalSuggestDate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.suggestDate")
     /// Image `status.normal.unknown`.
     static let statusNormalUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.unknown")
     /// Image `status.small.accepted`.
@@ -201,6 +203,8 @@ struct R: Rswift.Validatable {
     static let statusSmallMaybe = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.maybe")
     /// Image `status.small.ontime`.
     static let statusSmallOntime = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.ontime")
+    /// Image `status.small.suggestDate`.
+    static let statusSmallSuggestDate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.suggestDate")
     /// Image `status.small.unknown`.
     static let statusSmallUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.unknown")
     
@@ -319,6 +323,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.statusNormalOntime, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "status.normal.suggestDate", bundle: ..., traitCollection: ...)`
+    static func statusNormalSuggestDate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusNormalSuggestDate, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "status.normal.unknown", bundle: ..., traitCollection: ...)`
     static func statusNormalUnknown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusNormalUnknown, compatibleWith: traitCollection)
@@ -342,6 +351,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "status.small.ontime", bundle: ..., traitCollection: ...)`
     static func statusSmallOntime(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusSmallOntime, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "status.small.suggestDate", bundle: ..., traitCollection: ...)`
+    static func statusSmallSuggestDate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.statusSmallSuggestDate, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.small.unknown", bundle: ..., traitCollection: ...)`
