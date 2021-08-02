@@ -63,6 +63,7 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 
     func setupInitialState() {
         //navigationController?.view.backgroundColor = R.color.background()
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.isHidden = true
         tableView.contentInset.bottom = Constant.actionButtonInset
         actionButtonView.transform = CGAffineTransform(
@@ -223,6 +224,12 @@ final class EventsListViewController: UIViewController, EventsListViewInput, DTT
 		super.viewDidLoad()
 		viewIsReady?()
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

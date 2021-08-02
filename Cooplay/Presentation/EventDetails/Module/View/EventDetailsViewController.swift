@@ -55,7 +55,6 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     // MARK: - View in
 
     func setupInitialState() {
-        navigationItem.largeTitleDisplayMode = .never
         editButton = UIBarButtonItem(image: R.image.commonEdit(), style: .plain, target: self, action: #selector(editButtonTapped))
         cancelButton = UIBarButtonItem(title: R.string.localizable.commonCancel(), style: .plain, target: self, action: #selector(cancelButtonTapped))
         deleteButton = UIBarButtonItem(image: R.image.commonDelete(), style: .plain, target: self, action: #selector(deleteButtonTapped))
@@ -79,18 +78,21 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     }
     
     func update(with model: EventDetailsViewModel) {
+        let oldTitle = titleLabel.text
         titleLabel.text = model.title
         gameChangeButtonTitle.text = model.title
         dateLabel.text = model.date
         dateChangeButtonTitle.text = model.date
         if let coverPath = model.coverPath {
             gameCoverImageView.setImage(withPath: coverPath, placeholder: R.image.commonGameCover()) { [weak self] image in
-                image.getColors(quality: .highest) { colors in
-                    guard let `self` = self, let colors = colors, model.showGradient else { return }
+                guard model.showGradient, model.title != oldTitle else { return }
+                image.getColors { colors in
+                    guard let `self` = self, let colors = colors else { return }
                     let gradient = CAGradientLayer(layer: self.gradientView.layer)
                     gradient.colors = [colors.secondary.cgColor, R.color.background()!.cgColor]
                     gradient.locations = [0.0, 1.0]
                     gradient.frame = self.gradientView.bounds
+                    self.gradientView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
                     self.gradientView.layer.insertSublayer(gradient, at: 0)
                     self.gradientView.alpha = 0
                     UIView.animate(withDuration: 0.2) { [weak self] in
@@ -215,6 +217,12 @@ final class EventDetailsViewController: UIViewController, EventDetailsViewInput,
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateHeaderViewHeight()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func viewWillDisappear(_ animated: Bool) {

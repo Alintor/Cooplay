@@ -48,7 +48,7 @@ class StatusMenuView: UIView {
         var width: CGFloat {
             switch self {
             case .small:
-                return UIScreen.main.bounds.width / 1.5
+                return UIScreen.main.bounds.width / (4/3)
             case .large:
                 return UIScreen.main.bounds.width - 20
             }

@@ -48,14 +48,9 @@ struct ActiveEventCellViewModel {
         default:
             break
         }
-        if model.isActive {
-            switch model.me.status {
-            case .accepted, .maybe, .suggestDate, .unknown:
-                statusTitle = R.string.localizable.statusConfirmation()
-                statusDetailsViewModel = nil
-            default:
-                statusTitle = model.me.status?.title(event: model)
-            }
+        if model.needConfirm {
+            statusTitle = R.string.localizable.statusConfirmation()
+            statusDetailsViewModel = nil
         } else {
             statusTitle = model.me.status?.title(event: model)
         }

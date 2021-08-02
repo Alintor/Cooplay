@@ -1470,7 +1470,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "common.normal.crown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.normal.crown' is used in nib 'EventDetailsMemberCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "yellow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'yellow' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
         }
       }

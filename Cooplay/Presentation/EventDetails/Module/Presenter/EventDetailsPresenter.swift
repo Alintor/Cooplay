@@ -130,7 +130,7 @@ final class EventDetailsPresenter {
         self.view.showProgress(indicatorType: .line, fullScreen: true)
         interactor.fetchEvent(id: self.event.id) { [weak self] result in
             guard let `self` = self else { return }
-            //self.view.hideProgress()
+            self.view.hideProgress()
             switch result {
             case .success(let event):
                 self.event = event

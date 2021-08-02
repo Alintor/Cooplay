@@ -18,7 +18,17 @@ struct Event: Codable {
     var me: User
     
     var isActive: Bool {
-        return (date - GlobalConstant.eventActivePeriod.hour) <= Date()
+        return (date - GlobalConstant.eventActivePeriodHours.hour) <= Date()
+    }
+    
+    var needConfirm: Bool {
+        guard (date - GlobalConstant.eventConfirmPeriodMinutes.minutes) <= Date() else { return false }
+        switch self.me.status {
+        case .accepted, .maybe, .suggestDate, .unknown:
+            return true
+        default:
+            return false
+        }
     }
     
     var isAgreed: Bool {

@@ -87,7 +87,7 @@ extension EventService: EventServiceType {
             completion(.success(filteredEvents))
             let overdueEvents = events.filter { $0.date < (Date() - GlobalConstant.eventOverdueMonths.months )}
             for overdueEvent in overdueEvents {
-                self.deleteEvent(overdueEvent) { (_) in }
+                self.deleteEvent(overdueEvent, sendNotification: false) { (_) in }
             }
         }
         
@@ -222,13 +222,18 @@ extension EventService: EventServiceType {
             }
         }
     }
-    
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        deleteEvent(event, sendNotification: true, completion: completion)
+    }
+    
+    private func deleteEvent(_ event: Event, sendNotification: Bool, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         firestore.collection("Events").document(event.id).delete { [weak self] (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             } else {
-                self?.sendDeleteEventNotification(for: event)
+                if sendNotification {
+                    self?.sendDeleteEventNotification(for: event)
+                }
                 completion(.success(()))
             }
         }

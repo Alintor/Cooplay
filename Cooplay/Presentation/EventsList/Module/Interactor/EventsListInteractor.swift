@@ -115,25 +115,25 @@ extension EventsListInteractor: EventsListInteractorInput {
                     switch result {
                     case .success(let imageResult):
                         let attachment = UNNotificationAttachment.create(identifier: event.game.slug, image: imageResult.image, options: nil)
-                        self?.addNotification(event: event, attachment: attachment)
+                        self?.addNotification(event: event, image: imageResult.image)
                     case .failure:
-                        self?.addNotification(event: event, attachment: nil)
+                        self?.addNotification(event: event, image: nil)
                     }
                 }
                 
             } else {
-                addNotification(event: event, attachment: nil)
+                addNotification(event: event, image: nil)
             }
         }
     }
     
-    private func addNotification(event: Event, attachment: UNNotificationAttachment?) {
+    private func addNotification(event: Event, image: UIImage?) {
         let userNotificationCenter = UNUserNotificationCenter.current()
         let statusNotificationContent = UNMutableNotificationContent()
         let eventStartNotificationContent = UNMutableNotificationContent()
         statusNotificationContent.title = R.string.localizable.notificationsStatusRemindTitle()
         eventStartNotificationContent.title = R.string.localizable.notificationsEventStartRemindTitle()
-        statusNotificationContent.body = R.string.localizable.notificationsStatusRemindMessage(30, event.game.name)
+        statusNotificationContent.body = R.string.localizable.notificationsStatusRemindMessage(GlobalConstant.eventConfirmPeriodMinutes, event.game.name)
         eventStartNotificationContent.body = R.string.localizable.notificationsEventStartRemindMessage(event.game.name)
         statusNotificationContent.userInfo = [
             "type": NotificationType.statusRemind.rawValue
@@ -145,13 +145,18 @@ extension EventsListInteractor: EventsListInteractorInput {
             statusNotificationContent.userInfo["event"] = eventData
             eventStartNotificationContent.userInfo["event"] = eventData
         }
-        if let attachment = attachment {
-            statusNotificationContent.attachments = [attachment]
-            eventStartNotificationContent.attachments = [attachment]
+        if let image = image {
+            if let attachment = UNNotificationAttachment.create(identifier: "0\(event.game.slug)", image: image, options: nil) {
+                statusNotificationContent.attachments = [attachment]
+            }
+            if let attachment = UNNotificationAttachment.create(identifier: "1\(event.game.slug)", image: image, options: nil) {
+                eventStartNotificationContent.attachments = [attachment]
+            }
         }
+        
         let statusTriggerDate = Calendar.current.dateComponents(
             [.year,.month,.day,.hour,.minute,.second,],
-            from: event.date - 30.minutes
+            from: event.date - GlobalConstant.eventConfirmPeriodMinutes.minutes
         )
         let eventStartTriggerDate = Calendar.current.dateComponents(
             [.year,.month,.day,.hour,.minute,.second,],
@@ -159,10 +164,11 @@ extension EventsListInteractor: EventsListInteractorInput {
         )
         let statusTrigger = UNCalendarNotificationTrigger(dateMatching: statusTriggerDate, repeats: false)
         let eventStartTrigger = UNCalendarNotificationTrigger(dateMatching: eventStartTriggerDate, repeats: false)
-        let statusRequest = UNNotificationRequest(identifier: event.id, content: statusNotificationContent, trigger: statusTrigger)
-        let eventStartRequest = UNNotificationRequest(identifier: "0\(event.id)", content: eventStartNotificationContent, trigger: eventStartTrigger)
-        userNotificationCenter.add(statusRequest, withCompletionHandler: nil)
-        userNotificationCenter.add(eventStartRequest, withCompletionHandler: nil)
+        let statusRequest = UNNotificationRequest(identifier: "Confirm-\(event.id)", content: statusNotificationContent, trigger: statusTrigger)
+
+        let eventStartRequest = UNNotificationRequest(identifier: "Start-\(event.id)", content: eventStartNotificationContent, trigger: eventStartTrigger)
+        userNotificationCenter.add(statusRequest)
+        userNotificationCenter.add(eventStartRequest)
     }
     
     func updateAppBadge(inventedEventsCount: Int) {
