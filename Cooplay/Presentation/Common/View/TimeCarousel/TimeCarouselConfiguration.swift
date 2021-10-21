@@ -168,7 +168,7 @@ struct TimeCarouselConfiguration {
         case .latness:
             return 12
         case .suggestion:
-            return 144
+            return 576
         case .change:
             return 576
         }
