@@ -43,7 +43,8 @@ final class EventsListPresenter: NSObject {
                 self?.router.openNewEvent()
             }
             view.profileAction = { [weak self] in
-                self?.router.openProfile()
+                guard let `self` = self else { return }
+                self.router.openProfile(with: self.user)
             }
         }
     }
@@ -74,6 +75,7 @@ final class EventsListPresenter: NSObject {
     
     private var isFirstShowing = true
     private var dataSource: MemoryStorage!
+    private var user: User!
     private var events = [Event]() {
         didSet {
             events = events.sorted(by: { $0.date < $1.date })
@@ -126,6 +128,7 @@ final class EventsListPresenter: NSObject {
             guard let `self` = self else { return }
             switch result {
             case .success(let user):
+                self.user = user
                 self.view.updateProfile(with: AvatarViewModel(with: user))
             case .failure(let error):
                 // TODO:

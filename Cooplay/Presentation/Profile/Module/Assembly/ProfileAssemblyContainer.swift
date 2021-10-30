@@ -7,6 +7,7 @@
 
 import Swinject
 import SwinjectStoryboard
+import SwiftUI
 
 final class ProfileAssemblyContainer: Assembly {
 
@@ -19,16 +20,16 @@ final class ProfileAssemblyContainer: Assembly {
 			return interactor
 		}
 
-		container.register(ProfileRouter.self) { (_, viewController: ProfileViewController) in
+		container.register(ProfileRouter.self) { (_, viewController: UIViewController) in
 			let router = ProfileRouter()
 			router.transitionHandler = viewController
 
 			return router
 		}
 
-		container.register(ProfilePresenter.self) { (r, viewController: ProfileViewController) in
+		container.register(ProfilePresenter.self) { (r, viewController: UIViewController) in
 			let presenter = ProfilePresenter()
-			presenter.view = viewController
+			//presenter.view = viewController
 			presenter.interactor = r.resolve(ProfileInteractor.self)
 			presenter.router = r.resolve(ProfileRouter.self, argument: viewController)
 
@@ -40,3 +41,22 @@ final class ProfileAssemblyContainer: Assembly {
 		}
 	}
 }
+
+enum ProfileViewCOnrtollerBuilder {
+
+    static func build(with user: User) -> UIViewController {
+        let container: Container? = ApplicationAssembly.assembler.resolver as? Container
+        let interactor = ProfileInteractor(
+            authorizationService: container?.resolve(AuthorizationServiceType.self)
+        )
+        let presenter = ProfilePresenter()
+        let router = ProfileRouter()
+        presenter.interactor = interactor
+        let viewController = UIHostingController(rootView: ProfileView(model: user, output: presenter))
+        router.transitionHandler = viewController
+        
+        return viewController
+    }
+}
+
+

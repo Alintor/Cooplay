@@ -82,6 +82,8 @@
 		A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */; };
 		A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */; };
 		A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76412DBC892C6722585C8 /* IntroViewInput.swift */; };
+		A800A9E227218D0F00D3E2DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800A9E127218D0F00D3E2DA /* ProfileView.swift */; };
+		A800A9EB2722F45800D3E2DA /* ProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */; };
 		A8070A3924B831EB000C4E3A /* PushNotificationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */; };
 		A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */; };
 		A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E8162470076D005DFAF0 /* AuthorizationField.swift */; };
@@ -319,6 +321,8 @@
 		A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersRouterInput.swift; sourceTree = "<group>"; };
 		A14CCCC4648AC7C9E4E20809 /* RegistrationRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroAssemblyContainer.swift; sourceTree = "<group>"; };
+		A800A9E127218D0F00D3E2DA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
 		A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationApplicationService.swift; sourceTree = "<group>"; };
 		A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupRoutable.swift; sourceTree = "<group>"; };
 		A815E8162470076D005DFAF0 /* AuthorizationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationField.swift; sourceTree = "<group>"; };
@@ -905,7 +909,9 @@
 			isa = PBXGroup;
 			children = (
 				A9AAFEEA8C9F4F2B74D19600 /* ProfileViewInput.swift */,
+				A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */,
 				98CCCD6AC5F8500AEDF9CC0C /* ProfileViewController.swift */,
+				A800A9E127218D0F00D3E2DA /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2411,6 +2417,7 @@
 				565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */,
 				A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */,
 				79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */,
+				A800A9EB2722F45800D3E2DA /* ProfileViewOutput.swift in Sources */,
 				98B8582462DD89E9C7DF7A80 /* EventDetailsModuleInput.swift in Sources */,
 				A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */,
 				A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */,
@@ -2471,6 +2478,7 @@
 				BBB9E51B9E7F9DFF46E8461D /* IntroModuleInput.swift in Sources */,
 				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
 				F76A38D86DB1BA56E4E749EB /* IntroInteractorInput.swift in Sources */,
+				A800A9E227218D0F00D3E2DA /* ProfileView.swift in Sources */,
 				B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */,
 				6C32ACCA88B63DB330A36492 /* IntroRouterInput.swift in Sources */,
 				CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */,
@@ -2664,7 +2672,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;
@@ -2687,7 +2695,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;

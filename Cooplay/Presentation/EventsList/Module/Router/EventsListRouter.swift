@@ -36,12 +36,18 @@ extension EventsListRouter: EventsListRouterInput {
         .perform()
     }
     
-    func openProfile() {
-        try? transitionHandler.forStoryboard(
-            factory: StoryboardFactory(storyboard: R.storyboard.profile()),
-            to: ProfileModuleInput.self
-        )
-        .to(preferred: .navigation(style: .push))
-        .perform()
+    func openProfile(with user: User) {
+//        try? transitionHandler.forStoryboard(
+//            factory: StoryboardFactory(storyboard: R.storyboard.profile()),
+//            to: ProfileModuleInput.self
+//        )
+//        .to(preferred: .navigation(style: .push))
+//        .perform()
+        
+        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        
+        let profileViewController = ProfileViewCOnrtollerBuilder.build(with: user)
+        
+        transitionHandler.present(profileViewController, animated: true, completion: nil)
     }
 }

@@ -32,3 +32,7 @@ final class ProfilePresenter {
 extension ProfilePresenter: ProfileModuleInput {
 
 }
+
+extension ProfilePresenter: ProfileViewOutput {
+    
+}
