@@ -27,7 +27,7 @@ struct GameDBToken: Codable {
         tokenType = try container.decode(String.self, forKey: .tokenType)
         let expires = try container.decode(Int.self, forKey: .expiresIn)
         expiresIn = expires
-        expiresAt = Date(timeIntervalSinceNow: Double(expires) as TimeInterval)
+        expiresAt = (try? container.decode(Date.self, forKey: .expiresAt)) ?? Date(timeIntervalSinceNow: Double(expires) as TimeInterval)
     }
     
     
