@@ -35,4 +35,16 @@ extension ProfilePresenter: ProfileModuleInput {
 
 extension ProfilePresenter: ProfileViewOutput {
     
+    func itemSelected(_ item: ProfileSettingsItem) {
+        print(item.rawValue)
+        switch item {
+        case .logout:
+            self.router.showLogoutAlert { [ weak self] in
+                self?.interactor.logout()
+                self?.router.openIntro()
+            }
+        default:
+            break
+        }
+    }
 }

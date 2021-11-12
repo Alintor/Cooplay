@@ -279,6 +279,18 @@ extension EventDetailsViewController: StatusContextDelegate {
         return statusView
     }
     
+    var targetViewGlobalPoint: CGPoint {
+        return targetView.superview?.convert(targetView.frame.origin, to: nil) ?? targetView.frame.origin
+    }
+    
+    var targetViewSize: CGSize {
+        return targetView.frame.size
+    }
+    
+    var targetViewCopy: UIView? {
+        return targetView.snapshotView(afterScreenUpdates: true)
+    }
+    
     func prepareView(completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.1, animations: {
             self.arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)

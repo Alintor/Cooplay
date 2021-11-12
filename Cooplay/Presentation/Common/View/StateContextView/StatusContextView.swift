@@ -8,11 +8,14 @@
 
 import UIKit
 
-protocol StatusContextDelegate: class {
+protocol StatusContextDelegate: AnyObject {
     
     var targetView: UIView { get }
     func prepareView(completion: @escaping () -> Void)
     func restoreView(with menuItem: MenuItem?)
+    var targetViewGlobalPoint: CGPoint { get }
+    var targetViewSize: CGSize { get }
+    var targetViewCopy: UIView? { get }
 }
 
 extension StatusContextDelegate {

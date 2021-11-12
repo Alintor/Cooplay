@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol ProfileViewOutput: class {
+protocol ProfileViewOutput: AnyObject {
     
-    
+    func itemSelected(_ item: ProfileSettingsItem)
 }
 

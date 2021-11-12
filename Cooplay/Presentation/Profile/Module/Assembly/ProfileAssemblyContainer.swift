@@ -52,7 +52,8 @@ enum ProfileViewCOnrtollerBuilder {
         let presenter = ProfilePresenter()
         let router = ProfileRouter()
         presenter.interactor = interactor
-        let viewController = UIHostingController(rootView: ProfileView(model: user, output: presenter))
+        presenter.router = router
+        let viewController = UIHostingController(rootView: ProfileView(state: ProfileState(user: user), output: presenter))
         router.transitionHandler = viewController
         
         return viewController
