@@ -143,3 +143,12 @@
 // MARK: - Profile
 "profile.title" = "Профиль";
 "profile.exitButton.title" = "Сменить профиль";
+
+// MARK: - Profile
+"profileSettings.edit.title" = "Редактировать профиль";
+"profileSettings.notifications.title" = "Уведомления";
+"profileSettings.changePassword.title" = "Сменить пароль";
+"profileSettings.account.title" = "Аккаунт";
+"profileSettings.logout.title" = "Выйти";
+"profileSettings.section.settings.title" = "Настройки";
+"profileSettings.section.account.title" = "Управление аккаунтом";

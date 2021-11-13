@@ -10,4 +10,5 @@ import Foundation
 protocol ProfileInteractorInput: class {
 
     func logout()
+    func fetchProfile(completion: @escaping (Result<Profile, ProfileError>) -> Void)
 }

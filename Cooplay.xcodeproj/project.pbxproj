@@ -82,6 +82,8 @@
 		A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */; };
 		A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B0EB68DBD81DBDD772F28 /* SearchMembersModuleInput.swift */; };
 		A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE76412DBC892C6722585C8 /* IntroViewInput.swift */; };
+		A800A9E227218D0F00D3E2DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800A9E127218D0F00D3E2DA /* ProfileView.swift */; };
+		A800A9EB2722F45800D3E2DA /* ProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */; };
 		A8070A3924B831EB000C4E3A /* PushNotificationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */; };
 		A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */; };
 		A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E8162470076D005DFAF0 /* AuthorizationField.swift */; };
@@ -90,6 +92,14 @@
 		A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81C24701FDF005DFAF0 /* StartRoutable.swift */; };
 		A81AD11F24976510009D07A3 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD11E24976510009D07A3 /* RegistrationField.swift */; };
 		A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD12124976711009D07A3 /* PasswordValidationState.swift */; };
+		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
+		A824C9CE273E87AE000E61A1 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CD273E87AE000E61A1 /* ProfileState.swift */; };
+		A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */; };
+		A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */; };
+		A824C9D5273E896A000E61A1 /* ProfileAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D4273E896A000E61A1 /* ProfileAvatar.swift */; };
+		A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D6273E89B5000E61A1 /* ProfileInfoView.swift */; };
+		A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D8273E8A9B000E61A1 /* ProfileSettingsItemView.swift */; };
+		A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9DA273EC6F2000E61A1 /* Profile.swift */; };
 		A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A829975A25370AAE00423D71 /* GameDBToken.swift */; };
 		A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A62345EB6600EE1807 /* R.generated.swift */; };
 		A82FF2A92345F23C00EE1807 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
@@ -138,6 +148,8 @@
 		A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8469517241103F500139CF4 /* NewEventRequest.swift */; };
 		A860277923757676004E45AB /* ContextMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860277823757676004E45AB /* ContextMenuRouter.swift */; };
 		A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */; };
+		A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B71A2733CD4E00F8A6CC /* GeometryGetter.swift */; };
+		A865B71D2733CE2800F8A6CC /* StateContextViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B71C2733CE2800F8A6CC /* StateContextViewHandler.swift */; };
 		A86D3672255A7E0D001FDBFC /* EventDetailsStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */; };
 		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */; };
@@ -319,6 +331,8 @@
 		A0232ED8A8CA2DFFE477B4D8 /* SearchMembersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchMembersRouterInput.swift; sourceTree = "<group>"; };
 		A14CCCC4648AC7C9E4E20809 /* RegistrationRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		A313EAA490E0A1202AB8FD7C /* IntroAssemblyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntroAssemblyContainer.swift; sourceTree = "<group>"; };
+		A800A9E127218D0F00D3E2DA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
 		A8070A3824B831EB000C4E3A /* PushNotificationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationApplicationService.swift; sourceTree = "<group>"; };
 		A80BC09825B6C99B008FB5B6 /* PopupRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupRoutable.swift; sourceTree = "<group>"; };
 		A815E8162470076D005DFAF0 /* AuthorizationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationField.swift; sourceTree = "<group>"; };
@@ -327,6 +341,14 @@
 		A815E81C24701FDF005DFAF0 /* StartRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRoutable.swift; sourceTree = "<group>"; };
 		A81AD11E24976510009D07A3 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationField.swift; sourceTree = "<group>"; };
 		A81AD12124976711009D07A3 /* PasswordValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationState.swift; sourceTree = "<group>"; };
+		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
+		A824C9CD273E87AE000E61A1 /* ProfileState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileState.swift; sourceTree = "<group>"; };
+		A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSeparator.swift; sourceTree = "<group>"; };
+		A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSectionHeader.swift; sourceTree = "<group>"; };
+		A824C9D4273E896A000E61A1 /* ProfileAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatar.swift; sourceTree = "<group>"; };
+		A824C9D6273E89B5000E61A1 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		A824C9D8273E8A9B000E61A1 /* ProfileSettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItemView.swift; sourceTree = "<group>"; };
+		A824C9DA273EC6F2000E61A1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A829975A25370AAE00423D71 /* GameDBToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDBToken.swift; sourceTree = "<group>"; };
 		A82FF2A62345EB6600EE1807 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A82FF2A82345F23C00EE1807 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -375,6 +397,8 @@
 		A8469517241103F500139CF4 /* NewEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventRequest.swift; sourceTree = "<group>"; };
 		A860277823757676004E45AB /* ContextMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRouter.swift; sourceTree = "<group>"; };
 		A8641A1923644A9800BD3EAA /* EventSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionHeaderView.swift; sourceTree = "<group>"; };
+		A865B71A2733CD4E00F8A6CC /* GeometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryGetter.swift; sourceTree = "<group>"; };
+		A865B71C2733CE2800F8A6CC /* StateContextViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateContextViewHandler.swift; sourceTree = "<group>"; };
 		A86D3671255A7E0D001FDBFC /* EventDetailsStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsStateViewModel.swift; sourceTree = "<group>"; };
 		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameRoutable.swift; sourceTree = "<group>"; };
@@ -904,8 +928,11 @@
 		7D350DD081A76857EA144391 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A824C9CF273E8866000E61A1 /* Subviews */,
 				A9AAFEEA8C9F4F2B74D19600 /* ProfileViewInput.swift */,
+				A800A9EA2722F45800D3E2DA /* ProfileViewOutput.swift */,
 				98CCCD6AC5F8500AEDF9CC0C /* ProfileViewController.swift */,
+				A800A9E127218D0F00D3E2DA /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1048,6 +1075,27 @@
 			path = States;
 			sourceTree = "<group>";
 		};
+		A824C9CA273E7E2E000E61A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */,
+				A824C9CD273E87AE000E61A1 /* ProfileState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A824C9CF273E8866000E61A1 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */,
+				A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */,
+				A824C9D4273E896A000E61A1 /* ProfileAvatar.swift */,
+				A824C9D6273E89B5000E61A1 /* ProfileInfoView.swift */,
+				A824C9D8273E8A9B000E61A1 /* ProfileSettingsItemView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1159,6 +1207,7 @@
 				A82FF2AC2345F81A00EE1807 /* Event.swift */,
 				A82FF2AA2345F60F00EE1807 /* Game.swift */,
 				A82FF2A82345F23C00EE1807 /* User.swift */,
+				A824C9DA273EC6F2000E61A1 /* Profile.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1204,6 +1253,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A865B7192733CD4400F8A6CC /* GeometryGetter */,
 				A8301D3C26AE89F200519768 /* StatusDetailsView */,
 				A86D367A2562732E001FDBFC /* TimeCarousel */,
 				A87CF45823EAC0F6004189D3 /* EmptyState */,
@@ -1473,6 +1523,14 @@
 				A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */,
 			);
 			path = EventSectionHeader;
+			sourceTree = "<group>";
+		};
+		A865B7192733CD4400F8A6CC /* GeometryGetter */ = {
+			isa = PBXGroup;
+			children = (
+				A865B71A2733CD4E00F8A6CC /* GeometryGetter.swift */,
+			);
+			path = GeometryGetter;
 			sourceTree = "<group>";
 		};
 		A86D367A2562732E001FDBFC /* TimeCarousel */ = {
@@ -1774,6 +1832,7 @@
 				A8D1D294235EEEDA00DA1089 /* StatusContextView.swift */,
 				A8D1D298235F002B00DA1089 /* StatusMenuView.swift */,
 				A8CB076A236876D800168EB6 /* MenuItem.swift */,
+				A865B71C2733CE2800F8A6CC /* StateContextViewHandler.swift */,
 			);
 			path = StateContextView;
 			sourceTree = "<group>";
@@ -1853,6 +1912,7 @@
 		AECD2415E338441A2A0B6BD8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A824C9CA273E7E2E000E61A1 /* Models */,
 				1E0055B5132890E63ACFF4CA /* Assembly */,
 				03A73E7812152019DE27239A /* Storyboard */,
 				7D350DD081A76857EA144391 /* View */,
@@ -2302,8 +2362,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
+				A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
+				A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */,
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A833EF5D23D0344B009FCD73 /* EventDetailsMemberCell.swift in Sources */,
@@ -2360,6 +2422,7 @@
 				A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */,
 				A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
+				A865B71D2733CE2800F8A6CC /* StateContextViewHandler.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* Constants.swift in Sources */,
 				A87CF43923E97527004189D3 /* Router.swift in Sources */,
@@ -2407,13 +2470,16 @@
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
 				A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
+				A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */,
 				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,
 				565ECA924A76AB2D464D118A /* EventDetailsAssemblyContainer.swift in Sources */,
 				A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */,
 				79B853E242467471A218620A /* EventDetailsViewController.swift in Sources */,
+				A800A9EB2722F45800D3E2DA /* ProfileViewOutput.swift in Sources */,
 				98B8582462DD89E9C7DF7A80 /* EventDetailsModuleInput.swift in Sources */,
 				A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */,
 				A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */,
+				A824C9CE273E87AE000E61A1 /* ProfileState.swift in Sources */,
 				3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */,
 				71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */,
 				A833EF5823CF225C009FCD73 /* EventDetailsViewModel.swift in Sources */,
@@ -2438,6 +2504,7 @@
 				03D987EFFF36473B8A76BC84 /* NewEventRouterInput.swift in Sources */,
 				A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */,
 				A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */,
+				A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
@@ -2446,6 +2513,7 @@
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				581E434A7AEB6EC0081F83A8 /* SearchGameModuleInput.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
+				A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */,
 				A8301D3E26AE8C8200519768 /* StatusDetailsView.swift in Sources */,
 				41FA9E25CE1B3C9D9318C734 /* SearchGameInteractorInput.swift in Sources */,
 				A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */,
@@ -2462,6 +2530,7 @@
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
 				237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
+				A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */,
 				A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */,
 				A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */,
 				A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */,
@@ -2471,6 +2540,7 @@
 				BBB9E51B9E7F9DFF46E8461D /* IntroModuleInput.swift in Sources */,
 				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
 				F76A38D86DB1BA56E4E749EB /* IntroInteractorInput.swift in Sources */,
+				A800A9E227218D0F00D3E2DA /* ProfileView.swift in Sources */,
 				B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */,
 				6C32ACCA88B63DB330A36492 /* IntroRouterInput.swift in Sources */,
 				CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */,
@@ -2490,9 +2560,11 @@
 				6BFEE0A36FCC8A4CA4FF5959 /* RegistrationViewInput.swift in Sources */,
 				347EB5EAF2A482F908CBFC6A /* RegistrationViewController.swift in Sources */,
 				A8FB1CDD249B4BA9001C9355 /* EventFirebaseResponse.swift in Sources */,
+				A824C9D5273E896A000E61A1 /* ProfileAvatar.swift in Sources */,
 				D981FB30355C62D1B517C2CA /* RegistrationModuleInput.swift in Sources */,
 				AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */,
 				5704115E2D455D22A81C8EFD /* RegistrationInteractorInput.swift in Sources */,
+				A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */,
 				17A3D4E21AC10F58312EA8C1 /* RegistrationInteractor.swift in Sources */,
 				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
 				F76B7E567DBB809EECE69393 /* RegistrationRouterInput.swift in Sources */,
@@ -2664,7 +2736,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;
@@ -2687,7 +2759,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;

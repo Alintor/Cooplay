@@ -34,7 +34,7 @@ protocol UserServiceType {
         _ nickname: String,
         completion: @escaping (Result<Void, UserServiceError>) -> Void
     )
-    func fetchProfile(completion: @escaping (Result<User, UserServiceError>) -> Void)
+    func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void)
     func registerNotificationToken(_ token: String)
 }
 
@@ -170,15 +170,16 @@ extension UserService: UserServiceType {
         }
     }
     
-    func fetchProfile(completion: @escaping (Result<User, UserServiceError>) -> Void) {
-        guard let userId = firebaseAuth.currentUser?.uid else { return }
-        firestore.collection("Users").document(userId).addSnapshotListener { (snapshot, error) in
+    func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void) {
+        guard let currentUser = firebaseAuth.currentUser else { return }
+        firestore.collection("Users").document(currentUser.uid).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             }
             if let data = snapshot?.data(),
-                let user = try? FirestoreDecoder.decode(data, to: User.self) {
-                completion(.success(user))
+                var profile = try? FirestoreDecoder.decode(data, to: Profile.self) {
+                profile.email = currentUser.email
+                completion(.success(profile))
             } else {
                 completion(.failure(.unknownError))
             }

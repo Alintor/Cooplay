@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '13.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -24,6 +24,7 @@ target 'Cooplay' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Functions'
   pod 'UIImageColors'
+  pod 'Kingfisher/SwiftUI'
 
   pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
 
