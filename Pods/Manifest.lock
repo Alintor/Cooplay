@@ -367,6 +367,8 @@ PODS:
   - Kingfisher (5.8.1):
     - Kingfisher/Core (= 5.8.1)
   - Kingfisher/Core (5.8.1)
+  - Kingfisher/SwiftUI (5.8.1):
+    - Kingfisher/Core
   - leveldb-library (1.22)
   - LightRoute (2.1.21)
   - Moya (13.0.1):
@@ -405,6 +407,7 @@ DEPENDENCIES:
   - iCarousel (~> 1.8.3)
   - KDCalendar (~> 1.8.9)
   - Kingfisher (~> 5.8.1)
+  - Kingfisher/SwiftUI
   - LightRoute (from `https://github.com/SpectralDragon/LightRoute.git`)
   - Moya (~> 13.0.1)
   - PluggableAppDelegate (~> 1.3.0)
@@ -513,6 +516,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 28bb9ad4b56dfaf2097f2337a7a10173efa43d1b
+PODFILE CHECKSUM: 22c39418282cd0a33c7cf58d40d092ca54ee9072
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

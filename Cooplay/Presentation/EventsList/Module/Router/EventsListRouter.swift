@@ -36,7 +36,7 @@ extension EventsListRouter: EventsListRouterInput {
         .perform()
     }
     
-    func openProfile(with user: User) {
+    func openProfile(with user: Profile) {
 //        try? transitionHandler.forStoryboard(
 //            factory: StoryboardFactory(storyboard: R.storyboard.profile()),
 //            to: ProfileModuleInput.self

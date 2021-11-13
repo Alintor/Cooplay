@@ -14,7 +14,7 @@ final class ProfileAssemblyContainer: Assembly {
 	func assemble(container: Container) {
 		container.register(ProfileInteractor.self) { r in
 			let interactor = ProfileInteractor(
-                authorizationService: r.resolve(AuthorizationServiceType.self)
+                authorizationService: r.resolve(AuthorizationServiceType.self), userService: nil
             )
 
 			return interactor
@@ -44,16 +44,19 @@ final class ProfileAssemblyContainer: Assembly {
 
 enum ProfileViewCOnrtollerBuilder {
 
-    static func build(with user: User) -> UIViewController {
+    static func build(with profile: Profile) -> UIViewController {
         let container: Container? = ApplicationAssembly.assembler.resolver as? Container
         let interactor = ProfileInteractor(
-            authorizationService: container?.resolve(AuthorizationServiceType.self)
+            authorizationService: container?.resolve(AuthorizationServiceType.self),
+            userService: container?.resolve(UserServiceType.self)
         )
         let presenter = ProfilePresenter()
         let router = ProfileRouter()
         presenter.interactor = interactor
         presenter.router = router
-        let viewController = UIHostingController(rootView: ProfileView(state: ProfileState(user: user), output: presenter))
+        let state = ProfileState(profile: profile)
+        presenter.state = state
+        let viewController = UIHostingController(rootView: ProfileView(state: state, output: presenter))
         router.transitionHandler = viewController
         
         return viewController

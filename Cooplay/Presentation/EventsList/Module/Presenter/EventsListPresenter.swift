@@ -75,7 +75,7 @@ final class EventsListPresenter: NSObject {
     
     private var isFirstShowing = true
     private var dataSource: MemoryStorage!
-    private var user: User!
+    private var user: Profile!
     private var events = [Event]() {
         didSet {
             events = events.sorted(by: { $0.date < $1.date })
@@ -129,7 +129,7 @@ final class EventsListPresenter: NSObject {
             switch result {
             case .success(let user):
                 self.user = user
-                self.view.updateProfile(with: AvatarViewModel(with: user))
+                self.view.updateProfile(with: AvatarViewModel(with: user.user))
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)

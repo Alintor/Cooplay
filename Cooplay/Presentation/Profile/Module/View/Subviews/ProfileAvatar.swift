@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileAvatar: View {
     
     let viewModel: AvatarViewModel
     
-    init(user: User) {
-        viewModel = AvatarViewModel(with: user)
+    init(profile: Profile) {
+        viewModel = AvatarViewModel(with: profile.user)
     }
     
     var body: some View {
@@ -23,6 +24,11 @@ struct ProfileAvatar: View {
             Text(viewModel.firstNameLetter)
                 .fontWeight(.semibold)
                 .font(.system(size: 48))
+            if let path = viewModel.avatarPath {
+                KFImage(URL(string: path), options: nil)
+                    .resizable()
+                    .cornerRadius(54)
+            }
         }
     }
 }

@@ -10,34 +10,29 @@ import SwiftUI
 
 struct ProfileInfoView: View {
     
-    let model: User
-    
-    @State var name: String
-    
-    init(model: User) {
-        self.model = model
-        name = model.name
-    }
+    let model: Profile
     
     
     var body: some View {
         VStack {
-            ProfileAvatar(user: model)
+            ProfileAvatar(profile: model)
                 .frame(width: 108, height: 108, alignment: .center)
             Text(model.name)
                 .foregroundColor(Color(R.color.textPrimary.name))
                 .font(.system(size: 21, weight: .bold))
                 .padding(.top, 16)
                 .padding(.bottom, 1)
-            if #available(iOS 15.0, *) {
-                Text("Alintorius@gmail.com")
-                    .foregroundColor(Color(R.color.textSecondary.name))
-                    .font(.system(size: 17, weight: .medium))
-                    .tint(Color(R.color.textSecondary.name))
-            } else {
-                Text("Alintorius@gmail.com")
-                    .foregroundColor(Color(R.color.textSecondary.name))
-                    .font(.system(size: 17, weight: .medium))
+            if let email = model.email {
+                if #available(iOS 15.0, *) {
+                    Text(email)
+                        .foregroundColor(Color(R.color.textSecondary.name))
+                        .font(.system(size: 17, weight: .medium))
+                        .tint(Color(R.color.textSecondary.name))
+                } else {
+                    Text(email)
+                        .foregroundColor(Color(R.color.textSecondary.name))
+                        .font(.system(size: 17, weight: .medium))
+                }
             }
         }
     }

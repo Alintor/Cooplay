@@ -6,13 +6,20 @@
 //  Copyright © 2021 Ovchinnikov. All rights reserved.
 //
 
-struct ProfileState {
+import Foundation
+import Combine
+
+class ProfileState: ObservableObject {
     
-    var user: User
+    @Published var profile: Profile
     let settings: [ProfileSettingsItem.Section: [ProfileSettingsItem]]
     
-    init(user: User) {
-        self.user = user
+    init(profile: Profile) {
+        self.profile = profile
         self.settings = ProfileSettingsItem.items
+    }
+    
+    func update(with profile: Profile) {
+        self.profile = profile
     }
 }

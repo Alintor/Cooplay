@@ -69,11 +69,11 @@ extension EventsListInteractor: EventsListInteractorInput {
         }
     }
     
-    func fetchProfile(completion: @escaping (Result<User, EventsListError>) -> Void) {
+    func fetchProfile(completion: @escaping (Result<Profile, EventsListError>) -> Void) {
         userService?.fetchProfile(completion: { result in
             switch result {
-            case .success(let user):
-                completion(.success(user))
+            case .success(let profile):
+                completion(.success(profile))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }

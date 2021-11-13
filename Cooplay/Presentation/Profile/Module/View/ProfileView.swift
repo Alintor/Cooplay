@@ -7,11 +7,10 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct ProfileView: View {
     
-    let state: ProfileState
+    @ObservedObject var state: ProfileState
     let output: ProfileViewOutput?
     
     var body: some View {
@@ -20,7 +19,7 @@ struct ProfileView: View {
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(spacing: 0) {
-                    ProfileInfoView(model: state.user)
+                    ProfileInfoView(model: state.profile)
                         .padding(.bottom, 24)
                     
                     ForEach(ProfileSettingsItem.Section.allCases) { sectionItem in
