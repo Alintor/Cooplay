@@ -101,7 +101,8 @@ extension EventCell: StatusContextDelegate {
     }
     
     func restoreView(with menuItem: MenuItem?) {
-        guard let event = menuItem?.value as? Event, let status = event.me.status else { return }
+        guard let event = menuItem?.value as? Event else { return }
+        let status = event.me.status
         self.statusIconWidthConstraint?.isActive = status.details == nil
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.statusTitle.text = status.title(isShort: true, event: event)

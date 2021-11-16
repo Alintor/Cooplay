@@ -8,9 +8,12 @@
 
 import UIKit
 
-protocol TimeCarouselContextDelegate: class {
+protocol TimeCarouselContextDelegate: AnyObject {
     
     var targetButtonView: UIView { get }
+    var targetViewGlobalPoint: CGPoint { get }
+    var targetViewSize: CGSize { get }
+    var targetViewCopy: UIView? { get }
 }
 
 extension TimeCarouselContextDelegate {

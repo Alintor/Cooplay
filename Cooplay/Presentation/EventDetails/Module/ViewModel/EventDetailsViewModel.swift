@@ -2,50 +2,104 @@
 //  EventViewModel.swift
 //  Cooplay
 //
-//  Created by Alexandr on 15/01/2020.
-//  Copyright © 2020 Ovchinnikov. All rights reserved.
+//  Created by Alexandr Ovchinnikov on 13.11.2021.
+//  Copyright © 2021 Ovchinnikov. All rights reserved.
 //
 
-import UIKit
-import SwiftDate
+import Foundation
+import SwiftUI
 
-struct EventDetailsViewModel {
+class EventDetailsViewModel: ObservableObject {
     
-    var title: String
-    var date: String
-    var coverPath: String?
-    var statusTitle: String?
-    var statusIcon: UIImage?
-    var statusColor: UIColor?
-    var avatarViewModel: AvatarViewModel
-    var statusDetailsViewModel: StatusDetailsViewModel?
-    var showGradient: BooleanLiteralType
+    enum State {
+        
+        case edit
+        case owner
+        case member
+        
+        var isEditMode: Bool {
+            self == .edit
+        }
+    }
     
-    init(with model: Event) {
-        title = model.game.name
-        date = model.date.displayString
-        coverPath = model.game.coverPath
-        statusIcon = model.me.status?.icon()
-        statusColor = model.me.status?.color
-        switch model.me.status {
-        case .suggestDate(let minutes):
-            let newDate = model.date + minutes.minutes
-            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
-        default:
-            break
+    private(set) var event: Event
+    
+    @Published var infoViewModel: EventInfoViewModel
+    @Published var statusViewModel: EventStatusViewModel
+    @Published var members: [EventDetailsMemberViewModel]
+    
+    @Published var modeState: State
+    
+    private let generator = UIImpactFeedbackGenerator(style: .medium)
+    
+    init(with event: Event) {
+        self.event = event
+        self.infoViewModel = EventInfoViewModel(with: event)
+        self.statusViewModel = EventStatusViewModel(with: event)
+        self.members = event.members
+            .sorted(by: { $0.name < $1.name })
+            .sorted(by: { $0.isOwner == true && $1.isOwner != true})
+            .map({ EventDetailsMemberViewModel(with: $0, event: event) })
+        self.modeState = event.me.isOwner == true ? .owner : .member
+    }
+}
+
+
+extension EventDetailsViewModel: EventDetailsViewInput {
+    
+    func update(with event: Event) {
+        self.event = event
+        self.infoViewModel = EventInfoViewModel(with: event)
+        self.statusViewModel = EventStatusViewModel(with: event)
+        self.members = event.members
+            .sorted(by: { $0.name < $1.name })
+            .sorted(by: { $0.isOwner == true && $1.isOwner != true})
+            .map({ EventDetailsMemberViewModel(with: $0, event: event) })
+    }
+    
+    func changeEditMode() {
+        generator.prepare()
+        switch modeState {
+        case .member, .owner:
+            modeState = .edit
+        case .edit:
+            modeState = event.me.isOwner == true ? .owner : .member
         }
-        if model.needConfirm {
-            statusTitle = R.string.localizable.statusConfirmation()
-            statusDetailsViewModel = nil
-        } else {
-            statusTitle = model.me.status?.title(event: model)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.generator.impactOccurred()
         }
-        avatarViewModel = AvatarViewModel(with: model.me)
-        switch model.me.status {
-        case .unknown:
-            showGradient = false
-        default:
-            showGradient = model.isActive
-        }
+    }
+    
+    func updateStatus(_ status: User.Status) {
+        event.me.status = status
+        statusViewModel = EventStatusViewModel(with: event)
+    }
+    
+    func updateGame(_ game: Game) {
+        event.game = game
+        self.infoViewModel = EventInfoViewModel(with: event)
+    }
+    
+    func updateDate(_ date: Date) {
+        event.date = date
+        self.infoViewModel = EventInfoViewModel(with: event)
+    }
+    
+    func updateMembers(_ members: [User]) {
+        event.members = members
+        self.members = event.members
+            .sorted(by: { $0.name < $1.name })
+            .sorted(by: { $0.isOwner == true && $1.isOwner != true})
+            .map({ EventDetailsMemberViewModel(with: $0, event: event) })
+    }
+    
+    func takeOwnerRulesToMemberAtIndex(_ index: Int) {
+        event.members[index].isOwner = true
+        event.me.isOwner = false
+        modeState = .member
+        self.members = event.members
+            .sorted(by: { $0.name < $1.name })
+            .sorted(by: { $0.isOwner == true && $1.isOwner != true})
+            .map({ EventDetailsMemberViewModel(with: $0, event: event) })
     }
 }

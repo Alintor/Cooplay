@@ -114,7 +114,8 @@ extension EventService: EventServiceType {
         }
         firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
             if let data = snapshot?.data(),
-                var user = try? FirestoreDecoder.decode(data, to: User.self) {
+                let profile = try? FirestoreDecoder.decode(data, to: Profile.self) {
+                var user = profile.user
                 user.status = .accepted
                 user.isOwner = true
                 createEvent(user: user)
@@ -182,7 +183,7 @@ extension EventService: EventServiceType {
         for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         var data: [AnyHashable: Any] = [
-            "members.\(event.me.id).state": event.me.state?.rawValue as Any
+            "members.\(event.me.id).state": event.me.state.rawValue as Any
         ]
         data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
@@ -283,6 +284,7 @@ extension EventService: EventServiceType {
         var membersData = [AnyHashable: Any]()
         for var member in members {
             member.status = .unknown
+            member.isOwner = false
             membersData["members.\(member.id)"] = member.dictionary
         }
         firestore.collection("Events").document(event.id).updateData(membersData) { [weak self] error in

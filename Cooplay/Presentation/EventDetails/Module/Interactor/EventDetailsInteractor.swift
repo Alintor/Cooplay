@@ -23,9 +23,9 @@ extension EventDetailsError: LocalizedError {
 
 final class EventDetailsInteractor {
 
-    private let eventService: EventServiceType?
+    private let eventService: EventServiceType
     
-    init(eventService: EventServiceType?) {
+    init(eventService: EventServiceType) {
         self.eventService = eventService
     }
 }
@@ -37,7 +37,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     func changeStatus(
         for event: Event,
         completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.changeStatus(for: event, completion: { result in
+        eventService.changeStatus(for: event, completion: { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -48,7 +48,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.changeGame(game, forEvent: event, completion: { (result) in
+        eventService.changeGame(game, forEvent: event, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -60,7 +60,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     
     func changeDate(_ date: Date, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
         let dateString = date.string(custom: GlobalConstant.Format.Date.serverDate.rawValue)
-        eventService?.changeDate(dateString, forEvent: event, completion: { (result) in
+        eventService.changeDate(dateString, forEvent: event, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -71,7 +71,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.removeMember(member, fromEvent: event, completion: { (result) in
+        eventService.removeMember(member, fromEvent: event, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -82,7 +82,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.addMembers(members, toEvent: event, completion: { (result) in
+        eventService.addMembers(members, toEvent: event, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -93,7 +93,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.takeOwnerRulesToMember(member, forEvent: event, completion: { (result) in
+        eventService.takeOwnerRulesToMember(member, forEvent: event, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -104,7 +104,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        eventService?.deleteEvent(event, completion: { result in
+        eventService.deleteEvent(event, completion: { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -115,7 +115,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void) {
-        eventService?.fetchEvent(id: id, completion: { result in
+        eventService.fetchEvent(id: id, completion: { result in
             switch result {
             case .success(let event):
                 completion(.success(event))

@@ -17,14 +17,21 @@ final class EventsListRouter {
 extension EventsListRouter: EventsListRouterInput {
 
     func openEvent(_ event: Event) {
-        try? transitionHandler.forStoryboard(
-            factory: StoryboardFactory(storyboard: R.storyboard.eventDetails()),
-            to: EventDetailsModuleInput.self
-        )
-        .to(preferred: .navigation(style: .push))
-        .then { moduleInput in
-            moduleInput.configure(with: event)
-        }
+//        try? transitionHandler.forStoryboard(
+//            factory: StoryboardFactory(storyboard: R.storyboard.eventDetails()),
+//            to: EventDetailsModuleInput.self
+//        )
+//        .to(preferred: .navigation(style: .push))
+//        .then { moduleInput in
+//            moduleInput.configure(with: event)
+//        }
+        
+        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        
+        let eventDetailsViewController = EventDetailsBuilder().build(with: event)
+        
+        transitionHandler.navigationController?.pushViewController(eventDetailsViewController, animated: true)
+        //transitionHandler.present(eventDetailsViewController, animated: true, completion: nil)
     }
     
     func openNewEvent() {

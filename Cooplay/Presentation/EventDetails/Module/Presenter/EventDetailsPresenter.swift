@@ -9,133 +9,40 @@ import DTModelStorage
 
 final class EventDetailsPresenter {
 
-    // MARK: - Properties
-
-    weak var view: EventDetailsViewInput! {
-        didSet {
-            // Configure view out
-            view.viewIsReady = { [weak self] in
-                guard let `self` = self else { return }
-                self.view.setupInitialState()
-                self.view.update(with: EventDetailsViewModel(with: self.event))
-                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: false)
-                self.fetchEvent()
-            }
-            view.dataSourceIsReady = { [weak self] dataSource in
-                guard let `self` = self else { return }
-                self.dataSource = dataSource
-                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0, event: self.event) })
-            }
-            view.statusAction = { [weak self] delegate in
-                guard let `self` = self else { return }
-                self.router.showContextMenu(
-                    delegate: delegate,
-                    contextType: .overTarget,
-                    menuSize: .large,
-                    menuType: .statuses(
-                        type: self.event.statusesType,
-                        event: self.event,
-                        actionHandler: { [weak self] status in
-                            guard let `self` = self else { return }
-                            self.event.me.status = status
-                            self.view.update(with: EventDetailsViewModel(with: self.event))
-                            self.changeStatus()
-                    })
-                )
-            }
-            view.itemSelected = { [weak self] item, delegate in
-                guard self?.event.me.isOwner == true else { return }
-                self?.router.showContextMenu(
-                    delegate: delegate,
-                    contextType: .overTarget,
-                    menuSize: .small,
-                    menuType: .eventMemberActions(group: .editing, actionHandler: { (actionType) in
-                        switch actionType {
-                        case .delete:
-                            self?.removeMember(item.model)
-                        case .makeOwner:
-                            self?.takeOwnerRulesToMember(item.model)
-                        }
-                    })
-                )
-            }
-            view.editAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.view.updateState(with: EventDetailsStateViewModel(state: .edit, event: self.event), animated: true)
-            }
-            view.cancelAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
-            }
-            view.deleteAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.router.showAlert(
-                    withMessage: R.string.localizable.eventDetailsDeleteAlertTitle(),
-                    actions: [Action(title: R.string.localizable.commonDelete(), handler: { [weak self] in
-                        self?.deleteEvent()
-                    })]
-                )
-            }
-            view.changeGameAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.router.openGameSearch(offtenGames: nil, selectedGame: self.event.game) { [weak self] newGame in
-                    self?.changeGame(newGame)
-                }
-            }
-            view.changeDateAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.router.showCarousel(configuration: .init(type: .change, date: self.event.date)) { [weak self] (newDate) in
-                    self?.changeDate(newDate)
-                }
-            }
-            view.addMemberAction = { [weak self] in
-                guard let `self` = self else { return }
-                self.router.openMembersSearch(
-                    eventId: self.event.id,
-                    offtenMembers: nil,
-                    selectedMembers: self.event.members) { [weak self] (newMembers) in
-                        self?.addMembers(newMembers)
-                    }
-            }
-        }
-    }
-    var interactor: EventDetailsInteractorInput!
-    var router: EventDetailsRouterInput!
     
-    init() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(fetchEvent),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
+    private let interactor: EventDetailsInteractorInput
+    private let router: EventDetailsRouterInput
+    private let viewModel: EventDetailsViewInput
+    
+    init(
+        viewModel: EventDetailsViewInput,
+        interactor: EventDetailsInteractorInput,
+        router: EventDetailsRouterInput
+    ) {
+        self.viewModel = viewModel
+        self.interactor = interactor
+        self.router = router
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(fetchEvent),
+//            name: UIApplication.didBecomeActiveNotification,
+//            object: nil
+//        )
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//    }
     
     // MARK: - Private
     
-    private var dataSource: MemoryStorage!
-    private var event: Event! {
-        didSet {
-            guard let event = event else { return }
-            self.members = event.members.sorted(by: { $0.name < $1.name }).sorted(by: { $0.isOwner == true && $1.isOwner != true})
-        }
-    }
-    private var members: [User]!
     
     @objc private func fetchEvent() {
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.fetchEvent(id: self.event.id) { [weak self] result in
+        interactor.fetchEvent(id: self.viewModel.event.id) { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success(let event):
-                self.event = event
-                self.view.update(with: EventDetailsViewModel(with: self.event))
-                self.dataSource.setItems(self.members.map { EventDetailsCellViewModel(with: $0, event: self.event)})
+                self.viewModel.update(with: event)
             case .failure(let error):
                 // TODO:
                 print(error.localizedDescription)
@@ -144,10 +51,8 @@ final class EventDetailsPresenter {
     }
     
     private func changeStatus() {
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.changeStatus(for: self.event) { [weak self] result in
+        interactor.changeStatus(for: viewModel.event) { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success: break
             case .failure(let error):
@@ -158,11 +63,9 @@ final class EventDetailsPresenter {
     }
     
     private func changeGame(_ game: Game) {
-        event.game = game
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.changeGame(game, forEvent: event) { [weak self] result in
+        viewModel.updateGame(game)
+        interactor.changeGame(game, forEvent: viewModel.event) { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -172,17 +75,14 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
+        viewModel.changeEditMode()
     }
     
     private func changeDate(_ date: Date) {
-        guard date != event.date else { return }
-        event.date = date
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.changeDate(date, forEvent: event) { [weak self] result in
+        guard date != viewModel.event.date else { return }
+        viewModel.updateDate(date)
+        interactor.changeDate(date, forEvent: viewModel.event) { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -192,16 +92,15 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
+        viewModel.changeEditMode()
     }
     
-    private func addMembers(_ members: [User]) {
-        event.members.append(contentsOf: members)
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.addMembers(members, toEvent: event) { [weak self] (result) in
+    private func addMembers(_ newMembers: [User]) {
+        var members = viewModel.event.members
+        members.append(contentsOf: newMembers)
+        viewModel.updateMembers(members)
+        interactor.addMembers(members, toEvent: viewModel.event) { [weak self] (result) in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -211,15 +110,12 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
+        viewModel.changeEditMode()
     }
     
     private func removeMember(_ member: User) {
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.removeMember(member, fromEvent: event) { [weak self] (result) in
+        interactor.removeMember(member, fromEvent: viewModel.event) { [weak self] (result) in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -229,19 +125,13 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        event.members = event.members.filter({ $0.id != member.id })
-        view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
+        viewModel.updateMembers(viewModel.event.members.filter({ $0.id != member.id }))
+        //viewModel.changeEditMode()
     }
     
     private func takeOwnerRulesToMember(_ member: User) {
-        if let index = event.members.firstIndex(of: member) {
-            event.members[index].isOwner = true
-        }
-        self.view.showProgress(indicatorType: .line, fullScreen: true)
-        interactor.takeOwnerRulesToMember(member, forEvent: event) { [weak self] (result) in
+        interactor.takeOwnerRulesToMember(member, forEvent: viewModel.event) { [weak self] (result) in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 // TODO: Show success banner
@@ -251,16 +141,15 @@ final class EventDetailsPresenter {
                 print(error.localizedDescription)
             }
         }
-        event.me.isOwner = false
-        view.update(with: EventDetailsViewModel(with: self.event))
-        view.updateState(with: EventDetailsStateViewModel(state: .normal, event: self.event), animated: true)
+        if let index = viewModel.event.members.firstIndex(of: member) {
+            viewModel.takeOwnerRulesToMemberAtIndex(index)
+        }
+        //viewModel.changeEditMode()
     }
     
     private func deleteEvent() {
-        view.showProgress(indicatorType: .arrows, fullScreen: true)
-        interactor.deleteEvent(event) { [weak self] result in
+        interactor.deleteEvent(viewModel.event) { [weak self] result in
             guard let `self` = self else { return }
-            self.view.hideProgress()
             switch result {
             case .success:
                 self.router.close(animated: true)
@@ -272,11 +161,78 @@ final class EventDetailsPresenter {
     }
 }
 
-// MARK: - EventDetailsModuleInput
 
-extension EventDetailsPresenter: EventDetailsModuleInput {
 
-    func configure(with event: Event) {
-        self.event = event
+extension EventDetailsPresenter: EventDetailsViewOutput {
+    
+    func didLoad() {
+        self.fetchEvent()
     }
+    
+    func statusAction(with delegate: StatusContextDelegate) {
+        self.router.showContextMenu(
+            delegate: delegate,
+            contextType: .overTarget,
+            menuSize: .large,
+            menuType: .statuses(
+                type: viewModel.event.statusesType,
+                event: viewModel.event,
+                actionHandler: { [weak self] status in
+                    guard let `self` = self else { return }
+                    self.viewModel.updateStatus(status)
+                    self.changeStatus()
+            })
+        )
+    }
+    
+    func itemSelected(_ member: User, delegate: StatusContextDelegate) {
+        guard viewModel.event.me.isOwner == true else { return }
+        self.router.showContextMenu(
+            delegate: delegate,
+            contextType: .overTarget,
+            menuSize: .small,
+            menuType: .eventMemberActions(group: .editing, actionHandler: { [weak self] (actionType) in
+                switch actionType {
+                case .delete:
+                    self?.removeMember(member)
+                case .makeOwner:
+                    self?.takeOwnerRulesToMember(member)
+                }
+            })
+        )
+    }
+    
+    func deleteAction() {
+        self.router.showAlert(
+            withMessage: R.string.localizable.eventDetailsDeleteAlertTitle(),
+            actions: [Action(title: R.string.localizable.commonDelete(), handler: { [weak self] in
+                self?.deleteEvent()
+            })]
+        )
+    }
+    
+    func changeGameAction() {
+        self.router.openGameSearch(offtenGames: nil, selectedGame: viewModel.event.game) { [weak self] newGame in
+            self?.changeGame(newGame)
+        }
+    }
+    
+    func changeDateAction(delegate: TimeCarouselContextDelegate) {
+        self.router.showCarousel(delegate: delegate, configuration: .init(type: .change, date: viewModel.event.date)) { [weak self] (newDate) in
+            self?.changeDate(newDate)
+        }
+    }
+    
+    func addMemberAction() {
+        self.router.openMembersSearch(
+            eventId: viewModel.event.id,
+            offtenMembers: nil,
+            selectedMembers: viewModel.event.members
+        ) { [weak self] (newMembers) in
+                self?.addMembers(newMembers)
+        }
+    }
+    
+    
+    
 }

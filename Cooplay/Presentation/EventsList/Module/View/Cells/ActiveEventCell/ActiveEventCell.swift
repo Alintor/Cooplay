@@ -149,7 +149,8 @@ extension ActiveEventCell: StatusContextDelegate {
             self.statusView.layer.cornerRadius = 8
             self.statusView.backgroundColor = R.color.shapeBackground()
             self.arrowImageView.transform = .identity
-            if let event = menuItem?.value as? Event, let status = event.me.status {
+            if let event = menuItem?.value as? Event {
+                let status = event.me.status
                 self.statusTitle.text = status.title(event: event)
                 self.statusIconImageView.image = status.icon()
                 self.statusIconView.backgroundColor = status.color

@@ -62,12 +62,12 @@ extension UserService: UserServiceType {
                 return
             }
             let users = snapshot?.documents.compactMap({
-                return try? FirestoreDecoder.decode($0.data(), to: User.self)
+                return try? FirestoreDecoder.decode($0.data(), to: Profile.self)
             })
             let filteredUsers = users?.filter({
                 $0.name.lowercased().contains(searchValue.lowercased()) && $0.id != userId
             })
-            completion(.success(filteredUsers ?? []))
+            completion(.success(filteredUsers?.map({ $0.user }) ?? []))
         }
         
     }

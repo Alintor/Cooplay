@@ -50,7 +50,7 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
             switch result {
             case .success(let exist):
                 guard let `self` = self, !exist else { return }
-                let user = User(id: userId, name: nil, avatarPath: nil, state: nil, lateness: nil, isOwner: nil)
+                let user = User(id: userId, name: nil, avatarPath: nil, state: .unknown, lateness: nil, isOwner: nil)
                 // TODO:
                 let personalisation = R.storyboard.personalisation.personalisationViewController()!
                 personalisation.output?.configure(with: user)

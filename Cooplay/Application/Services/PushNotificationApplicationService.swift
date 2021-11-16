@@ -65,8 +65,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
              .eventStart:
             guard let eventData = userInfo["event"] as? Data, let event = try? JSONDecoder().decode(Event.self, from: eventData) else { return }
             let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
-            let eventDetailsViewController = R.storyboard.eventDetails.eventDetailsViewController()!
-            eventDetailsViewController.output?.configure(with: event)
+            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
             let navigationController = UINavigationController(rootViewController: eventsViewController)
             navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
             UIApplication.setRootViewController(navigationController)
@@ -88,8 +87,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             event.me = me
             event.members.append(user)
             let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
-            let eventDetailsViewController = R.storyboard.eventDetails.eventDetailsViewController()!
-            eventDetailsViewController.output?.configure(with: event)
+            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
             let navigationController = UINavigationController(rootViewController: eventsViewController)
             navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
             UIApplication.setRootViewController(navigationController)

@@ -19,6 +19,8 @@ class ContextMenuHandler: ObservableObject {
     }
     
     let viewCornerType: ViewCornerType
+    var completion: ((_ item: MenuItem?) -> Void)?
+    var hideTargetView: ((_ hide: Bool) -> Void)?
     
     init(viewCornerType: ViewCornerType) {
         self.viewCornerType = viewCornerType
@@ -71,4 +73,17 @@ extension ContextMenuHandler: StatusContextDelegate {
         }
         return imageView
     }
+    
+    func setTargetView(hide: Bool) {
+        hideTargetView?(hide)
+    }
+    
+    func restoreView(with menuItem: MenuItem?) {
+        completion?(menuItem)
+    }
+}
+
+extension ContextMenuHandler: TimeCarouselContextDelegate {
+    
+    var targetButtonView: UIView { UIView() }
 }

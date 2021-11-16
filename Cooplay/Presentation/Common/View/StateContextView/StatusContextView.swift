@@ -13,6 +13,7 @@ protocol StatusContextDelegate: AnyObject {
     var targetView: UIView { get }
     func prepareView(completion: @escaping () -> Void)
     func restoreView(with menuItem: MenuItem?)
+    func setTargetView(hide: Bool)
     var targetViewGlobalPoint: CGPoint { get }
     var targetViewSize: CGSize { get }
     var targetViewCopy: UIView? { get }

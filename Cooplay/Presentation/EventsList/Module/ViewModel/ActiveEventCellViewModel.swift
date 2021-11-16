@@ -38,8 +38,8 @@ struct ActiveEventCellViewModel {
         date = model.date.displayString
         coverPath = model.game.coverPath
         previewPath = model.game.previewImagePath
-        statusIcon = model.me.status?.icon()
-        statusColor = model.me.status?.color
+        statusIcon = model.me.status.icon()
+        statusColor = model.me.status.color
         avatarViewModel = AvatarViewModel(with: model.me)
         switch model.me.status {
         case .suggestDate(let minutes):
@@ -52,7 +52,7 @@ struct ActiveEventCellViewModel {
             statusTitle = R.string.localizable.statusConfirmation()
             statusDetailsViewModel = nil
         } else {
-            statusTitle = model.me.status?.title(event: model)
+            statusTitle = model.me.status.title(event: model)
         }
         
         let memberViewModels = model.members.sorted(by: { $0.name < $1.name }).map { MemberStatusViewModel(with: $0) }

@@ -37,20 +37,20 @@ struct User: Codable {
             return [.ontime, .late(minutes: nil), .declined]
         }
         
-        var color: UIColor? {
+        var color: UIColor {
             switch self {
             case .accepted,
                  .ontime:
-                return R.color.green()
+                return R.color.green()!
             case .maybe,
                  .late:
-                return R.color.yellow()
+                return R.color.yellow()!
             case .suggestDate:
-                return R.color.actionAccent()
+                return R.color.actionAccent()!
             case .declined:
-                return R.color.red()
+                return R.color.red()!
             case .unknown:
-                return R.color.grey()
+                return R.color.grey()!
             }
         }
         
@@ -112,13 +112,12 @@ struct User: Codable {
     let id: String
     var name: String!
     let avatarPath: String?
-    var state: State?
+    var state: State
     var lateness: Int?
     var isOwner: Bool?
     
-    var status: Status? {
+    var status: Status {
         get {
-            guard let state = state else { return nil }
             switch state {
             case .accepted:
                 if let lateness = lateness {
@@ -146,12 +145,7 @@ struct User: Codable {
         }
         
         set {
-            guard let status = newValue else {
-                state = nil
-                lateness = nil
-                return
-            }
-            switch status {
+            switch newValue {
             case .accepted:
                 state = .accepted
                 lateness = nil

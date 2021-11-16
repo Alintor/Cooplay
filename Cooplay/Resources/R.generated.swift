@@ -460,7 +460,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 12 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
   struct nib {
     /// Nib `ActiveEventCell`.
     static let activeEventCell = _R.nib._ActiveEventCell()
@@ -468,8 +468,6 @@ struct R: Rswift.Validatable {
     static let avatarView = _R.nib._AvatarView()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
-    /// Nib `EventDetailsMemberCell`.
-    static let eventDetailsMemberCell = _R.nib._EventDetailsMemberCell()
     /// Nib `InventedHeaderView`.
     static let inventedHeaderView = _R.nib._InventedHeaderView()
     /// Nib `InvitationsHeaderCell`.
@@ -503,12 +501,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.eventCell) instead")
     static func eventCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.eventCell)
-    }
-    
-    /// `UINib(name: "EventDetailsMemberCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.eventDetailsMemberCell) instead")
-    static func eventDetailsMemberCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.eventDetailsMemberCell)
     }
     
     /// `UINib(name: "InventedHeaderView", in: bundle)`
@@ -571,10 +563,6 @@ struct R: Rswift.Validatable {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
     }
     
-    static func eventDetailsMemberCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventDetailsMemberCell? {
-      return R.nib.eventDetailsMemberCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventDetailsMemberCell
-    }
-    
     static func inventedHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.inventedHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -630,12 +618,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 11 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 10 storyboards.
   struct storyboard {
     /// Storyboard `Authorization`.
     static let authorization = _R.storyboard.authorization()
-    /// Storyboard `EventDetails`.
-    static let eventDetails = _R.storyboard.eventDetails()
     /// Storyboard `EventsList`.
     static let eventsList = _R.storyboard.eventsList()
     /// Storyboard `Intro`.
@@ -658,11 +644,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Authorization", bundle: ...)`
     static func authorization(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.authorization)
-    }
-    
-    /// `UIStoryboard(name: "EventDetails", bundle: ...)`
-    static func eventDetails(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.eventDetails)
     }
     
     /// `UIStoryboard(name: "EventsList", bundle: ...)`
@@ -1544,7 +1525,6 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _ActiveEventCell.validate()
-      try _EventDetailsMemberCell.validate()
       try _InvitedEventCell.validate()
       try _NewEventGameCell.validate()
       try _NewEventMemberCell.validate()
@@ -1596,25 +1576,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _EventDetailsMemberCell: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "EventDetailsMemberCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventDetailsMemberCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventDetailsMemberCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.normal.crown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.normal.crown' is used in nib 'EventDetailsMemberCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "yellow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'yellow' is used in storyboard 'EventDetailsMemberCell', but couldn't be loaded.") }
-        }
       }
       
       fileprivate init() {}
@@ -1775,7 +1736,6 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try authorization.validate()
-      try eventDetails.validate()
       try eventsList.validate()
       try intro.validate()
       try launchScreen.validate()
@@ -1809,34 +1769,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'Authorization', but couldn't be loaded.") }
         }
         if _R.storyboard.authorization().authorizationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authorizationViewController' could not be loaded from storyboard 'Authorization' as 'AuthorizationViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct eventDetails: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = EventDetailsViewController
-      
-      let bundle = R.hostingBundle
-      let eventDetailsViewController = StoryboardViewControllerResource<EventDetailsViewController>(identifier: "EventDetailsViewController")
-      let name = "EventDetails"
-      
-      func eventDetailsViewController(_: Void = ()) -> EventDetailsViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventDetailsViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.arrowDown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.arrowDown' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "common.plus", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.plus' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'EventDetails', but couldn't be loaded.") }
-        }
-        if _R.storyboard.eventDetails().eventDetailsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventDetailsViewController' could not be loaded from storyboard 'EventDetails' as 'EventDetailsViewController'.") }
       }
       
       fileprivate init() {}

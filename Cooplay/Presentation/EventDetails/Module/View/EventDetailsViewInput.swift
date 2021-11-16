@@ -7,25 +7,14 @@
 
 import DTModelStorage
 
-protocol EventDetailsViewInput: class, ActivityIndicatorRenderer {
+protocol EventDetailsViewInput: AnyObject {
 
-    // MARK: - View out
-
-    var output: EventDetailsModuleInput? { get set }
-    var viewIsReady: (() -> Void)? { get set }
-    var statusAction: ((_ delegate: StatusContextDelegate?) -> Void)? { get set }
-    var dataSourceIsReady: ((_ dataSource: MemoryStorage) -> Void)? { get set }
-    var itemSelected: ((_ item: EventDetailsCellViewModel, _ delegate: StatusContextDelegate?) -> Void)? { get set }
-    var editAction: (() -> Void)? { get set }
-    var deleteAction: (() -> Void)? { get set }
-    var cancelAction: (() -> Void)? { get set }
-    var changeGameAction: (() -> Void)? { get set }
-    var changeDateAction: (() -> Void)? { get set }
-    var addMemberAction: (() -> Void)? { get set }
-
-    // MARK: - View in
-
-    func setupInitialState()
-    func update(with model: EventDetailsViewModel)
-    func updateState(with model: EventDetailsStateViewModel, animated: Bool)
+    var event: Event { get }
+    func changeEditMode()
+    func update(with event: Event)
+    func updateStatus(_ status: User.Status)
+    func updateGame(_ game: Game)
+    func updateDate(_ date: Date)
+    func updateMembers(_ members: [User])
+    func takeOwnerRulesToMemberAtIndex(_ index: Int)
 }

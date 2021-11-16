@@ -99,7 +99,7 @@ extension AuthorizationService: AuthorizationServiceType {
                 id: result.user.uid,
                 name: nil,
                 avatarPath: nil,
-                state: nil,
+                state: .unknown,
                 lateness: nil,
                 isOwner: nil
             )

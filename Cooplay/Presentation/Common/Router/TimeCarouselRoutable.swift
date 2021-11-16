@@ -10,13 +10,13 @@ import UIKit
 
 protocol TimeCarouselRoutable: Router {
     
-    func showCarousel(configuration: TimeCarouselConfiguration, selectHandler: ((_ date: Date) -> Void)?)
+    func showCarousel(delegate: TimeCarouselContextDelegate?, configuration: TimeCarouselConfiguration, selectHandler: ((_ date: Date) -> Void)?)
 }
 
 extension TimeCarouselRoutable {
     
-    func showCarousel(configuration: TimeCarouselConfiguration, selectHandler: ((_ date: Date) -> Void)?) {
-        guard let delegate = transitionHandler as? TimeCarouselContextDelegate else { return }
+    func showCarousel(delegate: TimeCarouselContextDelegate?, configuration: TimeCarouselConfiguration, selectHandler: ((_ date: Date) -> Void)?) {
+        guard let delegate = delegate ?? transitionHandler as? TimeCarouselContextDelegate else { return }
         let contextView = TimeCarouselContextView(configuration: configuration, delegate: delegate, selectHandler: selectHandler)
         contextView.show()
     }

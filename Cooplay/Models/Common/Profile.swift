@@ -22,6 +22,6 @@ struct Profile: Codable {
     }
     
     var user: User {
-        User(id: id, name: name, avatarPath: avatarPath, state: nil, lateness: nil, isOwner: nil)
+        User(id: id, name: name, avatarPath: avatarPath, state: .unknown, lateness: nil, isOwner: nil)
     }
 }
