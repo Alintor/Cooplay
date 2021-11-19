@@ -17,4 +17,6 @@ protocol EventDetailsViewInput: AnyObject {
     func updateDate(_ date: Date)
     func updateMembers(_ members: [User])
     func takeOwnerRulesToMemberAtIndex(_ index: Int)
+    func currentReaction(to member: User) -> Reaction?
+    func addReaction(_ reaction: Reaction?, to member: User)
 }

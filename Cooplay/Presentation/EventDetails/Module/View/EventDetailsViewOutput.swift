@@ -15,4 +15,5 @@ protocol EventDetailsViewOutput: AnyObject {
     func changeGameAction()
     func changeDateAction(delegate: TimeCarouselContextDelegate)
     func addMemberAction()
+    func reactionTapped(for member: User, delegate: ReactionContextMenuDelegate?)
 }

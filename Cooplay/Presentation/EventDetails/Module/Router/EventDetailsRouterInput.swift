@@ -16,4 +16,5 @@ protocol EventDetailsRouterInput:
     CloseableRouter {
 
     func openMembersSearch(eventId: String, offtenMembers: [User]?, selectedMembers: [User], selectionHandler: ((_ members: [User]) -> Void)?)
+    func showReactionMenu(delegate: ReactionContextMenuDelegate?, currentReaction: Reaction?, handler: ((_ reaction: Reaction?) -> Void)?)
 }

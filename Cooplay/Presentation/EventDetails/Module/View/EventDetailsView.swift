@@ -13,10 +13,20 @@ struct EventDetailsView: View {
     @ObservedObject var viewModel: EventDetailsViewModel
     var output: EventDetailsViewOutput
     
+    init(viewModel: EventDetailsViewModel, output: EventDetailsViewOutput) {
+        self.viewModel = viewModel
+        self.output = output
+        members = viewModel.members
+        reactions = viewModel.reactions
+    }
+    
     let contextMenuHandler = ContextMenuHandler(viewCornerType: .rounded(value: 12))
     
     @State var statusViewTapped: Bool = false
     @State var isStatusViewHidden: Bool = false
+    
+    @State var members: [EventDetailsMemberViewModel]
+    @State var reactions: [ReactionViewModel]
     
     @State var isEditMode = false
     
@@ -32,40 +42,62 @@ struct EventDetailsView: View {
     }
     
     var body: some View {
-        ZStack {
+        configureHandler()
+        return ZStack {
             Color(R.color.background.name)
                 .edgesIgnoringSafeArea(.all)
-            ScrollView {
-                VStack(spacing: 0) {
-                    if isEditMode {
-                        EventDetailsEditInfoView(viewModel: viewModel.infoViewModel, output: output)
-                            .padding(EdgeInsets(top: 0, leading: 24, bottom: 24, trailing: 24))
-                            .transition(.scale.combined(with: .opacity))
-                        EventDetailsAddMemberView()
-                            .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-                            .transition(.scale.combined(with: .opacity))
-                            .onTapGesture {
-                                output.addMemberAction()
-                            }
-                    } else {
-                        EventDetailsInfoView(viewModel: viewModel.infoViewModel)
-                            .padding(.bottom, 24)
-                            .animation(.easeInOut, value: viewModel.modeState.isEditMode)
-                            .transition(.scale.combined(with: .opacity))
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        if isEditMode {
+                            EventDetailsEditInfoView(viewModel: viewModel.infoViewModel, output: output)
+                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 24, trailing: 24))
+                                .transition(.scale.combined(with: .opacity))
+                            EventDetailsAddMemberView()
+                                .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
+                                .transition(.scale.combined(with: .opacity))
+                                .onTapGesture {
+                                    output.addMemberAction()
+                                }
+                        } else {
+                            EventDetailsInfoView(viewModel: viewModel.infoViewModel)
+                                .padding(.bottom, 24)
+                                .transition(.scale.combined(with: .opacity))
+                        }
+                        
+                        ForEach(members, id:\.name) { item in
+                            EventDetailsMemberView(viewModel: item, output: output)
+                                .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
+                                .animation(.easeInOut(duration: 0.2))
+                                .transition(.scale.combined(with: .opacity))
+                        }
                     }
-                    
-                    ForEach(viewModel.members, id:\.name) { item in
-                        EventDetailsMemberView(viewModel: item, output: output)
-                            .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-                            .transition(.scale.combined(with: .opacity))
+                    .padding(.top, 16)
+                    .padding(.bottom, 44)
+                }
+                .padding(.top, 1)
+                .padding(.bottom, -44)
+                ZStack {
+                    ReactionsListOwnerView(reactions: reactions, output: output, reactionContextViewHandler: nil, member: viewModel.event.me)
+                        .animation(.easeInOut(duration: 0.2))
+                    HStack(spacing: 0) {
+                        Rectangle()
+                            .fill(LinearGradient(
+                                gradient: Gradient(colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            ))
+                            .frame(width: 10, height: 44, alignment: .center)
+                        Spacer()
+                        Rectangle()
+                            .fill(LinearGradient(
+                                gradient: Gradient(colors: [Color(R.color.background.name).opacity(0), Color(R.color.background.name)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            ))
+                            .frame(width: 10, height: 44, alignment: .center)
                     }
                 }
-                .padding(.top, 16)
-            }
-            .padding(.top, 1)
-            .padding(.bottom, 66)
-            VStack {
-                Spacer()
                 EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped, contextMenuHandler: contextMenuHandler)
                     .background(Color(R.color.block.name))
                     .cornerRadius(12)
@@ -76,18 +108,24 @@ struct EventDetailsView: View {
                         statusViewTapped.toggle()
                         DispatchQueue.main.asyncAfter(deadline: .now() + EventStatusView.animationDuration + 0.1) {
                             contextMenuHandler.takeSnaphot()
-                            let contextView = StatusContextView(contextType: .overTarget, delegate: contextMenuHandler)
-                            contextView.showMenu(size: .large, type: .statuses(type: .agreement, event: viewModel.event, actionHandler: nil))
+                            output.statusAction(with: contextMenuHandler)
                         }
                     }
             }
         }
-        .onAppear {
-            configureHandler()
-        }
         .onReceive(viewModel.$modeState) { value in
             withAnimation {
                 isEditMode = value.isEditMode
+            }
+        }
+        .onReceive(viewModel.$members) { members in
+            withAnimation {
+                self.members = members
+            }
+        }
+        .onReceive(viewModel.$reactions) { reactions in
+            withAnimation {
+                self.reactions = reactions
             }
         }
         

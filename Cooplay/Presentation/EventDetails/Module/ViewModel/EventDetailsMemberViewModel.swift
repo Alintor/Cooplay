@@ -19,6 +19,7 @@ struct EventDetailsMemberViewModel {
     var statusIcon: Image?
     var avatarViewModel: AvatarViewModel
     var isOwner: Bool
+    var reactions: [ReactionViewModel]
     
     
     init(with member: User, event: Event) {
@@ -29,5 +30,6 @@ struct EventDetailsMemberViewModel {
         statusIcon = member.status.icon(isSmall: false).flatMap({Image(uiImage: $0)})
         avatarViewModel = AvatarViewModel(with: member)
         isOwner = member.isOwner == true
+        reactions = member.reactions.map({ ReactionViewModel.build(reactions: $0, event: event) }) ?? []
     }
 }

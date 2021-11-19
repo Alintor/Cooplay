@@ -16,10 +16,12 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 16 colors.
+  /// This `R.color` struct is generated, and contains static references to 17 colors.
   struct color {
     /// Color `action.accent`.
     static let actionAccent = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.accent")
+    /// Color `action.disabled`.
+    static let actionDisabled = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.disabled")
     /// Color `background`.
     static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
     /// Color `block`.
@@ -56,6 +58,13 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func actionAccent(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.actionAccent, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "action.disabled", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func actionDisabled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.actionDisabled, compatibleWith: traitCollection)
     }
     
     /// `UIColor(named: "background", bundle: ..., traitCollection: ...)`
@@ -188,7 +197,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 38 images.
+  /// This `R.image` struct is generated, and contains static references to 39 images.
   struct image {
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
@@ -220,6 +229,8 @@ struct R: Rswift.Validatable {
     static let commonNormalCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.normal.crown")
     /// Image `common.plus`.
     static let commonPlus = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.plus")
+    /// Image `common.reaction`.
+    static let commonReaction = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.reaction")
     /// Image `common.show`.
     static let commonShow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.show")
     /// Image `common.small.crown`.
@@ -340,6 +351,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.plus", bundle: ..., traitCollection: ...)`
     static func commonPlus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonPlus, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.reaction", bundle: ..., traitCollection: ...)`
+    static func commonReaction(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonReaction, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.show", bundle: ..., traitCollection: ...)`

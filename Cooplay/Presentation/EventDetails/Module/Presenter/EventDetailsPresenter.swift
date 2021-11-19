@@ -99,7 +99,7 @@ final class EventDetailsPresenter {
         var members = viewModel.event.members
         members.append(contentsOf: newMembers)
         viewModel.updateMembers(members)
-        interactor.addMembers(members, toEvent: viewModel.event) { [weak self] (result) in
+        interactor.addMembers(newMembers, toEvent: viewModel.event) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .success:
@@ -233,6 +233,10 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
         }
     }
     
-    
+    func reactionTapped(for member: User, delegate: ReactionContextMenuDelegate?) {
+        router.showReactionMenu(delegate: delegate, currentReaction: viewModel.currentReaction(to: member)) { [weak self] reaction in
+            self?.viewModel.addReaction(reaction, to: member)
+        }
+    }
     
 }

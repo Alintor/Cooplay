@@ -29,4 +29,9 @@ extension EventDetailsRouter: EventDetailsRouterInput {
         let navigationController = UINavigationController(rootViewController: searchMembersViewController)
         transitionHandler.present(navigationController, animated: true, completion: nil)
     }
+    
+    func showReactionMenu(delegate: ReactionContextMenuDelegate?, currentReaction: Reaction?, handler: ((_ reaction: Reaction?) -> Void)?) {
+        let reactionMenuView = ReactionContextMenuView(delegate: delegate, selectedReaction: currentReaction, handler: handler)
+        reactionMenuView.show()
+    }
 }
