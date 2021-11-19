@@ -38,10 +38,22 @@ struct EventDetailsMemberInfoView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                Text(viewModel.status)
-                    .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(Color(R.color.textPrimary.name))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                HStack(spacing: 0) {
+                    if let details = viewModel.detailsViewModel {
+                        details.icon
+                            .foregroundColor(Color(R.color.textPrimary.name))
+                            .padding(.trailing, 4)
+                        Text(details.fullStatus)
+                            .font(.system(size: 17, weight: .regular))
+                            .foregroundColor(Color(R.color.textPrimary.name))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        Text(viewModel.status)
+                            .font(.system(size: 17, weight: .regular))
+                            .foregroundColor(Color(R.color.textPrimary.name))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
             }
             Spacer(minLength: 4)
             ZStack {

@@ -74,7 +74,8 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
             NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
         case .statusChange,
-             .takeEventOwner:
+             .takeEventOwner,
+             .addReaction:
             guard
                 let eventJson = userInfo["event"] as? String,
                 let eventData =  eventJson.data(using: .utf16),
@@ -107,7 +108,7 @@ extension PushNotificationApplicationService: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-        processNotificationUserInfo(userInfo)
+        //processNotificationUserInfo(userInfo)
         print("Will present notification: \(userInfo)")
         completionHandler([.alert, .badge, .sound])
     }

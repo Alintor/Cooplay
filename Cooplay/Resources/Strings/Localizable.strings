@@ -30,6 +30,7 @@
 "status.declined.full" = "Не пойду";
 "status.unknown.full" = "Приглашен";
 "status.confirmation" = "Подтвердить статус";
+"status.fullDetails" = "%@ в %@";
 
 // MARK: - Notifications
 "notifications.statusRemind.title" = "Подтвердите свой статус";

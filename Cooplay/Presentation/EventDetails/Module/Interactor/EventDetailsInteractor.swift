@@ -124,4 +124,15 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
             }
         })
     }
+    
+    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
+        eventService.addReaction(reaction, to: member, for: event) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(.unhandled(error: error)))
+            }
+        }
+    }
 }

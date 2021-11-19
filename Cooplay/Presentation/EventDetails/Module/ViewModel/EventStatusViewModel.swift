@@ -24,7 +24,7 @@ struct EventStatusViewModel {
         switch event.me.status {
         case .suggestDate(let minutes):
             let newDate = event.date + minutes.minutes
-            detailsViewModel = StatusDetailsViewModel(with: newDate)
+            detailsViewModel = StatusDetailsViewModel(with: newDate, eventDate: event.date)
         default:
             break
         }

@@ -159,6 +159,19 @@ final class EventDetailsPresenter {
             }
         }
     }
+    
+    private func addReaction(_ reaction: Reaction?, to member: User) {
+        interactor.addReaction(reaction, to: member, for: viewModel.event) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success: break
+            case .failure(let error):
+                // TODO:
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 
@@ -236,6 +249,7 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
     func reactionTapped(for member: User, delegate: ReactionContextMenuDelegate?) {
         router.showReactionMenu(delegate: delegate, currentReaction: viewModel.currentReaction(to: member)) { [weak self] reaction in
             self?.viewModel.addReaction(reaction, to: member)
+            self?.addReaction(reaction, to: member)
         }
     }
     

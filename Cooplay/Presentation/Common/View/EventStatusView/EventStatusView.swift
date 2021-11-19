@@ -36,7 +36,7 @@ struct EventStatusView: View {
                 .padding(.top, isTapped ? -2 : 4)
                 .rotationEffect(.degrees(isTapped ? 180 : 0))
                 .animation(.easeInOut(duration: EventStatusView.animationDuration), value: isTapped)
-            Spacer(minLength: 4)
+            Spacer()
             ZStack {
                 Circle()
                     .foregroundColor(viewModel.color)

@@ -712,8 +712,10 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 114 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 115 localization keys.
     struct localizable {
+      /// Value: %@ в %@
+      static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %@ мин
       static let timeCarouselPanelLatnessValue = Rswift.StringResource(key: "timeCarouselPanel.latness.value", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %d символов
@@ -942,6 +944,11 @@ struct R: Rswift.Validatable {
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
       static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: %@ в %@
+      static func statusFullDetails(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("status.fullDetails", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
       
       /// Value: %@ мин
       static func timeCarouselPanelLatnessValue(_ value1: String) -> String {

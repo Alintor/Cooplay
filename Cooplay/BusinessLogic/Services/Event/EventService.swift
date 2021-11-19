@@ -48,6 +48,7 @@ protocol EventServiceType {
         forEvent event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void
     )
+    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
 }
 
 
@@ -183,7 +184,8 @@ extension EventService: EventServiceType {
         for event: Event,
         completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         var data: [AnyHashable: Any] = [
-            "members.\(event.me.id).state": event.me.state.rawValue as Any
+            "members.\(event.me.id).state": event.me.state.rawValue as Any,
+            "members.\(event.me.id).reactions": FieldValue.delete()
         ]
         data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
@@ -191,6 +193,22 @@ extension EventService: EventServiceType {
                 completion(.failure(.unhandled(error: error)))
             } else {
                 self?.sendChangeStatusNotification(for: event)
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
+        let data: [AnyHashable: Any] = [
+            "members.\(member.id).reactions.\(event.me.id)": reaction?.dictionary ?? FieldValue.delete()
+        ]
+        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+            } else {
+                if let reaction = reaction {
+                    self?.sendReactionNotification(reaction, for: member, event: event)
+                }
                 completion(.success(()))
             }
         }
@@ -318,7 +336,7 @@ extension EventService: EventServiceType {
     private func sendAddMembersToEventNotification(members: [User], event: Event) {
         let data: [String: Any] = [
             "members": members.map({ $0.dictionary }),
-            "event": event.dictionary
+            "event": event.dictionary as Any
         ]
         firebaseFunctions.httpsCallable("sendAddMembersToEventNotification").call(data) { (_, _) in }
     }
@@ -337,5 +355,14 @@ extension EventService: EventServiceType {
             "event": event.dictionary
         ]
         firebaseFunctions.httpsCallable("sendTakeEventOwnerRulesNotification").call(data) { (_, _) in }
+    }
+    
+    private func sendReactionNotification(_ reaction: Reaction, for member: User, event: Event) {
+        let data = [
+            "reaction": reaction.dictionary,
+            "member":member.dictionary,
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendAddReactionNotification").call(data) { (_, _) in }
     }
 }

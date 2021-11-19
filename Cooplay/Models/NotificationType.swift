@@ -16,4 +16,5 @@ enum NotificationType: String, Codable {
     case deleteEvent
     case removeMember
     case takeEventOwner
+    case addReaction
 }

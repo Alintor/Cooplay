@@ -44,7 +44,7 @@ struct ActiveEventCellViewModel {
         switch model.me.status {
         case .suggestDate(let minutes):
             let newDate = model.date + minutes.minutes
-            statusDetailsViewModel = StatusDetailsViewModel(with: newDate)
+            statusDetailsViewModel = StatusDetailsViewModel(with: newDate, eventDate: model.date)
         default:
             break
         }

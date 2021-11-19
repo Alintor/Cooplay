@@ -160,7 +160,13 @@ extension UserService: UserServiceType {
         _ nickname: String,
         completion: @escaping (Result<Void, UserServiceError>) -> Void) {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
-        let data = ["id": userId, "name": nickname]
+        let data = [
+            "id": userId,
+            "name": nickname,
+            "needStatusChangeNotifications": true,
+            "needReactionsForMeNotifications": true,
+            "needReactionsAllNotifications": true
+        ] as [String : Any]
         firestore.collection("Users").document(userId).setData(data) { (error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))

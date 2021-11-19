@@ -20,4 +20,5 @@ protocol EventDetailsInteractorInput: class {
     func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void)
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void)
     func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void)
+    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void)
 }

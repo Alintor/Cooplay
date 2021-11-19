@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftDate
 
 struct EventDetailsMemberViewModel {
     
@@ -20,12 +21,20 @@ struct EventDetailsMemberViewModel {
     var avatarViewModel: AvatarViewModel
     var isOwner: Bool
     var reactions: [ReactionViewModel]
+    var detailsViewModel: StatusDetailsViewModel?
     
     
     init(with member: User, event: Event) {
         self.member = member
         name = member.name
         status = member.status.title(event: event)
+        switch member.status {
+        case .suggestDate(let minutes):
+            let newDate = event.date + minutes.minutes
+            detailsViewModel = StatusDetailsViewModel(with: newDate, eventDate: event.date)
+        default:
+            break
+        }
         statusColor = Color(member.status.color)
         statusIcon = member.status.icon(isSmall: false).flatMap({Image(uiImage: $0)})
         avatarViewModel = AvatarViewModel(with: member)
