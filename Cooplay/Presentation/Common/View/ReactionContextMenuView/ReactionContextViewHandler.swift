@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
-class ReactionContextViewHandler {
+class ReactionContextViewHandler: ObservableObject {
     
     enum ViewCornerType {
         case square
@@ -19,6 +20,7 @@ class ReactionContextViewHandler {
     
     let viewCornerType: ViewCornerType
     var hideView: ((_ hide: Bool) -> Void)?
+    @Published var isViewHidden: Bool = false
     
     init(viewCornerType: ViewCornerType) {
         self.viewCornerType = viewCornerType

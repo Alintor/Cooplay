@@ -74,7 +74,8 @@ class ReactionContextMenuView: UIView {
         guard
             let window = topWindow,
             let delegate = delegate,
-            let targetView = delegate.targetViewCopy
+            let targetView = delegate.targetViewCopy,
+            delegate.targetViewGlobalPoint != .zero
         else { return }
         self.targetView = targetView
         self.contextView = delegate.contextViewCopy
@@ -187,7 +188,7 @@ class ReactionContextMenuView: UIView {
     // MARK: - Interface
     
     func show() {
-        guard let window = topWindow else { return }
+        guard let window = topWindow, targetView != nil else { return }
         delegate?.setContextView(hide: true)
         menuBlockView.transform = CGAffineTransform(translationX: self.isLeading ? -100 : 100, y: 50).scaledBy(x: 0.1, y: 0)
         menuBlockView.alpha = 0

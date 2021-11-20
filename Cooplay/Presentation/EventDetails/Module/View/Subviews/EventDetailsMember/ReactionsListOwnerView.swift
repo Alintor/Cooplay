@@ -59,6 +59,7 @@ struct ReactionsListOwnerView: View {
                     colors: [
                         Color(R.color.background.name).opacity(0),
                         Color(R.color.background.name),
+                        Color(R.color.background.name),
                         Color(R.color.background.name)
                     ]
                 ),

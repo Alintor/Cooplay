@@ -76,7 +76,7 @@ struct EventDetailsView: View {
                     .padding(.bottom, 44)
                 }
                 .padding(.top, 1)
-                .padding(.bottom, -44)
+                .padding(.bottom, -38)
                 ZStack {
                     ReactionsListOwnerView(reactions: reactions, output: output, reactionContextViewHandler: nil, member: viewModel.event.me)
                         .animation(.easeInOut(duration: 0.2))
@@ -87,7 +87,7 @@ struct EventDetailsView: View {
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ))
-                            .frame(width: 10, height: 44, alignment: .center)
+                            .frame(width: 10, height: 38, alignment: .center)
                         Spacer()
                         Rectangle()
                             .fill(LinearGradient(
@@ -95,7 +95,7 @@ struct EventDetailsView: View {
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ))
-                            .frame(width: 10, height: 44, alignment: .center)
+                            .frame(width: 10, height: 38, alignment: .center)
                     }
                 }
                 EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped, contextMenuHandler: contextMenuHandler)
@@ -111,6 +111,16 @@ struct EventDetailsView: View {
                             output.statusAction(with: contextMenuHandler)
                         }
                     }
+            }
+            VStack {
+                Rectangle()
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ))
+                    .frame(height: 20, alignment: .center)
+                Spacer()
             }
         }
         .onReceive(viewModel.$modeState) { value in

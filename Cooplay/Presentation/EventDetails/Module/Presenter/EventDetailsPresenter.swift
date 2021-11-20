@@ -22,17 +22,17 @@ final class EventDetailsPresenter {
         self.viewModel = viewModel
         self.interactor = interactor
         self.router = router
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(fetchEvent),
-//            name: UIApplication.didBecomeActiveNotification,
-//            object: nil
-//        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(fetchEvent),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
     
-//    deinit {
-//        NotificationCenter.default.removeObserver(self)
-//    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - Private
     
@@ -249,7 +249,9 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
     func reactionTapped(for member: User, delegate: ReactionContextMenuDelegate?) {
         router.showReactionMenu(delegate: delegate, currentReaction: viewModel.currentReaction(to: member)) { [weak self] reaction in
             self?.viewModel.addReaction(reaction, to: member)
-            self?.addReaction(reaction, to: member)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self?.addReaction(reaction, to: member)
+            }
         }
     }
     

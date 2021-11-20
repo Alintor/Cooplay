@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 enum EventDetailsError: Error {
     
@@ -24,9 +25,14 @@ extension EventDetailsError: LocalizedError {
 final class EventDetailsInteractor {
 
     private let eventService: EventServiceType
+    private var eventListener: ListenerRegistration?
     
     init(eventService: EventServiceType) {
         self.eventService = eventService
+    }
+    
+    deinit {
+        eventListener?.remove()
     }
 }
 
@@ -115,7 +121,8 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventDetailsError>) -> Void) {
-        eventService.fetchEvent(id: id, completion: { result in
+        eventListener?.remove()
+        eventListener = eventService.fetchEvent(id: id, completion: { result in
             switch result {
             case .success(let event):
                 completion(.success(event))

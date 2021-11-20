@@ -82,6 +82,7 @@ extension ReactionContextMenuHandler: ReactionContextMenuDelegate {
     }
     
     func setContextView(hide: Bool) {
+        contextViewHandler?.isViewHidden = hide
         contextViewHandler?.hideView?(hide)
     }
 }

@@ -32,7 +32,7 @@ protocol EventServiceType {
     
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void)
     func createNewEvent(_ request: NewEventRequest)
-    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration?
     func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
     func changeStatus(
         for event: Event,
@@ -125,9 +125,9 @@ extension EventService: EventServiceType {
         }
     }
     
-    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {
-        guard let userId = firebaseAuth.currentUser?.uid else { return }
-        firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
+    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration? {
+        guard let userId = firebaseAuth.currentUser?.uid else { return nil }
+        return firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
                 return
