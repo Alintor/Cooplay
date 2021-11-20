@@ -34,7 +34,12 @@ struct ReactionsListOwnerView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 if needAddButton {
-                    AddReactionView(output: output, member: member, reactionContextViewHandler: reactionContextViewHandler)
+                    AddReactionView(
+                        output: output,
+                        member: member,
+                        reactionContextViewHandler: reactionContextViewHandler,
+                        isOwner: true
+                    )
                         .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
                         .animation(.easeInOut(duration: 0.2))
                         .transition(.scale.combined(with: .opacity))
@@ -42,7 +47,13 @@ struct ReactionsListOwnerView: View {
                 }
                 
                 ForEach(self.reactions, id: \.user.name) { reaction in
-                    ReactionView(viewModel: reaction, output: output, member: member, reactionContextViewHandler: reactionContextViewHandler)
+                    ReactionView(
+                        viewModel: reaction,
+                        output: output,
+                        member: member,
+                        reactionContextViewHandler: reactionContextViewHandler,
+                        isOwner: true
+                    )
                         .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
                         .animation(.easeInOut(duration: 0.2))
                         .transition(.scale.combined(with: .opacity))
@@ -51,8 +62,7 @@ struct ReactionsListOwnerView: View {
             }
             .padding(.horizontal, 10)
         }
-        .rotationEffect(Angle.degrees(180))
-        .scaleEffect(x: 1, y: -1, anchor: .center)
+        .scaleEffect(x: -1, y: 1, anchor: .center)
         .background(
             LinearGradient(
                 gradient: Gradient(

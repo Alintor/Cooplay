@@ -73,10 +73,10 @@ struct EventDetailsView: View {
                         }
                     }
                     .padding(.top, 16)
-                    .padding(.bottom, 44)
+                    .padding(.bottom, 48)
                 }
                 .padding(.top, 1)
-                .padding(.bottom, -38)
+                .padding(.bottom, -48)
                 ZStack {
                     ReactionsListOwnerView(reactions: reactions, output: output, reactionContextViewHandler: nil, member: viewModel.event.me)
                         .animation(.easeInOut(duration: 0.2))
@@ -87,7 +87,7 @@ struct EventDetailsView: View {
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ))
-                            .frame(width: 10, height: 38, alignment: .center)
+                            .frame(width: 10, height: 48, alignment: .center)
                         Spacer()
                         Rectangle()
                             .fill(LinearGradient(
@@ -95,7 +95,7 @@ struct EventDetailsView: View {
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ))
-                            .frame(width: 10, height: 38, alignment: .center)
+                            .frame(width: 10, height: 48, alignment: .center)
                     }
                 }
                 EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped, contextMenuHandler: contextMenuHandler)

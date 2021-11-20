@@ -183,6 +183,7 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
     }
     
     func statusAction(with delegate: StatusContextDelegate) {
+        let oldStatus = viewModel.event.me.status
         self.router.showContextMenu(
             delegate: delegate,
             contextType: .overTarget,
@@ -191,7 +192,7 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
                 type: viewModel.event.statusesType,
                 event: viewModel.event,
                 actionHandler: { [weak self] status in
-                    guard let `self` = self else { return }
+                    guard let `self` = self, oldStatus != status else { return }
                     self.viewModel.updateStatus(status)
                     self.changeStatus()
             })

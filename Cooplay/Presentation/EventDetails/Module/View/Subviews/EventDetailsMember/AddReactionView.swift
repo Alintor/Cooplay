@@ -14,22 +14,30 @@ struct AddReactionView: View {
     let member: User
     
     private let reactionMenuHandler: ReactionContextMenuHandler
+    private let isOwner: Bool
     
     init(
         output: EventDetailsViewOutput?,
         member: User,
-        reactionContextViewHandler: ReactionContextViewHandler?
+        reactionContextViewHandler: ReactionContextViewHandler?,
+        isOwner: Bool = false
     ) {
         self.output = output
         self.member = member
         reactionMenuHandler = ReactionContextMenuHandler(viewCornerType: .circle, contextViewHandler: reactionContextViewHandler)
+        self.isOwner = isOwner
     }
     
     var body: some View {
         Image(R.image.commonReaction.name)
             .foregroundColor(Color(R.color.textSecondary.name))
             .frame(width: 24, height: 24, alignment: .center)
-            .padding(EdgeInsets(top: 3, leading: 7, bottom: 3, trailing: 7))
+            .padding(EdgeInsets(
+                top: isOwner ? 8 : 3,
+                leading: isOwner ? 12 : 7,
+                bottom: isOwner ? 8 : 3,
+                trailing: isOwner ? 12 : 7
+            ))
             .background(Color(R.color.block.name))
             .cornerRadius(20)
             .background(GeometryGetter(delegate: reactionMenuHandler))

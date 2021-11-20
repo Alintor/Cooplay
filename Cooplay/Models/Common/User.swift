@@ -25,7 +25,7 @@ struct User: Codable {
         }
     }
     
-    enum Status {
+    enum Status: Equatable {
         
         case accepted,
         ontime,

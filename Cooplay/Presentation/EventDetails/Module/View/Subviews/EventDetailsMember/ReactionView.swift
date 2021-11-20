@@ -15,28 +15,36 @@ struct ReactionView: View {
     let member: User
     
     private let reactionMenuHandler: ReactionContextMenuHandler
+    private let isOwner: Bool
     
     init(
         viewModel: ReactionViewModel,
         output: EventDetailsViewOutput?,
         member: User,
-        reactionContextViewHandler: ReactionContextViewHandler?
+        reactionContextViewHandler: ReactionContextViewHandler?,
+        isOwner: Bool = false
     ) {
         self.viewModel = viewModel
         self.output = output
         self.member = member
+        self.isOwner = isOwner
         reactionMenuHandler = ReactionContextMenuHandler(viewCornerType: .circle, contextViewHandler: reactionContextViewHandler)
     }
     
     var body: some View {
         
         HStack {
-            AvatarItemView(viewModel: viewModel.avatarViewModel, diameter: 20)
-                .frame(width: 20, height: 20, alignment: .center)
-                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: -3))
+            AvatarItemView(viewModel: viewModel.avatarViewModel, diameter: isOwner ? 26 : 20)
+                .frame(width: isOwner ? 26 : 20, height: isOwner ? 26 : 20, alignment: .center)
+                .padding(EdgeInsets(
+                    top: isOwner ? 7 : 5,
+                    leading: isOwner ? 7 : 5,
+                    bottom: isOwner ? 7 : 5,
+                    trailing: -3
+                ))
             Text(viewModel.value)
-                .font(.system(size: 16))
-                .padding(.trailing, 5)
+                .font(.system(size: isOwner ? 24 : 16))
+                .padding(.trailing, isOwner ? 7 : 5)
                 .animation(.easeInOut(duration: 0.2))
                 .transition(.scale.combined(with: .opacity))
                 .id("ReactionView" + viewModel.value)
