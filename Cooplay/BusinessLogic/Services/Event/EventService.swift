@@ -101,6 +101,7 @@ extension EventService: EventServiceType {
                 var member = user
                 member.status = .unknown
                 member.isOwner = false
+                member.reactions = nil
                 return member
             }) ?? []
             members.append(user)
@@ -119,6 +120,7 @@ extension EventService: EventServiceType {
                 var user = profile.user
                 user.status = .accepted
                 user.isOwner = true
+                user.reactions = nil
                 createEvent(user: user)
             }
             

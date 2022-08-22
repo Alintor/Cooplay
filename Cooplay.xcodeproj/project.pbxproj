@@ -153,6 +153,7 @@
 		A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */; };
 		A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */; };
 		A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */; };
+		A8353BEB27BBA94B0064DEC2 /* ContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8353BEA27BBA94B0064DEC2 /* ContextView.swift */; };
 		A8354D6C25B579E4008699E5 /* TimeCarouselRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */; };
 		A8354D6E25B58006008699E5 /* TimeCarouselContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8354D6D25B58006008699E5 /* TimeCarouselContextView.swift */; };
 		A83D43722379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */; };
@@ -422,6 +423,7 @@
 		A833EF6223D70A42009FCD73 /* CalendarViewRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRenderer.swift; sourceTree = "<group>"; };
 		A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDayDateViewModel.swift; sourceTree = "<group>"; };
 		A8352344237960C7005655FB /* InvitedEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventCellViewModel.swift; sourceTree = "<group>"; };
+		A8353BEA27BBA94B0064DEC2 /* ContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextView.swift; sourceTree = "<group>"; };
 		A8354D6B25B579E4008699E5 /* TimeCarouselRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselRoutable.swift; sourceTree = "<group>"; };
 		A8354D6D25B58006008699E5 /* TimeCarouselContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselContextView.swift; sourceTree = "<group>"; };
 		A83D43712379711C00DFFCF7 /* EventSectionСollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventSectionСollapsibleHeaderView.swift"; sourceTree = "<group>"; };
@@ -1337,6 +1339,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8353BE927BBA9350064DEC2 /* ContextView */,
 				A824C9FF27454137000E61A1 /* ReactionContextMenuView */,
 				A824C9F42742BBA2000E61A1 /* EventStatusView */,
 				A865B7192733CD4400F8A6CC /* GeometryGetter */,
@@ -1520,6 +1523,14 @@
 				A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A8353BE927BBA9350064DEC2 /* ContextView */ = {
+			isa = PBXGroup;
+			children = (
+				A8353BEA27BBA94B0064DEC2 /* ContextView.swift */,
+			);
+			path = ContextView;
 			sourceTree = "<group>";
 		};
 		A844BDE62379A10F00EE4A3E /* InvitationsHeaderCell */ = {
@@ -2662,6 +2673,7 @@
 				7A4FBD8181074327467FCCCF /* PersonalisationAssemblyContainer.swift in Sources */,
 				EE1BA3527BDDEF65847AC487 /* PersonalisationViewInput.swift in Sources */,
 				053DA3AA5A787D04B3666966 /* PersonalisationViewController.swift in Sources */,
+				A8353BEB27BBA94B0064DEC2 /* ContextView.swift in Sources */,
 				A824CA092745FFD4000E61A1 /* ReactionContextViewHandler.swift in Sources */,
 				4285A85E27665E3D6823A123 /* PersonalisationModuleInput.swift in Sources */,
 				3D51B8760D6EFDBB417092EB /* PersonalisationPresenter.swift in Sources */,
@@ -2824,7 +2836,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -2847,7 +2859,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
