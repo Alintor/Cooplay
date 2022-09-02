@@ -21,6 +21,7 @@ enum DefaultsStorageKey: String, CaseIterable {
     case showDeclinedEvents
     case inventLinkEventId
     case gameDBToken
+    case reactions
 }
 
 final class DefaultsStorage {

@@ -28,7 +28,6 @@ final class ProfilePresenter {
     
     var state: ProfileState? {
         didSet {
-            print("HOLYSHIT!!!")
             self.fetchProfile()
         }
     }
@@ -57,6 +56,7 @@ extension ProfilePresenter: ProfileViewOutput {
     func itemSelected(_ item: ProfileSettingsItem) {
         print(item.rawValue)
         switch item {
+        case .reactions: router.openReactionsSettings()
         case .logout:
             self.router.showLogoutAlert { [ weak self] in
                 self?.interactor.logout()

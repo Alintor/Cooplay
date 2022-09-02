@@ -53,8 +53,9 @@ extension EventsListRouter: EventsListRouterInput {
         
         guard let transitionHandler = transitionHandler as? UIViewController else { return }
         
-        let profileViewController = ProfileViewCOnrtollerBuilder.build(with: user)
+        let profileViewController = ProfileBuilder().build(with: user)
+        let navigationController = UINavigationController(rootViewController: profileViewController)
         
-        transitionHandler.present(profileViewController, animated: true, completion: nil)
+        transitionHandler.present(navigationController, animated: true, completion: nil)
     }
 }

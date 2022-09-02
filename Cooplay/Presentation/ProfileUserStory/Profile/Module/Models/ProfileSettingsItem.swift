@@ -29,6 +29,7 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
 
     case edit,
     notifications,
+    reactions,
     changePassword,
     account,
     logout
@@ -43,6 +44,7 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
             return Image(R.image.profileSettingsActionTypeSheet.name)
         case .notifications,
              .changePassword,
+             .reactions,
              .account:
             return Image(R.image.profileSettingsActionTypeNavigation.name)
         }
@@ -53,6 +55,7 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
             .empty: [edit],
             .settings: [
                 notifications,
+                reactions,
                 changePassword
             ],
             .account: [

@@ -34,4 +34,10 @@ extension ProfileRouter: ProfileRouterInput {
         alert.addAction(cancelAction)
         transitionHandler.present(alert, animated: true, completion:  nil)
     }
+    
+    func openReactionsSettings() {
+        guard let rootController = transitionHandler as? UIViewController else { return }
+        
+        rootController.push(ReactionsSettingsBuilder().build())
+    }
 }

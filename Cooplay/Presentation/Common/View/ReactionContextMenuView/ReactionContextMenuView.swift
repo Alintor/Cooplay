@@ -48,6 +48,11 @@ class ReactionContextMenuView: UIView {
     private var selectedReaction: Reaction?
     private var isLeading: Bool = true
     
+    private var reactions: [String] {
+        let defaultsStorages = ApplicationAssembly.assembler.resolver.resolve(DefaultsStorageType.self)
+        return defaultsStorages?.get(valueForKey: .reactions) as? [String] ?? GlobalConstant.defaultsReactions
+    }
+    
     // MARK: - Init
     
     init(
@@ -134,7 +139,7 @@ class ReactionContextMenuView: UIView {
     }
     
     private func configureItems() {
-        for reaction in defaultsReactions {
+        for reaction in reactions {
             let item = ReactionContextMenuItemView(frame: .zero)
             item.setValue(reaction)
             item.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(itemTapped)))
@@ -206,5 +211,3 @@ class ReactionContextMenuView: UIView {
     }
     
 }
-
-private var defaultsReactions = ["👍", "👎", "👀", "😘", "😭", "😡"]

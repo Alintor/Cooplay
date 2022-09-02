@@ -10,4 +10,5 @@ import Foundation
 protocol ProfileRouterInput: GuestRoutable {
 
     func showLogoutAlert(completion: @escaping () -> Void)
+    func openReactionsSettings()
 }

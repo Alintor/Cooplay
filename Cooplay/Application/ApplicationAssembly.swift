@@ -35,8 +35,7 @@ final class ApplicationAssembly {
             IntroAssemblyContainer(),
             AuthorizationAssemblyContainer(),
             RegistrationAssemblyContainer(),
-            PersonalisationAssemblyContainer(),
-            ProfileAssemblyContainer()
+            PersonalisationAssemblyContainer()
         ])
     }
 }
