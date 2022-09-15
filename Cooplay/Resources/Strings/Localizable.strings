@@ -147,6 +147,7 @@
 
 // MARK: - Profile
 "profileSettings.edit.title" = "Редактировать профиль";
+"profileSettings.miniGames.title" = "Убить время";
 "profileSettings.notifications.title" = "Уведомления";
 "profileSettings.reactions.title" = "Реакции";
 "profileSettings.changePassword.title" = "Сменить пароль";
@@ -167,3 +168,18 @@
 "reactionsSettings.category.6.title" = "Объекты";
 "reactionsSettings.category.7.title" = "Символы";
 "reactionsSettings.category.8.title" = "Флаги";
+
+
+// MARK: - Arkanoid Game
+
+"arkanoid.start.message" = "Коснитесь, чтобы начать";
+"arkanoid.win.0.message" = "Победа";
+"arkanoid.win.1.message" = "Вы чемпион";
+"arkanoid.win.2.message" = "GG WP";
+"arkanoid.win.3.message" = "Изи катка";
+"arkanoid.win.4.message" = "Winner Winner Chicken Dinner";
+"arkanoid.lose.0.message" = "Поражение";
+"arkanoid.lose.1.message" = "Game Over";
+"arkanoid.lose.2.message" = "Потрачено";
+"arkanoid.lose.3.message" = "Ваш свет угасает...";
+"arkanoid.lose.4.message" = "YOU DIED";

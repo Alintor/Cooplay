@@ -40,4 +40,13 @@ extension ProfileRouter: ProfileRouterInput {
         
         rootController.push(ReactionsSettingsBuilder().build())
     }
+    
+    func openArkanoidGame() {
+        guard let rootController = transitionHandler as? UIViewController else { return }
+        
+        let arkanoidVC = ArkanoidViewController()
+        arkanoidVC.modalPresentationStyle = .fullScreen
+        arkanoidVC.modalTransitionStyle = .crossDissolve
+        rootController.present(arkanoidVC, animated: true)
+    }
 }

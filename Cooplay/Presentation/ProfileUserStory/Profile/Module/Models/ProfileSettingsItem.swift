@@ -28,6 +28,7 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     }
 
     case edit,
+    miniGames,
     notifications,
     reactions,
     changePassword,
@@ -37,7 +38,7 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     var title: String { NSLocalizedString("profileSettings.\(self.rawValue).title", comment: "") }
     var iconColor: Color { Color("profileSettings.\(self.rawValue)") }
     var iconImage: Image { Image("profileSettings.\(self.rawValue)") }
-    var actionImage: Image {
+    var actionImage: Image? {
         switch self {
         case .edit,
              .logout:
@@ -47,12 +48,16 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
              .reactions,
              .account:
             return Image(R.image.profileSettingsActionTypeNavigation.name)
+        case .miniGames: return nil
         }
     }
     
     static var items: [ProfileSettingsItem.Section: [ProfileSettingsItem]] {
         return [
-            .empty: [edit],
+            .empty: [
+                edit,
+                miniGames
+            ],
             .settings: [
                 notifications,
                 reactions,

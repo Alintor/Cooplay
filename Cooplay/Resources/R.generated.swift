@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 18 colors.
+  /// This `R.color` struct is generated, and contains static references to 19 colors.
   struct color {
     /// Color `action.accent`.
     static let actionAccent = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.accent")
@@ -40,6 +40,8 @@ struct R: Rswift.Validatable {
     static let profileSettingsEdit = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.edit")
     /// Color `profileSettings.logout`.
     static let profileSettingsLogout = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.logout")
+    /// Color `profileSettings.miniGames`.
+    static let profileSettingsMiniGames = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.miniGames")
     /// Color `profileSettings.notifications`.
     static let profileSettingsNotifications = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.notifications")
     /// Color `profileSettings.reactions`.
@@ -132,6 +134,13 @@ struct R: Rswift.Validatable {
       return UIKit.UIColor(resource: R.color.profileSettingsLogout, compatibleWith: traitCollection)
     }
     
+    /// `UIColor(named: "profileSettings.miniGames", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func profileSettingsMiniGames(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.profileSettingsMiniGames, compatibleWith: traitCollection)
+    }
+    
     /// `UIColor(named: "profileSettings.notifications", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -184,12 +193,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
+    /// Resource file `ArkanoidScene.sks`.
+    static let arkanoidSceneSks = Rswift.FileResource(bundle: R.hostingBundle, name: "ArkanoidScene", pathExtension: "sks")
+    /// Resource file `BrokenPlatform.sks`.
+    static let brokenPlatformSks = Rswift.FileResource(bundle: R.hostingBundle, name: "BrokenPlatform", pathExtension: "sks")
     /// Resource file `Config.xcconfig`.
     static let configXcconfig = Rswift.FileResource(bundle: R.hostingBundle, name: "Config", pathExtension: "xcconfig")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    
+    /// `bundle.url(forResource: "ArkanoidScene", withExtension: "sks")`
+    static func arkanoidSceneSks(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.arkanoidSceneSks
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "BrokenPlatform", withExtension: "sks")`
+    static func brokenPlatformSks(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.brokenPlatformSks
+      return fileResource.bundle.url(forResource: fileResource)
+    }
     
     /// `bundle.url(forResource: "Config", withExtension: "xcconfig")`
     static func configXcconfig(_: Void = ()) -> Foundation.URL? {
@@ -206,8 +231,30 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 40 images.
+  /// This `R.image` struct is generated, and contains static references to 52 images.
   struct image {
+    /// Image `arkanoid.ball`.
+    static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
+    /// Image `arkanoid.block.0`.
+    static let arkanoidBlock0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.0")
+    /// Image `arkanoid.block.1`.
+    static let arkanoidBlock1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.1")
+    /// Image `arkanoid.block.2`.
+    static let arkanoidBlock2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.2")
+    /// Image `arkanoid.block.3`.
+    static let arkanoidBlock3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.3")
+    /// Image `arkanoid.block.4`.
+    static let arkanoidBlock4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.4")
+    /// Image `arkanoid.block.5`.
+    static let arkanoidBlock5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.5")
+    /// Image `arkanoid.block.6`.
+    static let arkanoidBlock6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.6")
+    /// Image `arkanoid.block.7`.
+    static let arkanoidBlock7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.block.7")
+    /// Image `arkanoid.bubble`.
+    static let arkanoidBubble = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.bubble")
+    /// Image `arkanoid.paddle`.
+    static let arkanoidPaddle = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.paddle")
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.arrowUp`.
@@ -258,6 +305,8 @@ struct R: Rswift.Validatable {
     static let profileSettingsEdit = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.edit")
     /// Image `profileSettings.logout`.
     static let profileSettingsLogout = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.logout")
+    /// Image `profileSettings.miniGames`.
+    static let profileSettingsMiniGames = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.miniGames")
     /// Image `profileSettings.notifications`.
     static let profileSettingsNotifications = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.notifications")
     /// Image `profileSettings.reactions`.
@@ -288,6 +337,61 @@ struct R: Rswift.Validatable {
     static let statusSmallSuggestDate = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.suggestDate")
     /// Image `status.small.unknown`.
     static let statusSmallUnknown = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.small.unknown")
+    
+    /// `UIImage(named: "arkanoid.ball", bundle: ..., traitCollection: ...)`
+    static func arkanoidBall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBall, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.0", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock0, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.1", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.2", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.3", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.4", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock4, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.5", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock5, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.6", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock6, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.block.7", bundle: ..., traitCollection: ...)`
+    static func arkanoidBlock7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBlock7, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.bubble", bundle: ..., traitCollection: ...)`
+    static func arkanoidBubble(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidBubble, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "arkanoid.paddle", bundle: ..., traitCollection: ...)`
+    static func arkanoidPaddle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arkanoidPaddle, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "common.arrowDown", bundle: ..., traitCollection: ...)`
     static func commonArrowDown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -412,6 +516,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profileSettings.logout", bundle: ..., traitCollection: ...)`
     static func profileSettingsLogout(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profileSettingsLogout, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profileSettings.miniGames", bundle: ..., traitCollection: ...)`
+    static func profileSettingsMiniGames(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profileSettingsMiniGames, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "profileSettings.notifications", bundle: ..., traitCollection: ...)`
@@ -728,7 +837,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 127 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 139 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -744,8 +853,16 @@ struct R: Rswift.Validatable {
       static let authorizationErrorEmailIncorret = Rswift.StringResource(key: "authorization.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email введён не верно
       static let registrationErrorEmailIncorret = Rswift.StringResource(key: "registration.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: GG WP
+      static let arkanoidWin2Message = Rswift.StringResource(key: "arkanoid.win.2.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Game Over
+      static let arkanoidLose1Message = Rswift.StringResource(key: "arkanoid.lose.1.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Winner Winner Chicken Dinner
+      static let arkanoidWin4Message = Rswift.StringResource(key: "arkanoid.win.4.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: YOU DIED
+      static let arkanoidLose4Message = Rswift.StringResource(key: "arkanoid.lose.4.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Аккаунт
       static let profileSettingsAccountTitle = Rswift.StringResource(key: "profileSettings.account.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Аккаунт уже существует
@@ -760,6 +877,8 @@ struct R: Rswift.Validatable {
       static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Будущие события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ваш свет угасает...
+      static let arkanoidLose3Message = Rswift.StringResource(key: "arkanoid.lose.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во сколько
       static let newEventChooseTimeLabelTitle = Rswift.StringResource(key: "newEvent.chooseTimeLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во что
@@ -784,6 +903,8 @@ struct R: Rswift.Validatable {
       static let eventDetailsDeleteAlertTitle = Rswift.StringResource(key: "eventDetails.deleteAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static let eventsListEmptySateDescription = Rswift.StringResource(key: "eventsList.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы чемпион
+      static let arkanoidWin1Message = Rswift.StringResource(key: "arkanoid.win.1.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выберите реакцию на замену
       static let reactionsSettingsMessage = Rswift.StringResource(key: "reactionsSettings.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбранные
@@ -810,6 +931,8 @@ struct R: Rswift.Validatable {
       static let eventsListEmptySateTitle = Rswift.StringResource(key: "eventsList.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Игра в %@ начинается. Если вы опаздываете, то уточните свой статус
       static let notificationsEventStartRemindMessage = Rswift.StringResource(key: "notifications.eventStartRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Изи катка
+      static let arkanoidWin3Message = Rswift.StringResource(key: "arkanoid.win.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
@@ -824,6 +947,8 @@ struct R: Rswift.Validatable {
       static let searchMembersEmptySateTitle = Rswift.StringResource(key: "searchMembers.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Когда
       static let newEventChooseDayLabelTitle = Rswift.StringResource(key: "newEvent.chooseDayLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Коснитесь, чтобы начать
+      static let arkanoidStartMessage = Rswift.StringResource(key: "arkanoid.start.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Люди и тело
       static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Максимум %d символов
@@ -880,6 +1005,8 @@ struct R: Rswift.Validatable {
       static let authorizationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "authorization.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Персонализация
       static let personalisationTitle = Rswift.StringResource(key: "personalisation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Победа
+      static let arkanoidWin0Message = Rswift.StringResource(key: "arkanoid.win.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите пароль
       static let registrationPasswordConfirmTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordConfirmTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите свой статус
@@ -900,6 +1027,10 @@ struct R: Rswift.Validatable {
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Поражение
+      static let arkanoidLose0Message = Rswift.StringResource(key: "arkanoid.lose.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Потрачено
+      static let arkanoidLose2Message = Rswift.StringResource(key: "arkanoid.lose.2.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Предлагаю
       static let timeCarouselPanelSuggestionTitle = Rswift.StringResource(key: "timeCarouselPanel.suggestion.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Предлагаю "%@"
@@ -968,6 +1099,8 @@ struct R: Rswift.Validatable {
       static let personalisationErrorNicknameAlreadyExist = Rswift.StringResource(key: "personalisation.error.nickname.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static let notificationsStatusRemindMessage = Rswift.StringResource(key: "notifications.statusRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Убить время
+      static let profileSettingsMiniGamesTitle = Rswift.StringResource(key: "profileSettings.miniGames.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уведомления
       static let profileSettingsNotificationsTitle = Rswift.StringResource(key: "profileSettings.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить
@@ -1020,9 +1153,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.error.email.incorret", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: GG WP
+      static func arkanoidWin2Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.win.2.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Game Over
+      static func arkanoidLose1Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.lose.1.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
         return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Winner Winner Chicken Dinner
+      static func arkanoidWin4Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.win.4.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: YOU DIED
+      static func arkanoidLose4Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.lose.4.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Аккаунт
@@ -1058,6 +1211,11 @@ struct R: Rswift.Validatable {
       /// Value: Будущие события
       static func eventsListSectionsFuture(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Ваш свет угасает...
+      static func arkanoidLose3Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.lose.3.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Во сколько
@@ -1118,6 +1276,11 @@ struct R: Rswift.Validatable {
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static func eventsListEmptySateDescription(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.emptySate.description", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вы чемпион
+      static func arkanoidWin1Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.win.1.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Выберите реакцию на замену
@@ -1185,6 +1348,11 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("notifications.eventStartRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// Value: Изи катка
+      static func arkanoidWin3Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.win.3.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Изменить
       static func personalisationChangeButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("personalisation.changeButton.title", bundle: R.hostingBundle, comment: "")
@@ -1218,6 +1386,11 @@ struct R: Rswift.Validatable {
       /// Value: Когда
       static func newEventChooseDayLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.chooseDayLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Коснитесь, чтобы начать
+      static func arkanoidStartMessage(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.start.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Люди и тело
@@ -1360,6 +1533,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("personalisation.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Победа
+      static func arkanoidWin0Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.win.0.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Подтвердите пароль
       static func registrationPasswordConfirmTextFieldPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("registration.passwordConfirmTextField.placeholder", bundle: R.hostingBundle, comment: "")
@@ -1408,6 +1586,16 @@ struct R: Rswift.Validatable {
       /// Value: Пойду
       static func statusAcceptedShort(_: Void = ()) -> String {
         return NSLocalizedString("status.accepted.short", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Поражение
+      static func arkanoidLose0Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.lose.0.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Потрачено
+      static func arkanoidLose2Message(_: Void = ()) -> String {
+        return NSLocalizedString("arkanoid.lose.2.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Предлагаю
@@ -1578,6 +1766,11 @@ struct R: Rswift.Validatable {
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static func notificationsStatusRemindMessage(_ value1: Int, _ value2: String) -> String {
         return String(format: NSLocalizedString("notifications.statusRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: Убить время
+      static func profileSettingsMiniGamesTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.miniGames.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Уведомления

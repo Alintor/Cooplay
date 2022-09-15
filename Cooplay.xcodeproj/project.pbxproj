@@ -237,6 +237,13 @@
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383E828C22CD3001B22EC /* ReactionsSettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E728C22CD3001B22EC /* ReactionsSettingsBuilder.swift */; };
 		A8A383EB28C22DE5001B22EC /* ReactionsSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383EA28C22DE5001B22EC /* ReactionsSettingsRouter.swift */; };
+		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
+		A8A383F128C37165001B22EC /* ArkanoidScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383F028C37165001B22EC /* ArkanoidScene.swift */; };
+		A8A383F328C37192001B22EC /* ArkanoidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383F228C37192001B22EC /* ArkanoidViewController.swift */; };
+		A8A383F628C39356001B22EC /* BrokenPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383F528C39356001B22EC /* BrokenPlatform.sks */; };
+		A8A383F928C39FFC001B22EC /* Playing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383F828C39FFC001B22EC /* Playing.swift */; };
+		A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FA28C3A01A001B22EC /* GameOver.swift */; };
+		A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FC28C3A036001B22EC /* WaitingForTap.swift */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
@@ -521,6 +528,13 @@
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383E728C22CD3001B22EC /* ReactionsSettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsBuilder.swift; sourceTree = "<group>"; };
 		A8A383EA28C22DE5001B22EC /* ReactionsSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsRouter.swift; sourceTree = "<group>"; };
+		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
+		A8A383F028C37165001B22EC /* ArkanoidScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArkanoidScene.swift; sourceTree = "<group>"; };
+		A8A383F228C37192001B22EC /* ArkanoidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArkanoidViewController.swift; sourceTree = "<group>"; };
+		A8A383F528C39356001B22EC /* BrokenPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BrokenPlatform.sks; sourceTree = "<group>"; };
+		A8A383F828C39FFC001B22EC /* Playing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playing.swift; sourceTree = "<group>"; };
+		A8A383FA28C3A01A001B22EC /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		A8A383FC28C3A036001B22EC /* WaitingForTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -1202,6 +1216,7 @@
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A8A383EC28C36F61001B22EC /* MiniGamesUserStory */,
 				A82FF2BC2346F3AB00EE1807 /* Common */,
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 				5C6E24950482FD9B716412DB /* EventDetails */,
@@ -1962,6 +1977,44 @@
 			path = Contract;
 			sourceTree = "<group>";
 		};
+		A8A383EC28C36F61001B22EC /* MiniGamesUserStory */ = {
+			isa = PBXGroup;
+			children = (
+				A8A383ED28C36F6D001B22EC /* Arkanoid */,
+			);
+			path = MiniGamesUserStory;
+			sourceTree = "<group>";
+		};
+		A8A383ED28C36F6D001B22EC /* Arkanoid */ = {
+			isa = PBXGroup;
+			children = (
+				A8A383F728C39FE7001B22EC /* States */,
+				A8A383F428C39336001B22EC /* Particles */,
+				A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */,
+				A8A383F028C37165001B22EC /* ArkanoidScene.swift */,
+				A8A383F228C37192001B22EC /* ArkanoidViewController.swift */,
+			);
+			path = Arkanoid;
+			sourceTree = "<group>";
+		};
+		A8A383F428C39336001B22EC /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				A8A383F528C39356001B22EC /* BrokenPlatform.sks */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		A8A383F728C39FE7001B22EC /* States */ = {
+			isa = PBXGroup;
+			children = (
+				A8A383F828C39FFC001B22EC /* Playing.swift */,
+				A8A383FA28C3A01A001B22EC /* GameOver.swift */,
+				A8A383FC28C3A036001B22EC /* WaitingForTap.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
 		A8BC67E73DEF16775012A961 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -2403,8 +2456,10 @@
 				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
 				A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
+				A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */,
 				A87CF44123E977BA004189D3 /* SearchGameCell.xib in Resources */,
 				A84694F623FE326500139CF4 /* SearchMembersCell.xib in Resources */,
+				A8A383F628C39356001B22EC /* BrokenPlatform.sks in Resources */,
 				A8DFD4ED2372AA4100F48B37 /* InventedHeaderView.xib in Resources */,
 				A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */,
 				A87CF46523EACC0D004189D3 /* SearchEmptyResultCell.xib in Resources */,
@@ -2631,6 +2686,7 @@
 				A824CA14274664FC000E61A1 /* EventDetailsMemberInfoView.swift in Sources */,
 				A8DFD4E8237292DF00F48B37 /* InvitedEventCell.swift in Sources */,
 				A8D1D28A2357306800DA1089 /* MemberStatusViewModel.swift in Sources */,
+				A8A383F928C39FFC001B22EC /* Playing.swift in Sources */,
 				A8A383E228C22777001B22EC /* ReactionsSettingsPresenter.swift in Sources */,
 				A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */,
 				A87CF46123EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift in Sources */,
@@ -2703,6 +2759,7 @@
 				A87CF47323EC1156004189D3 /* AuthorizationHandler.swift in Sources */,
 				A824C9FE274510C9000E61A1 /* Reaction.swift in Sources */,
 				A824C9F62742BBB2000E61A1 /* EventStatusView.swift in Sources */,
+				A8A383F328C37192001B22EC /* ArkanoidViewController.swift in Sources */,
 				A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
@@ -2723,6 +2780,7 @@
 				2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */,
 				F93E4F6BC2FFE77340DEF9DE /* SearchMembersAssemblyContainer.swift in Sources */,
 				303827CF46D19270A5278605 /* SearchMembersViewInput.swift in Sources */,
+				A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */,
 				A824CA18274670CD000E61A1 /* AddReactionView.swift in Sources */,
 				341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */,
 				A4B48C1889076AC80C105898 /* SearchMembersModuleInput.swift in Sources */,
@@ -2734,6 +2792,7 @@
 				237AEC839678B72B8743888E /* SearchMembersRouterInput.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
 				A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */,
+				A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */,
 				A8A383E428C22A54001B22EC /* ReactionsSettingsViewController.swift in Sources */,
 				A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */,
 				A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */,
@@ -2787,6 +2846,7 @@
 				150A58844202F1D67DC5C544 /* PersonalisationInteractorInput.swift in Sources */,
 				A8A383E028C221FC001B22EC /* ReactionsSettingsInteractor.swift in Sources */,
 				A824CA072745FFAA000E61A1 /* ReactionContextMenuHandler.swift in Sources */,
+				A8A383F128C37165001B22EC /* ArkanoidScene.swift in Sources */,
 				A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */,
 				6902DE46D7FB8282DC247C66 /* PersonalisationInteractor.swift in Sources */,
 				C93ADD9186DDFEA001F0E0FF /* PersonalisationRouterInput.swift in Sources */,
@@ -2944,7 +3004,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -2967,7 +3027,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
