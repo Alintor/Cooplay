@@ -123,6 +123,7 @@ struct EventDetailsView: View {
                 Spacer()
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .onReceive(viewModel.$modeState) { value in
             withAnimation {
                 isEditMode = value.isEditMode

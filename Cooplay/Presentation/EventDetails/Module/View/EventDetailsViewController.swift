@@ -69,6 +69,8 @@ final class EventDetailsViewController: UIHostingController<EventDetailsView> {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        navigationItem.largeTitleDisplayMode = .never
         output?.didLoad()
         anyCancellable = rootView.viewModel.$modeState.sink { [weak self] modeState in
             self?.configureNavigationItems(modeState: modeState)
@@ -77,17 +79,6 @@ final class EventDetailsViewController: UIHostingController<EventDetailsView> {
     
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //self.navigationController?.navigationBar.tintColor = R.color.actionAccent()
     }
     
     // MARK: - Actions
