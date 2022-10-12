@@ -17,15 +17,6 @@ struct ReactionsSettingsView: View {
     @State var reactions: [String]
     @State var selectedIndex: Int = 0
     
-    let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
-    
     // MARK: - Init
     
     init(viewModel: ReactionsSettingsViewModel, output: ReactionsSettingsViewOutput) {
@@ -66,50 +57,9 @@ struct ReactionsSettingsView: View {
                 .padding(.leading, 16)
                 .padding(.top, 20)
                 .padding(.bottom, 8)
-                ZStack {
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(Array(output.getAllReactions().enumerated()), id: \.element) { index, items in
-                                HStack {
-                                    Text(TextValue.categoryName(index).uppercased())
-                                        .font(.system(size: 13))
-                                        .foregroundColor(Color(R.color.textSecondary.name))
-                                    Spacer()
-                                }
-                                LazyVGrid(columns: columns, spacing: 6) {
-                                    ForEach(items, id: \.self) { item in
-                                        VStack(spacing: 2) {
-                                            Text(item)
-                                                .font(.system(size: 40))
-                                                .onTapGesture {
-                                                    output.didSelectReaction(item, for: selectedIndex)
-                                                }
-                                            Circle()
-                                                .foregroundColor(Color(R.color.textSecondary.name))
-                                                .frame(width: 4, height: 4, alignment: .center)
-                                                .opacity(reactions.contains(item) ? 1 : 0)
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.top, 16)
-                        .padding(.horizontal, 16)
-                    }
-                    VStack {
-                        LinearGradient(
-                            gradient: Gradient(
-                                colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]
-                            ),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                        .frame(height: 16)
-                        Spacer()
-                    }
+                AllReactionsListView(allReactions: output.getAllReactions(), userReactions: $reactions) { reaction in
+                    output.didSelectReaction(reaction, for: selectedIndex)
                 }
-                
             }
         }
         .onReceive(viewModel.$reactions) { reactions in
@@ -124,9 +74,6 @@ struct ReactionsSettingsView: View {
 // MARK: - Constants
 
 private enum TextValue {
-    
-    static func categoryName(_ index: Int) -> String {
-        NSLocalizedString("reactionsSettings.category.\(index).title", comment: "")
-    }
+
     static let message = R.string.localizable.reactionsSettingsMessage()
 }

@@ -159,15 +159,21 @@
 // MARK: - ReactionsSettings
 "reactionsSettings.title" = "Настройка реакции";
 "reactionsSettings.message" = "Выберите реакцию на замену";
-"reactionsSettings.category.0.title" = "Смайлики и эмоции";
-"reactionsSettings.category.1.title" = "Люди и тело";
-"reactionsSettings.category.2.title" = "Животные и природа";
-"reactionsSettings.category.3.title" = "Еда и напитки";
-"reactionsSettings.category.4.title" = "Путешествия и места";
-"reactionsSettings.category.5.title" = "Активности";
-"reactionsSettings.category.6.title" = "Объекты";
-"reactionsSettings.category.7.title" = "Символы";
-"reactionsSettings.category.8.title" = "Флаги";
+"reactionsSettings.category.0.title" = "Избранные";
+"reactionsSettings.category.1.title" = "Недавние";
+"reactionsSettings.category.2.title" = "Смайлики и эмоции";
+"reactionsSettings.category.3.title" = "Люди и тело";
+"reactionsSettings.category.4.title" = "Животные и природа";
+"reactionsSettings.category.5.title" = "Еда и напитки";
+"reactionsSettings.category.6.title" = "Путешествия и места";
+"reactionsSettings.category.7.title" = "Активности";
+"reactionsSettings.category.8.title" = "Объекты";
+"reactionsSettings.category.9.title" = "Символы";
+"reactionsSettings.category.10.title" = "Флаги";
+
+// MARK: - AdditionalReactions
+
+"additionalReactions.title" = "Все реакции";
 
 
 // MARK: - Arkanoid Game

@@ -837,7 +837,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 139 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 142 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -870,7 +870,7 @@ struct R: Rswift.Validatable {
       /// Value: Аккаунта на данном Email не существует
       static let authorizationErrorEmailNotExist = Rswift.StringResource(key: "authorization.error.email.notExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Активности
-      static let reactionsSettingsCategory5Title = Rswift.StringResource(key: "reactionsSettings.category.5.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory7Title = Rswift.StringResource(key: "reactionsSettings.category.7.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ближайшее событие
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Большая буква
@@ -895,6 +895,8 @@ struct R: Rswift.Validatable {
       static let introAuthButtonTitle = Rswift.StringResource(key: "intro.authButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Войти
       static let registrationLoginMessageHighlight = Rswift.StringResource(key: "registration.loginMessage.highlight", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Все реакции
+      static let additionalReactionsTitle = Rswift.StringResource(key: "additionalReactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все события
       static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
@@ -920,9 +922,9 @@ struct R: Rswift.Validatable {
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Еда и напитки
-      static let reactionsSettingsCategory3Title = Rswift.StringResource(key: "reactionsSettings.category.3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory5Title = Rswift.StringResource(key: "reactionsSettings.category.5.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Животные и природа
-      static let reactionsSettingsCategory2Title = Rswift.StringResource(key: "reactionsSettings.category.2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory4Title = Rswift.StringResource(key: "reactionsSettings.category.4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Забыли пароль?
       static let authorizationRecoveryPasswordButtonTitle = Rswift.StringResource(key: "authorization.recoveryPasswordButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Завтра
@@ -931,6 +933,8 @@ struct R: Rswift.Validatable {
       static let eventsListEmptySateTitle = Rswift.StringResource(key: "eventsList.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Игра в %@ начинается. Если вы опаздываете, то уточните свой статус
       static let notificationsEventStartRemindMessage = Rswift.StringResource(key: "notifications.eventStartRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Избранные
+      static let reactionsSettingsCategory0Title = Rswift.StringResource(key: "reactionsSettings.category.0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изи катка
       static let arkanoidWin3Message = Rswift.StringResource(key: "arkanoid.win.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
@@ -950,7 +954,7 @@ struct R: Rswift.Validatable {
       /// Value: Коснитесь, чтобы начать
       static let arkanoidStartMessage = Rswift.StringResource(key: "arkanoid.start.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Люди и тело
-      static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory3Title = Rswift.StringResource(key: "reactionsSettings.category.3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Максимум %d символов
       static let personalisationErrorNicknameMaxSymbols = Rswift.StringResource(key: "personalisation.error.nickname.maxSymbols", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Минимум %d символа
@@ -975,6 +979,8 @@ struct R: Rswift.Validatable {
       static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Неверный пароль
       static let authorizationErrorPasswordWrong = Rswift.StringResource(key: "authorization.error.password.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Недавние
+      static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Нет аккаунта? Создать аккаунт
       static let authorizationRegisterMessage = Rswift.StringResource(key: "authorization.registerMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ник пользователя
@@ -982,7 +988,7 @@ struct R: Rswift.Validatable {
       /// Value: Никнейм
       static let personalisationNickNameTextFieldPlaceholder = Rswift.StringResource(key: "personalisation.nickNameTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Объекты
-      static let reactionsSettingsCategory6Title = Rswift.StringResource(key: "reactionsSettings.category.6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory8Title = Rswift.StringResource(key: "reactionsSettings.category.8.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
       static let statusLateShort = Rswift.StringResource(key: "status.late.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на
@@ -1056,7 +1062,7 @@ struct R: Rswift.Validatable {
       /// Value: Профиль
       static let profileTitle = Rswift.StringResource(key: "profile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Путешествия и места
-      static let reactionsSettingsCategory4Title = Rswift.StringResource(key: "reactionsSettings.category.4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory6Title = Rswift.StringResource(key: "reactionsSettings.category.6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Реакции
       static let profileSettingsReactionsTitle = Rswift.StringResource(key: "profileSettings.reactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Редактирование
@@ -1074,9 +1080,9 @@ struct R: Rswift.Validatable {
       /// Value: Сегодня
       static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Символы
-      static let reactionsSettingsCategory7Title = Rswift.StringResource(key: "reactionsSettings.category.7.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory9Title = Rswift.StringResource(key: "reactionsSettings.category.9.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Смайлики и эмоции
-      static let reactionsSettingsCategory0Title = Rswift.StringResource(key: "reactionsSettings.category.0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory2Title = Rswift.StringResource(key: "reactionsSettings.category.2.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сменить пароль
       static let profileSettingsChangePasswordTitle = Rswift.StringResource(key: "profileSettings.changePassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сменить профиль
@@ -1110,7 +1116,7 @@ struct R: Rswift.Validatable {
       /// Value: Управление аккаунтом
       static let profileSettingsSectionAccountTitle = Rswift.StringResource(key: "profileSettings.section.account.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Флаги
-      static let reactionsSettingsCategory8Title = Rswift.StringResource(key: "reactionsSettings.category.8.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let reactionsSettingsCategory10Title = Rswift.StringResource(key: "reactionsSettings.category.10.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Цифра
       static let registrationPasswordNumericSymbolsLabelTitle = Rswift.StringResource(key: "registration.passwordNumericSymbolsLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые игры
@@ -1194,8 +1200,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Активности
-      static func reactionsSettingsCategory5Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.5.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory7Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.7.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Ближайшее событие
@@ -1256,6 +1262,11 @@ struct R: Rswift.Validatable {
       /// Value: Войти
       static func registrationLoginMessageHighlight(_: Void = ()) -> String {
         return NSLocalizedString("registration.loginMessage.highlight", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Все реакции
+      static func additionalReactionsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("additionalReactions.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Все события
@@ -1319,13 +1330,13 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Еда и напитки
-      static func reactionsSettingsCategory3Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.3.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory5Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.5.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Животные и природа
-      static func reactionsSettingsCategory2Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.2.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory4Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.4.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Забыли пароль?
@@ -1346,6 +1357,11 @@ struct R: Rswift.Validatable {
       /// Value: Игра в %@ начинается. Если вы опаздываете, то уточните свой статус
       static func notificationsEventStartRemindMessage(_ value1: String) -> String {
         return String(format: NSLocalizedString("notifications.eventStartRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: Избранные
+      static func reactionsSettingsCategory0Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.0.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Изи катка
@@ -1394,8 +1410,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Люди и тело
-      static func reactionsSettingsCategory1Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.1.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory3Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.3.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Максимум %d символов
@@ -1458,6 +1474,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorization.error.password.wrong", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Недавние
+      static func reactionsSettingsCategory1Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.1.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Нет аккаунта? Создать аккаунт
       static func authorizationRegisterMessage(_: Void = ()) -> String {
         return NSLocalizedString("authorization.registerMessage", bundle: R.hostingBundle, comment: "")
@@ -1474,8 +1495,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Объекты
-      static func reactionsSettingsCategory6Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.6.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory8Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.8.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Опоздаю
@@ -1659,8 +1680,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Путешествия и места
-      static func reactionsSettingsCategory4Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.4.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory6Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.6.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Реакции
@@ -1704,13 +1725,13 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Символы
-      static func reactionsSettingsCategory7Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.7.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory9Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.9.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Смайлики и эмоции
-      static func reactionsSettingsCategory0Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.0.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory2Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.2.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Сменить пароль
@@ -1794,8 +1815,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Флаги
-      static func reactionsSettingsCategory8Title(_: Void = ()) -> String {
-        return NSLocalizedString("reactionsSettings.category.8.title", bundle: R.hostingBundle, comment: "")
+      static func reactionsSettingsCategory10Title(_: Void = ()) -> String {
+        return NSLocalizedString("reactionsSettings.category.10.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Цифра

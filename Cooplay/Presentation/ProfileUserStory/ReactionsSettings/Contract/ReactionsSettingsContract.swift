@@ -24,22 +24,13 @@ protocol ReactionsSettingsViewOutput: AnyObject {
 
 // MARK: - Interactor
 
-protocol ReactionsSettingsInteractorInput: AnyObject {
-    
-    var myReactions: [String] { get }
-    var allReactions: [[String]] { get }
-    func updateReactions(_ reactions: [String])
-}
+protocol ReactionsSettingsInteractorInput: AnyObject, AllReactionsConfigurable { }
 
-protocol ReactionsSettingsInteractorOutput: AnyObject {
-    
-}
+protocol ReactionsSettingsInteractorOutput: AnyObject { }
 
 // MARK: - Router
 
-protocol ReactionsSettingsRouterInput: AnyObject {
-    
-}
+protocol ReactionsSettingsRouterInput: AnyObject { }
 
 // MARK: - ModuleInput
 

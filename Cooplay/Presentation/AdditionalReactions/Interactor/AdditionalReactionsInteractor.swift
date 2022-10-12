@@ -1,14 +1,14 @@
 //
-//  ReactionsSettingsInteractor.swift
+//  AdditionalReactionsInteractor.swift
 //  Cooplay
 //
-//  Created by Alexandr on 02.09.2022.
+//  Created by Alexandr on 10.10.2022.
 //  Copyright © 2022 Ovchinnikov. All rights reserved.
 //
 
 import Foundation
 
-final class ReactionsSettingsInteractor {
+final class AdditionalReactionsInteractor {
     
     internal let defaultsStorage: DefaultsStorageType
     weak var output: ReactionsSettingsInteractorOutput?
@@ -20,4 +20,4 @@ final class ReactionsSettingsInteractor {
     }
 }
 
-extension ReactionsSettingsInteractor: ReactionsSettingsInteractorInput { }
+extension AdditionalReactionsInteractor: AdditionalReactionsInteractorInput { }

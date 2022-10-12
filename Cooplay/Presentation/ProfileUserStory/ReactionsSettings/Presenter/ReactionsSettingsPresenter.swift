@@ -15,6 +15,7 @@ final class ReactionsSettingsPresenter {
     private weak var view: ReactionsSettingsViewInput?
     private let interactor: ReactionsSettingsInteractorInput
     private let router: ReactionsSettingsRouterInput
+    private var initialReactions = [String]()
     
     // MARK: - Init
     
@@ -27,6 +28,15 @@ final class ReactionsSettingsPresenter {
         self.interactor = interactor
         self.router = router
     }
+    
+    deinit {
+        let myReactions = interactor.myReactions
+        for reaction in initialReactions {
+            if !myReactions.contains(reaction) {
+                interactor.addRecentReaction(reaction)
+            }
+        }
+    }
 }
 
 // MARK: - ReactionsSettingsViewOutput
@@ -34,6 +44,7 @@ final class ReactionsSettingsPresenter {
 extension ReactionsSettingsPresenter: ReactionsSettingsViewOutput {
     
     func didLoad() {
+        initialReactions = interactor.myReactions
         view?.updateReactions(interactor.myReactions)
     }
     
@@ -45,7 +56,7 @@ extension ReactionsSettingsPresenter: ReactionsSettingsViewOutput {
         }
         reactions[index] = reaction
         view?.updateReactions(reactions)
-        interactor.updateReactions(reactions)
+        interactor.updateMyReactions(reactions)
     }
     
     func getAllReactions() -> [[String]] {

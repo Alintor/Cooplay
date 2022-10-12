@@ -220,6 +220,14 @@
 		A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */; };
 		A87CF49223ED71E2004189D3 /* NewEventMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */; };
 		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
+		A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003D628F43BE400FDA878 /* AllReactionsListView.swift */; };
+		A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */; };
+		A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */; };
+		A88003E628F4497500FDA878 /* AdditionalReactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */; };
+		A88003E828F449D000FDA878 /* AdditionalReactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */; };
+		A88003EA28F449DB00FDA878 /* AdditionalReactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */; };
+		A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */; };
+		A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */; };
 		A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
 		A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
 		A89F96FE24BC490B0036B155 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FD24BC490B0036B155 /* URL.swift */; };
@@ -509,6 +517,14 @@
 		A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCell.swift; sourceTree = "<group>"; };
 		A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventMemberCell.xib; sourceTree = "<group>"; };
 		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
+		A88003D628F43BE400FDA878 /* AllReactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsListView.swift; sourceTree = "<group>"; };
+		A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsConfigurable.swift; sourceTree = "<group>"; };
+		A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsContract.swift; sourceTree = "<group>"; };
+		A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsRouter.swift; sourceTree = "<group>"; };
+		A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsInteractor.swift; sourceTree = "<group>"; };
+		A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsPresenter.swift; sourceTree = "<group>"; };
+		A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsView.swift; sourceTree = "<group>"; };
+		A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsBuilder.swift; sourceTree = "<group>"; };
 		A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
 		A89F96FB24BC2DFF0036B155 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		A89F96FD24BC490B0036B155 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -1216,8 +1232,8 @@
 		A82FF29B2345E8A700EE1807 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				A8A383EC28C36F61001B22EC /* MiniGamesUserStory */,
 				A82FF2BC2346F3AB00EE1807 /* Common */,
+				A88003DC28F447D500FDA878 /* AdditionalReactions */,
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 				5C6E24950482FD9B716412DB /* EventDetails */,
 				0CE58F0F4085592415E85151 /* NewEvent */,
@@ -1228,6 +1244,7 @@
 				1CB7A066EE16674524AA747A /* Registration */,
 				6478223352D1FD1BAB60DFF1 /* Personalisation */,
 				A8A383D028C20C65001B22EC /* ProfileUserStory */,
+				A8A383EC28C36F61001B22EC /* MiniGamesUserStory */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1363,6 +1380,7 @@
 		A82FF2BC2346F3AB00EE1807 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A88003D828F43F6D00FDA878 /* Interactor */,
 				A860277723757654004E45AB /* Router */,
 				A82FF2BD2346F3BA00EE1807 /* View */,
 			);
@@ -1372,6 +1390,7 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A88003D928F43F7B00FDA878 /* AllReactionsListView */,
 				A8353BE927BBA9350064DEC2 /* ContextView */,
 				A824C9FF27454137000E61A1 /* ReactionContextMenuView */,
 				A824C9F42742BBA2000E61A1 /* EventStatusView */,
@@ -1878,6 +1897,83 @@
 				A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */,
 			);
 			path = NewEventMemberCell;
+			sourceTree = "<group>";
+		};
+		A88003D828F43F6D00FDA878 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A88003D928F43F7B00FDA878 /* AllReactionsListView */ = {
+			isa = PBXGroup;
+			children = (
+				A88003D628F43BE400FDA878 /* AllReactionsListView.swift */,
+			);
+			path = AllReactionsListView;
+			sourceTree = "<group>";
+		};
+		A88003DC28F447D500FDA878 /* AdditionalReactions */ = {
+			isa = PBXGroup;
+			children = (
+				A88003DD28F4482D00FDA878 /* Builder */,
+				A88003DE28F4483400FDA878 /* Contract */,
+				A88003DF28F4487000FDA878 /* Presenter */,
+				A88003E028F4488800FDA878 /* View */,
+				A88003E128F4488E00FDA878 /* Interactor */,
+				A88003E228F4489400FDA878 /* Router */,
+			);
+			path = AdditionalReactions;
+			sourceTree = "<group>";
+		};
+		A88003DD28F4482D00FDA878 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		A88003DE28F4483400FDA878 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		A88003DF28F4487000FDA878 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A88003E028F4488800FDA878 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A88003E128F4488E00FDA878 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A88003E228F4489400FDA878 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		A89F972724BED1230036B155 /* Storages */ = {
@@ -2602,6 +2698,7 @@
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
 				A824CA1627467095000E61A1 /* ReactionView.swift in Sources */,
+				A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */,
 				A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */,
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
@@ -2632,6 +2729,7 @@
 				A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */,
 				A87CF41123E03D5C004189D3 /* UserService.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
+				A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */,
 				A82FF2D82347228600EE1807 /* EventCellViewModel.swift in Sources */,
 				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
 				A87CF42723E195F7004189D3 /* SkeletonAnimation.swift in Sources */,
@@ -2649,6 +2747,7 @@
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A8301D4326AECA6200519768 /* LineActivityIndicatorView.swift in Sources */,
+				A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */,
 				A824C9EA27412B06000E61A1 /* EventDetailsViewOutput.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
@@ -2694,6 +2793,7 @@
 				826D5FA28F3CAFD0816DC345 /* EventsListViewInput.swift in Sources */,
 				A824C9E3273FCA10000E61A1 /* EventDetailsMemberViewModel.swift in Sources */,
 				A87CF44423E97AB5004189D3 /* SearchGameCellViewModel.swift in Sources */,
+				A88003E828F449D000FDA878 /* AdditionalReactionsInteractor.swift in Sources */,
 				9BC45A8D018A3E62CF4AF625 /* EventsListViewController.swift in Sources */,
 				A8FB1CD9249A166D001C9355 /* FirestoreDecoder.swift in Sources */,
 				A8641A1A23644A9800BD3EAA /* EventSectionHeaderView.swift in Sources */,
@@ -2729,6 +2829,7 @@
 				A800A9EB2722F45800D3E2DA /* ProfileViewOutput.swift in Sources */,
 				A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */,
 				A925FC039E81D90BFBCFF72E /* EventDetailsPresenter.swift in Sources */,
+				A88003E628F4497500FDA878 /* AdditionalReactionsRouter.swift in Sources */,
 				A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */,
 				A824CA1F274678B1000E61A1 /* ReactionsListOwnerView.swift in Sources */,
 				A824C9CE273E87AE000E61A1 /* ProfileState.swift in Sources */,
@@ -2761,6 +2862,7 @@
 				A824C9F62742BBB2000E61A1 /* EventStatusView.swift in Sources */,
 				A8A383F328C37192001B22EC /* ArkanoidViewController.swift in Sources */,
 				A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */,
+				A88003EA28F449DB00FDA878 /* AdditionalReactionsPresenter.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
 				821869718C02337A922A23C0 /* SearchGameAssemblyContainer.swift in Sources */,
@@ -2797,6 +2899,7 @@
 				A3DF014419743D27835020AE /* IntroAssemblyContainer.swift in Sources */,
 				A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */,
 				A7EB1FFA6FEDEF62A3C77468 /* IntroViewInput.swift in Sources */,
+				A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */,
 				A824C9E1273FC47E000E61A1 /* EventStatusViewModel.swift in Sources */,
 				A824C9F12742BB08000E61A1 /* EventDetailsInfoView.swift in Sources */,
 				A8FB1CDB249A503F001C9355 /* Codable.swift in Sources */,
@@ -2830,6 +2933,7 @@
 				D981FB30355C62D1B517C2CA /* RegistrationModuleInput.swift in Sources */,
 				AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */,
 				5704115E2D455D22A81C8EFD /* RegistrationInteractorInput.swift in Sources */,
+				A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */,
 				A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */,
 				17A3D4E21AC10F58312EA8C1 /* RegistrationInteractor.swift in Sources */,
 				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
@@ -3004,7 +3108,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -3027,7 +3131,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;

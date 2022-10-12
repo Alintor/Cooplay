@@ -37,6 +37,15 @@ class ReactionContextMenuView: UIView {
         $0.axis = .horizontal
         $0.spacing = 12
     }
+    private var additionalReactionsView = UIButton().with {
+        $0.backgroundColor = R.color.block()
+        $0.layer.cornerRadius = 15
+    }
+    private var additionalReactionsImageView = UIImageView().with {
+        $0.image = R.image.commonDetails()
+        $0.tintColor = R.color.textSecondary()
+        $0.contentMode = .scaleAspectFit
+    }
     private var targetView: UIView?
     private var contextView: UIView?
     
@@ -94,9 +103,17 @@ class ReactionContextMenuView: UIView {
         targetView.translatesAutoresizingMaskIntoConstraints = false
         itemsStackView.translatesAutoresizingMaskIntoConstraints = false
         menuBlockView.translatesAutoresizingMaskIntoConstraints = false
+        additionalReactionsView.translatesAutoresizingMaskIntoConstraints = false
+        additionalReactionsView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapAdditionalReactionsButton)
+        ))
+        additionalReactionsImageView.translatesAutoresizingMaskIntoConstraints = false
         menuBlockView.addSubview(itemsStackView)
         self.addSubview(blurEffectView)
         self.addSubview(targetView)
+        self.addSubview(additionalReactionsView)
+        additionalReactionsView.addSubview(additionalReactionsImageView)
         self.addSubview(menuBlockView)
         if let contextView = contextView {
             self.addSubview(contextView)
@@ -126,7 +143,15 @@ class ReactionContextMenuView: UIView {
             itemsStackView.trailingAnchor.constraint(equalTo: menuBlockView.trailingAnchor, constant: -16),
             itemsStackView.bottomAnchor.constraint(equalTo: menuBlockView.bottomAnchor, constant: -4),
             menuViewXConstraint,
-            menuBlockView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -4)
+            menuBlockView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -4),
+            additionalReactionsView.leadingAnchor.constraint(equalTo: targetView.trailingAnchor, constant: 4),
+            additionalReactionsView.centerYAnchor.constraint(equalTo: targetView.centerYAnchor),
+            additionalReactionsView.heightAnchor.constraint(equalToConstant: 30),
+            additionalReactionsView.widthAnchor.constraint(equalToConstant: 42),
+            additionalReactionsImageView.leadingAnchor.constraint(equalTo: additionalReactionsView.leadingAnchor),
+            additionalReactionsImageView.topAnchor.constraint(equalTo: additionalReactionsView.topAnchor),
+            additionalReactionsImageView.trailingAnchor.constraint(equalTo: additionalReactionsView.trailingAnchor),
+            additionalReactionsImageView.bottomAnchor.constraint(equalTo: additionalReactionsView.bottomAnchor)
         ])
         if let contextView = contextView, let contextViewSize = delegate.contextViewSize {
             NSLayoutConstraint.activate([
@@ -175,19 +200,37 @@ class ReactionContextMenuView: UIView {
         }
     }
     
-    private func close(completion: (()-> Void)? = nil) {
+    private func close(withImpact: Bool = true, completion: (()-> Void)? = nil) {
         generator.prepare()
         UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.menuBlockView.transform = CGAffineTransform(translationX: self.isLeading ? -100 : 100, y: 50).scaledBy(x: 0.1, y: 0.1)
+            self.additionalReactionsView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
             self.contextView?.transform = .identity
             self.menuBlockView.alpha = 0
             self.blurEffectView.alpha = 0
+            self.additionalReactionsView.alpha = 0
         } completion: { _ in
-            self.generator.impactOccurred()
+            if withImpact {
+                self.generator.impactOccurred()
+            }
             self.delegate?.setContextView(hide: false)
             completion?()
             self.removeFromSuperview()
         }
+    }
+    
+    @objc private func didTapAdditionalReactionsButton() {
+        let rootViewController = UIApplication.shared.delegate?.window??.rootViewController
+        let additionalReactionsViewController = AdditionalReactionsBuilder().build(
+            selectedReaction: selectedReaction?.value,
+            handler: handler
+        )
+
+        rootViewController?.presentModally(additionalReactionsViewController)
+        UIView.animate(withDuration: 0.15) {
+            self.targetView?.alpha = 0
+        }
+        close(withImpact: false)
     }
     
     // MARK: - Interface
@@ -196,14 +239,18 @@ class ReactionContextMenuView: UIView {
         guard let window = topWindow, targetView != nil else { return }
         delegate?.setContextView(hide: true)
         menuBlockView.transform = CGAffineTransform(translationX: self.isLeading ? -100 : 100, y: 50).scaledBy(x: 0.1, y: 0)
+        additionalReactionsView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         menuBlockView.alpha = 0
+        additionalReactionsView.alpha = 0
         blurEffectView.alpha = 0
         window.addSubview(self)
         generator.prepare()
         UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.menuBlockView.transform = .identity
+            self.additionalReactionsView.transform = .identity
             self.contextView?.transform = CGAffineTransform(translationX: 0, y: -60)
             self.menuBlockView.alpha = 1
+            self.additionalReactionsView.alpha = 1
             self.blurEffectView.alpha = 1
         } completion: { _ in
             self.generator.impactOccurred()
