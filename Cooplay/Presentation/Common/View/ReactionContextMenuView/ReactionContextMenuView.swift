@@ -125,14 +125,23 @@ class ReactionContextMenuView: UIView {
         guard let window = topWindow, let targetView = targetView, let delegate = delegate else { return }
         
         let menuViewXConstraint: NSLayoutConstraint
+        let additionalReactionsViewXConstraint: NSLayoutConstraint
         let leftEdgeDistance = targetView.frame.origin.x
         let rightEdgeDistance = window.frame.size.width - (targetView.frame.origin.x + targetView.frame.size.width)
         if leftEdgeDistance > rightEdgeDistance {
             isLeading = false
             menuViewXConstraint = menuBlockView.trailingAnchor.constraint(equalTo: targetView.trailingAnchor, constant: 8)
+            additionalReactionsViewXConstraint = additionalReactionsView.trailingAnchor.constraint(
+                equalTo: targetView.leadingAnchor,
+                constant: -4
+            )
         } else {
             isLeading = true
             menuViewXConstraint = menuBlockView.leadingAnchor.constraint(equalTo: targetView.leadingAnchor, constant: -8)
+            additionalReactionsViewXConstraint = additionalReactionsView.leadingAnchor.constraint(
+                equalTo: targetView.trailingAnchor,
+                constant: 4
+            )
         }
         
         NSLayoutConstraint.activate([
@@ -144,7 +153,7 @@ class ReactionContextMenuView: UIView {
             itemsStackView.bottomAnchor.constraint(equalTo: menuBlockView.bottomAnchor, constant: -4),
             menuViewXConstraint,
             menuBlockView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -4),
-            additionalReactionsView.leadingAnchor.constraint(equalTo: targetView.trailingAnchor, constant: 4),
+            additionalReactionsViewXConstraint,
             additionalReactionsView.centerYAnchor.constraint(equalTo: targetView.centerYAnchor),
             additionalReactionsView.heightAnchor.constraint(equalToConstant: 30),
             additionalReactionsView.widthAnchor.constraint(equalToConstant: 42),
