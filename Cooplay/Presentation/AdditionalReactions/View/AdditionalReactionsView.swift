@@ -35,7 +35,7 @@ struct AdditionalReactionsView: View {
                 Color(R.color.background.name)
                     .edgesIgnoringSafeArea(.all)
                 AllReactionsListView(allReactions: output.getAllReactions(), userReactions: $selectedReactions) { reaction in
-                    output.didSelectReaction(reaction)
+                    output.didSelectReaction(selectedReactions.contains(reaction) ? nil : reaction)
                 }
             }
             .navigationTitle(R.string.localizable.additionalReactionsTitle())

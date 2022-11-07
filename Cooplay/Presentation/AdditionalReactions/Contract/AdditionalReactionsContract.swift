@@ -14,7 +14,7 @@ protocol AdditionalReactionsViewInput: AnyObject { }
 
 protocol AdditionalReactionsViewOutput: AnyObject {
     
-    func didSelectReaction(_ reaction: String)
+    func didSelectReaction(_ reaction: String?)
     func getAllReactions() -> [[String]]
     func didTapCloseButton()
 }

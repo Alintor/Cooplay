@@ -34,9 +34,13 @@ final class AdditionalReactionsPresenter {
 
 extension AdditionalReactionsPresenter: AdditionalReactionsViewOutput {
     
-    func didSelectReaction(_ reaction: String) {
-        interactor.addRecentReaction(reaction)
-        handler?(Reaction(style: .emoji, value: reaction))
+    func didSelectReaction(_ reaction: String?) {
+        if let reaction = reaction {
+            interactor.addRecentReaction(reaction)
+            handler?(Reaction(style: .emoji, value: reaction))
+        } else {
+            handler?(nil)
+        }
         router.close(withImpact: true)
     }
     
