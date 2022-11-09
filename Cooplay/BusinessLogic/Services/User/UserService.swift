@@ -130,7 +130,11 @@ extension UserService: UserServiceType {
                     }
                 }
             }
-            let membersSlice = members.sorted(by: { $0.count > $1.count }).map { $0.user }
+            let membersSlice = members.sorted(by: { $0.count > $1.count }).map { member -> User in
+                var user = member.user
+                user.reactions = nil
+                return user
+            }
             //let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
             let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
             completion(.success(NewEventOfftenDataResponse(

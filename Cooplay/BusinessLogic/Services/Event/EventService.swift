@@ -305,6 +305,7 @@ extension EventService: EventServiceType {
         for var member in members {
             member.status = .unknown
             member.isOwner = false
+            member.reactions = nil
             membersData["members.\(member.id)"] = member.dictionary
         }
         firestore.collection("Events").document(event.id).updateData(membersData) { [weak self] error in
