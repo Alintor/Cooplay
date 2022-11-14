@@ -30,23 +30,11 @@ struct AdditionalReactionsView: View {
     
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color(R.color.background.name)
-                    .edgesIgnoringSafeArea(.all)
-                AllReactionsListView(allReactions: output.getAllReactions(), userReactions: $selectedReactions) { reaction in
-                    output.didSelectReaction(selectedReactions.contains(reaction) ? nil : reaction)
-                }
-            }
-            .navigationTitle(R.string.localizable.additionalReactionsTitle())
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(R.string.localizable.commonCancel()) {
-                        output.didTapCloseButton()
-                    }
-
-                }
+        ZStack {
+            Color(R.color.background.name)
+                .edgesIgnoringSafeArea(.all)
+            AllReactionsListView(allReactions: output.getAllReactions(), userReactions: $selectedReactions) { reaction in
+                output.didSelectReaction(selectedReactions.contains(reaction) ? nil : reaction)
             }
         }
     }

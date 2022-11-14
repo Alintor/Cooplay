@@ -12,7 +12,8 @@ final class AppearanceApplicationService: NSObject, ApplicationService {
     
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
         let navigationBarAppearance = UINavigationBar.appearance()
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()

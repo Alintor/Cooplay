@@ -128,6 +128,7 @@ class ReactionContextMenuView: UIView {
         let additionalReactionsViewXConstraint: NSLayoutConstraint
         let leftEdgeDistance = targetView.frame.origin.x
         let rightEdgeDistance = window.frame.size.width - (targetView.frame.origin.x + targetView.frame.size.width)
+        let imageViewIndent: CGFloat
         if leftEdgeDistance > rightEdgeDistance {
             isLeading = false
             menuViewXConstraint = menuBlockView.trailingAnchor.constraint(equalTo: targetView.trailingAnchor, constant: 8)
@@ -135,6 +136,8 @@ class ReactionContextMenuView: UIView {
                 equalTo: targetView.leadingAnchor,
                 constant: -4
             )
+            additionalReactionsView.layer.cornerRadius = 20
+            imageViewIndent = 8
         } else {
             isLeading = true
             menuViewXConstraint = menuBlockView.leadingAnchor.constraint(equalTo: targetView.leadingAnchor, constant: -8)
@@ -142,6 +145,8 @@ class ReactionContextMenuView: UIView {
                 equalTo: targetView.trailingAnchor,
                 constant: 4
             )
+            additionalReactionsView.layer.cornerRadius = 15
+            imageViewIndent = 3
         }
         
         NSLayoutConstraint.activate([
@@ -155,12 +160,24 @@ class ReactionContextMenuView: UIView {
             menuBlockView.bottomAnchor.constraint(equalTo: targetView.topAnchor, constant: -4),
             additionalReactionsViewXConstraint,
             additionalReactionsView.centerYAnchor.constraint(equalTo: targetView.centerYAnchor),
-            additionalReactionsView.heightAnchor.constraint(equalToConstant: 30),
-            additionalReactionsView.widthAnchor.constraint(equalToConstant: 42),
-            additionalReactionsImageView.leadingAnchor.constraint(equalTo: additionalReactionsView.leadingAnchor),
-            additionalReactionsImageView.topAnchor.constraint(equalTo: additionalReactionsView.topAnchor),
-            additionalReactionsImageView.trailingAnchor.constraint(equalTo: additionalReactionsView.trailingAnchor),
-            additionalReactionsImageView.bottomAnchor.constraint(equalTo: additionalReactionsView.bottomAnchor)
+            additionalReactionsView.heightAnchor.constraint(equalToConstant: targetView.frame.size.height),
+            additionalReactionsView.widthAnchor.constraint(equalToConstant: targetView.frame.size.height * 1.2),
+            additionalReactionsImageView.leadingAnchor.constraint(
+                equalTo: additionalReactionsView.leadingAnchor,
+                constant: imageViewIndent
+            ),
+            additionalReactionsImageView.topAnchor.constraint(
+                equalTo: additionalReactionsView.topAnchor,
+                constant: imageViewIndent
+            ),
+            additionalReactionsImageView.trailingAnchor.constraint(
+                equalTo: additionalReactionsView.trailingAnchor,
+                constant: imageViewIndent * -1
+            ),
+            additionalReactionsImageView.bottomAnchor.constraint(
+                equalTo: additionalReactionsView.bottomAnchor,
+                constant: imageViewIndent * -1
+            )
         ])
         if let contextView = contextView, let contextViewSize = delegate.contextViewSize {
             NSLayoutConstraint.activate([
@@ -234,6 +251,11 @@ class ReactionContextMenuView: UIView {
             selectedReaction: selectedReaction?.value,
             handler: handler
         )
+        if #available(iOS 15.0, *) {
+            let sheet = additionalReactionsViewController.sheetPresentationController
+            sheet?.detents = [.medium(), .large()]
+            sheet?.prefersGrabberVisible = true
+        }
 
         rootViewController?.presentModally(additionalReactionsViewController)
         UIView.animate(withDuration: 0.15) {

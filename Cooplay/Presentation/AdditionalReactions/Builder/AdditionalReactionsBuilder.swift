@@ -27,7 +27,7 @@ final class AdditionalReactionsBuilder {
             selectedReaction: selectedReaction
         ))
         router.rootController = viewController
-        viewController.isModalInPresentation = true
+        viewController.isModalInPresentation = false
         
         return viewController
     }
