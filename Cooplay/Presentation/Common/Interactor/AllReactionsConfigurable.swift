@@ -35,7 +35,7 @@ extension AllReactionsConfigurable {
             recentReactions.remove(at: index)
         }
         recentReactions.insert(reaction, at: 0)
-        if recentReactions.count >= Constants.maxRecentReactionsCount {
+        if recentReactions.count > Constants.maxRecentReactionsCount {
             recentReactions.removeLast()
         }
         defaultsStorage.set(value: recentReactions, forKey: .recentReactions)
