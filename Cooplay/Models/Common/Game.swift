@@ -44,3 +44,13 @@ extension Game: Equatable {
         return lhs.slug == rhs.slug
     }
 }
+
+extension Game {
+     
+    func isEqual(_ game: Game) -> Bool {
+        return self.slug == game.slug
+        && self.name == game.name
+        && self.coverPath == game.coverPath
+        && self.previewImagePath == game.previewImagePath
+    }
+}

@@ -34,7 +34,7 @@ struct EventDetailsView: View {
         contextMenuHandler.completion = { item in
             self.statusViewTapped.toggle()
             guard let event = item?.value as? Event else { return }
-            viewModel.update(with: event)
+            viewModel.updateStatus(event.me.status)
         }
         contextMenuHandler.hideTargetView = { hide in
             self.isStatusViewHidden = hide

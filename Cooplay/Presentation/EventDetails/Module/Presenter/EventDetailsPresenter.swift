@@ -193,7 +193,6 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
                 event: viewModel.event,
                 actionHandler: { [weak self] status in
                     guard let `self` = self, oldStatus != status else { return }
-                    self.viewModel.updateStatus(status)
                     self.changeStatus()
             })
         )
@@ -248,11 +247,12 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
     }
     
     func reactionTapped(for member: User, delegate: ReactionContextMenuDelegate?) {
-        router.showReactionMenu(delegate: delegate, currentReaction: viewModel.currentReaction(to: member)) { [weak self] reaction in
-            self?.viewModel.addReaction(reaction, to: member)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self?.addReaction(reaction, to: member)
-            }
+        router.showReactionMenu(
+            delegate: delegate,
+            currentReaction: viewModel.currentReaction(to: member)
+        ) { [weak self] reaction in
+            self?.viewModel.addReaction(reaction,to: member)
+            self?.addReaction(reaction, to: self?.viewModel.getActualMemberInfo(member) ?? member)
         }
     }
     

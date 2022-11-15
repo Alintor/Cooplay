@@ -24,3 +24,11 @@ struct Reaction: Codable {
     var value: String
     
 }
+
+extension Reaction: Equatable {
+    
+    static func == (lhs: Reaction, rhs: Reaction) -> Bool {
+        return lhs.style == rhs.style && lhs.value == rhs.value
+    }
+}
+

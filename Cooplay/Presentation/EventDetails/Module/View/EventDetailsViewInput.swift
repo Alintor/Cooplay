@@ -19,4 +19,5 @@ protocol EventDetailsViewInput: AnyObject {
     func takeOwnerRulesToMemberAtIndex(_ index: Int)
     func currentReaction(to member: User) -> Reaction?
     func addReaction(_ reaction: Reaction?, to member: User)
+    func getActualMemberInfo(_ member: User) -> User?
 }

@@ -50,3 +50,24 @@ extension Event: Equatable {
         return lhs.id == rhs.id
     }
 }
+
+extension Event {
+     
+    func isEqual(_ event: Event) -> Bool {
+        guard self.id == event.id
+                && self.date == event.date
+                && self.game.isEqual(event.game)
+                && self.me.isEqual(event.me)
+                && self.members.count == event.members.count
+        else { return false }
+        for member in self.members {
+            let contains = event.members.contains { user in
+                user.isEqual(member)
+            }
+            if !contains {
+                return false
+            }
+        }
+        return true
+    }
+}

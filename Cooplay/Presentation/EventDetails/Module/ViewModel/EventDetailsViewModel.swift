@@ -50,6 +50,8 @@ class EventDetailsViewModel: ObservableObject {
 extension EventDetailsViewModel: EventDetailsViewInput {
     
     func update(with event: Event) {
+        guard !self.event.isEqual(event) else { return }
+        
         self.event = event
         self.infoViewModel = EventInfoViewModel(with: event)
         self.statusViewModel = EventStatusViewModel(with: event)
@@ -128,5 +130,15 @@ extension EventDetailsViewModel: EventDetailsViewInput {
             updateMembers(event.members)
         }
         
+    }
+    
+    func getActualMemberInfo(_ member: User) -> User? {
+        if member == event.me {
+            return event.me
+        }
+        if let index = event.members.firstIndex(of: member) {
+            return event.members[index]
+        }
+        return nil
     }
 }

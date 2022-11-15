@@ -194,3 +194,20 @@ extension User: Equatable {
         return lhs.id == rhs.id && lhs.name == rhs.name
     }
 }
+
+extension User {
+     
+    func isEqual(_ user: User) -> Bool {
+        return self.id == user.id
+        && self.name == user.name
+        && self.avatarPath == user.avatarPath
+        && self.state == user.state
+        && self.lateness == user.lateness
+        && self.isOwner == user.isOwner
+        && self.reactions == user.reactions
+    }
+}
+
+private func ==(lhs: [String: Reaction], rhs: [String: Reaction] ) -> Bool {
+    return NSDictionary(dictionary: lhs).isEqual(to: rhs)
+}
