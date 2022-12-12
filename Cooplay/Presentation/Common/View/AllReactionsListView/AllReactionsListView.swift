@@ -26,7 +26,7 @@ struct AllReactionsListView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVStack {
+                VStack {
                     ForEach(Array(allReactions.enumerated()), id: \.element) { index, items in
                         if (items.isEmpty) {
                             EmptyView()

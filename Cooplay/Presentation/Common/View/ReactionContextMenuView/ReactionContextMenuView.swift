@@ -217,13 +217,12 @@ class ReactionContextMenuView: UIView {
         else { return }
         clearSelection()
         item.showDot(true)
-        close { [weak self] in
-            if self?.selectedReaction?.value == value {
-                self?.handler?(nil)
-            } else {
-                self?.handler?(Reaction(style: .emoji, value: value))
-            }
+        if self.selectedReaction?.value == value {
+            self.handler?(nil)
+        } else {
+            self.handler?(Reaction(style: .emoji, value: value))
         }
+        close()
     }
     
     private func close(withImpact: Bool = true, completion: (()-> Void)? = nil) {
@@ -235,6 +234,7 @@ class ReactionContextMenuView: UIView {
             self.menuBlockView.alpha = 0
             self.blurEffectView.alpha = 0
             self.additionalReactionsView.alpha = 0
+            self.targetView?.alpha = 0
         } completion: { _ in
             if withImpact {
                 self.generator.impactOccurred()
