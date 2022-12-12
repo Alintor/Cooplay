@@ -54,13 +54,11 @@ protocol EventServiceType {
 
 final class EventService {
     
-    private let storage: HardcodedStorage?
     private let firebaseAuth: Auth
     private let firestore: Firestore
     private let firebaseFunctions: Functions
     
-    init(storage: HardcodedStorage?, firebaseAuth: Auth, firestore: Firestore, firebaseFunctions: Functions) {
-        self.storage = storage
+    init(firebaseAuth: Auth, firestore: Firestore, firebaseFunctions: Functions) {
         self.firebaseAuth = firebaseAuth
         self.firestore = firestore
         self.firebaseFunctions = firebaseFunctions

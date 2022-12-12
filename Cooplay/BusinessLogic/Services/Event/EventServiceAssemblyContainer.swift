@@ -17,7 +17,6 @@ final class EventServiceAssemblyContainer: Assembly {
     func assemble(container: Container) {
         container.register(EventServiceType.self) { r in
             return EventService(
-                storage: HardcodedStorage(),
                 firebaseAuth: Auth.auth(),
                 firestore: Firestore.firestore(),
                 firebaseFunctions: Functions.functions()

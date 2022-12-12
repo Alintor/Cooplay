@@ -118,14 +118,14 @@ final class PersonalisationViewController: UIViewController, PersonalisationView
             UIView.animate(
                 withDuration: duration,
                 animations: { [weak self] in
-                    if GlobalConstant.isSmallScreen {
+                    if DeviceConstants.isSmallScreen {
                         self?.titleLabel.alpha = 0
                         self?.titleLabel.text = " "
                     }
                     self?.view.layoutIfNeeded()
                 },
                 completion: { [weak self] (_) in
-                    if GlobalConstant.isSmallScreen {
+                    if DeviceConstants.isSmallScreen {
                         self?.navigationItem.title = R.string.localizable.personalisationTitle()
                     }
                 }
@@ -138,7 +138,7 @@ final class PersonalisationViewController: UIViewController, PersonalisationView
         navigationItem.title = nil
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1
-            if GlobalConstant.isSmallScreen {
+            if DeviceConstants.isSmallScreen {
                 self?.titleLabel.text = R.string.localizable.personalisationTitle()
             }
             self?.view.layoutIfNeeded()

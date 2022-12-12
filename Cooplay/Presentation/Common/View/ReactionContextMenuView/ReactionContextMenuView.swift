@@ -258,8 +258,10 @@ class ReactionContextMenuView: UIView {
         }
 
         rootViewController?.presentModally(additionalReactionsViewController)
-        UIView.animate(withDuration: 0.15) {
+        UIView.animate(withDuration: 0.35) {
             self.targetView?.alpha = 0
+            self.contextView?.alpha = 0.7
+            
         }
         close(withImpact: false)
     }

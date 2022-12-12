@@ -42,6 +42,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             }
         }
         UIApplication.shared.registerForRemoteNotifications()
+        registerCustomActions()
         
         return true
     }
@@ -98,6 +99,14 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
     
     private func registerToken(_ token: String) {
         userService.registerNotificationToken(token)
+    }
+    
+    private func registerCustomActions() {
+        //let status = UNNotificationAction(identifier: "Status", title: "Изменить статус")
+        let category = UNNotificationCategory(identifier: "confirmStatus", actions: [], intentIdentifiers: [])
+      
+        UNUserNotificationCenter.current()
+        .setNotificationCategories([category])
     }
 }
 

@@ -39,9 +39,6 @@ struct Event: Codable {
         }
     }
     
-    var statusesType: StatusMenuItem.StatusesType {
-        return !isAgreed ? .agreement : (isActive ? .confirmation : .agreement)
-    }
 }
 
 extension Event: Equatable {

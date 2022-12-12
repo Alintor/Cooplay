@@ -138,9 +138,11 @@ extension EventsListInteractor: EventsListInteractorInput {
         statusNotificationContent.userInfo = [
             "type": NotificationType.statusRemind.rawValue
         ]
+        statusNotificationContent.categoryIdentifier = "confirmStatus"
         eventStartNotificationContent.userInfo = [
             "type": NotificationType.statusRemind.rawValue
         ]
+        eventStartNotificationContent.categoryIdentifier = "confirmStatus"
         if let eventData = try? JSONEncoder().encode(event) {
             statusNotificationContent.userInfo["event"] = eventData
             eventStartNotificationContent.userInfo["event"] = eventData

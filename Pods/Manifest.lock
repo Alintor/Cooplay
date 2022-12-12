@@ -420,27 +420,12 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - abseil
     - Alamofire
+    - BoringSSL-GRPC
     - DTCollectionViewManager
     - DTModelStorage
     - DTTableViewManager
-    - FirebaseFunctions
-    - iCarousel
-    - KDCalendar
-    - Kingfisher
-    - Moya
-    - PluggableAppDelegate
-    - R.swift
-    - R.swift.Library
-    - Result
-    - SwiftDate
-    - SwiftyJSON
-    - Swinject
-    - SwinjectStoryboard
-    - UIImageColors
-  trunk:
-    - abseil
-    - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -448,6 +433,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseDynamicLinks
     - FirebaseFirestore
+    - FirebaseFunctions
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -458,10 +444,23 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - iCarousel
+    - KDCalendar
+    - Kingfisher
     - leveldb-library
+    - Moya
     - nanopb
+    - PluggableAppDelegate
     - PromisesObjC
     - Protobuf
+    - R.swift
+    - R.swift.Library
+    - Result
+    - SwiftDate
+    - SwiftyJSON
+    - Swinject
+    - SwinjectStoryboard
+    - UIImageColors
 
 EXTERNAL SOURCES:
   LightRoute:
@@ -516,6 +515,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 12df510ae224bdb740d6e7c6a54377eed4712778
+PODFILE CHECKSUM: df30835f949f9d0c3319fcf864a5716b2e0798b3
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

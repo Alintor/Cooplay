@@ -12,7 +12,7 @@ struct InvitedEventCellViewModel {
     
     private enum Constant {
         
-        static let maxMembersCount = GlobalConstant.isSmallScreen ? 1 : 3
+        static let maxMembersCount = DeviceConstants.isSmallScreen ? 1 : 3
     }
     
     enum Action {

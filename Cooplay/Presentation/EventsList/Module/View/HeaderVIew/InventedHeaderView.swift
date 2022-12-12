@@ -14,7 +14,7 @@ final class InventedHeaderView: UIView {
     private enum Constant {
         
         static let size = CGSize(
-            width: GlobalConstant.screenWidth,
+            width: DeviceConstants.screenWidth,
             height: 182
         )
     }

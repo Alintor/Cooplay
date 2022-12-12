@@ -12,7 +12,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     private enum Constant {
         
         static let topConstraint: CGFloat = 116
-        static let mainButtonBottomConstraint: CGFloat = GlobalConstant.isSmallScreen ? 8 : 16
+        static let mainButtonBottomConstraint: CGFloat = DeviceConstants.isSmallScreen ? 8 : 16
         static let animationDelay: TimeInterval = 0.05
         static let keyboardHeightKey = "KeyboardHeight"
         static let durationKey = "Duration"
@@ -186,7 +186,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             withDuration: duration,
             animations: { [weak self] in
                 self?.titleLabel.alpha = 0
-                if GlobalConstant.isSmallScreen {
+                if DeviceConstants.isSmallScreen {
                     self?.titleLabel.text = nil
                 }
                 self?.view.layoutIfNeeded()
@@ -204,7 +204,7 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
         navigationItem.title = nil
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1
-            if GlobalConstant.isSmallScreen {
+            if DeviceConstants.isSmallScreen {
                 self?.titleLabel.text = R.string.localizable.authorizationTitle()
             }
             self?.view.layoutIfNeeded()

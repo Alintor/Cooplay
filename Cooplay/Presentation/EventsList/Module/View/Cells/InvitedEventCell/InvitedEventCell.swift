@@ -12,8 +12,8 @@ final class InvitedEventCell: UIView {
     
     enum Constant {
         
-        static let size = CGSize(width: GlobalConstant.screenWidth - 20, height: 110)
-        static let smallSize = CGSize(width: GlobalConstant.screenWidth - 30, height: 110)
+        static let size = CGSize(width: DeviceConstants.screenWidth - 20, height: 110)
+        static let smallSize = CGSize(width: DeviceConstants.screenWidth - 30, height: 110)
     }
     
     @IBOutlet weak var titleLabel: UILabel!

@@ -12,7 +12,7 @@ struct EventCellViewModel {
     
     private enum Constant {
         
-        static let maxMembersCount = GlobalConstant.isSmallScreen ? 2 : 4
+        static let maxMembersCount = DeviceConstants.isSmallScreen ? 2 : 4
     }
     
     var title: String
