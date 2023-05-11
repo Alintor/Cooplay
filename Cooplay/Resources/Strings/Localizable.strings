@@ -153,6 +153,8 @@
 "profileSettings.changePassword.title" = "Сменить пароль";
 "profileSettings.account.title" = "Аккаунт";
 "profileSettings.logout.title" = "Выйти";
+"profileSettings.logout.message" = "Вы уверены, что хотите выйти из аккаунта?";
+"profileSettings.logout.actionButton" = "Выйти из аккаунта";
 "profileSettings.section.settings.title" = "Настройки";
 "profileSettings.section.account.title" = "Управление аккаунтом";
 

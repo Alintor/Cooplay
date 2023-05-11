@@ -48,7 +48,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Need access to user's geoposition</string>
+	<string>Need access to user&apos;s geoposition</string>
 	<key>OfficialSite</key>
 	<string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
 	<key>UIBackgroundModes</key>
@@ -62,7 +62,9 @@
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDarkContent</string>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

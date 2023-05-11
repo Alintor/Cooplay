@@ -837,7 +837,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 142 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 144 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -905,6 +905,8 @@ struct R: Rswift.Validatable {
       static let eventDetailsDeleteAlertTitle = Rswift.StringResource(key: "eventDetails.deleteAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static let eventsListEmptySateDescription = Rswift.StringResource(key: "eventsList.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы уверены, что хотите выйти из аккаунта?
+      static let profileSettingsLogoutMessage = Rswift.StringResource(key: "profileSettings.logout.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы чемпион
       static let arkanoidWin1Message = Rswift.StringResource(key: "arkanoid.win.1.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выберите реакцию на замену
@@ -915,6 +917,8 @@ struct R: Rswift.Validatable {
       static let commonChoose = Rswift.StringResource(key: "common.choose", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выйти
       static let profileSettingsLogoutTitle = Rswift.StringResource(key: "profileSettings.logout.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выйти из аккаунта
+      static let profileSettingsLogoutActionButton = Rswift.StringResource(key: "profileSettings.logout.actionButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Готово
       static let commonDone = Rswift.StringResource(key: "common.done", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Готово
@@ -1289,6 +1293,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.emptySate.description", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Вы уверены, что хотите выйти из аккаунта?
+      static func profileSettingsLogoutMessage(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.logout.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Вы чемпион
       static func arkanoidWin1Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.win.1.message", bundle: R.hostingBundle, comment: "")
@@ -1312,6 +1321,11 @@ struct R: Rswift.Validatable {
       /// Value: Выйти
       static func profileSettingsLogoutTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.logout.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Выйти из аккаунта
+      static func profileSettingsLogoutActionButton(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.logout.actionButton", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Готово

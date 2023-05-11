@@ -18,12 +18,20 @@ extension ProfileRouter: ProfileRouterInput {
 
     func showLogoutAlert(completion: @escaping () -> Void) {
         guard let transitionHandler = transitionHandler as? UIViewController else { return }
-        let alert = UIAlertController(title: "Вы уверены, что хотите выйти из аккаунта?", message: nil, preferredStyle: .actionSheet)
-        let logoutAction = UIAlertAction(title: "Выйти из аккаунта", style: .default) { _ in
+        let alert = UIAlertController(
+            title: R.string.localizable.profileSettingsLogoutMessage(),
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.view.tintColor = R.color.actionAccent()
+        let logoutAction = UIAlertAction(
+            title: R.string.localizable.profileSettingsLogoutActionButton(),
+            style: .default
+        ) { _ in
             completion()
         }
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        logoutAction.setValue(R.color.red(), forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: R.string.localizable.commonCancel(), style: .cancel)
         
 
 
