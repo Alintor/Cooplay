@@ -1,0 +1,30 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//
+
+import SwiftUI
+
+struct {{ module_info.name }}View: View {
+    
+    // MARK: - Properties
+    
+    @ObservedObject var viewModel: {{ module_info.name }}ViewModel
+    var output: {{ module_info.name }}ViewOutput
+    
+    // MARK: - Init
+    
+    init(viewModel: {{ module_info.name }}ViewModel, output: {{ module_info.name }}ViewOutput) {
+        self.viewModel = viewModel
+        self.output = output
+    }
+    
+    // MARK: - Body
+    
+    var body: some View {
+        Text("")
+    }
+    
+}

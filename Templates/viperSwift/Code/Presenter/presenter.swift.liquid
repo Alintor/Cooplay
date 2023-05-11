@@ -11,17 +11,35 @@ final class {{ module_info.name }}Presenter {
 
     // MARK: - Properties
 
-    weak var view: {{ module_info.name }}ViewInput! {
-        didSet {
-            // Configure view out
-            view.viewIsReady = { [weak self] in
-                self?.view.setupInitialState()
-            }
-        }
+    private weak var view: {{ module_info.name }}ViewInput?
+    private var interactor: {{ module_info.name }}InteractorInput
+    private var router: {{ module_info.name }}RouterInput
+
+    // MARK: - Init
+    
+    init(
+        view: EditProfileViewInput?,
+        interactor: EditProfileInteractorInput,
+        router: EditProfileRouterInput
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.router = router
     }
-    var interactor: {{ module_info.name }}InteractorInput!
-    var router: {{ module_info.name }}RouterInput!
+
 }
+
+// MARK: - {{ module_info.name }}ViewOutput
+
+extension {{ module_info.name }}Presenter: {{ module_info.name }}ViewOutput {
+    
+    func didLoad() { }
+    
+}
+
+// MARK: - {{ module_info.name }}InteractorOutput
+
+extension {{ module_info.name }}Presenter: {{ module_info.name }}InteractorOutput { }
 
 // MARK: - {{ module_info.name }}ModuleInput
 

@@ -8,26 +8,26 @@ license: "MIT"
 # The declarations for code files
 
 code_files:
-# Assembly
-- {name: Module/Assembly/AssemblyContainer.swift, path: Code/Assembly/assemblycontainer.swift.liquid}
+# Builder
+- {name: Builder/Builder.swift, path: Code/Builder/builder.swift.liquid}
 
-# Storyboard
-- {name: Module/Storyboard/.storyboard,  path: Code/Storyboard/storyboard.storyboard.liquid}
+# Contract
+- {name: Contract/Contract.swift,  path: Code/Contract/contract.swift.liquid}
+
+# ViewModel
+- {name: ViewModel/ViewModel.swift,  path: Code/ViewModel/viewModel.swift.liquid}
 
 # View layer
-- {name: Module/View/ViewInput.swift,  path: Code/View/view_input.swift.liquid}
-- {name: Module/View/ViewController.swift, path: Code/View/viewcontroller.swift.liquid}
+- {name: View/View.swift,  path: Code/View/view.swift.liquid}
+- {name: View/ViewController.swift, path: Code/View/viewcontroller.swift.liquid}
 
 # Presenter layer
-- {name: Module/Presenter/ModuleInput.swift, path: Code/Presenter/module_input.swift.liquid}
 - {name: Module/Presenter/Presenter.swift, path: Code/Presenter/presenter.swift.liquid}
 
 # Interactor layer
-- {name: Module/Interactor/InteractorInput.swift, path: Code/Interactor/interactor_input.swift.liquid}
 - {name: Module/Interactor/Interactor.swift, path: Code/Interactor/interactor.swift.liquid}
 
 # Router layer
-- {name: Module/Router/RouterInput.swift, path: Code/Router/router_input.swift.liquid}
 - {name: Module/Router/Router.swift, path: Code/Router/router.swift.liquid}
 
 # The declarations for test files

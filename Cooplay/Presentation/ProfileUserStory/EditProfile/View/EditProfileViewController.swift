@@ -1,18 +1,19 @@
 //
-//  {{ module_info.file_name }}
-//  {{ module_info.project_name }}
+//  EditProfileViewController.swift
+//  Cooplay
 //
-//  Created by {{ developer.name }} on {{ date }}.
+//  Created by Alexandr on 11.05.2023.
+//  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
 import SwiftUI
 import Combine
 
-final class {{ module_info.name }}ViewController: UIHostingController<{{ module_info.name }}View> {
+final class EditProfileViewController: UIHostingController<EditProfileView> {
 
-    private weak var output: {{ module_info.name }}ViewOutput?
+    private weak var output: EditProfileViewOutput?
     
-    init(contentView: {{ module_info.name }}View, output: {{ module_info.name }}ViewOutput?) {
+    init(contentView: EditProfileView, output: EditProfileViewOutput?) {
         self.output = output
         super.init(rootView: contentView)
     }

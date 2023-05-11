@@ -5,7 +5,7 @@
 //  Created by Alexandr Ovchinnikov on 16/06/2020.
 //
 
-protocol ProfileViewInput: class {
+protocol ProfileViewInput: AnyObject {
 
     // MARK: - View out
 
