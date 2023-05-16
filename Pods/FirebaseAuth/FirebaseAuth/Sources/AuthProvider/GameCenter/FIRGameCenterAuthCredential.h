@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#import <FirebaseAuth/FIRAuthCredential.h>
 #import <Foundation/Foundation.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthCredential.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
     @brief The ID of the Game Center local player.
  */
 @property(nonatomic, readonly) NSString *playerID;
+
+/** @property teamPlayerID
+    @brief The team player ID of the Game Center local player.
+ */
+@property(nonatomic, readonly) NSString *teamPlayerID;
+
+/** @property gamePlayerID
+    @brief The game player ID of the Game Center local player.
+ */
+@property(nonatomic, readonly) NSString *gamePlayerID;
 
 /** @property publicKeyURL
     @brief The URL for the public encryption key.
@@ -50,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) uint64_t timestamp;
 
 /** @property displayName
-    @brief The date and time that the signature was created.
+    @brief The display name of the local Game Center player.
  */
 @property(nonatomic, readonly) NSString *displayName;
 
@@ -60,8 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
     @param signature The verification signature generated.
     @param salt A random string used to compute the hash and keep it randomized.
     @param timestamp The date and time that the signature was created.
+    @param displayName The display name of the Game Center player.
  */
 - (nullable instancetype)initWithPlayerID:(NSString *)playerID
+                             teamPlayerID:(nullable NSString *)teamPlayerID
+                             gamePlayerID:(nullable NSString *)gamePlayerID
                              publicKeyURL:(NSURL *)publicKeyURL
                                 signature:(NSData *)signature
                                      salt:(NSData *)salt

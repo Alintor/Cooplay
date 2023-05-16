@@ -44,6 +44,8 @@ class LocalStore;
 
 namespace remote {
 
+class ConnectivityMonitor;
+
 /**
  * A callback interface for events from remote store.
  */
@@ -77,7 +79,7 @@ class RemoteStoreCallback {
    * removing the batch from the mutation queue.
    */
   virtual void HandleSuccessfulWrite(
-      const model::MutationBatchResult& batch_result) = 0;
+      model::MutationBatchResult batch_result) = 0;
 
   /**
    * Rejects the batch, removing the batch from the mutation queue, recomputing
@@ -109,6 +111,7 @@ class RemoteStore : public TargetMetadataProvider,
   RemoteStore(local::LocalStore* local_store,
               std::shared_ptr<Datastore> datastore,
               const std::shared_ptr<util::AsyncQueue>& worker_queue,
+              ConnectivityMonitor* connectivity_monitor,
               std::function<void(model::OnlineState)> online_state_handler);
 
   void set_sync_engine(RemoteStoreCallback* sync_engine) {
@@ -156,7 +159,7 @@ class RemoteStore : public TargetMetadataProvider,
    * It is a no-op if the target of the given target data is already being
    * listened to.
    */
-  void Listen(const local::TargetData& target_data);
+  void Listen(local::TargetData target_data);
 
   /**
    * Stops listening to the target with the given target ID.
@@ -191,6 +194,9 @@ class RemoteStore : public TargetMetadataProvider,
   absl::optional<local::TargetData> GetTargetDataForTarget(
       model::TargetId target_id) const override;
 
+  void RunCountQuery(const core::Query& query,
+                     api::CountQueryCallback&& result_callback);
+
   void OnWatchStreamOpen() override;
   void OnWatchStreamChange(
       const WatchChange& change,
@@ -205,6 +211,7 @@ class RemoteStore : public TargetMetadataProvider,
       std::vector<model::MutationResult> mutation_results) override;
 
  private:
+  void RestartNetwork();
   void DisableNetworkInternal();
 
   void SendWatchRequest(const local::TargetData& target_data);
@@ -269,6 +276,8 @@ class RemoteStore : public TargetMetadataProvider,
   std::unordered_map<model::TargetId, local::TargetData> listen_targets_;
 
   OnlineStateTracker online_state_tracker_;
+
+  ConnectivityMonitor* connectivity_monitor_ = nullptr;
 
   /**
    * Set to true by `EnableNetwork` and false by `DisableNetwork` and indicates

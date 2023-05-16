@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol StartRoutable: Router {
+protocol StartRoutable {
     
     func openEventList()
 }
@@ -16,9 +16,7 @@ protocol StartRoutable: Router {
 extension StartRoutable {
     
     func openEventList() {
-        transitionHandler.setRootViewController(
-            UINavigationController(rootViewController: R.storyboard.eventsList.eventsListViewController()!)
-        )
+        UIApplication.setRootViewController(EventsListBuilder().build())
     }
 }
 

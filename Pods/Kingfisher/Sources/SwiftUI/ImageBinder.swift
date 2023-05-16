@@ -24,9 +24,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if canImport(SwiftUI) && canImport(Combine)
 import Combine
 import SwiftUI
-
 #if !KingfisherCocoaPods
 import Kingfisher
 #endif
@@ -50,23 +50,6 @@ extension KFImage {
         let onProgressDelegate = Delegate<(Int64, Int64), Void>()
 
         @Published var image: KFCrossPlatformImage?
-
-        // Only `.fade` is now supported.
-        var fadeTransitionAnimation: Animation? {
-            #if os(iOS) || os(tvOS)
-            guard let options = (options.map { KingfisherParsedOptionsInfo($0) }) else {
-                return nil
-            }
-            switch options.transition {
-            case .fade(let duration):
-                return .linear(duration: duration)
-            default:
-                return nil
-            }
-            #else
-            return nil
-            #endif
-        }
 
         init(source: Source?, options: KingfisherOptionsInfo?) {
             self.source = source
@@ -138,3 +121,4 @@ extension KFImage {
         }
     }
 }
+#endif

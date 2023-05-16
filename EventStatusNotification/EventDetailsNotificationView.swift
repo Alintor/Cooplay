@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Kingfisher
+import struct Kingfisher.KFImage
 
 struct EventDetailsNotificationView: View {
     

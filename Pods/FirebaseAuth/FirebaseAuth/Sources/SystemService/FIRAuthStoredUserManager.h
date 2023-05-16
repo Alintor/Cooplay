@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#import <FirebaseAuth/FIRUser.h>
 #import <Foundation/Foundation.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRUser.h"
 
 #import "FirebaseAuth/Sources/Storage/FIRAuthKeychainServices.h"
 #import "FirebaseAuth/Sources/Storage/FIRAuthUserDefaults.h"
@@ -47,50 +47,56 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** @fn getStoredUserAccessGroupWithError:
     @brief Get the user access group stored locally.
-    @param outError Return value for any error which occurs.
  */
-- (NSString *_Nullable)getStoredUserAccessGroupWithError:(NSError *_Nullable *_Nullable)outError;
+- (nullable NSString *)getStoredUserAccessGroup;
 
 /** @fn setStoredUserAccessGroup:error:
     @brief The setter of the user access group stored locally.
     @param accessGroup The access group to be set.
-    @param outError Return value for any error which occurs.
  */
-- (BOOL)setStoredUserAccessGroup:(NSString *_Nullable)accessGroup
-                           error:(NSError *_Nullable *_Nullable)outError;
+- (BOOL)setStoredUserAccessGroup:(NSString *_Nullable)accessGroup;
 
 /** @fn getStoredUserForAccessGroup:projectID:error:
     @brief The getter of the user stored locally.
     @param accessGroup The access group to retrieve the user from.
+    @param shareAuthStateAcrossDevices If true, the keychain will be synced across the end-user's
+   iCloud.
     @param projectIdentifier An identifier of the project that the user associates with. Currently,
         we use API KEY.
     @param outError Return value for any error which occurs.
  */
-- (FIRUser *)getStoredUserForAccessGroup:(NSString *)accessGroup
-                       projectIdentifier:(NSString *)projectIdentifier
-                                   error:(NSError *_Nullable *_Nullable)outError;
+- (nullable FIRUser *)getStoredUserForAccessGroup:(NSString *)accessGroup
+                      shareAuthStateAcrossDevices:(BOOL)shareAuthStateAcrossDevices
+                                projectIdentifier:(NSString *)projectIdentifier
+                                            error:(NSError *_Nullable *_Nullable)outError;
 
 /** @fn setStoredUser:forAccessGroup:projectID:error:
     @brief The setter of the user stored locally.
     @param user The user to be stored.
     @param accessGroup The access group to store the user in.
+    @param shareAuthStateAcrossDevices If true, the keychain will be synced across the end-user's
+   iCloud.
     @param projectIdentifier An identifier of the project that the user associates with. Currently,
         we use API KEY.
     @param outError Return value for any error which occurs.
  */
 - (BOOL)setStoredUser:(FIRUser *)user
-       forAccessGroup:(NSString *)accessGroup
-    projectIdentifier:(NSString *)projectIdentifier
-                error:(NSError *_Nullable *_Nullable)outError;
+                 forAccessGroup:(NSString *)accessGroup
+    shareAuthStateAcrossDevices:(BOOL)shareAuthStateAcrossDevices
+              projectIdentifier:(NSString *)projectIdentifier
+                          error:(NSError *_Nullable *_Nullable)outError;
 
 /** @fn removeStoredUserForAccessGroup:projectID:error:
     @brief Remove the user that stored locally.
     @param accessGroup The access group to remove the user from.
+    @param shareAuthStateAcrossDevices If true, the keychain will be synced across the end-user's
+   iCloud.
     @param projectIdentifier An identifier of the project that the user associates with. Currently,
         we use API KEY.
     @param outError Return value for any error which occurs.
  */
 - (BOOL)removeStoredUserForAccessGroup:(NSString *)accessGroup
+           shareAuthStateAcrossDevices:(BOOL)shareAuthStateAcrossDevices
                      projectIdentifier:(NSString *)projectIdentifier
                                  error:(NSError *_Nullable *_Nullable)outError;
 

@@ -18,7 +18,7 @@ class AvatarViewModel {
     
     init(with model: User) {
         self.model = model
-        firstNameLetter = String(model.name?.prefix(1) ?? "").uppercased()
+        firstNameLetter = model.name.firstBigLetter
         backgroundColor = UIColor.avatarBackgroundColor(model.id)
         avatarPath = model.avatarPath
     }

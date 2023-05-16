@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-#import "FirebaseDynamicLinks/Sources/Public/FIRDynamicLinks.h"
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
+
+#import "FirebaseDynamicLinks/Sources/Public/FirebaseDynamicLinks/FIRDynamicLinks.h"
 
 #import <UIKit/UIKit.h>
 
 #ifdef FIRDynamicLinks3P
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
 #import "FirebaseDynamicLinks/Sources/FIRDLScionLogging.h"
 #import "Interop/Analytics/Public/FIRAnalyticsInterop.h"
+#else
+#import "FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h"
 #endif
 
 #ifdef FIRDynamicLinks3P
@@ -37,17 +42,6 @@
 #import "FirebaseDynamicLinks/Sources/Logging/FDLLogging.h"
 #import "FirebaseDynamicLinks/Sources/Utilities/FDLUtilities.h"
 
-#ifndef FIRDynamicLinks_VERSION
-#error "FIRDynamicLinks_VERSION is not defined: add -DFIRDynamicLinks_VERSION=... to the build \
-invocation"
-#endif
-
-#define STR(x) STR_EXPAND(x)
-#define STR_EXPAND(x) #x
-
-// The version string of the SDK.
-NSString *const kFIRDLVersion = @STR(FIRDynamicLinks_VERSION);
-
 // We should only read the deeplink after install once. We use the following key to store the state
 // in the user defaults.
 NSString *const kFIRDLReadDeepLinkAfterInstallKey =
@@ -56,7 +50,7 @@ NSString *const kFIRDLReadDeepLinkAfterInstallKey =
 // We should only open url once. We use the following key to store the state in the user defaults.
 static NSString *const kFIRDLOpenURLKey = @"com.google.appinvite.openURL";
 
-// Custom domains to be whitelisted are optionally added as an array to the info.plist.
+// Custom domains to be allowed are optionally added as an array to the info.plist.
 static NSString *const kInfoPlistCustomDomainsKey = @"FirebaseDynamicLinksCustomDomains";
 
 NS_ASSUME_NONNULL_BEGIN
@@ -65,9 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // API Key for API access.
 @property(nonatomic, copy) NSString *APIKey;
-
-// Client ID for API access.
-@property(nonatomic, copy) NSString *clientID;
 
 // Custom URL scheme.
 @property(nonatomic, copy) NSString *URLScheme;
@@ -115,7 +106,7 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 #ifdef FIRDynamicLinks3P
 
 + (void)load {
-  [FIRApp registerInternalLibrary:self withName:@"fire-dl" withVersion:kFIRDLVersion];
+  [FIRApp registerInternalLibrary:self withName:@"fire-dl"];
 }
 
 + (nonnull NSArray<FIRComponent *> *)componentsToRegister {
@@ -138,8 +129,7 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
     id<FIRAnalyticsInterop> analytics = FIR_COMPONENT(FIRAnalyticsInterop, container);
     FIRDynamicLinks *dynamicLinks = [[FIRDynamicLinks alloc] initWithAnalytics:analytics];
     [dynamicLinks configureDynamicLinks:container.app];
-    // Check for pending Dynamic Link automatically if enabled, otherwise we expect the developer to
-    // call strong match FDL API to retrieve a pending link.
+
     if ([FIRDynamicLinks isAutomaticRetrievalEnabled]) {
       [dynamicLinks checkForPendingDynamicLink];
     }
@@ -164,29 +154,20 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
     errorDescription = [@"API key must not be nil or empty." mutableCopy];
   }
 
-  if (options.clientID.length == 0) {
-    NSString *errorMsg = @"Client ID must not be nil or empty.";
-    if (errorDescription) {
-      [errorDescription appendFormat:@" %@", errorMsg];
-    } else {
-      errorDescription = [errorMsg mutableCopy];
-    }
-  }
-
   if (!errorDescription) {
     // setup FDL if no error detected
     urlScheme = options.deepLinkURLScheme ?: [NSBundle mainBundle].bundleIdentifier;
-    [self setUpWithLaunchOptions:nil
-                          apiKey:options.APIKey
-                        clientID:options.clientID
-                       urlScheme:urlScheme
-                    userDefaults:nil];
+    [self setUpWithLaunchOptions:nil apiKey:options.APIKey urlScheme:urlScheme userDefaults:nil];
   } else {
-    error =
-        [FIRApp errorForSubspecConfigurationFailureWithDomain:kFirebaseDurableDeepLinkErrorDomain
-                                                    errorCode:FIRErrorCodeDurableDeepLinkFailed
-                                                      service:@"DynamicLinks"
-                                                       reason:errorDescription];
+    NSString *description =
+        [NSString stringWithFormat:@"Configuration failed for service DynamicLinks."];
+    NSDictionary *errorDict = @{
+      NSLocalizedDescriptionKey : description,
+      NSLocalizedFailureReasonErrorKey : errorDescription
+    };
+    error = [NSError errorWithDomain:kFirebaseDurableDeepLinkErrorDomain
+                                code:FIRErrorCodeDurableDeepLinkFailed
+                            userInfo:errorDict];
   }
   if (error) {
     NSString *message = nil;
@@ -268,20 +249,14 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
 - (BOOL)setUpWithLaunchOptions:(nullable NSDictionary *)launchOptions
                         apiKey:(NSString *)apiKey
-                      clientID:(NSString *)clientID
                      urlScheme:(nullable NSString *)urlScheme
                   userDefaults:(nullable NSUserDefaults *)userDefaults {
   if (apiKey == nil) {
     FDLLog(FDLLogLevelError, FDLLogIdentifierSetupNilAPIKey, @"API Key must not be nil.");
     return NO;
   }
-  if (clientID == nil) {
-    FDLLog(FDLLogLevelError, FDLLogIdentifierSetupNilClientID, @"Client ID must not be nil.");
-    return NO;
-  }
 
   _APIKey = [apiKey copy];
-  _clientID = [clientID copy];
   _URLScheme = urlScheme.length ? [urlScheme copy] : [NSBundle mainBundle].bundleIdentifier;
 
   if (!userDefaults) {
@@ -307,7 +282,11 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
 - (void)checkForPendingDynamicLink {
   // Make sure this method is called only once after the application was installed.
-  BOOL appInviteDeepLinkRead = [_userDefaults boolForKey:kFIRDLReadDeepLinkAfterInstallKey];
+  // kFIRDLOpenURLKey marks checkForPendingDynamic link had been called already so no need to do it
+  // again. kFIRDLReadDeepLinkAfterInstallKey marks we have already read a deeplink after the
+  // install and so no need to do check for pending dynamic link.
+  BOOL appInviteDeepLinkRead = [_userDefaults boolForKey:kFIRDLOpenURLKey] ||
+                               [_userDefaults boolForKey:kFIRDLReadDeepLinkAfterInstallKey];
 
   if (appInviteDeepLinkRead || self.retrievingPendingDynamicLink) {
     NSString *errorDescription =
@@ -323,10 +302,9 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
   FIRDLRetrievalProcessFactory *factory =
       [[FIRDLRetrievalProcessFactory alloc] initWithNetworkingService:self.dynamicLinkNetworking
-                                                             clientID:_clientID
                                                             URLScheme:_URLScheme
                                                                APIKey:_APIKey
-                                                        FDLSDKVersion:kFIRDLVersion
+                                                        FDLSDKVersion:FIRFirebaseVersion()
                                                              delegate:self];
   _retrievalProcess = [factory automaticRetrievalProcess];
   [_retrievalProcess retrievePendingDynamicLink];
@@ -338,6 +316,17 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
 + (instancetype)sharedInstance {
   return [self dynamicLinks];
+}
+
+- (BOOL)setUpWithLaunchOptions:(nullable NSDictionary *)launchOptions
+                        apiKey:(NSString *)apiKey
+                      clientID:(NSString *)clientID
+                     urlScheme:(nullable NSString *)urlScheme
+                  userDefaults:(nullable NSUserDefaults *)userDefaults {
+  return [self setUpWithLaunchOptions:launchOptions
+                               apiKey:apiKey
+                            urlScheme:urlScheme
+                         userDefaults:userDefaults];
 }
 
 - (void)checkForPendingDeepLink {
@@ -407,25 +396,66 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
   return nil;
 }
 
-- (nullable FIRDynamicLink *)dynamicLinkFromUniversalLinkURL:(NSURL *)url {
+- (nullable FIRDynamicLink *)
+    dynamicLinkInternalFromUniversalLinkURL:(NSURL *)url
+                                 completion:
+                                     (nullable FIRDynamicLinkUniversalLinkHandler)completion {
+  // Make sure the completion is always called on the main queue.
+  FIRDynamicLinkUniversalLinkHandler mainQueueCompletion =
+      ^(FIRDynamicLink *_Nullable dynamicLink, NSError *_Nullable error) {
+        if (completion) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+            completion(dynamicLink, error);
+          });
+        }
+      };
+
   if ([self canParseUniversalLinkURL:url]) {
     if (url.query.length > 0) {
-      NSDictionary *parameters = FIRDLDictionaryFromQuery(url.query);
+      NSDictionary<NSString *, NSString *> *parameters = FIRDLDictionaryFromQuery(url.query);
       if (parameters[kFIRDLParameterLink]) {
-        FIRDynamicLink *dynamicLink = [[FIRDynamicLink alloc] init];
         NSString *urlString = parameters[kFIRDLParameterLink];
         NSURL *deepLinkURL = [NSURL URLWithString:urlString];
         if (deepLinkURL) {
-          dynamicLink.url = deepLinkURL;
+          NSMutableDictionary *paramsDictionary = [[NSMutableDictionary alloc]
+              initWithDictionary:@{kFIRDLParameterDeepLinkIdentifier : urlString}];
+
+          if (parameters[kFIRDLParameterSource] != nil) {
+            [paramsDictionary setValue:parameters[kFIRDLParameterSource]
+                                forKey:kFIRDLParameterSource];
+          }
+
+          if (parameters[kFIRDLParameterMedium] != nil) {
+            [paramsDictionary setValue:parameters[kFIRDLParameterMedium]
+                                forKey:kFIRDLParameterMedium];
+          }
+
+          if (parameters[kFIRDLParameterTerm] != nil) {
+            [paramsDictionary setValue:parameters[kFIRDLParameterTerm] forKey:kFIRDLParameterTerm];
+          }
+
+          if (parameters[kFIRDLParameterCampaign] != nil) {
+            [paramsDictionary setValue:parameters[kFIRDLParameterCampaign]
+                                forKey:(kFIRDLParameterCampaign)];
+          }
+
+          if (parameters[kFIRDLParameterContent] != nil) {
+            [paramsDictionary setValue:parameters[kFIRDLParameterContent]
+                                forKey:kFIRDLParameterContent];
+          }
+
+          FIRDynamicLink *dynamicLink =
+              [[FIRDynamicLink alloc] initWithParametersDictionary:paramsDictionary];
           dynamicLink.matchType = FIRDLMatchTypeUnique;
           dynamicLink.minimumAppVersion = parameters[kFIRDLParameterMinimumAppVersion];
+
           // Call resolveShortLink:completion: to do logging.
           // TODO: Create dedicated logging function to prevent this.
           [self.dynamicLinkNetworking
               resolveShortLink:url
-                 FDLSDKVersion:kFIRDLVersion
-                    completion:^(NSURL *_Nullable resolverURL, NSError *_Nullable resolverError){
-                        // Nothing to do
+                 FDLSDKVersion:FIRFirebaseVersion()
+                    completion:^(NSURL *_Nullable resolverURL, NSError *_Nullable resolverError) {
+                      mainQueueCompletion(dynamicLink, resolverError);
                     }];
 #ifdef GIN_SCION_LOGGING
           FIRDLLogEventToScion(FIRDLLogEventAppOpen, parameters[kFIRDLParameterSource],
@@ -437,7 +467,24 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
       }
     }
   }
+
+  mainQueueCompletion(
+      nil, [[NSError alloc] initWithDomain:@"com.firebase.dynamicLinks"
+                                      code:1
+                                  userInfo:@{
+                                    NSLocalizedFailureReasonErrorKey :
+                                        @"Universal link URL could not be parsed by Dynamic Links."
+                                  }]);
   return nil;
+}
+
+- (nullable FIRDynamicLink *)dynamicLinkFromUniversalLinkURL:(NSURL *)url {
+  return [self dynamicLinkInternalFromUniversalLinkURL:url completion:nil];
+}
+
+- (void)dynamicLinkFromUniversalLinkURL:(NSURL *)url
+                             completion:(FIRDynamicLinkUniversalLinkHandler)completion {
+  [self dynamicLinkInternalFromUniversalLinkURL:url completion:completion];
 }
 
 - (BOOL)handleUniversalLink:(NSURL *)universalLinkURL
@@ -458,19 +505,17 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
                 }];
     return YES;
   } else {
-    FIRDynamicLink *dynamicLink = [self dynamicLinkFromUniversalLinkURL:universalLinkURL];
-    if (dynamicLink) {
-      completion(dynamicLink, nil);
-      return YES;
-    }
+    [self dynamicLinkFromUniversalLinkURL:universalLinkURL completion:completion];
+    BOOL canHandleUniversalLink =
+        [self canParseUniversalLinkURL:universalLinkURL] && universalLinkURL.query.length > 0 &&
+        FIRDLDictionaryFromQuery(universalLinkURL.query)[kFIRDLParameterLink];
+    return canHandleUniversalLink;
   }
-
-  return NO;
 }
 
 - (void)resolveShortLink:(NSURL *)url completion:(FIRDynamicLinkResolverHandler)completion {
   [self.dynamicLinkNetworking resolveShortLink:url
-                                 FDLSDKVersion:kFIRDLVersion
+                                 FDLSDKVersion:FIRFirebaseVersion()
                                     completion:completion];
 }
 
@@ -494,7 +539,6 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 - (FIRDynamicLinkNetworking *)dynamicLinkNetworking {
   if (!_dynamicLinkNetworking) {
     _dynamicLinkNetworking = [[FIRDynamicLinkNetworking alloc] initWithAPIKey:_APIKey
-                                                                     clientID:_clientID
                                                                     URLScheme:_URLScheme];
   }
   return _dynamicLinkNetworking;
@@ -521,25 +565,25 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
 - (void)passRetrievedDynamicLinkToApplication:(NSURL *)url {
   id<UIApplicationDelegate> applicationDelegate = [UIApplication sharedApplication].delegate;
-  if (applicationDelegate &&
-      [applicationDelegate respondsToSelector:@selector(application:openURL:options:)]) {
+  if ([self isOpenUrlMethodPresentInAppDelegate:applicationDelegate]) {
     // pass url directly to application delegate to avoid hop into
     // iOS handling of the universal links
-    if (@available(iOS 9.0, *)) {
-      [applicationDelegate application:[UIApplication sharedApplication] openURL:url options:@{}];
-      return;
-    }
+    [applicationDelegate application:[UIApplication sharedApplication] openURL:url options:@{}];
+    return;
   }
-  [[UIApplication sharedApplication] openURL:url];
+
+  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
+
+- (BOOL)isOpenUrlMethodPresentInAppDelegate:(id<UIApplicationDelegate>)applicationDelegate {
+  return applicationDelegate &&
+         [applicationDelegate respondsToSelector:@selector(application:openURL:options:)];
 }
 
 - (void)handlePendingDynamicLinkRetrievalFailureWithErrorCode:(NSInteger)errorCode
                                              errorDescription:(NSString *)errorDescription
                                               underlyingError:(nullable NSError *)underlyingError {
   self.retrievingPendingDynamicLink = NO;
-
-  // TODO (b/38035270) inform caller why we failed, for App developer it is hard to debug
-  // stuff like this without having source code access
 }
 
 #pragma mark - FIRDLRetrievalProcessDelegate
@@ -565,7 +609,6 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
 
 static NSString *kSelfDiagnoseOutputHeader =
     @"---- Firebase Dynamic Links diagnostic output start ----\n";
-// TODO (b/38397557) Add link to the "Debug FDL" documentation when docs is published
 static NSString *kSelfDiagnoseOutputFooter =
     @"---- Firebase Dynamic Links diagnostic output end ----\n";
 
@@ -573,7 +616,7 @@ static NSString *kSelfDiagnoseOutputFooter =
   NSMutableString *genericDiagnosticInfo = [[NSMutableString alloc] init];
 
   [genericDiagnosticInfo
-      appendFormat:@"Firebase Dynamic Links framework version %@\n", kFIRDLVersion];
+      appendFormat:@"Firebase Dynamic Links framework version %@\n", FIRFirebaseVersion()];
   [genericDiagnosticInfo appendFormat:@"System information: OS %@, OS version %@, model %@\n",
                                       [UIDevice currentDevice].systemName,
                                       [UIDevice currentDevice].systemVersion,
@@ -777,3 +820,5 @@ static NSString *kSelfDiagnoseOutputFooter =
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif  // TARGET_OS_IOS

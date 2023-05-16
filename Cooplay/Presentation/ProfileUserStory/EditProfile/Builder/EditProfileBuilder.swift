@@ -13,9 +13,10 @@ import Swinject
 
 final class EditProfileBuilder {
     
-    func build() -> UIViewController {
-        let resolver = ApplicationAssembly.assembler.resolver
-        let viewModel = EditProfileViewModel()
+    func build(profile: Profile) -> UIViewController {
+        let r = ApplicationAssembly.assembler.resolver
+        
+        let viewModel = EditProfileViewModel(profile: profile)
         let interactor = EditProfileInteractor()
         let router = EditProfileRouter()
         let presenter = EditProfilePresenter(

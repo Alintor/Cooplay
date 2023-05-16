@@ -21,4 +21,8 @@ extension String {
             options: .caseInsensitive) else { return false }
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
+    
+    var firstBigLetter: String {
+        String(self.prefix(1)).uppercased()
+    }
 }

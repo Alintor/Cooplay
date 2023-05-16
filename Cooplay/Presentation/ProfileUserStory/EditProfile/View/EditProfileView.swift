@@ -25,7 +25,15 @@ struct EditProfileView: View {
     // MARK: - Body
     
     var body: some View {
-        Text("")
+        ZStack {
+            Color.init(R.color.background()!)
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 0) {
+                EditAvatarView(viewModel: viewModel)
+                    .padding(.bottom, 24)
+                Spacer()
+            }
+        }
     }
     
 }

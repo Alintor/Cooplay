@@ -32,8 +32,8 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
         notificationCenter.requestAuthorization(options: options) {
             (didAllow, error) in
             if didAllow {
-                InstanceID.instanceID().instanceID { [weak self] result, _ in
-                    if let token = result?.token {
+                Messaging.messaging().token { [weak self] token, _ in
+                    if let token = token {
                         self?.registerToken(token)
                     } else {
                         print("Remote notifications token registeration error: Couldn't fetch registration token.")
@@ -134,7 +134,9 @@ extension PushNotificationApplicationService: UNUserNotificationCenterDelegate {
 
 extension PushNotificationApplicationService: MessagingDelegate {
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else { return }
+        
         registerToken(fcmToken)
     }
 }

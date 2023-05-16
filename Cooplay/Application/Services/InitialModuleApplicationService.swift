@@ -35,11 +35,11 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
     private func setupInitialModule() {
         if authorizationService.isLoggedIn {
             UIApplication.setRootViewController(UINavigationController(
-                rootViewController: R.storyboard.eventsList.eventsListViewController()!)
-            )
+                rootViewController: EventsListBuilder().build()
+            ))
         } else {
             UIApplication.setRootViewController(UINavigationController(
-                rootViewController: R.storyboard.intro.introViewController()!
+                rootViewController: IntroBuilder().build()
             ))
         }
     }
@@ -52,8 +52,7 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
                 guard let `self` = self, !exist else { return }
                 let user = User(id: userId, name: nil, avatarPath: nil, state: .unknown, lateness: nil, isOwner: nil)
                 // TODO:
-                let personalisation = R.storyboard.personalisation.personalisationViewController()!
-                personalisation.output?.configure(with: user)
+                let personalisation = PersonalisationBuilder().build(user: user)
                 if #available(iOS 13.0, *) {
                     personalisation.isModalInPresentation = true
                 }

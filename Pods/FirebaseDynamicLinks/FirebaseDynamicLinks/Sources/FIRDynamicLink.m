@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
+
 #import "FirebaseDynamicLinks/Sources/FIRDynamicLink+Private.h"
 
 #import "FirebaseDynamicLinks/Sources/Utilities/FDLUtilities.h"
 
 @implementation FIRDynamicLink
+
+NSString *const FDLUTMParamPrefix = @"utm_";
 
 - (NSString *)description {
   return [NSString stringWithFormat:@"<%@: %p, url [%@], match type: %@, minimumAppVersion: %@, "
@@ -33,7 +38,7 @@
 
   if (self = [super init]) {
     _parametersDictionary = [parameters copy];
-
+    _utmParametersDictionary = [[self class] extractUTMParams:parameters];
     NSString *urlString = parameters[kFIRDLParameterDeepLinkIdentifier];
     _url = [NSURL URLWithString:urlString];
     _inviteId = parameters[kFIRDLParameterInviteId];
@@ -131,4 +136,18 @@
   return [matchMap[string] integerValue] ?: FIRDLMatchTypeNone;
 }
 
++ (NSDictionary<NSString *, id> *)extractUTMParams:(NSDictionary<NSString *, id> *)parameters {
+  NSMutableDictionary<NSString *, id> *utmParamsDictionary = [[NSMutableDictionary alloc] init];
+
+  for (NSString *key in parameters) {
+    if ([key hasPrefix:FDLUTMParamPrefix]) {
+      [utmParamsDictionary setObject:[parameters valueForKey:key] forKey:key];
+    }
+  }
+
+  return [[NSDictionary alloc] initWithDictionary:utmParamsDictionary];
+}
+
 @end
+
+#endif  // TARGET_OS_IOS

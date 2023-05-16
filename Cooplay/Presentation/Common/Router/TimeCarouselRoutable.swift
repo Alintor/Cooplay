@@ -16,7 +16,7 @@ protocol TimeCarouselRoutable: Router {
 extension TimeCarouselRoutable {
     
     func showCarousel(delegate: TimeCarouselContextDelegate?, configuration: TimeCarouselConfiguration, selectHandler: ((_ date: Date) -> Void)?) {
-        guard let delegate = delegate ?? transitionHandler as? TimeCarouselContextDelegate else { return }
+        guard let delegate = delegate ?? rootViewController as? TimeCarouselContextDelegate else { return }
         let contextView = TimeCarouselContextView(configuration: configuration, delegate: delegate, selectHandler: selectHandler)
         contextView.show()
     }

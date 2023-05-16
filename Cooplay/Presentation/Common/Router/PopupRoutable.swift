@@ -6,7 +6,7 @@
 //  Copyright © 2021 Ovchinnikov. All rights reserved.
 //
 
-import LightRoute
+import UIKit
 
 struct Action {
     
@@ -26,8 +26,8 @@ extension PopupRoutable {
         style: UIAlertController.Style = .alert,
         cancelTitle: String = R.string.localizable.commonCancel(),
         actions: [Action] = [],
-        closeHandler: (() -> Void)? = nil) {
-        guard let transitionHandler = transitionHandler as? UIViewController else { return }
+        closeHandler: (() -> Void)? = nil
+    ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         alert.view.tintColor = R.color.actionAccent()
         if #available(iOS 13.0, *) {
@@ -42,8 +42,8 @@ extension PopupRoutable {
         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel) { _ in
             closeHandler?()
         })
-        DispatchQueue.main.async {
-            transitionHandler.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
 }

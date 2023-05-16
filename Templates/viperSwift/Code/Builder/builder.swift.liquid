@@ -13,7 +13,8 @@ import Swinject
 final class {{ module_info.name }}Builder {
     
     func build() -> UIViewController {
-        let resolver = ApplicationAssembly.assembler.resolver
+        let r = ApplicationAssembly.assembler.resolver
+
         let viewModel = {{ module_info.name }}ViewModel()
         let interactor = {{ module_info.name }}Interactor()
         let router = {{ module_info.name }}Router()

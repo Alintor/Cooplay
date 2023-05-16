@@ -26,16 +26,6 @@ final class ApplicationAssembly {
             EventServiceAssemblyContainer(),
             UserServiceAssemblyContainer(),
             GamesServiceAssemblyContainer(),
-            
-            // Modules
-            EventsListAssemblyContainer(),
-            NewEventAssemblyContainer(),
-            SearchGameAssemblyContainer(),
-            SearchMembersAssemblyContainer(),
-            IntroAssemblyContainer(),
-            AuthorizationAssemblyContainer(),
-            RegistrationAssemblyContainer(),
-            PersonalisationAssemblyContainer()
         ])
     }
 }

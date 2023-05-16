@@ -26,8 +26,6 @@ target 'Cooplay' do
   pod 'UIImageColors'
   pod 'Kingfisher/SwiftUI'
 
-  pod 'LightRoute', :git => 'https://github.com/SpectralDragon/LightRoute.git'
-
   target 'EventStatusNotification' do 
 	inherit! :search_paths
   end

@@ -759,7 +759,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 10 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 9 storyboards.
   struct storyboard {
     /// Storyboard `Authorization`.
     static let authorization = _R.storyboard.authorization()
@@ -773,8 +773,6 @@ struct R: Rswift.Validatable {
     static let newEvent = _R.storyboard.newEvent()
     /// Storyboard `Personalisation`.
     static let personalisation = _R.storyboard.personalisation()
-    /// Storyboard `Profile`.
-    static let profile = _R.storyboard.profile()
     /// Storyboard `Registration`.
     static let registration = _R.storyboard.registration()
     /// Storyboard `SearchGame`.
@@ -810,11 +808,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Personalisation", bundle: ...)`
     static func personalisation(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.personalisation)
-    }
-    
-    /// `UIStoryboard(name: "Profile", bundle: ...)`
-    static func profile(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.profile)
     }
     
     /// `UIStoryboard(name: "Registration", bundle: ...)`
@@ -2092,7 +2085,6 @@ struct _R: Rswift.Validatable {
       try launchScreen.validate()
       try newEvent.validate()
       try personalisation.validate()
-      try profile.validate()
       try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
@@ -2236,28 +2228,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Personalisation', but couldn't be loaded.") }
         }
         if _R.storyboard.personalisation().personalisationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'personalisationViewController' could not be loaded from storyboard 'Personalisation' as 'PersonalisationViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct profile: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = ProfileViewController
-      
-      let bundle = R.hostingBundle
-      let name = "Profile"
-      let profileViewController = StoryboardViewControllerResource<ProfileViewController>(identifier: "ProfileViewController")
-      
-      func profileViewController(_: Void = ()) -> ProfileViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: profileViewController)
-      }
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Profile', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Profile', but couldn't be loaded.") }
-        }
-        if _R.storyboard.profile().profileViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'profileViewController' could not be loaded from storyboard 'Profile' as 'ProfileViewController'.") }
       }
       
       fileprivate init() {}

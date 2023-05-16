@@ -6,9 +6,9 @@
 //  Copyright © 2020 Ovchinnikov. All rights reserved.
 //
 
-import LightRoute
+import UIKit
 
-protocol Router: class {
+protocol Router: AnyObject {
     
-    var transitionHandler: TransitionHandler! { get set }
+    var rootViewController: UIViewController? { get }
 }

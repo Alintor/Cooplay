@@ -84,6 +84,28 @@ static NSString *const kIDTokenKey = @"idToken";
  */
 static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 
+/** @var kUserKey
+    @brief The key for the "user" value in the request. The value is a JSON object that contains the
+   name of the user.
+ */
+static NSString *const kUserKey = @"user";
+
+/** @var kNameKey
+    @brief The key for the "name" value in the request. The value is a JSON object that contains the
+   first and/or last name of the user.
+ */
+static NSString *const kNameKey = @"name";
+
+/** @var kFirstNameKey
+    @brief The key for the "firstName" value in the request.
+ */
+static NSString *const kFirstNameKey = @"firstName";
+
+/** @var kLastNameKey
+    @brief The key for the "lastName" value in the request.
+ */
+static NSString *const kLastNameKey = @"lastName";
+
 /** @var kReturnIDPCredentialKey
     @brief The key for the "returnIdpCredential" value in the request.
  */
@@ -93,6 +115,11 @@ static NSString *const kReturnIDPCredentialKey = @"returnIdpCredential";
     @brief The key for the "sessionID" value in the request.
  */
 static NSString *const kSessionIDKey = @"sessionId";
+
+/** @var kTenantIDKey
+    @brief The key for the tenant id value in the request.
+ */
+static NSString *const kTenantIDKey = @"tenantId";
 
 @implementation FIRVerifyAssertionRequest
 
@@ -143,6 +170,24 @@ static NSString *const kSessionIDKey = @"sessionId";
   if (_inputEmail) {
     [queryItems addObject:[NSURLQueryItem queryItemWithName:kIdentifierKey value:_inputEmail]];
   }
+
+  if (_fullName.givenName || _fullName.familyName) {
+    NSMutableDictionary *nameDict = [[NSMutableDictionary alloc] init];
+    if (_fullName.givenName) {
+      nameDict[kFirstNameKey] = _fullName.givenName;
+    }
+    if (_fullName.familyName) {
+      nameDict[kLastNameKey] = _fullName.familyName;
+    }
+    NSDictionary *userDict = [NSDictionary dictionaryWithObject:nameDict forKey:kNameKey];
+    NSData *userJson = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:error];
+    [queryItems
+        addObject:[NSURLQueryItem
+                      queryItemWithName:kUserKey
+                                  value:[[NSString alloc] initWithData:userJson
+                                                              encoding:NSUTF8StringEncoding]]];
+  }
+
   [components setQueryItems:queryItems];
   NSMutableDictionary *body = [@{
     kRequestURIKey : _requestURI ?: @"http://localhost",  // Unused by server, but required
@@ -165,6 +210,10 @@ static NSString *const kSessionIDKey = @"sessionId";
 
   if (_sessionID) {
     body[kSessionIDKey] = _sessionID;
+  }
+
+  if (self.tenantID) {
+    body[kTenantIDKey] = self.tenantID;
   }
 
   body[kAutoCreateKey] = @(_autoCreate);

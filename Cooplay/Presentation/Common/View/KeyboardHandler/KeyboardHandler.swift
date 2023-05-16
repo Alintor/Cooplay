@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol KeyboardHandler: class {
+public protocol KeyboardHandler: AnyObject {
     
     var keyboardWillShowObserver: NSObjectProtocol? { get set }
     var keyboardWillHideObserver: NSObjectProtocol? { get set }

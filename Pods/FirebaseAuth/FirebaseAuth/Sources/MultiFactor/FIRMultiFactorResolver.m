@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
-#import <FirebaseAuth/FIRAdditionalUserInfo.h>
-#import <FirebaseAuth/FIRMultiFactorResolver.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRAdditionalUserInfo.h"
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRMultiFactorResolver.h"
 
 #import "FirebaseAuth/Sources/Auth/FIRAuthDataResult_Internal.h"
 #import "FirebaseAuth/Sources/Auth/FIRAuth_Internal.h"
@@ -28,7 +28,7 @@
 #import "FirebaseAuth/Sources/MultiFactor/FIRMultiFactorSession+Internal.h"
 
 #if TARGET_OS_IOS
-#import <FirebaseAuth/FIRPhoneMultiFactorAssertion.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRPhoneMultiFactorAssertion.h"
 
 #import "FirebaseAuth/Sources/AuthProvider/Phone/FIRPhoneAuthCredential_Internal.h"
 #import "FirebaseAuth/Sources/MultiFactor/Phone/FIRPhoneMultiFactorAssertion+Internal.h"
@@ -39,12 +39,13 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FIRMultiFactorResolver
 
 - (instancetype)initWithMFAPendingCredential:(NSString *_Nullable)MFAPendingCredential
-                                       hints:(NSArray<FIRMultiFactorInfo *> *)hints {
+                                       hints:(NSArray<FIRMultiFactorInfo *> *)hints
+                                        auth:(FIRAuth *)auth {
   self = [super init];
   if (self) {
     _MFAPendingCredential = MFAPendingCredential;
     _hints = hints;
-    _auth = [FIRAuth auth];
+    _auth = auth;
     _session = [[FIRMultiFactorSession alloc] init];
     _session.MFAPendingCredential = MFAPendingCredential;
   }

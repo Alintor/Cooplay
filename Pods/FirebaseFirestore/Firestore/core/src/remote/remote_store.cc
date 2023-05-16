@@ -61,11 +61,13 @@ constexpr int kMaxPendingWrites = 10;
 RemoteStore::RemoteStore(
     LocalStore* local_store,
     std::shared_ptr<Datastore> datastore,
-    const std::shared_ptr<AsyncQueue>& worker_queue,
+    const std::shared_ptr<util::AsyncQueue>& worker_queue,
+    ConnectivityMonitor* connectivity_monitor,
     std::function<void(model::OnlineState)> online_state_handler)
     : local_store_{local_store},
       datastore_{std::move(datastore)},
-      online_state_tracker_{worker_queue, std::move(online_state_handler)} {
+      online_state_tracker_{worker_queue, std::move(online_state_handler)},
+      connectivity_monitor_{NOT_NULL(connectivity_monitor)} {
   datastore_->Start();
 
   // Create streams (but note they're not started yet)
@@ -77,6 +79,23 @@ void RemoteStore::Start() {
   // For now, all setup is handled by `EnableNetwork`. We might expand on this
   // in the future.
   EnableNetwork();
+
+  connectivity_monitor_->AddCallback(
+      [this](ConnectivityMonitor::NetworkStatus network_status) {
+        if (network_status == ConnectivityMonitor::NetworkStatus::Unavailable) {
+          LOG_DEBUG(
+              "RemoteStore %s ignoring connectivity callback for unavailable "
+              "network",
+              this);
+          return;
+        }
+
+        if (CanUseNetwork()) {
+          LOG_DEBUG("RemoteStore %s restarting streams as connectivity changed",
+                    this);
+          RestartNetwork();
+        }
+      });
 }
 
 void RemoteStore::EnableNetwork() {
@@ -132,20 +151,20 @@ void RemoteStore::Shutdown() {
 
 // Watch Stream
 
-void RemoteStore::Listen(const TargetData& target_data) {
+void RemoteStore::Listen(TargetData target_data) {
   TargetId target_key = target_data.target_id();
   if (listen_targets_.find(target_key) != listen_targets_.end()) {
     return;
   }
 
   // Mark this as something the client is currently listening for.
-  listen_targets_[target_key] = target_data;
+  listen_targets_[target_key] = std::move(target_data);
 
   if (ShouldStartWatchStream()) {
     // The listen will be sent in `OnWatchStreamOpen`
     StartWatchStream();
   } else if (watch_stream_->IsOpen()) {
-    SendWatchRequest(target_data);
+    SendWatchRequest(listen_targets_[target_key]);
   }
 }
 
@@ -171,7 +190,7 @@ void RemoteStore::StopListening(TargetId target_id) {
 }
 
 void RemoteStore::SendWatchRequest(const TargetData& target_data) {
-  // We need to increment the the expected number of pending responses we're due
+  // We need to increment the expected number of pending responses we're due
   // from watch so we wait for the ack to process any messages from this target.
   watch_change_aggregator_->RecordPendingTargetRequest(target_data.target_id());
   watch_stream_->WatchQuery(target_data);
@@ -346,6 +365,16 @@ void RemoteStore::ProcessTargetError(const WatchTargetChange& change) {
   }
 }
 
+void RemoteStore::RunCountQuery(const core::Query& query,
+                                api::CountQueryCallback&& result_callback) {
+  if (CanUseNetwork()) {
+    datastore_->RunCountQuery(query, std::move(result_callback));
+  } else {
+    result_callback(Status::FromErrno(Error::kErrorUnavailable,
+                                      "Failed to get result from server."));
+  }
+}
+
 // Write Stream
 
 void RemoteStore::FillWritePipeline() {
@@ -423,7 +452,7 @@ void RemoteStore::OnWriteStreamMutationResult(
   MutationBatchResult batch_result(std::move(batch), commit_version,
                                    std::move(mutation_results),
                                    write_stream_->last_stream_token());
-  sync_engine_->HandleSuccessfulWrite(batch_result);
+  sync_engine_->HandleSuccessfulWrite(std::move(batch_result));
 
   // It's possible that with the completion of this mutation another slot has
   // freed up.
@@ -514,7 +543,7 @@ bool RemoteStore::CanUseNetwork() const {
 }
 
 std::shared_ptr<Transaction> RemoteStore::CreateTransaction() {
-  return std::make_shared<Transaction>(datastore_.get());
+  return std::make_shared<Transaction>(datastore_);
 }
 
 DocumentKeySet RemoteStore::GetRemoteKeysForTarget(TargetId target_id) const {
@@ -528,16 +557,22 @@ absl::optional<TargetData> RemoteStore::GetTargetDataForTarget(
                                         : absl::optional<TargetData>{};
 }
 
+void RemoteStore::RestartNetwork() {
+  is_network_enabled_ = false;
+  DisableNetworkInternal();
+  online_state_tracker_.UpdateState(OnlineState::Unknown);
+  write_stream_->InhibitBackoff();
+  watch_stream_->InhibitBackoff();
+  EnableNetwork();
+}
+
 void RemoteStore::HandleCredentialChange() {
   if (CanUseNetwork()) {
     // Tear down and re-create our network streams. This will ensure we get a
     // fresh auth token for the new user and re-fill the write pipeline with new
     // mutations from the `LocalStore` (since mutations are per-user).
     LOG_DEBUG("RemoteStore %s restarting streams for new credential", this);
-    is_network_enabled_ = false;
-    DisableNetworkInternal();
-    online_state_tracker_.UpdateState(OnlineState::Unknown);
-    EnableNetwork();
+    RestartNetwork();
   }
 }
 

@@ -16,7 +16,8 @@ protocol TimePickerRoutable: Router {
 extension TimePickerRoutable {
     
     func showTimePicker(startTime: Date, enableMinimumTime: Bool, showDate: Bool = false, handler: ((_ date: Date) -> Void)?) {
-        guard let delegate = transitionHandler as? NewEventTimePickerViewDelegate else { return }
+        guard let delegate = rootViewController as? NewEventTimePickerViewDelegate else { return }
+        
         let timePickerView = NewEventTimePickerView(delegate: delegate, timeHandler: handler)
         timePickerView.show(startTime: startTime, showDate: showDate, enableMinimumTime: enableMinimumTime)
     }

@@ -6,7 +6,6 @@
 //  Copyright © 2020 Ovchinnikov. All rights reserved.
 //
 
-import LightRoute
 
 protocol CloseableRouter: Router {
     
@@ -16,6 +15,6 @@ protocol CloseableRouter: Router {
 extension CloseableRouter {
     
     func close(animated: Bool) {
-        try? transitionHandler.closeCurrentModule().perform()
+        rootViewController?.close()
     }
 }

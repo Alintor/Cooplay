@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GoogleUtilities/Logger/Private/GULLogger.h"
+#import "GoogleUtilities/Logger/Public/GoogleUtilities/GULLogger.h"
 
 #include <asl.h>
 
-#import <GoogleUtilities/GULAppEnvironmentUtil.h>
-#import <GoogleUtilities/GULLoggerLevel.h>
+#import "GoogleUtilities/Environment/Public/GoogleUtilities/GULAppEnvironmentUtil.h"
+#import "GoogleUtilities/Logger/Public/GoogleUtilities/GULLoggerLevel.h"
 
 /// ASL client facility name used by GULLogger.
 const char *kGULLoggerASLClientFacilityName = "com.google.utilities.logger";
@@ -33,7 +33,7 @@ static BOOL sGULLoggerDebugMode;
 static GULLoggerLevel sGULLoggerMaximumLevel;
 
 // Allow clients to register a version to include in the log.
-static const char *sVersion = "";
+static NSString *sVersion = @"";
 
 static GULLoggerService kGULLoggerLogger = @"[GULLogger]";
 
@@ -121,24 +121,25 @@ __attribute__((no_sanitize("thread"))) BOOL GULIsLoggableLevel(GULLoggerLevel lo
 }
 
 #ifdef DEBUG
-void GULResetLogger() {
+void GULResetLogger(void) {
   sGULLoggerOnceToken = 0;
+  sGULLoggerDebugMode = NO;
 }
 
-aslclient getGULLoggerClient() {
+aslclient getGULLoggerClient(void) {
   return sGULLoggerClient;
 }
 
-dispatch_queue_t getGULClientQueue() {
+dispatch_queue_t getGULClientQueue(void) {
   return sGULClientQueue;
 }
 
-BOOL getGULLoggerDebugMode() {
+BOOL getGULLoggerDebugMode(void) {
   return sGULLoggerDebugMode;
 }
 #endif
 
-void GULLoggerRegisterVersion(const char *version) {
+void GULLoggerRegisterVersion(NSString *version) {
   sVersion = version;
 }
 
@@ -156,9 +157,8 @@ void GULLogBasic(GULLoggerLevel level,
 #ifdef DEBUG
   NSCAssert(messageCode.length == 11, @"Incorrect message code length.");
   NSRange messageCodeRange = NSMakeRange(0, messageCode.length);
-  NSUInteger numberOfMatches = [sMessageCodeRegex numberOfMatchesInString:messageCode
-                                                                  options:0
-                                                                    range:messageCodeRange];
+  NSUInteger __unused numberOfMatches =
+      [sMessageCodeRegex numberOfMatchesInString:messageCode options:0 range:messageCodeRange];
   NSCAssert(numberOfMatches == 1, @"Incorrect message code format.");
 #endif
   NSString *logMsg;
@@ -167,7 +167,7 @@ void GULLogBasic(GULLoggerLevel level,
   } else {
     logMsg = [[NSString alloc] initWithFormat:message arguments:args_ptr];
   }
-  logMsg = [NSString stringWithFormat:@"%s - %@[%@] %@", sVersion, service, messageCode, logMsg];
+  logMsg = [NSString stringWithFormat:@"%@ - %@[%@] %@", sVersion, service, messageCode, logMsg];
   dispatch_async(sGULClientQueue, ^{
     asl_log(sGULLoggerClient, NULL, (int)level, "%s", logMsg.UTF8String);
   });

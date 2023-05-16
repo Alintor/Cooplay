@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GuestRoutable: Router {
+protocol GuestRoutable {
     
     func openIntro()
 }
@@ -16,8 +16,6 @@ protocol GuestRoutable: Router {
 extension GuestRoutable {
     
     func openIntro() {
-        transitionHandler.setRootViewController(
-            UINavigationController(rootViewController: R.storyboard.intro.introViewController()!)
-        )
+        UIApplication.setRootViewController(IntroBuilder().build())
     }
 }
