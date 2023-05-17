@@ -9,6 +9,14 @@
 import Foundation
 import SwiftUI
 
+enum EditAction: Hashable {
+    
+    case updateName(_ name: String)
+    case deleteImage(path: String)
+    case updateImage(image: UIImage, lastPath: String)
+    case addImage(_ image: UIImage)
+}
+
 final class EditProfileViewModel: ObservableObject {
     
     @Published var name: String
@@ -16,6 +24,16 @@ final class EditProfileViewModel: ObservableObject {
     @Published var avatarPath: String?
     var nameFirstLetter: String {
         name.firstBigLetter
+    }
+    var isButtonDisabled: Bool {
+        !(isNameValid && (isNameChanged || isAvatarChanged))
+    }
+    var isNameChanged: Bool {
+        name != profile.name
+    }
+    
+    var isAvatarChanged: Bool {
+        image != nil || avatarPath != profile.avatarPath
     }
     let avatarBackgroundColor: UIColor
     private let profile: Profile
@@ -26,8 +44,54 @@ final class EditProfileViewModel: ObservableObject {
         avatarPath = profile.avatarPath
         avatarBackgroundColor = UIColor.avatarBackgroundColor(profile.id)
     }
+    
+    // MARK: - Private Methods
+    
+    var isNameValid: Bool {
+        if
+            name.count < Constant.minSymbols ||
+            name.count > Constant.maxSymbols ||
+            name.contains(Constant.wrongSymbol)
+        {
+            return false
+        }
+        return true
+    }
+    
 }
 
 extension EditProfileViewModel: EditProfileViewInput {
+    
+    var editActions: [EditAction] {
+        var actions = [EditAction]()
+        if isNameChanged && isNameValid {
+            actions.append(.updateName(name))
+        }
+        if isAvatarChanged {
+            if let image = image, profile.avatarPath == nil {
+                actions.append(.addImage(image))
+            }
+            if let image = image, let path = profile.avatarPath {
+                actions.append(.updateImage(image: image, lastPath: path))
+            }
+            if let path = profile.avatarPath, image == nil, avatarPath != path {
+                actions.append(.deleteImage(path: path))
+            }
+        }
+        
+        return actions
+    }
+    
+    func removeAvatar() {
+        image = nil
+        avatarPath = nil
+    }
+}
 
+
+private enum Constant {
+    
+    static let minSymbols = 2
+    static let maxSymbols = 12
+    static let wrongSymbol = " "
 }

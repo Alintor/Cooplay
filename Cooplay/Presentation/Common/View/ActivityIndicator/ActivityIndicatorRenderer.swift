@@ -14,7 +14,7 @@ enum ActivityIndicatorRendererConstant {
     static let backgroundTag = 43632352
 }
 
-protocol ActivityIndicatorView: class {
+protocol ActivityIndicatorView: AnyObject {
     
     func start()
     func stop()

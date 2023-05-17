@@ -40,10 +40,10 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     var iconImage: Image { Image("profileSettings.\(self.rawValue)") }
     var actionImage: Image? {
         switch self {
-        case .edit,
-             .logout:
+        case .logout:
             return Image(R.image.profileSettingsActionTypeSheet.name)
-        case .notifications,
+        case .edit,
+             .notifications,
              .changePassword,
              .reactions,
              .account:

@@ -158,6 +158,15 @@
 "profileSettings.section.settings.title" = "Настройки";
 "profileSettings.section.account.title" = "Управление аккаунтом";
 
+// MARK: - Edit profile
+
+"editProfile.title" = "Редактирование";
+"editProfile.changeAvatar" = "Изменить";
+"editProfile.nameDescription" = "Допускается 12 символов, цифры, буквы, -_.~%+";
+"editProfile.saveButton" = "Сохранить изменения";
+"editProfile.alert.makePhoto" = "Сделать фото";
+"editProfile.alert.choosePhoto" = "Выбрать из галереи";
+
 // MARK: - ReactionsSettings
 "reactionsSettings.title" = "Настройка реакции";
 "reactionsSettings.message" = "Выберите реакцию на замену";

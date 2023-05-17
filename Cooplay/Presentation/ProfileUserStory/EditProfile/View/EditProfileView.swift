@@ -10,9 +10,14 @@ import SwiftUI
 
 struct EditProfileView: View {
     
+    enum FocusedField {
+        case name
+    }
+    
     // MARK: - Properties
     
     @ObservedObject var viewModel: EditProfileViewModel
+    @FocusState private var focusedField: FocusedField?
     var output: EditProfileViewOutput
     
     // MARK: - Init
@@ -30,10 +35,41 @@ struct EditProfileView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
                 EditAvatarView(viewModel: viewModel)
-                    .padding(.bottom, 24)
+                    .padding(.top, 24)
+                    .padding(.bottom, 32)
+                    .onTapGesture {
+                        
+                        
+                    }
+                TextFieldView(text: $viewModel.name)
+                    .padding(.horizontal, 24)
+                    .focused($focusedField, equals: .name)
+                    .onSubmit {
+                        if viewModel.isNameValid && viewModel.isNameChanged {
+                            output.didTapSave()
+                        }
+                    }
+                HStack {
+                    Text(Localizable.editProfileNameDescription())
+                        .fontWeight(.medium)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(R.color.textSecondary.name))
+                        .padding(.horizontal, 32)
+                        .padding(.top, 8)
+                    Spacer()
+                }
                 Spacer()
+                MainActionButton(Localizable.editProfileSaveButton(), isDisabled: viewModel.isButtonDisabled) {
+                    output.didTapSave()
+                }
+                .padding(.leading, 24)
+                .padding(.trailing, 24)
+                .padding(.bottom, 16)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
             }
         }
+        .animation(.default, value: viewModel.name)
+        .animation(.default, value: focusedField)
     }
     
 }

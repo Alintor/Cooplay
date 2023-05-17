@@ -830,7 +830,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 144 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 150 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -908,6 +908,8 @@ struct R: Rswift.Validatable {
       static let searchMembersSectionsSelected = Rswift.StringResource(key: "searchMembers.sections.selected", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выбрать %@
       static let commonChoose = Rswift.StringResource(key: "common.choose", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Выбрать из галереи
+      static let editProfileAlertChoosePhoto = Rswift.StringResource(key: "editProfile.alert.choosePhoto", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выйти
       static let profileSettingsLogoutTitle = Rswift.StringResource(key: "profileSettings.logout.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Выйти из аккаунта
@@ -918,6 +920,8 @@ struct R: Rswift.Validatable {
       static let searchMembersDoneButtonTitle = Rswift.StringResource(key: "searchMembers.doneButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Допускается 12 символов, цифры, буквы, -_.~%+
+      static let editProfileNameDescription = Rswift.StringResource(key: "editProfile.nameDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Еда и напитки
       static let reactionsSettingsCategory5Title = Rswift.StringResource(key: "reactionsSettings.category.5.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Животные и природа
@@ -934,6 +938,8 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsCategory0Title = Rswift.StringResource(key: "reactionsSettings.category.0.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изи катка
       static let arkanoidWin3Message = Rswift.StringResource(key: "arkanoid.win.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Изменить
+      static let editProfileChangeAvatar = Rswift.StringResource(key: "editProfile.changeAvatar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
@@ -1063,6 +1069,8 @@ struct R: Rswift.Validatable {
       /// Value: Реакции
       static let profileSettingsReactionsTitle = Rswift.StringResource(key: "profileSettings.reactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Редактирование
+      static let editProfileTitle = Rswift.StringResource(key: "editProfile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Редактирование
       static let eventDetailsEditTitle = Rswift.StringResource(key: "eventDetails.edit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Редактировать профиль
       static let profileSettingsEditTitle = Rswift.StringResource(key: "profileSettings.edit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1074,6 +1082,8 @@ struct R: Rswift.Validatable {
       static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
       static let eventMemberMenuItemMakeOwner = Rswift.StringResource(key: "eventMemberMenuItem.makeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сделать фото
+      static let editProfileAlertMakePhoto = Rswift.StringResource(key: "editProfile.alert.makePhoto", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сегодня
       static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Символы
@@ -1098,6 +1108,8 @@ struct R: Rswift.Validatable {
       static let registrationTitle = Rswift.StringResource(key: "registration.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать событие
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сохранить изменения
+      static let editProfileSaveButton = Rswift.StringResource(key: "editProfile.saveButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Такой ник уже занят
       static let personalisationErrorNicknameAlreadyExist = Rswift.StringResource(key: "personalisation.error.nickname.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
@@ -1311,6 +1323,11 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("common.choose", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// Value: Выбрать из галереи
+      static func editProfileAlertChoosePhoto(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.alert.choosePhoto", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Выйти
       static func profileSettingsLogoutTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.logout.title", bundle: R.hostingBundle, comment: "")
@@ -1334,6 +1351,11 @@ struct R: Rswift.Validatable {
       /// Value: Добавить участников
       static func eventDetailsAddMemberLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventDetails.addMemberLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Допускается 12 символов, цифры, буквы, -_.~%+
+      static func editProfileNameDescription(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.nameDescription", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Еда и напитки
@@ -1374,6 +1396,11 @@ struct R: Rswift.Validatable {
       /// Value: Изи катка
       static func arkanoidWin3Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.win.3.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Изменить
+      static func editProfileChangeAvatar(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.changeAvatar", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Изменить
@@ -1697,6 +1724,11 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Редактирование
+      static func editProfileTitle(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Редактирование
       static func eventDetailsEditTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventDetails.edit.title", bundle: R.hostingBundle, comment: "")
       }
@@ -1724,6 +1756,11 @@ struct R: Rswift.Validatable {
       /// Value: Сделать лидером
       static func eventMemberMenuItemMakeOwner(_: Void = ()) -> String {
         return NSLocalizedString("eventMemberMenuItem.makeOwner", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сделать фото
+      static func editProfileAlertMakePhoto(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.alert.makePhoto", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Сегодня
@@ -1784,6 +1821,11 @@ struct R: Rswift.Validatable {
       /// Value: Создать событие
       static func newEventMainActionTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.mainAction.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сохранить изменения
+      static func editProfileSaveButton(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.saveButton", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Такой ник уже занят

@@ -38,11 +38,29 @@ extension EditProfilePresenter: EditProfileViewOutput {
 
     }
     
+    func didTapSave() {
+        guard let view = view else { return }
+        
+        view.showProgress(indicatorType: .arrows, fullScreen: true)
+        interactor.editProfile(actions: view.editActions)
+    }
+    
 }
 
 // MARK: - EditProfileInteractorOutput
 
-extension EditProfilePresenter: EditProfileInteractorOutput { }
+extension EditProfilePresenter: EditProfileInteractorOutput {
+    
+    func didEditProfile() {
+        view?.hideProgress()
+        router.close(animated: true)
+    }
+    
+    func errorOccured(_ error: EditProfileError) {
+        view?.hideProgress()
+    }
+    
+}
 
 // MARK: - EditProfileModuleInput
 

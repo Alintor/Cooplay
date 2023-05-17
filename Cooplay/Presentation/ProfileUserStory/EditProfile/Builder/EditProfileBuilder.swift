@@ -17,18 +17,19 @@ final class EditProfileBuilder {
         let r = ApplicationAssembly.assembler.resolver
         
         let viewModel = EditProfileViewModel(profile: profile)
-        let interactor = EditProfileInteractor()
+        let interactor = EditProfileInteractor(userService: r.resolve(UserServiceType.self)!)
         let router = EditProfileRouter()
         let presenter = EditProfilePresenter(
             view: viewModel,
             interactor: interactor,
             router: router
         )
+        interactor.output = presenter
         let viewController = EditProfileViewController(
             contentView: EditProfileView(viewModel: viewModel, output: presenter),
             output: presenter
         )
-        router.rootController = viewController
+        router.rootViewController = viewController
         
         return viewController
     }

@@ -36,6 +36,7 @@ protocol UserServiceType {
     )
     func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void)
     func registerNotificationToken(_ token: String)
+    func updateNickName(_ name: String) async throws
 }
 
 
@@ -70,6 +71,16 @@ extension UserService: UserServiceType {
             completion(.success(filteredUsers?.map({ $0.user }) ?? []))
         }
         
+    }
+    
+    func updateNickName(_ name: String) async throws {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
+        try await firestore.collection("Users").document(userId).updateData(["name" : name])
+        let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        snapshot.documents.forEach { document in
+            document.reference.updateData(["members.\(userId).name" : name])
+        }
     }
     
     func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void) {

@@ -33,6 +33,16 @@ final class EditProfileViewController: UIHostingController<EditProfileView> {
     
     // MARK: - Private
     
-    private func setupView() { }
+    private func setupView() {
+        isModalInPresentation = true
+        navigationItem.title = Text.title
+    }
     
+}
+
+// MARK: - Constants
+
+private enum Text {
+    
+    static let title = Localizable.editProfileTitle()
 }

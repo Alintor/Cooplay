@@ -27,7 +27,7 @@ struct EditAvatarView: View {
                         .cornerRadius(54)
                 }
             }.frame(width: 108, height: 108, alignment: .center)
-            Text("Изменить")
+            Text(Localizable.editProfileChangeAvatar())
                 .fontWeight(.medium)
                 .font(.system(size: 12))
                 .foregroundColor(Color(R.color.actionAccent.name))

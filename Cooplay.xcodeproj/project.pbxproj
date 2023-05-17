@@ -170,6 +170,9 @@
 		A868607E2A1342AD00327385 /* AuthorizationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868607D2A1342AD00327385 /* AuthorizationContract.swift */; };
 		A86860812A13464000327385 /* RegistrationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860802A13464000327385 /* RegistrationContract.swift */; };
 		A86860842A134B8C00327385 /* PersonalisationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860832A134B8C00327385 /* PersonalisationContract.swift */; };
+		A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860882A14BFDE00327385 /* String+Localizable.swift */; };
+		A868608C2A14C09900327385 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868608B2A14C09900327385 /* TextFieldView.swift */; };
+		A868608F2A14C0E700327385 /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868608E2A14C0E700327385 /* MainActionButton.swift */; };
 		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */; };
 		A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367B25627379001FDBFC /* TimeCarouselView.swift */; };
@@ -494,6 +497,9 @@
 		A868607D2A1342AD00327385 /* AuthorizationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContract.swift; sourceTree = "<group>"; };
 		A86860802A13464000327385 /* RegistrationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContract.swift; sourceTree = "<group>"; };
 		A86860832A134B8C00327385 /* PersonalisationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalisationContract.swift; sourceTree = "<group>"; };
+		A86860882A14BFDE00327385 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		A868608B2A14C09900327385 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		A868608E2A14C0E700327385 /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
 		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameRoutable.swift; sourceTree = "<group>"; };
 		A86D367B25627379001FDBFC /* TimeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselView.swift; sourceTree = "<group>"; };
@@ -1380,6 +1386,8 @@
 		A82FF2BD2346F3BA00EE1807 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A868608D2A14C0D700327385 /* MainActionButton */,
+				A868608A2A14C08400327385 /* TextFieldView */,
 				A88003D928F43F7B00FDA878 /* AllReactionsListView */,
 				A8353BE927BBA9350064DEC2 /* ContextView */,
 				A824C9FF27454137000E61A1 /* ReactionContextMenuView */,
@@ -1512,6 +1520,7 @@
 			children = (
 				A82FF2DF23474C2700EE1807 /* Date.swift */,
 				A82FF2DC2347492B00EE1807 /* String.swift */,
+				A86860882A14BFDE00327385 /* String+Localizable.swift */,
 				A8FB1CDA249A503F001C9355 /* Codable.swift */,
 				A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */,
 				A89F96FD24BC490B0036B155 /* URL.swift */,
@@ -1867,6 +1876,22 @@
 				A86860832A134B8C00327385 /* PersonalisationContract.swift */,
 			);
 			path = Contract;
+			sourceTree = "<group>";
+		};
+		A868608A2A14C08400327385 /* TextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				A868608B2A14C09900327385 /* TextFieldView.swift */,
+			);
+			path = TextFieldView;
+			sourceTree = "<group>";
+		};
+		A868608D2A14C0D700327385 /* MainActionButton */ = {
+			isa = PBXGroup;
+			children = (
+				A868608E2A14C0E700327385 /* MainActionButton.swift */,
+			);
+			path = MainActionButton;
 			sourceTree = "<group>";
 		};
 		A86D367A2562732E001FDBFC /* TimeCarousel */ = {
@@ -2884,6 +2909,7 @@
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
+				A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */,
 				A86860752A11EFCE00327385 /* SearchGameContract.swift in Sources */,
 				A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */,
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
@@ -2934,6 +2960,7 @@
 				A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */,
 				A824C9EA27412B06000E61A1 /* EventDetailsViewOutput.swift in Sources */,
 				A86860722A0FB5E900327385 /* NewEventContract.swift in Sources */,
+				A868608C2A14C09900327385 /* TextFieldView.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */,
 				A87CF47523EC1248004189D3 /* APIProvider.swift in Sources */,
@@ -2963,6 +2990,7 @@
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				A86860842A134B8C00327385 /* PersonalisationContract.swift in Sources */,
 				A86860812A13464000327385 /* RegistrationContract.swift in Sources */,
+				A868608F2A14C0E700327385 /* MainActionButton.swift in Sources */,
 				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
 				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
 				A824C9E5273FCD24000E61A1 /* EventDetailsView.swift in Sources */,
@@ -3308,7 +3336,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;
@@ -3332,7 +3360,7 @@
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus;

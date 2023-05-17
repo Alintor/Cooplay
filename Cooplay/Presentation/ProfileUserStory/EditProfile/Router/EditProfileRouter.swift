@@ -11,7 +11,7 @@ import UIKit
 
 final class EditProfileRouter {
     
-    weak var rootController: UIViewController?
+    weak var rootViewController: UIViewController?
 }
 
 extension EditProfileRouter: EditProfileRouterInput { }
