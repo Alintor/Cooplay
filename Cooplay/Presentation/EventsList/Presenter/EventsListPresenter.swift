@@ -124,15 +124,12 @@ final class EventsListPresenter: NSObject {
     
     @objc private func fetchEvents() {
         guard dataSource != nil else { return }
-        if isFirstShowing {
-            view.showProgress(indicatorType: .arrows)
-            isFirstShowing = false
-        } else {
-            self.view.showProgress(indicatorType: .line, fullScreen: true)
-        }
         interactor.fetchEvents { [weak self] result in
             guard let `self` = self else { return }
-            self.view?.hideProgress()
+            if self.isFirstShowing {
+                self.isFirstShowing = false
+                self.view?.hideProgress()
+            }
             switch result {
             case .success(let events):
                 self.events = events
@@ -389,12 +386,12 @@ extension EventsListPresenter: EventsListViewOutput {
     
     func didLoad() {
         view.setupInitialState()
+        view.showProgress(indicatorType: .arrows)
         fetchProfile()
-    }
-    
-    func didAppear() {
         fetchEvents()
     }
+    
+    func didAppear() { }
     
     func didTapProfile() {
         router.openProfile(with: self.user)

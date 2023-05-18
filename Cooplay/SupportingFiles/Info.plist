@@ -47,8 +47,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>NSCameraUsageDescription</key>
+    <string>Need access to camera</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Need access to user&apos;s geoposition</string>
+	<string>Need access to user's calendar</string>
 	<key>OfficialSite</key>
 	<string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
 	<key>UIBackgroundModes</key>

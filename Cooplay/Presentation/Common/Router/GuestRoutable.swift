@@ -16,6 +16,6 @@ protocol GuestRoutable {
 extension GuestRoutable {
     
     func openIntro() {
-        UIApplication.setRootViewController(IntroBuilder().build())
+        UIApplication.setRootViewController(UINavigationController(rootViewController: IntroBuilder().build()))
     }
 }

@@ -24,8 +24,20 @@ struct EditAvatarView: View {
                 if let path = viewModel.avatarPath {
                     KFImage(URL(string: path), options: nil)
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 108, height: 108, alignment: .center)
                         .cornerRadius(54)
+                        .clipped()
                 }
+                if let image = viewModel.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 108, height: 108, alignment: .center)
+                        .cornerRadius(54)
+                        .clipped()
+                }
+                
             }.frame(width: 108, height: 108, alignment: .center)
             Text(Localizable.editProfileChangeAvatar())
                 .fontWeight(.medium)

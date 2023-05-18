@@ -33,15 +33,21 @@ struct EditProfileView: View {
         ZStack {
             Color.init(R.color.background()!)
                 .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    focusedField = nil
+                }
             VStack(spacing: 0) {
                 EditAvatarView(viewModel: viewModel)
                     .padding(.top, 24)
                     .padding(.bottom, 32)
                     .onTapGesture {
-                        
-                        
+                        output.didTapAvatar()
+                        focusedField = nil
                     }
-                TextFieldView(text: $viewModel.name)
+                TextFieldView(
+                    text: $viewModel.name,
+                    placeholder: Localizable.personalisationNickNameTextFieldPlaceholder()
+                )
                     .padding(.horizontal, 24)
                     .focused($focusedField, equals: .name)
                     .onSubmit {
@@ -60,6 +66,7 @@ struct EditProfileView: View {
                 }
                 Spacer()
                 MainActionButton(Localizable.editProfileSaveButton(), isDisabled: viewModel.isButtonDisabled) {
+                    focusedField = nil
                     output.didTapSave()
                 }
                 .padding(.leading, 24)
@@ -70,6 +77,9 @@ struct EditProfileView: View {
         }
         .animation(.default, value: viewModel.name)
         .animation(.default, value: focusedField)
+        .onAppear {
+            focusedField = nil
+        }
     }
     
 }

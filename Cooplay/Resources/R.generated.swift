@@ -231,7 +231,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 52 images.
+  /// This `R.image` struct is generated, and contains static references to 53 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -269,6 +269,8 @@ struct R: Rswift.Validatable {
     static let commonDetails = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.details")
     /// Image `common.edit`.
     static let commonEdit = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.edit")
+    /// Image `common.gallery`.
+    static let commonGallery = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gallery")
     /// Image `common.gameCover`.
     static let commonGameCover = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gameCover")
     /// Image `common.gamepadArrow`.
@@ -426,6 +428,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.edit", bundle: ..., traitCollection: ...)`
     static func commonEdit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonEdit, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.gallery", bundle: ..., traitCollection: ...)`
+    static func commonGallery(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonGallery, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.gameCover", bundle: ..., traitCollection: ...)`
@@ -828,8 +835,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
   struct string {
+    /// This `R.string.infoPlist` struct is generated, and contains static references to 2 localization keys.
+    struct infoPlist {
+      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на ававрку
+      static let nsCameraUsageDescription = Rswift.StringResource(key: "NSCameraUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Предоставьте доступ календарю, чтобы приложение смогло добавить новое событие
+      static let nsCalendarsUsageDescription = Rswift.StringResource(key: "NSCalendarsUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на ававрку
+      static func nsCameraUsageDescription(_: Void = ()) -> String {
+        return NSLocalizedString("NSCameraUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Предоставьте доступ календарю, чтобы приложение смогло добавить новое событие
+      static func nsCalendarsUsageDescription(_: Void = ()) -> String {
+        return NSLocalizedString("NSCalendarsUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
     /// This `R.string.localizable` struct is generated, and contains static references to 150 localization keys.
     struct localizable {
       /// Value: %@ в %@

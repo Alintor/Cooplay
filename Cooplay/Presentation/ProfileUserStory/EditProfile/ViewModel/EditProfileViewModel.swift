@@ -81,10 +81,17 @@ extension EditProfileViewModel: EditProfileViewInput {
         
         return actions
     }
+    var canDeleteAvatar: Bool {
+        image != nil || avatarPath != nil
+    }
     
     func removeAvatar() {
         image = nil
         avatarPath = nil
+    }
+    
+    func addNewAvatarImage(_ image: UIImage) {
+        self.image = image
     }
 }
 

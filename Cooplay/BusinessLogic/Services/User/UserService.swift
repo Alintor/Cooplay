@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseCore
 
 enum UserServiceError: Error {
     
@@ -37,16 +38,18 @@ protocol UserServiceType {
     func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void)
     func registerNotificationToken(_ token: String)
     func updateNickName(_ name: String) async throws
+    func uploadNewAvatar(_ image: UIImage) async throws
+    func deleteAvatar(path: String) async throws
 }
 
 
 final class UserService {
     
-    private let storage: HardcodedStorage?
+    private let storage: Storage
     private let firebaseAuth: Auth
     private let firestore: Firestore
     
-    init(storage: HardcodedStorage?, firebaseAuth: Auth, firestore: Firestore) {
+    init(storage: Storage, firebaseAuth: Auth, firestore: Firestore) {
         self.storage = storage
         self.firebaseAuth = firebaseAuth
         self.firestore = firestore
@@ -78,8 +81,8 @@ extension UserService: UserServiceType {
         
         try await firestore.collection("Users").document(userId).updateData(["name" : name])
         let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
-        snapshot.documents.forEach { document in
-            document.reference.updateData(["members.\(userId).name" : name])
+        for document in snapshot.documents {
+            try await document.reference.updateData(["members.\(userId).name" : name])
         }
     }
     
@@ -210,5 +213,35 @@ extension UserService: UserServiceType {
     func registerNotificationToken(_ token: String) {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         firestore.collection("Users").document(userId).updateData(["notificationToken" : token])
+    }
+    
+    func uploadNewAvatar(_ image: UIImage) async throws {
+        guard
+            let userId = firebaseAuth.currentUser?.uid,
+            let imageData = image.imageDataForUpload
+        else { return }
+        
+        let avatarRef = storage.reference().child("avatars/\(userId).jpg")
+        _ = try await avatarRef.putDataAsync(imageData)
+        let url = try await avatarRef.downloadURL()
+        let avatarPath = url.absoluteString
+        
+        try await firestore.collection("Users").document(userId).updateData(["avatarPath" : avatarPath])
+        let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        for document in snapshot.documents {
+            try await document.reference.updateData(["members.\(userId).avatarPath" : avatarPath])
+        }
+    }
+    
+    func deleteAvatar(path: String) async throws {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
+        let avatarRef = storage.reference(forURL: path)
+        try await avatarRef.delete()
+        try await firestore.collection("Users").document(userId).updateData(["avatarPath" : FieldValue.delete()])
+        let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        for document in snapshot.documents {
+            try await document.reference.updateData(["members.\(userId).avatarPath" : FieldValue.delete()])
+        }
     }
 }

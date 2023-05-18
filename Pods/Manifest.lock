@@ -632,6 +632,9 @@ PODS:
   - Firebase/Messaging (10.9.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 10.9.0)
+  - Firebase/Storage (10.9.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 10.9.0)
   - FirebaseAnalytics (10.9.0):
     - FirebaseAnalytics/AdIdSupport (= 10.9.0)
     - FirebaseCore (~> 10.0)
@@ -705,6 +708,12 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseMessagingInterop (10.9.0)
   - FirebaseSharedSwift (10.9.0)
+  - FirebaseStorage (10.9.0):
+    - FirebaseAppCheckInterop (~> 10.0)
+    - FirebaseAuthInterop (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseCoreExtension (~> 10.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - GoogleAppMeasurement (10.9.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -848,6 +857,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Functions
   - Firebase/Messaging
+  - Firebase/Storage
   - iCarousel (~> 1.8.3)
   - KDCalendar (~> 1.8.9)
   - Kingfisher (~> 5.8.1)
@@ -884,6 +894,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseMessagingInterop
     - FirebaseSharedSwift
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -930,6 +941,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 6b7052cc3da7bc8e5f72bef871243e8f04a14eed
   FirebaseMessagingInterop: aa44064ab90ec4e51bc0fdf7918b6b093459e1d1
   FirebaseSharedSwift: c707c543624c3fa6622af2180fa41192084c3914
+  FirebaseStorage: 075a0c10ec43f24193018c539d65e991db65d9ef
   GoogleAppMeasurement: 373bcbead1bb6a85be7a64d5d8f96284b762ea9c
   GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
@@ -954,6 +966,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 37f57bf85d8c616c5d0cdfb1cf05d4bb0cd1754b
+PODFILE CHECKSUM: 9f0f5101441301109d075f944abc12a6be16eda8
 
 COCOAPODS: 1.12.0

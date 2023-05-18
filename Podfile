@@ -23,6 +23,7 @@ target 'Cooplay' do
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/Messaging'
   pod 'Firebase/Functions'
+  pod 'Firebase/Storage'
   pod 'UIImageColors'
   pod 'Kingfisher/SwiftUI'
 

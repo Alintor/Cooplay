@@ -25,7 +25,10 @@ struct AvatarItemView: View {
             if let path = viewModel.avatarPath {
                 KFImage(URL(string: path), options: nil)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: diameter, height: diameter, alignment: .center)
                     .cornerRadius(diameter / 2)
+                    .clipped()
             }
         }
     }

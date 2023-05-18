@@ -37,24 +37,32 @@ final class EditProfileInteractor {
 extension EditProfileInteractor: EditProfileInteractorInput {
     
     func editProfile(actions: [EditAction]) {
-        Task {
+        Task.detached {
             do {
                 for action in actions {
                     switch action {
                     case .updateName(let name):
-                        try await userService.updateNickName(name)
+                        print("updateName")
+                        try await self.userService.updateNickName(name)
                     case .deleteImage(let path):
-                        break
-                    case .updateImage(let image, let lastPath):
-                        break
+                        print("deleteImage")
+                        try await self.userService.deleteAvatar(path: path)
                     case .addImage(let image):
-                        break
+                        print("addImage")
+                        try await self.userService.uploadNewAvatar(image)
+                    case .updateImage(let image, let lastPath):
+                        print("updateImage1")
+                        try await self.userService.deleteAvatar(path: lastPath)
+                        print("updateImage2")
+                        try await self.userService.uploadNewAvatar(image)
                     }
                 }
-                await output?.didEditProfile()
+                print("didEditProfile")
+                await self.output?.didEditProfile()
                 
             } catch {
-                await output?.errorOccured(.errorEditProfile)
+                print("errorOccured")
+                await self.output?.errorOccured(.errorEditProfile)
             }
         }
     }

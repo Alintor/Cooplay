@@ -9,13 +9,14 @@
 import Foundation
 import Swinject
 import Firebase
+import FirebaseCore
 
 final class UserServiceAssemblyContainer: Assembly {
     
     func assemble(container: Container) {
         container.register(UserServiceType.self) { r in
             return UserService(
-                storage: HardcodedStorage(),
+                storage: Storage.storage(),
                 firebaseAuth: Auth.auth(),
                 firestore: Firestore.firestore()
             )

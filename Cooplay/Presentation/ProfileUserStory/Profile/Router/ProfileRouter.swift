@@ -31,11 +31,7 @@ extension ProfileRouter: ProfileRouterInput {
         }
         logoutAction.setValue(R.color.red(), forKey: "titleTextColor")
         let cancelAction = UIAlertAction(title: R.string.localizable.commonCancel(), style: .cancel)
-        
-
-
-        // Accessing buttons tintcolor :
-//alert.view.tintColor = UIColor.white
+        cancelAction.setValue(R.color.textPrimary(), forKey: "titleTextColor")
 
         alert.addAction(logoutAction)
         alert.addAction(cancelAction)

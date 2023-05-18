@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class EditProfilePresenter {
     
@@ -45,6 +46,18 @@ extension EditProfilePresenter: EditProfileViewOutput {
         interactor.editProfile(actions: view.editActions)
     }
     
+    func didTapAvatar() {
+        guard let view = view else { return }
+        
+        router.showAvatarActionAlert(canDelete: view.canDeleteAvatar) { [weak self] in
+            self?.view?.removeAvatar()
+        }
+    }
+    
+    func addNewAvatarImage(_ image: UIImage) {
+        view?.addNewAvatarImage(image)
+    }
+    
 }
 
 // MARK: - EditProfileInteractorOutput
@@ -58,6 +71,7 @@ extension EditProfilePresenter: EditProfileInteractorOutput {
     
     func errorOccured(_ error: EditProfileError) {
         view?.hideProgress()
+        print(error.localizedDescription)
     }
     
 }

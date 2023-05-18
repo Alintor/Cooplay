@@ -173,6 +173,8 @@
 		A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860882A14BFDE00327385 /* String+Localizable.swift */; };
 		A868608C2A14C09900327385 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868608B2A14C09900327385 /* TextFieldView.swift */; };
 		A868608F2A14C0E700327385 /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868608E2A14C0E700327385 /* MainActionButton.swift */; };
+		A86860912A15248900327385 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860902A15248900327385 /* UIImage.swift */; };
+		A86860952A15E9B500327385 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A86860942A15E9B500327385 /* InfoPlist.strings */; };
 		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */; };
 		A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367B25627379001FDBFC /* TimeCarouselView.swift */; };
@@ -500,6 +502,8 @@
 		A86860882A14BFDE00327385 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		A868608B2A14C09900327385 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		A868608E2A14C0E700327385 /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
+		A86860902A15248900327385 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		A86860942A15E9B500327385 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameRoutable.swift; sourceTree = "<group>"; };
 		A86D367B25627379001FDBFC /* TimeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselView.swift; sourceTree = "<group>"; };
@@ -1462,6 +1466,7 @@
 				A815E81824701F66005DFAF0 /* UIApplication.swift */,
 				A8301D3526AACFB700519768 /* UIBezierPath.swift */,
 				A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */,
+				A86860902A15248900327385 /* UIImage.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1470,6 +1475,7 @@
 			isa = PBXGroup;
 			children = (
 				A82FF2CE234714BD00EE1807 /* Localizable.strings */,
+				A86860942A15E9B500327385 /* InfoPlist.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2696,6 +2702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */,
+				A86860952A15E9B500327385 /* InfoPlist.strings in Resources */,
 				A82FF2CF234714BD00EE1807 /* Localizable.strings in Resources */,
 				A8D1D27F2357070A00DA1089 /* ActiveEventCell.xib in Resources */,
 				A877020623336E6F002EA095 /* Assets.xcassets in Resources */,
@@ -2764,6 +2771,7 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseMessagingInterop/FirebaseMessagingInterop.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseStorage/FirebaseStorage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -2807,6 +2815,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessaging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessagingInterop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseStorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -2915,6 +2924,7 @@
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A844BDEC2379A20600EE4A3E /* InvitationsHeaderCellViewModel.swift in Sources */,
+				A86860912A15248900327385 /* UIImage.swift in Sources */,
 				A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */,
 				A87CF45C23EAC371004189D3 /* EmptyStateView.swift in Sources */,
 				A87CF41323E03D69004189D3 /* UserServiceAssemblyContainer.swift in Sources */,
@@ -3332,7 +3342,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;
@@ -3356,7 +3366,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cooplay/Ruwus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = K4XW8K2LS2;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				INFOPLIST_FILE = Cooplay/SupportingFiles/Info.plist;

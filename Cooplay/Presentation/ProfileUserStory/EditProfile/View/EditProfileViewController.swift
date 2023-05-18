@@ -40,6 +40,41 @@ final class EditProfileViewController: UIHostingController<EditProfileView> {
     
 }
 
+// MARK: - UIImagePickerControllerDelegate + UINavigationControllerDelegate
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    public func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(
+            UIImagePickerController.InfoKey.originalImage
+        )] as? UIImage else {
+            return
+        }
+        
+        output?.addNewAvatarImage(image)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - Helper function inserted by Swift 4.2 migrator.
+
+private func convertFromUIImagePickerControllerInfoKeyDictionary(
+    _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+private func convertFromUIImagePickerControllerInfoKey(
+    _ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
+}
+
 // MARK: - Constants
 
 private enum Text {

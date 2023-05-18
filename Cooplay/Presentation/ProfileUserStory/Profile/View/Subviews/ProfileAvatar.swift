@@ -27,7 +27,10 @@ struct ProfileAvatar: View {
             if let path = viewModel.avatarPath {
                 KFImage(URL(string: path), options: nil)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 108, height: 108, alignment: .center)
                     .cornerRadius(54)
+                    .clipped()
             }
         }
     }

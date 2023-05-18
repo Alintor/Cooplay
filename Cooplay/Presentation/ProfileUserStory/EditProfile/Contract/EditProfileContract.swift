@@ -15,13 +15,17 @@ import Foundation
 protocol EditProfileViewInput: AnyObject, ActivityIndicatorRenderer {
     
     var editActions: [EditAction] { get }
+    var canDeleteAvatar: Bool { get }
     func removeAvatar()
+    func addNewAvatarImage(_ image: UIImage)
 }
 
 protocol EditProfileViewOutput: AnyObject {
     
     func didLoad()
     func didTapSave()
+    func didTapAvatar()
+    func addNewAvatarImage(_ image: UIImage)
 }
 
 // MARK: - Interactor
@@ -39,7 +43,10 @@ protocol EditProfileInteractorOutput: AnyObject {
 
 // MARK: - Router
 
-protocol EditProfileRouterInput: CloseableRouter { }
+protocol EditProfileRouterInput: CloseableRouter {
+    
+    func showAvatarActionAlert(canDelete: Bool, deleteHandler: (() -> Void)?)
+}
 
 // MARK: - ModuleInput
 

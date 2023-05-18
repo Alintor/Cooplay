@@ -41,6 +41,7 @@ struct TextFieldView: View {
                         )
                 )
                 .background(Color(R.color.input.name))
+                .cornerRadius(12)
                 .focused($focused, equals: true)
                 .onChange(of: text.wrappedValue) { _ in
                     withAnimation(.easeIn(duration: 0.2)) {
