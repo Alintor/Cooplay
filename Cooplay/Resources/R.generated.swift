@@ -857,7 +857,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 150 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 152 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -945,6 +945,8 @@ struct R: Rswift.Validatable {
       static let commonDone = Rswift.StringResource(key: "common.done", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Готово
       static let searchMembersDoneButtonTitle = Rswift.StringResource(key: "searchMembers.doneButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для доступа к камере нужно разрешение
+      static let editProfilePermissionsAlertTitle = Rswift.StringResource(key: "editProfile.permissionsAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Допускается 12 символов, цифры, буквы, -_.~%+
@@ -1029,6 +1031,8 @@ struct R: Rswift.Validatable {
       static let statusLateFull = Rswift.StringResource(key: "status.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отклоненные события
       static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Открыть настройки
+      static let editProfilePermissionsAlertSetting = Rswift.StringResource(key: "editProfile.permissionsAlert.setting", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена
       static let commonCancel = Rswift.StringResource(key: "common.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена
@@ -1375,6 +1379,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchMembers.doneButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Для доступа к камере нужно разрешение
+      static func editProfilePermissionsAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.permissionsAlert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Добавить участников
       static func eventDetailsAddMemberLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventDetails.addMemberLabel.title", bundle: R.hostingBundle, comment: "")
@@ -1583,6 +1592,11 @@ struct R: Rswift.Validatable {
       /// Value: Отклоненные события
       static func eventsListSectionsDeclined(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.declined", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Открыть настройки
+      static func editProfilePermissionsAlertSetting(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.permissionsAlert.setting", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Отмена

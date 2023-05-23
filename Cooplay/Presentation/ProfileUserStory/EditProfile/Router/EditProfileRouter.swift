@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 final class EditProfileRouter {
     
@@ -24,7 +25,50 @@ final class EditProfileRouter {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
         imagePicker.sourceType = fromCamera ? .camera : .photoLibrary
-        rootViewController?.present(imagePicker, animated: true)
+        if fromCamera {
+            
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+                DispatchQueue.main.async { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    if granted {
+                        self.rootViewController?.present(imagePicker, animated: true)
+                    } else {
+                        self.showPermissionsAlert()
+                    }
+                }
+            }
+        } else {
+            rootViewController?.present(imagePicker, animated: true)
+        }
+    }
+    
+    private func openSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString)
+        else { return }
+        
+        UIApplication.shared.open(settingsURL)
+    }
+    
+    private func showPermissionsAlert() {
+        let alert = UIAlertController(
+            title: Localizable.editProfilePermissionsAlertTitle(),
+            message: nil,
+            preferredStyle: .alert
+        )
+        let settingsAction = UIAlertAction(
+            title: Localizable.editProfilePermissionsAlertSetting(),
+            style: .default
+        ) { [weak self] _ in
+            self?.openSettings()
+        }
+        settingsAction.setValue(R.color.textPrimary(), forKey: "titleTextColor")
+        alert.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: R.string.localizable.commonCancel(), style: .cancel)
+        cancelAction.setValue(R.color.textPrimary(), forKey: "titleTextColor")
+
+        alert.addAction(cancelAction)
+        rootViewController?.present(alert, animated: true, completion:  nil)
     }
 }
 

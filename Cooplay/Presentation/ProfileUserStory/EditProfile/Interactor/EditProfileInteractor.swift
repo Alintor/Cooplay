@@ -42,26 +42,19 @@ extension EditProfileInteractor: EditProfileInteractorInput {
                 for action in actions {
                     switch action {
                     case .updateName(let name):
-                        print("updateName")
                         try await self.userService.updateNickName(name)
                     case .deleteImage(let path):
-                        print("deleteImage")
-                        try await self.userService.deleteAvatar(path: path)
+                        try await self.userService.deleteAvatar(path: path, needClear: true)
                     case .addImage(let image):
-                        print("addImage")
                         try await self.userService.uploadNewAvatar(image)
                     case .updateImage(let image, let lastPath):
-                        print("updateImage1")
-                        try await self.userService.deleteAvatar(path: lastPath)
-                        print("updateImage2")
+                        try await self.userService.deleteAvatar(path: lastPath, needClear: false)
                         try await self.userService.uploadNewAvatar(image)
                     }
                 }
-                print("didEditProfile")
                 await self.output?.didEditProfile()
                 
             } catch {
-                print("errorOccured")
                 await self.output?.errorOccured(.errorEditProfile)
             }
         }

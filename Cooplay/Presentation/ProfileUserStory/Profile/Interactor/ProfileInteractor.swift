@@ -37,6 +37,7 @@ final class ProfileInteractor {
 extension ProfileInteractor: ProfileInteractorInput {
 
     func logout() {
+        userService?.removeNotificationToken()
         authorizationService?.logout()
     }
     

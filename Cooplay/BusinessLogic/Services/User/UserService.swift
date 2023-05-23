@@ -37,9 +37,10 @@ protocol UserServiceType {
     )
     func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void)
     func registerNotificationToken(_ token: String)
+    func removeNotificationToken()
     func updateNickName(_ name: String) async throws
     func uploadNewAvatar(_ image: UIImage) async throws
-    func deleteAvatar(path: String) async throws
+    func deleteAvatar(path: String, needClear: Bool) async throws
 }
 
 
@@ -81,9 +82,12 @@ extension UserService: UserServiceType {
         
         try await firestore.collection("Users").document(userId).updateData(["name" : name])
         let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        
+        let batch = firestore.batch()
         for document in snapshot.documents {
-            try await document.reference.updateData(["members.\(userId).name" : name])
+            batch.updateData(["members.\(userId).name" : name], forDocument: document.reference)
         }
+        try await batch.commit()
     }
     
     func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void) {
@@ -212,7 +216,14 @@ extension UserService: UserServiceType {
     
     func registerNotificationToken(_ token: String) {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
         firestore.collection("Users").document(userId).updateData(["notificationToken" : token])
+    }
+    
+    func removeNotificationToken() {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
+        firestore.collection("Users").document(userId).updateData(["notificationToken" : FieldValue.delete()])
     }
     
     func uploadNewAvatar(_ image: UIImage) async throws {
@@ -228,20 +239,27 @@ extension UserService: UserServiceType {
         
         try await firestore.collection("Users").document(userId).updateData(["avatarPath" : avatarPath])
         let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        let batch = firestore.batch()
         for document in snapshot.documents {
-            try await document.reference.updateData(["members.\(userId).avatarPath" : avatarPath])
+            batch.updateData(["members.\(userId).avatarPath" : avatarPath], forDocument: document.reference)
         }
+        try await batch.commit()
     }
     
-    func deleteAvatar(path: String) async throws {
+    func deleteAvatar(path: String, needClear: Bool) async throws {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
         let avatarRef = storage.reference(forURL: path)
         try await avatarRef.delete()
+        
+        guard needClear else { return }
+        
         try await firestore.collection("Users").document(userId).updateData(["avatarPath" : FieldValue.delete()])
         let snapshot =  try await firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).getDocuments()
+        let batch = firestore.batch()
         for document in snapshot.documents {
-            try await document.reference.updateData(["members.\(userId).avatarPath" : FieldValue.delete()])
+            batch.updateData(["members.\(userId).avatarPath" : FieldValue.delete()], forDocument: document.reference)
         }
+        try await batch.commit()
     }
 }

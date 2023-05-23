@@ -54,7 +54,6 @@ extension ProfilePresenter: ProfileModuleInput {
 extension ProfilePresenter: ProfileViewOutput {
     
     func itemSelected(_ item: ProfileSettingsItem) {
-        print(item.rawValue)
         switch item {
         case .reactions: router.openReactionsSettings()
         case .miniGames: router.openArkanoidGame()

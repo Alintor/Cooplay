@@ -166,6 +166,8 @@
 "editProfile.saveButton" = "Сохранить изменения";
 "editProfile.alert.makePhoto" = "Сделать фото";
 "editProfile.alert.choosePhoto" = "Выбрать из галереи";
+"editProfile.permissionsAlert.title" = "Для доступа к камере нужно разрешение";
+"editProfile.permissionsAlert.setting" = "Открыть настройки";
 
 // MARK: - ReactionsSettings
 "reactionsSettings.title" = "Настройка реакции";
