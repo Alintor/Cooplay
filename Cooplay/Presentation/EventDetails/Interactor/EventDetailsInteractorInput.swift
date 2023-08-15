@@ -7,8 +7,9 @@
 
 import Foundation
 
-protocol EventDetailsInteractorInput: class {
+protocol EventDetailsInteractorInput: AnyObject {
 
+    var mainReaction: Reaction? { get }
     func changeStatus(
         for event: Event,
         completion: @escaping (Result<Void, EventDetailsError>) -> Void

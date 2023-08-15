@@ -22,13 +22,13 @@ code_files:
 - {name: View/ViewController.swift, path: Code/View/viewcontroller.swift.liquid}
 
 # Presenter layer
-- {name: Module/Presenter/Presenter.swift, path: Code/Presenter/presenter.swift.liquid}
+- {name: Presenter/Presenter.swift, path: Code/Presenter/presenter.swift.liquid}
 
 # Interactor layer
-- {name: Module/Interactor/Interactor.swift, path: Code/Interactor/interactor.swift.liquid}
+- {name: Interactor/Interactor.swift, path: Code/Interactor/interactor.swift.liquid}
 
 # Router layer
-- {name: Module/Router/Router.swift, path: Code/Router/router.swift.liquid}
+- {name: Router/Router.swift, path: Code/Router/router.swift.liquid}
 
 # The declarations for test files
 test_files:

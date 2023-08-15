@@ -50,7 +50,7 @@ final class DeepLinkApplicationService: NSObject, ApplicationService {
             self?.defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
             if self?.authorizationService.isLoggedIn == true {
                 UIApplication.setRootViewController(UINavigationController(
-                    rootViewController: R.storyboard.eventsList.eventsListViewController()!)
+                    rootViewController: EventsListBuilder().build())
                 )
             }
         }

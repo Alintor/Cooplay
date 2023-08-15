@@ -10,9 +10,9 @@ import UIKit
 import SwiftUI
 import Swinject
 
-final class {{ module_info.name }}Builder {
+enum {{ module_info.name }}Builder {
     
-    func build() -> UIViewController {
+    static func build() -> UIViewController {
         let r = ApplicationAssembly.assembler.resolver
 
         let viewModel = {{ module_info.name }}ViewModel()

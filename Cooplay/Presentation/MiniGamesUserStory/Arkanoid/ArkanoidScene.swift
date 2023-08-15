@@ -157,12 +157,12 @@ class ArkanoidScene: SKScene, SKPhysicsContactDelegate {
     
     func breakBlock(node: SKNode) {
         let particles = SKEmitterNode(fileNamed: Constants.Name.brokenPlatform)!
-      particles.position = node.position
-      particles.zPosition = 3
-      addChild(particles)
-      particles.run(SKAction.sequence([SKAction.wait(forDuration: 1.0),
+        particles.position = node.position
+        particles.zPosition = 3
+        addChild(particles)
+        particles.run(SKAction.sequence([SKAction.wait(forDuration: 1.0),
         SKAction.removeFromParent()]))
-      node.removeFromParent()
+        node.removeFromParent()
         generator.impactOccurred()
     }
     

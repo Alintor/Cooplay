@@ -15,7 +15,10 @@ class EventDetailsBuilder {
     func build(with event: Event) -> UIViewController {
         let r = ApplicationAssembly.assembler.resolver
         
-        let interactor = EventDetailsInteractor(eventService: r.resolve(EventServiceType.self)!)
+        let interactor = EventDetailsInteractor(
+            eventService: r.resolve(EventServiceType.self)!,
+            defaultsStorage: r.resolve(DefaultsStorageType.self)!
+        )
         let router = EventDetailsRouter()
         let viewModel = EventDetailsViewModel(with: event)
         let presenter = EventDetailsPresenter(viewModel: viewModel, interactor: interactor, router: router)

@@ -26,9 +26,11 @@ final class EventDetailsInteractor {
 
     private let eventService: EventServiceType
     private var eventListener: ListenerRegistration?
+    private let defaultsStorage: DefaultsStorageType
     
-    init(eventService: EventServiceType) {
+    init(eventService: EventServiceType, defaultsStorage: DefaultsStorageType) {
         self.eventService = eventService
+        self.defaultsStorage = defaultsStorage
     }
     
     deinit {
@@ -39,6 +41,15 @@ final class EventDetailsInteractor {
 // MARK: - EventDetailsInteractorInput
 
 extension EventDetailsInteractor: EventDetailsInteractorInput {
+    
+    var mainReaction: Reaction? {
+        let defaultsStorages = ApplicationAssembly.assembler.resolver.resolve(DefaultsStorageType.self)
+        let reactions = defaultsStorage.get(valueForKey: .reactions) as? [String] ?? GlobalConstant.defaultsReactions
+        
+        guard let firstReaction = reactions.first else { return nil }
+        
+        return Reaction(style: .emoji, value: firstReaction)
+    }
 
     func changeStatus(
         for event: Event,

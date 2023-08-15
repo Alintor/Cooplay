@@ -21,6 +21,7 @@ struct EventDetailsMemberView: View {
     }
     
     let contextMenuHandler: ContextMenuHandler
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     @ObservedObject var reactionContextViewHandler: ReactionContextViewHandler
     
     @State var isMemberInfoViewHidden: Bool = false
@@ -39,10 +40,13 @@ struct EventDetailsMemberView: View {
                 .background(GeometryGetter(delegate: reactionContextViewHandler))
                 .opacity(isMemberInfoViewHidden ? 0 : 1)
                 .animation(nil)
-                .onTapGesture {
+                .gesture(TapGesture(count: 2).onEnded({
+                    generator.impactOccurred()
+                    output?.didDoubleTapItem(viewModel.member)
+                }).exclusively(before: TapGesture().onEnded({
                     contextMenuHandler.takeSnaphot()
                     output?.itemSelected(viewModel.member, delegate: contextMenuHandler)
-                }
+                })))
             ReactionsListView(
                 reactions: viewModel.reactions,
                 output: output,

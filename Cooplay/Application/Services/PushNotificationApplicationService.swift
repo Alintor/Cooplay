@@ -65,7 +65,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
         case .statusRemind,
              .eventStart:
             guard let eventData = userInfo["event"] as? Data, let event = try? JSONDecoder().decode(Event.self, from: eventData) else { return }
-            let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
+            let eventsViewController = EventsListBuilder().build()
             let eventDetailsViewController = EventDetailsBuilder().build(with: event)
             let navigationController = UINavigationController(rootViewController: eventsViewController)
             navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
@@ -88,7 +88,7 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
             let me = event.members.remove(at: index)
             event.me = me
             event.members.append(user)
-            let eventsViewController = R.storyboard.eventsList.eventsListViewController()!
+            let eventsViewController = EventsListBuilder().build()
             let eventDetailsViewController = EventDetailsBuilder().build(with: event)
             let navigationController = UINavigationController(rootViewController: eventsViewController)
             navigationController.viewControllers = [eventsViewController, eventDetailsViewController]

@@ -215,6 +215,13 @@ extension EventDetailsPresenter: EventDetailsViewOutput {
         )
     }
     
+    func didDoubleTapItem(_ member: User) {
+        guard let mainReaction = interactor.mainReaction else { return }
+        
+        viewModel.addReaction(mainReaction,to: member)
+        addReaction(mainReaction, to: viewModel.getActualMemberInfo(member) ?? member)
+    }
+    
     func deleteAction() {
         self.router.showAlert(
             withMessage: R.string.localizable.eventDetailsDeleteAlertTitle(),
