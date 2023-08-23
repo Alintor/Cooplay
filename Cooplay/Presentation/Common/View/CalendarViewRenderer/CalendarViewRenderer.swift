@@ -23,7 +23,7 @@ class CalendarViewRenderer: UIView {
         enum Calendar {
             
             static let sidesIndent: CGFloat = 4
-            static let topIndent: CGFloat = 20
+            static let topIndent: CGFloat = 0
             static let height: CGFloat = 350
             static let weekdaysTopMargin: CGFloat = 16
             static let cellCornerRadius: CGFloat = 8
@@ -43,7 +43,7 @@ class CalendarViewRenderer: UIView {
         enum CancelButton {
             
             static let fontSize: CGFloat = 20
-            static let indent: CGFloat = 16
+            static let indent: CGFloat = 10
         }
         
         enum Animation {
@@ -55,7 +55,7 @@ class CalendarViewRenderer: UIView {
     
     private let backgroundView: UIView
     private let blockView: UIView
-    private let calendarView: CalendarView
+    private let calendarView: UICalendarView
     private let confirmButton: UIButton
     private var selectedDate: Date!
     private var handler: ((_ date: Date) -> Void)?
@@ -71,7 +71,10 @@ class CalendarViewRenderer: UIView {
     init() {
         backgroundView = UIView(frame: .zero)
         blockView = UIView(frame: .zero)
-        calendarView = CalendarView()
+        calendarView = UICalendarView()
+        let calendarViewDateRange = DateInterval(start: Date(), end: Date() + 3.months)
+        calendarView.availableDateRange = calendarViewDateRange
+        calendarView.tintColor = R.color.actionAccent()
         confirmButton = UIButton(type: .system)
         super.init(frame: .zero)
         guard let window = topWindow else { return }
@@ -117,7 +120,6 @@ class CalendarViewRenderer: UIView {
             ),
             calendarView.heightAnchor.constraint(equalToConstant: Constant.Calendar.height)
         ])
-        configureCalendar()
         
         confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: Constant.ConfirmButton.fontSize)
         confirmButton.setTitleColor(R.color.textPrimary(), for: .normal)
@@ -139,31 +141,13 @@ class CalendarViewRenderer: UIView {
             ),
             confirmButton.topAnchor.constraint(
                 equalTo: calendarView.bottomAnchor,
-                constant: Constant.ConfirmButton.indent
+                constant: 0
             ),
             confirmButton.bottomAnchor.constraint(
                 equalTo: blockView.bottomAnchor,
                 constant: -Constant.ConfirmButton.indent
             ),
             confirmButton.heightAnchor.constraint(equalToConstant: Constant.ConfirmButton.height)
-        ])
-        
-        let cancelButton = UIButton(type: .system)
-        cancelButton.setTitle(R.string.localizable.commonCancel(), for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: Constant.CancelButton.fontSize)
-        cancelButton.setTitleColor(R.color.actionAccent(), for: .normal)
-        cancelButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-        blockView.addSubview(cancelButton)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cancelButton.leadingAnchor.constraint(
-                equalTo: blockView.leadingAnchor,
-                constant: Constant.CancelButton.indent
-            ),
-            cancelButton.topAnchor.constraint(
-                equalTo: blockView.topAnchor,
-                constant: Constant.CancelButton.indent
-            )
         ])
         
     }
@@ -177,8 +161,12 @@ class CalendarViewRenderer: UIView {
         self.handler = handler
         guard let window = topWindow else { return }
         window.addSubview(self)
-        calendarView.reloadData()
-        calendarView.selectDate(selectedDate ?? Date())
+        let components = Calendar.current.dateComponents(in: .current, from: selectedDate ?? Date())
+        calendarView.visibleDateComponents = components
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+        calendarView.selectionBehavior = dateSelection
+        dateSelection.setSelected(components, animated: true)
+        self.dateSelection(dateSelection, didSelectDate: components)
         blockView.transform = CGAffineTransform(
             scaleX: Constant.Block.transformScale,
             y: Constant.Block.transformScale
@@ -197,36 +185,6 @@ class CalendarViewRenderer: UIView {
         UIView.animate(withDuration: Constant.Animation.backgroundDuration) {
             self.backgroundView.alpha = 1
         }
-    }
-    
-    private func configureCalendar() {
-        let style = CalendarView.Style()
-        style.cellColorDefault = .clear
-        style.cellColorToday = R.color.actionAccent()!
-        style.cellTextColorDefault = R.color.textPrimary()!
-        style.cellSelectedColor = .clear
-        style.cellSelectedTextColor = R.color.textPrimary()!
-        style.cellTextColorToday = R.color.textPrimary()!
-        style.cellSelectedBorderColor = R.color.actionAccent()!
-        style.cellColorOutOfRange = R.color.textPrimary()!.withAlphaComponent(0.2)
-        style.headerTextColor = R.color.textPrimary()!
-        style.headerBackgroundColor = .clear
-        style.weekdaysTextColor = R.color.textSecondary()!
-        style.weekdaysBackgroundColor = .clear
-        style.weekdaysTopMargin = Constant.Calendar.weekdaysTopMargin
-        style.showAdjacentDays = false
-        style.cellColorAdjacent = R.color.textSecondary()!
-        style.cellFont = UIFont.systemFont(ofSize: Constant.Calendar.cellFont)
-        style.headerFont = UIFont.systemFont(ofSize: Constant.Calendar.headerFont)
-        style.weekdaysFont = UIFont.systemFont(ofSize: Constant.Calendar.weekdaysFont)
-        style.cellShape = .bevel(Constant.Calendar.cellCornerRadius)
-        calendarView.style = style
-        calendarView.marksWeekends = false
-        calendarView.multipleSelectionEnable = false
-        calendarView.direction = .vertical
-        calendarView.enableDeslection = false
-        calendarView.dataSource = self
-        calendarView.delegate = self
     }
     
     @objc func close() {
@@ -257,25 +215,12 @@ class CalendarViewRenderer: UIView {
     }
 }
 
-extension CalendarViewRenderer: CalendarViewDataSource {
-    func startDate() -> Date {
-        return Date()
-    }
+extension CalendarViewRenderer: UICalendarSelectionSingleDateDelegate {
     
-    func endDate() -> Date {
-        return Date() + 3.months
-    }
     
-    func headerString(_ date: Date) -> String? {
-        return date.string(custom: "LLLL").capitalized
-    }
-}
-
-extension CalendarViewRenderer: CalendarViewDelegate {
-    
-    func calendar(_ calendar: CalendarView, didScrollToMonth date: Date) {}
-    
-    func calendar(_ calendar: CalendarView, didSelectDate date: Date, withEvents events: [CalendarEvent]) {
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        guard let date = selection.selectedDate?.date else { return }
+        
         self.selectedDate = date
         let dateString = date.string(custom: "d MMMM")
         UIView.performWithoutAnimation {
@@ -283,16 +228,5 @@ extension CalendarViewRenderer: CalendarViewDelegate {
             self.confirmButton.layoutIfNeeded()
         }
     }
-    
-    func calendar(_ calendar: CalendarView, canSelectDate date: Date) -> Bool {
-        true
-    }
-    
-    func calendar(_ calendar: CalendarView, didDeselectDate date: Date) {
-        //calendar.selectDate(date)
-    }
-    
-    func calendar(_ calendar: CalendarView, didLongPressDate date: Date, withEvents events: [CalendarEvent]?) {}
-    
     
 }
