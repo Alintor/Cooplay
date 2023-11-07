@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class EventsListRouter {
 
@@ -34,6 +35,6 @@ extension EventsListRouter: EventsListRouterInput {
         let profileViewController = ProfileBuilder().build(with: user)
         let navigationController = UINavigationController(rootViewController: profileViewController)
         
-        rootViewController?.present(navigationController, animated: true, completion: nil)
+        rootViewController?.present(UIHostingController(rootView: ScreenViewFactory.shared.profile(user)), animated: true, completion: nil)
     }
 }

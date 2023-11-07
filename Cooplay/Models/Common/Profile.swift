@@ -25,3 +25,15 @@ struct Profile: Codable {
         User(id: id, name: name, avatarPath: avatarPath, state: .unknown, lateness: nil, isOwner: nil)
     }
 }
+
+extension Profile: Equatable { }
+
+extension Profile {
+    
+    func isEqual(_ profile: Profile) -> Bool {
+        return self.id == profile.id
+        && self.name == profile.name
+        && self.avatarPath == profile.avatarPath
+        && self.email == profile.email
+    }
+}

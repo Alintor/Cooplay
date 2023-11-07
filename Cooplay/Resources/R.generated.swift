@@ -231,7 +231,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 53 images.
+  /// This `R.image` struct is generated, and contains static references to 55 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -259,10 +259,14 @@ struct R: Rswift.Validatable {
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.arrowUp`.
     static let commonArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowUp")
+    /// Image `common.back`.
+    static let commonBack = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.back")
     /// Image `common.calendar`.
     static let commonCalendar = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.calendar")
     /// Image `common.camera`.
     static let commonCamera = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.camera")
+    /// Image `common.close`.
+    static let commonClose = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.close")
     /// Image `common.delete`.
     static let commonDelete = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.delete")
     /// Image `common.details`.
@@ -405,6 +409,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.commonArrowUp, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.back", bundle: ..., traitCollection: ...)`
+    static func commonBack(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonBack, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.calendar", bundle: ..., traitCollection: ...)`
     static func commonCalendar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonCalendar, compatibleWith: traitCollection)
@@ -413,6 +422,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.camera", bundle: ..., traitCollection: ...)`
     static func commonCamera(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonCamera, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.close", bundle: ..., traitCollection: ...)`
+    static func commonClose(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonClose, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.delete", bundle: ..., traitCollection: ...)`

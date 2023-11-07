@@ -9,11 +9,11 @@
 import SwiftUI
 import Combine
 
-final class EditProfileViewController: UIHostingController<EditProfileView> {
+final class EditProfileViewController: UIHostingController<EditProfileOldView> {
 
     private weak var output: EditProfileViewOutput?
     
-    init(contentView: EditProfileView, output: EditProfileViewOutput?) {
+    init(contentView: EditProfileOldView, output: EditProfileViewOutput?) {
         self.output = output
         super.init(rootView: contentView)
     }

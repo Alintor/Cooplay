@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class ProfileRouter {
 
@@ -39,7 +40,7 @@ extension ProfileRouter: ProfileRouterInput {
     }
     
     func openReactionsSettings() {
-        rootViewController?.push(ReactionsSettingsBuilder().build())
+        //rootViewController?.push(ReactionsSettingsBuilder().build())
     }
     
     func openArkanoidGame() {
@@ -50,6 +51,6 @@ extension ProfileRouter: ProfileRouterInput {
     }
     
     func openEdit(profile: Profile) {
-        rootViewController?.push(EditProfileBuilder().build(profile: profile))
+        rootViewController?.push(UIHostingController(rootView: ScreenViewFactory.shared.editProfile(profile)))
     }
 }

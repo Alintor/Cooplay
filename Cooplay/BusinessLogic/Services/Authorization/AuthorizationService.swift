@@ -55,9 +55,18 @@ final class AuthorizationService {
     private let defaultsStorages: DefaultsStorageType?
     
     init(firebaseAuth: Auth, defaultsStorages: DefaultsStorageType?) {
+        firebaseAuth.useAppLanguage()
         self.firebaseAuth = firebaseAuth
         self.defaultsStorages = defaultsStorages
     }
+}
+
+extension AuthorizationService: StateEffect {
+    
+    func perform(store: Store, action: StateAction) {
+        
+    }
+    
 }
 
 extension AuthorizationService: AuthorizationServiceType {

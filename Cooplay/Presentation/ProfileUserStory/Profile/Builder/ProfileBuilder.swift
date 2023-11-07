@@ -21,9 +21,9 @@ final class ProfileBuilder {
         let router = ProfileRouter()
         presenter.interactor = interactor
         presenter.router = router
-        let state = ProfileState(profile: profile)
+        let state = ProfileOldState(profile: profile)
         presenter.state = state
-        let viewController = ProfileViewController(contentView: ProfileView(state: state, output: presenter))
+        let viewController = ProfileViewController(contentView: ProfileOldView(state: state, output: presenter))
         router.rootViewController = viewController
         
         return viewController

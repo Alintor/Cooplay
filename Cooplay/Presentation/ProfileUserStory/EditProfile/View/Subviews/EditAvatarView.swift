@@ -11,17 +11,19 @@ import struct Kingfisher.KFImage
 
 struct EditAvatarView: View {
     
-    @ObservedObject var viewModel: EditProfileViewModel
+    @EnvironmentObject var state: EditProfileState
+    @EnvironmentObject var profileState: ProfileState
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
         return VStack {
             ZStack {
                 Circle()
-                    .foregroundColor(Color(viewModel.avatarBackgroundColor))
-                Text(viewModel.nameFirstLetter)
+                    .foregroundColor(Color(state.avatarBackgroundColor))
+                Text(state.nameFirstLetter)
                     .fontWeight(.semibold)
                     .font(.system(size: 48))
-                if let path = viewModel.avatarPath {
+                if let path = state.avatarPath {
                     KFImage(URL(string: path), options: nil)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -29,7 +31,7 @@ struct EditAvatarView: View {
                         .cornerRadius(54)
                         .clipped()
                 }
-                if let image = viewModel.image {
+                if let image = state.image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -38,7 +40,9 @@ struct EditAvatarView: View {
                         .clipped()
                 }
                 
-            }.frame(width: 108, height: 108, alignment: .center)
+            }
+            .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
+            .frame(width: 108, height: 108, alignment: .center)
             Text(Localizable.editProfileChangeAvatar())
                 .fontWeight(.medium)
                 .font(.system(size: 12))

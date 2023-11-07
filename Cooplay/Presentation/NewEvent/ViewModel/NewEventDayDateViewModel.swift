@@ -14,7 +14,7 @@ struct NewEventDayDateViewModel {
     let month: String
     
     init(date: Date) {
-        day = date.string(custom: "d")
-        month = "\(date.string(custom: "MMM").prefix(3))"
+        day = date.toString(.custom("d"))
+        month = "\(date.toString(.custom("MMM")).prefix(3))"
     }
 }

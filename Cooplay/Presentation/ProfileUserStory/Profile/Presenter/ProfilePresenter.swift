@@ -26,7 +26,7 @@ final class ProfilePresenter {
     var interactor: ProfileInteractorInput!
     var router: ProfileRouterInput!
     
-    var state: ProfileState? {
+    var state: ProfileOldState? {
         didSet {
             self.fetchProfile()
         }

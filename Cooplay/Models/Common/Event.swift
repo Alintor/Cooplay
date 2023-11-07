@@ -18,7 +18,7 @@ struct Event: Codable {
     var me: User
     
     var isActive: Bool {
-        return (date - GlobalConstant.eventActivePeriodHours.hour) <= Date()
+        return (date - GlobalConstant.eventActivePeriodHours.hours) <= Date()
     }
     
     var needConfirm: Bool {

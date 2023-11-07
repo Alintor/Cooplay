@@ -36,7 +36,7 @@ struct NewEventRequest: Codable {
         if newDate < minimumDate {
             newDate = minimumDate
         }
-        date = newDate.string(custom: GlobalConstant.Format.Date.serverDate.rawValue)
+        date = newDate.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
     }
     
     mutating func setDate(_ date: Date) {
@@ -51,6 +51,6 @@ struct NewEventRequest: Codable {
         if newDate < minimumDate {
             newDate = minimumDate
         }
-        self.date = newDate.string(custom: GlobalConstant.Format.Date.serverDate.rawValue)
+        self.date = newDate.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
     }
 }

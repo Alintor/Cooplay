@@ -11,6 +11,7 @@ import Swinject
 import SwinjectStoryboard
 import PluggableAppDelegate
 import Firebase
+import SwiftUI
 
 final class InitialModuleApplicationService: NSObject, ApplicationService {
     
@@ -34,9 +35,10 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
     
     private func setupInitialModule() {
         if authorizationService.isLoggedIn {
-            UIApplication.setRootViewController(UINavigationController(
-                rootViewController: EventsListBuilder().build()
-            ))
+//            UIApplication.setRootViewController(UINavigationController(
+//                rootViewController: EventsListBuilder().build()
+//            ))
+            UIApplication.setRootViewController(UIHostingController(rootView: ScreenViewFactory.shared.home()))
         } else {
             UIApplication.setRootViewController(UINavigationController(
                 rootViewController: IntroBuilder().build()

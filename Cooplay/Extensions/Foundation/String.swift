@@ -11,7 +11,8 @@ import SwiftDate
 extension String {
     
     var convertServerDate: Date? {
-        return date(format: .custom(GlobalConstant.Format.Date.serverDate.rawValue))?.absoluteDate
+        return Date(self, format: GlobalConstant.Format.Date.serverDate.rawValue)
+        //return date(format: .custom(GlobalConstant.Format.Date.serverDate.rawValue))?.absoluteDate
     }
     
     var isEmail: Bool {

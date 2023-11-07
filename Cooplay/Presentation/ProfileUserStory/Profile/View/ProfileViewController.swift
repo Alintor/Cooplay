@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-final class ProfileViewController: UIHostingController<ProfileView> {
+final class ProfileViewController: UIHostingController<ProfileOldView> {
     
-    init(contentView: ProfileView) {
+    init(contentView: ProfileOldView) {
         super.init(rootView: contentView)
     }
     

@@ -82,7 +82,7 @@ extension EventService: EventServiceType {
                 completion(.failure(.unknownError))
                 return
             }
-            let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hour)}
+            let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hours)}
             completion(.success(filteredEvents))
             let overdueEvents = events.filter { $0.date < (Date() - GlobalConstant.eventOverdueMonths.months )}
             for overdueEvent in overdueEvents {

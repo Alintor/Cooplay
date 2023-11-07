@@ -26,7 +26,7 @@ final class EditProfileBuilder {
         )
         interactor.output = presenter
         let viewController = EditProfileViewController(
-            contentView: EditProfileView(viewModel: viewModel, output: presenter),
+            contentView: EditProfileOldView(viewModel: viewModel, output: presenter),
             output: presenter
         )
         router.rootViewController = viewController

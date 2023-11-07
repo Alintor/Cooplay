@@ -11,6 +11,19 @@ import SwiftUI
 
 enum ProfileSettingsItem: String, CaseIterable, Hashable {
     
+    enum Navigation {
+        
+        case edit
+        case reactions
+        
+        var title: String {
+            switch self {
+            case .edit: return Localizable.editProfileTitle()
+            case .reactions: return Localizable.reactionsSettingsTitle()
+            }
+        }
+    }
+    
     enum Section: Int, Hashable, CaseIterable, Identifiable {
         
         case empty = 0,
@@ -49,6 +62,13 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
              .account:
             return Image(R.image.profileSettingsActionTypeNavigation.name)
         case .miniGames: return nil
+        }
+    }
+    var navigation: Navigation? {
+        switch self {
+        case .edit: return .edit
+        case .reactions: return .reactions
+        default: return nil
         }
     }
     

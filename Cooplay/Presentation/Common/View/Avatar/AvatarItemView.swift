@@ -16,20 +16,30 @@ struct AvatarItemView: View {
     
     var body: some View {
         ZStack {
+            if let path = viewModel.avatarPath {
+                KFImage(URL(string: path), options: nil)
+                    .placeholder({
+                        defaultAvatar
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: diameter, height: diameter, alignment: .center)
+                    .cornerRadius(diameter / 2)
+                    .clipped()
+            } else {
+                defaultAvatar
+            }
+        }
+    }
+    
+    var defaultAvatar: some View {
+        ZStack {
             Circle()
                 .foregroundColor(Color(viewModel.backgroundColor))
             Text(viewModel.firstNameLetter)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
                 .font(.system(size: diameter / 2))
-            if let path = viewModel.avatarPath {
-                KFImage(URL(string: path), options: nil)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: diameter, height: diameter, alignment: .center)
-                    .cornerRadius(diameter / 2)
-                    .clipped()
-            }
         }
     }
 }

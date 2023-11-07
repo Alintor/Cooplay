@@ -9,14 +9,6 @@
 import Foundation
 import SwiftUI
 
-enum EditAction: Hashable {
-    
-    case updateName(_ name: String)
-    case deleteImage(path: String)
-    case updateImage(image: UIImage, lastPath: String)
-    case addImage(_ image: UIImage)
-}
-
 final class EditProfileViewModel: ObservableObject {
     
     @Published var name: String

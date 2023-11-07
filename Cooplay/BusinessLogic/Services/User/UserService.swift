@@ -12,6 +12,8 @@ import FirebaseCore
 
 enum UserServiceError: Error {
     
+    case fetchProfile
+    case editProfile
     case unknownError
     case unhandled(error: Error)
 }
@@ -20,6 +22,8 @@ extension UserServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .fetchProfile: return "Не удалось получить данные профиля"
+        case .editProfile: return "Не удалось изменить профиль"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -49,11 +53,54 @@ final class UserService {
     private let storage: Storage
     private let firebaseAuth: Auth
     private let firestore: Firestore
+    private var userListener: ListenerRegistration?
     
     init(storage: Storage, firebaseAuth: Auth, firestore: Firestore) {
         self.storage = storage
         self.firebaseAuth = firebaseAuth
         self.firestore = firestore
+    }
+}
+
+extension UserService: StateEffect {
+    
+    func perform(store: Store, action: StateAction) {
+        switch action {
+        case .successAuthentication:
+            fetchProfile { result in
+                switch result {
+                case .success(let profile):
+                    store.send(.updateProfile(profile))
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .logout:
+            userListener = nil
+        case .editProfileActions(let editActions):
+            Task.detached {
+                do {
+                    for editAction in editActions {
+                        switch editAction {
+                        case .updateName(let name):
+                            try await self.updateNickName(name)
+                        case .deleteImage(let path):
+                            try await self.deleteAvatar(path: path, needClear: true)
+                        case .addImage(let image):
+                            try await self.uploadNewAvatar(image)
+                        case .updateImage(let image, let lastPath):
+                            try await self.deleteAvatar(path: lastPath, needClear: false)
+                            try await self.uploadNewAvatar(image)
+                        }
+                    }
+                    store.send(.successEditingProfile)
+                    
+                } catch {
+                    store.send(.failureEditingProfile(UserServiceError.editProfile))
+                }
+            }
+        default: break
+        }
     }
 }
 
@@ -199,8 +246,9 @@ extension UserService: UserServiceType {
     }
     
     func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void) {
+        userListener = nil
         guard let currentUser = firebaseAuth.currentUser else { return }
-        firestore.collection("Users").document(currentUser.uid).addSnapshotListener { (snapshot, error) in
+        userListener = firestore.collection("Users").document(currentUser.uid).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
             }
@@ -209,7 +257,7 @@ extension UserService: UserServiceType {
                 profile.email = currentUser.email
                 completion(.success(profile))
             } else {
-                completion(.failure(.unknownError))
+                completion(.failure(.fetchProfile))
             }
         }
     }

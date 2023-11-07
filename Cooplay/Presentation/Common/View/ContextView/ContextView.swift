@@ -92,6 +92,7 @@ struct TargetView: View {
 
 struct GeometryGetter2: View {
     var action: ((_ rect: CGRect) -> Void)?
+    var coordinateSpaceName: String
     
     var body: some View {
         return GeometryReader { geometry in
@@ -101,7 +102,7 @@ struct GeometryGetter2: View {
     
     func makeView(geometry: GeometryProxy) -> some View {
         DispatchQueue.main.async {
-            self.action?(geometry.frame(in: .global))
+            self.action?(geometry.frame(in: .named(coordinateSpaceName)))
         }
 
         return Rectangle().fill(Color.clear)
@@ -175,5 +176,9 @@ extension View {
     
     func showContext(isPresented: Binding<Bool>, targetHidden: Binding<Bool>) -> some View {
         self.background(TargetView(visible: isPresented, targetHidden: targetHidden))
+    }
+    
+    func handleScroll(coordinateSpaceName: String, handler: ((_ rect: CGRect) -> Void)?) -> some View {
+        self.background(GeometryGetter2(action: handler, coordinateSpaceName: coordinateSpaceName))
     }
 }

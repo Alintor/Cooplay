@@ -76,7 +76,7 @@ extension EventDetailsInteractor: EventDetailsInteractorInput {
     }
     
     func changeDate(_ date: Date, forEvent event: Event, completion: @escaping (Result<Void, EventDetailsError>) -> Void) {
-        let dateString = date.string(custom: GlobalConstant.Format.Date.serverDate.rawValue)
+        let dateString = date.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
         eventService.changeDate(dateString, forEvent: event, completion: { (result) in
             switch result {
             case .success:

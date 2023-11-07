@@ -10,29 +10,25 @@ import SwiftUI
 
 struct ProfileInfoView: View {
     
-    let model: Profile
-    
+    @EnvironmentObject var state: ProfileState
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
         VStack {
-            ProfileAvatar(profile: model)
+            ProfileAvatar(profile: state.profile)
+                .opacity(state.isShownAvatar ? 1 : 0) // Crutch for transition move animation
                 .frame(width: 108, height: 108, alignment: .center)
-            Text(model.name)
-                .foregroundColor(Color(R.color.textPrimary.name))
+                .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
+            Text(state.profile.name)
+                .foregroundColor(Color.r.textPrimary.color)
                 .font(.system(size: 21, weight: .bold))
                 .padding(.top, 16)
                 .padding(.bottom, 1)
-            if let email = model.email {
-                if #available(iOS 15.0, *) {
-                    Text(email)
-                        .foregroundColor(Color(R.color.textSecondary.name))
-                        .font(.system(size: 17, weight: .medium))
-                        .tint(Color(R.color.textSecondary.name))
-                } else {
-                    Text(email)
-                        .foregroundColor(Color(R.color.textSecondary.name))
-                        .font(.system(size: 17, weight: .medium))
-                }
+            if let email = state.profile.email {
+                Text(email)
+                    .foregroundColor(Color.r.textSecondary.color)
+                    .font(.system(size: 17, weight: .medium))
+                    .tint(Color.r.textSecondary.color)
             }
         }
     }
