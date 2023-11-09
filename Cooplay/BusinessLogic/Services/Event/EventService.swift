@@ -15,6 +15,8 @@ import SwiftDate
 enum EventServiceError: Error {
     
     case unknownError
+    case fetchEvents
+    case fetchActiveEvent
     case unhandled(error: Error)
 }
 
@@ -22,6 +24,8 @@ extension EventServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .fetchEvents: return "Не удалось загрузить события"
+        case .fetchActiveEvent: return "Не удалось загрузить событие"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -57,6 +61,8 @@ final class EventService {
     private let firebaseAuth: Auth
     private let firestore: Firestore
     private let firebaseFunctions: Functions
+    private var eventsListener: ListenerRegistration?
+    private var activeEventListener: ListenerRegistration?
     
     init(firebaseAuth: Auth, firestore: Firestore, firebaseFunctions: Functions) {
         self.firebaseAuth = firebaseAuth
@@ -66,20 +72,55 @@ final class EventService {
     
 }
 
+extension EventService: StateEffect {
+    
+    func perform(store: Store, action: StateAction) {
+        switch action {
+        case .successAuthentication:
+            fetchEvents { result in
+                switch result {
+                case .success(let events):
+                    store.send(.updateEvents(events))
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .selectEvent(let selectedEvent):
+            fetchEvent(id: selectedEvent.id) { result in
+                switch result {
+                case .success(let event):
+                    store.send(.updateActiveEvent(event))
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .deselectEvent:
+            activeEventListener = nil
+        case .logout:
+            eventsListener = nil
+            activeEventListener = nil
+        default: break
+        }
+    }
+    
+}
+
 extension EventService: EventServiceType {
     
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
+        eventsListener = nil
         guard let userId = firebaseAuth.currentUser?.uid else { return }
-        firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
+        
+        eventsListener = firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
             if let error = error {
-                completion(.failure(.unhandled(error: error)))
+                completion(.failure(.fetchEvents))
                 return
             }
             let response = snapshot?.documents.compactMap({
                 return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
             })
             guard let events = response?.map({ $0.getModel(userId: userId )}) else {
-                completion(.failure(.unknownError))
+                completion(.failure(.fetchEvents))
                 return
             }
             let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hours)}
@@ -126,19 +167,22 @@ extension EventService: EventServiceType {
     }
     
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration? {
+        activeEventListener = nil
         guard let userId = firebaseAuth.currentUser?.uid else { return nil }
-        return firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
+        
+        activeEventListener = firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
             if let error = error {
-                completion(.failure(.unhandled(error: error)))
+                completion(.failure(.fetchActiveEvent))
                 return
             }
             if let data = snapshot?.data(),
                 let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
                 completion(.success(event.getModel(userId: userId)))
             } else {
-                completion(.failure(.unknownError))
+                completion(.failure(.fetchActiveEvent))
             }
         }
+        return activeEventListener
     }
     
     func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {

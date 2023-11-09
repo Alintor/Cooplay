@@ -254,6 +254,7 @@
 		A8A0F0DC2AFBBF7E00997DEA /* LogoutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0DB2AFBBF7E00997DEA /* LogoutSheetView.swift */; };
 		A8A0F0E02AFCA5CA00997DEA /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */; };
 		A8A0F0E22AFCB2D300997DEA /* ActivityIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */; };
+		A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E52AFCE18000997DEA /* EventsState.swift */; };
 		A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */; };
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
@@ -603,6 +604,7 @@
 		A8A0F0DB2AFBBF7E00997DEA /* LogoutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutSheetView.swift; sourceTree = "<group>"; };
 		A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorModifier.swift; sourceTree = "<group>"; };
+		A8A0F0E52AFCE18000997DEA /* EventsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsState.swift; sourceTree = "<group>"; };
 		A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
@@ -1272,6 +1274,7 @@
 				A82FF2BC2346F3AB00EE1807 /* Common */,
 				A88003DC28F447D500FDA878 /* AdditionalReactions */,
 				A85F9CB72AF64EA500BBAE31 /* Home */,
+				A8A0F0E42AFCE0CD00997DEA /* EmptyEvents */,
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 				5C6E24950482FD9B716412DB /* EventDetails */,
 				0CE58F0F4085592415E85151 /* NewEvent */,
@@ -1726,6 +1729,7 @@
 				A85F9C7B2AF4BA4200BBAE31 /* UserState.swift */,
 				A85F9C8B2AF4CDAE00BBAE31 /* NotificationBannerState.swift */,
 				A85F9CB12AF6063E00BBAE31 /* AuthenticationState.swift */,
+				A8A0F0E52AFCE18000997DEA /* EventsState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -2258,6 +2262,13 @@
 				A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */,
 			);
 			path = DefaultsStorage;
+			sourceTree = "<group>";
+		};
+		A8A0F0E42AFCE0CD00997DEA /* EmptyEvents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EmptyEvents;
 			sourceTree = "<group>";
 		};
 		A8A383D028C20C65001B22EC /* ProfileUserStory */ = {
@@ -2893,6 +2904,7 @@
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
 				A82FF2D42347193000EE1807 /* EventCell.swift in Sources */,
 				A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */,
+				A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */,
 				A86860752A11EFCE00327385 /* SearchGameContract.swift in Sources */,
 				A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */,
 				A8DFD4EF2372AA4C00F48B37 /* InventedHeaderView.swift in Sources */,

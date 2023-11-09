@@ -6,10 +6,11 @@
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
-class GlobalState {
+final class GlobalState {
     
     var authentication: AuthenticationState
     var notificationBanner = NotificationBannerState()
+    var events = EventsState()
     var user = UserState()
     var isInProgress = false
     

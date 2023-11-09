@@ -250,6 +250,7 @@ extension UserService: UserServiceType {
     func fetchProfile(completion: @escaping (Result<Profile, UserServiceError>) -> Void) {
         userListener = nil
         guard let currentUser = firebaseAuth.currentUser else { return }
+        
         userListener = firestore.collection("Users").document(currentUser.uid).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))

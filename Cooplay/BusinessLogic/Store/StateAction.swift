@@ -17,6 +17,11 @@ enum StateAction {
     case showNotificationBanner(_ banner: NotificationBanner)
     case hideNotificationBanner
     case showNetworkError(_ error: Error)
+    // Events
+    case updateEvents(_ events: [Event])
+    case updateActiveEvent(_ event: Event)
+    case selectEvent(_ event: Event)
+    case deselectEvent
     // User
     case updateProfile(_ profile: Profile)
     case editActions(_ editActions: [EditAction])

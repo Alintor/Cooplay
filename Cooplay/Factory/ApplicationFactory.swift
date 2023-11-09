@@ -9,11 +9,13 @@
 import SwiftUI
 import Firebase
 import FirebaseCore
+import FirebaseFunctions
 
 final class ApplicationFactory {
     
     fileprivate let store: Store
     fileprivate let authorizationService: AuthorizationService
+    fileprivate let eventService: EventService
     fileprivate let userService: UserService
     fileprivate let defaultsStorage: DefaultsStorage
     
@@ -28,7 +30,13 @@ final class ApplicationFactory {
             firebaseAuth: Auth.auth(),
             firestore: Firestore.firestore()
         )
+        let eventService = EventService(
+            firebaseAuth: Auth.auth(),
+            firestore: Firestore.firestore(),
+            firebaseFunctions: Functions.functions()
+        )
         self.authorizationService = authorizationService
+        self.eventService = eventService
         self.userService = userService
         self.defaultsStorage = defaultsStorage
         self.store = Store(
@@ -36,11 +44,13 @@ final class ApplicationFactory {
             effects: [
                 authorizationService,
                 NotificationBannerService(),
+                eventService,
                 userService
             ],
             reducers: [
                 GlobalState.reducer,
                 NotificationBannerState.reducer,
+                EventsState.reducer,
                 UserState.reducer
             ]
         )

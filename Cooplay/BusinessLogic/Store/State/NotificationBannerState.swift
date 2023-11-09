@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationBannerState {
+final class NotificationBannerState {
     
     var banner: NotificationBanner?
     

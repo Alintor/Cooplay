@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthenticationState {
+final class AuthenticationState {
     
     var isAuthenticated: Bool
     var isAuthenticationInProgress = false

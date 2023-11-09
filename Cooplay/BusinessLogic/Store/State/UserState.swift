@@ -6,7 +6,7 @@
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
-class UserState {
+final class UserState {
     
     var profile: Profile? = nil
     

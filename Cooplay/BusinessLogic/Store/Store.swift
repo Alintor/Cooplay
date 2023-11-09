@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-class Store {
+final class Store {
     
     let state: CurrentValueSubject<GlobalState, Never>
     
