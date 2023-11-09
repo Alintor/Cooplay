@@ -22,7 +22,7 @@ final class LineActivityIndicatorView: UIView {
     }
 }
 
-extension LineActivityIndicatorView: ActivityIndicatorView {
+extension LineActivityIndicatorView: ActivityIndicatorViewOld {
     
     func addToView(_ view: UIView, needIndent: Bool) {
         guard view.viewWithTag(ActivityIndicatorRendererConstant.viewTag) == nil else { return }

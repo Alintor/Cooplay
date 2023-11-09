@@ -32,9 +32,6 @@ extension EventsListRouter: EventsListRouterInput {
     }
     
     func openProfile(with user: Profile) {
-        let profileViewController = ProfileBuilder().build(with: user)
-        let navigationController = UINavigationController(rootViewController: profileViewController)
-        
-        rootViewController?.present(UIHostingController(rootView: ScreenViewFactory.shared.profile(user)), animated: true, completion: nil)
+        rootViewController?.present(UIHostingController(rootView: ScreenViewFactory.profile(user)), animated: true, completion: nil)
     }
 }

@@ -30,11 +30,32 @@ struct EditProfileView: View {
                     focusedField = nil
                 }
             editView
-            
             if state.isInProgress {
+                // TODO: Add progress view
                 Color.black
                     .opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
+            }
+            if state.showAvatarSheet {
+                EditSheetView(
+                    showAlert: $state.showAvatarSheet,
+                    canDelete: state.canDeleteAvatar,
+                    cameraAction: {
+                        state.photoPickerTypeCamera = true
+                        state.showPhotoPicker = true
+                    },
+                    photoAction: {
+                        state.photoPickerTypeCamera = false
+                        state.showPhotoPicker = true
+                    },
+                    deleteAction: { state.removeAvatar() })
+            }
+            if state.showPhotoPicker {
+                EditPhotoPickerView(
+                    showAlert: $state.showPhotoPicker,
+                    fromCamera: state.photoPickerTypeCamera,
+                    delegate: state
+                )
             }
         }
         .animation(.default, value: state.name)
@@ -48,6 +69,13 @@ struct EditProfileView: View {
         .onDisappear {
             state.needShowProfileAvatar?.wrappedValue = true
         }
+//        .fullScreenCover(isPresented: $state.isSheetSHown) {
+//            EditSheetViewView(
+//                canDelete: state.canDeleteAvatar,
+//                cameraAction: { },
+//                photoAction: { },
+//                deleteAction: { })
+//        }
     }
     
     // MARK: - Subviews
@@ -58,7 +86,7 @@ struct EditProfileView: View {
                 .padding(.top, 24)
                 .padding(.bottom, 32)
                 .onTapGesture {
-                    //output.didTapAvatar()
+                    state.showAvatarSheet = true
                     focusedField = nil
                 }
             TextFieldView(

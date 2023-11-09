@@ -20,22 +20,18 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             if let profile = state.profile {
                 if profile.name.isEmpty {
-                    ScreenViewFactory.shared.editProfile(profile)
+                    ScreenViewFactory.editProfile(profile)
                         .environmentObject(NamespaceWrapper(namespace))
                         .zIndex(1)
                         .transition(.move(edge: .bottom))
                 } else {
+                    eventsView
+                        .blur(radius: isShownProfile ? 100 : 0)
                     if isShownProfile {
-                        ScreenViewFactory.shared.profile(profile, isShown: $isShownProfile)
+                        ScreenViewFactory.profile(profile, isShown: $isShownProfile)
                             .environmentObject(NamespaceWrapper(namespace))
                             .zIndex(1)
-                            //.transition(.scale.combined(with: .opacity))
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
-                    } else {
-                        eventsView
-                            .zIndex(1)
-                            .transition(.scale(scale: 0.5, anchor: .top).combined(with: .opacity))
-                            //.transition(.scale.combined(with: .opacity))
+                            .transition(.scale(scale: 0, anchor: .topTrailing).combined(with: .opacity))
                     }
                 }
             } else {
@@ -62,7 +58,7 @@ struct HomeView: View {
                 }
                 HStack {
                     Spacer()
-                    if let profile = state.profile {
+                    if let profile = state.profile, !isShownProfile {
                         AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
                             .frame(width: 32, height: 32, alignment: .center)
                             .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)

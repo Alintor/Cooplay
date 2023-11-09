@@ -21,8 +21,6 @@ final class NotificationBannerService: StateEffect {
                 message: error.localizedDescription,
                 type: .networkError
             )))
-        case .failureEditingProfile(let error):
-            store.send(.showNetworkError(error))
         default: break
         }
     }

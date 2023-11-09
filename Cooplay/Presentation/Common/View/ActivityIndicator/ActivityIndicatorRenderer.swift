@@ -14,7 +14,7 @@ enum ActivityIndicatorRendererConstant {
     static let backgroundTag = 43632352
 }
 
-protocol ActivityIndicatorView: AnyObject {
+protocol ActivityIndicatorViewOld: AnyObject {
     
     func start()
     func stop()
@@ -22,7 +22,7 @@ protocol ActivityIndicatorView: AnyObject {
     func addToView(_ view: UIView, needIndent: Bool)
 }
 
-extension ActivityIndicatorView where Self: UIView {
+extension ActivityIndicatorViewOld where Self: UIView {
     
     func addToView(_ view: UIView, needIndent: Bool) {
         self.tag = ActivityIndicatorRendererConstant.viewTag
@@ -40,7 +40,7 @@ enum ActivityIndicatorType {
     case arrows
     case line
     
-    var view: ActivityIndicatorView {
+    var view: ActivityIndicatorViewOld {
         switch self {
         case .arrows:
             return ArrowsActivityIndicatorView()
@@ -99,7 +99,7 @@ extension ActivityIndicatorRenderer {
         let targetViews: [UIView?] = [topWindow, self.activityIndicatorTargetView]
         for view in targetViews {
             if let activityView = view?.viewWithTag(ActivityIndicatorRendererConstant.viewTag) {
-                if let activityView = activityView as? ActivityIndicatorView {
+                if let activityView = activityView as? ActivityIndicatorViewOld {
                     activityView.stop()
                 }
                 activityView.removeFromSuperview()

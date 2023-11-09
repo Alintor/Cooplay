@@ -11,7 +11,7 @@ import Foundation
 final class AdditionalReactionsInteractor {
     
     internal let defaultsStorage: DefaultsStorageType
-    weak var output: ReactionsSettingsInteractorOutput?
+    //weak var output: ReactionsSettingsInteractorOutput?
     
     // MARK: - Init
     

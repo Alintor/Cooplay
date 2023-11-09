@@ -10,46 +10,48 @@ import Combine
 import SwiftUI
 
 enum EditAction: Hashable {
+    
     case updateName(_ name: String)
     case deleteImage(path: String)
     case updateImage(image: UIImage, lastPath: String)
     case addImage(_ image: UIImage)
 }
 
-class EditProfileState: ObservableObject {
+class EditProfileState: NSObject, ObservableObject {
     
     // MARK: - Properties
     
     private let store: Store
     private let profile: Profile
-    @Published var isInProgress: Bool
+    private let userService: UserServiceType
+    @Published var isInProgress: Bool = false
     @Published var name: String
     @Published var image: UIImage?
     @Published var avatarPath: String?
+    @Published var showAvatarSheet: Bool = false
+    @Published var showPhotoPicker: Bool = false
+    var photoPickerTypeCamera = true
     let avatarBackgroundColor: UIColor
-    var isShown: Binding<Bool>?
     var needShowProfileAvatar: Binding<Bool>?
+    var successEditHandler: (() -> Void)?
     
     // MARK: - Init
     
     init(
         store: Store,
         profile: Profile,
-        isShown: Binding<Bool>?,
-        needShowProfileAvatar: Binding<Bool>?
+        userService: UserServiceType,
+        needShowProfileAvatar: Binding<Bool>?,
+        successEditHandler: (() -> Void)?
     ) {
         self.store = store
         self.profile = profile
-        self.isInProgress = store.state.value.user.isEditInProgress
+        self.userService = userService
         self.name = profile.name
         self.avatarPath = profile.avatarPath
         self.avatarBackgroundColor = UIColor.avatarBackgroundColor(profile.id)
-        self.isShown = isShown
+        self.successEditHandler = successEditHandler
         self.needShowProfileAvatar = needShowProfileAvatar
-        store.state
-            .map { $0.user.isEditInProgress }
-            .removeDuplicates()
-            .assign(to: &$isInProgress)
     }
     
     // MARK: - Computed properties
@@ -70,7 +72,6 @@ class EditProfileState: ObservableObject {
                 actions.append(.deleteImage(path: path))
             }
         }
-        
         return actions
     }
     
@@ -110,18 +111,76 @@ class EditProfileState: ObservableObject {
         avatarPath = nil
     }
     
-    func addNewAvatarImage(_ image: UIImage) {
-        self.image = image
-    }
-    
     func saveChange() {
-        store.send(.editProfileActions(editActions))
+        isInProgress = true
+        Task.detached {
+            do {
+                for action in self.editActions {
+                    switch action {
+                    case .updateName(let name):
+                        try await self.userService.updateNickName(name)
+                    case .deleteImage(let path):
+                        try await self.userService.deleteAvatar(path: path, needClear: true)
+                    case .addImage(let image):
+                        try await self.userService.uploadNewAvatar(image)
+                    case .updateImage(let image, let lastPath):
+                        try await self.userService.deleteAvatar(path: lastPath, needClear: false)
+                        try await self.userService.uploadNewAvatar(image)
+                    }
+                }
+                await self.didEditProfile()
+                
+            } catch {
+                await self.didEditErrorOccured()
+            }
+        }
     }
     
-    func close() {
-        isShown?.wrappedValue = false
+    @MainActor private func didEditProfile() {
+        isInProgress = false
+        successEditHandler?()
     }
     
+    @MainActor private func didEditErrorOccured() {
+        isInProgress = false
+        store.send(.showNetworkError(UserServiceError.editProfile))
+    }
+    
+}
+
+// MARK: - UIImagePickerControllerDelegate + UINavigationControllerDelegate
+
+extension EditProfileState: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    public func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(
+            UIImagePickerController.InfoKey.originalImage
+        )] as? UIImage else {
+            return
+        }
+        
+        self.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - Helper function inserted by Swift 4.2 migrator.
+
+private func convertFromUIImagePickerControllerInfoKeyDictionary(
+    _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+private func convertFromUIImagePickerControllerInfoKey(
+    _ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
 }
 
 private enum Constant {

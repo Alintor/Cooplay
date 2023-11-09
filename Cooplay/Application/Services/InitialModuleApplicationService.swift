@@ -38,7 +38,7 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
 //            UIApplication.setRootViewController(UINavigationController(
 //                rootViewController: EventsListBuilder().build()
 //            ))
-            UIApplication.setRootViewController(UIHostingController(rootView: ScreenViewFactory.shared.home()))
+            UIApplication.setRootViewController(UIHostingController(rootView: ScreenViewFactory.home()))
         } else {
             UIApplication.setRootViewController(UINavigationController(
                 rootViewController: IntroBuilder().build()

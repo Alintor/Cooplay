@@ -91,7 +91,7 @@ final class ArrowsActivityIndicatorView: UIView {
     }
 }
 
-extension ArrowsActivityIndicatorView: ActivityIndicatorView {
+extension ArrowsActivityIndicatorView: ActivityIndicatorViewOld {
     
     func start() {
         timer?.invalidate()

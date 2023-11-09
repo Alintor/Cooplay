@@ -17,9 +17,4 @@ enum StateAction {
     case showNetworkError(_ error: Error)
     // User
     case updateProfile(_ profile: Profile)
-    case startEditProfile
-    case stopEditProfile
-    case successEditingProfile
-    case failureEditingProfile(_ error: Error)
-    case editProfileActions(_ editActions: [EditAction])
 }

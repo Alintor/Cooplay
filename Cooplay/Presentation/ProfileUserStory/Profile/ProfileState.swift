@@ -16,9 +16,9 @@ class ProfileState: ObservableObject {
     private let store: Store
     @Published var profile: Profile
     @Published var isShownAvatar: Bool
-    @Published var isItemNavigated: Bool = false
     @Published var itemNavigation: ProfileSettingsItem.Navigation? = nil
     @Published var isMinigamesShown: Bool = false
+    @Published var showLogoutSheet: Bool = false
     var isShown: Binding<Bool>?
     let settings: [ProfileSettingsItem.Section: [ProfileSettingsItem]] = ProfileSettingsItem.items
     
@@ -46,8 +46,14 @@ class ProfileState: ObservableObject {
             itemNavigation = item.navigation
         case .miniGames:
             isMinigamesShown = true
+        case .logout:
+            showLogoutSheet = true
         default: break
         }
+    }
+    
+    func logout() {
+        store.send(.logout)
     }
     
 }

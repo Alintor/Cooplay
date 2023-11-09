@@ -14,28 +14,21 @@ struct ProfileView: View {
     @EnvironmentObject var namespace: NamespaceWrapper
     @State var scrollOffset: Double = 0
     @State private var canContinueOffset = true
-    @State private var opacity: Double = 0
-    @State private var scale: Double = 1
     private let generator = UIImpactFeedbackGenerator(style: .medium)
     @State var isBackButton: Bool = false
     
     var body: some View {
         ZStack {
-            Color.r.block.color
-                .cornerRadius(16)
-                .opacity(opacity)
             if let navigation = state.itemNavigation {
                 VStack {
                     navigationView(title: navigation.title)
                     switch navigation {
                     case .edit:
-                        ScreenViewFactory.shared.editProfile(
-                            state.profile,
-                            isShown: $state.isItemNavigated,
-                            needShowProfileAvatar: $state.isShownAvatar
-                        )
+                        ScreenViewFactory.editProfile(state.profile, needShowProfileAvatar: $state.isShownAvatar) {
+                            state.itemNavigation = nil
+                        }
                     case .reactions:
-                        ScreenViewFactory.shared.reactionsSettings()
+                        ScreenViewFactory.reactionsSettings()
                     }
                 }
                 .closable(anchor: .trailing) {
@@ -48,8 +41,12 @@ struct ProfileView: View {
                     .zIndex(1)
                     .transition(.move(edge: .leading))
             }
+            if state.showLogoutSheet {
+                LogoutSheetView(showAlert: $state.showLogoutSheet) {
+                    state.logout()
+                }
+            }
         }
-        .scaleEffect(scale)
         .animation(.customTransition, value: state.itemNavigation)
         .onReceive(state.$itemNavigation) { item in
             isBackButton = item != nil
@@ -87,33 +84,24 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     ProfileInfoView()
-                        .coordinateSpace(name: "Profile")
-                        .handleScroll(coordinateSpaceName: "Profile") { rect in
+                        .handleScroll(coordinateSpaceName: Constant.profileCoordinateSpaceName) { rect in
                             guard canContinueOffset else { return }
                             let offset = rect.origin.y - 48
-                            let diff = (offset < 0) ? 0 : (offset > 100) ? 100 : offset
-                            //print(offset)
-                            //scale = 1 - diff / 1000
-                            //opacity = diff / 200
-//                            if diff >= 100 {
-//                                canContinueOffset = false
-//                                generator.prepare()
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//
-//                                    withAnimation(.easeIn(duration: 0.2)) {
-//                                        opacity = 0
-//                                        scale = 1
-//                                    }
-//                                    generator.impactOccurred()
-//                                    state.isShown?.wrappedValue = false
-//                                }
-//                            }
+                            if offset >= 100 {
+                                canContinueOffset = false
+                                generator.prepare()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    generator.impactOccurred()
+                                    state.isShown?.wrappedValue = false
+                                }
+                            }
                         }
                         .padding(.bottom, 24)
                         .padding(.top, 48)
                     settingsList
                 }
             }
+            .coordinateSpace(name: Constant.profileCoordinateSpaceName)
             VStack {
                 HStack {
                     Spacer()
@@ -129,7 +117,7 @@ struct ProfileView: View {
                 Spacer()
             }
         }
-        .closable(scrollOffset: $scrollOffset, anchor: .bottom) {
+        .closable(scrollOffset: $scrollOffset, anchor: .topTrailing) {
             state.isShown?.wrappedValue = false
         }
     }
@@ -150,4 +138,11 @@ struct ProfileView: View {
             }
         }
     }
+    
+}
+
+
+private enum Constant {
+    
+    static let profileCoordinateSpaceName = "CoordinateSpace.profile"
 }

@@ -49,34 +49,36 @@ final class ApplicationFactory {
     }
 }
 
-final class ScreenViewFactory {
+fileprivate let applicationFactory = ApplicationFactory()
+
+enum ScreenViewFactory {
     
-    fileprivate let applicationFactory = ApplicationFactory()
-    fileprivate init(){}
-    
-    static let shared = ScreenViewFactory()
-    
-    func home() -> some View {
+    static func home() -> some View {
         HomeView()
             .environmentObject(HomeState(store: applicationFactory.store))
     }
     
-    func profile(_ profile: Profile, isShown: Binding<Bool>? = nil) -> some View {
+    static func profile(_ profile: Profile, isShown: Binding<Bool>? = nil) -> some View {
         ProfileView()
             .environmentObject(ProfileState(profile: profile, store: applicationFactory.store, isShown: isShown))
     }
     
-    func editProfile(_ profile: Profile, isShown: Binding<Bool>? = nil, needShowProfileAvatar: Binding<Bool>? = nil) -> some View {
+    static func editProfile(
+        _ profile: Profile,
+        needShowProfileAvatar: Binding<Bool>? = nil,
+        successEditHandler: (() -> Void)? = nil
+    ) -> some View {
         EditProfileView()
             .environmentObject(EditProfileState(
                 store: applicationFactory.store,
                 profile: profile,
-                isShown: isShown,
-                needShowProfileAvatar: needShowProfileAvatar
+                userService: applicationFactory.userService,
+                needShowProfileAvatar: needShowProfileAvatar,
+                successEditHandler: successEditHandler
             ))
     }
     
-    func reactionsSettings() -> some View {
+    static func reactionsSettings() -> some View {
         ReactionsSettingsView(state: ReactionsSettingsState(defaultsStorage: applicationFactory.defaultsStorage))
     }
 }
