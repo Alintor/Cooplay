@@ -14,23 +14,12 @@ struct ClosableModifier: ViewModifier {
     @State private var opacity: Double = 0
     @State private var scale: Double = 1
     private let anchor: UnitPoint
-    private let isActive: Bool
     private let closeHandler: (() -> Void)?
     private let generator = UIImpactFeedbackGenerator(style: .medium)
-    private var scrollOffset: Binding<Double>?
-    private var totalScale: Double {
-        print(scrollOffset?.wrappedValue)
-        return scale - (scrollOffset?.wrappedValue ?? 0) / 100
-    }
-    private var totalOpacity: Double {
-        opacity + (scrollOffset?.wrappedValue ?? 0) / 200
-    }
     
-    init(scrollOffset: Binding<Double>?, isActive: Bool, anchor: UnitPoint, closeHandler: (() -> Void)?) {
+    init(anchor: UnitPoint, closeHandler: (() -> Void)?) {
         self.closeHandler = closeHandler
-        self.isActive = isActive
         self.anchor = anchor
-        self.scrollOffset = scrollOffset
     }
     
     func body(content: Content) -> some View {
@@ -44,7 +33,7 @@ struct ClosableModifier: ViewModifier {
         .contentShape(Rectangle())
         .simultaneousGesture(DragGesture()
             .onChanged({ gesture in
-                if gesture.startLocation.x < CGFloat(20.0) && canContinueDrag && isActive {
+                if gesture.startLocation.x < CGFloat(20.0) && canContinueDrag {
                     let diff = gesture.location.x - gesture.startLocation.x
                     scale = 1 - diff / (anchor == .center ? 800 : 1000)
                     opacity = diff / 500
@@ -75,17 +64,7 @@ struct ClosableModifier: ViewModifier {
 }
 
 extension View {
-    func closable(
-        scrollOffset: Binding<Double>? = nil,
-        isActive: Bool = true, anchor:
-        UnitPoint = .center,
-        closeHandler: (() -> Void)?
-    ) -> some View {
-        self.modifier(ClosableModifier(
-            scrollOffset: scrollOffset,
-            isActive: isActive,
-            anchor: anchor,
-            closeHandler: closeHandler
-        ))
+    func closable(anchor: UnitPoint = .center, closeHandler: (() -> Void)?) -> some View {
+        self.modifier(ClosableModifier(anchor: anchor, closeHandler: closeHandler))
     }
 }

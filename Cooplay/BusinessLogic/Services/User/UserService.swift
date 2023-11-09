@@ -77,6 +77,30 @@ extension UserService: StateEffect {
             }
         case .logout:
             userListener = nil
+        case .editActions(let editActions):
+            store.send(.showProgress)
+            Task.detached {
+                do {
+                    for editAction in editActions {
+                        switch editAction {
+                        case .updateName(let name):
+                            try await self.updateNickName(name)
+                        case .deleteImage(let path):
+                            try await self.deleteAvatar(path: path, needClear: true)
+                        case .addImage(let image):
+                            try await self.uploadNewAvatar(image)
+                        case .updateImage(let image, let lastPath):
+                            try await self.deleteAvatar(path: lastPath, needClear: false)
+                            try await self.uploadNewAvatar(image)
+                        }
+                    }
+                    store.send(.hideProgress)
+                    
+                } catch {
+                    store.send(.hideProgress)
+                    store.send(.showNetworkError(UserServiceError.editProfile))
+                }
+            }
         default: break
         }
     }

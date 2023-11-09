@@ -14,12 +14,14 @@ class HomeState: ObservableObject {
     
     private let store: Store
     @Published var profile: Profile?
+    @Published var isInProgress: Bool
     
     // MARK: - Init
     
     init(store: Store) {
         self.store = store
         self.profile = nil
+        self.isInProgress = store.state.value.isInProgress
         store.state
             .map { $0.user.profile }
             .removeDuplicates {
@@ -27,7 +29,10 @@ class HomeState: ObservableObject {
                 return profile1.isEqual(profile2)
             }
             .assign(to: &$profile)
-        
+        store.state
+            .map { $0.isInProgress }
+            .removeDuplicates()
+            .assign(to: &$isInProgress)
     }
     
 }

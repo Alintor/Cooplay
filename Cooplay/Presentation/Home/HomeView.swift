@@ -27,6 +27,8 @@ struct HomeView: View {
                 } else {
                     eventsView
                         .blur(radius: isShownProfile ? 100 : 0)
+                        .zIndex(1)
+                        .transition(.scale.combined(with: .opacity))
                     if isShownProfile {
                         ScreenViewFactory.profile(profile, isShown: $isShownProfile)
                             .environmentObject(NamespaceWrapper(namespace))
@@ -35,42 +37,49 @@ struct HomeView: View {
                     }
                 }
             } else {
-                ProgressView()
+                ActivityIndicatorView()
+                    .zIndex(1)
+                    .transition(.scale.combined(with: .opacity))
             }
         }
+        .activityIndicator(isShown: $state.isInProgress)
         .animation(.customTransition, value: isShownProfile)
         .animation(.easeIn(duration: 0.2), value: state.profile)
+    }
+    
+    var navigationBar: some View {
+        ZStack {
+            HStack {
+                Spacer()
+                Image(R.image.commonLogo.name)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 32)
+                    .clipped()
+                    .padding()
+                Spacer()
+            }
+            HStack {
+                Spacer()
+                if let profile = state.profile, !isShownProfile {
+                    AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
+                        .frame(width: 32, height: 32, alignment: .center)
+                        .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)
+                        .padding()
+                        .onTapGesture {
+                            withAnimation {
+                                isShownProfile = true
+                            }
+                        }
+                }
+            }
+        }
     }
 
     
     var eventsView: some View {
         VStack {
-            ZStack {
-                HStack {
-                    Spacer()
-                    Image(R.image.commonLogo.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 32)
-                        .clipped()
-                        .padding()
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    if let profile = state.profile, !isShownProfile {
-                        AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
-                            .frame(width: 32, height: 32, alignment: .center)
-                            .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)
-                            .padding()
-                            .onTapGesture {
-                                withAnimation {
-                                    isShownProfile = true
-                                }
-                            }
-                    }
-                }
-            }
+            navigationBar
             Spacer()
             Image(R.image.eventsListEmptyState.name)
             Spacer()

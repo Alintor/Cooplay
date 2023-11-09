@@ -30,12 +30,6 @@ struct EditProfileView: View {
                     focusedField = nil
                 }
             editView
-            if state.isInProgress {
-                // TODO: Add progress view
-                Color.black
-                    .opacity(0.5)
-                    .edgesIgnoringSafeArea(.all)
-            }
             if state.showAvatarSheet {
                 EditSheetView(
                     showAlert: $state.showAvatarSheet,
@@ -69,13 +63,6 @@ struct EditProfileView: View {
         .onDisappear {
             state.needShowProfileAvatar?.wrappedValue = true
         }
-//        .fullScreenCover(isPresented: $state.isSheetSHown) {
-//            EditSheetViewView(
-//                canDelete: state.canDeleteAvatar,
-//                cameraAction: { },
-//                photoAction: { },
-//                deleteAction: { })
-//        }
     }
     
     // MARK: - Subviews

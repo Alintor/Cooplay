@@ -24,7 +24,6 @@ class EditProfileState: NSObject, ObservableObject {
     private let store: Store
     private let profile: Profile
     private let userService: UserServiceType
-    @Published var isInProgress: Bool = false
     @Published var name: String
     @Published var image: UIImage?
     @Published var avatarPath: String?
@@ -112,38 +111,7 @@ class EditProfileState: NSObject, ObservableObject {
     }
     
     func saveChange() {
-        isInProgress = true
-        Task.detached {
-            do {
-                for action in self.editActions {
-                    switch action {
-                    case .updateName(let name):
-                        try await self.userService.updateNickName(name)
-                    case .deleteImage(let path):
-                        try await self.userService.deleteAvatar(path: path, needClear: true)
-                    case .addImage(let image):
-                        try await self.userService.uploadNewAvatar(image)
-                    case .updateImage(let image, let lastPath):
-                        try await self.userService.deleteAvatar(path: lastPath, needClear: false)
-                        try await self.userService.uploadNewAvatar(image)
-                    }
-                }
-                await self.didEditProfile()
-                
-            } catch {
-                await self.didEditErrorOccured()
-            }
-        }
-    }
-    
-    @MainActor private func didEditProfile() {
-        isInProgress = false
-        successEditHandler?()
-    }
-    
-    @MainActor private func didEditErrorOccured() {
-        isInProgress = false
-        store.send(.showNetworkError(UserServiceError.editProfile))
+        store.send(.editActions(editActions))
     }
     
 }

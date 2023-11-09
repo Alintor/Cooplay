@@ -12,7 +12,6 @@ struct ProfileView: View {
     
     @EnvironmentObject var state: ProfileState
     @EnvironmentObject var namespace: NamespaceWrapper
-    @State var scrollOffset: Double = 0
     @State private var canContinueOffset = true
     private let generator = UIImpactFeedbackGenerator(style: .medium)
     @State var isBackButton: Bool = false
@@ -117,7 +116,7 @@ struct ProfileView: View {
                 Spacer()
             }
         }
-        .closable(scrollOffset: $scrollOffset, anchor: .topTrailing) {
+        .closable(anchor: .topTrailing) {
             state.isShown?.wrappedValue = false
         }
     }

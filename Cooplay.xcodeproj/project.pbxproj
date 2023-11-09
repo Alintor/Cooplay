@@ -252,6 +252,8 @@
 		A8A0F0D62AFBAAEF00997DEA /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0D52AFBAAEF00997DEA /* EditSheetView.swift */; };
 		A8A0F0D82AFBB5E500997DEA /* EditPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0D72AFBB5E500997DEA /* EditPhotoPickerView.swift */; };
 		A8A0F0DC2AFBBF7E00997DEA /* LogoutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0DB2AFBBF7E00997DEA /* LogoutSheetView.swift */; };
+		A8A0F0E02AFCA5CA00997DEA /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */; };
+		A8A0F0E22AFCB2D300997DEA /* ActivityIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */; };
 		A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */; };
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
@@ -599,6 +601,8 @@
 		A8A0F0D52AFBAAEF00997DEA /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		A8A0F0D72AFBB5E500997DEA /* EditPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoPickerView.swift; sourceTree = "<group>"; };
 		A8A0F0DB2AFBBF7E00997DEA /* LogoutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutSheetView.swift; sourceTree = "<group>"; };
+		A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorModifier.swift; sourceTree = "<group>"; };
 		A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
@@ -1449,6 +1453,8 @@
 				A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */,
 				A85F9CBC2AF7A88200BBAE31 /* TitleView.swift */,
 				A85F9CBE2AF7ACE300BBAE31 /* BackCloseIcon.swift */,
+				A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */,
+				A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3078,6 +3084,7 @@
 				A824CA18274670CD000E61A1 /* AddReactionView.swift in Sources */,
 				341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */,
 				E25B2574C4DE6D80EFDC53D6 /* SearchMembersPresenter.swift in Sources */,
+				A8A0F0E02AFCA5CA00997DEA /* ActivityIndicatorView.swift in Sources */,
 				A815E8172470076D005DFAF0 /* AuthorizationField.swift in Sources */,
 				A824CA0527454544000E61A1 /* NSObject.swift in Sources */,
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
@@ -3102,6 +3109,7 @@
 				11767463794E542D95159DBE /* AuthorizationViewController.swift in Sources */,
 				99C9F715D8E8A80F5230160D /* AuthorizationPresenter.swift in Sources */,
 				351F372BDD3BB5F9921C0FB8 /* AuthorizationInteractor.swift in Sources */,
+				A8A0F0E22AFCB2D300997DEA /* ActivityIndicatorModifier.swift in Sources */,
 				60947CF71B5EC0EEDA734DD1 /* AuthorizationRouter.swift in Sources */,
 				A85F9CBB2AF64FEF00BBAE31 /* HomeView.swift in Sources */,
 				A8070A3924B831EB000C4E3A /* PushNotificationApplicationService.swift in Sources */,

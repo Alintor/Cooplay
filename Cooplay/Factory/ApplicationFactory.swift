@@ -39,6 +39,7 @@ final class ApplicationFactory {
                 userService
             ],
             reducers: [
+                GlobalState.reducer,
                 NotificationBannerState.reducer,
                 UserState.reducer
             ]
