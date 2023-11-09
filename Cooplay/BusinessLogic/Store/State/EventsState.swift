@@ -11,6 +11,16 @@ final class EventsState {
     var events = [Event]()
     var activeEvent: Event?
     
+    var inventedEvents: [Event] {
+        return events.filter({ $0.me.state == .unknown })
+    }
+    var acceptedEvents: [Event] {
+        return events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
+    }
+    var declinedEvents: [Event] {
+        return events.filter({ $0.me.state == .declined })
+    }
+    
     static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
         switch action {
         case .updateEvents(let events):

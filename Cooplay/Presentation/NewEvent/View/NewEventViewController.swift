@@ -69,6 +69,9 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
         gradient.frame = mainActionBackgroundView.bounds
         mainActionBackgroundView.layer.insertSublayer(gradient, at: 0)
         generator.prepare()
+        let closeButton = UIBarButtonItem(image: R.image.commonClose(), style: .plain, target: self, action: #selector(backButtonTapped))
+        closeButton.tintColor = R.color.textSecondary()
+        navigationItem.rightBarButtonItem  = closeButton
     }
     
     func setTime(_ time: Date) {
@@ -242,6 +245,10 @@ final class NewEventViewController: UIViewController, NewEventViewInput {
     
     @IBAction func timeViewTapped(_ sender: UITapGestureRecognizer) {
         output?.didTapTime()
+    }
+    
+    @objc private func backButtonTapped() {
+        dismiss(animated: true)
     }
     
 }

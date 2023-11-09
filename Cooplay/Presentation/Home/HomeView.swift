@@ -48,41 +48,39 @@ struct HomeView: View {
     }
     
     var navigationBar: some View {
-        ZStack {
-            HStack {
-                Spacer()
-                Image(R.image.commonLogo.name)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 32)
-                    .clipped()
-                    .padding()
-                Spacer()
-            }
-            HStack {
-                Spacer()
-                if let profile = state.profile, !isShownProfile {
-                    AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
-                        .frame(width: 32, height: 32, alignment: .center)
-                        .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)
-                        .padding()
-                        .onTapGesture {
-                            withAnimation {
-                                isShownProfile = true
-                            }
+        HStack {
+            Image(R.image.commonLogoIcon.name)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundStyle(Color.r.actionAccent.color)
+                .frame(width: 32, height: 32)
+                .clipped()
+            //Spacer()
+            Image(R.image.commonLogoText.name)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 16)
+                .clipped()
+            Spacer()
+            if let profile = state.profile, !isShownProfile {
+                AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
+                    .frame(width: 32, height: 32, alignment: .center)
+                    .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)
+                    .onTapGesture {
+                        withAnimation {
+                            isShownProfile = true
                         }
-                }
+                    }
             }
         }
+        .padding()
     }
 
     
     var eventsView: some View {
         VStack {
             navigationBar
-            Spacer()
-            Image(R.image.eventsListEmptyState.name)
-            Spacer()
+            EmptyEvents()
         }
     }
 }

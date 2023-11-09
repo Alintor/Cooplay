@@ -26,6 +26,7 @@ struct EditProfileView: View {
         ZStack {
             Color.clear
                 .edgesIgnoringSafeArea(.all)
+                .contentShape(Rectangle())
                 .onTapGesture {
                     focusedField = nil
                 }

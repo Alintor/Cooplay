@@ -231,7 +231,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 55 images.
+  /// This `R.image` struct is generated, and contains static references to 58 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -283,6 +283,10 @@ struct R: Rswift.Validatable {
     static let commonHide = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.hide")
     /// Image `common.link`.
     static let commonLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link")
+    /// Image `common.logoIcon`.
+    static let commonLogoIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.logoIcon")
+    /// Image `common.logoText`.
+    static let commonLogoText = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.logoText")
     /// Image `common.logo`.
     static let commonLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.logo")
     /// Image `common.minus`.
@@ -297,6 +301,8 @@ struct R: Rswift.Validatable {
     static let commonShow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.show")
     /// Image `common.small.crown`.
     static let commonSmallCrown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.small.crown")
+    /// Image `events.empty`.
+    static let eventsEmpty = Rswift.ImageResource(bundle: R.hostingBundle, name: "events.empty")
     /// Image `eventsList.emptyState`.
     static let eventsListEmptyState = Rswift.ImageResource(bundle: R.hostingBundle, name: "eventsList.emptyState")
     /// Image `profileSettings.account`.
@@ -474,6 +480,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.commonLogo, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.logoIcon", bundle: ..., traitCollection: ...)`
+    static func commonLogoIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonLogoIcon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.logoText", bundle: ..., traitCollection: ...)`
+    static func commonLogoText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonLogoText, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.minus", bundle: ..., traitCollection: ...)`
     static func commonMinus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonMinus, compatibleWith: traitCollection)
@@ -502,6 +518,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.small.crown", bundle: ..., traitCollection: ...)`
     static func commonSmallCrown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonSmallCrown, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "events.empty", bundle: ..., traitCollection: ...)`
+    static func eventsEmpty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eventsEmpty, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "eventsList.emptyState", bundle: ..., traitCollection: ...)`

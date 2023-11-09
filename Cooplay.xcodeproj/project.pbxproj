@@ -255,6 +255,8 @@
 		A8A0F0E02AFCA5CA00997DEA /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */; };
 		A8A0F0E22AFCB2D300997DEA /* ActivityIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */; };
 		A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E52AFCE18000997DEA /* EventsState.swift */; };
+		A8A0F0E82AFCFCCF00997DEA /* EmptyEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E72AFCFCCF00997DEA /* EmptyEvents.swift */; };
+		A8A0F0EA2AFD063700997DEA /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E92AFD063700997DEA /* NewEventView.swift */; };
 		A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */; };
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
@@ -605,6 +607,8 @@
 		A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorModifier.swift; sourceTree = "<group>"; };
 		A8A0F0E52AFCE18000997DEA /* EventsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsState.swift; sourceTree = "<group>"; };
+		A8A0F0E72AFCFCCF00997DEA /* EmptyEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEvents.swift; sourceTree = "<group>"; };
+		A8A0F0E92AFD063700997DEA /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
@@ -717,6 +721,7 @@
 				3F277CF0EBC9299208F3B9EB /* Presenter */,
 				FC72439CEC52D7A20705D28F /* Interactor */,
 				8E1BDB10801B3429E66EE61B /* Router */,
+				A8A0F0E92AFD063700997DEA /* NewEventView.swift */,
 			);
 			path = NewEvent;
 			sourceTree = "<group>";
@@ -2267,6 +2272,7 @@
 		A8A0F0E42AFCE0CD00997DEA /* EmptyEvents */ = {
 			isa = PBXGroup;
 			children = (
+				A8A0F0E72AFCFCCF00997DEA /* EmptyEvents.swift */,
 			);
 			path = EmptyEvents;
 			sourceTree = "<group>";
@@ -3064,6 +3070,7 @@
 				A868606C2A0E618700327385 /* PersonalisationBuilder.swift in Sources */,
 				35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */,
 				A84694F123FD482B00139CF4 /* SearchMembersDataSource.swift in Sources */,
+				A8A0F0EA2AFD063700997DEA /* NewEventView.swift in Sources */,
 				A87CF45A23EAC18B004189D3 /* EmptyStateHandler.swift in Sources */,
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */,
@@ -3159,6 +3166,7 @@
 				EE7679F94BBC7C41D350212D /* NotificationSettingsBuilder.swift in Sources */,
 				A85F9CA42AF5E66900BBAE31 /* Colors.swift in Sources */,
 				A85F9C9F2AF510DB00BBAE31 /* ProfileView.swift in Sources */,
+				A8A0F0E82AFCFCCF00997DEA /* EmptyEvents.swift in Sources */,
 				E8E9562E062F93BA49FE360F /* NotificationSettingsContract.swift in Sources */,
 				46AC31EBE6C9C9E70C3F59EA /* NotificationSettingsViewModel.swift in Sources */,
 				9A24791DBA43F1AD72EA5F8A /* NotificationSettingsView.swift in Sources */,

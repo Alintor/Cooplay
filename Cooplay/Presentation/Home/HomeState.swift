@@ -14,6 +14,9 @@ class HomeState: ObservableObject {
     
     private let store: Store
     @Published var profile: Profile?
+    @Published var activeEvent: Event?
+    @Published var isNoEvents = false
+    @Published var invitesCount: Int = 0
     @Published var isInProgress: Bool
     
     // MARK: - Init
@@ -29,6 +32,18 @@ class HomeState: ObservableObject {
                 return profile1.isEqual(profile2)
             }
             .assign(to: &$profile)
+        store.state
+            .map { $0.events.activeEvent }
+            .removeDuplicates()
+            .assign(to: &$activeEvent)
+        store.state
+            .map { $0.events.events.isEmpty }
+            .removeDuplicates()
+            .assign(to: &$isNoEvents)
+        store.state
+            .map { $0.events.inventedEvents.count }
+            .removeDuplicates()
+            .assign(to: &$invitesCount)
         store.state
             .map { $0.isInProgress }
             .removeDuplicates()
