@@ -36,6 +36,7 @@ protocol NewEventViewOutput: AnyObject {
     func didTapSearchGame()
     func didTapSearchMember()
     func didTapMainActionButton()
+    func close()
 }
 
 // MARK: - Interactor
@@ -64,4 +65,7 @@ protocol NewEventRouterInput: CloseableRouter, TimePickerRoutable, SearchGameRou
 
 // MARK: - Module Input
 
-protocol NewEventModuleInput: AnyObject { }
+protocol NewEventModuleInput: AnyObject {
+    
+    func configure(closeHandler: (() -> Void)?)
+}

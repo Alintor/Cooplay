@@ -13,7 +13,7 @@ import Swinject
 
 final class NewEventBuilder {
     
-    func build() -> UIViewController {
+    func build(closeHandler: (() -> Void)? = nil) -> UIViewController {
         let r = ApplicationAssembly.assembler.resolver
         
         let viewController = R.storyboard.newEvent.newEventViewController()!
@@ -28,6 +28,7 @@ final class NewEventBuilder {
             router: router
         )
         viewController.output = presenter
+        presenter.configure(closeHandler: closeHandler)
         
         return viewController
     }

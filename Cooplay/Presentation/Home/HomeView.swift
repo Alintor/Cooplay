@@ -13,6 +13,7 @@ struct HomeView: View {
     @EnvironmentObject var state: HomeState
     @Namespace var namespace
     @State var isShownProfile: Bool = false
+    @State var showNewEvent = false
     
     var body: some View {
         ZStack {
@@ -44,6 +45,7 @@ struct HomeView: View {
         }
         .activityIndicator(isShown: $state.isInProgress)
         .animation(.customTransition, value: isShownProfile)
+        .animation(.customTransition, value: showNewEvent)
         .animation(.easeIn(duration: 0.2), value: state.profile)
     }
     
@@ -75,12 +77,31 @@ struct HomeView: View {
         }
         .padding()
     }
+    
+    var newEvent: some View {
+        NewEventView {
+            showNewEvent = false
+        }
+        .closable {
+            showNewEvent = false
+        }
+        .transition(.move(edge: .trailing))
+    }
 
     
     var eventsView: some View {
-        VStack {
-            navigationBar
-            EmptyEvents()
+        ZStack {
+            if showNewEvent {
+                newEvent
+            } else {
+                VStack {
+                    navigationBar
+                    EmptyEvents() {
+                        showNewEvent = true
+                    }
+                }
+                .transition(.scale(scale: 0.5, anchor: .leading).combined(with: .opacity))
+            }
         }
     }
 }

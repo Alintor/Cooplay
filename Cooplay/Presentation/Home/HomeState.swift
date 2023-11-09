@@ -18,6 +18,9 @@ class HomeState: ObservableObject {
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
     @Published var isInProgress: Bool
+    var isActiveEventPresented: Bool {
+        activeEvent != nil
+    }
     
     // MARK: - Init
     

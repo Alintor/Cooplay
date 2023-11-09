@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EmptyEvents: View {
     
-    @State var showNewEvent = false
+    var newEventAction: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -27,9 +27,9 @@ struct EmptyEvents: View {
                     .multilineTextAlignment(.center)
             }
             Button {
-                showNewEvent = true
+                newEventAction?()
             } label: {
-                Text("Создать событие")
+                Text(Localizable.newEventMainActionTitle())
                     .foregroundStyle(Color.r.textPrimary.color)
                     .font(.system(size: 17))
                     .padding(.horizontal, 16)
@@ -41,10 +41,6 @@ struct EmptyEvents: View {
             Spacer()
         }
         .padding(.horizontal, 32)
-        .fullScreenCover(isPresented: $showNewEvent, content: {
-            NewEventView()
-                .ignoresSafeArea()
-        })
     }
 }
 

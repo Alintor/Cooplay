@@ -20,6 +20,7 @@ final class NewEventPresenter {
     private weak var view: NewEventViewInput!
     private let interactor: NewEventInteractorInput
     private let router: NewEventRouterInput
+    private var closeHandler: (() -> Void)?
     
     // MARK: - Init
     
@@ -84,6 +85,7 @@ final class NewEventPresenter {
     
     private func createNewEvent() {
         interactor.createNewEvent(request)
+        closeHandler?()
         self.router.close(animated: true)
     }
 }
@@ -96,6 +98,10 @@ extension NewEventPresenter: NewEventViewOutput {
     func didLoad() {
         view.setupInitialState()
         fetchOfftenData()
+    }
+    
+    func close() {
+        closeHandler?()
     }
     
     func didTapCalendar() {
@@ -156,4 +162,9 @@ extension NewEventPresenter: NewEventViewOutput {
 
 // MARK: - NewEventModuleInput
 
-extension NewEventPresenter: NewEventModuleInput { }
+extension NewEventPresenter: NewEventModuleInput {
+    
+    func configure(closeHandler: (() -> Void)?) {
+        self.closeHandler = closeHandler
+    }
+}

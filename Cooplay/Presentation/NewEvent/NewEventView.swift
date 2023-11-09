@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct NewEventView : UIViewControllerRepresentable {
+    
+    var closeHandler: (() -> Void)?
 
      func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     
      }
 
      func makeUIViewController(context: Context) -> some UIViewController {
-         return UINavigationController(rootViewController: NewEventBuilder().build())
+         return UINavigationController(rootViewController: NewEventBuilder().build(closeHandler: closeHandler))
      }
 }
