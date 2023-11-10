@@ -23,9 +23,7 @@ struct ProfileView: View {
                     navigationView(title: navigation.title)
                     switch navigation {
                     case .edit:
-                        ScreenViewFactory.editProfile(state.profile, needShowProfileAvatar: $state.isShownAvatar) {
-                            state.itemNavigation = nil
-                        }
+                        ScreenViewFactory.editProfile(state.profile, needShowProfileAvatar: $state.isShownAvatar)
                     case .reactions:
                         ScreenViewFactory.reactionsSettings()
                     }
@@ -47,9 +45,11 @@ struct ProfileView: View {
             }
         }
         .animation(.customTransition, value: state.itemNavigation)
+        .animation(.customTransition, value: isBackButton)
         .onReceive(state.$itemNavigation) { item in
             isBackButton = item != nil
         }
+        .activityIndicator(isShown: $state.isInProgress)
         .fullScreenCover(isPresented: $state.isMinigamesShown) {
             ArcanoidView().ignoresSafeArea()
         }

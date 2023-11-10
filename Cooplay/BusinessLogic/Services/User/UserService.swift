@@ -78,7 +78,7 @@ extension UserService: StateEffect {
         case .logout:
             userListener = nil
         case .editActions(let editActions):
-            store.send(.showProgress)
+            store.send(.showProfileProgress)
             Task.detached {
                 do {
                     for editAction in editActions {
@@ -94,10 +94,10 @@ extension UserService: StateEffect {
                             try await self.uploadNewAvatar(image)
                         }
                     }
-                    store.send(.hideProgress)
+                    store.send(.hideProfileProgress)
                     
                 } catch {
-                    store.send(.hideProgress)
+                    store.send(.hideProfileProgress)
                     store.send(.showNetworkError(UserServiceError.editProfile))
                 }
             }

@@ -48,7 +48,6 @@ final class ApplicationFactory {
                 userService
             ],
             reducers: [
-                GlobalState.reducer,
                 NotificationBannerState.reducer,
                 EventsState.reducer,
                 UserState.reducer
@@ -74,18 +73,12 @@ enum ScreenViewFactory {
             .environmentObject(ProfileState(profile: profile, store: applicationFactory.store, isShown: isShown))
     }
     
-    static func editProfile(
-        _ profile: Profile,
-        needShowProfileAvatar: Binding<Bool>? = nil,
-        successEditHandler: (() -> Void)? = nil
-    ) -> some View {
+    static func editProfile(_ profile: Profile, needShowProfileAvatar: Binding<Bool>? = nil) -> some View {
         EditProfileView()
             .environmentObject(EditProfileState(
                 store: applicationFactory.store,
                 profile: profile,
-                userService: applicationFactory.userService,
-                needShowProfileAvatar: needShowProfileAvatar,
-                successEditHandler: successEditHandler
+                needShowProfileAvatar: needShowProfileAvatar
             ))
     }
     

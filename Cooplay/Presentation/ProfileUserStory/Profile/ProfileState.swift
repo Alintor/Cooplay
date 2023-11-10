@@ -15,6 +15,7 @@ class ProfileState: ObservableObject {
     
     private let store: Store
     @Published var profile: Profile
+    @Published var isInProgress: Bool
     @Published var isShownAvatar: Bool
     @Published var itemNavigation: ProfileSettingsItem.Navigation? = nil
     @Published var isMinigamesShown: Bool = false
@@ -27,6 +28,7 @@ class ProfileState: ObservableObject {
     init(profile: Profile, store: Store, isShown: Binding<Bool>?) {
         self.store = store
         self.profile = profile
+        self.isInProgress = store.state.value.user.isInProgress
         self.isShownAvatar = true
         self.isShown = isShown
         store.state
@@ -34,6 +36,10 @@ class ProfileState: ObservableObject {
             .replaceNil(with: profile)
             .removeDuplicates { $0.isEqual($1) }
             .assign(to: &$profile)
+        store.state
+            .map { $0.user.isInProgress }
+            .removeDuplicates()
+            .assign(to: &$isInProgress)
     }
     
     // MARK: - Methods

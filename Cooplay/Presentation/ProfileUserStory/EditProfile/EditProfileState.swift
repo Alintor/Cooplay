@@ -23,7 +23,6 @@ class EditProfileState: NSObject, ObservableObject {
     
     private let store: Store
     private let profile: Profile
-    private let userService: UserServiceType
     @Published var name: String
     @Published var image: UIImage?
     @Published var avatarPath: String?
@@ -32,24 +31,19 @@ class EditProfileState: NSObject, ObservableObject {
     var photoPickerTypeCamera = true
     let avatarBackgroundColor: UIColor
     var needShowProfileAvatar: Binding<Bool>?
-    var successEditHandler: (() -> Void)?
     
     // MARK: - Init
     
     init(
         store: Store,
         profile: Profile,
-        userService: UserServiceType,
-        needShowProfileAvatar: Binding<Bool>?,
-        successEditHandler: (() -> Void)?
+        needShowProfileAvatar: Binding<Bool>?
     ) {
         self.store = store
         self.profile = profile
-        self.userService = userService
         self.name = profile.name
         self.avatarPath = profile.avatarPath
         self.avatarBackgroundColor = UIColor.avatarBackgroundColor(profile.id)
-        self.successEditHandler = successEditHandler
         self.needShowProfileAvatar = needShowProfileAvatar
     }
     

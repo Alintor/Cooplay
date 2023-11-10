@@ -17,7 +17,6 @@ class HomeState: ObservableObject {
     @Published var activeEvent: Event?
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
-    @Published var isInProgress: Bool
     var isActiveEventPresented: Bool {
         activeEvent != nil
     }
@@ -27,7 +26,6 @@ class HomeState: ObservableObject {
     init(store: Store) {
         self.store = store
         self.profile = nil
-        self.isInProgress = store.state.value.isInProgress
         store.state
             .map { $0.user.profile }
             .removeDuplicates {
@@ -47,10 +45,6 @@ class HomeState: ObservableObject {
             .map { $0.events.inventedEvents.count }
             .removeDuplicates()
             .assign(to: &$invitesCount)
-        store.state
-            .map { $0.isInProgress }
-            .removeDuplicates()
-            .assign(to: &$isInProgress)
     }
     
 }

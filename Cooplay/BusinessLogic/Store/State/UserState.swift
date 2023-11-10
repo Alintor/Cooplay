@@ -9,11 +9,18 @@
 final class UserState {
     
     var profile: Profile? = nil
+    var isInProgress = false
     
     static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
         switch action {
         case .updateProfile(let profile):
             state.user.profile = profile
+            return state
+        case .showProfileProgress:
+            state.user.isInProgress = true
+            return state
+        case .hideProfileProgress:
+            state.user.isInProgress = false
             return state
         default:
             return state

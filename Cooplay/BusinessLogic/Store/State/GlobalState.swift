@@ -12,23 +12,9 @@ final class GlobalState {
     var notificationBanner = NotificationBannerState()
     var events = EventsState()
     var user = UserState()
-    var isInProgress = false
     
     init(isAuthenticated: Bool) {
         self.authentication = AuthenticationState(isAuthenticated: isAuthenticated)
-    }
-    
-    static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
-        switch action {
-        case .showProgress:
-            state.isInProgress = true
-            return state
-        case .hideProgress:
-            state.isInProgress = false
-            return state
-        default:
-            return state
-        }
     }
     
 }

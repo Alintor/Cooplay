@@ -43,7 +43,6 @@ struct HomeView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
-        .activityIndicator(isShown: $state.isInProgress)
         .animation(.customTransition, value: isShownProfile)
         .animation(.customTransition, value: showNewEvent)
         .animation(.easeIn(duration: 0.2), value: state.profile)
@@ -79,12 +78,8 @@ struct HomeView: View {
     }
     
     var newEvent: some View {
-        NewEventView {
-            showNewEvent = false
-        }
-        .closable {
-            showNewEvent = false
-        }
+        NewEventView { showNewEvent = false }
+        .closable { showNewEvent = false }
         .transition(.move(edge: .trailing))
     }
 
@@ -96,9 +91,7 @@ struct HomeView: View {
             } else {
                 VStack {
                     navigationBar
-                    EmptyEvents() {
-                        showNewEvent = true
-                    }
+                    EmptyEvents() { showNewEvent = true }
                 }
                 .transition(.scale(scale: 0.5, anchor: .leading).combined(with: .opacity))
             }

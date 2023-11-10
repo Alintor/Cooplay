@@ -7,8 +7,6 @@
 //
 
 enum StateAction {
-    case showProgress
-    case hideProgress
     // Authentication
     case successAuthentication
     case failureAuthentication(_ error: Error)
@@ -25,4 +23,6 @@ enum StateAction {
     // User
     case updateProfile(_ profile: Profile)
     case editActions(_ editActions: [EditAction])
+    case showProfileProgress
+    case hideProfileProgress
 }
