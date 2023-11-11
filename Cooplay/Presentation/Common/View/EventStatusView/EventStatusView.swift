@@ -15,7 +15,7 @@ struct EventStatusView: View {
     var viewModel: EventStatusViewModel
     @Binding var isTapped: Bool
     
-    let contextMenuHandler: ContextMenuHandler
+    //let contextMenuHandler: ContextMenuHandler
 
     var body: some View {
         HStack {
@@ -51,6 +51,6 @@ struct EventStatusView: View {
             }
             .padding(.trailing, 14)
         }
-        .background(GeometryGetter(delegate: contextMenuHandler))
+        //.background(GeometryGetter(delegate: contextMenuHandler))
     }
 }

@@ -98,7 +98,7 @@ struct EventDetailsView: View {
                             .frame(width: 10, height: 48, alignment: .center)
                     }
                 }
-                EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped, contextMenuHandler: contextMenuHandler)
+                EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped)
                     .background(Color(R.color.block.name))
                     .cornerRadius(12)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))

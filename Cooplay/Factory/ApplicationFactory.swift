@@ -68,6 +68,11 @@ enum ScreenViewFactory {
             .environmentObject(HomeState(store: applicationFactory.store))
     }
     
+    static func eventsList(newEventAction: (() -> Void)?) -> some View {
+        EventsListView()
+            .environmentObject(EventsListState(store: applicationFactory.store, newEventAction: newEventAction))
+    }
+    
     static func profile(_ profile: Profile, isShown: Binding<Bool>? = nil) -> some View {
         ProfileView()
             .environmentObject(ProfileState(profile: profile, store: applicationFactory.store, isShown: isShown))

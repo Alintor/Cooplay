@@ -18,6 +18,12 @@ enum GlobalConstant {
         }
     }
     
+    enum CoordinateSpace {
+        
+        static let home = "Home"
+        static let profile = "Profile"
+    }
+    
     static var eventActivePeriodHours = 1
     static var eventConfirmPeriodMinutes = 30
     static var eventIdKey = "eventId"

@@ -83,7 +83,7 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     ProfileInfoView()
-                        .handleScroll(coordinateSpaceName: Constant.profileCoordinateSpaceName) { rect in
+                        .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile)) { rect in
                             guard canContinueOffset else { return }
                             let offset = rect.origin.y - 48
                             if offset >= 100 {
@@ -100,7 +100,7 @@ struct ProfileView: View {
                     settingsList
                 }
             }
-            .coordinateSpace(name: Constant.profileCoordinateSpaceName)
+            .coordinateSpace(name: GlobalConstant.CoordinateSpace.profile)
             VStack {
                 HStack {
                     Spacer()
@@ -138,10 +138,4 @@ struct ProfileView: View {
         }
     }
     
-}
-
-
-private enum Constant {
-    
-    static let profileCoordinateSpaceName = "CoordinateSpace.profile"
 }

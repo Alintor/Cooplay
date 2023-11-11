@@ -17,6 +17,7 @@ enum EventServiceError: Error {
     case unknownError
     case fetchEvents
     case fetchActiveEvent
+    case changeStatus
     case unhandled(error: Error)
 }
 
@@ -26,6 +27,7 @@ extension EventServiceError: LocalizedError {
         switch self {
         case .fetchEvents: return "Не удалось загрузить события"
         case .fetchActiveEvent: return "Не удалось загрузить событие"
+        case .changeStatus: return "Не удалось изменить статус"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -80,11 +82,14 @@ extension EventService: StateEffect {
             fetchEvents { result in
                 switch result {
                 case .success(let events):
-                    store.send(.updateEvents(events))
+                    store.send(.updateEvents(events.sorted(by: { $0.date < $1.date })))
                 case .failure(let error):
                     store.send(.showNetworkError(error))
                 }
             }
+        case .logout:
+            eventsListener = nil
+            activeEventListener = nil
         case .selectEvent(let selectedEvent):
             fetchEvent(id: selectedEvent.id) { result in
                 switch result {
@@ -96,9 +101,15 @@ extension EventService: StateEffect {
             }
         case .deselectEvent:
             activeEventListener = nil
-        case .logout:
-            eventsListener = nil
-            activeEventListener = nil
+        case .changeStatus(let status, var event):
+            event.me.status = status
+            changeStatus(for: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
         default: break
         }
     }
@@ -112,7 +123,7 @@ extension EventService: EventServiceType {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
         eventsListener = firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
-            if let error = error {
+            if let _ = error {
                 completion(.failure(.fetchEvents))
                 return
             }
@@ -233,8 +244,8 @@ extension EventService: EventServiceType {
         ]
         data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.changeStatus))
             } else {
                 self?.sendChangeStatusNotification(for: event)
                 completion(.success(()))

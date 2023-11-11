@@ -43,8 +43,10 @@ struct HomeView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
+        .coordinateSpace(name: GlobalConstant.CoordinateSpace.home)
         .animation(.customTransition, value: isShownProfile)
         .animation(.customTransition, value: showNewEvent)
+        .animation(.customTransition, value: state.isNoEvents)
         .animation(.easeIn(duration: 0.2), value: state.profile)
     }
     
@@ -91,7 +93,17 @@ struct HomeView: View {
             } else {
                 VStack {
                     navigationBar
-                    EmptyEvents() { showNewEvent = true }
+                    if state.isNoEvents {
+                        EmptyEvents() { showNewEvent = true }
+                            .environmentObject(NamespaceWrapper(namespace))
+                            .zIndex(1)
+                            .transition(.scale(scale: 0.5).combined(with: .opacity))
+                    } else {
+                        ScreenViewFactory.eventsList() { showNewEvent = true }
+                            .environmentObject(NamespaceWrapper(namespace))
+                            .zIndex(1)
+                            .transition(.scale(scale: 0.5).combined(with: .opacity))
+                    }
                 }
                 .transition(.scale(scale: 0.5, anchor: .leading).combined(with: .opacity))
             }

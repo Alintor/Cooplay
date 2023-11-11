@@ -20,6 +20,7 @@ enum StateAction {
     case updateActiveEvent(_ event: Event)
     case selectEvent(_ event: Event)
     case deselectEvent
+    case changeStatus(_ status: User.Status, event: Event)
     // User
     case updateProfile(_ profile: Profile)
     case editActions(_ editActions: [EditAction])

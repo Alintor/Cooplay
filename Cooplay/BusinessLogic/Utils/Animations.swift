@@ -11,17 +11,17 @@ import SwiftUI
 enum MatchedAnimations {
     
     case profileAvatar
-    case profileName
     case closeButton
+    case newEventButton
     
     var name: String {
         switch self {
         case .profileAvatar:
             return "profileAvatar"
-        case .profileName:
-            return "profileName"
         case .closeButton:
             return "closeButton"
+        case .newEventButton:
+            return "newEventButton"
         }
     }
 }
@@ -37,7 +37,8 @@ class NamespaceWrapper: ObservableObject {
 extension SwiftUI.Animation {
     
     static var customTransition: SwiftUI.Animation {
-        .interpolatingSpring(stiffness: 300, damping: 28)
+        .interpolatingSpring(stiffness: 280, damping: 25)
+        //.interpolatingSpring(stiffness: 300, damping: 28)
         //.easeInOut
     }
 }

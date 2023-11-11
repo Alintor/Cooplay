@@ -257,6 +257,15 @@
 		A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E52AFCE18000997DEA /* EventsState.swift */; };
 		A8A0F0E82AFCFCCF00997DEA /* EmptyEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E72AFCFCCF00997DEA /* EmptyEvents.swift */; };
 		A8A0F0EA2AFD063700997DEA /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0E92AFD063700997DEA /* NewEventView.swift */; };
+		A8A0F0EC2AFDF09200997DEA /* EventsListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0EB2AFDF09200997DEA /* EventsListState.swift */; };
+		A8A0F0EF2AFDF3F900997DEA /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0EE2AFDF3F900997DEA /* EventItemView.swift */; };
+		A8A0F0F12AFDFF7600997DEA /* InvitedEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F02AFDFF7600997DEA /* InvitedEventView.swift */; };
+		A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F22AFE20A300997DEA /* AcceptedEventView.swift */; };
+		A8A0F0F52AFE355C00997DEA /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F42AFE355C00997DEA /* OverlayModifier.swift */; };
+		A8A0F0F72AFE35EB00997DEA /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F62AFE35EB00997DEA /* EventsListView.swift */; };
+		A8A0F0F92AFE43A200997DEA /* RectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F82AFE43A200997DEA /* RectHandler.swift */; };
+		A8A0F0FB2AFE43C100997DEA /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */; };
+		A8A0F0FE2AFFA32D00997DEA /* InvitesIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */; };
 		A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */; };
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
@@ -609,6 +618,15 @@
 		A8A0F0E52AFCE18000997DEA /* EventsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsState.swift; sourceTree = "<group>"; };
 		A8A0F0E72AFCFCCF00997DEA /* EmptyEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEvents.swift; sourceTree = "<group>"; };
 		A8A0F0E92AFD063700997DEA /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
+		A8A0F0EB2AFDF09200997DEA /* EventsListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListState.swift; sourceTree = "<group>"; };
+		A8A0F0EE2AFDF3F900997DEA /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
+		A8A0F0F02AFDFF7600997DEA /* InvitedEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitedEventView.swift; sourceTree = "<group>"; };
+		A8A0F0F22AFE20A300997DEA /* AcceptedEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedEventView.swift; sourceTree = "<group>"; };
+		A8A0F0F42AFE355C00997DEA /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
+		A8A0F0F62AFE35EB00997DEA /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
+		A8A0F0F82AFE43A200997DEA /* RectHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectHandler.swift; sourceTree = "<group>"; };
+		A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesIconView.swift; sourceTree = "<group>"; };
 		A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
@@ -849,6 +867,9 @@
 		3B0EFF11180C755BF51BF0FA /* EventsList */ = {
 			isa = PBXGroup;
 			children = (
+				A8A0F0ED2AFDF39400997DEA /* Subviews */,
+				A8A0F0EB2AFDF09200997DEA /* EventsListState.swift */,
+				A8A0F0F62AFE35EB00997DEA /* EventsListView.swift */,
 				A86860552A0E578300327385 /* Builder */,
 				A868606D2A0FB2FE00327385 /* Contract */,
 				A82FF2D62347226800EE1807 /* ViewModel */,
@@ -1463,6 +1484,8 @@
 				A85F9CBE2AF7ACE300BBAE31 /* BackCloseIcon.swift */,
 				A8A0F0DF2AFCA5CA00997DEA /* ActivityIndicatorView.swift */,
 				A8A0F0E12AFCB2D300997DEA /* ActivityIndicatorModifier.swift */,
+				A8A0F0F42AFE355C00997DEA /* OverlayModifier.swift */,
+				A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1742,6 +1765,7 @@
 		A85F9CB72AF64EA500BBAE31 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A8A0F0FC2AFFA2F100997DEA /* Subviews */,
 				A85F9CB82AF64EB800BBAE31 /* HomeState.swift */,
 				A85F9CBA2AF64FEF00BBAE31 /* HomeView.swift */,
 			);
@@ -2277,6 +2301,24 @@
 			path = EmptyEvents;
 			sourceTree = "<group>";
 		};
+		A8A0F0ED2AFDF39400997DEA /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A8A0F0EE2AFDF3F900997DEA /* EventItemView.swift */,
+				A8A0F0F02AFDFF7600997DEA /* InvitedEventView.swift */,
+				A8A0F0F22AFE20A300997DEA /* AcceptedEventView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A8A0F0FC2AFFA2F100997DEA /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A8A383D028C20C65001B22EC /* ProfileUserStory */ = {
 			isa = PBXGroup;
 			children = (
@@ -2462,6 +2504,7 @@
 			children = (
 				A8FB1CD8249A166D001C9355 /* FirestoreDecoder.swift */,
 				A85F9CA02AF5198800BBAE31 /* Animations.swift */,
+				A8A0F0F82AFE43A200997DEA /* RectHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2905,6 +2948,7 @@
 				A824CA1627467095000E61A1 /* ReactionView.swift in Sources */,
 				A85F9CB22AF6063E00BBAE31 /* AuthenticationState.swift in Sources */,
 				A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */,
+				A8A0F0F72AFE35EB00997DEA /* EventsListView.swift in Sources */,
 				A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */,
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextView.swift in Sources */,
@@ -2961,6 +3005,7 @@
 				A8301D4326AECA6200519768 /* LineActivityIndicatorView.swift in Sources */,
 				A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */,
 				A824C9EA27412B06000E61A1 /* EventDetailsViewOutput.swift in Sources */,
+				A8A0F0EC2AFDF09200997DEA /* EventsListState.swift in Sources */,
 				A86860722A0FB5E900327385 /* NewEventContract.swift in Sources */,
 				A868608C2A14C09900327385 /* TextFieldView.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
@@ -2995,6 +3040,7 @@
 				A8D1D2762356F93600DA1089 /* UITabBarItem.swift in Sources */,
 				A8D1D27E2357070A00DA1089 /* ActiveEventCell.swift in Sources */,
 				A86860842A134B8C00327385 /* PersonalisationContract.swift in Sources */,
+				A8A0F0EF2AFDF3F900997DEA /* EventItemView.swift in Sources */,
 				A86860812A13464000327385 /* RegistrationContract.swift in Sources */,
 				A868608F2A14C0E700327385 /* MainActionButton.swift in Sources */,
 				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
@@ -3030,8 +3076,10 @@
 				A85F9CAA2AF5FE8600BBAE31 /* StateAction.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */,
+				A8A0F0F52AFE355C00997DEA /* OverlayModifier.swift in Sources */,
 				A824C9F32742BB43000E61A1 /* AvatarItemView.swift in Sources */,
 				A824C9DD273FC287000E61A1 /* EventDetailsViewModel.swift in Sources */,
+				A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */,
 				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				81A4314CFFAFBF7266DAB0CE /* EventsListRouter.swift in Sources */,
@@ -3041,6 +3089,8 @@
 				A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */,
 				A824CA1D27467147000E61A1 /* View.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
+				A8A0F0FE2AFFA32D00997DEA /* InvitesIconView.swift in Sources */,
+				A8A0F0F12AFDFF7600997DEA /* InvitedEventView.swift in Sources */,
 				A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */,
 				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,
 				A3D7FBA9D2B20863F67CBA03 /* EventDetailsViewInput.swift in Sources */,
@@ -3053,6 +3103,7 @@
 				A824CA1F274678B1000E61A1 /* ReactionsListOwnerView.swift in Sources */,
 				A86860782A11F1D900327385 /* SearchMembersContract.swift in Sources */,
 				3BB3686E65E5EB6402FFB6C9 /* EventDetailsInteractorInput.swift in Sources */,
+				A8A0F0FB2AFE43C100997DEA /* VisualEffectView.swift in Sources */,
 				A85F9C7C2AF4BA4200BBAE31 /* UserState.swift in Sources */,
 				71AF590953D70D286EA9815E /* EventDetailsInteractor.swift in Sources */,
 				A87CF47B23EC1765004189D3 /* AuthorizationHandlerAssemblyContainer.swift in Sources */,
@@ -3099,6 +3150,7 @@
 				A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */,
 				5F7E65747CE06D37B089542A /* SearchGameInteractor.swift in Sources */,
 				2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */,
+				A8A0F0F92AFE43A200997DEA /* RectHandler.swift in Sources */,
 				A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */,
 				A824CA18274670CD000E61A1 /* AddReactionView.swift in Sources */,
 				341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */,

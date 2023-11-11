@@ -11,6 +11,7 @@ import SwiftUI
 struct EmptyEvents: View {
     
     var newEventAction: (() -> Void)?
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
         VStack(spacing: 20) {
@@ -26,17 +27,19 @@ struct EmptyEvents: View {
                     .font(.system(size: 13))
                     .multilineTextAlignment(.center)
             }
-            Button {
+            Button(action: {
                 newEventAction?()
-            } label: {
+            }, label: {
                 Text(Localizable.newEventMainActionTitle())
+                    .font(.system(size: 20))
                     .foregroundStyle(Color.r.textPrimary.color)
-                    .font(.system(size: 17))
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-            }
-            .background(Color(R.color.actionAccent.name))
-            .cornerRadius(20)
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 24)
+            })
+            .background(Color.r.actionAccent.color)
+            .clipShape(.rect(cornerRadius: 48, style: .continuous))
+            .scaleEffect(0.7)
+            .matchedGeometryEffect(id: MatchedAnimations.newEventButton.name, in: namespace.id)
             .padding(.bottom, 64)
             Spacer()
         }
