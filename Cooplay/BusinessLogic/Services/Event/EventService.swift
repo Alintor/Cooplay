@@ -18,6 +18,7 @@ enum EventServiceError: Error {
     case fetchEvents
     case fetchActiveEvent
     case changeStatus
+    case addReaction
     case unhandled(error: Error)
 }
 
@@ -28,6 +29,7 @@ extension EventServiceError: LocalizedError {
         case .fetchEvents: return "Не удалось загрузить события"
         case .fetchActiveEvent: return "Не удалось загрузить событие"
         case .changeStatus: return "Не удалось изменить статус"
+        case .addReaction: return "Не удалось добавить реакцию"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -104,6 +106,14 @@ extension EventService: StateEffect {
         case .changeStatus(let status, var event):
             event.me.status = status
             changeStatus(for: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .addReaction(let reaction, let member, let event):
+            addReaction(reaction, to: member, for: event) { result in
                 switch result {
                 case .success: break
                 case .failure(let error):
@@ -258,8 +268,8 @@ extension EventService: EventServiceType {
             "members.\(member.id).reactions.\(event.me.id)": reaction?.dictionary ?? FieldValue.delete()
         ]
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.addReaction))
             } else {
                 if let reaction = reaction {
                     self?.sendReactionNotification(reaction, for: member, event: event)

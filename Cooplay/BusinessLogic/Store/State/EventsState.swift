@@ -44,6 +44,21 @@ final class EventsState {
                 targetEvent.me.status = status
             }
             return state
+        case .addReaction(let reaction, let member, let event):
+            guard var activeEvent = state.events.activeEvent, activeEvent.id == event.id else { return state }
+            if member == activeEvent.me {
+                var reactions = activeEvent.me.reactions ?? [:]
+                reactions[activeEvent.me.id] = reaction
+                activeEvent.me.reactions = reactions
+                state.events.activeEvent = activeEvent
+            }
+            if let index = activeEvent.members.firstIndex(of: member) {
+                var reactions = activeEvent.members[index].reactions ?? [:]
+                reactions[activeEvent.me.id] = reaction
+                activeEvent.members[index].reactions = reactions
+                state.events.activeEvent = activeEvent
+            }
+            return state
         default:
             return state
         }

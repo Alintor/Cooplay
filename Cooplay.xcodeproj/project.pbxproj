@@ -266,6 +266,7 @@
 		A8A0F0F92AFE43A200997DEA /* RectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0F82AFE43A200997DEA /* RectHandler.swift */; };
 		A8A0F0FB2AFE43C100997DEA /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */; };
 		A8A0F0FE2AFFA32D00997DEA /* InvitesIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */; };
+		A8A0F1002AFFAE9600997DEA /* EventDetailsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0FF2AFFAE9600997DEA /* EventDetailsState.swift */; };
 		A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */; };
 		A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */; };
 		A8A383EF28C36FC3001B22EC /* ArkanoidScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */; };
@@ -627,6 +628,7 @@
 		A8A0F0F82AFE43A200997DEA /* RectHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectHandler.swift; sourceTree = "<group>"; };
 		A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesIconView.swift; sourceTree = "<group>"; };
+		A8A0F0FF2AFFAE9600997DEA /* EventDetailsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsState.swift; sourceTree = "<group>"; };
 		A8A383D928C2105D001B22EC /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A8A383E528C22AC0001B22EC /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		A8A383EE28C36FC3001B22EC /* ArkanoidScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ArkanoidScene.sks; sourceTree = "<group>"; };
@@ -988,6 +990,8 @@
 		5C6E24950482FD9B716412DB /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				A8A0F0FF2AFFAE9600997DEA /* EventDetailsState.swift */,
+				A824C9E4273FCD24000E61A1 /* EventDetailsView.swift */,
 				A824C9E6273FCEF9000E61A1 /* Builder */,
 				A833EF5623CF2200009FCD73 /* ViewModel */,
 				85292EDCDAB83F4DF88F5E0F /* View */,
@@ -1094,7 +1098,6 @@
 				7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */,
 				A824C9E927412B06000E61A1 /* EventDetailsViewOutput.swift */,
 				5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */,
-				A824C9E4273FCD24000E61A1 /* EventDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3166,6 +3169,7 @@
 				A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */,
 				A824C9E1273FC47E000E61A1 /* EventStatusViewModel.swift in Sources */,
 				A824C9F12742BB08000E61A1 /* EventDetailsInfoView.swift in Sources */,
+				A8A0F1002AFFAE9600997DEA /* EventDetailsState.swift in Sources */,
 				A8FB1CDB249A503F001C9355 /* Codable.swift in Sources */,
 				A824CA2127475A52000E61A1 /* ReactionViewModel.swift in Sources */,
 				7388A80D4F5276385187AD3E /* IntroViewController.swift in Sources */,
