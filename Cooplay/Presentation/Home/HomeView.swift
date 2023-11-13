@@ -44,6 +44,7 @@ struct HomeView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
+        .coordinateSpace(name: GlobalConstant.CoordinateSpace.profile)
         .animation(.customTransition, value: state.isShownProfile)
         .animation(.customTransition, value: showNewEvent)
         .animation(.customTransition, value: state.isNoEvents)

@@ -86,6 +86,7 @@ class TimeCarouselPanel: UIView {
     
     var cancelHandler: (() -> Void)?
     var confirmHandler: (() -> Void)?
+    var statusHandler: ((_ status: User.Status) -> Void)?
     
     @objc func cancelButtonTapped() {
         cancelHandler?()
@@ -93,6 +94,7 @@ class TimeCarouselPanel: UIView {
     
     @objc func confirmButtonTapped() {
         confirmHandler?()
+        statusHandler?(status)
     }
 }
 

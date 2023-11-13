@@ -44,7 +44,7 @@ extension StatusContextDelegate {
     func restoreView(with menuItem: MenuItem?) {}
 }
 
-class StatusContextView: UIView {
+class StatusContextViewOld: UIView {
     
     private enum Constant {
         
@@ -117,7 +117,7 @@ class StatusContextView: UIView {
         self.contextType = contextType
         super.init(frame: .zero)
         self.delegate = delegate
-        guard let window = StatusContextView.topWindow else { return }
+        guard let window = StatusContextViewOld.topWindow else { return }
         self.frame = window.frame
         blurEffectView.frame = self.frame
         blurEffectView.alpha = 0
@@ -129,7 +129,7 @@ class StatusContextView: UIView {
     }
     
     func showMenu(size: StatusMenuView.MenuSize, type: StatusMenuView.MenuType) {
-        guard let window = StatusContextView.topWindow else { return }
+        guard let window = StatusContextViewOld.topWindow else { return }
         window.addSubview(self)
         let  menuView = StatusMenuView(size: size, type: type) { [weak self] menuItem in
             self?.selectedMenuItem = menuItem
@@ -143,7 +143,7 @@ class StatusContextView: UIView {
     
     private func show(menuSize: StatusMenuView.MenuSize, menuType: StatusMenuView.MenuType) {
         guard
-            let window = StatusContextView.topWindow,
+            let window = StatusContextViewOld.topWindow,
             let delegate = delegate,
             let targetView = delegate.targetViewCopy
         else { return }

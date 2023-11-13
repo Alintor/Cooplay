@@ -34,6 +34,7 @@ struct AcceptedEventView: View {
         .clipShape(.rect(cornerRadius: 20, style: .continuous))
         .overlayModal(isPresented: $showStatusContext, content: {
             EventsListStatusContextView(
+                event: event, 
                 showStatusContext: $showStatusContext,
                 statusRect: $statusRect,
                 content: { statusView}

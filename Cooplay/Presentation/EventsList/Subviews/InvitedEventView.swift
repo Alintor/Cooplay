@@ -12,6 +12,8 @@ struct InvitedEventView: View {
     
     @EnvironmentObject var state: EventsListState
     let event: Event
+    @State var showStatusContext = false
+    @State var moreButtonRect: CGRect = .zero
     
     var body: some View {
         ZStack {
@@ -41,19 +43,34 @@ struct InvitedEventView: View {
                     .clipShape(.rect(cornerRadius: 20, style: .continuous))
             }
             Button {
-                print("more")
-                state.changeStatus(.declined, for: event)
+                showStatusContext = true
             } label: {
-                Text(Localizable.eventsListInvitedEventMore())
-                    .font(.system(size: 20))
-                    .foregroundStyle(Color(.textPrimary))
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(.shapeBackground))
-                    .clipShape(.rect(cornerRadius: 20, style: .continuous))
+                moreButtonText
+            }
+            .opacity(showStatusContext ? 0 : 1)
+            .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventsList)) { rect in
+                moreButtonRect = rect
             }
 
         }
+        .overlayModal(isPresented: $showStatusContext) {
+            InvitesStatusContextView(
+                event: event,
+                showStatusContext: $showStatusContext,
+                targetRect: $moreButtonRect,
+                content: { moreButtonText}
+            )
+        }
+    }
+    
+    var moreButtonText: some View {
+        Text(Localizable.eventsListInvitedEventMore())
+            .font(.system(size: 20))
+            .foregroundStyle(Color(.textPrimary))
+            .padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
+            .background(Color(.shapeBackground))
+            .clipShape(.rect(cornerRadius: 20, style: .continuous))
     }
 }
 

@@ -14,10 +14,10 @@ extension ContextMenuRouter {
     
     func showContextMenu(
         delegate: StatusContextDelegate?,
-        contextType: StatusContextView.ContextType,
+        contextType: StatusContextViewOld.ContextType,
         menuSize: StatusMenuView.MenuSize,
         menuType: StatusMenuView.MenuType) {
-        let contextMenuView = StatusContextView(contextType: contextType, delegate: delegate)
+        let contextMenuView = StatusContextViewOld(contextType: contextType, delegate: delegate)
         contextMenuView.showMenu(size: menuSize, type: menuType)
     }
 }
