@@ -61,17 +61,17 @@ struct AllReactionsListView: View {
             }
             .clipped()
             .ignoresSafeArea(edges: .bottom)
-            VStack {
-                LinearGradient(
-                    gradient: Gradient(
-                        colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]
-                    ),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .frame(height: 16)
-                Spacer()
-            }
+//            VStack {
+//                LinearGradient(
+//                    gradient: Gradient(
+//                        colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]
+//                    ),
+//                    startPoint: .top,
+//                    endPoint: .bottom
+//                )
+//                .frame(height: 16)
+//                Spacer()
+//            }
         }
 
     }

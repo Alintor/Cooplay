@@ -6,6 +6,7 @@
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
+import Foundation
 import Combine
 
 class EventsListState: ObservableObject {
@@ -17,6 +18,7 @@ class EventsListState: ObservableObject {
     @Published var invitedEvents: [Event]
     @Published var acceptedEvents: [Event]
     @Published var declinedEvents: [Event]
+    @Published var eventsListSize: CGSize = .zero
     
     // MARK: - Init
     
@@ -64,5 +66,9 @@ class EventsListState: ObservableObject {
     
     func openNewEvent() {
         newEventAction?()
+    }
+    
+    func deleteEvent(_ event: Event) {
+        store.send(.deleteEvent(event))
     }
 }

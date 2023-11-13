@@ -15,7 +15,7 @@ struct InvitedEventView: View {
     
     var body: some View {
         ZStack {
-            Color.r.block.color
+            Color(.block)
             VStack(spacing: 2) {
                 EventItemView(event: event)
                 buttons
@@ -30,26 +30,28 @@ struct InvitedEventView: View {
         HStack(spacing: 2) {
             Button {
                 state.changeStatus(.accepted, for: event)
+                Haptic.play(style: .soft)
             } label: {
                 Text(Localizable.statusAcceptedShort())
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.r.block.color)
+                    .foregroundStyle(Color(.block))
                     .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.green))
+                    .clipShape(.rect(cornerRadius: 20, style: .continuous))
             }
-            .frame(maxWidth: .infinity)
-            .background(Color.r.green.color)
-            .clipShape(.rect(cornerRadius: 20, style: .continuous))
             Button {
                 print("more")
+                state.changeStatus(.declined, for: event)
             } label: {
-                Text("Еще")
+                Text(Localizable.eventsListInvitedEventMore())
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.r.textPrimary.color)
+                    .foregroundStyle(Color(.textPrimary))
                     .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.shapeBackground))
+                    .clipShape(.rect(cornerRadius: 20, style: .continuous))
             }
-            .frame(maxWidth: .infinity)
-            .background(Color.r.shapeBackground.color)
-            .clipShape(.rect(cornerRadius: 20, style: .continuous))
 
         }
     }

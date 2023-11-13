@@ -12,12 +12,12 @@ struct HomeView: View {
     
     @EnvironmentObject var state: HomeState
     @Namespace var namespace
-    @State var isShownProfile: Bool = false
     @State var showNewEvent = false
     
     var body: some View {
         ZStack {
-            Color.r.background.color
+            Color(.background)
+                .opacity(state.isActiveEventPresented ? 0 : 1)
                 .edgesIgnoringSafeArea(.all)
             if let profile = state.profile {
                 if profile.name.isEmpty {
@@ -27,11 +27,12 @@ struct HomeView: View {
                         .transition(.move(edge: .bottom))
                 } else {
                     eventsView
-                        .blur(radius: isShownProfile ? 100 : 0)
+                        .blur(radius: state.isShownProfile ? 60 : 0)
                         .zIndex(1)
                         .transition(.scale.combined(with: .opacity))
-                    if isShownProfile {
-                        ScreenViewFactory.profile(profile, isShown: $isShownProfile)
+                        .disabled(state.isShownProfile)
+                    if state.isShownProfile {
+                        ScreenViewFactory.profile(profile, isShown: $state.isShownProfile)
                             .environmentObject(NamespaceWrapper(namespace))
                             .zIndex(1)
                             .transition(.scale(scale: 0, anchor: .topTrailing).combined(with: .opacity))
@@ -43,56 +44,22 @@ struct HomeView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
-        .coordinateSpace(name: GlobalConstant.CoordinateSpace.home)
-        .animation(.customTransition, value: isShownProfile)
+        .animation(.customTransition, value: state.isShownProfile)
         .animation(.customTransition, value: showNewEvent)
         .animation(.customTransition, value: state.isNoEvents)
+        .animation(.customTransition, value: state.invitesCount)
+        .animation(.customTransition, value: state.isActiveEventPresented)
         .animation(.easeIn(duration: 0.2), value: state.profile)
     }
     
-    var navigationBar: some View {
-        HStack {
-            Image(R.image.commonLogoIcon.name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundStyle(Color.r.actionAccent.color)
-                .frame(width: 32, height: 32)
-                .clipped()
-            //Spacer()
-            Image(R.image.commonLogoText.name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 16)
-                .clipped()
-            Spacer()
-            if let profile = state.profile, !isShownProfile {
-                AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
-                    .frame(width: 32, height: 32, alignment: .center)
-                    .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace)
-                    .onTapGesture {
-                        withAnimation {
-                            isShownProfile = true
-                        }
-                    }
-            }
-        }
-        .padding()
-    }
-    
-    var newEvent: some View {
-        NewEventView { showNewEvent = false }
-        .closable { showNewEvent = false }
-        .transition(.move(edge: .trailing))
-    }
-
+    // MARK: - Subviews
     
     var eventsView: some View {
         ZStack {
             if showNewEvent {
                 newEvent
             } else {
-                VStack {
-                    navigationBar
+                ZStack {
                     if state.isNoEvents {
                         EmptyEvents() { showNewEvent = true }
                             .environmentObject(NamespaceWrapper(namespace))
@@ -103,10 +70,24 @@ struct HomeView: View {
                             .environmentObject(NamespaceWrapper(namespace))
                             .zIndex(1)
                             .transition(.scale(scale: 0.5).combined(with: .opacity))
+                            .closable(closeHandler: nil)
                     }
+                    VStack {
+                        HomeNavigationBar()
+                            .environmentObject(NamespaceWrapper(namespace))
+                        Spacer()
+                    }
+                    .zIndex(1000)
                 }
                 .transition(.scale(scale: 0.5, anchor: .leading).combined(with: .opacity))
             }
         }
     }
+    
+    var newEvent: some View {
+        NewEventView { showNewEvent = false }
+        .closable { showNewEvent = false }
+        .transition(.move(edge: .trailing))
+    }
+    
 }

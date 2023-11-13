@@ -42,6 +42,7 @@ final class EventsState {
             if let index = state.events.events.firstIndex(where: { $0.id == event.id }) {
                 var targetEvent = state.events.events[index]
                 targetEvent.me.status = status
+                state.events.events[index] = targetEvent
             }
             return state
         case .addReaction(let reaction, let member, let event):

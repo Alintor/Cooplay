@@ -13,12 +13,14 @@ struct EventItemView: View {
     
     let event: Event
     @EnvironmentObject var state: EventsListState
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
         ZStack {
-            Color.r.shapeBackground.color
+            Color(.shapeBackground)
             HStack(spacing: 12) {
                 gameCover
+                    .matchedGeometryEffect(id: MatchedAnimations.gameCover(event.id).name, in: namespace.id)
                 VStack(spacing: 14) {
                     eventInfo
                     members
@@ -32,6 +34,9 @@ struct EventItemView: View {
         .onTapGesture {
             state.selectEvent(event)
         }
+        .onLongPressGesture {
+            state.deleteEvent(event)
+        }
     }
     
     var gameCover: some View {
@@ -39,13 +44,13 @@ struct EventItemView: View {
             if let path = event.game.coverPath {
                 KFImage(URL(string: path))
                     .placeholder({
-                        Image(R.image.commonGameCover.name)
+                        Image(.commonGameCover)
                     })
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
                     .cornerRadius(12)
             } else {
-                Image(R.image.commonGameCover.name)
+                Image(.commonGameCover)
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
                     .cornerRadius(12)
@@ -57,12 +62,14 @@ struct EventItemView: View {
         VStack(spacing: 2) {
             Text(event.game.name)
                 .font(.system(size: 17, weight: .regular))
-                .foregroundColor(Color.r.textPrimary.color)
+                .foregroundColor(Color(.textPrimary))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .matchedGeometryEffect(id: MatchedAnimations.gameName(event.id).name, in: namespace.id)
             Text(event.date.displayString)
                 .font(.system(size: 13, weight: .regular))
-                .foregroundColor(Color.r.textSecondary.color)
+                .foregroundColor(Color(.textSecondary))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .matchedGeometryEffect(id: MatchedAnimations.eventDate(event.id).name, in: namespace.id)
         }
     }
     
@@ -73,8 +80,9 @@ struct EventItemView: View {
                     .frame(width: 30, height: 30, alignment: .center)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.r.shapeBackground.color, lineWidth: 2)
+                            .stroke(Color(.shapeBackground), lineWidth: 2)
                     )
+                    .matchedGeometryEffect(id: MatchedAnimations.member(item.id, eventId: event.id).name, in: namespace.id)
             }
             Spacer()
         }
@@ -83,25 +91,4 @@ struct EventItemView: View {
 
 #Preview {
     EventItemView(event: Event.mock)
-}
-
-extension Event {
-    
-    static var mock: Event {
-        Event(
-            id: "12345",
-            game: Game(
-                slug: "over",
-                name: "Overwatch 2",
-                coverPath: "https://thumbnails.pcgamingwiki.com/3/3b/Overwatch_2_cover.jpg/300px-Overwatch_2_cover.jpg",
-                previewImagePath: nil
-            ),
-            date: Date(),
-            members: [
-                User(id: "1", name: "Nilo", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil),
-                User(id: "2", name: "Rika", avatarPath: nil, state: .maybe, lateness: nil, isOwner: true, reactions: nil)
-            ],
-            me: User(id: "3", name: "Alintor", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil)
-        )
-    }
 }

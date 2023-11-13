@@ -19,6 +19,7 @@ enum EventServiceError: Error {
     case fetchActiveEvent
     case changeStatus
     case addReaction
+    case deleteEvent
     case unhandled(error: Error)
 }
 
@@ -30,6 +31,7 @@ extension EventServiceError: LocalizedError {
         case .fetchActiveEvent: return "Не удалось загрузить событие"
         case .changeStatus: return "Не удалось изменить статус"
         case .addReaction: return "Не удалось добавить реакцию"
+        case .deleteEvent: return "Не удалось удалить событие"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -116,6 +118,15 @@ extension EventService: StateEffect {
             addReaction(reaction, to: member, for: event) { result in
                 switch result {
                 case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .deleteEvent(let event):
+            deleteEvent(event) { result in
+                switch result {
+                case .success:
+                    store.send(.deselectEvent)
                 case .failure(let error):
                     store.send(.showNetworkError(error))
                 }
@@ -312,8 +323,8 @@ extension EventService: EventServiceType {
     
     private func deleteEvent(_ event: Event, sendNotification: Bool, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         firestore.collection("Events").document(event.id).delete { [weak self] (error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.deleteEvent))
             } else {
                 if sendNotification {
                     self?.sendDeleteEventNotification(for: event)

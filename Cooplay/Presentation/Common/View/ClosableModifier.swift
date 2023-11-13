@@ -15,7 +15,6 @@ struct ClosableModifier: ViewModifier {
     @State private var scale: Double = 1
     private let anchor: UnitPoint
     private let closeHandler: (() -> Void)?
-    private let generator = UIImpactFeedbackGenerator(style: .medium)
     
     init(anchor: UnitPoint, closeHandler: (() -> Void)?) {
         self.closeHandler = closeHandler
@@ -24,7 +23,7 @@ struct ClosableModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         ZStack {
-            Color.r.block.color
+            Color(.block)
                 .cornerRadius(16)
                 .opacity(opacity)
             content
@@ -39,14 +38,13 @@ struct ClosableModifier: ViewModifier {
                     opacity = diff / 500
                     if diff >= 100 {
                         canContinueDrag = false
-                        generator.prepare()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             
                             withAnimation(.easeIn(duration: 0.2)) {
                                 opacity = 0
                                 scale = 1
                             }
-                            generator.impactOccurred()
+                            Haptic.play(style: .medium)
                             closeHandler?()
                         }
                     }

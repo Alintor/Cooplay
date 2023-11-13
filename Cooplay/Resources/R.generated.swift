@@ -892,7 +892,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 152 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 154 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -988,6 +988,8 @@ struct R: Rswift.Validatable {
       static let editProfileNameDescription = Rswift.StringResource(key: "editProfile.nameDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Еда и напитки
       static let reactionsSettingsCategory5Title = Rswift.StringResource(key: "reactionsSettings.category.5.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Еще
+      static let eventsListInvitedEventMore = Rswift.StringResource(key: "eventsList.invitedEvent.more", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Животные и природа
       static let reactionsSettingsCategory4Title = Rswift.StringResource(key: "reactionsSettings.category.4.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Забыли пароль?
@@ -1146,6 +1148,8 @@ struct R: Rswift.Validatable {
       static let searchMembersSectionsSearchResults = Rswift.StringResource(key: "searchMembers.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: С кем
       static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Свернуть
+      static let eventsListDeclinedEventsHide = Rswift.StringResource(key: "eventsList.declinedEvents.hide", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
       static let eventMemberMenuItemMakeOwner = Rswift.StringResource(key: "eventMemberMenuItem.makeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать фото
@@ -1432,6 +1436,11 @@ struct R: Rswift.Validatable {
       /// Value: Еда и напитки
       static func reactionsSettingsCategory5Title(_: Void = ()) -> String {
         return NSLocalizedString("reactionsSettings.category.5.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Еще
+      static func eventsListInvitedEventMore(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.invitedEvent.more", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Животные и природа
@@ -1827,6 +1836,11 @@ struct R: Rswift.Validatable {
       /// Value: С кем
       static func newEventChooseMembersLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.chooseMembersLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Свернуть
+      static func eventsListDeclinedEventsHide(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.declinedEvents.hide", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Сделать лидером

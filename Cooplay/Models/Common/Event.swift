@@ -68,3 +68,27 @@ extension Event {
         return true
     }
 }
+
+
+// MARK: - Mock
+
+extension Event {
+    
+    static var mock: Event {
+        Event(
+            id: "12345",
+            game: Game(
+                slug: "over",
+                name: "Overwatch 2",
+                coverPath: "https://thumbnails.pcgamingwiki.com/3/3b/Overwatch_2_cover.jpg/300px-Overwatch_2_cover.jpg",
+                previewImagePath: nil
+            ),
+            date: Date(),
+            members: [
+                User(id: "1", name: "Nilo", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil),
+                User(id: "2", name: "Rika", avatarPath: nil, state: .maybe, lateness: nil, isOwner: true, reactions: nil)
+            ],
+            me: User(id: "3", name: "Alintor", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil)
+        )
+    }
+}

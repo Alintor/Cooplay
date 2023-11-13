@@ -20,15 +20,15 @@ struct ProfileInfoView: View {
                 .frame(width: 108, height: 108, alignment: .center)
                 .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
             Text(state.profile.name)
-                .foregroundColor(Color.r.textPrimary.color)
+                .foregroundColor(Color(.textPrimary))
                 .font(.system(size: 21, weight: .bold))
                 .padding(.top, 16)
                 .padding(.bottom, 1)
             if let email = state.profile.email {
                 Text(email)
-                    .foregroundColor(Color.r.textSecondary.color)
+                    .foregroundColor(Color(.textSecondary))
                     .font(.system(size: 17, weight: .medium))
-                    .tint(Color.r.textSecondary.color)
+                    .tint(Color(.textSecondary))
             }
         }
     }

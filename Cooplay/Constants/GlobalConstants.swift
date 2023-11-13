@@ -20,8 +20,9 @@ enum GlobalConstant {
     
     enum CoordinateSpace {
         
-        static let home = "Home"
-        static let profile = "Profile"
+        static let eventsList = "eventsList"
+        static let eventDetails = "eventDetails"
+        static let profile = "profile"
     }
     
     static var eventActivePeriodHours = 1

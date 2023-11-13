@@ -13,6 +13,10 @@ enum MatchedAnimations {
     case profileAvatar
     case closeButton
     case newEventButton
+    case gameCover(_ eventId: String)
+    case gameName(_ eventId: String)
+    case eventDate(_ eventId: String)
+    case member(_ memberId: String, eventId: String)
     
     var name: String {
         switch self {
@@ -22,6 +26,14 @@ enum MatchedAnimations {
             return "closeButton"
         case .newEventButton:
             return "newEventButton"
+        case .gameCover(let eventId):
+            return "gameCover_\(eventId)"
+        case .gameName(let eventId):
+            return "gameName_\(eventId)"
+        case .eventDate(let eventId):
+            return "eventDate_\(eventId)"
+        case .member(let memberId, let eventId):
+            return "member_\(memberId)_\(eventId)"
         }
     }
 }
@@ -40,5 +52,9 @@ extension SwiftUI.Animation {
         .interpolatingSpring(stiffness: 280, damping: 25)
         //.interpolatingSpring(stiffness: 300, damping: 28)
         //.easeInOut
+    }
+    
+    static var stackTransition: SwiftUI.Animation {
+        .interpolatingSpring(stiffness: 200, damping: 28)
     }
 }

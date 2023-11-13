@@ -19,28 +19,27 @@ struct EmptyEvents: View {
             Image(R.image.eventsEmpty.name)
             VStack(spacing: 4) {
                 Text(Localizable.eventsListEmptySateTitle())
-                    .foregroundStyle(Color.r.textPrimary.color)
+                    .foregroundStyle(Color(.textPrimary))
                     .font(.system(size: 17, weight: .semibold))
                     .multilineTextAlignment(.center)
                 Text(Localizable.eventsListEmptySateDescription())
-                    .foregroundStyle(Color.r.textSecondary.color)
+                    .foregroundStyle(Color(.textSecondary))
                     .font(.system(size: 13))
                     .multilineTextAlignment(.center)
             }
             Button(action: {
                 newEventAction?()
             }, label: {
-                Text(Localizable.newEventMainActionTitle())
+                Label(Localizable.newEventMainActionTitle(), systemImage: "plus")
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.r.textPrimary.color)
+                    .foregroundStyle(Color(.textPrimary))
                     .padding(.vertical, 16)
                     .padding(.horizontal, 24)
             })
-            .background(Color.r.actionAccent.color)
+            .background(Color(.actionAccent))
             .clipShape(.rect(cornerRadius: 48, style: .continuous))
             .scaleEffect(0.7)
             .matchedGeometryEffect(id: MatchedAnimations.newEventButton.name, in: namespace.id)
-            .padding(.bottom, 64)
             Spacer()
         }
         .padding(.horizontal, 32)

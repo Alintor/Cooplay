@@ -15,7 +15,7 @@ struct TitleView: View {
     var body: some View {
         Text(text)
             .font(.system(size: 21, weight: .semibold))
-            .foregroundColor(Color.r.textPrimary.color)
+            .foregroundColor(Color(.textPrimary))
     }
 }
 

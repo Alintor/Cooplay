@@ -13,19 +13,16 @@ struct AcceptedEventView: View {
     @EnvironmentObject var state: EventsListState
     let event: Event
     @State var showStatusContext = false
-    @State var contextPresented = false
-    @State var statusPosition: CGRect = .zero
+    @State var statusRect: CGRect = .zero
     @Namespace var context
     
     var body: some View {
         ZStack {
-            Color.r.block.color
+            Color(.block)
             VStack(spacing: 2) {
                 EventItemView(event: event)
                 statusView
-                    .handleRect(in: .named(GlobalConstant.CoordinateSpace.home)) { rect in
-                        statusPosition = rect
-                    }
+                    .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventsList)) { statusRect = $0 }
                     .opacity(showStatusContext ? 0 : 1)
                     .onTapGesture {
                         showStatusContext.toggle()
@@ -36,59 +33,21 @@ struct AcceptedEventView: View {
         .frame(height: 170)
         .clipShape(.rect(cornerRadius: 20, style: .continuous))
         .overlayModal(isPresented: $showStatusContext, content: {
-            contextView
-        })
-        .animation(.customTransition, value: contextPresented)
-        .onChange(of: showStatusContext, perform: { value in
-            guard value else { return }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                contextPresented = true
-            }
-        })
-        .onChange(of: contextPresented, perform: { value in
-            guard !value else { return }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                showStatusContext = false
-            }
+            EventsListStatusContextView(
+                showStatusContext: $showStatusContext,
+                statusRect: $statusRect,
+                content: { statusView}
+            )
         })
     }
     
     var statusView: some View {
-        EventStatusView(viewModel: .init(with: event), isTapped: $contextPresented)
-            .background(Color.r.shapeBackground.color)
+        EventStatusView(viewModel: .init(with: event), isTapped: $showStatusContext)
+            .background(Color(.shapeBackground))
             .clipShape(.rect(cornerRadius: 20, style: .continuous))
             .animation(.customTransition, value: showStatusContext)
     }
     
-    var contextView: some View {
-        ZStack {
-            VisualEffectView(effect: UIBlurEffect(style: .regular), intensity: 0.2)
-                .ignoresSafeArea()
-                .opacity(contextPresented ? 1 : 0)
-            VStack {
-                if contextPresented {
-                    Spacer()
-                } else {
-                    Spacer()
-                        .frame(height: statusPosition.origin.y)
-                }
-                statusView
-                    .padding(.horizontal, 8)
-                    .onTapGesture {
-                        withAnimation(.customTransition) {
-                            contextPresented.toggle()
-                        }
-                    }
-                    .transition(.scale)
-                    .animation(.customTransition, value: showStatusContext)
-                if !contextPresented {
-                    Spacer()
-                }
-            }
-        }
-    }
 }
 
 #Preview {

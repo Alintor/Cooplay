@@ -66,7 +66,7 @@ struct ProfileView: View {
             }
             HStack {
                 BackCloseIcon(isBack: $isBackButton)
-                    .foregroundColor(Color.r.textSecondary.color)
+                    .foregroundColor(Color(.textSecondary))
                     .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
                     .frame(width: 32, height: 32, alignment: .center)
                     .onTapGesture {
@@ -105,7 +105,7 @@ struct ProfileView: View {
                 HStack {
                     Spacer()
                     BackCloseIcon(isBack: $isBackButton)
-                        .foregroundColor(Color.r.textSecondary.color)
+                        .foregroundColor(Color(.textSecondary))
                         .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
                         .frame(width: 32, height: 32, alignment: .center)
                         .padding()

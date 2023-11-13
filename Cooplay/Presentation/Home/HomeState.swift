@@ -15,6 +15,7 @@ class HomeState: ObservableObject {
     private let store: Store
     @Published var profile: Profile?
     @Published var activeEvent: Event?
+    @Published var isShownProfile = false
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
     var isActiveEventPresented: Bool {
@@ -45,6 +46,12 @@ class HomeState: ObservableObject {
             .map { $0.events.inventedEvents.count }
             .removeDuplicates()
             .assign(to: &$invitesCount)
+    }
+    
+    // MARK: - Methods
+    
+    func deselectEvent() {
+        store.send(.deselectEvent)
     }
     
 }
