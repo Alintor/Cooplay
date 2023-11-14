@@ -11,34 +11,43 @@ import struct Kingfisher.KFImage
 
 struct EventDetailsInfoView: View {
     
-    var viewModel: EventInfoViewModel
+    @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
-        HStack {
-            VStack(spacing: 4) {
-                Text(viewModel.title)
+        VStack(spacing: 8) {
+            gameCover
+                .matchedGeometryEffect(id: MatchedAnimations.gameCover(state.event.id).name, in: namespace.id)
+            VStack(spacing: 2) {
+                Text(state.event.game.name)
                     .font(.system(size: 28, weight: .regular))
-                    .foregroundColor(Color(R.color.textPrimary.name))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(viewModel.date)
+                    .foregroundColor(Color(.textPrimary))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .matchedGeometryEffect(id: MatchedAnimations.gameName(state.event.id).name, in: namespace.id)
+                Text(state.event.date.displayString)
                     .font(.system(size: 22, weight: .regular))
                     .foregroundColor(Color(R.color.textSecondary.name))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
             }
-            .padding(.leading, 24)
-            Spacer(minLength: 8)
-            if let path = viewModel.coverPath {
+        }
+    }
+    
+    var gameCover: some View {
+        ZStack {
+            if let path = state.event.game.coverPath {
                 KFImage(URL(string: path))
+                    .placeholder({
+                        Image(.commonGameCover)
+                    })
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
-                    .cornerRadius(8)
-                    .padding(.trailing, 24)
+                    .cornerRadius(12)
             } else {
-                Image(R.image.commonGameCover.name)
+                Image(.commonGameCover)
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
-                    .cornerRadius(8)
-                    .padding(.trailing, 24)
+                    .cornerRadius(12)
             }
         }
     }

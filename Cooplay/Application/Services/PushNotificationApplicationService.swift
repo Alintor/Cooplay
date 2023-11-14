@@ -60,41 +60,41 @@ final class PushNotificationApplicationService: NSObject, ApplicationService {
     }
     
     private func processNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
-        guard let typeString = userInfo["type"] as? String, let notificationType = NotificationType(rawValue: typeString) else { return }
-        switch notificationType {
-        case .statusRemind,
-             .eventStart:
-            guard let eventData = userInfo["event"] as? Data, let event = try? JSONDecoder().decode(Event.self, from: eventData) else { return }
-            let eventsViewController = EventsListBuilder().build()
-            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
-            let navigationController = UINavigationController(rootViewController: eventsViewController)
-            navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
-            UIApplication.setRootViewController(navigationController)
-        case .invitation:
-            guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
-            defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
-            NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
-        case .statusChange,
-             .takeEventOwner,
-             .addReaction:
-            guard
-                let eventJson = userInfo["event"] as? String,
-                let eventData =  eventJson.data(using: .utf16),
-                var event = try? JSONDecoder().decode(Event.self, from: eventData),
-                let userId = Auth.auth().currentUser?.uid,
-                let index = event.members.firstIndex(where: { $0.id == userId })
-            else { return }
-            let user = event.me
-            let me = event.members.remove(at: index)
-            event.me = me
-            event.members.append(user)
-            let eventsViewController = EventsListBuilder().build()
-            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
-            let navigationController = UINavigationController(rootViewController: eventsViewController)
-            navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
-            UIApplication.setRootViewController(navigationController)
-        default: break
-        }
+//        guard let typeString = userInfo["type"] as? String, let notificationType = NotificationType(rawValue: typeString) else { return }
+//        switch notificationType {
+//        case .statusRemind,
+//             .eventStart:
+//            guard let eventData = userInfo["event"] as? Data, let event = try? JSONDecoder().decode(Event.self, from: eventData) else { return }
+//            let eventsViewController = EventsListBuilder().build()
+//            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
+//            let navigationController = UINavigationController(rootViewController: eventsViewController)
+//            navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
+//            UIApplication.setRootViewController(navigationController)
+//        case .invitation:
+//            guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
+//            defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
+//            NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
+//        case .statusChange,
+//             .takeEventOwner,
+//             .addReaction:
+//            guard
+//                let eventJson = userInfo["event"] as? String,
+//                let eventData =  eventJson.data(using: .utf16),
+//                var event = try? JSONDecoder().decode(Event.self, from: eventData),
+//                let userId = Auth.auth().currentUser?.uid,
+//                let index = event.members.firstIndex(where: { $0.id == userId })
+//            else { return }
+//            let user = event.me
+//            let me = event.members.remove(at: index)
+//            event.me = me
+//            event.members.append(user)
+//            let eventsViewController = EventsListBuilder().build()
+//            let eventDetailsViewController = EventDetailsBuilder().build(with: event)
+//            let navigationController = UINavigationController(rootViewController: eventsViewController)
+//            navigationController.viewControllers = [eventsViewController, eventDetailsViewController]
+//            UIApplication.setRootViewController(navigationController)
+//        default: break
+//        }
     }
     
     private func registerToken(_ token: String) {

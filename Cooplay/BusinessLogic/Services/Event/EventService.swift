@@ -69,6 +69,7 @@ final class EventService {
     private let firebaseFunctions: Functions
     private var eventsListener: ListenerRegistration?
     private var activeEventListener: ListenerRegistration?
+    private var isFirstFetch = true
     
     init(firebaseAuth: Auth, firestore: Firestore, firebaseFunctions: Functions) {
         self.firebaseAuth = firebaseAuth
@@ -83,15 +84,26 @@ extension EventService: StateEffect {
     func perform(store: Store, action: StateAction) {
         switch action {
         case .successAuthentication:
-            fetchEvents { result in
+            fetchEvents { [weak self] result in
                 switch result {
                 case .success(let events):
+                    let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
+                    if
+                        self?.isFirstFetch == true || store.state.value.events.events.isEmpty,
+                        acceptedEvents.count == 1,
+                        let activeEvent = acceptedEvents.first
+                    {
+                        store.send(.selectEvent(activeEvent))
+                    }
                     store.send(.updateEvents(events.sorted(by: { $0.date < $1.date })))
+                    self?.isFirstFetch = false
                 case .failure(let error):
                     store.send(.showNetworkError(error))
                 }
             }
         case .logout:
+            eventsListener?.remove()
+            activeEventListener?.remove()
             eventsListener = nil
             activeEventListener = nil
         case .selectEvent(let selectedEvent):
@@ -104,6 +116,7 @@ extension EventService: StateEffect {
                 }
             }
         case .deselectEvent:
+            activeEventListener?.remove()
             activeEventListener = nil
         case .changeStatus(let status, var event):
             event.me.status = status
@@ -140,6 +153,7 @@ extension EventService: StateEffect {
 extension EventService: EventServiceType {
     
     func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
+        eventsListener?.remove()
         eventsListener = nil
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
@@ -199,6 +213,7 @@ extension EventService: EventServiceType {
     }
     
     func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration? {
+        activeEventListener?.remove()
         activeEventListener = nil
         guard let userId = firebaseAuth.currentUser?.uid else { return nil }
         

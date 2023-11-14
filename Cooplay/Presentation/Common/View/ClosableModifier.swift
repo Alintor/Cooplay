@@ -14,18 +14,22 @@ struct ClosableModifier: ViewModifier {
     @State private var opacity: Double = 0
     @State private var scale: Double = 1
     private let anchor: UnitPoint
+    private let showBackground: Bool
     private let closeHandler: (() -> Void)?
     
-    init(anchor: UnitPoint, closeHandler: (() -> Void)?) {
+    init(anchor: UnitPoint, showBackground: Bool, closeHandler: (() -> Void)?) {
         self.closeHandler = closeHandler
         self.anchor = anchor
+        self.showBackground = showBackground
     }
     
     func body(content: Content) -> some View {
         ZStack {
-            Color(.block)
-                .cornerRadius(16)
-                .opacity(opacity)
+            if showBackground {
+                Color(.block)
+                    .clipShape(.rect(cornerRadius: 16, style: .continuous))
+                    .opacity(opacity)
+            }
             content
         }
         .scaleEffect(scale, anchor: anchor)
@@ -62,7 +66,7 @@ struct ClosableModifier: ViewModifier {
 }
 
 extension View {
-    func closable(anchor: UnitPoint = .center, closeHandler: (() -> Void)?) -> some View {
-        self.modifier(ClosableModifier(anchor: anchor, closeHandler: closeHandler))
+    func closable(anchor: UnitPoint = .center, showBackground: Bool = true, closeHandler: (() -> Void)?) -> some View {
+        self.modifier(ClosableModifier(anchor: anchor, showBackground: showBackground, closeHandler: closeHandler))
     }
 }

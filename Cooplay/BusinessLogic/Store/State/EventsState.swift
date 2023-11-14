@@ -43,6 +43,9 @@ final class EventsState {
                 var targetEvent = state.events.events[index]
                 targetEvent.me.status = status
                 state.events.events[index] = targetEvent
+                if case .accepted = status, state.events.events.count == 1 {
+                    state.events.activeEvent = targetEvent
+                }
             }
             return state
         case .addReaction(let reaction, let member, let event):

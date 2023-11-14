@@ -11,6 +11,7 @@ import SwiftUI
 struct AcceptedEventView: View {
     
     @EnvironmentObject var state: EventsListState
+    @EnvironmentObject var namespace: NamespaceWrapper
     let event: Event
     @State var showStatusContext = false
     @State var statusRect: CGRect = .zero
@@ -31,7 +32,7 @@ struct AcceptedEventView: View {
             .padding(4)
         }
         .frame(height: 170)
-        .clipShape(.rect(cornerRadius: 20, style: .continuous))
+        .clipShape(.rect(cornerRadius: 24, style: .continuous))
         .overlayModal(isPresented: $showStatusContext, content: {
             EventsListStatusContextView(
                 event: event, 
@@ -46,6 +47,7 @@ struct AcceptedEventView: View {
         EventStatusView(viewModel: .init(with: event), isTapped: $showStatusContext)
             .background(Color(.shapeBackground))
             .clipShape(.rect(cornerRadius: 20, style: .continuous))
+            .matchedGeometryEffect(id: MatchedAnimations.eventStatus(event.id).name, in: namespace.id)
             .animation(.customTransition, value: showStatusContext)
     }
     

@@ -22,9 +22,9 @@ final class EventsListRouter {
 extension EventsListRouter: EventsListRouterInput {
 
     func openEvent(_ event: Event) {
-        let eventDetailsViewController = EventDetailsBuilder().build(with: event)
-        
-        rootViewController?.navigationController?.pushViewController(eventDetailsViewController, animated: true)
+//        let eventDetailsViewController = EventDetailsBuilder().build(with: event)
+//        
+//        rootViewController?.navigationController?.pushViewController(eventDetailsViewController, animated: true)
     }
     
     func openNewEvent() {

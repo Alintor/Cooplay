@@ -9,24 +9,11 @@
 import SwiftUI
 
 struct ReactionsListView: View {
+    
     var reactions: [ReactionViewModel]
-    weak var output: EventDetailsViewOutput?
-    let reactionContextViewHandler: ReactionContextViewHandler
     let member: User
-    
-    let needAddButton: Bool
-    
-    init(
-        reactions: [ReactionViewModel],
-        output: EventDetailsViewOutput?,
-        reactionContextViewHandler: ReactionContextViewHandler,
-        member: User
-    ) {
-        self.reactions = reactions
-        self.output = output
-        self.reactionContextViewHandler = reactionContextViewHandler
-        self.member = member
-        needAddButton = !reactions.contains(where: { $0.isOwner })
+    var needAddButton: Bool {
+        !reactions.contains(where: { $0.isOwner })
     }
 
     @State private var totalHeight = CGFloat.zero
@@ -46,7 +33,7 @@ struct ReactionsListView: View {
 
         return ZStack(alignment: .topLeading) {
             if needAddButton {
-                AddReactionView(output: output, member: member, reactionContextViewHandler: reactionContextViewHandler)
+                AddReactionView(member: member, isOwner: false)
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 4))
                     .animation(.easeInOut(duration: 0.2))
                     .transition(.scale.combined(with: .opacity))
@@ -76,7 +63,6 @@ struct ReactionsListView: View {
             ForEach(self.reactions, id: \.user.name) { reaction in
                 self.item(for: reaction)
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 4))
-                    .animation(.easeInOut(duration: 0.2))
                     .transition(.scale.combined(with: .opacity))
                     .alignmentGuide(.leading, computeValue: { d in
                         if (abs(width - d.width) > g.size.width)
@@ -104,7 +90,7 @@ struct ReactionsListView: View {
     }
 
     private func item(for reaction: ReactionViewModel) -> some View {
-        ReactionView(viewModel: reaction, output: output, member: member, reactionContextViewHandler: reactionContextViewHandler)
+        ReactionView(viewModel: reaction, member: member, isOwner: false)
     }
 
     private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {

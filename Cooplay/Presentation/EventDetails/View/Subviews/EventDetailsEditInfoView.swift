@@ -10,50 +10,46 @@ import SwiftUI
 
 struct EventDetailsEditInfoView: View {
     
-    var viewModel: EventInfoViewModel
-    weak var output: EventDetailsViewOutput?
-    private let contextHandler = ContextMenuHandler(viewCornerType: .rounded(value: 12))
+    @EnvironmentObject var state: EventDetailsState
     
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Text(viewModel.title)
+                Text(state.event.game.name)
                     .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(Color(R.color.actionAccent.name))
+                    .foregroundColor(Color(.actionAccent))
                     .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
                 Spacer()
-                Image(R.image.commonArrowDown.name)
+                Image(.commonArrowDown)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 12, height: 12, alignment: .center)
-                    .foregroundColor(Color(R.color.textSecondary.name))
+                    .foregroundColor(Color(.textSecondary))
                     .padding(.trailing, 16)
             }
-            .background(Rectangle().foregroundColor(Color(R.color.block.name)))
+            .background(Rectangle().foregroundColor(Color(.block)))
             .cornerRadius(12)
             .onTapGesture {
-                output?.changeGameAction()
+                //output?.changeGameAction()
             }
             
             HStack {
-                Text(viewModel.date)
+                Text(state.event.date.displayString)
                     .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(Color(R.color.actionAccent.name))
+                    .foregroundColor(Color(.actionAccent))
                     .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
                 Spacer()
-                Image(R.image.commonArrowDown.name)
+                Image(.commonArrowDown)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 12, height: 12, alignment: .center)
-                    .foregroundColor(Color(R.color.textSecondary.name))
+                    .foregroundColor(Color(.textSecondary))
                     .padding(.trailing, 16)
             }
-            .background(Rectangle().foregroundColor(Color(R.color.block.name)))
+            .background(Rectangle().foregroundColor(Color(.block)))
             .cornerRadius(12)
-            .background(GeometryGetter(delegate: contextHandler))
             .onTapGesture {
-                contextHandler.takeSnaphot()
-                output?.changeDateAction(delegate: contextHandler)
+                //output?.changeDateAction(delegate: contextHandler)
             }
         }
     }

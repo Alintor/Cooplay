@@ -18,6 +18,7 @@ struct EventItemView: View {
     var body: some View {
         ZStack {
             Color(.shapeBackground)
+                .matchedGeometryEffect(id: MatchedAnimations.eventCover(event.id).name, in: namespace.id)
             HStack(spacing: 12) {
                 gameCover
                     .matchedGeometryEffect(id: MatchedAnimations.gameCover(event.id).name, in: namespace.id)
@@ -29,7 +30,6 @@ struct EventItemView: View {
             }
             .padding(8)
         }
-        .frame(height: 106)
         .clipShape(.rect(cornerRadius: 20, style: .continuous))
         .onTapGesture {
             state.selectEvent(event)
@@ -75,7 +75,7 @@ struct EventItemView: View {
     
     var members: some View {
         HStack(spacing:-6) {
-            ForEach(event.members.sorted(by: { $0.name < $1.name }), id:\.name) { item in
+            ForEach(event.members.sorted(by: { $0.name < $1.name }).sorted(by: { $0.isOwner == true && $1.isOwner != true}), id:\.name) { item in
                 AvatarItemView(viewModel: .init(with: item), diameter: 30)
                     .frame(width: 30, height: 30, alignment: .center)
                     .overlay(

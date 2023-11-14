@@ -11,23 +11,10 @@ import SwiftUI
 struct ReactionsListOwnerView: View {
     
     var reactions: [ReactionViewModel]
-    weak var output: EventDetailsViewOutput?
-    let reactionContextViewHandler: ReactionContextViewHandler?
     let member: User
     
-    let needAddButton: Bool
-    
-    init(
-        reactions: [ReactionViewModel],
-        output: EventDetailsViewOutput?,
-        reactionContextViewHandler: ReactionContextViewHandler?,
-        member: User
-    ) {
-        self.reactions = reactions
-        self.output = output
-        self.reactionContextViewHandler = reactionContextViewHandler
-        self.member = member
-        needAddButton = !reactions.contains(where: { $0.isOwner })
+    var needAddButton: Bool {
+        !reactions.contains(where: { $0.isOwner })
     }
     
     var body: some View {
@@ -35,9 +22,7 @@ struct ReactionsListOwnerView: View {
             HStack(spacing: 0) {
                 if needAddButton {
                     AddReactionView(
-                        output: output,
                         member: member,
-                        reactionContextViewHandler: reactionContextViewHandler,
                         isOwner: true
                     )
                         .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
@@ -49,9 +34,7 @@ struct ReactionsListOwnerView: View {
                 ForEach(self.reactions, id: \.user.name) { reaction in
                     ReactionView(
                         viewModel: reaction,
-                        output: output,
                         member: member,
-                        reactionContextViewHandler: reactionContextViewHandler,
                         isOwner: true
                     )
                         .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
@@ -63,19 +46,5 @@ struct ReactionsListOwnerView: View {
             .padding(.horizontal, 10)
         }
         .scaleEffect(x: -1, y: 1, anchor: .center)
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        Color(R.color.background.name).opacity(0),
-                        Color(R.color.background.name),
-                        Color(R.color.background.name),
-                        Color(R.color.background.name)
-                    ]
-                ),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
     }
 }

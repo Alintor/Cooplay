@@ -10,147 +10,166 @@ import SwiftUI
 
 struct EventDetailsView: View {
     
-    @ObservedObject var viewModel: EventDetailsViewModel
-    var output: EventDetailsViewOutput
-    
-    init(viewModel: EventDetailsViewModel, output: EventDetailsViewOutput) {
-        self.viewModel = viewModel
-        self.output = output
-        members = viewModel.members
-        reactions = viewModel.reactions
-    }
-    
-    let contextMenuHandler = ContextMenuHandler(viewCornerType: .rounded(value: 12))
-    
-    @State var statusViewTapped: Bool = false
-    @State var isStatusViewHidden: Bool = false
-    
-    @State var members: [EventDetailsMemberViewModel]
-    @State var reactions: [ReactionViewModel]
-    
-    @State var isEditMode = false
-    
-    func configureHandler() {
-        contextMenuHandler.completion = { item in
-            self.statusViewTapped.toggle()
-            guard let event = item?.value as? Event else { return }
-            viewModel.updateStatus(event.me.status)
-        }
-        contextMenuHandler.hideTargetView = { hide in
-            self.isStatusViewHidden = hide
-        }
-    }
+    @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var namespace: NamespaceWrapper
+    @State private var showStatusContextView = false
+    @State private var showHeader = false
+    @State private var canContinueOffset = true
     
     var body: some View {
-        configureHandler()
-        return ZStack {
+        ZStack {
             Color(R.color.background.name)
-                .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 0) {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        if isEditMode {
-                            EventDetailsEditInfoView(viewModel: viewModel.infoViewModel, output: output)
-                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 24, trailing: 24))
-                                .transition(.scale.combined(with: .opacity))
-                            EventDetailsAddMemberView()
-                                .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-                                .transition(.scale.combined(with: .opacity))
-                                .onTapGesture {
-                                    output.addMemberAction()
+                .matchedGeometryEffect(id: MatchedAnimations.eventCover(state.event.id).name, in: namespace.id)
+            ScrollView(showsIndicators: false) {
+                LazyVStack(spacing: 0) {
+                    if state.modeState.isEditMode {
+                        EventDetailsEditInfoView()
+                            .padding(EdgeInsets(top: 64, leading: 16, bottom: 24, trailing: 16))
+                            .transition(.scale.combined(with: .opacity))
+                        EventDetailsAddMemberView()
+                            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                            .transition(.scale.combined(with: .opacity))
+                            .onTapGesture {
+                                //output.addMemberAction()
+                            }
+                    } else {
+                        EventDetailsInfoView()
+                            .opacity(showHeader ? 0 : 1)
+                            .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails)) { rect in
+                                print(rect.origin.y)
+                                let offset = rect.origin.y - 16
+                                if offset >= 100, canContinueOffset {
+                                    canContinueOffset = false
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        Haptic.play(style: .medium)
+                                        state.close()
+                                    }
                                 }
-                        } else {
-                            EventDetailsInfoView(viewModel: viewModel.infoViewModel)
-                                .padding(.bottom, 24)
-                                .transition(.scale.combined(with: .opacity))
-                        }
-                        
-                        ForEach(members, id:\.name) { item in
-                            EventDetailsMemberView(viewModel: item, output: output)
-                                .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-                                .animation(.easeInOut(duration: 0.2))
-                                .transition(.scale.combined(with: .opacity))
-                        }
+                                showHeader = offset <= -84
+                            }
+                            .padding(.bottom, 24)
+                            .transition(.scale.combined(with: .opacity))
                     }
-                    .padding(.top, 16)
-                    .padding(.bottom, 48)
-                }
-                .padding(.top, 1)
-                .padding(.bottom, -48)
-                ZStack {
-                    ReactionsListOwnerView(reactions: reactions, output: output, reactionContextViewHandler: nil, member: viewModel.event.me)
-                        .animation(.easeInOut(duration: 0.2))
-                    HStack(spacing: 0) {
-                        Rectangle()
-                            .fill(LinearGradient(
-                                gradient: Gradient(colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            ))
-                            .frame(width: 10, height: 48, alignment: .center)
-                        Spacer()
-                        Rectangle()
-                            .fill(LinearGradient(
-                                gradient: Gradient(colors: [Color(R.color.background.name).opacity(0), Color(R.color.background.name)]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            ))
-                            .frame(width: 10, height: 48, alignment: .center)
+                    
+                    ForEach(state.members, id:\.name) { item in
+                        EventDetailsMemberView(viewModel: .init(with: item, event: state.event))
+                            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                            .animation(.easeInOut(duration: 0.2))
+                            .transition(.scale.combined(with: .opacity))
                     }
                 }
-                EventStatusView(viewModel: viewModel.statusViewModel, isTapped: $statusViewTapped)
-                    .background(Color(R.color.block.name))
-                    .cornerRadius(12)
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
-                    .animation(.easeInOut(duration: EventStatusView.animationDuration), value: statusViewTapped)
-                    .opacity(isStatusViewHidden ? 0 : 1)
-                    .onTapGesture {
-                        statusViewTapped.toggle()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + EventStatusView.animationDuration + 0.1) {
-                            contextMenuHandler.takeSnaphot()
-                            output.statusAction(with: contextMenuHandler)
-                        }
-                    }
+                .padding(.top, 16)
+                .padding(.bottom, 104)
             }
             VStack {
-                Rectangle()
-                    .fill(LinearGradient(
-                        gradient: Gradient(colors: [Color(R.color.background.name), Color(R.color.background.name).opacity(0)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    ))
-                    .frame(height: 20, alignment: .center)
+                Spacer()
+                VStack(spacing: 0) {
+                    ReactionsListOwnerView(reactions: ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event), member: state.event.me)
+                        .animation(.easeInOut(duration: 0.2))
+                    EventStatusView(viewModel: .init(with: state.event), isTapped: $showStatusContextView)
+                        .background(Color(R.color.block.name))
+                        .clipShape(.rect(cornerRadius: 16, style: .continuous))
+                        .matchedGeometryEffect(id: MatchedAnimations.eventStatus(state.event.id).name, in: namespace.id)
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
+                        .opacity(showStatusContextView ? 0 : 1)
+                        .onTapGesture {
+                            showStatusContextView.toggle()
+                        }
+                }
+                .background {
+                    TransparentBlurView(removeAllFilters: false)
+                        .blur(radius: 15)
+                        .padding([.horizontal, .bottom], -30)
+                        .frame(width: UIScreen.main.bounds.size.width)
+                        .ignoresSafeArea()
+                }
+            }
+            VStack {
+                toolBar
+                .padding()
                 Spacer()
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .onReceive(viewModel.$modeState) { value in
-            withAnimation {
-                isEditMode = value.isEditMode
+        .clipShape(.rect(cornerRadius: 24, style: .continuous))
+        .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
+        .animation(.customTransition, value: state.event)
+        .animation(.customTransition, value: state.modeState)
+        .animation(.customTransition, value: showStatusContextView)
+        .animation(.customTransition, value: showHeader)
+    }
+    
+    var toolBar: some View {
+        ZStack {
+            if showHeader {
+                titleView
+            }
+            HStack {
+                if state.modeState.isEditMode {
+                    Image(.commonClose)
+                        .foregroundStyle(Color(.textSecondary))
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(.block))
+                        .clipShape(.rect(cornerRadius: 24, style: .continuous))
+                        .transition(.scale.combined(with: .opacity))
+                        .onTapGesture {
+                            state.changeEditMode()
+                        }
+                }
+                Spacer()
+                switch state.modeState {
+                case .edit:
+                    Image(.commonDelete)
+                        .foregroundStyle(Color(.red))
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(.block))
+                        .clipShape(.rect(cornerRadius: 24, style: .continuous))
+                        .transition(.scale.combined(with: .opacity))
+                        .onTapGesture {
+                            //state.changeEditMode()
+                        }
+                case .owner:
+                    Image(.commonEdit)
+                        .foregroundStyle(Color(.textSecondary))
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(.block))
+                        .clipShape(.rect(cornerRadius: 24, style: .continuous))
+                        .transition(.scale.combined(with: .opacity))
+                        .onTapGesture {
+                            state.changeEditMode()
+                        }
+                case .member: EmptyView()
+                }
             }
         }
-        .onReceive(viewModel.$members) { members in
-            withAnimation {
-                self.members = members
+        .background {
+            if showHeader || state.modeState.isEditMode {
+                TransparentBlurView(removeAllFilters: false)
+                    .blur(radius: 15)
+                    .padding([.horizontal, .top], -30)
+                    .frame(width: UIScreen.main.bounds.size.width)
+                    .ignoresSafeArea()
             }
         }
-        .onReceive(viewModel.$reactions) { reactions in
-            withAnimation {
-                self.reactions = reactions
-            }
+    }
+    
+    var titleView: some View {
+        VStack(spacing: 2) {
+            Text(state.event.game.name)
+                .font(.system(size: 17, weight: .regular))
+                .foregroundColor(Color(.textPrimary))
+                .frame(maxWidth: .infinity, alignment: .center)
+                .matchedGeometryEffect(id: MatchedAnimations.gameName(state.event.id).name, in: namespace.id)
+            Text(state.event.date.displayString)
+                .font(.system(size: 13, weight: .regular))
+                .foregroundColor(Color(.textSecondary))
+                .frame(maxWidth: .infinity, alignment: .center)
+                .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
         }
-        
     }
 }
-
-
-
-
-
-
-
-//struct EventDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventDetailsView()
-//    }
-//}

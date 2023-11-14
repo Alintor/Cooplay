@@ -17,6 +17,8 @@ enum MatchedAnimations {
     case gameName(_ eventId: String)
     case eventDate(_ eventId: String)
     case member(_ memberId: String, eventId: String)
+    case eventCover(_ eventId: String)
+    case eventStatus(_ eventId: String)
     
     var name: String {
         switch self {
@@ -34,6 +36,10 @@ enum MatchedAnimations {
             return "eventDate_\(eventId)"
         case .member(let memberId, let eventId):
             return "member_\(memberId)_\(eventId)"
+        case .eventCover(let eventId):
+            return "eventCover_\(eventId)"
+        case .eventStatus(let eventId):
+            return "eventStatus_\(eventId)"
         }
     }
 }

@@ -24,8 +24,7 @@ struct InvitedEventView: View {
             }
             .padding(4)
         }
-        .frame(height: 170)
-        .clipShape(.rect(cornerRadius: 20, style: .continuous))
+        .clipShape(.rect(cornerRadius: 24, style: .continuous))
     }
     
     var buttons: some View {

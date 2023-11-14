@@ -10,26 +10,10 @@ import SwiftUI
 
 struct ReactionView: View {
     
+    @EnvironmentObject var state: EventDetailsState
     let viewModel: ReactionViewModel
-    weak var output: EventDetailsViewOutput?
     let member: User
-    
-    private let reactionMenuHandler: ReactionContextMenuHandler
-    private let isOwner: Bool
-    
-    init(
-        viewModel: ReactionViewModel,
-        output: EventDetailsViewOutput?,
-        member: User,
-        reactionContextViewHandler: ReactionContextViewHandler?,
-        isOwner: Bool = false
-    ) {
-        self.viewModel = viewModel
-        self.output = output
-        self.member = member
-        self.isOwner = isOwner
-        reactionMenuHandler = ReactionContextMenuHandler(viewCornerType: .circle, contextViewHandler: reactionContextViewHandler)
-    }
+    let isOwner: Bool
     
     var body: some View {
         
@@ -52,11 +36,9 @@ struct ReactionView: View {
         .background(Color(viewModel.isOwner ? R.color.actionDisabled.name : R.color.block.name))
         .cornerRadius(20)
         .addBorder(Color(R.color.actionAccent.name), width: viewModel.isOwner ? 2 : 0, cornerRadius: 20)
-        .background(GeometryGetter(delegate: reactionMenuHandler))
         .onTapGesture {
             guard viewModel.isOwner else { return }
-            reactionMenuHandler.takeSnaphot()
-            output?.reactionTapped(for: member, delegate: reactionMenuHandler)
+            //output?.reactionTapped(for: member, delegate: reactionMenuHandler)
         }
     }
 }

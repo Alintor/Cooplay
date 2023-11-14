@@ -61,17 +61,27 @@ struct HomeView: View {
                 newEvent
             } else {
                 ZStack {
-                    if state.isNoEvents {
-                        EmptyEvents() { showNewEvent = true }
+                    if let event = state.activeEvent {
+                        ScreenViewFactory.eventDetails(event)
                             .environmentObject(NamespaceWrapper(namespace))
+                            .padding(.top, 72)
                             .zIndex(1)
                             .transition(.scale(scale: 0.5).combined(with: .opacity))
+                            .closable(showBackground: false) {
+                                state.deselectEvent()
+                            }
                     } else {
-                        ScreenViewFactory.eventsList() { showNewEvent = true }
-                            .environmentObject(NamespaceWrapper(namespace))
-                            .zIndex(1)
-                            .transition(.scale(scale: 0.5).combined(with: .opacity))
-                            .closable(closeHandler: nil)
+                        if state.isNoEvents {
+                            EmptyEvents() { showNewEvent = true }
+                                .environmentObject(NamespaceWrapper(namespace))
+                                .zIndex(1)
+                                .transition(.scale(scale: 0.5).combined(with: .opacity))
+                        } else {
+                            ScreenViewFactory.eventsList() { showNewEvent = true }
+                                .environmentObject(NamespaceWrapper(namespace))
+                                .zIndex(1)
+                                .transition(.scale(scale: 0.5).combined(with: .opacity))
+                        }
                     }
                     VStack {
                         HomeNavigationBar()
