@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReactionView: View {
     
-    @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var state: EventDetailsMemberState
     let viewModel: ReactionViewModel
     let member: User
     let isOwner: Bool
@@ -38,7 +38,7 @@ struct ReactionView: View {
         .addBorder(Color(R.color.actionAccent.name), width: viewModel.isOwner ? 2 : 0, cornerRadius: 20)
         .onTapGesture {
             guard viewModel.isOwner else { return }
-            //output?.reactionTapped(for: member, delegate: reactionMenuHandler)
+            state.showContext = true
         }
     }
 }

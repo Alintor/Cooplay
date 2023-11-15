@@ -46,7 +46,6 @@ struct InvitedEventView: View {
             } label: {
                 moreButtonText
             }
-            .opacity(showStatusContext ? 0 : 1)
             .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventsList)) { rect in
                 moreButtonRect = rect
             }

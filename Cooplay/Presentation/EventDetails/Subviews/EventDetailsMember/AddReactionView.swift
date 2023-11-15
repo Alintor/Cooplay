@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddReactionView: View {
     
-    @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var state: EventDetailsMemberState
     let member: User
     let isOwner: Bool
     
@@ -27,7 +27,7 @@ struct AddReactionView: View {
             .background(Color(R.color.block.name))
             .cornerRadius(20)
             .onTapGesture {
-                //output?.reactionTapped(for: member, delegate: reactionMenuHandler)
+                state.showContext = true
             }
     }
 }

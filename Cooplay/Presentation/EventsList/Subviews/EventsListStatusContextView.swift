@@ -56,11 +56,11 @@ struct EventsListStatusContextView<Content: View>: View {
             }
             .padding(.horizontal, 8)
         }
-        .animation(.customTransition, value: contextPresented)
-        .animation(.interpolatingSpring(stiffness: 300, damping: 28), value: showChangeStatusContext)
+        .animation(.fastTransition, value: contextPresented)
+        .animation(.fastTransition, value: showChangeStatusContext)
         .onAppear {
             contextPresented = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 showChangeStatusContext.toggle()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

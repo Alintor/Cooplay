@@ -23,7 +23,11 @@ struct EventsListView: View {
         }
         .padding(.horizontal, 4)
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventsList)
-        .handleRect(in: .global, handler: { state.eventsListSize = $0.size })
+        .handleRect(in: .global) {
+            if state.eventsListSize != $0.size {
+                state.eventsListSize = $0.size
+            }
+        }
         .animation(.customTransition, value: state.invitedEvents)
         .animation(.customTransition, value: state.acceptedEvents)
         .animation(.customTransition, value: state.declinedEvents)

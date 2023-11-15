@@ -66,7 +66,7 @@ struct InvitesStatusContextView<Content: View>: View {
             }
             .padding(.horizontal, 8)
         }
-        .animation(.customTransition, value: contextPresented)
+        .animation(.fastTransition, value: contextPresented)
         .onAppear {
             contextPresented = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

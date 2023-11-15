@@ -36,7 +36,6 @@ struct EventDetailsView: View {
                         EventDetailsInfoView()
                             .opacity(showHeader ? 0 : 1)
                             .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails)) { rect in
-                                print(rect.origin.y)
                                 let offset = rect.origin.y - 16
                                 if offset >= 100, canContinueOffset {
                                     canContinueOffset = false
@@ -91,6 +90,11 @@ struct EventDetailsView: View {
             }
         }
         .clipShape(.rect(cornerRadius: 24, style: .continuous))
+        .handleRect(in: .global) {
+            if state.eventDetailsSize != $0.size {
+                state.eventDetailsSize = $0.size
+            }
+        }
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)

@@ -28,6 +28,7 @@ class EventDetailsState: ObservableObject {
     private let defaultsStorage: DefaultsStorageType
     @Published var event: Event
     @Published var modeState: ModeState
+    @Published var eventDetailsSize: CGSize = .zero
     var members: [User] {
         event.members
         .sorted(by: { $0.name < $1.name })

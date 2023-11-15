@@ -55,6 +55,8 @@
 		A815E81D24701FDF005DFAF0 /* StartRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815E81C24701FDF005DFAF0 /* StartRoutable.swift */; };
 		A81AD11F24976510009D07A3 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD11E24976510009D07A3 /* RegistrationField.swift */; };
 		A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD12124976711009D07A3 /* PasswordValidationState.swift */; };
+		A823DFEE2B038306006EC119 /* ReactionContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFED2B038306006EC119 /* ReactionContextView.swift */; };
+		A823DFF02B038B57006EC119 /* ReactionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */; };
 		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
 		A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */; };
 		A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */; };
@@ -422,6 +424,8 @@
 		A815E81C24701FDF005DFAF0 /* StartRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRoutable.swift; sourceTree = "<group>"; };
 		A81AD11E24976510009D07A3 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationField.swift; sourceTree = "<group>"; };
 		A81AD12124976711009D07A3 /* PasswordValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationState.swift; sourceTree = "<group>"; };
+		A823DFED2B038306006EC119 /* ReactionContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionContextView.swift; sourceTree = "<group>"; };
+		A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSelectionView.swift; sourceTree = "<group>"; };
 		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
 		A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSeparator.swift; sourceTree = "<group>"; };
 		A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSectionHeader.swift; sourceTree = "<group>"; };
@@ -1006,6 +1010,7 @@
 		5C6E24950482FD9B716412DB /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				A824C9EB2742BA92000E61A1 /* Subviews */,
 				A8A0F0FF2AFFAE9600997DEA /* EventDetailsState.swift */,
 				A824C9E4273FCD24000E61A1 /* EventDetailsView.swift */,
 				A824C9E6273FCEF9000E61A1 /* Builder */,
@@ -1110,7 +1115,6 @@
 		85292EDCDAB83F4DF88F5E0F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A824C9EB2742BA92000E61A1 /* Subviews */,
 				7189FC630D166BEFF1778EC7 /* EventDetailsViewInput.swift */,
 				A824C9E927412B06000E61A1 /* EventDetailsViewOutput.swift */,
 				5853F606B1FD3C5A2D23B059 /* EventDetailsViewController.swift */,
@@ -1300,6 +1304,8 @@
 				A824CA17274670CD000E61A1 /* AddReactionView.swift */,
 				A824CA192746711D000E61A1 /* ReactionsListView.swift */,
 				A824CA1E274678B1000E61A1 /* ReactionsListOwnerView.swift */,
+				A823DFED2B038306006EC119 /* ReactionContextView.swift */,
+				A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */,
 			);
 			path = EventDetailsMember;
 			sourceTree = "<group>";
@@ -3141,6 +3147,7 @@
 				A87CF44C23EA6DF0004189D3 /* KeyboardHandler.swift in Sources */,
 				A8BE18312B01E68C0039634E /* DeclinedEventsView.swift in Sources */,
 				A8FB1CCD2499CFEE001C9355 /* AppearanceApplicationService.swift in Sources */,
+				A823DFEE2B038306006EC119 /* ReactionContextView.swift in Sources */,
 				0B372E206F2D731C1A265D41 /* EventDetailsRouterInput.swift in Sources */,
 				8FAF97C02E012AE6EF5164A1 /* EventDetailsRouter.swift in Sources */,
 				A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */,
@@ -3227,6 +3234,7 @@
 				A824C9D5273E896A000E61A1 /* ProfileAvatar.swift in Sources */,
 				AA366E4E3AF0B2B2BAE5D558 /* RegistrationPresenter.swift in Sources */,
 				A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */,
+				A823DFF02B038B57006EC119 /* ReactionSelectionView.swift in Sources */,
 				A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */,
 				A85F9CA82AF5FCE500BBAE31 /* GlobalState.swift in Sources */,
 				17A3D4E21AC10F58312EA8C1 /* RegistrationInteractor.swift in Sources */,
