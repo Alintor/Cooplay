@@ -87,19 +87,15 @@ struct ReactionContextView: View {
                 Haptic.play(style: .medium)
             }
         }
-        .onChange(of: contextPresented, perform: { value in
-            guard !value else { return }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                withAnimation(.none) {
-                    showStatusContext = false
-                }
-                Haptic.play(style: .medium)
-            }
-        })
     }
     
     func close() {
         contextPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            showStatusContext = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            Haptic.play(style: .medium)
+        }
     }
 }

@@ -16,6 +16,8 @@ struct HomeNavigationBar: View {
     var body: some View {
         HStack {
             eventsIcon
+                .padding()
+                .contentShape(Rectangle())
                 .onTapGesture {
                     state.deselectEvent()
                 }
@@ -32,12 +34,13 @@ struct HomeNavigationBar: View {
                 AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
                     .frame(width: 32, height: 32, alignment: .center)
                     .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
+                    .padding()
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         state.isShownProfile = true
                     }
             }
         }
-        .padding()
         .background {
             TransparentBlurView(removeAllFilters: false)
                 .blur(radius: 15)

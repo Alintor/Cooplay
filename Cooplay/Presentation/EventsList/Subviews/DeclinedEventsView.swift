@@ -67,7 +67,7 @@ struct DeclinedEventsView: View {
         EventItemView(event: event)
             .matchedGeometryEffect(id: event.declineId, in: namespace.id)
             .shadow(radius: 5)
-            .padding(.bottom, (index) * -24)
+            .padding(.bottom, (index) * -8)
             .scaleEffect(1 - ((index) / 10), anchor: .bottom)
             .disabled(true)
     }

@@ -61,7 +61,7 @@ extension SwiftUI.Animation {
     }
     
     static var stackTransition: SwiftUI.Animation {
-        .interpolatingSpring(stiffness: 200, damping: 28)
+        .interpolatingSpring(stiffness: 250, damping: 30)
     }
     
     static var fastTransition: SwiftUI.Animation {
