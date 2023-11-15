@@ -37,18 +37,21 @@ struct AcceptedEventView: View {
             EventsListStatusContextView(
                 event: event, 
                 showStatusContext: $showStatusContext,
-                statusRect: $statusRect,
-                content: { statusView}
+                statusRect: $statusRect
             )
         })
     }
     
     var statusView: some View {
-        EventStatusView(viewModel: .init(with: event), isTapped: $showStatusContext)
-            .background(Color(.shapeBackground))
-            .clipShape(.rect(cornerRadius: 20, style: .continuous))
-            .matchedGeometryEffect(id: MatchedAnimations.eventStatus(event.id).name, in: namespace.id)
-            .animation(.customTransition, value: showStatusContext)
+        EventStatusView(
+            viewModel: .init(with: state.acceptedEvents.first(where: { $0.id == event.id}) ?? event),
+            isTapped: .constant(false)
+        )
+        .background(Color(.shapeBackground))
+        .clipShape(.rect(cornerRadius: 20, style: .continuous))
+        .matchedGeometryEffect(id: MatchedAnimations.eventStatus(event.id).name, in: namespace.id)
+        .animation(.customTransition, value: showStatusContext)
+        .animation(.fastTransition, value: state.acceptedEvents.first(where: { $0.id == event.id})?.me.status)
     }
     
 }

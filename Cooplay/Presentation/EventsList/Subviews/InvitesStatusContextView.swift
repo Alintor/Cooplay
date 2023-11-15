@@ -26,6 +26,19 @@ struct InvitesStatusContextView<Content: View>: View {
         return targetPositionCenter < eventsListCenter
     }
     
+    func close() {
+        contextPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            showStatusContext = false
+            if let status = status {
+                state.changeStatus(status, for: event)
+            }
+            Haptic.play(style: .medium)
+        }
+    }
+    
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .regular), intensity: 0.2)
@@ -73,17 +86,6 @@ struct InvitesStatusContextView<Content: View>: View {
                 Haptic.play(style: .medium)
             }
         }
-        .onChange(of: contextPresented, perform: { value in
-            guard !value else { return }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                showStatusContext = false
-                if let status = status {
-                    state.changeStatus(status, for: event)
-                }
-                Haptic.play(style: .medium)
-            }
-        })
     }
     
     var contextView: some View {
@@ -93,7 +95,4 @@ struct InvitesStatusContextView<Content: View>: View {
         }
     }
     
-    func close() {
-        contextPresented.toggle()
-    }
 }

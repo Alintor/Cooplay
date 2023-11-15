@@ -57,6 +57,8 @@
 		A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AD12124976711009D07A3 /* PasswordValidationState.swift */; };
 		A823DFEE2B038306006EC119 /* ReactionContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFED2B038306006EC119 /* ReactionContextView.swift */; };
 		A823DFF02B038B57006EC119 /* ReactionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */; };
+		A823DFF22B04C425006EC119 /* EventDetailsStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */; };
+		A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */; };
 		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
 		A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */; };
 		A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */; };
@@ -426,6 +428,8 @@
 		A81AD12124976711009D07A3 /* PasswordValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationState.swift; sourceTree = "<group>"; };
 		A823DFED2B038306006EC119 /* ReactionContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionContextView.swift; sourceTree = "<group>"; };
 		A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSelectionView.swift; sourceTree = "<group>"; };
+		A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsStatusContextView.swift; sourceTree = "<group>"; };
+		A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerReactionContextView.swift; sourceTree = "<group>"; };
 		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
 		A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSeparator.swift; sourceTree = "<group>"; };
 		A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSectionHeader.swift; sourceTree = "<group>"; };
@@ -1272,6 +1276,8 @@
 				A824C9F02742BB08000E61A1 /* EventDetailsInfoView.swift */,
 				A824C9F72742BC64000E61A1 /* EventDetailsEditInfoView.swift */,
 				A824C9F92742BF6D000E61A1 /* EventDetailsAddMemberView.swift */,
+				A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */,
+				A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -3115,6 +3121,7 @@
 				A8A0F0F52AFE355C00997DEA /* OverlayModifier.swift in Sources */,
 				A824C9F32742BB43000E61A1 /* AvatarItemView.swift in Sources */,
 				A824C9DD273FC287000E61A1 /* EventDetailsViewModel.swift in Sources */,
+				A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */,
 				A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */,
 				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
@@ -3122,6 +3129,7 @@
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
 				A824CA1A2746711D000E61A1 /* ReactionsListView.swift in Sources */,
 				A824C9ED2742BAB0000E61A1 /* EventStatusDetailsView.swift in Sources */,
+				A823DFF22B04C425006EC119 /* EventDetailsStatusContextView.swift in Sources */,
 				A80BC09925B6C99B008FB5B6 /* PopupRoutable.swift in Sources */,
 				A824CA1D27467147000E61A1 /* View.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,

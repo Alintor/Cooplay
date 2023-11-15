@@ -8,15 +8,10 @@
 
 import SwiftUI
 
-final class EventDetailsMemberState: ObservableObject {
-    
-    @Published var showContext = false
-}
-
 struct EventDetailsMemberView: View {
     
     @EnvironmentObject var eventState: EventDetailsState
-    @StateObject var state = EventDetailsMemberState()
+    @StateObject var state = ReactionsContextState()
     @State var reactionsRect: CGRect = .zero
     @State var memberInfoOpacity: CGFloat = 1
     

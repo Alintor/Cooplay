@@ -14,8 +14,6 @@ struct EventStatusView: View {
 
     var viewModel: EventStatusViewModel
     @Binding var isTapped: Bool
-    
-    //let contextMenuHandler: ContextMenuHandler
 
     var body: some View {
         HStack {
@@ -25,10 +23,12 @@ struct EventStatusView: View {
             Text(viewModel.title)
                 .font(.system(size: 20, weight: .regular))
                 .foregroundColor(Color(R.color.textPrimary.name))
-                .transition(.opacity)
-                .id(viewModel.title)
+                .animation(.fastTransition)
+                .transition(.scale.combined(with: .opacity))
+                .id("StatusView" + viewModel.title)
             if let details = viewModel.detailsViewModel {
                 EventStatusDetailsView(viewModel: details)
+                    .transition(.scale.combined(with: .opacity))
             }
             Image(R.image.commonArrowDown.name)
                 .resizable()
@@ -37,7 +37,7 @@ struct EventStatusView: View {
                 .frame(width: 10, height: 10, alignment: .center)
                 .padding(.top, isTapped ? -2 : 4)
                 .rotationEffect(.degrees(isTapped ? 180 : 0))
-                .animation(.easeInOut(duration: EventStatusView.animationDuration), value: isTapped)
+                .animation(.customTransition, value: isTapped)
             Spacer()
             ZStack {
                 Circle()
@@ -53,6 +53,5 @@ struct EventStatusView: View {
             }
             .padding(.trailing, 14)
         }
-        //.background(GeometryGetter(delegate: contextMenuHandler))
     }
 }

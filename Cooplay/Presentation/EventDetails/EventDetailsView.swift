@@ -8,11 +8,17 @@
 
 import SwiftUI
 
+final class ReactionsContextState: ObservableObject {
+    
+    @Published var showContext = false
+}
+
 struct EventDetailsView: View {
     
     @EnvironmentObject var state: EventDetailsState
     @EnvironmentObject var namespace: NamespaceWrapper
     @State private var showStatusContextView = false
+    @StateObject private var reactionsContextState = ReactionsContextState()
     @State private var showHeader = false
     @State private var canContinueOffset = true
     
@@ -63,14 +69,17 @@ struct EventDetailsView: View {
             VStack {
                 Spacer()
                 VStack(spacing: 0) {
-                    ReactionsListOwnerView(reactions: ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event), member: state.event.me)
-                        .animation(.easeInOut(duration: 0.2))
-                    EventStatusView(viewModel: .init(with: state.event), isTapped: $showStatusContextView)
+                    ReactionsListOwnerView(
+                        reactions: ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event),
+                        member: state.event.me
+                    )
+                    .environmentObject(reactionsContextState)
+                    .animation(.easeInOut(duration: 0.2))
+                    EventStatusView(viewModel: .init(with: state.event), isTapped: .constant(false))
                         .background(Color(R.color.block.name))
                         .clipShape(.rect(cornerRadius: 16, style: .continuous))
                         .matchedGeometryEffect(id: MatchedAnimations.eventStatus(state.event.id).name, in: namespace.id)
                         .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
-                        .opacity(showStatusContextView ? 0 : 1)
                         .onTapGesture {
                             showStatusContextView.toggle()
                         }
@@ -95,6 +104,12 @@ struct EventDetailsView: View {
                 state.eventDetailsSize = $0.size
             }
         }
+        .overlayModal(isPresented: $showStatusContextView, content: {
+            EventDetailsStatusContextView(showStatusContext: $showStatusContextView)
+        })
+        .overlayModal(isPresented: $reactionsContextState.showContext, content: {
+            OwnerReactionContextView(showReactionsContext: $reactionsContextState.showContext)
+        })
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)

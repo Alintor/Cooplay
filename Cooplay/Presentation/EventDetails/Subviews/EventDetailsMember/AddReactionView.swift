@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddReactionView: View {
     
-    @EnvironmentObject var state: EventDetailsMemberState
+    @EnvironmentObject var state: ReactionsContextState
     let member: User
     let isOwner: Bool
     

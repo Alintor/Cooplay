@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct EventsListStatusContextView<Content: View>: View {
+struct EventsListStatusContextView: View {
     
     @EnvironmentObject var state: EventsListState
     @State var status: User.Status? = nil
@@ -17,7 +17,6 @@ struct EventsListStatusContextView<Content: View>: View {
     let event: Event
     @Binding var showStatusContext: Bool
     @Binding var statusRect: CGRect
-    var content: () -> Content
     var bottomSpacerHeight: CGFloat {
         let bottom = state.eventsListSize.height - statusRect.origin.y - statusRect.size.height - 8
         if statusRect.origin.y < 236 {
@@ -44,7 +43,9 @@ struct EventsListStatusContextView<Content: View>: View {
                 .scaleEffect(showChangeStatusContext ? 1 : 0, anchor: .bottom)
                 .opacity(showChangeStatusContext ? 1 : 0)
                 .padding(.bottom, 4)
-                content()
+                EventStatusView(viewModel: .init(with: event), isTapped: $contextPresented)
+                    .background(Color(.shapeBackground))
+                    .clipShape(.rect(cornerRadius: 20, style: .continuous))
                     .padding(.bottom, 8)
                     .onTapGesture {
                         close()
@@ -58,6 +59,7 @@ struct EventsListStatusContextView<Content: View>: View {
         }
         .animation(.fastTransition, value: contextPresented)
         .animation(.fastTransition, value: showChangeStatusContext)
+        .animation(.fastTransition, value: event.me.status)
         .onAppear {
             contextPresented = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
