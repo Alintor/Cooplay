@@ -246,24 +246,24 @@ class ReactionContextMenuView: UIView {
     }
     
     @objc private func didTapAdditionalReactionsButton() {
-        let rootViewController = UIApplication.shared.delegate?.window??.rootViewController
-        let additionalReactionsViewController = AdditionalReactionsBuilder().build(
-            selectedReaction: selectedReaction?.value,
-            handler: handler
-        )
-        if #available(iOS 15.0, *) {
-            let sheet = additionalReactionsViewController.sheetPresentationController
-            sheet?.detents = [.medium(), .large()]
-            sheet?.prefersGrabberVisible = true
-        }
-
-        rootViewController?.presentModally(additionalReactionsViewController)
-        UIView.animate(withDuration: 0.35) {
-            self.targetView?.alpha = 0
-            self.contextView?.alpha = 0.7
-            
-        }
-        close(withImpact: false)
+//        let rootViewController = UIApplication.shared.delegate?.window??.rootViewController
+//        let additionalReactionsViewController = AdditionalReactionsBuilder().build(
+//            selectedReaction: selectedReaction?.value,
+//            handler: handler
+//        )
+//        if #available(iOS 15.0, *) {
+//            let sheet = additionalReactionsViewController.sheetPresentationController
+//            sheet?.detents = [.medium(), .large()]
+//            sheet?.prefersGrabberVisible = true
+//        }
+//
+//        rootViewController?.presentModally(additionalReactionsViewController)
+//        UIView.animate(withDuration: 0.35) {
+//            self.targetView?.alpha = 0
+//            self.contextView?.alpha = 0.7
+//            
+//        }
+//        close(withImpact: false)
     }
     
     // MARK: - Interface

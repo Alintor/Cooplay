@@ -12,7 +12,6 @@ struct ReactionsSettingsView: View {
     
     // MARK: - Properties
     
-    
     @ObservedObject var state: ReactionsSettingsState
     @State var selectedIndex: Int = 0
     

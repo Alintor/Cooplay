@@ -95,4 +95,12 @@ enum ScreenViewFactory {
     static func reactionsSettings() -> some View {
         ReactionsSettingsView(state: ReactionsSettingsState(defaultsStorage: applicationFactory.defaultsStorage))
     }
+    
+    static func additionalReactions(selectedReaction: String?, handler: ((Reaction?) -> Void)?) -> some View {
+        AdditionalReactionsView(state: .init(
+            defaultsStorage: applicationFactory.defaultsStorage,
+            selectedReaction: selectedReaction,
+            handler: handler
+        ))
+    }
 }

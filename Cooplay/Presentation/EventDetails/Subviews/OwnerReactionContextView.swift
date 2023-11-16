@@ -12,6 +12,7 @@ struct OwnerReactionContextView: View {
     
     @EnvironmentObject var state: EventDetailsState
     @State var contextPresented = false
+    @State var showAdditionalReactions = false
     @Binding var showReactionsContext: Bool
     var reactionViewModel: ReactionViewModel? {
         ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event)
@@ -28,6 +29,8 @@ struct OwnerReactionContextView: View {
         }
     }
     
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .regular), intensity: 0.2)
@@ -39,46 +42,14 @@ struct OwnerReactionContextView: View {
             VStack(spacing: 0) {
                 Spacer()
                 if contextPresented {
-                    HStack {
-                        Spacer()
-                        ReactionSelectionView(reactions: state.myReactions, selectedReaction: reactionViewModel?.value) { reaction in
-                            state.addReaction(reaction, to: state.event.me)
-                            close()
-                        }
-                    }
-                    .padding(.trailing, -4)
-                    .transition(.scale(scale: 0, anchor: .bottomTrailing).combined(with: .opacity))
+                    contextView
                 }
                 HStack {
                     Spacer()
                     if contextPresented {
-                        Image(.commonDetails)
-                            .foregroundStyle(Color(.textSecondary))
-                            .frame(width: 24, height: 24)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 3)
-                            .background(Color(.block))
-                            .clipShape(.rect(cornerRadius: 15, style: .continuous))
-                            .padding(.trailing, -4)
-                            .transition(.scale.combined(with: .opacity))
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                print("Tap")
-                            }
+                        additionalReactionsButton
                     }
-                    VStack {
-                        if let reactionViewModel = reactionViewModel {
-                            ReactionView(viewModel: reactionViewModel, member: state.event.me, isOwner: true)
-                                .disabled(true)
-                                .transition(.scale.combined(with: .opacity))
-                        } else {
-                            AddReactionView(member: state.event.me, isOwner: true)
-                                .disabled(true)
-                                .transition(.scale.combined(with: .opacity))
-                        }
-                    }
-                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
-                    .onTapGesture { close() }
+                    targetView
                 }
                 Spacer()
                     .frame(height: 56)
@@ -94,6 +65,60 @@ struct OwnerReactionContextView: View {
                 Haptic.play(style: .medium)
             }
         }
+        .sheet(isPresented: $showAdditionalReactions) {
+            ScreenViewFactory.additionalReactions(selectedReaction: reactionViewModel?.value) { reaction in
+                state.addReaction(reaction, to: state.event.me)
+                showAdditionalReactions = false
+                close()
+            }
+            .presentationDetents([.medium, .large])
+        }
+    }
+    
+    // MARK: - Subviews
+    
+    var targetView: some View {
+        VStack {
+            if let reactionViewModel = reactionViewModel {
+                ReactionView(viewModel: reactionViewModel, member: state.event.me, isOwner: true)
+                    .disabled(true)
+                    .transition(.scale.combined(with: .opacity))
+            } else {
+                AddReactionView(member: state.event.me, isOwner: true)
+                    .disabled(true)
+                    .transition(.scale.combined(with: .opacity))
+            }
+        }
+        .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
+        .onTapGesture { close() }
+    }
+    
+    var contextView: some View {
+        HStack {
+            Spacer()
+            ReactionSelectionView(reactions: state.myReactions, selectedReaction: reactionViewModel?.value) { reaction in
+                state.addReaction(reaction, to: state.event.me)
+                close()
+            }
+        }
+        .padding(.trailing, -4)
+        .transition(.scale(scale: 0, anchor: .bottomTrailing).combined(with: .opacity))
+    }
+    
+    var additionalReactionsButton: some View {
+        Image(.commonDetails)
+            .foregroundStyle(Color(.textSecondary))
+            .frame(width: 24, height: 24)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(Color(.block))
+            .clipShape(.rect(cornerRadius: 20, style: .continuous))
+            .padding(.trailing, -4)
+            .transition(.scale.combined(with: .opacity))
+            .contentShape(Rectangle())
+            .onTapGesture {
+                showAdditionalReactions = true
+            }
     }
     
 }
