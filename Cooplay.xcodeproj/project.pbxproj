@@ -1251,6 +1251,30 @@
 			path = States;
 			sourceTree = "<group>";
 		};
+		A823DFF92B062C67006EC119 /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				A824CA1527467095000E61A1 /* ReactionView.swift */,
+				A824CA17274670CD000E61A1 /* AddReactionView.swift */,
+				A824CA192746711D000E61A1 /* ReactionsListView.swift */,
+				A824CA1E274678B1000E61A1 /* ReactionsListOwnerView.swift */,
+				A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */,
+				A823DFED2B038306006EC119 /* ReactionContextView.swift */,
+				A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
+		A823DFFA2B062CBA006EC119 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				A824C9F02742BB08000E61A1 /* EventDetailsInfoView.swift */,
+				A824C9F72742BC64000E61A1 /* EventDetailsEditInfoView.swift */,
+				A824C9F92742BF6D000E61A1 /* EventDetailsAddMemberView.swift */,
+			);
+			path = InfoView;
+			sourceTree = "<group>";
+		};
 		A824C9CF273E8866000E61A1 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1275,13 +1299,10 @@
 		A824C9EB2742BA92000E61A1 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				A824C9EC2742BAB0000E61A1 /* EventStatusDetailsView.swift */,
-				A824CA0F2746618A000E61A1 /* EventDetailsMember */,
-				A824C9F02742BB08000E61A1 /* EventDetailsInfoView.swift */,
-				A824C9F72742BC64000E61A1 /* EventDetailsEditInfoView.swift */,
-				A824C9F92742BF6D000E61A1 /* EventDetailsAddMemberView.swift */,
+				A823DFFA2B062CBA006EC119 /* InfoView */,
+				A823DFF92B062C67006EC119 /* Reactions */,
+				A824CA0F2746618A000E61A1 /* MemberView */,
 				A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */,
-				A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1289,6 +1310,7 @@
 		A824C9F42742BBA2000E61A1 /* EventStatusView */ = {
 			isa = PBXGroup;
 			children = (
+				A824C9EC2742BAB0000E61A1 /* EventStatusDetailsView.swift */,
 				A824C9F52742BBB2000E61A1 /* EventStatusView.swift */,
 			);
 			path = EventStatusView;
@@ -1305,19 +1327,13 @@
 			path = ReactionContextMenuView;
 			sourceTree = "<group>";
 		};
-		A824CA0F2746618A000E61A1 /* EventDetailsMember */ = {
+		A824CA0F2746618A000E61A1 /* MemberView */ = {
 			isa = PBXGroup;
 			children = (
 				A824C9EE2742BAE6000E61A1 /* EventDetailsMemberView.swift */,
 				A824CA13274664FC000E61A1 /* EventDetailsMemberInfoView.swift */,
-				A824CA1527467095000E61A1 /* ReactionView.swift */,
-				A824CA17274670CD000E61A1 /* AddReactionView.swift */,
-				A824CA192746711D000E61A1 /* ReactionsListView.swift */,
-				A824CA1E274678B1000E61A1 /* ReactionsListOwnerView.swift */,
-				A823DFED2B038306006EC119 /* ReactionContextView.swift */,
-				A823DFEF2B038B57006EC119 /* ReactionSelectionView.swift */,
 			);
-			path = EventDetailsMember;
+			path = MemberView;
 			sourceTree = "<group>";
 		};
 		A824CA1B27467138000E61A1 /* SwiftUI */ = {
