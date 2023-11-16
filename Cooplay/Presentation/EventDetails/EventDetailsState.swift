@@ -29,6 +29,7 @@ class EventDetailsState: ObservableObject {
     @Published var event: Event
     @Published var modeState: ModeState
     @Published var eventDetailsSize: CGSize = .zero
+    @Published var showChangeGameSheet = false
     var members: [User] {
         event.members
         .sorted(by: { $0.name < $1.name })
@@ -90,6 +91,10 @@ class EventDetailsState: ObservableObject {
         guard let mainReaction = myReactions.first else { return }
         
         store.send(.addReaction(Reaction(style: .emoji, value: mainReaction), member: member, event: event))
+    }
+    
+    func changeGame(_ game: Game) {
+        store.send(.changeGame(game, event: event))
     }
     
 }

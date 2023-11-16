@@ -26,15 +26,19 @@ final class EventsState {
         case .updateEvents(let events):
             state.events.events = events
             return state
+            
         case .updateActiveEvent(let event):
             state.events.activeEvent = event
             return state
+            
         case .selectEvent(let event):
             state.events.activeEvent = event
             return state
+            
         case .deselectEvent:
             state.events.activeEvent = nil
             return state
+            
         case .changeStatus(let status, let event):
             if state.events.activeEvent?.id == event.id {
                 state.events.activeEvent?.me.status = status
@@ -48,6 +52,7 @@ final class EventsState {
                 }
             }
             return state
+            
         case .addReaction(let reaction, let member, let event):
             guard var activeEvent = state.events.activeEvent, activeEvent.id == event.id else { return state }
             if member == activeEvent.me {
@@ -63,6 +68,18 @@ final class EventsState {
                 state.events.activeEvent = activeEvent
             }
             return state
+            
+        case .changeGame(let game, let event):
+            if state.events.activeEvent?.id == event.id {
+                state.events.activeEvent?.game = game
+            }
+            if let index = state.events.events.firstIndex(where: { $0.id == event.id }) {
+                var targetEvent = state.events.events[index]
+                targetEvent.game = game
+                state.events.events[index] = targetEvent
+            }
+            return state
+            
         default:
             return state
         }

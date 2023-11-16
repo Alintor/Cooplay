@@ -22,6 +22,8 @@ struct EventDetailsView: View {
     @State private var showHeader = false
     @State private var canContinueOffset = true
     
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             Color(R.color.background.name)
@@ -68,29 +70,7 @@ struct EventDetailsView: View {
             }
             VStack {
                 Spacer()
-                VStack(spacing: 0) {
-                    ReactionsListOwnerView(
-                        reactions: ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event),
-                        member: state.event.me
-                    )
-                    .environmentObject(reactionsContextState)
-                    .animation(.easeInOut(duration: 0.2))
-                    EventStatusView(viewModel: .init(with: state.event), isTapped: .constant(false))
-                        .background(Color(R.color.block.name))
-                        .clipShape(.rect(cornerRadius: 16, style: .continuous))
-                        .matchedGeometryEffect(id: MatchedAnimations.eventStatus(state.event.id).name, in: namespace.id)
-                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
-                        .onTapGesture {
-                            showStatusContextView.toggle()
-                        }
-                }
-                .background {
-                    TransparentBlurView(removeAllFilters: false)
-                        .blur(radius: 15)
-                        .padding([.horizontal, .bottom], -30)
-                        .frame(width: UIScreen.main.bounds.size.width)
-                        .ignoresSafeArea()
-                }
+                ownerView
             }
             VStack {
                 toolBar
@@ -110,11 +90,45 @@ struct EventDetailsView: View {
         .overlayModal(isPresented: $reactionsContextState.showContext, content: {
             OwnerReactionContextView(showReactionsContext: $reactionsContextState.showContext)
         })
+        .sheet(isPresented: $state.showChangeGameSheet) {
+            SearchGameView(selectedGame: state.event.game) { game in
+                state.changeGame(game)
+                state.changeEditMode()
+            }
+        }
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)
         .animation(.customTransition, value: showStatusContextView)
         .animation(.customTransition, value: showHeader)
+    }
+    
+    // MARK: - Subviews
+    
+    var ownerView: some View {
+        VStack(spacing: 0) {
+            ReactionsListOwnerView(
+                reactions: ReactionViewModel.build(reactions: state.event.me.reactions ?? [:], event: state.event),
+                member: state.event.me
+            )
+            .environmentObject(reactionsContextState)
+            .animation(.easeInOut(duration: 0.2))
+            EventStatusView(viewModel: .init(with: state.event), isTapped: .constant(false))
+                .background(Color(R.color.block.name))
+                .clipShape(.rect(cornerRadius: 16, style: .continuous))
+                .matchedGeometryEffect(id: MatchedAnimations.eventStatus(state.event.id).name, in: namespace.id)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
+                .onTapGesture {
+                    showStatusContextView.toggle()
+                }
+        }
+        .background {
+            TransparentBlurView(removeAllFilters: false)
+                .blur(radius: 15)
+                .padding([.horizontal, .bottom], -30)
+                .frame(width: UIScreen.main.bounds.size.width)
+                .ignoresSafeArea()
+        }
     }
     
     var toolBar: some View {

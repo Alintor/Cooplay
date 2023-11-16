@@ -20,6 +20,7 @@ enum EventServiceError: Error {
     case changeStatus
     case addReaction
     case deleteEvent
+    case changeGame
     case unhandled(error: Error)
 }
 
@@ -32,6 +33,7 @@ extension EventServiceError: LocalizedError {
         case .changeStatus: return "Не удалось изменить статус"
         case .addReaction: return "Не удалось добавить реакцию"
         case .deleteEvent: return "Не удалось удалить событие"
+        case .changeGame: return "Не удалось изменить игру"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -101,11 +103,13 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+            
         case .logout:
             eventsListener?.remove()
             activeEventListener?.remove()
             eventsListener = nil
             activeEventListener = nil
+            
         case .selectEvent(let selectedEvent):
             fetchEvent(id: selectedEvent.id) { result in
                 switch result {
@@ -115,9 +119,11 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+            
         case .deselectEvent:
             activeEventListener?.remove()
             activeEventListener = nil
+            
         case .changeStatus(let status, var event):
             guard event.me.status != status else { return }
             
@@ -129,6 +135,7 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+            
         case .addReaction(let reaction, let member, let event):
             addReaction(reaction, to: member, for: event) { result in
                 switch result {
@@ -137,6 +144,7 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+            
         case .deleteEvent(let event):
             deleteEvent(event) { result in
                 switch result {
@@ -146,6 +154,17 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+            
+        case .changeGame(let game, var event):
+            event.game = game
+            changeGame(game, forEvent: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+            
         default: break
         }
     }
@@ -313,8 +332,8 @@ extension EventService: EventServiceType {
         ]
         membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.changeGame))
             } else {
                 self?.sendChangeEventGameNotification(for: event)
                 completion(.success(()))

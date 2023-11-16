@@ -11,6 +11,7 @@ import SwiftUI
 struct EventDetailsEditInfoView: View {
     
     @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
         VStack(spacing: 8) {
@@ -18,7 +19,9 @@ struct EventDetailsEditInfoView: View {
                 Text(state.event.game.name)
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(Color(.actionAccent))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
+                    .matchedGeometryEffect(id: MatchedAnimations.gameName(state.event.id).name, in: namespace.id)
                 Spacer()
                 Image(.commonArrowDown)
                     .resizable()
@@ -30,14 +33,16 @@ struct EventDetailsEditInfoView: View {
             .background(Rectangle().foregroundColor(Color(.block)))
             .cornerRadius(12)
             .onTapGesture {
-                //output?.changeGameAction()
+                state.showChangeGameSheet = true
             }
             
             HStack {
                 Text(state.event.date.displayString)
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(Color(.actionAccent))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
+                    .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
                 Spacer()
                 Image(.commonArrowDown)
                     .resizable()
