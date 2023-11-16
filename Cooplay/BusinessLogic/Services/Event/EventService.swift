@@ -119,6 +119,8 @@ extension EventService: StateEffect {
             activeEventListener?.remove()
             activeEventListener = nil
         case .changeStatus(let status, var event):
+            guard event.me.status != status else { return }
+            
             event.me.status = status
             changeStatus(for: event) { result in
                 switch result {

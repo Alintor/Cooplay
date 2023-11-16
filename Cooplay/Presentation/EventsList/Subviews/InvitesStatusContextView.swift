@@ -93,6 +93,8 @@ struct InvitesStatusContextView<Content: View>: View {
             close()
             self.status = status
         }
+        .background(Color(.shapeBackground))
+        .clipShape(.rect(cornerRadius: 16, style: .continuous))
     }
     
 }

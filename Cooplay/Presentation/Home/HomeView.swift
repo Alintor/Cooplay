@@ -21,10 +21,14 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             if let profile = state.profile {
                 if profile.name.isEmpty {
-                    ScreenViewFactory.editProfile(profile)
-                        .environmentObject(NamespaceWrapper(namespace))
-                        .zIndex(1)
-                        .transition(.move(edge: .bottom))
+                    VStack {
+                        TitleView(text: Localizable.personalisationTitle())
+                            .padding()
+                        ScreenViewFactory.editProfile(profile)
+                            .environmentObject(NamespaceWrapper(namespace))
+                    }
+                    .zIndex(1)
+                    .transition(.move(edge: .bottom))
                 } else {
                     eventsView
                         .blur(radius: state.isShownProfile ? 60 : 0)

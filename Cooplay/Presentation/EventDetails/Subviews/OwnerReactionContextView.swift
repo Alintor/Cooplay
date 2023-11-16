@@ -90,7 +90,7 @@ struct OwnerReactionContextView: View {
         .animation(.fastTransition, value: state.event.me.reactions)
         .onAppear {
             contextPresented = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 Haptic.play(style: .medium)
             }
         }

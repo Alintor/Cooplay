@@ -35,6 +35,8 @@ struct EventDetailsStatusContextView: View {
                         state.changeStatus(status)
                         close()
                     }
+                    .background(Color(.block))
+                    .clipShape(.rect(cornerRadius: 16, style: .continuous))
                     .transition(.scale(scale: 0, anchor: .bottom).combined(with: .opacity))
                 }
                 EventStatusView(viewModel: .init(with: state.event), isTapped: $contextPresented)

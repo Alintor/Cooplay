@@ -26,6 +26,18 @@ struct EventsListStatusContextView: View {
         }
     }
     
+    func close() {
+        showChangeStatusContext = false
+        contextPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            if let status = status {
+                state.changeStatus(status, for: event)
+            }
+            showStatusContext = false
+            Haptic.play(style: .medium)
+        }
+    }
+    
     var body: some View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .regular), intensity: 0.2)
@@ -40,6 +52,8 @@ struct EventsListStatusContextView: View {
                     close()
                     self.status = status
                 }
+                .background(Color(.shapeBackground))
+                .clipShape(.rect(cornerRadius: 16, style: .continuous))
                 .scaleEffect(showChangeStatusContext ? 1 : 0, anchor: .bottom)
                 .opacity(showChangeStatusContext ? 1 : 0)
                 .padding(.bottom, 4)
@@ -69,21 +83,6 @@ struct EventsListStatusContextView: View {
                 Haptic.play(style: .medium)
             }
         }
-        .onChange(of: contextPresented, perform: { value in
-            guard !value else { return }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                if let status = status {
-                    state.changeStatus(status, for: event)
-                }
-                showStatusContext = false
-                Haptic.play(style: .medium)
-            }
-        })
     }
     
-    func close() {
-        showChangeStatusContext.toggle()
-        contextPresented.toggle()
-    }
 }

@@ -43,9 +43,7 @@ struct StatusContextView: View {
                 .transition(.move(edge: .bottom))
             }
         }
-        .background(Color(.shapeBackground))
-        .clipShape(.rect(cornerRadius: 16, style: .continuous))
-        .animation(.customTransition, value: showTimePanel)
+        .animation(.easeOut(duration: 0.3), value: showTimePanel)
     }
     
     // MARK: - Subviews
