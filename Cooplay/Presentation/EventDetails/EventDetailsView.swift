@@ -21,6 +21,7 @@ struct EventDetailsView: View {
     @StateObject private var reactionsContextState = ReactionsContextState()
     @State private var showHeader = false
     @State private var canContinueOffset = true
+    @State private var showDeleteAlert = false
     
     // MARK: - Body
     
@@ -102,6 +103,12 @@ struct EventDetailsView: View {
                 state.changeEditMode()
             }
         })
+        .alert(Localizable.eventDetailsDeleteAlertTitle(), isPresented: $showDeleteAlert, actions: {
+            Button(Localizable.commonCancel(), role: .cancel) {}
+            Button(Localizable.commonDelete(), role: .destructive) {
+                state.deleteEvent()
+            }
+        })
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)
@@ -168,7 +175,7 @@ struct EventDetailsView: View {
                         .clipShape(.rect(cornerRadius: 24, style: .continuous))
                         .transition(.scale.combined(with: .opacity))
                         .onTapGesture {
-                            //state.changeEditMode()
+                            showDeleteAlert = true
                         }
                 case .owner:
                     Image(.commonEdit)

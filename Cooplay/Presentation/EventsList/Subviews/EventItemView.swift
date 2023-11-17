@@ -34,9 +34,6 @@ struct EventItemView: View {
         .onTapGesture {
             state.selectEvent(event)
         }
-        .onLongPressGesture {
-            state.deleteEvent(event)
-        }
     }
     
     var gameCover: some View {

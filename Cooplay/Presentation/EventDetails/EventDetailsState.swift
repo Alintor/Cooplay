@@ -102,4 +102,8 @@ class EventDetailsState: ObservableObject {
         store.send(.addMembers(members, event: event))
     }
     
+    func deleteEvent() {
+        store.send(.deleteEvent(event))
+    }
+    
 }

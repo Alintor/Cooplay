@@ -68,7 +68,4 @@ class EventsListState: ObservableObject {
         newEventAction?()
     }
     
-    func deleteEvent(_ event: Event) {
-        store.send(.deleteEvent(event))
-    }
 }
