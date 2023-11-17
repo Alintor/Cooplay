@@ -24,6 +24,7 @@ enum StateAction {
     case addReaction(_ reaction: Reaction?, member: User, event: Event)
     case deleteEvent(_ event: Event)
     case changeGame(_ game: Game, event: Event)
+    case addMembers(_ members: [User], event: Event)
     // User
     case updateProfile(_ profile: Profile)
     case editActions(_ editActions: [EditAction])

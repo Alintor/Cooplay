@@ -38,7 +38,7 @@ struct EventDetailsView: View {
                             .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
                             .onTapGesture {
-                                //output.addMemberAction()
+                                state.showAddMembersSheet = true
                             }
                     } else {
                         EventDetailsInfoView()
@@ -96,6 +96,12 @@ struct EventDetailsView: View {
                 state.changeEditMode()
             }
         }
+        .sheet(isPresented: $state.showAddMembersSheet, content: {
+            SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members) { members in
+                state.addMembers(members)
+                state.changeEditMode()
+            }
+        })
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)

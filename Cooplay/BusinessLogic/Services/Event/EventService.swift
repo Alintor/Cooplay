@@ -21,6 +21,7 @@ enum EventServiceError: Error {
     case addReaction
     case deleteEvent
     case changeGame
+    case addMember
     case unhandled(error: Error)
 }
 
@@ -34,6 +35,7 @@ extension EventServiceError: LocalizedError {
         case .addReaction: return "Не удалось добавить реакцию"
         case .deleteEvent: return "Не удалось удалить событие"
         case .changeGame: return "Не удалось изменить игру"
+        case .addMember: return "Не удалось добавить участников"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -158,6 +160,14 @@ extension EventService: StateEffect {
         case .changeGame(let game, var event):
             event.game = game
             changeGame(game, forEvent: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+        case .addMembers(let members, let event):
+            addMembers(members, toEvent: event) { result in
                 switch result {
                 case .success: break
                 case .failure(let error):
@@ -419,8 +429,8 @@ extension EventService: EventServiceType {
             membersData["members.\(member.id)"] = member.dictionary
         }
         firestore.collection("Events").document(event.id).updateData(membersData) { [weak self] error in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.addMember))
             } else {
                 self?.sendAddMembersToEventNotification(members: members, event: event)
                 completion(.success(()))

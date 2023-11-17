@@ -30,6 +30,7 @@ class EventDetailsState: ObservableObject {
     @Published var modeState: ModeState
     @Published var eventDetailsSize: CGSize = .zero
     @Published var showChangeGameSheet = false
+    @Published var showAddMembersSheet = false
     var members: [User] {
         event.members
         .sorted(by: { $0.name < $1.name })
@@ -95,6 +96,10 @@ class EventDetailsState: ObservableObject {
     
     func changeGame(_ game: Game) {
         store.send(.changeGame(game, event: event))
+    }
+    
+    func addMembers(_ members: [User]) {
+        store.send(.addMembers(members, event: event))
     }
     
 }
