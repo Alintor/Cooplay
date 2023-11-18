@@ -21,6 +21,7 @@ enum EventServiceError: Error {
     case addReaction
     case deleteEvent
     case changeGame
+    case changeDate
     case addMember
     case unhandled(error: Error)
 }
@@ -35,6 +36,7 @@ extension EventServiceError: LocalizedError {
         case .addReaction: return "Не удалось добавить реакцию"
         case .deleteEvent: return "Не удалось удалить событие"
         case .changeGame: return "Не удалось изменить игру"
+        case .changeDate: return "Не удалось изменить дату события"
         case .addMember: return "Не удалось добавить участников"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
@@ -160,6 +162,16 @@ extension EventService: StateEffect {
         case .changeGame(let game, var event):
             event.game = game
             changeGame(game, forEvent: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
+            
+        case .changeDate(let date, let event):
+            let dateString = date.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
+            changeDate(dateString, forEvent: event) { result in
                 switch result {
                 case .success: break
                 case .failure(let error):
@@ -355,8 +367,8 @@ extension EventService: EventServiceType {
         var data: [AnyHashable: Any] = ["date": date]
         membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.changeDate))
             } else {
                 self?.sendChangeEventDateNotification(for: event)
                 completion(.success(()))

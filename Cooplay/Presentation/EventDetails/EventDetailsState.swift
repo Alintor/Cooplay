@@ -98,6 +98,12 @@ class EventDetailsState: ObservableObject {
         store.send(.changeGame(game, event: event))
     }
     
+    func changeDate(_ date: Date) {
+        guard date != event.date else { return }
+        
+        store.send(.changeDate(date, event: event))
+    }
+    
     func addMembers(_ members: [User]) {
         store.send(.addMembers(members, event: event))
     }

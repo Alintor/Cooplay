@@ -13,11 +13,13 @@ struct TimeCarouselPanelView: UIViewRepresentable {
     let configuration: TimeCarouselConfiguration
     let cancelHandler: (() -> Void)?
     let confirmHandler: ((_ status: User.Status) -> Void)?
+    let dateHandler: ((_ date: Date) -> Void)?
     
     func makeUIView(context: Context) -> UIView {
         let timeCarouselPanel = TimeCarouselPanel(configuration: configuration)
         timeCarouselPanel.cancelHandler = cancelHandler
         timeCarouselPanel.statusHandler = confirmHandler
+        timeCarouselPanel.dateHandler = dateHandler
         timeCarouselPanel.backgroundColor = R.color.shapeBackground()
         timeCarouselPanel.loadData()
         return timeCarouselPanel

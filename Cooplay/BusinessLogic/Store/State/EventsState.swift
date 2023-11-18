@@ -80,6 +80,17 @@ final class EventsState {
             }
             return state
             
+        case .changeDate(let date, let event):
+            if state.events.activeEvent?.id == event.id {
+                state.events.activeEvent?.date = date
+            }
+            if let index = state.events.events.firstIndex(where: { $0.id == event.id }) {
+                var targetEvent = state.events.events[index]
+                targetEvent.date = date
+                state.events.events[index] = targetEvent
+            }
+            return state
+            
         default:
             return state
         }

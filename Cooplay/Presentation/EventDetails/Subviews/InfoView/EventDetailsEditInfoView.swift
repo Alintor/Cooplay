@@ -12,6 +12,8 @@ struct EventDetailsEditInfoView: View {
     
     @EnvironmentObject var state: EventDetailsState
     @EnvironmentObject var namespace: NamespaceWrapper
+    @State var showChangeDatesContext = false
+    @State var dateButtonRect: CGRect = .zero
     
     var body: some View {
         VStack(spacing: 8) {
@@ -36,27 +38,37 @@ struct EventDetailsEditInfoView: View {
                 state.showChangeGameSheet = true
             }
             
-            HStack {
-                Text(state.event.date.displayString)
-                    .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(Color(.actionAccent))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
-                    .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
-                Spacer()
-                Image(.commonArrowDown)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 12, height: 12, alignment: .center)
-                    .foregroundColor(Color(.textSecondary))
-                    .padding(.trailing, 16)
-            }
-            .background(Rectangle().foregroundColor(Color(.block)))
-            .cornerRadius(12)
+            dateButton
+                .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile), handler: { dateButtonRect = $0 })
             .onTapGesture {
-                //output?.changeDateAction(delegate: contextHandler)
+                showChangeDatesContext = true
             }
         }
+        .overlayModal(isPresented: $showChangeDatesContext) {
+            EventChangeDateContextView(showDateContext: $showChangeDatesContext, targetRect: $dateButtonRect) {
+                dateButton
+            }
+        }
+    }
+    
+    var dateButton: some View {
+        HStack {
+            Text(state.event.date.displayString)
+                .font(.system(size: 17, weight: .regular))
+                .foregroundColor(Color(.actionAccent))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0))
+                .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
+            Spacer()
+            Image(.commonArrowDown)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 12, height: 12, alignment: .center)
+                .foregroundColor(Color(.textSecondary))
+                .padding(.trailing, 16)
+        }
+        .background(Rectangle().foregroundColor(Color(.block)))
+        .cornerRadius(12)
     }
 }
 

@@ -62,6 +62,7 @@
 		A823DFF62B060D71006EC119 /* AdditionalReactionsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */; };
 		A823DFF82B0626A1006EC119 /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF72B0626A1006EC119 /* SearchGameView.swift */; };
 		A823E0012B077610006EC119 /* SearchMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0002B077610006EC119 /* SearchMembersView.swift */; };
+		A823E0032B08E0D3006EC119 /* EventChangeDateContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */; };
 		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
 		A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */; };
 		A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */; };
@@ -436,6 +437,7 @@
 		A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsState.swift; sourceTree = "<group>"; };
 		A823DFF72B0626A1006EC119 /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
 		A823E0002B077610006EC119 /* SearchMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersView.swift; sourceTree = "<group>"; };
+		A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChangeDateContextView.swift; sourceTree = "<group>"; };
 		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
 		A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSeparator.swift; sourceTree = "<group>"; };
 		A824C9D2273E891D000E61A1 /* ProfileSettingsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSectionHeader.swift; sourceTree = "<group>"; };
@@ -1274,6 +1276,7 @@
 				A824C9F02742BB08000E61A1 /* EventDetailsInfoView.swift */,
 				A824C9F72742BC64000E61A1 /* EventDetailsEditInfoView.swift */,
 				A824C9F92742BF6D000E61A1 /* EventDetailsAddMemberView.swift */,
+				A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -3091,6 +3094,7 @@
 				A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */,
 				A8D1D28823572B7300DA1089 /* MemberStatusView.swift in Sources */,
 				A865B71D2733CE2800F8A6CC /* StateContextViewHandler.swift in Sources */,
+				A823E0032B08E0D3006EC119 /* EventChangeDateContextView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* GlobalConstants.swift in Sources */,
 				A87CF43923E97527004189D3 /* Router.swift in Sources */,

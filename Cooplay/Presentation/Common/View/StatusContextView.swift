@@ -26,7 +26,8 @@ struct StatusContextView: View {
                         initialValue: initialTimeValue
                     ),
                     cancelHandler: { showTimePanel = false },
-                    confirmHandler: { handler?($0) }
+                    confirmHandler: { handler?($0) }, 
+                    dateHandler: nil
                 )
                 .frame(height: 200)
                 .transition(.move(edge: .top))
