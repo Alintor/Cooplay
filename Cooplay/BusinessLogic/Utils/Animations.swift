@@ -57,7 +57,10 @@ extension SwiftUI.Animation {
     static var customTransition: SwiftUI.Animation {
         .interpolatingSpring(stiffness: 280, damping: 25)
         //.interpolatingSpring(stiffness: 300, damping: 28)
-        //.easeInOut
+        //.interpolatingSpring(duration: 0.3)
+        //.snappy(duration: 0.3)
+        //.smooth(duration: 0.3)
+        //.spring(duration: 0.3)
     }
     
     static var stackTransition: SwiftUI.Animation {

@@ -45,7 +45,7 @@ protocol NewEventInteractorInput: AnyObject {
 
     func isReady(_ request: NewEventRequest) -> Bool
     func fetchofftenData(
-        completion: @escaping (Result<NewEventOfftenDataResponse, NewEventError>) -> Void
+        completion: @escaping (Result<NewEventOftenDataResponse, NewEventError>) -> Void
     )
     func createNewEvent(_ request: NewEventRequest)
 }

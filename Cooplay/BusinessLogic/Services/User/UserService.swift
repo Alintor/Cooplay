@@ -32,7 +32,7 @@ extension UserServiceError: LocalizedError {
 
 protocol UserServiceType {
     
-    func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void)
+    func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void)
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void)
     func checkProfileExistanse(completion: @escaping (Result<Bool, UserServiceError>) -> Void)
     func setNickname(
@@ -139,7 +139,7 @@ extension UserService: UserServiceType {
         try await batch.commit()
     }
     
-    func fetchOfftenData(completion: @escaping (Result<NewEventOfftenDataResponse, UserServiceError>) -> Void) {
+    func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void) {
         // TODO: Remove error
         // TODO:Add limits
         guard let userId = firebaseAuth.currentUser?.uid else { return }
@@ -204,7 +204,7 @@ extension UserService: UserServiceType {
             }
             //let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
             let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
-            completion(.success(NewEventOfftenDataResponse(
+            completion(.success(NewEventOftenDataResponse(
                 members: Array(membersSlice),
                 games: games,
                 time: time

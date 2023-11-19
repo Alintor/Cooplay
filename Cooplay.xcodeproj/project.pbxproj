@@ -238,6 +238,8 @@
 		A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */; };
 		A87CF49223ED71E2004189D3 /* NewEventMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */; };
 		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
+		A87E2EE32B09F7490095DDD3 /* MemberContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */; };
+		A87E2EE52B09FAED0095DDD3 /* EventDetailsMemberContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */; };
 		A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003D628F43BE400FDA878 /* AllReactionsListView.swift */; };
 		A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */; };
 		A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */; };
@@ -614,6 +616,8 @@
 		A87CF48F23ED71E2004189D3 /* NewEventMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCell.swift; sourceTree = "<group>"; };
 		A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventMemberCell.xib; sourceTree = "<group>"; };
 		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
+		A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberContextView.swift; sourceTree = "<group>"; };
+		A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberContext.swift; sourceTree = "<group>"; };
 		A88003D628F43BE400FDA878 /* AllReactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsListView.swift; sourceTree = "<group>"; };
 		A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsConfigurable.swift; sourceTree = "<group>"; };
 		A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsContract.swift; sourceTree = "<group>"; };
@@ -1338,6 +1342,8 @@
 			children = (
 				A824C9EE2742BAE6000E61A1 /* EventDetailsMemberView.swift */,
 				A824CA13274664FC000E61A1 /* EventDetailsMemberInfoView.swift */,
+				A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */,
+				A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */,
 			);
 			path = MemberView;
 			sourceTree = "<group>";
@@ -3151,6 +3157,7 @@
 				A8BE18372B01F3B20039634E /* TimeCarouselPanelView.swift in Sources */,
 				A8A0F0F52AFE355C00997DEA /* OverlayModifier.swift in Sources */,
 				A824C9F32742BB43000E61A1 /* AvatarItemView.swift in Sources */,
+				A87E2EE52B09FAED0095DDD3 /* EventDetailsMemberContext.swift in Sources */,
 				A824C9DD273FC287000E61A1 /* EventDetailsViewModel.swift in Sources */,
 				A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */,
 				A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */,
@@ -3308,6 +3315,7 @@
 				9A24791DBA43F1AD72EA5F8A /* NotificationSettingsView.swift in Sources */,
 				475FFBE0F1C421A700E868D4 /* NotificationSettingsViewController.swift in Sources */,
 				8CACD502BF92392266D60A28 /* NotificationSettingsPresenter.swift in Sources */,
+				A87E2EE32B09F7490095DDD3 /* MemberContextView.swift in Sources */,
 				FB0F602C4DB366E0CA49813B /* NotificationSettingsInteractor.swift in Sources */,
 				1DA0287CA7196840806FE8E3 /* NotificationSettingsRouter.swift in Sources */,
 			);

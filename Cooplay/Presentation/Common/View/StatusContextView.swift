@@ -44,7 +44,7 @@ struct StatusContextView: View {
                 .transition(.move(edge: .bottom))
             }
         }
-        .animation(.easeOut(duration: 0.3), value: showTimePanel)
+        .animation(.interpolatingSpring(duration: 0.3), value: showTimePanel)
     }
     
     // MARK: - Subviews

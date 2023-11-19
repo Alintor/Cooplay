@@ -28,6 +28,8 @@ enum StateAction {
     case changeGame(_ game: Game, event: Event)
     case changeDate(_ date: Date, event: Event)
     case addMembers(_ members: [User], event: Event)
+    case removeMember(_ member: User, event: Event)
+    case makeOwner(_ member: User, event: Event)
     // User
     case updateProfile(_ profile: Profile)
     case editActions(_ editActions: [EditAction])

@@ -27,7 +27,7 @@ struct EventDetailsView: View {
     
     var body: some View {
         ZStack {
-            Color(R.color.background.name)
+            Color(.background)
                 .matchedGeometryEffect(id: MatchedAnimations.eventCover(state.event.id).name, in: namespace.id)
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: 0) {

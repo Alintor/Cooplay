@@ -112,4 +112,13 @@ class EventDetailsState: ObservableObject {
         store.send(.deleteEvent(event))
     }
     
+    func handleMemberAction(_ action: MemberContextAction, member: User) {
+        switch action {
+        case .makeOwner:
+            store.send(.makeOwner(member, event: event))
+        case .remove:
+            store.send(.removeMember(member, event: event))
+        }
+    }
+    
 }

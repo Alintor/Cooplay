@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewEventOfftenDataResponse: Codable {
+struct NewEventOftenDataResponse: Codable {
     
     let members: [User]
     let games: [Game]

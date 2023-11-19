@@ -23,6 +23,8 @@ enum EventServiceError: Error {
     case changeGame
     case changeDate
     case addMember
+    case removeMember
+    case takeOwner
     case unhandled(error: Error)
 }
 
@@ -38,6 +40,8 @@ extension EventServiceError: LocalizedError {
         case .changeGame: return "Не удалось изменить игру"
         case .changeDate: return "Не удалось изменить дату события"
         case .addMember: return "Не удалось добавить участников"
+        case .removeMember: return "Не удалось исключить участника"
+        case .takeOwner: return "Не удалось сделать лидером"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -186,7 +190,23 @@ extension EventService: StateEffect {
                     store.send(.showNetworkError(error))
                 }
             }
+        case .removeMember(let member, let event):
+            removeMember(member, fromEvent: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
             
+        case .makeOwner(let member, let event):
+            takeOwnerRulesToMember(member, forEvent: event) { result in
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    store.send(.showNetworkError(error))
+                }
+            }
         default: break
         }
     }
@@ -396,8 +416,8 @@ extension EventService: EventServiceType {
         firestore.collection("Events").document(event.id).updateData([
             "members.\(member.id)": FieldValue.delete()
         ]) { [weak self] error in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.removeMember))
             } else {
                 self?.sendRemoveMemberFromEventNotification(member: member, event: event)
                 completion(.success(()))
@@ -407,15 +427,15 @@ extension EventService: EventServiceType {
     
     func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
         guard event.me.isOwner == true else {
-            // TODO: Send error
+            completion(.failure(.removeMember))
             return
         }
         firestore.collection("Events").document(event.id).updateData([
             "members.\(member.id).isOwner": true,
             "members.\(event.me.id).isOwner": false
         ]) { [weak self] error in
-            if let error = error {
-                completion(.failure(.unhandled(error: error)))
+            if let _ = error {
+                completion(.failure(.removeMember))
             } else {
                 self?.sendTakeEventOwnerRulesNotification(member: member, event: event)
                 completion(.success(()))
