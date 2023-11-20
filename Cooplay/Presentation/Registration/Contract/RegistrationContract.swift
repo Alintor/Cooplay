@@ -51,7 +51,7 @@ protocol RegistrationInteractorInput: AnyObject {
     func register(
         email: String?,
         password: String?,
-        completion: @escaping (Result<User, RegistrationError>) -> Void
+        completion: @escaping (Result<Void, RegistrationError>) -> Void
     )
 }
 

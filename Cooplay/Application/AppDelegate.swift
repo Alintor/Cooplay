@@ -9,13 +9,13 @@
 import UIKit
 import PluggableAppDelegate
 
-@UIApplicationMain
+//@UIApplicationMain
 final class AppDelegate: PluggableApplicationDelegate {
     
     override var services: [ApplicationService] {
         return [
             AppearanceApplicationService(),
-            InitialModuleApplicationService(),
+            //InitialModuleApplicationService(),
             PushNotificationApplicationService(),
             DeepLinkApplicationService()
         ]
@@ -24,8 +24,8 @@ final class AppDelegate: PluggableApplicationDelegate {
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.makeKeyAndVisible()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

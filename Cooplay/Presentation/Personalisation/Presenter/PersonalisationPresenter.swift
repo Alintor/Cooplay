@@ -34,18 +34,18 @@ final class PersonalisationPresenter {
     private var isNickNameCorrect = false
     
     private func confirmChanges() {
-        guard let nickname = user.name, !nickname.isEmpty else { return }
-        view.showProgress(indicatorType: .arrows)
-        interactor.setNickname(nickname) { [weak self] result in
-            guard let `self` = self else { return }
-            self.view.hideProgress()
-            switch result {
-            case .success:
-                self.router.openEventList()
-            case .failure(let error):
-                self.handleError(error)
-            }
-        }
+//        guard let nickname = user.name, !nickname.isEmpty else { return }
+//        view.showProgress(indicatorType: .arrows)
+//        interactor.setNickname(nickname) { [weak self] result in
+//            guard let `self` = self else { return }
+//            self.view.hideProgress()
+//            switch result {
+//            case .success:
+//                self.router.openEventList()
+//            case .failure(let error):
+//                self.handleError(error)
+//            }
+//        }
     }
     
     private func handleError(_ error: PersonalisationError) {

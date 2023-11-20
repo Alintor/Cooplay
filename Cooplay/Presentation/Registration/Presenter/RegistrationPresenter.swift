@@ -14,17 +14,20 @@ final class RegistrationPresenter {
     private weak var view: RegistrationViewInput!
     private let interactor: RegistrationInteractorInput
     private let router: RegistrationRouterInput
+    private let store: Store
     
     // MARK: - Init
     
     init(
         view: RegistrationViewInput,
         interactor: RegistrationInteractorInput,
-        router: RegistrationRouterInput
+        router: RegistrationRouterInput,
+        store: Store
     ) {
         self.view = view
         self.interactor = interactor
         self.router = router
+        self.store = store
     }
     
     // MARK: - Private
@@ -43,8 +46,8 @@ final class RegistrationPresenter {
             guard let `self` = self else { return }
             self.view.hideProgress()
             switch result {
-            case .success(let user):
-                self.router.openPersonalisation(with: user)
+            case .success:
+                store.send(.successAuthentication)
             case .failure(let error):
                 self.handleError(error)
             }

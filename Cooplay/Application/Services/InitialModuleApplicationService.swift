@@ -47,25 +47,25 @@ final class InitialModuleApplicationService: NSObject, ApplicationService {
     }
     
     private func checkProficeExistanse() {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        userService.checkProfileExistanse { [weak self] (result) in
-            switch result {
-            case .success(let exist):
-                guard let `self` = self, !exist else { return }
-                let user = User(id: userId, name: nil, avatarPath: nil, state: .unknown, lateness: nil, isOwner: nil)
-                // TODO:
-                let personalisation = PersonalisationBuilder().build(user: user)
-                if #available(iOS 13.0, *) {
-                    personalisation.isModalInPresentation = true
-                }
-                self.window?.rootViewController?.present(
-                    UINavigationController(rootViewController: personalisation),
-                    animated: true,
-                    completion: nil
-                )
-            case .failure: break
-            }
-        }
+//        guard let userId = Auth.auth().currentUser?.uid else { return }
+//        userService.checkProfileExistanse { [weak self] (result) in
+//            switch result {
+//            case .success(let exist):
+//                guard let `self` = self, !exist else { return }
+//                let user = User(id: userId, name: nil, avatarPath: nil, state: .unknown, lateness: nil, isOwner: nil)
+//                // TODO:
+//                let personalisation = PersonalisationBuilder().build(user: user)
+//                if #available(iOS 13.0, *) {
+//                    personalisation.isModalInPresentation = true
+//                }
+//                self.window?.rootViewController?.present(
+//                    UINavigationController(rootViewController: personalisation),
+//                    animated: true,
+//                    completion: nil
+//                )
+//            case .failure: break
+//            }
+//        }
     }
     
     private func firstLaunchSetup() {

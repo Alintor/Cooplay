@@ -119,12 +119,12 @@ extension RegistrationInteractor: RegistrationInteractorInput {
     func register(
         email: String?,
         password: String?,
-        completion: @escaping (Result<User, RegistrationError>) -> Void) {
+        completion: @escaping (Result<Void, RegistrationError>) -> Void) {
         guard let email = email, let password = password else { return }
         authorizationService?.createAccaunt(email: email, password: password) { result in
             switch result {
-            case .success(let user):
-                completion(.success(user))
+            case .success:
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
             }

@@ -14,17 +14,20 @@ final class AuthorizationPresenter {
     private weak var view: AuthorizationViewInput!
     private let interactor: AuthorizationInteractorInput
     private let router: AuthorizationRouterInput
+    private let store: Store
     
     // MARK: - Init
     
     init(
         view: AuthorizationViewInput,
         interactor: AuthorizationInteractorInput,
-        router: AuthorizationRouterInput
+        router: AuthorizationRouterInput,
+        store: Store
     ) {
         self.view = view
         self.interactor = interactor
         self.router = router
+        self.store = store
     }
     
     // MARK: - Pricate
@@ -43,7 +46,7 @@ final class AuthorizationPresenter {
             self.view.hideProgress()
             switch result {
             case .success:
-                self.router.openEventList()
+                store.send(.successAuthentication)
             case .failure(let error):
                 self.showError(error)
             }

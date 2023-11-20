@@ -240,6 +240,9 @@
 		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
 		A87E2EE32B09F7490095DDD3 /* MemberContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */; };
 		A87E2EE52B09FAED0095DDD3 /* EventDetailsMemberContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */; };
+		A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE62B0B2A450095DDD3 /* App.swift */; };
+		A87E2EEB2B0B2B5E0095DDD3 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EEA2B0B2B5E0095DDD3 /* IntroView.swift */; };
+		A87E2EF22B0B348C0095DDD3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EF12B0B348C0095DDD3 /* AppState.swift */; };
 		A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003D628F43BE400FDA878 /* AllReactionsListView.swift */; };
 		A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */; };
 		A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */; };
@@ -618,6 +621,9 @@
 		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
 		A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberContextView.swift; sourceTree = "<group>"; };
 		A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberContext.swift; sourceTree = "<group>"; };
+		A87E2EE62B0B2A450095DDD3 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		A87E2EEA2B0B2B5E0095DDD3 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		A87E2EF12B0B348C0095DDD3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A88003D628F43BE400FDA878 /* AllReactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsListView.swift; sourceTree = "<group>"; };
 		A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsConfigurable.swift; sourceTree = "<group>"; };
 		A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsContract.swift; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 				2EE1E8EEB0A1DCADE4702DA8 /* Presenter */,
 				93BEAB679F91C5E2BF723CDD /* Interactor */,
 				FF5F2B46535EB0029B444FB9 /* Router */,
+				A87E2EEA2B0B2B5E0095DDD3 /* IntroView.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -1447,6 +1454,8 @@
 				A8FB1CCB2499CFDD001C9355 /* Services */,
 				A87701FE23336E6E002EA095 /* AppDelegate.swift */,
 				A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */,
+				A87E2EE62B0B2A450095DDD3 /* App.swift */,
+				A87E2EF12B0B348C0095DDD3 /* AppState.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -3067,6 +3076,7 @@
 				A86860632A0E5D3C00327385 /* IntroBuilder.swift in Sources */,
 				A86D36842563DDC3001FDBFC /* TimeCarouselPanel.swift in Sources */,
 				A87CF42923E1987D004189D3 /* SkeletonGradient.swift in Sources */,
+				A87E2EEB2B0B2B5E0095DDD3 /* IntroView.swift in Sources */,
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */,
 				A824C9E8273FCF0E000E61A1 /* EventDetailsBuilder.swift in Sources */,
@@ -3077,6 +3087,7 @@
 				A81AD12224976711009D07A3 /* PasswordValidationState.swift in Sources */,
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
+				A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */,
 				A8301D4326AECA6200519768 /* LineActivityIndicatorView.swift in Sources */,
 				A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */,
 				A824C9EA27412B06000E61A1 /* EventDetailsViewOutput.swift in Sources */,
@@ -3248,6 +3259,7 @@
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
 				A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */,
+				A87E2EF22B0B348C0095DDD3 /* AppState.swift in Sources */,
 				A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */,
 				A89F970424BD86760036B155 /* DeepLinkApplicationService.swift in Sources */,
 				A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */,

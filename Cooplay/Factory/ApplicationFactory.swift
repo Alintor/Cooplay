@@ -19,7 +19,12 @@ final class ApplicationFactory {
     fileprivate let userService: UserService
     fileprivate let defaultsStorage: DefaultsStorage
     
+    static func getStore() -> Store {
+        applicationFactory.store
+    }
+    
     init() {
+        FirebaseApp.configure()
         let defaultsStorage = DefaultsStorage(defaults: .standard)
         let authorizationService = AuthorizationService(
             firebaseAuth: Auth.auth(),
@@ -49,6 +54,7 @@ final class ApplicationFactory {
             ],
             reducers: [
                 NotificationBannerState.reducer,
+                AuthenticationState.reducer,
                 EventsState.reducer,
                 UserState.reducer
             ]

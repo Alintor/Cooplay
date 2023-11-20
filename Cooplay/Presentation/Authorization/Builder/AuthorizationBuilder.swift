@@ -24,7 +24,8 @@ final class AuthorizationBuilder {
         let presenter = AuthorizationPresenter(
             view: viewController,
             interactor: interactor,
-            router: router
+            router: router, 
+            store: ApplicationFactory.getStore()
         )
         presenter.configure(with: email)
         viewController.output = presenter

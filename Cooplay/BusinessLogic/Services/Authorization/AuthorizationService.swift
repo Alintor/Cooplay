@@ -39,7 +39,7 @@ protocol AuthorizationServiceType {
     func createAccaunt(
         email: String,
         password: String,
-        completion: @escaping (Result<User, AuthorizationServiceError>) -> Void
+        completion: @escaping (Result<Void, AuthorizationServiceError>) -> Void
     )
     func checkAccountExistence(
         email: String,
@@ -64,7 +64,11 @@ final class AuthorizationService {
 extension AuthorizationService: StateEffect {
     
     func perform(store: Store, action: StateAction) {
-        
+        switch action {
+        case .logout:
+            logout()
+        default: break
+        }
     }
     
 }
@@ -94,7 +98,7 @@ extension AuthorizationService: AuthorizationServiceType {
     func createAccaunt(
         email: String,
         password: String,
-        completion: @escaping (Result<User, AuthorizationServiceError>) -> Void) {
+        completion: @escaping (Result<Void, AuthorizationServiceError>) -> Void) {
         firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 completion(.failure(.unhandled(error: error)))
@@ -103,16 +107,20 @@ extension AuthorizationService: AuthorizationServiceType {
                 completion(.failure(.unknownError))
                 return
             }
-            // TODO: Add compact init
-            let user = User(
-                id: result.user.uid,
-                name: nil,
-                avatarPath: nil,
-                state: .unknown,
-                lateness: nil,
-                isOwner: nil
-            )
-            completion(.success(user))
+            let data = [
+                "id": result.user.uid,
+                "name": "",
+                "needStatusChangeNotifications": true,
+                "needReactionsForMeNotifications": true,
+                "needReactionsAllNotifications": true
+            ] as [String : Any]
+            Firestore.firestore().collection("Users").document(result.user.uid).setData(data) { (error) in
+                if let error = error {
+                    completion(.failure(.unhandled(error: error)))
+                } else {
+                    completion(.success(()))
+                }
+            }
         }
     }
     
