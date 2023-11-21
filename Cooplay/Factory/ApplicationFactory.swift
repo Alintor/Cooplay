@@ -50,7 +50,8 @@ final class ApplicationFactory {
                 authorizationService,
                 NotificationBannerService(),
                 eventService,
-                userService
+                userService,
+                NotificationsService()
             ],
             reducers: [
                 NotificationBannerState.reducer,

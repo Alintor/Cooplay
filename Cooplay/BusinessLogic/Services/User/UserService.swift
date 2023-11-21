@@ -101,6 +101,9 @@ extension UserService: Middleware {
                     store.dispatch(.showNetworkError(UserServiceError.editProfile))
                 }
             }
+            
+        case .registerNotificationToken(let token):
+            registerNotificationToken(token)
         default: break
         }
     }

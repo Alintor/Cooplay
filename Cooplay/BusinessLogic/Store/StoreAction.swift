@@ -35,4 +35,7 @@ enum StoreAction {
     case editActions(_ editActions: [EditAction])
     case showProfileProgress
     case hideProfileProgress
+    // Notifications
+    case registerNotificationToken(_ token: String)
+    case processNotificationUserInfo(_ userInfo: [AnyHashable: Any])
 }

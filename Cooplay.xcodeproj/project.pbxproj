@@ -243,6 +243,7 @@
 		A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE62B0B2A450095DDD3 /* App.swift */; };
 		A87E2EEB2B0B2B5E0095DDD3 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EEA2B0B2B5E0095DDD3 /* IntroView.swift */; };
 		A87E2EF22B0B348C0095DDD3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EF12B0B348C0095DDD3 /* AppState.swift */; };
+		A87E2EF52B0C89D30095DDD3 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EF42B0C89D30095DDD3 /* NotificationsService.swift */; };
 		A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003D628F43BE400FDA878 /* AllReactionsListView.swift */; };
 		A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */; };
 		A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */; };
@@ -624,6 +625,7 @@
 		A87E2EE62B0B2A450095DDD3 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A87E2EEA2B0B2B5E0095DDD3 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		A87E2EF12B0B348C0095DDD3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A87E2EF42B0C89D30095DDD3 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		A88003D628F43BE400FDA878 /* AllReactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsListView.swift; sourceTree = "<group>"; };
 		A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsConfigurable.swift; sourceTree = "<group>"; };
 		A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsContract.swift; sourceTree = "<group>"; };
@@ -1492,6 +1494,7 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A87E2EF32B0C899F0095DDD3 /* NotificationsService */,
 				A85F9CAF2AF6002000BBAE31 /* NotificationBannerService */,
 				A8FB1CD22499D7DD001C9355 /* Authorization */,
 				A87CF40B23E03CB7004189D3 /* User */,
@@ -2271,6 +2274,14 @@
 				A87CF49023ED71E2004189D3 /* NewEventMemberCell.xib */,
 			);
 			path = NewEventMemberCell;
+			sourceTree = "<group>";
+		};
+		A87E2EF32B0C899F0095DDD3 /* NotificationsService */ = {
+			isa = PBXGroup;
+			children = (
+				A87E2EF42B0C89D30095DDD3 /* NotificationsService.swift */,
+			);
+			path = NotificationsService;
 			sourceTree = "<group>";
 		};
 		A88003D828F43F6D00FDA878 /* Interactor */ = {
@@ -3275,6 +3286,7 @@
 				A85F9CAE2AF5FF9800BBAE31 /* Middleware.swift in Sources */,
 				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
 				A8D99A19292E142B00825B47 /* DeviceConstants.swift in Sources */,
+				A87E2EF52B0C89D30095DDD3 /* NotificationsService.swift in Sources */,
 				B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */,
 				A8A0F1022AFFB83800997DEA /* HomeNavigationBar.swift in Sources */,
 				CA4C78317EEA86360234C93F /* IntroRouter.swift in Sources */,

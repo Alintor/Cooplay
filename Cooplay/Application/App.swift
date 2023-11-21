@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct RuwusApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var state = AppState()
     
     var body: some Scene {

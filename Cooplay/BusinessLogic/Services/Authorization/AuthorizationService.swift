@@ -8,7 +8,6 @@
 
 import Foundation
 import Firebase
-import UserNotifications
 
 enum AuthorizationServiceError: Error {
     
@@ -141,7 +140,6 @@ extension AuthorizationService: AuthorizationServiceType {
     
     func logout() {
         try? firebaseAuth.signOut()
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         defaultsStorages?.clear()
     }
 }
