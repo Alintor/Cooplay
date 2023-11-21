@@ -21,7 +21,7 @@ final class EventsState {
         return events.filter({ $0.me.state == .declined })
     }
     
-    static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
+    static func reducer(state: GlobalState, action: StoreAction) -> GlobalState {
         switch action {
         case .updateEvents(let events):
             state.events.events = events

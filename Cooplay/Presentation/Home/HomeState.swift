@@ -51,7 +51,7 @@ class HomeState: ObservableObject {
     // MARK: - Methods
     
     func deselectEvent() {
-        store.send(.deselectEvent)
+        store.dispatch(.deselectEvent)
     }
     
 }

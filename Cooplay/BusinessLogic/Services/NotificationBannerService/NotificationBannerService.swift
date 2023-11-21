@@ -8,16 +8,16 @@
 
 import Foundation
 
-final class NotificationBannerService: StateEffect {
+final class NotificationBannerService: Middleware {
     
-    func perform(store: Store, action: StateAction) {
+    func perform(store: Store, action: StoreAction) {
         switch action {
         case .showNotificationBanner(let banner):
             DispatchQueue(label: "notificationBannerService", qos: .default).asyncAfter(deadline: .now() + banner.duration) {
-                store.send(.hideNotificationBanner)
+                store.dispatch(.hideNotificationBanner)
             }
         case .showNetworkError(let error):
-            store.send(.showNotificationBanner(.init(
+            store.dispatch(.showNotificationBanner(.init(
                 message: error.localizedDescription,
                 type: .networkError
             )))

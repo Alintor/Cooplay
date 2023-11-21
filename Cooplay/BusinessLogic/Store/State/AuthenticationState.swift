@@ -17,7 +17,7 @@ final class AuthenticationState {
         self.isAuthenticated = isAuthenticated
     }
     
-    static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
+    static func reducer(state: GlobalState, action: StoreAction) -> GlobalState {
         switch action {
         case .successAuthentication:
             state.authentication.isAuthenticationInProgress = false

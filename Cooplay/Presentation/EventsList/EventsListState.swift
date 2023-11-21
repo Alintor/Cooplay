@@ -57,11 +57,11 @@ class EventsListState: ObservableObject {
     // MARK: - Methods
     
     func selectEvent(_ event: Event) {
-        store.send(.selectEvent(event))
+        store.dispatch(.selectEvent(event))
     }
     
     func changeStatus(_ status: User.Status, for event: Event) {
-        store.send(.changeStatus(status, event: event))
+        store.dispatch(.changeStatus(status, event: event))
     }
     
     func openNewEvent() {

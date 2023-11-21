@@ -46,7 +46,7 @@ final class ApplicationFactory {
         self.defaultsStorage = defaultsStorage
         self.store = Store(
             state: GlobalState(isAuthenticated: authorizationService.isLoggedIn),
-            effects: [
+            middleware: [
                 authorizationService,
                 NotificationBannerService(),
                 eventService,
@@ -60,7 +60,7 @@ final class ApplicationFactory {
             ]
         )
         if authorizationService.isLoggedIn {
-            store.send(.successAuthentication)
+            store.dispatch(.successAuthentication)
         }
     }
 }

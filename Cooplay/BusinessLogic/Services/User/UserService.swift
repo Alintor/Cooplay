@@ -62,23 +62,23 @@ final class UserService {
     }
 }
 
-extension UserService: StateEffect {
+extension UserService: Middleware {
     
-    func perform(store: Store, action: StateAction) {
+    func perform(store: Store, action: StoreAction) {
         switch action {
         case .successAuthentication:
             fetchProfile { result in
                 switch result {
                 case .success(let profile):
-                    store.send(.updateProfile(profile))
+                    store.dispatch(.updateProfile(profile))
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
         case .logout:
             userListener = nil
         case .editActions(let editActions):
-            store.send(.showProfileProgress)
+            store.dispatch(.showProfileProgress)
             Task.detached {
                 do {
                     for editAction in editActions {
@@ -94,11 +94,11 @@ extension UserService: StateEffect {
                             try await self.uploadNewAvatar(image)
                         }
                     }
-                    store.send(.hideProfileProgress)
+                    store.dispatch(.hideProfileProgress)
                     
                 } catch {
-                    store.send(.hideProfileProgress)
-                    store.send(.showNetworkError(UserServiceError.editProfile))
+                    store.dispatch(.hideProfileProgress)
+                    store.dispatch(.showNetworkError(UserServiceError.editProfile))
                 }
             }
         default: break

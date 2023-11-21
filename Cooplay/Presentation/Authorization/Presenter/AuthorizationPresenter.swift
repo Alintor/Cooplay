@@ -46,7 +46,7 @@ final class AuthorizationPresenter {
             self.view.hideProgress()
             switch result {
             case .success:
-                store.send(.successAuthentication)
+                store.dispatch(.successAuthentication)
             case .failure(let error):
                 self.showError(error)
             }

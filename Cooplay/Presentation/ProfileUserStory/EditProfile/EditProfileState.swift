@@ -105,7 +105,7 @@ class EditProfileState: NSObject, ObservableObject {
     }
     
     func saveChange() {
-        store.send(.editActions(editActions))
+        store.dispatch(.editActions(editActions))
     }
     
 }

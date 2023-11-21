@@ -6,7 +6,7 @@
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
-protocol StateEffect {
+protocol Middleware {
     
-    func perform(store: Store, action: StateAction)
+    func perform(store: Store, action: StoreAction)
 }

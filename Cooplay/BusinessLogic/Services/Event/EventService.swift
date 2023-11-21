@@ -89,9 +89,9 @@ final class EventService {
     
 }
 
-extension EventService: StateEffect {
+extension EventService: Middleware {
     
-    func perform(store: Store, action: StateAction) {
+    func perform(store: Store, action: StoreAction) {
         switch action {
         case .successAuthentication:
             fetchEvents { [weak self] result in
@@ -103,12 +103,12 @@ extension EventService: StateEffect {
                         acceptedEvents.count == 1,
                         let activeEvent = acceptedEvents.first
                     {
-                        store.send(.selectEvent(activeEvent))
+                        store.dispatch(.selectEvent(activeEvent))
                     }
-                    store.send(.updateEvents(events.sorted(by: { $0.date < $1.date })))
+                    store.dispatch(.updateEvents(events.sorted(by: { $0.date < $1.date })))
                     self?.isFirstFetch = false
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -122,9 +122,9 @@ extension EventService: StateEffect {
             fetchEvent(id: selectedEvent.id) { result in
                 switch result {
                 case .success(let event):
-                    store.send(.updateActiveEvent(event))
+                    store.dispatch(.updateActiveEvent(event))
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -140,7 +140,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -149,7 +149,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -157,9 +157,9 @@ extension EventService: StateEffect {
             deleteEvent(event) { result in
                 switch result {
                 case .success:
-                    store.send(.deselectEvent)
+                    store.dispatch(.deselectEvent)
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -169,7 +169,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -179,7 +179,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
         case .addMembers(let members, let event):
@@ -187,7 +187,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
         case .removeMember(let member, let event):
@@ -195,7 +195,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
             
@@ -204,7 +204,7 @@ extension EventService: StateEffect {
                 switch result {
                 case .success: break
                 case .failure(let error):
-                    store.send(.showNetworkError(error))
+                    store.dispatch(.showNetworkError(error))
                 }
             }
         default: break

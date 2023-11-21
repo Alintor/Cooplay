@@ -59,7 +59,7 @@ class ProfileState: ObservableObject {
     }
     
     func logout() {
-        store.send(.logout)
+        store.dispatch(.logout)
     }
     
 }

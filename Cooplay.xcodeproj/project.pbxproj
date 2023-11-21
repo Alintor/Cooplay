@@ -155,9 +155,9 @@
 		A85F9CA12AF5198800BBAE31 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CA02AF5198800BBAE31 /* Animations.swift */; };
 		A85F9CA62AF5FC9300BBAE31 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CA52AF5FC9300BBAE31 /* Store.swift */; };
 		A85F9CA82AF5FCE500BBAE31 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CA72AF5FCE500BBAE31 /* GlobalState.swift */; };
-		A85F9CAA2AF5FE8600BBAE31 /* StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CA92AF5FE8600BBAE31 /* StateAction.swift */; };
+		A85F9CAA2AF5FE8600BBAE31 /* StoreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CA92AF5FE8600BBAE31 /* StoreAction.swift */; };
 		A85F9CAC2AF5FF4000BBAE31 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CAB2AF5FF4000BBAE31 /* Reducer.swift */; };
-		A85F9CAE2AF5FF9800BBAE31 /* StateEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CAD2AF5FF9800BBAE31 /* StateEffect.swift */; };
+		A85F9CAE2AF5FF9800BBAE31 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CAD2AF5FF9800BBAE31 /* Middleware.swift */; };
 		A85F9CB22AF6063E00BBAE31 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB12AF6063E00BBAE31 /* AuthenticationState.swift */; };
 		A85F9CB62AF61F8700BBAE31 /* ClosableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */; };
 		A85F9CB92AF64EB800BBAE31 /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB82AF64EB800BBAE31 /* HomeState.swift */; };
@@ -533,9 +533,9 @@
 		A85F9CA02AF5198800BBAE31 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		A85F9CA52AF5FC9300BBAE31 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		A85F9CA72AF5FCE500BBAE31 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
-		A85F9CA92AF5FE8600BBAE31 /* StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateAction.swift; sourceTree = "<group>"; };
+		A85F9CA92AF5FE8600BBAE31 /* StoreAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAction.swift; sourceTree = "<group>"; };
 		A85F9CAB2AF5FF4000BBAE31 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		A85F9CAD2AF5FF9800BBAE31 /* StateEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateEffect.swift; sourceTree = "<group>"; };
+		A85F9CAD2AF5FF9800BBAE31 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		A85F9CB12AF6063E00BBAE31 /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
 		A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosableModifier.swift; sourceTree = "<group>"; };
 		A85F9CB82AF64EB800BBAE31 /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
@@ -1800,9 +1800,9 @@
 			children = (
 				A85F9CB02AF6005A00BBAE31 /* State */,
 				A85F9CA52AF5FC9300BBAE31 /* Store.swift */,
-				A85F9CA92AF5FE8600BBAE31 /* StateAction.swift */,
+				A85F9CA92AF5FE8600BBAE31 /* StoreAction.swift */,
 				A85F9CAB2AF5FF4000BBAE31 /* Reducer.swift */,
-				A85F9CAD2AF5FF9800BBAE31 /* StateEffect.swift */,
+				A85F9CAD2AF5FF9800BBAE31 /* Middleware.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -3162,7 +3162,7 @@
 				A8BE18392B0201960039634E /* InvitesStatusContextView.swift in Sources */,
 				A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */,
 				A82FF2E023474C2700EE1807 /* Date.swift in Sources */,
-				A85F9CAA2AF5FE8600BBAE31 /* StateAction.swift in Sources */,
+				A85F9CAA2AF5FE8600BBAE31 /* StoreAction.swift in Sources */,
 				F36A34895BBD86EC81982DE0 /* EventsListInteractor.swift in Sources */,
 				A8352345237960C7005655FB /* InvitedEventCellViewModel.swift in Sources */,
 				A8BE18372B01F3B20039634E /* TimeCarouselPanelView.swift in Sources */,
@@ -3272,7 +3272,7 @@
 				A8301D4026AE8D0C00519768 /* StatusDetailsViewModel.swift in Sources */,
 				A8A0F1042AFFF67200997DEA /* Haptic.swift in Sources */,
 				A8D99A1E292E14CA00825B47 /* UserStatus.swift in Sources */,
-				A85F9CAE2AF5FF9800BBAE31 /* StateEffect.swift in Sources */,
+				A85F9CAE2AF5FF9800BBAE31 /* Middleware.swift in Sources */,
 				B05028F4AE015F56AC68ACCA /* IntroPresenter.swift in Sources */,
 				A8D99A19292E142B00825B47 /* DeviceConstants.swift in Sources */,
 				B44F80F01D40A68FA4193F58 /* IntroInteractor.swift in Sources */,

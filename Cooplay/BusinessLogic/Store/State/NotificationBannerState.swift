@@ -12,7 +12,7 @@ final class NotificationBannerState {
     
     var banner: NotificationBanner?
     
-    static func reducer(state: GlobalState, action: StateAction) -> GlobalState {
+    static func reducer(state: GlobalState, action: StoreAction) -> GlobalState {
         switch action {
         case .showNotificationBanner(let banner):
             state.notificationBanner.banner = banner

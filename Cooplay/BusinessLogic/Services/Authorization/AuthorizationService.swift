@@ -61,9 +61,9 @@ final class AuthorizationService {
     }
 }
 
-extension AuthorizationService: StateEffect {
+extension AuthorizationService: Middleware {
     
-    func perform(store: Store, action: StateAction) {
+    func perform(store: Store, action: StoreAction) {
         switch action {
         case .logout:
             logout()

@@ -65,11 +65,11 @@ class EventDetailsState: ObservableObject {
     // MARK: - Methods
     
     func changeStatus(_ status: User.Status) {
-        store.send(.changeStatus(status, event: event))
+        store.dispatch(.changeStatus(status, event: event))
     }
     
     func addReaction(_ reaction: Reaction?, to member: User) {
-        store.send(.addReaction(reaction, member: member, event: event))
+        store.dispatch(.addReaction(reaction, member: member, event: event))
     }
     
     func changeEditMode() {
@@ -85,39 +85,39 @@ class EventDetailsState: ObservableObject {
     }
     
     func close() {
-        store.send(.deselectEvent)
+        store.dispatch(.deselectEvent)
     }
     
     func sendMainReaction(to member: User) {
         guard let mainReaction = myReactions.first else { return }
         
-        store.send(.addReaction(Reaction(style: .emoji, value: mainReaction), member: member, event: event))
+        store.dispatch(.addReaction(Reaction(style: .emoji, value: mainReaction), member: member, event: event))
     }
     
     func changeGame(_ game: Game) {
-        store.send(.changeGame(game, event: event))
+        store.dispatch(.changeGame(game, event: event))
     }
     
     func changeDate(_ date: Date) {
         guard date != event.date else { return }
         
-        store.send(.changeDate(date, event: event))
+        store.dispatch(.changeDate(date, event: event))
     }
     
     func addMembers(_ members: [User]) {
-        store.send(.addMembers(members, event: event))
+        store.dispatch(.addMembers(members, event: event))
     }
     
     func deleteEvent() {
-        store.send(.deleteEvent(event))
+        store.dispatch(.deleteEvent(event))
     }
     
     func handleMemberAction(_ action: MemberContextAction, member: User) {
         switch action {
         case .makeOwner:
-            store.send(.makeOwner(member, event: event))
+            store.dispatch(.makeOwner(member, event: event))
         case .remove:
-            store.send(.removeMember(member, event: event))
+            store.dispatch(.removeMember(member, event: event))
         }
     }
     

@@ -6,4 +6,4 @@
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
-typealias Reducer = (GlobalState, StateAction) -> GlobalState
+typealias Reducer = (GlobalState, StoreAction) -> GlobalState

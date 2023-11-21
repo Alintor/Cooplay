@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StateAction {
+enum StoreAction {
     // Authentication
     case successAuthentication
     case failureAuthentication(_ error: Error)
