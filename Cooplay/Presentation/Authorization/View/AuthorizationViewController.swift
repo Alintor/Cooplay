@@ -172,10 +172,10 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
             let keyboardHeight = userInfo[Constant.keyboardHeightKey] as? CGFloat,
             let duration = userInfo[Constant.durationKey] as? TimeInterval
         else { return }
-        topConstraint.constant = 0
-        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
-        mainButtonBottomConstraint.isActive = true
-        mainButtonTopConstraint.isActive = false
+//        topConstraint.constant = 0
+//        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
+//        mainButtonBottomConstraint.isActive = true
+//        mainButtonTopConstraint.isActive = false
         UIView.animate(
             withDuration: duration,
             animations: { [weak self] in
@@ -192,9 +192,9 @@ final class AuthorizationViewController: UIViewController, AuthorizationViewInpu
     }
     
     func keyboardWillHide(keyboardHeight: CGFloat, duration: TimeInterval) {
-        topConstraint.constant = Constant.topConstraint
-        mainButtonBottomConstraint.isActive = false
-        mainButtonTopConstraint.isActive = true
+//        topConstraint.constant = Constant.topConstraint
+//        mainButtonBottomConstraint.isActive = false
+//        mainButtonTopConstraint.isActive = true
         navigationItem.title = nil
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1

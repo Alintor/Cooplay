@@ -246,27 +246,30 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
     private var prevDuration: TimeInterval = 0
     
     func keyboardWillShow(keyboardHeight: CGFloat, duration: TimeInterval) {
-        var duration = duration
-        if duration == 0 {
-            duration = prevDuration
-        }
-        var userInfo: [String: Any] = [
-            Constant.keyboardHeightKey: prevKeyboardHeight,
-            Constant.durationKey: duration - Constant.animationDelay
-        ]
-        NSObject.cancelPreviousPerformRequests(
-            withTarget: self,
-            selector: #selector(animateKeyboardShowing),
-            object: userInfo
+        let contentInset = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: keyboardHeight,
+            right: 0
         )
-        userInfo[Constant.keyboardHeightKey] = keyboardHeight
-        perform(
-            #selector(animateKeyboardShowing),
-            with: userInfo,
-            afterDelay: Constant.animationDelay
+        scrollView.contentInset = contentInset
+//        topConstraint.constant = 0
+//        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
+//        mainButtonBottomConstraint.isActive = true
+//        mainButtonTopConstraint.isActive = false
+        UIView.animate(
+            withDuration: duration,
+            animations: { [weak self] in
+                self?.titleLabel.alpha = 0
+                if DeviceConstants.isSmallScreen {
+                    self?.titleLabel.text = nil
+                }
+                self?.view.layoutIfNeeded()
+            },
+            completion: { [weak self] (_) in
+                self?.navigationItem.title = R.string.localizable.registrationTitle()
+            }
         )
-        prevKeyboardHeight = keyboardHeight
-        prevDuration = duration
     }
     
     @objc func animateKeyboardShowing(userInfo: [String: Any]) {
@@ -277,15 +280,14 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
         let contentInset = UIEdgeInsets(
             top: 0,
             left: 0,
-            bottom: keyboardHeight + actionButton.frame.height
-                + Constant.mainButtonBottomConstraint * 2,
+            bottom: keyboardHeight,
             right: 0
         )
         scrollView.contentInset = contentInset
-        topConstraint.constant = 0
-        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
-        mainButtonBottomConstraint.isActive = true
-        mainButtonTopConstraint.isActive = false
+//        topConstraint.constant = 0
+//        mainButtonBottomConstraint.constant = Constant.mainButtonBottomConstraint + keyboardHeight
+//        mainButtonBottomConstraint.isActive = true
+//        mainButtonTopConstraint.isActive = false
         UIView.animate(
             withDuration: duration,
             animations: { [weak self] in
@@ -303,9 +305,9 @@ final class RegistrationViewController: UIViewController, RegistrationViewInput 
     
     func keyboardWillHide(keyboardHeight: CGFloat, duration: TimeInterval) {
         scrollView.contentInset = .zero
-        topConstraint.constant = Constant.topConstraint
-        mainButtonBottomConstraint.isActive = false
-        mainButtonTopConstraint.isActive = true
+//        topConstraint.constant = Constant.topConstraint
+//        mainButtonBottomConstraint.isActive = false
+//        mainButtonTopConstraint.isActive = true
         navigationItem.title = nil
         UIView.animate(withDuration: duration) { [weak self] in
             self?.titleLabel.alpha = 1
