@@ -94,6 +94,15 @@ extension EventService: Middleware {
     func perform(store: Store, action: StoreAction) {
         switch action {
         case .successAuthentication:
+            store.dispatch(.fetchEvents)
+            
+        case .logout:
+            eventsListener?.remove()
+            activeEventListener?.remove()
+            eventsListener = nil
+            activeEventListener = nil
+            
+        case .fetchEvents:
             fetchEvents { [weak self] result in
                 switch result {
                 case .success(let events):
@@ -111,12 +120,6 @@ extension EventService: Middleware {
                     store.dispatch(.showNetworkError(error))
                 }
             }
-            
-        case .logout:
-            eventsListener?.remove()
-            activeEventListener?.remove()
-            eventsListener = nil
-            activeEventListener = nil
             
         case .selectEvent(let selectedEvent):
             fetchEvent(id: selectedEvent.id) { result in

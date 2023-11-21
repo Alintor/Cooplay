@@ -25,6 +25,9 @@ final class EventsState {
         switch action {
         case .updateEvents(let events):
             state.events.events = events
+            if let activeEvent = state.events.activeEvent, !events.contains(where: { $0.id == activeEvent.id }) {
+                state.events.activeEvent = nil
+            }
             return state
             
         case .updateActiveEvent(let event):

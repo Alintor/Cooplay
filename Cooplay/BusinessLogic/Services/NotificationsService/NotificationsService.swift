@@ -17,6 +17,7 @@ final class NotificationsService {
     
     private let notificationCenter: UNUserNotificationCenter
     private let firebaseAuth: Auth
+    private var inventedEventId: String?
     
     // MARK: - Init
     
@@ -98,7 +99,9 @@ final class NotificationsService {
     }
     
     private func updateAppBadge(inventedEventsCount: Int) {
-        UIApplication.shared.applicationIconBadgeNumber = inventedEventsCount
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = inventedEventsCount
+        }
     }
     
 }
@@ -122,7 +125,9 @@ extension NotificationsService: Middleware {
                     }
                 }
             }
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
             
         case .logout:
             notificationCenter.removeAllPendingNotificationRequests()
@@ -140,6 +145,8 @@ extension NotificationsService: Middleware {
                 store.dispatch(.selectEvent(event))
             case .invitation:
                 guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
+                
+                self.inventedEventId = eventId
                 //defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
                 //NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
             case .statusChange,
@@ -165,6 +172,10 @@ extension NotificationsService: Middleware {
             let inventedEvents = events.filter({ $0.me.state == .unknown })
             setupLocalNotifications(events: acceptedEvents)
             updateAppBadge(inventedEventsCount: inventedEvents.count)
+            if let event = events.first(where: { $0.id == self.inventedEventId }) {
+                inventedEventId = nil
+                store.dispatch(.selectEvent(event))
+            }
             
         default: break
         }

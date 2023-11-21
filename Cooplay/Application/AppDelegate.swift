@@ -39,6 +39,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("Did receive remote notification: \(userInfo)")
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        store.dispatch(.fetchEvents)
+    }
+    
+    // MARK: - Private Methods
+    
     private func setupAppearance() {
         let navigationBarAppearance = UINavigationBar.appearance()
         if #available(iOS 13.0, *) {

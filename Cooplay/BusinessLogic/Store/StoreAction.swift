@@ -18,6 +18,7 @@ enum StoreAction {
     case hideNotificationBanner
     case showNetworkError(_ error: Error)
     // Events
+    case fetchEvents
     case updateEvents(_ events: [Event])
     case updateActiveEvent(_ event: Event)
     case selectEvent(_ event: Event)
