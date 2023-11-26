@@ -33,7 +33,7 @@ enum StoreAction {
     case makeOwner(_ member: User, event: Event)
     // User
     case updateProfile(_ profile: Profile)
-    case editActions(_ editActions: [EditAction])
+    case profileEditActions(_ editActions: [EditAction])
     case showProfileProgress
     case hideProfileProgress
     // Notifications

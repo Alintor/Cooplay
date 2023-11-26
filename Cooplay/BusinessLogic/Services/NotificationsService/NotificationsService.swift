@@ -143,12 +143,11 @@ extension NotificationsService: Middleware {
                 else { return }
                 
                 store.dispatch(.selectEvent(event))
+                
             case .invitation:
                 guard let eventId = userInfo[GlobalConstant.eventIdKey] as? String else { return }
-                
                 self.inventedEventId = eventId
-                //defaultsStorage.set(value: eventId, forKey: .inventLinkEventId)
-                //NotificationCenter.default.post(name: .handleDeepLinkInvent, object: nil)
+                
             case .statusChange,
                  .takeEventOwner,
                  .addReaction:
@@ -164,6 +163,7 @@ extension NotificationsService: Middleware {
                 event.me = me
                 event.members.append(user)
                 store.dispatch(.selectEvent(event))
+                
             default: break
             }
             

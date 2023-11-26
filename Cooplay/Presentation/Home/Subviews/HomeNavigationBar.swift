@@ -29,6 +29,7 @@ struct HomeNavigationBar: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 16)
                 .clipped()
+                .padding(.leading, state.isActiveEventPresented ? 0 : -16)
             Spacer()
             if let profile = state.profile, !state.isShownProfile {
                 AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
@@ -46,6 +47,7 @@ struct HomeNavigationBar: View {
                 .blur(radius: 15)
                 .padding([.horizontal, .top], -30)
                 .frame(width: UIScreen.main.bounds.size.width)
+                .opacity(state.isActiveEventPresented ? 0 : 1)
                 .ignoresSafeArea()
         }
     }

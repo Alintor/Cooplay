@@ -77,7 +77,7 @@ extension UserService: Middleware {
             }
         case .logout:
             userListener = nil
-        case .editActions(let editActions):
+        case .profileEditActions(let editActions):
             store.dispatch(.showProfileProgress)
             Task.detached {
                 do {

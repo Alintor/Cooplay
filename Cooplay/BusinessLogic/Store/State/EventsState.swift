@@ -30,11 +30,8 @@ final class EventsState {
             }
             return state
             
-        case .updateActiveEvent(let event):
-            state.events.activeEvent = event
-            return state
-            
-        case .selectEvent(let event):
+        case .updateActiveEvent(let event),
+             .selectEvent(let event):
             state.events.activeEvent = event
             return state
             

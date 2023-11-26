@@ -148,6 +148,8 @@ struct EventDetailsView: View {
         ZStack {
             if showHeader {
                 titleView
+            } else if state.modeState.isEditMode {
+                TitleView(text: Localizable.eventDetailsEditTitle())
             }
             HStack {
                 if state.modeState.isEditMode {

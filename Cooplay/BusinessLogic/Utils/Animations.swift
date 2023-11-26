@@ -55,10 +55,10 @@ class NamespaceWrapper: ObservableObject {
 extension SwiftUI.Animation {
     
     static var customTransition: SwiftUI.Animation {
-        .interpolatingSpring(stiffness: 280, damping: 25)
+        //.interpolatingSpring(stiffness: 280, damping: 25)
         //.interpolatingSpring(stiffness: 300, damping: 28)
         //.interpolatingSpring(duration: 0.3)
-        //.snappy(duration: 0.3)
+        .snappy(duration: 0.3)
         //.smooth(duration: 0.3)
         //.spring(duration: 0.3)
     }
@@ -68,6 +68,7 @@ extension SwiftUI.Animation {
     }
     
     static var fastTransition: SwiftUI.Animation {
-        .interpolatingSpring(stiffness: 400, damping: 30)
+        //.interpolatingSpring(stiffness: 400, damping: 30)
+        .snappy(duration: 0.3)
     }
 }
