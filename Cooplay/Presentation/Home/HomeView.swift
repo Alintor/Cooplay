@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var state: HomeState
     @Namespace var namespace
     @State var showNewEvent = false
@@ -48,13 +49,18 @@ struct HomeView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
-        .coordinateSpace(name: GlobalConstant.CoordinateSpace.profile)
+        .coordinateSpace(name: GlobalConstant.CoordinateSpace.home)
         .animation(.customTransition, value: state.isShownProfile)
         .animation(.customTransition, value: showNewEvent)
         .animation(.customTransition, value: state.isNoEvents)
         .animation(.customTransition, value: state.invitesCount)
         .animation(.customTransition, value: state.isActiveEventPresented)
         .animation(.easeIn(duration: 0.2), value: state.profile)
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                state.fetchEvents()
+            }
+        }
     }
     
     // MARK: - Subviews
@@ -101,8 +107,8 @@ struct HomeView: View {
     
     var newEvent: some View {
         NewEventView { showNewEvent = false }
-        .closable { showNewEvent = false }
-        .transition(.move(edge: .trailing))
+            .closable(anchor: .trailing) { showNewEvent = false }
+            .transition(.move(edge: .trailing))
     }
     
 }

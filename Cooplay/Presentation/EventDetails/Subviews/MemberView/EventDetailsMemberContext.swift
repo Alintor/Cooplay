@@ -46,7 +46,7 @@ struct EventDetailsMemberContext: View {
             VStack(spacing: 0) {
                 if showInBottom {
                     Spacer()
-                        .frame(height: targetRect.origin.y)
+                        .frame(height: targetRect.origin.y + 72)
                 } else {
                     Spacer()
                     contextView

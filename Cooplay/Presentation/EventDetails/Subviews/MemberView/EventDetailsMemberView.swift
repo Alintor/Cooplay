@@ -22,7 +22,7 @@ struct EventDetailsMemberView: View {
     var body: some View {
         VStack(spacing: 0) {
             EventDetailsMemberInfoView(viewModel: viewModel)
-                .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile), handler: { memberInfoRect = $0 })
+                .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails), handler: { memberInfoRect = $0 })
                 .animation(nil)
                 .opacity(memberInfoOpacity)
                 .gesture(TapGesture(count: 2).onEnded({

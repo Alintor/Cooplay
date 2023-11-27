@@ -23,6 +23,7 @@ enum GlobalConstant {
         static let eventsList = "eventsList"
         static let eventDetails = "eventDetails"
         static let profile = "profile"
+        static let home = "home"
     }
     
     static var eventActivePeriodHours = 1

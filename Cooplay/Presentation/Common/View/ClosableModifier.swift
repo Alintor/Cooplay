@@ -40,17 +40,14 @@ struct ClosableModifier: ViewModifier {
                     let diff = gesture.location.x - gesture.startLocation.x
                     scale = 1 - diff / (anchor == .center ? 800 : 1000)
                     opacity = diff / 500
-                    if diff >= 100 {
+                    if diff >= 150 {
                         canContinueDrag = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            
-                            withAnimation(.easeIn(duration: 0.2)) {
-                                opacity = 0
-                                scale = 1
-                            }
-                            Haptic.play(style: .medium)
-                            closeHandler?()
+                        withAnimation(.easeIn(duration: 0.2)) {
+                            opacity = 0
+                            scale = 1
                         }
+                        Haptic.play(style: .soft)
+                        closeHandler?()
                     }
                 }
             })

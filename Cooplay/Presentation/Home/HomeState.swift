@@ -54,4 +54,8 @@ class HomeState: ObservableObject {
         store.dispatch(.deselectEvent)
     }
     
+    func fetchEvents() {
+        store.dispatch(.fetchEvents)
+    }
+    
 }
