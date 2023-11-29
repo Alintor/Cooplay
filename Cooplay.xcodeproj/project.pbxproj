@@ -299,6 +299,7 @@
 		A8BE18352B01E96C0039634E /* StatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE18342B01E96C0039634E /* StatusContextView.swift */; };
 		A8BE18372B01F3B20039634E /* TimeCarouselPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE18362B01F3B20039634E /* TimeCarouselPanelView.swift */; };
 		A8BE18392B0201960039634E /* InvitesStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE18382B0201960039634E /* InvitesStatusContextView.swift */; };
+		A8C0A8742B1732A1002E906B /* DeepLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C0A8732B1732A1002E906B /* DeepLinkService.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -682,6 +683,7 @@
 		A8BE18342B01E96C0039634E /* StatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusContextView.swift; sourceTree = "<group>"; };
 		A8BE18362B01F3B20039634E /* TimeCarouselPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselPanelView.swift; sourceTree = "<group>"; };
 		A8BE18382B0201960039634E /* InvitesStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesStatusContextView.swift; sourceTree = "<group>"; };
+		A8C0A8732B1732A1002E906B /* DeepLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkService.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -1494,6 +1496,7 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A8C0A8752B1732A6002E906B /* DeepLinkService */,
 				A87E2EF32B0C899F0095DDD3 /* NotificationsService */,
 				A85F9CAF2AF6002000BBAE31 /* NotificationBannerService */,
 				A8FB1CD22499D7DD001C9355 /* Authorization */,
@@ -2468,6 +2471,14 @@
 			path = States;
 			sourceTree = "<group>";
 		};
+		A8C0A8752B1732A6002E906B /* DeepLinkService */ = {
+			isa = PBXGroup;
+			children = (
+				A8C0A8732B1732A1002E906B /* DeepLinkService.swift */,
+			);
+			path = DeepLinkService;
+			sourceTree = "<group>";
+		};
 		A8D1D279235706CA00DA1089 /* ActiveEventCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3181,6 +3192,7 @@
 				A824C9F32742BB43000E61A1 /* AvatarItemView.swift in Sources */,
 				A87E2EE52B09FAED0095DDD3 /* EventDetailsMemberContext.swift in Sources */,
 				A824C9DD273FC287000E61A1 /* EventDetailsViewModel.swift in Sources */,
+				A8C0A8742B1732A1002E906B /* DeepLinkService.swift in Sources */,
 				A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */,
 				A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */,
 				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,

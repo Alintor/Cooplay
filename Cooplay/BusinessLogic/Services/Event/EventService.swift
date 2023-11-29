@@ -25,6 +25,7 @@ enum EventServiceError: Error {
     case addMember
     case removeMember
     case takeOwner
+    case addEvent
     case unhandled(error: Error)
 }
 
@@ -42,6 +43,7 @@ extension EventServiceError: LocalizedError {
         case .addMember: return "Не удалось добавить участников"
         case .removeMember: return "Не удалось исключить участника"
         case .takeOwner: return "Не удалось сделать лидером"
+        case .addEvent: return "Не удалось получить событие"
         case .unknownError: return nil // TODO:
         case .unhandled(let error): return error.localizedDescription
         }
@@ -208,6 +210,17 @@ extension EventService: Middleware {
                     store.dispatch(.showNetworkError(error))
                 }
             }
+            
+        case.addEvent(let eventId):
+            addEvent(eventId: eventId) { result in
+                switch result {
+                case .success(let event):
+                    store.dispatch(.selectEvent(event))
+                case .failure(let error):
+                    store.dispatch(.showNetworkError(error))
+                }
+            }
+            
         default: break
         }
     }
@@ -303,8 +316,8 @@ extension EventService: EventServiceType {
             firestore.collection("Events").document(eventId).updateData([
                 "members.\(user.id)": userDictionary
             ]) { (error) in
-                if let error = error {
-                    completion(.failure(.unhandled(error: error)))
+                if let _ = error {
+                    completion(.failure(.addEvent))
                 } else {
                     getEvent(id: eventId)
                 }
@@ -312,21 +325,23 @@ extension EventService: EventServiceType {
         }
         func getEvent(id: String) {
             firestore.collection("Events").document(id).getDocument { (snapshot, error) in
-                if let error = error {
-                    completion(.failure(.unhandled(error: error)))
+                if let _ = error {
+                    completion(.failure(.addEvent))
                     return
                 }
                 if let data = snapshot?.data(),
                     let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
                     completion(.success(event.getModel(userId: userId)))
                 } else {
-                    completion(.failure(.unknownError))
+                    completion(.failure(.addEvent))
                 }
             }
         }
         firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
             if let data = snapshot?.data(),
-                var user = try? FirestoreDecoder.decode(data, to: User.self) {
+                let profile = try? FirestoreDecoder.decode(data, to: Profile.self)
+            {
+                var user = profile.user
                 user.status = .unknown
                 user.isOwner = false
                 addUserToEvent(user: user)

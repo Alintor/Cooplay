@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Foundation
 
 class AppState: ObservableObject {
     
@@ -25,4 +26,11 @@ class AppState: ObservableObject {
             .removeDuplicates()
             .assign(to: &$isAuthenticated)
     }
+    
+    // MARK: - Methods
+    
+    func handleDeepLink(_ url: URL) {
+        store.dispatch(.handleDeepLink(url))
+    }
+    
 }

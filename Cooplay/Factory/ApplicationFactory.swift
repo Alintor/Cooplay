@@ -51,7 +51,8 @@ final class ApplicationFactory {
                 NotificationBannerService(),
                 eventService,
                 userService,
-                NotificationsService()
+                NotificationsService(),
+                DeepLinkService(defaultsStorage: defaultsStorage)
             ],
             reducers: [
                 NotificationBannerState.reducer,

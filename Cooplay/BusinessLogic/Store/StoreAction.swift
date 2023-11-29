@@ -31,6 +31,7 @@ enum StoreAction {
     case addMembers(_ members: [User], event: Event)
     case removeMember(_ member: User, event: Event)
     case makeOwner(_ member: User, event: Event)
+    case addEvent(_ eventId: String)
     // User
     case updateProfile(_ profile: Profile)
     case profileEditActions(_ editActions: [EditAction])
@@ -39,4 +40,6 @@ enum StoreAction {
     // Notifications
     case registerNotificationToken(_ token: String)
     case processNotificationUserInfo(_ userInfo: [AnyHashable: Any])
+    // DeepLinks
+    case handleDeepLink(_ url: URL)
 }

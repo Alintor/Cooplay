@@ -30,6 +30,9 @@ struct RuwusApp: App {
                 }
             }
             .animation(.customTransition, value: state.isAuthenticated)
+            .onOpenURL { url in
+                state.handleDeepLink(url)
+            }
         }
     }
 }
