@@ -79,7 +79,7 @@ struct EditProfileView: View {
                 }
             TextFieldView(
                 text: $state.name,
-                placeholder: Localizable.personalisationNickNameTextFieldPlaceholder()
+                placeholder: Localizable.editProfileNicknamePlaceholder()
             )
                 .padding(.horizontal, 24)
                 .focused($focusedField, equals: .name)

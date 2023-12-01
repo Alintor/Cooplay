@@ -61,7 +61,6 @@ protocol RegistrationRouterInput: AnyObject {
 
     func openAuthorization(with email: String?)
     func clearNavigationStack()
-    func openPersonalisation(with user: User)
 }
 
 // MARK: - Module Input

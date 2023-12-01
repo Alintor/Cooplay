@@ -80,7 +80,7 @@ extension AuthorizationInteractor: AuthorizationInteractorInput {
         completion: @escaping (Result<Void, AuthorizationError>) -> Void) {
         guard email.isEmail else {
             completion(.failure(.incorrectEmail(
-                message: R.string.localizable.authorizationErrorEmailIncorret())
+                message: R.string.localizable.authorizationErrorEmailIncorrect())
             ))
             return
         }

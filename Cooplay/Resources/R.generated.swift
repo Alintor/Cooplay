@@ -643,20 +643,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
-    /// Nib `ActiveEventCell`.
-    static let activeEventCell = _R.nib._ActiveEventCell()
     /// Nib `AvatarView`.
     static let avatarView = _R.nib._AvatarView()
-    /// Nib `EventCell`.
-    static let eventCell = _R.nib._EventCell()
-    /// Nib `InventedHeaderView`.
-    static let inventedHeaderView = _R.nib._InventedHeaderView()
-    /// Nib `InvitationsHeaderCell`.
-    static let invitationsHeaderCell = _R.nib._InvitationsHeaderCell()
-    /// Nib `InvitedEventCell`.
-    static let invitedEventCell = _R.nib._InvitedEventCell()
     /// Nib `NewEventGameCell`.
     static let newEventGameCell = _R.nib._NewEventGameCell()
     /// Nib `NewEventMemberCell`.
@@ -668,40 +658,10 @@ struct R: Rswift.Validatable {
     /// Nib `SearchMembersCell`.
     static let searchMembersCell = _R.nib._SearchMembersCell()
     
-    /// `UINib(name: "ActiveEventCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.activeEventCell) instead")
-    static func activeEventCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.activeEventCell)
-    }
-    
     /// `UINib(name: "AvatarView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avatarView) instead")
     static func avatarView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.avatarView)
-    }
-    
-    /// `UINib(name: "EventCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.eventCell) instead")
-    static func eventCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.eventCell)
-    }
-    
-    /// `UINib(name: "InventedHeaderView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.inventedHeaderView) instead")
-    static func inventedHeaderView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.inventedHeaderView)
-    }
-    
-    /// `UINib(name: "InvitationsHeaderCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.invitationsHeaderCell) instead")
-    static func invitationsHeaderCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.invitationsHeaderCell)
-    }
-    
-    /// `UINib(name: "InvitedEventCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.invitedEventCell) instead")
-    static func invitedEventCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.invitedEventCell)
     }
     
     /// `UINib(name: "NewEventGameCell", in: bundle)`
@@ -734,28 +694,8 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.searchMembersCell)
     }
     
-    static func activeEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
-      return R.nib.activeEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
-    }
-    
     static func avatarView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avatarView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-    
-    static func eventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
-      return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
-    }
-    
-    static func inventedHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.inventedHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-    
-    static func invitationsHeaderCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> InvitationsHeaderCell? {
-      return R.nib.invitationsHeaderCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? InvitationsHeaderCell
-    }
-    
-    static func invitedEventCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.invitedEventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
     static func newEventGameCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventGameCell? {
@@ -781,12 +721,8 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 7 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
   struct reuseIdentifier {
-    /// Reuse identifier `ActiveEventCell`.
-    static let activeEventCell: Rswift.ReuseIdentifier<ActiveEventCell> = Rswift.ReuseIdentifier(identifier: "ActiveEventCell")
-    /// Reuse identifier `EventCell`.
-    static let eventCell: Rswift.ReuseIdentifier<EventCell> = Rswift.ReuseIdentifier(identifier: "EventCell")
     /// Reuse identifier `NewEventGameCell`.
     static let newEventGameCell: Rswift.ReuseIdentifier<NewEventGameCell> = Rswift.ReuseIdentifier(identifier: "NewEventGameCell")
     /// Reuse identifier `NewEventMemberCell`.
@@ -801,20 +737,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 9 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
   struct storyboard {
     /// Storyboard `Authorization`.
     static let authorization = _R.storyboard.authorization()
-    /// Storyboard `EventsList`.
-    static let eventsList = _R.storyboard.eventsList()
     /// Storyboard `Intro`.
     static let intro = _R.storyboard.intro()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `NewEvent`.
     static let newEvent = _R.storyboard.newEvent()
-    /// Storyboard `Personalisation`.
-    static let personalisation = _R.storyboard.personalisation()
     /// Storyboard `Registration`.
     static let registration = _R.storyboard.registration()
     /// Storyboard `SearchGame`.
@@ -825,11 +757,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Authorization", bundle: ...)`
     static func authorization(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.authorization)
-    }
-    
-    /// `UIStoryboard(name: "EventsList", bundle: ...)`
-    static func eventsList(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.eventsList)
     }
     
     /// `UIStoryboard(name: "Intro", bundle: ...)`
@@ -845,11 +772,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "NewEvent", bundle: ...)`
     static func newEvent(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
-    }
-    
-    /// `UIStoryboard(name: "Personalisation", bundle: ...)`
-    static func personalisation(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.personalisation)
     }
     
     /// `UIStoryboard(name: "Registration", bundle: ...)`
@@ -892,7 +814,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 154 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 146 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -905,7 +827,7 @@ struct R: Rswift.Validatable {
       /// Value: Email
       static let registrationEmailTextFieldPlaceholder = Rswift.StringResource(key: "registration.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email введён не верно
-      static let authorizationErrorEmailIncorret = Rswift.StringResource(key: "authorization.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let authorizationErrorEmailIncorrect = Rswift.StringResource(key: "authorization.error.email.incorrect", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email введён не верно
       static let registrationErrorEmailIncorret = Rswift.StringResource(key: "registration.error.email.incorret", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: GG WP
@@ -930,8 +852,6 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Большая буква
       static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Будущие события
-      static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш свет угасает...
       static let arkanoidLose3Message = Rswift.StringResource(key: "arkanoid.lose.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во сколько
@@ -952,8 +872,6 @@ struct R: Rswift.Validatable {
       static let registrationLoginMessageHighlight = Rswift.StringResource(key: "registration.loginMessage.highlight", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Все реакции
       static let additionalReactionsTitle = Rswift.StringResource(key: "additionalReactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Все события
-      static let eventsListTitle = Rswift.StringResource(key: "eventsList.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
       static let authorizationTitle = Rswift.StringResource(key: "authorization.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы действительно хотите удалить данное событие?
@@ -1007,8 +925,6 @@ struct R: Rswift.Validatable {
       /// Value: Изменить
       static let editProfileChangeAvatar = Rswift.StringResource(key: "editProfile.changeAvatar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
-      static let personalisationChangeButtonTitle = Rswift.StringResource(key: "personalisation.changeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Изменить
       static let timeCarouselPanelChangeTitle = Rswift.StringResource(key: "timeCarouselPanel.change.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Или пригласите по ссылке
       static let searchMembersEmptySateDescription = Rswift.StringResource(key: "searchMembers.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1024,10 +940,8 @@ struct R: Rswift.Validatable {
       static let arkanoidStartMessage = Rswift.StringResource(key: "arkanoid.start.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Люди и тело
       static let reactionsSettingsCategory3Title = Rswift.StringResource(key: "reactionsSettings.category.3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Максимум %d символов
-      static let personalisationErrorNicknameMaxSymbols = Rswift.StringResource(key: "personalisation.error.nickname.maxSymbols", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Минимум %d символа
-      static let personalisationErrorNicknameMinSymbols = Rswift.StringResource(key: "personalisation.error.nickname.minSymbols", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Мои события
+      static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
       static let searchGameSearchBarPlaceholder = Rswift.StringResource(key: "searchGame.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Например, введите 'Overwatch' и посмотрите, что будет =)
@@ -1036,8 +950,6 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsTitle = Rswift.StringResource(key: "reactionsSettings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Настройки
       static let profileSettingsSectionSettingsTitle = Rswift.StringResource(key: "profileSettings.section.settings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Не должно быть пробелов
-      static let personalisationErrorNicknameSpace = Rswift.StringResource(key: "personalisation.error.nickname.space", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let statusDeclinedFull = Rswift.StringResource(key: "status.declined.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
@@ -1055,7 +967,7 @@ struct R: Rswift.Validatable {
       /// Value: Ник пользователя
       static let searchMembersSearchBarPlaceholder = Rswift.StringResource(key: "searchMembers.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Никнейм
-      static let personalisationNickNameTextFieldPlaceholder = Rswift.StringResource(key: "personalisation.nickNameTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let editProfileNicknamePlaceholder = Rswift.StringResource(key: "editProfile.nickname.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Объекты
       static let reactionsSettingsCategory8Title = Rswift.StringResource(key: "reactionsSettings.category.8.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
@@ -1088,8 +1000,6 @@ struct R: Rswift.Validatable {
       static let registrationPasswordConfirmTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordConfirmTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите свой статус
       static let notificationsStatusRemindTitle = Rswift.StringResource(key: "notifications.statusRemind.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Подтвердить
-      static let personalisationActionButtonTitle = Rswift.StringResource(key: "personalisation.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердить статус
       static let statusConfirmation = Rswift.StringResource(key: "status.confirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
@@ -1122,8 +1032,6 @@ struct R: Rswift.Validatable {
       static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
       static let statusUnknownShort = Rswift.StringResource(key: "status.unknown.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Приглашения
-      static let eventsListSectionsInvented = Rswift.StringResource(key: "eventsList.sections.invented", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашения
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
@@ -1180,8 +1088,6 @@ struct R: Rswift.Validatable {
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сохранить изменения
       static let editProfileSaveButton = Rswift.StringResource(key: "editProfile.saveButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Такой ник уже занят
-      static let personalisationErrorNicknameAlreadyExist = Rswift.StringResource(key: "personalisation.error.nickname.alreadyExist", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static let notificationsStatusRemindMessage = Rswift.StringResource(key: "notifications.statusRemind.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Убить время
@@ -1229,8 +1135,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Email введён не верно
-      static func authorizationErrorEmailIncorret(_: Void = ()) -> String {
-        return NSLocalizedString("authorization.error.email.incorret", bundle: R.hostingBundle, comment: "")
+      static func authorizationErrorEmailIncorrect(_: Void = ()) -> String {
+        return NSLocalizedString("authorization.error.email.incorrect", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Email введён не верно
@@ -1293,11 +1199,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.passwordBigSymbolLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Будущие события
-      static func eventsListSectionsFuture(_: Void = ()) -> String {
-        return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: Ваш свет угасает...
       static func arkanoidLose3Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.3.message", bundle: R.hostingBundle, comment: "")
@@ -1346,11 +1247,6 @@ struct R: Rswift.Validatable {
       /// Value: Все реакции
       static func additionalReactionsTitle(_: Void = ()) -> String {
         return NSLocalizedString("additionalReactions.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Все события
-      static func eventsListTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eventsList.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Вход
@@ -1484,11 +1380,6 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Изменить
-      static func personalisationChangeButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("personalisation.changeButton.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Изменить
       static func timeCarouselPanelChangeTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeCarouselPanel.change.title", bundle: R.hostingBundle, comment: "")
       }
@@ -1528,14 +1419,9 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("reactionsSettings.category.3.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Максимум %d символов
-      static func personalisationErrorNicknameMaxSymbols(_ value1: Int) -> String {
-        return String(format: NSLocalizedString("personalisation.error.nickname.maxSymbols", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// Value: Минимум %d символа
-      static func personalisationErrorNicknameMinSymbols(_ value1: Int) -> String {
-        return String(format: NSLocalizedString("personalisation.error.nickname.minSymbols", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      /// Value: Мои события
+      static func eventsListSectionsFuture(_: Void = ()) -> String {
+        return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Название игры
@@ -1556,11 +1442,6 @@ struct R: Rswift.Validatable {
       /// Value: Настройки
       static func profileSettingsSectionSettingsTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.section.settings.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Не должно быть пробелов
-      static func personalisationErrorNicknameSpace(_: Void = ()) -> String {
-        return NSLocalizedString("personalisation.error.nickname.space", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не пойду
@@ -1604,8 +1485,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Никнейм
-      static func personalisationNickNameTextFieldPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("personalisation.nickNameTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      static func editProfileNicknamePlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.nickname.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Объекты
@@ -1688,11 +1569,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("notifications.statusRemind.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Подтвердить
-      static func personalisationActionButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("personalisation.actionButton.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: Подтвердить статус
       static func statusConfirmation(_: Void = ()) -> String {
         return NSLocalizedString("status.confirmation", bundle: R.hostingBundle, comment: "")
@@ -1771,11 +1647,6 @@ struct R: Rswift.Validatable {
       /// Value: Приглашен
       static func statusUnknownShort(_: Void = ()) -> String {
         return NSLocalizedString("status.unknown.short", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Приглашения
-      static func eventsListSectionsInvented(_: Void = ()) -> String {
-        return NSLocalizedString("eventsList.sections.invented", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приглашения
@@ -1918,11 +1789,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("editProfile.saveButton", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Такой ник уже занят
-      static func personalisationErrorNicknameAlreadyExist(_: Void = ()) -> String {
-        return NSLocalizedString("personalisation.error.nickname.alreadyExist", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
       static func notificationsStatusRemindMessage(_ value1: Int, _ value2: String) -> String {
         return String(format: NSLocalizedString("notifications.statusRemind.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
@@ -2000,36 +1866,10 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _ActiveEventCell.validate()
-      try _InvitedEventCell.validate()
       try _NewEventGameCell.validate()
       try _NewEventMemberCell.validate()
       try _SearchGameCell.validate()
       try _SearchMembersCell.validate()
-    }
-    
-    struct _ActiveEventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = ActiveEventCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "ActiveEventCell"
-      let name = "ActiveEventCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActiveEventCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActiveEventCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.arrowDown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.arrowDown' is used in nib 'ActiveEventCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'ActiveEventCell', but couldn't be loaded.") }
-        }
-      }
-      
-      fileprivate init() {}
     }
     
     struct _AvatarView: Rswift.NibResourceType {
@@ -2038,64 +1878,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _EventCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = EventCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "EventCell"
-      let name = "EventCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _InventedHeaderView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "InventedHeaderView"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _InvitationsHeaderCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "InvitationsHeaderCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> InvitationsHeaderCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? InvitationsHeaderCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _InvitedEventCell: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "InvitedEventCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.details", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.details' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'InvitedEventCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'InvitedEventCell', but couldn't be loaded.") }
-        }
       }
       
       fileprivate init() {}
@@ -2212,11 +1994,9 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try authorization.validate()
-      try eventsList.validate()
       try intro.validate()
       try launchScreen.validate()
       try newEvent.validate()
-      try personalisation.validate()
       try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
@@ -2244,30 +2024,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'Authorization', but couldn't be loaded.") }
         }
         if _R.storyboard.authorization().authorizationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authorizationViewController' could not be loaded from storyboard 'Authorization' as 'AuthorizationViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct eventsList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = EventsListViewController
-      
-      let bundle = R.hostingBundle
-      let eventsListViewController = StoryboardViewControllerResource<EventsListViewController>(identifier: "EventsListViewController")
-      let name = "EventsList"
-      
-      func eventsListViewController(_: Void = ()) -> EventsListViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventsListViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.plus", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.plus' is used in storyboard 'EventsList', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'EventsList', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'EventsList', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'EventsList', but couldn't be loaded.") }
-        }
-        if _R.storyboard.eventsList().eventsListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventsListViewController' could not be loaded from storyboard 'EventsList' as 'EventsListViewController'.") }
       }
       
       fileprivate init() {}
@@ -2335,31 +2091,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
         }
         if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct personalisation: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = PersonalisationViewController
-      
-      let bundle = R.hostingBundle
-      let name = "Personalisation"
-      let personalisationViewController = StoryboardViewControllerResource<PersonalisationViewController>(identifier: "PersonalisationViewController")
-      
-      func personalisationViewController(_: Void = ()) -> PersonalisationViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: personalisationViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.camera", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.camera' is used in storyboard 'Personalisation', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Personalisation', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Personalisation', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "red", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red' is used in storyboard 'Personalisation', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Personalisation', but couldn't be loaded.") }
-        }
-        if _R.storyboard.personalisation().personalisationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'personalisationViewController' could not be loaded from storyboard 'Personalisation' as 'PersonalisationViewController'.") }
       }
       
       fileprivate init() {}

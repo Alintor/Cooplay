@@ -51,7 +51,7 @@ protocol AuthorizationInteractorInput: AnyObject {
 
 // MARK: - Router
 
-protocol AuthorizationRouterInput: StartRoutable {
+protocol AuthorizationRouterInput {
 
     func openRegistration(with email: String?)
     func clearNavigationStack()

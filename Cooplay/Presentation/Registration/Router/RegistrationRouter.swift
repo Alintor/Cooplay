@@ -31,8 +31,4 @@ extension RegistrationRouter: RegistrationRouterInput {
         navigationStack?.remove(at: 1)
         navigationStack.map { rootViewController?.navigationController?.viewControllers = $0 }
     }
-    
-    func openPersonalisation(with user: User) {
-        rootViewController?.push(PersonalisationBuilder().build(user: user))
-    }
 }

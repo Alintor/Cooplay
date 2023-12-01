@@ -26,6 +26,7 @@ struct ActivityIndicatorModifier: ViewModifier {
 }
 
 extension View {
+    
     func activityIndicator(isShown: Binding<Bool>) -> some View {
         self.modifier(ActivityIndicatorModifier(isShown: isShown))
     }

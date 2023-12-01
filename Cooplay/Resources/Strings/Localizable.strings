@@ -49,10 +49,8 @@
 "eventMemberMenuItem.delete" = "Исключить";
 
 // MARK: - Events list
-"eventsList.title" = "Все события";
-"eventsList.sections.invented" = "Приглашения";
 "eventsList.sections.active" = "Ближайшее событие";
-"eventsList.sections.future" = "Будущие события";
+"eventsList.sections.future" = "Мои события";
 "eventsList.sections.declined" = "Отклоненные события";
 "eventsList.sections.invited" = "Приглашения";
 "eventsList.emptySate.title" = "Здесь будут все ваши события";
@@ -114,7 +112,7 @@
 "authorization.actionButton.title" = "Войти";
 "authorization.registerMessage" = "Нет аккаунта? Создать аккаунт";
 "authorization.registerMessage.highlight" = "Создать аккаунт";
-"authorization.error.email.incorret" = "Email введён не верно";
+"authorization.error.email.incorrect" = "Email введён не верно";
 "authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
 "authorization.error.password.wrong" = "Неверный пароль";
 
@@ -135,13 +133,6 @@
 
 // MARK: - Personalisation
 "personalisation.title" = "Персонализация";
-"personalisation.actionButton.title" = "Подтвердить";
-"personalisation.changeButton.title" = "Изменить";
-"personalisation.nickNameTextField.placeholder" = "Никнейм";
-"personalisation.error.nickname.minSymbols" = "Минимум %d символа";
-"personalisation.error.nickname.maxSymbols" = "Максимум %d символов";
-"personalisation.error.nickname.alreadyExist" = "Такой ник уже занят";
-"personalisation.error.nickname.space" = "Не должно быть пробелов";
 
 // MARK: - Profile
 "profile.title" = "Профиль";
@@ -170,6 +161,7 @@
 "editProfile.alert.choosePhoto" = "Выбрать из галереи";
 "editProfile.permissionsAlert.title" = "Для доступа к камере нужно разрешение";
 "editProfile.permissionsAlert.setting" = "Открыть настройки";
+"editProfile.nickname.placeholder" = "Никнейм";
 
 // MARK: - ReactionsSettings
 "reactionsSettings.title" = "Настройка реакции";
