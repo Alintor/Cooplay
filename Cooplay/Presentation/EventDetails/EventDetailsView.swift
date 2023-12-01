@@ -34,14 +34,14 @@ struct EventDetailsView: View {
                     if state.modeState.isEditMode {
                         EventDetailsEditInfoView()
                             .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails)) { rect in
-                                let offset = rect.origin.y - 16
-                                if offset >= 150, canContinueOffset {
+                                let offset = rect.origin.y - 80
+                                if offset >= 100, canContinueOffset, state.modeState.isEditMode {
                                     canContinueOffset = false
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         state.changeEditMode()
                                     }
                                 }
-                                showHeader = offset <= -84
+                                if offset <= 0 && state.modeState.isEditMode { canContinueOffset = true }
                             }
                             .padding(EdgeInsets(top: 64, leading: 16, bottom: 24, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
@@ -56,14 +56,14 @@ struct EventDetailsView: View {
                             .opacity(showHeader ? 0 : 1)
                             .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails)) { rect in
                                 let offset = rect.origin.y - 16
-                                if offset >= 100, canContinueOffset {
+                                if offset >= 110, canContinueOffset, !state.modeState.isEditMode {
                                     canContinueOffset = false
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         Haptic.play(style: .soft)
                                         state.close()
                                     }
                                 }
-                                if offset <= 0 { canContinueOffset = true }
+                                if offset <= 0 && !state.modeState.isEditMode { canContinueOffset = true }
                                 showHeader = offset <= -84
                             }
                             .padding(.bottom, 24)
@@ -200,6 +200,7 @@ struct EventDetailsView: View {
                         .clipShape(.rect(cornerRadius: 24, style: .continuous))
                         .transition(.scale.combined(with: .opacity))
                         .onTapGesture {
+                            canContinueOffset = false
                             state.changeEditMode()
                         }
                 case .member: EmptyView()

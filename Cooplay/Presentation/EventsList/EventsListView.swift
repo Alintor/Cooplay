@@ -76,7 +76,6 @@ struct EventsListView: View {
         .background(Color(.actionAccent))
         .clipShape(.rect(cornerRadius: 48, style: .continuous))
         .matchedGeometryEffect(id: MatchedAnimations.newEventButton.name, in: namespace.id)
-        .shadow(color: Color(.background), radius: 5)
         .padding(.bottom, 8)
         .background {
             TransparentBlurView(removeAllFilters: false)

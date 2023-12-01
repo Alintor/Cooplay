@@ -20,6 +20,7 @@ struct EventDetailsInfoView: View {
                 .matchedGeometryEffect(id: MatchedAnimations.gameCover(state.event.id).name, in: namespace.id)
             VStack(spacing: 2) {
                 Text(state.event.game.name)
+                    .multilineTextAlignment(.center)
                     .font(.system(size: 28, weight: .regular))
                     .foregroundColor(Color(.textPrimary))
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -30,6 +31,7 @@ struct EventDetailsInfoView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
             }
+            .padding(.horizontal, 8)
         }
     }
     
