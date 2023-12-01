@@ -33,6 +33,16 @@ struct EventDetailsView: View {
                 LazyVStack(spacing: 0) {
                     if state.modeState.isEditMode {
                         EventDetailsEditInfoView()
+                            .handleRect(in: .named(GlobalConstant.CoordinateSpace.eventDetails)) { rect in
+                                let offset = rect.origin.y - 16
+                                if offset >= 150, canContinueOffset {
+                                    canContinueOffset = false
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        state.changeEditMode()
+                                    }
+                                }
+                                showHeader = offset <= -84
+                            }
                             .padding(EdgeInsets(top: 64, leading: 16, bottom: 24, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
                         EventDetailsAddMemberView()
@@ -49,10 +59,11 @@ struct EventDetailsView: View {
                                 if offset >= 100, canContinueOffset {
                                     canContinueOffset = false
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                        Haptic.play(style: .medium)
+                                        Haptic.play(style: .soft)
                                         state.close()
                                     }
                                 }
+                                if offset <= 0 { canContinueOffset = true }
                                 showHeader = offset <= -84
                             }
                             .padding(.bottom, 24)
