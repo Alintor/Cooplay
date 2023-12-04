@@ -22,9 +22,9 @@ extension UserServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .fetchProfile: return "Не удалось получить данные профиля"
-        case .editProfile: return "Не удалось изменить профиль"
-        case .unknownError: return nil // TODO:
+        case .fetchProfile: return Localizable.errorsUserServiceFetchProfile()
+        case .editProfile: return Localizable.errorsUserServiceEditProfile()
+        case .unknownError: return Localizable.errorsUnknown()
         case .unhandled(let error): return error.localizedDescription
         }
     }

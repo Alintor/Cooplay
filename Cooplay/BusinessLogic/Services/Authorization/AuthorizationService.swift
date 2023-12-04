@@ -21,7 +21,7 @@ extension AuthorizationServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .authorizationError(let error): return error.localizedDescription
-        case .unknownError: return nil // TODO:
+        case .unknownError: return Localizable.errorsUnknown()
         case .unhandled(let error): return error.localizedDescription
         }
     }

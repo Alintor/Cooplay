@@ -814,7 +814,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 146 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 160 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -958,6 +958,32 @@ struct R: Rswift.Validatable {
       static let searchGameEmptyResultsTitle = Rswift.StringResource(key: "searchGame.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не получилось найти человека =(
       static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось добавить реакцию
+      static let errorsEventsServiceAddReaction = Rswift.StringResource(key: "errors.eventsService.addReaction", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось добавить участников
+      static let errorsEventsServiceAddMember = Rswift.StringResource(key: "errors.eventsService.addMember", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось загрузить событие
+      static let errorsEventsServiceFetchActiveEvent = Rswift.StringResource(key: "errors.eventsService.fetchActiveEvent", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось загрузить события
+      static let errorsEventsServiceFetchEvents = Rswift.StringResource(key: "errors.eventsService.fetchEvents", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось изменить дату события
+      static let errorsEventsServiceChangeDate = Rswift.StringResource(key: "errors.eventsService.changeDate", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось изменить игру
+      static let errorsEventsServiceChangeGame = Rswift.StringResource(key: "errors.eventsService.changeGame", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось изменить профиль
+      static let errorsUserServiceEditProfile = Rswift.StringResource(key: "errors.userService.editProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось изменить статус
+      static let errorsEventsServiceChangeStatus = Rswift.StringResource(key: "errors.eventsService.changeStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось исключить участника
+      static let errorsEventsServiceRemoveMember = Rswift.StringResource(key: "errors.eventsService.removeMember", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось получить данные профиля
+      static let errorsUserServiceFetchProfile = Rswift.StringResource(key: "errors.userService.fetchProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось получить событие
+      static let errorsEventsServiceAddEvent = Rswift.StringResource(key: "errors.eventsService.addEvent", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось сделать лидером
+      static let errorsEventsServiceTakeOwner = Rswift.StringResource(key: "errors.eventsService.takeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось удалить событие
+      static let errorsEventsServiceDeleteEvent = Rswift.StringResource(key: "errors.eventsService.deleteEvent", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Неверный пароль
       static let authorizationErrorPasswordWrong = Rswift.StringResource(key: "authorization.error.password.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Недавние
@@ -1038,6 +1064,8 @@ struct R: Rswift.Validatable {
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Произошла неизвестная ошибка
+      static let errorsUnknown = Rswift.StringResource(key: "errors.unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Профиль
       static let profileTitle = Rswift.StringResource(key: "profile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Путешествия и места
@@ -1464,6 +1492,71 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchMembers.emptyResults.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Не удалось добавить реакцию
+      static func errorsEventsServiceAddReaction(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.addReaction", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось добавить участников
+      static func errorsEventsServiceAddMember(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.addMember", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось загрузить событие
+      static func errorsEventsServiceFetchActiveEvent(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.fetchActiveEvent", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось загрузить события
+      static func errorsEventsServiceFetchEvents(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.fetchEvents", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось изменить дату события
+      static func errorsEventsServiceChangeDate(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.changeDate", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось изменить игру
+      static func errorsEventsServiceChangeGame(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.changeGame", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось изменить профиль
+      static func errorsUserServiceEditProfile(_: Void = ()) -> String {
+        return NSLocalizedString("errors.userService.editProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось изменить статус
+      static func errorsEventsServiceChangeStatus(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.changeStatus", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось исключить участника
+      static func errorsEventsServiceRemoveMember(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.removeMember", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось получить данные профиля
+      static func errorsUserServiceFetchProfile(_: Void = ()) -> String {
+        return NSLocalizedString("errors.userService.fetchProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось получить событие
+      static func errorsEventsServiceAddEvent(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.addEvent", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось сделать лидером
+      static func errorsEventsServiceTakeOwner(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.takeOwner", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось удалить событие
+      static func errorsEventsServiceDeleteEvent(_: Void = ()) -> String {
+        return NSLocalizedString("errors.eventsService.deleteEvent", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Неверный пароль
       static func authorizationErrorPasswordWrong(_: Void = ()) -> String {
         return NSLocalizedString("authorization.error.password.wrong", bundle: R.hostingBundle, comment: "")
@@ -1662,6 +1755,11 @@ struct R: Rswift.Validatable {
       /// Value: Придумайте пароль
       static func registrationPasswordTextFieldPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("registration.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Произошла неизвестная ошибка
+      static func errorsUnknown(_: Void = ()) -> String {
+        return NSLocalizedString("errors.unknown", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Профиль

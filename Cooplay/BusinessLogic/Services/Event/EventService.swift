@@ -33,18 +33,18 @@ extension EventServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .fetchEvents: return "Не удалось загрузить события"
-        case .fetchActiveEvent: return "Не удалось загрузить событие"
-        case .changeStatus: return "Не удалось изменить статус"
-        case .addReaction: return "Не удалось добавить реакцию"
-        case .deleteEvent: return "Не удалось удалить событие"
-        case .changeGame: return "Не удалось изменить игру"
-        case .changeDate: return "Не удалось изменить дату события"
-        case .addMember: return "Не удалось добавить участников"
-        case .removeMember: return "Не удалось исключить участника"
-        case .takeOwner: return "Не удалось сделать лидером"
-        case .addEvent: return "Не удалось получить событие"
-        case .unknownError: return nil // TODO:
+        case .fetchEvents: return Localizable.errorsEventsServiceFetchEvents()
+        case .fetchActiveEvent: return Localizable.errorsEventsServiceFetchActiveEvent()
+        case .changeStatus: return Localizable.errorsEventsServiceChangeStatus()
+        case .addReaction: return Localizable.errorsEventsServiceAddReaction()
+        case .deleteEvent: return Localizable.errorsEventsServiceDeleteEvent()
+        case .changeGame: return Localizable.errorsEventsServiceChangeGame()
+        case .changeDate: return Localizable.errorsEventsServiceChangeDate()
+        case .addMember: return Localizable.errorsEventsServiceAddMember()
+        case .removeMember: return Localizable.errorsEventsServiceRemoveMember()
+        case .takeOwner: return Localizable.errorsEventsServiceTakeOwner()
+        case .addEvent: return Localizable.errorsEventsServiceAddEvent()
+        case .unknownError: return Localizable.errorsUnknown()
         case .unhandled(let error): return error.localizedDescription
         }
     }

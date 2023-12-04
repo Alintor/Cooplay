@@ -14,6 +14,24 @@
 "common.choose" = "Выбрать %@";
 "common.delete" = "Удалить";
 
+// MARK: - Errors
+
+"errors.unknown" = "Произошла неизвестная ошибка";
+"errors.userService.fetchProfile" = "Не удалось получить данные профиля";
+"errors.userService.editProfile" = "Не удалось изменить профиль";
+"errors.eventsService.fetchEvents" = "Не удалось загрузить события";
+"errors.eventsService.fetchActiveEvent" = "Не удалось загрузить событие";
+"errors.eventsService.changeStatus" = "Не удалось изменить статус";
+"errors.eventsService.addReaction" = "Не удалось добавить реакцию";
+"errors.eventsService.deleteEvent" = "Не удалось удалить событие";
+"errors.eventsService.changeGame" = "Не удалось изменить игру";
+"errors.eventsService.changeDate" = "Не удалось изменить дату события";
+"errors.eventsService.addMember" = "Не удалось добавить участников";
+"errors.eventsService.removeMember" = "Не удалось исключить участника";
+"errors.eventsService.takeOwner" = "Не удалось сделать лидером";
+"errors.eventsService.addEvent" = "Не удалось получить событие";
+
+
 // MARK: - Status
 "status.accepted.short" = "Пойду";
 "status.ontime.short" = "Вовремя";

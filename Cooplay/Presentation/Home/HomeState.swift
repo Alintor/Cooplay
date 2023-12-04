@@ -43,7 +43,14 @@ class HomeState: ObservableObject {
             .removeDuplicates()
             .assign(to: &$isNoEvents)
         store.state
-            .map { $0.events.inventedEvents.count }
+            .map {
+                let invitesCount = $0.events.inventedEvents.count
+                if $0.events.activeEvent?.isAgreed == false {
+                    return invitesCount - 1
+                } else {
+                    return invitesCount
+                }
+            }
             .removeDuplicates()
             .assign(to: &$invitesCount)
     }
