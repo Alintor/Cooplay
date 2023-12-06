@@ -50,30 +50,6 @@ extension EventServiceError: LocalizedError {
     }
 }
 
-protocol EventServiceType {
-    
-    func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void)
-    func createNewEvent(_ request: NewEventRequest)
-    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration?
-    func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void)
-    func changeStatus(
-        for event: Event,
-        completion: @escaping (Result<Void, EventServiceError>) -> Void
-    )
-    func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-    func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-    func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-    func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-    func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-    func takeOwnerRulesToMember(
-        _ member: User,
-        forEvent event: Event,
-        completion: @escaping (Result<Void, EventServiceError>) -> Void
-    )
-    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void)
-}
-
-
 final class EventService {
     
     private let firebaseAuth: Auth
@@ -89,7 +65,226 @@ final class EventService {
         self.firebaseFunctions = firebaseFunctions
     }
     
+    // MARK: - Private Methods
+    
+    private func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
+        eventsListener?.remove()
+        eventsListener = nil
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
+        eventsListener = firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
+            if let _ = error {
+                completion(.failure(.fetchEvents))
+                return
+            }
+            let response = snapshot?.documents.compactMap({
+                return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
+            })
+            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
+                completion(.failure(.fetchEvents))
+                return
+            }
+            let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hours)}
+            completion(.success(filteredEvents))
+            let overdueEvents = events.filter { $0.date < (Date() - GlobalConstant.eventOverdueMonths.months )}
+            for overdueEvent in overdueEvents {
+                Task {
+                    do {
+                        try await self.deleteEvent(overdueEvent, sendNotification: false)
+                    }
+                    catch { }
+                }
+            }
+        }
+        
+    }
+    
+    func createNewEvent(_ request: NewEventRequest) {
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        func createEvent(user: User) {
+            var members = request.members?.map({ user -> User in
+                var member = user
+                member.status = .unknown
+                member.isOwner = false
+                member.reactions = nil
+                return member
+            }) ?? []
+            members.append(user)
+            guard var data = request.dictionary else { return }
+            var membersDictionary = [String: Any]()
+            for member in members {
+                membersDictionary[member.id] = member.dictionary
+            }
+            data["members"] = membersDictionary
+            firestore.collection("Events").document(request.id).setData(data)
+            
+        }
+        firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
+            if let data = snapshot?.data(),
+                let profile = try? FirestoreDecoder.decode(data, to: Profile.self) {
+                var user = profile.user
+                user.status = .accepted
+                user.isOwner = true
+                user.reactions = nil
+                createEvent(user: user)
+            }
+            
+        }
+    }
+    
+    private func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {
+        activeEventListener?.remove()
+        activeEventListener = nil
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        
+        activeEventListener = firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                completion(.failure(.fetchActiveEvent))
+                return
+            }
+            if let data = snapshot?.data(),
+                let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
+                completion(.success(event.getModel(userId: userId)))
+            } else {
+                completion(.failure(.fetchActiveEvent))
+            }
+        }
+    }
+    
+    private func addEvent(eventId: String) async throws -> Event {
+        guard let userId = firebaseAuth.currentUser?.uid else { throw EventServiceError.addEvent }
+        
+        let snapshot = try await firestore.collection("Users").document(userId).getDocument()
+        guard
+            let data = snapshot.data(),
+            let profile = try? FirestoreDecoder.decode(data, to: Profile.self)
+        else {
+            throw EventServiceError.addEvent
+        }
+        var user = profile.user
+        user.status = .unknown
+        user.isOwner = false
+        guard let userDictionary = user.dictionary else { throw EventServiceError.addEvent }
+        try await firestore.collection("Events").document(eventId).updateData([
+            "members.\(user.id)": userDictionary
+        ])
+        let eventSnapshot = try await firestore.collection("Events").document(eventId).getDocument()
+        if
+            let data = eventSnapshot.data(),
+            let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self)
+        {
+            return event.getModel(userId: userId)
+        } else {
+            throw EventServiceError.addEvent
+        }
+    }
+    
+    private func changeStatus(for event: Event) async throws {
+        var data: [AnyHashable: Any] = [
+            "members.\(event.me.id).state": event.me.state.rawValue as Any,
+            "members.\(event.me.id).reactions": FieldValue.delete()
+        ]
+        data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        try await firestore.collection("Events").document(event.id).updateData(data)
+        firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    func addReaction(_ reaction: Reaction?, to member: User, for event: Event) async throws {
+        let data: [AnyHashable: Any] = [
+            "members.\(member.id).reactions.\(event.me.id)": reaction?.dictionary ?? FieldValue.delete()
+        ]
+        try await firestore.collection("Events").document(event.id).updateData(data)
+        if let reaction = reaction {
+            let notificationData = [
+                "reaction": reaction.dictionary,
+                "member":member.dictionary,
+                "event": event.dictionary
+            ]
+            firebaseFunctions.httpsCallable("sendAddReactionNotification").call(notificationData) { (_, _) in }
+        }
+    }
+    
+    private func changeGame(_ game: Game, forEvent event: Event) async throws {
+        var data: [AnyHashable: Any] = [
+            "game": game.dictionary as Any
+        ]
+        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
+        try await firestore.collection("Events").document(event.id).updateData(data)
+        firebaseFunctions.httpsCallable("sendChangeEventGameNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func changeDate(_ date: String, forEvent event: Event) async throws {
+        var data: [AnyHashable: Any] = ["date": date]
+        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
+        try await firestore.collection("Events").document(event.id).updateData(data)
+        firebaseFunctions.httpsCallable("sendChangeEventDateNotification").call(event.dictionary) { (_, _) in }
+    }
+    
+    private func deleteEvent(_ event: Event) async throws {
+        try await deleteEvent(event, sendNotification: true)
+    }
+    
+    private func deleteEvent(_ event: Event, sendNotification: Bool) async throws {
+        try await firestore.collection("Events").document(event.id).delete()
+        if sendNotification {
+            firebaseFunctions.httpsCallable("sendDeleteEventNotification").call(event.dictionary) { (_, _) in }
+        }
+    }
+    
+    private func removeMember(_ member: User, fromEvent event: Event) async throws {
+        try await firestore.collection("Events").document(event.id).updateData([
+            "members.\(member.id)": FieldValue.delete()
+        ])
+        let data = [
+            "member":member.dictionary,
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendRemoveMemberFromEventNotification").call(data) { (_, _) in }
+    }
+    
+    private func takeOwnerRulesToMember(_ member: User, forEvent event: Event) async throws {
+        guard event.me.isOwner == true else {
+            throw EventServiceError.takeOwner
+        }
+        try await firestore.collection("Events").document(event.id).updateData([
+            "members.\(member.id).isOwner": true,
+            "members.\(event.me.id).isOwner": false
+        ])
+        let data = [
+            "member":member.dictionary,
+            "event": event.dictionary
+        ]
+        firebaseFunctions.httpsCallable("sendTakeEventOwnerRulesNotification").call(data) { (_, _) in }
+    }
+    
+    private func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
+        var membersData = [AnyHashable: Any]()
+        for member in members {
+            membersData["members.\(member.id).lateness"] = FieldValue.delete()
+            membersData["members.\(member.id).state"] = User.State.unknown.rawValue
+        }
+        return membersData
+    }
+    
+    private func addMembers(_ members: [User], toEvent event: Event) async throws {
+        var membersData = [AnyHashable: Any]()
+        for var member in members {
+            member.status = .unknown
+            member.isOwner = false
+            member.reactions = nil
+            membersData["members.\(member.id)"] = member.dictionary
+        }
+        try await firestore.collection("Events").document(event.id).updateData(membersData)
+        let data: [String: Any] = [
+            "members": members.map({ $0.dictionary }),
+            "event": event.dictionary as Any
+        ]
+        firebaseFunctions.httpsCallable("sendAddMembersToEventNotification").call(data) { (_, _) in }
+    }
+    
 }
+
+// MARK: - Middleware
 
 extension EventService: Middleware {
     
@@ -139,85 +334,89 @@ extension EventService: Middleware {
             guard event.me.status != status else { return }
             
             event.me.status = status
-            changeStatus(for: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            let updatedEvent = event
+            Task {
+                do {
+                    try await changeStatus(for: updatedEvent)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.changeStatus))
                 }
             }
             
         case .addReaction(let reaction, let member, let event):
-            addReaction(reaction, to: member, for: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            Task {
+                do {
+                    try await addReaction(reaction, to: member, for: event)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.addReaction))
                 }
             }
             
         case .deleteEvent(let event):
-            deleteEvent(event) { result in
-                switch result {
-                case .success:
+            Task {
+                do {
+                    try await deleteEvent(event)
                     store.dispatch(.deselectEvent)
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.deleteEvent))
                 }
             }
             
         case .changeGame(let game, var event):
             event.game = game
-            changeGame(game, forEvent: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            let updatedEvent = event
+            Task {
+                do {
+                    try await changeGame(game, forEvent: updatedEvent)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.changeGame))
                 }
             }
             
         case .changeDate(let date, let event):
             let dateString = date.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
-            changeDate(dateString, forEvent: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            Task {
+                do {
+                    try await changeDate(dateString, forEvent: event)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.changeDate))
                 }
             }
+            
         case .addMembers(let members, let event):
-            addMembers(members, toEvent: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            Task {
+                do {
+                    try await addMembers(members, toEvent: event)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.addMember))
                 }
             }
+            
         case .removeMember(let member, let event):
-            removeMember(member, fromEvent: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            Task {
+                do {
+                    try await removeMember(member, fromEvent: event)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.removeMember))
                 }
             }
             
         case .makeOwner(let member, let event):
-            takeOwnerRulesToMember(member, forEvent: event) { result in
-                switch result {
-                case .success: break
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+            Task {
+                do {
+                    try await takeOwnerRulesToMember(member, forEvent: event)
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.takeOwner))
                 }
             }
             
         case.addEvent(let eventId):
-            addEvent(eventId: eventId) { result in
-                switch result {
-                case .success(let event):
+            Task {
+                do {
+                    let event = try await addEvent(eventId: eventId)
                     store.dispatch(.selectEvent(event))
-                case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+                } catch {
+                    store.dispatch(.showNetworkError(EventServiceError.addEvent))
                 }
             }
             
@@ -227,313 +426,9 @@ extension EventService: Middleware {
     
 }
 
-extension EventService: EventServiceType {
+protocol EventServiceType {
     
-    func fetchEvents(completion: @escaping (Result<[Event], EventServiceError>) -> Void) {
-        eventsListener?.remove()
-        eventsListener = nil
-        guard let userId = firebaseAuth.currentUser?.uid else { return }
-        
-        eventsListener = firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
-            if let _ = error {
-                completion(.failure(.fetchEvents))
-                return
-            }
-            let response = snapshot?.documents.compactMap({
-                return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
-            })
-            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
-                completion(.failure(.fetchEvents))
-                return
-            }
-            let filteredEvents = events.filter { $0.date >= (Date() - GlobalConstant.eventDurationHours.hours)}
-            completion(.success(filteredEvents))
-            let overdueEvents = events.filter { $0.date < (Date() - GlobalConstant.eventOverdueMonths.months )}
-            for overdueEvent in overdueEvents {
-                self.deleteEvent(overdueEvent, sendNotification: false) { (_) in }
-            }
-        }
-        
-    }
-    
-    func createNewEvent(_ request: NewEventRequest) {
-        guard let userId = firebaseAuth.currentUser?.uid else { return }
-        func createEvent(user: User) {
-            var members = request.members?.map({ user -> User in
-                var member = user
-                member.status = .unknown
-                member.isOwner = false
-                member.reactions = nil
-                return member
-            }) ?? []
-            members.append(user)
-            guard var data = request.dictionary else { return }
-            var membersDictionary = [String: Any]()
-            for member in members {
-                membersDictionary[member.id] = member.dictionary
-            }
-            data["members"] = membersDictionary
-            firestore.collection("Events").document(request.id).setData(data)
-            
-        }
-        firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
-            if let data = snapshot?.data(),
-                let profile = try? FirestoreDecoder.decode(data, to: Profile.self) {
-                var user = profile.user
-                user.status = .accepted
-                user.isOwner = true
-                user.reactions = nil
-                createEvent(user: user)
-            }
-            
-        }
-    }
-    
-    func fetchEvent(id: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) -> ListenerRegistration? {
-        activeEventListener?.remove()
-        activeEventListener = nil
-        guard let userId = firebaseAuth.currentUser?.uid else { return nil }
-        
-        activeEventListener = firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                completion(.failure(.fetchActiveEvent))
-                return
-            }
-            if let data = snapshot?.data(),
-                let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
-                completion(.success(event.getModel(userId: userId)))
-            } else {
-                completion(.failure(.fetchActiveEvent))
-            }
-        }
-        return activeEventListener
-    }
-    
-    func addEvent(eventId: String, completion: @escaping (Result<Event, EventServiceError>) -> Void) {
-        guard let userId = firebaseAuth.currentUser?.uid else { return }
-        func addUserToEvent(user: User) {
-            guard let userDictionary = user.dictionary else { return }
-            firestore.collection("Events").document(eventId).updateData([
-                "members.\(user.id)": userDictionary
-            ]) { (error) in
-                if let _ = error {
-                    completion(.failure(.addEvent))
-                } else {
-                    getEvent(id: eventId)
-                }
-            }
-        }
-        func getEvent(id: String) {
-            firestore.collection("Events").document(id).getDocument { (snapshot, error) in
-                if let _ = error {
-                    completion(.failure(.addEvent))
-                    return
-                }
-                if let data = snapshot?.data(),
-                    let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
-                    completion(.success(event.getModel(userId: userId)))
-                } else {
-                    completion(.failure(.addEvent))
-                }
-            }
-        }
-        firestore.collection("Users").document(userId).getDocument { (snapshot, error) in
-            if let data = snapshot?.data(),
-                let profile = try? FirestoreDecoder.decode(data, to: Profile.self)
-            {
-                var user = profile.user
-                user.status = .unknown
-                user.isOwner = false
-                addUserToEvent(user: user)
-            }
-            
-        }
-    }
-    
-    func changeStatus(
-        for event: Event,
-        completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        var data: [AnyHashable: Any] = [
-            "members.\(event.me.id).state": event.me.state.rawValue as Any,
-            "members.\(event.me.id).reactions": FieldValue.delete()
-        ]
-        data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
-        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let _ = error {
-                completion(.failure(.changeStatus))
-            } else {
-                self?.sendChangeStatusNotification(for: event)
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func addReaction(_ reaction: Reaction?, to member: User, for event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        let data: [AnyHashable: Any] = [
-            "members.\(member.id).reactions.\(event.me.id)": reaction?.dictionary ?? FieldValue.delete()
-        ]
-        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let _ = error {
-                completion(.failure(.addReaction))
-            } else {
-                if let reaction = reaction {
-                    self?.sendReactionNotification(reaction, for: member, event: event)
-                }
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func changeGame(_ game: Game, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        var data: [AnyHashable: Any] = [
-            "game": game.dictionary as Any
-        ]
-        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
-        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let _ = error {
-                completion(.failure(.changeGame))
-            } else {
-                self?.sendChangeEventGameNotification(for: event)
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func changeDate(_ date: String, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        var data: [AnyHashable: Any] = ["date": date]
-        membersDataWithResetStatuses(event.members).forEach { data[$0] = $1 }
-        firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
-            if let _ = error {
-                completion(.failure(.changeDate))
-            } else {
-                self?.sendChangeEventDateNotification(for: event)
-                completion(.success(()))
-            }
-        }
-    }
-    func deleteEvent(_ event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        deleteEvent(event, sendNotification: true, completion: completion)
-    }
-    
-    private func deleteEvent(_ event: Event, sendNotification: Bool, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("Events").document(event.id).delete { [weak self] (error) in
-            if let _ = error {
-                completion(.failure(.deleteEvent))
-            } else {
-                if sendNotification {
-                    self?.sendDeleteEventNotification(for: event)
-                }
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func removeMember(_ member: User, fromEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        firestore.collection("Events").document(event.id).updateData([
-            "members.\(member.id)": FieldValue.delete()
-        ]) { [weak self] error in
-            if let _ = error {
-                completion(.failure(.removeMember))
-            } else {
-                self?.sendRemoveMemberFromEventNotification(member: member, event: event)
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func takeOwnerRulesToMember(_ member: User, forEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        guard event.me.isOwner == true else {
-            completion(.failure(.removeMember))
-            return
-        }
-        firestore.collection("Events").document(event.id).updateData([
-            "members.\(member.id).isOwner": true,
-            "members.\(event.me.id).isOwner": false
-        ]) { [weak self] error in
-            if let _ = error {
-                completion(.failure(.removeMember))
-            } else {
-                self?.sendTakeEventOwnerRulesNotification(member: member, event: event)
-                completion(.success(()))
-            }
-        }
-    }
-    
-    func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
-        var membersData = [AnyHashable: Any]()
-        for member in members {
-            membersData["members.\(member.id).lateness"] = FieldValue.delete()
-            membersData["members.\(member.id).state"] = User.State.unknown.rawValue
-        }
-        return membersData
-    }
-    
-    func addMembers(_ members: [User], toEvent event: Event, completion: @escaping (Result<Void, EventServiceError>) -> Void) {
-        var membersData = [AnyHashable: Any]()
-        for var member in members {
-            member.status = .unknown
-            member.isOwner = false
-            member.reactions = nil
-            membersData["members.\(member.id)"] = member.dictionary
-        }
-        firestore.collection("Events").document(event.id).updateData(membersData) { [weak self] error in
-            if let _ = error {
-                completion(.failure(.addMember))
-            } else {
-                self?.sendAddMembersToEventNotification(members: members, event: event)
-                completion(.success(()))
-            }
-        }
-    }
-    
-    // MARK: - Notifications
-    
-    private func sendChangeStatusNotification(for event: Event) {
-        firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
-    }
-    
-    private func sendChangeEventGameNotification(for event: Event) {
-        firebaseFunctions.httpsCallable("sendChangeEventGameNotification").call(event.dictionary) { (_, _) in }
-    }
-    
-    private func sendChangeEventDateNotification(for event: Event) {
-        firebaseFunctions.httpsCallable("sendChangeEventDateNotification").call(event.dictionary) { (_, _) in }
-    }
-    
-    private func sendDeleteEventNotification(for event: Event) {
-        firebaseFunctions.httpsCallable("sendDeleteEventNotification").call(event.dictionary) { (_, _) in }
-    }
-    
-    private func sendAddMembersToEventNotification(members: [User], event: Event) {
-        let data: [String: Any] = [
-            "members": members.map({ $0.dictionary }),
-            "event": event.dictionary as Any
-        ]
-        firebaseFunctions.httpsCallable("sendAddMembersToEventNotification").call(data) { (_, _) in }
-    }
-    
-    private func sendRemoveMemberFromEventNotification(member: User, event: Event) {
-        let data = [
-            "member":member.dictionary,
-            "event": event.dictionary
-        ]
-        firebaseFunctions.httpsCallable("sendRemoveMemberFromEventNotification").call(data) { (_, _) in }
-    }
-    
-    private func sendTakeEventOwnerRulesNotification(member: User, event: Event) {
-        let data = [
-            "member":member.dictionary,
-            "event": event.dictionary
-        ]
-        firebaseFunctions.httpsCallable("sendTakeEventOwnerRulesNotification").call(data) { (_, _) in }
-    }
-    
-    private func sendReactionNotification(_ reaction: Reaction, for member: User, event: Event) {
-        let data = [
-            "reaction": reaction.dictionary,
-            "member":member.dictionary,
-            "event": event.dictionary
-        ]
-        firebaseFunctions.httpsCallable("sendAddReactionNotification").call(data) { (_, _) in }
-    }
+    func createNewEvent(_ request: NewEventRequest)
 }
+
+extension EventService: EventServiceType {}
