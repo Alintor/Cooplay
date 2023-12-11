@@ -45,7 +45,7 @@ extension NewEventInteractor: NewEventInteractorInput {
     
     func fetchofftenData(
         completion: @escaping (Result<NewEventOftenDataResponse, NewEventError>) -> Void) {
-        userService?.fetchOfftenData { result in
+            eventService?.fetchOfftenData { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

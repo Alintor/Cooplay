@@ -429,6 +429,82 @@ extension EventService: Middleware {
 protocol EventServiceType {
     
     func createNewEvent(_ request: NewEventRequest)
+    func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void)
 }
 
-extension EventService: EventServiceType {}
+extension EventService: EventServiceType {
+    
+    func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void) {
+        // TODO: Remove error
+        // TODO:Add limits
+        guard let userId = firebaseAuth.currentUser?.uid else { return }
+        var members = [(user: User, count: Int)]()
+        var games =  [Game]()
+        var times = [(time: Date, count: Int)]()
+        firestore.collection("Events")
+            .whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId)
+            .getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(.unhandled(error: error)))
+                return
+            }
+            let response = snapshot?.documents.compactMap({
+                return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
+            })
+            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
+                completion(.failure(.unknownError))
+                return
+            }
+            let currentDate = Date()
+                for event in events.sorted(by: { $0.date > $1.date }) {
+                var time = event.date
+                let components = Calendar.current.dateComponents(in: .current, from: event.date)
+                if
+                    let hour = components.hour,
+                    let minute = components.minute,
+                    let newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: currentDate) {
+                    time = newDate
+                }
+                if !games.contains(event.game) {
+                    games.append(event.game)
+                }
+//                if let gameIndex = games.firstIndex(where: { $0.game == event.game }) {
+//                    var count = games[gameIndex].count
+//                    count += 1
+//                    games[gameIndex] = (event.game, count)
+//                } else {
+//                    games.append((event.game, 1))
+//                }
+                if let timeIndex = times.firstIndex(where: { $0.time == time }) {
+                    var count = times[timeIndex].count
+                    count += 1
+                    times[timeIndex] = (time, count)
+                } else {
+                    times.append((time, 1))
+                }
+                for member in event.members {
+                    if let memberIndex = members.firstIndex(where: { $0.user == member }) {
+                        var count = members[memberIndex].count
+                        count += 1
+                        members[memberIndex] = (member, count)
+                    } else {
+                        members.append((member, 1))
+                    }
+                }
+            }
+            let membersSlice = members.sorted(by: { $0.count > $1.count }).map { member -> User in
+                var user = member.user
+                user.reactions = nil
+                return user
+            }
+            //let gamesSlice = games.sorted(by: { $0.count > $1.count }).map { $0.game }
+            let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
+            completion(.success(NewEventOftenDataResponse(
+                members: Array(membersSlice),
+                games: games,
+                time: time
+            )))
+        }
+    }
+    
+}

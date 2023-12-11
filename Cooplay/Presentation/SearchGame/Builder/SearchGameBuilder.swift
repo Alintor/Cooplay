@@ -23,7 +23,8 @@ final class SearchGameBuilder {
         let viewController = R.storyboard.searchGame.searchGameViewController()!
         let interactor = SearchGameInteractor(
             gamesService: r.resolve(GamesServiceType.self),
-            userService: r.resolve(UserServiceType.self)
+            userService: r.resolve(UserServiceType.self), 
+            eventService: r.resolve(EventServiceType.self)
         )
         let router = SearchGameRouter(rootViewController: viewController)
         let presenter = SearchGamePresenter(

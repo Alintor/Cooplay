@@ -25,9 +25,11 @@ extension SearchMembersError: LocalizedError {
 final class SearchMembersInteractor {
 
     private let userService: UserServiceType?
+    private let eventService: EventServiceType?
     
-    init(userService: UserServiceType?) {
+    init(userService: UserServiceType?, eventService: EventServiceType?) {
         self.userService = userService
+        self.eventService = eventService
     }
 }
 
@@ -48,7 +50,7 @@ extension SearchMembersInteractor: SearchMembersInteractorInput {
     
     func fetchOftenMembers(
         completion: @escaping (Result<[User], SearchMembersError>) -> Void) {
-        userService?.fetchOfftenData { result in
+            eventService?.fetchOfftenData { result in
             switch result {
             case .success(let response):
                 completion(.success(response.members))

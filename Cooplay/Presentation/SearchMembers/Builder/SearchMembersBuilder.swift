@@ -23,7 +23,10 @@ final class SearchMembersBuilder {
         let r = ApplicationAssembly.assembler.resolver
         
         let viewController = R.storyboard.searchMembers.searchMembersViewController()!
-        let interactor = SearchMembersInteractor(userService: r.resolve(UserServiceType.self))
+        let interactor = SearchMembersInteractor(
+            userService: r.resolve(UserServiceType.self),
+            eventService: r.resolve(EventServiceType.self)
+        )
         let router = SearchMembersRouter(rootViewController: viewController)
         let presenter = SearchMembersPresenter(
             view: viewController,

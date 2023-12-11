@@ -25,10 +25,12 @@ final class SearchGameInteractor {
     
     private let gamesService: GamesServiceType?
     private let userService: UserServiceType?
+    private let eventService: EventServiceType?
     
-    init(gamesService: GamesServiceType?, userService: UserServiceType?) {
+    init(gamesService: GamesServiceType?, userService: UserServiceType?, eventService: EventServiceType?) {
         self.gamesService = gamesService
         self.userService = userService
+        self.eventService = eventService
     }
 
 }
@@ -49,8 +51,9 @@ extension SearchGameInteractor: SearchGameInteractorInput {
     }
     
     func fetchOfftenGames(
-        completion: @escaping (Result<[Game], SearchGameError>) -> Void) {
-        userService?.fetchOfftenData { result in
+        completion: @escaping (Result<[Game], SearchGameError>) -> Void
+    ) {
+        eventService?.fetchOfftenData { result in
             switch result {
             case .success(let response):
                 completion(.success(response.games))
