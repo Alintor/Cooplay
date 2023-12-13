@@ -80,7 +80,7 @@ final class EventService {
             let response = snapshot?.documents.compactMap({
                 return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
             })
-            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
+            guard let events = response?.compactMap({ $0.getModel(userId: userId )}) else {
                 completion(.failure(.fetchEvents))
                 return
             }
@@ -142,9 +142,12 @@ final class EventService {
                 completion(.failure(.fetchActiveEvent))
                 return
             }
-            if let data = snapshot?.data(),
-                let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self) {
-                completion(.success(event.getModel(userId: userId)))
+            if 
+                let data = snapshot?.data(),
+                let eventData = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self),
+                let event = eventData.getModel(userId: userId)
+            {
+                completion(.success(event))
             } else {
                 completion(.failure(.fetchActiveEvent))
             }
@@ -171,9 +174,10 @@ final class EventService {
         let eventSnapshot = try await firestore.collection("Events").document(eventId).getDocument()
         if
             let data = eventSnapshot.data(),
-            let event = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self)
+            let eventData = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self),
+            let event = eventData.getModel(userId: userId)
         {
-            return event.getModel(userId: userId)
+            return event
         } else {
             throw EventServiceError.addEvent
         }
@@ -451,7 +455,7 @@ extension EventService: EventServiceType {
             let response = snapshot?.documents.compactMap({
                 return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
             })
-            guard let events = response?.map({ $0.getModel(userId: userId )}) else {
+            guard let events = response?.compactMap({ $0.getModel(userId: userId )}) else {
                 completion(.failure(.unknownError))
                 return
             }

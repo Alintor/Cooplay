@@ -14,13 +14,15 @@ struct EventFirebaseResponse: Codable {
     let date: String
     var members: [String: User]
     
-    func getModel(userId: String) -> Event {
+    func getModel(userId: String) -> Event? {
+        guard let me = members[userId] else { return nil }
+        
         return Event(
             id: id,
             game: game,
             date: date.convertServerDate!,
             members: members.values.filter { $0.id != userId },
-            me: members[userId]!
+            me: me
         )
     }
 }
