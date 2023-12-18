@@ -18,7 +18,7 @@ final class NotificationBannerService: Middleware {
             }
         case .showNetworkError(let error):
             store.dispatch(.showNotificationBanner(.init(
-                message: error.localizedDescription,
+                title: error.localizedDescription,
                 type: .networkError
             )))
         default: break

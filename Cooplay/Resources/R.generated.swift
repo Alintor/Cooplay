@@ -231,7 +231,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 58 images.
+  /// This `R.image` struct is generated, and contains static references to 59 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -281,6 +281,8 @@ struct R: Rswift.Validatable {
     static let commonGamepadArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gamepadArrow")
     /// Image `common.hide`.
     static let commonHide = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.hide")
+    /// Image `common.link.broken`.
+    static let commonLinkBroken = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link.broken")
     /// Image `common.link`.
     static let commonLink = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.link")
     /// Image `common.logoIcon`.
@@ -473,6 +475,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.link", bundle: ..., traitCollection: ...)`
     static func commonLink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonLink, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.link.broken", bundle: ..., traitCollection: ...)`
+    static func commonLinkBroken(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonLinkBroken, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.logo", bundle: ..., traitCollection: ...)`

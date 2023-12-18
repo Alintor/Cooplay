@@ -15,22 +15,31 @@ class AppState: ObservableObject {
     
     private let store: Store
     @Published var isAuthenticated: Bool
+    @Published var notificationBanner: NotificationBanner?
     
     // MARK: - Init
     
     init(store: Store = ApplicationFactory.getStore()) {
         self.store = store
         self.isAuthenticated = store.state.value.authentication.isAuthenticated
+        self.notificationBanner = store.state.value.notificationBanner.banner
         store.state
             .map { $0.authentication.isAuthenticated }
             .removeDuplicates()
             .assign(to: &$isAuthenticated)
+        store.state
+            .map { $0.notificationBanner.banner }
+            .assign(to: &$notificationBanner)
     }
     
     // MARK: - Methods
     
     func handleDeepLink(_ url: URL) {
         store.dispatch(.handleDeepLink(url))
+    }
+    
+    func hideNotificationBanner() {
+        store.dispatch(.hideNotificationBanner)
     }
     
 }

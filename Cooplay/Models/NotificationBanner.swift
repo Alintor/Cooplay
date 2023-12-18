@@ -15,15 +15,19 @@ struct NotificationBanner {
         case networkError
     }
     
-    let title: String?
-    let message: String
+    let title: String
+    let message: String?
     let type: NotificationType
     let duration: TimeInterval
     
-    init(title: String? = nil, message: String, type: NotificationType, duration: TimeInterval = 3) {
+    init(title: String, message: String? = nil, type: NotificationType, duration: TimeInterval = 3) {
         self.title = title
         self.message = message
         self.type = type
         self.duration = duration
     }
+}
+
+extension NotificationBanner: Equatable {
+    
 }
