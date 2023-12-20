@@ -36,21 +36,14 @@ struct EditProfileView: View {
                     showAlert: $state.showAvatarSheet,
                     canDelete: state.canDeleteAvatar,
                     cameraAction: {
-                        state.photoPickerTypeCamera = true
-                        state.showPhotoPicker = true
+                        state.showAvatarSheet = false
+                        state.checkPermissions()
                     },
                     photoAction: {
                         state.photoPickerTypeCamera = false
                         state.showPhotoPicker = true
                     },
                     deleteAction: { state.removeAvatar() })
-            }
-            if state.showPhotoPicker {
-                EditPhotoPickerView(
-                    showAlert: $state.showPhotoPicker,
-                    fromCamera: state.photoPickerTypeCamera,
-                    delegate: state
-                )
             }
         }
         .animation(.default, value: state.name)
@@ -64,6 +57,20 @@ struct EditProfileView: View {
         .onDisappear {
             state.needShowProfileAvatar?.wrappedValue = true
         }
+        .sheet(isPresented: $state.showPhotoPicker) {
+            EditPhotoPickerView(
+                showAlert: $state.showPhotoPicker,
+                fromCamera: state.photoPickerTypeCamera) { image in
+                    state.addImage(image)
+                }
+                .edgesIgnoringSafeArea(.bottom)
+        }
+        .alert(Localizable.editProfilePermissionsAlertTitle(), isPresented: $state.showPermissionsAlert, actions: {
+            Button(Localizable.commonCancel(), role: .cancel) {}
+            Button(Localizable.editProfilePermissionsAlertSetting()) {
+                state.openSettings()
+            }
+        })
     }
     
     // MARK: - Subviews

@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import AVFoundation
 
 enum EditAction: Hashable {
     
@@ -28,6 +29,7 @@ class EditProfileState: NSObject, ObservableObject {
     @Published var avatarPath: String?
     @Published var showAvatarSheet: Bool = false
     @Published var showPhotoPicker: Bool = false
+    @Published var showPermissionsAlert: Bool = false
     var photoPickerTypeCamera = true
     let avatarBackgroundColor: UIColor
     var needShowProfileAvatar: Binding<Bool>?
@@ -108,41 +110,27 @@ class EditProfileState: NSObject, ObservableObject {
         store.dispatch(.profileEditActions(editActions))
     }
     
-}
-
-// MARK: - UIImagePickerControllerDelegate + UINavigationControllerDelegate
-
-extension EditProfileState: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    public func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
-        // Local variable inserted by Swift 4.2 migrator.
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        guard let image = info[convertFromUIImagePickerControllerInfoKey(
-            UIImagePickerController.InfoKey.originalImage
-        )] as? UIImage else {
-            return
-        }
-        
+    func addImage(_ image: UIImage) {
         self.image = image
-        picker.dismiss(animated: true, completion: nil)
     }
     
-}
-
-// MARK: - Helper function inserted by Swift 4.2 migrator.
-
-private func convertFromUIImagePickerControllerInfoKeyDictionary(
-    _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-private func convertFromUIImagePickerControllerInfoKey(
-    _ input: UIImagePickerController.InfoKey) -> String {
-    return input.rawValue
+    func checkPermissions() {
+        AVCaptureDevice.requestAccess(for: .video) {  granted in
+            DispatchQueue.main.async { [weak self] in
+                if granted {
+                    self?.photoPickerTypeCamera = true
+                    self?.showPhotoPicker = true
+                } else {
+                    self?.showPermissionsAlert = true
+                }
+            }
+        }
+    }
+    
+    func openSettings() {
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+    }
+    
 }
 
 private enum Constant {

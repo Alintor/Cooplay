@@ -13,79 +13,52 @@ struct EditPhotoPickerView : UIViewControllerRepresentable {
     
     @Binding var showAlert: Bool
     let fromCamera: Bool
-    weak var delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
-    
-    private func getPermissionsPicker() -> UIAlertController {
-        let alert = UIAlertController(
-            title: Localizable.editProfilePermissionsAlertTitle(),
-            message: nil,
-            preferredStyle: .alert
-        )
-        let settingsAction = UIAlertAction(
-            title: Localizable.editProfilePermissionsAlertSetting(),
-            style: .default
-        ) { _ in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        }
-        settingsAction.setValue(R.color.textPrimary(), forKey: "titleTextColor")
-        alert.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: R.string.localizable.commonCancel(), style: .cancel)
-        cancelAction.setValue(R.color.textPrimary(), forKey: "titleTextColor")
+    var imageHandler: (UIImage) -> Void
+    @Environment(\.presentationMode) private var presentationMode
 
-        alert.addAction(cancelAction)
-        
-        return alert
-    }
-
-     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-         guard context.coordinator.alert == nil && showAlert else { return }
-         
-         let imagePicker = UIImagePickerController()
-         imagePicker.delegate = delegate
-         imagePicker.sourceType = fromCamera ? .camera : .photoLibrary
-         context.coordinator.alert = imagePicker
-         
-         if fromCamera {
-             AVCaptureDevice.requestAccess(for: .video) {  granted in
-                 DispatchQueue.main.async {
-                     uiViewController.present(
-                        granted ? imagePicker : getPermissionsPicker(),
-                        animated: true,
-                        completion: {
-                            self.showAlert = false
-                            context.coordinator.alert = nil
-                        }
-                    )
-                 }
-             }
-         } else {
-             DispatchQueue.main.async {
-                 uiViewController.present(imagePicker, animated: true, completion: {
-                    self.showAlert = false
-                    context.coordinator.alert = nil
-                }
-            )
-         }
-                         
-        }
-     }
+     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
 
      func makeUIViewController(context: Context) -> some UIViewController {
-         
-         return UIViewController()
+         let imagePicker = UIImagePickerController()
+         imagePicker.delegate = context.coordinator
+         imagePicker.sourceType = fromCamera ? .camera : .photoLibrary
+         return imagePicker
      }
     
     func makeCoordinator() -> EditPhotoPickerView.Coordinator {
-            Coordinator(self)
+        Coordinator(
+            onDismiss: { self.presentationMode.wrappedValue.dismiss() },
+            onImagePicked: self.imageHandler
+        )
     }
     
-    final class Coordinator: NSObject {
+    final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-        var alert: UIImagePickerController?
-        var control: EditPhotoPickerView
+        private let onDismiss: () -> Void
+        private let onImagePicked: (UIImage) -> Void
             
-        init(_ control: EditPhotoPickerView) {
-            self.control = control
+        init(onDismiss: @escaping () -> Void, onImagePicked: @escaping (UIImage) -> Void) {
+            self.onDismiss = onDismiss
+            self.onImagePicked = onImagePicked
         }
+        
+        public func imagePickerController(
+            _ picker: UIImagePickerController,
+            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+        ) {
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                onImagePicked(image)
+            }
+            picker.dismiss(animated: true) {
+                self.onDismiss()
+            }
+        }
+        
+        public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true) {
+                self.onDismiss()
+            }
+        }
+        
     }
 }

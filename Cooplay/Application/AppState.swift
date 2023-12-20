@@ -29,6 +29,7 @@ class AppState: ObservableObject {
             .assign(to: &$isAuthenticated)
         store.state
             .map { $0.notificationBanner.banner }
+            .removeDuplicates()
             .assign(to: &$notificationBanner)
     }
     
