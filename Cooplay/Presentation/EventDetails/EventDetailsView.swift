@@ -211,7 +211,7 @@ struct EventDetailsView: View {
             if showHeader || state.modeState.isEditMode {
                 TransparentBlurView(removeAllFilters: false)
                     .blur(radius: 15)
-                    .padding([.horizontal, .top], -30)
+                    .padding([.horizontal, .top], -60)
                     .frame(width: UIScreen.main.bounds.size.width)
                     .ignoresSafeArea()
             }

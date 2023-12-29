@@ -142,7 +142,7 @@ final class EventService {
                 completion(.failure(.fetchActiveEvent))
                 return
             }
-            if 
+            if
                 let data = snapshot?.data(),
                 let eventData = try? FirestoreDecoder.decode(data, to: EventFirebaseResponse.self),
                 let event = eventData.getModel(userId: userId)
@@ -183,12 +183,14 @@ final class EventService {
         }
     }
     
-    private func changeStatus(for event: Event) async throws {
+    private func changeStatus(for event: Event, needClearLateness: Bool) async throws {
         var data: [AnyHashable: Any] = [
             "members.\(event.me.id).state": event.me.state.rawValue as Any,
             "members.\(event.me.id).reactions": FieldValue.delete()
         ]
-        data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        if needClearLateness || event.me.lateness != nil {
+            data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        }
         try await firestore.collection("Events").document(event.id).updateData(data)
         firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
     }
@@ -264,8 +266,13 @@ final class EventService {
     private func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
         var membersData = [AnyHashable: Any]()
         for member in members {
-            membersData["members.\(member.id).lateness"] = FieldValue.delete()
             membersData["members.\(member.id).state"] = User.State.unknown.rawValue
+            if member.lateness != nil {
+                membersData["members.\(member.id).lateness"] = FieldValue.delete()
+            }
+            if member.reactions != nil {
+                membersData["members.\(member.id).reactions"] = FieldValue.delete()
+            }
         }
         return membersData
     }
@@ -337,11 +344,12 @@ extension EventService: Middleware {
         case .changeStatus(let status, var event):
             guard event.me.status != status else { return }
             
+            let needClearLateness = event.me.lateness != nil
             event.me.status = status
             let updatedEvent = event
             Task {
                 do {
-                    try await changeStatus(for: updatedEvent)
+                    try await changeStatus(for: updatedEvent, needClearLateness: needClearLateness)
                 } catch {
                     store.dispatch(.showNetworkError(EventServiceError.changeStatus))
                 }
@@ -357,10 +365,10 @@ extension EventService: Middleware {
             }
             
         case .deleteEvent(let event):
+            store.dispatch(.deselectEvent)
             Task {
                 do {
                     try await deleteEvent(event)
-                    store.dispatch(.deselectEvent)
                 } catch {
                     store.dispatch(.showNetworkError(EventServiceError.deleteEvent))
                 }
