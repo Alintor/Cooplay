@@ -9,7 +9,6 @@ target 'Cooplay' do
   pod 'SwinjectStoryboard', '~> 2.2.0'
   pod 'R.swift', '~> 5.0.3'
   pod 'PluggableAppDelegate', '~> 1.3.0'
-  pod 'Kingfisher', '~> 5.8.1'
   pod 'SwiftDate', '~> 7.0.0'
   pod 'DTTableViewManager', '~> 11.0.0'
   pod 'DTCollectionViewManager', '~> 11.0.0'
