@@ -111,4 +111,18 @@ enum ScreenViewFactory {
             handler: handler
         ))
     }
+    
+    static func authorization() -> some View {
+        AuthorizationView()
+            .environmentObject(AuthorizationCoordinator())
+    }
+    
+    static func login() -> some View {
+        LoginView()
+            .environmentObject(LoginState(
+                store: applicationFactory.store,
+                authorizationService: applicationFactory.authorizationService
+            ))
+    }
+    
 }

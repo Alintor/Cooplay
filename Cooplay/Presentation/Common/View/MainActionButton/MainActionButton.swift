@@ -29,7 +29,7 @@ struct MainActionButton: View {
                 .padding(16)
         }
         .background(Color(R.color.actionAccent.name))
-        .cornerRadius(16)
+        .clipShape(.rect(cornerRadius: 16, style: .continuous))
         .disabled(isDisabled)
         .opacity(isDisabled ? 0.5 : 1)
     }

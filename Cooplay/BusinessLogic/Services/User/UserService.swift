@@ -145,7 +145,9 @@ extension UserService: Middleware {
                 case .success(let profile):
                     store.dispatch(.updateProfile(profile))
                 case .failure(let error):
-                    store.dispatch(.showNetworkError(error))
+                    if store.state.value.authentication.isAuthenticated {
+                        store.dispatch(.showNetworkError(error))
+                    }
                 }
             }
             

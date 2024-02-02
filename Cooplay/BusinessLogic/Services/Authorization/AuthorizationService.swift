@@ -44,6 +44,8 @@ protocol AuthorizationServiceType {
         email: String,
         completion: @escaping (Result<Bool, AuthorizationServiceError>) -> Void
     )
+    func login(email: String, password: String) async throws
+    func checkAccountExistence(email: String) async throws -> Bool
     func logout()
 }
 
@@ -94,6 +96,10 @@ extension AuthorizationService: AuthorizationServiceType {
         }
     }
     
+    func login(email: String, password: String) async throws {
+        let _ = try await firebaseAuth.signIn(withEmail: email, password: password)
+    }
+    
     func createAccaunt(
         email: String,
         password: String,
@@ -136,6 +142,11 @@ extension AuthorizationService: AuthorizationServiceType {
                 completion(.success(false))
             }
         }
+    }
+    
+    func checkAccountExistence(email: String) async throws -> Bool {
+        let methods = try await firebaseAuth.fetchSignInMethods(forEmail: email)
+        return !methods.isEmpty
     }
     
     func logout() {

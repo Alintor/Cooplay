@@ -128,7 +128,7 @@
 "authorization.passwordTextField.placeholder" = "Пароль";
 "authorization.recoveryPasswordButton.title" = "Забыли пароль?";
 "authorization.actionButton.title" = "Войти";
-"authorization.registerMessage" = "Нет аккаунта? Создать аккаунт";
+"authorization.registerMessage" = "Нет аккаунта?";
 "authorization.registerMessage.highlight" = "Создать аккаунт";
 "authorization.error.email.incorrect" = "Email введён не верно";
 "authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
@@ -140,7 +140,7 @@
 "registration.passwordTextField.placeholder" = "Придумайте пароль";
 "registration.passwordConfirmTextField.placeholder" = "Подтвердите пароль";
 "registration.actionButton.title" = "Создать аккаунт";
-"registration.loginMessage" = "Уже есть аккаунт? Войти";
+"registration.loginMessage" = "Уже есть аккаунт?";
 "registration.loginMessage.highlight" = "Войти";
 "registration.passwordSymbolsCountLabel.title" = "%d символов";
 "registration.passwordBigSymbolLabel.title" = "Большая буква";
@@ -200,6 +200,10 @@
 
 "additionalReactions.title" = "Все реакции";
 
+// MARK: - AuthorizationMenu
+
+"authorizationMenu.login" = "Войти";
+"authorizationMenu.register" = "Создать аккаунт";
 
 // MARK: - Arkanoid Game
 

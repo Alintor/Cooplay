@@ -21,9 +21,7 @@ struct RuwusApp: App {
                     ScreenViewFactory.home()
                         .transition(.scale(scale: 0.5).combined(with: .opacity))
                 } else {
-                    Color(.background)
-                        .edgesIgnoringSafeArea(.all)
-                    IntroView()
+                    ScreenViewFactory.authorization()
                         .transition(.scale(scale: 0.5).combined(with: .opacity))
                 }
                 VStack {

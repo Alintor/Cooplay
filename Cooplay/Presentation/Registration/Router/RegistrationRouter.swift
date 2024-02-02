@@ -21,7 +21,7 @@ final class RegistrationRouter {
 extension RegistrationRouter: RegistrationRouterInput {
 
     func openAuthorization(with email: String?) {
-        rootViewController?.push(AuthorizationBuilder().build(email: email))
+        //rootViewController?.push(AuthorizationBuilder().build(email: email))
     }
     
     func clearNavigationStack() {

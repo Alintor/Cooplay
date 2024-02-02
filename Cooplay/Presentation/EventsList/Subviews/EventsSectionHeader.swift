@@ -17,7 +17,7 @@ struct EventsSectionHeader: View {
             .font(.system(size: 12, weight: .semibold))
             .foregroundStyle(Color(.textSecondary))
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 8)
+            .padding(.horizontal, 16)
             .padding(.top, 16)
             .transition(.move(edge: .leading))
     }

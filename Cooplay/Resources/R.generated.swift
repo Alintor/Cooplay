@@ -744,10 +744,8 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
-    /// Storyboard `Authorization`.
-    static let authorization = _R.storyboard.authorization()
     /// Storyboard `Intro`.
     static let intro = _R.storyboard.intro()
     /// Storyboard `LaunchScreen`.
@@ -760,11 +758,6 @@ struct R: Rswift.Validatable {
     static let searchGame = _R.storyboard.searchGame()
     /// Storyboard `SearchMembers`.
     static let searchMembers = _R.storyboard.searchMembers()
-    
-    /// `UIStoryboard(name: "Authorization", bundle: ...)`
-    static func authorization(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.authorization)
-    }
     
     /// `UIStoryboard(name: "Intro", bundle: ...)`
     static func intro(_: Void = ()) -> UIKit.UIStoryboard {
@@ -821,7 +814,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 160 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 162 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -873,6 +866,8 @@ struct R: Rswift.Validatable {
       static let statusMaybeFull = Rswift.StringResource(key: "status.maybe.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Войти
       static let authorizationActionButtonTitle = Rswift.StringResource(key: "authorization.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Войти
+      static let authorizationMenuLogin = Rswift.StringResource(key: "authorizationMenu.login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Войти
       static let introAuthButtonTitle = Rswift.StringResource(key: "intro.authButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Войти
@@ -995,7 +990,7 @@ struct R: Rswift.Validatable {
       static let authorizationErrorPasswordWrong = Rswift.StringResource(key: "authorization.error.password.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Недавние
       static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Нет аккаунта? Создать аккаунт
+      /// Value: Нет аккаунта?
       static let authorizationRegisterMessage = Rswift.StringResource(key: "authorization.registerMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ник пользователя
       static let searchMembersSearchBarPlaceholder = Rswift.StringResource(key: "searchMembers.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1112,6 +1107,8 @@ struct R: Rswift.Validatable {
       /// Value: Создание события
       static let newEventTitle = Rswift.StringResource(key: "newEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
+      static let authorizationMenuRegister = Rswift.StringResource(key: "authorizationMenu.register", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать аккаунт
       static let authorizationRegisterMessageHighlight = Rswift.StringResource(key: "authorization.registerMessage.highlight", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
       static let introRegisterButtonTitle = Rswift.StringResource(key: "intro.registerButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1131,7 +1128,7 @@ struct R: Rswift.Validatable {
       static let profileSettingsNotificationsTitle = Rswift.StringResource(key: "profileSettings.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить
       static let commonDelete = Rswift.StringResource(key: "common.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Уже есть аккаунт? Войти
+      /// Value: Уже есть аккаунт?
       static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Управление аккаунтом
       static let profileSettingsSectionAccountTitle = Rswift.StringResource(key: "profileSettings.section.account.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1267,6 +1264,11 @@ struct R: Rswift.Validatable {
       /// Value: Войти
       static func authorizationActionButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("authorization.actionButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Войти
+      static func authorizationMenuLogin(_: Void = ()) -> String {
+        return NSLocalizedString("authorizationMenu.login", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Войти
@@ -1574,7 +1576,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("reactionsSettings.category.1.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Нет аккаунта? Создать аккаунт
+      /// Value: Нет аккаунта?
       static func authorizationRegisterMessage(_: Void = ()) -> String {
         return NSLocalizedString("authorization.registerMessage", bundle: R.hostingBundle, comment: "")
       }
@@ -1865,6 +1867,11 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Создать аккаунт
+      static func authorizationMenuRegister(_: Void = ()) -> String {
+        return NSLocalizedString("authorizationMenu.register", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создать аккаунт
       static func authorizationRegisterMessageHighlight(_: Void = ()) -> String {
         return NSLocalizedString("authorization.registerMessage.highlight", bundle: R.hostingBundle, comment: "")
       }
@@ -1914,7 +1921,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("common.delete", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Уже есть аккаунт? Войти
+      /// Value: Уже есть аккаунт?
       static func registrationLoginMessage(_: Void = ()) -> String {
         return NSLocalizedString("registration.loginMessage", bundle: R.hostingBundle, comment: "")
       }
@@ -2098,40 +2105,12 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
-      try authorization.validate()
       try intro.validate()
       try launchScreen.validate()
       try newEvent.validate()
       try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
-    }
-    
-    struct authorization: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = AuthorizationViewController
-      
-      let authorizationViewController = StoryboardViewControllerResource<AuthorizationViewController>(identifier: "AuthorizationViewController")
-      let bundle = R.hostingBundle
-      let name = "Authorization"
-      
-      func authorizationViewController(_: Void = ()) -> AuthorizationViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authorizationViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.show", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.show' is used in storyboard 'Authorization', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Authorization', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Authorization', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "input", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'input' is used in storyboard 'Authorization', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "red", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red' is used in storyboard 'Authorization', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Authorization', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'Authorization', but couldn't be loaded.") }
-        }
-        if _R.storyboard.authorization().authorizationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authorizationViewController' could not be loaded from storyboard 'Authorization' as 'AuthorizationViewController'.") }
-      }
-      
-      fileprivate init() {}
     }
     
     struct intro: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {

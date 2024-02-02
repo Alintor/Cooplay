@@ -21,7 +21,7 @@ final class IntroRouter {
 extension IntroRouter: IntroRouterInput {
 
     func openAuthorization() {
-        rootViewController?.push(AuthorizationBuilder().build(email: nil))
+        //rootViewController?.push(AuthorizationBuilder().build(email: nil))
     }
     
     func openRegistration() {
