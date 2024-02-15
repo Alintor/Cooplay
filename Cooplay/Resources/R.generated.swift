@@ -744,25 +744,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
-    /// Storyboard `Intro`.
-    static let intro = _R.storyboard.intro()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `NewEvent`.
     static let newEvent = _R.storyboard.newEvent()
-    /// Storyboard `Registration`.
-    static let registration = _R.storyboard.registration()
     /// Storyboard `SearchGame`.
     static let searchGame = _R.storyboard.searchGame()
     /// Storyboard `SearchMembers`.
     static let searchMembers = _R.storyboard.searchMembers()
-    
-    /// `UIStoryboard(name: "Intro", bundle: ...)`
-    static func intro(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.intro)
-    }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
@@ -772,11 +763,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "NewEvent", bundle: ...)`
     static func newEvent(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
-    }
-    
-    /// `UIStoryboard(name: "Registration", bundle: ...)`
-    static func registration(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.registration)
     }
     
     /// `UIStoryboard(name: "SearchGame", bundle: ...)`
@@ -2105,37 +2091,10 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
-      try intro.validate()
       try launchScreen.validate()
       try newEvent.validate()
-      try registration.validate()
       try searchGame.validate()
       try searchMembers.validate()
-    }
-    
-    struct intro: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = IntroViewController
-      
-      let bundle = R.hostingBundle
-      let introViewController = StoryboardViewControllerResource<IntroViewController>(identifier: "IntroViewController")
-      let name = "Intro"
-      
-      func introViewController(_: Void = ()) -> IntroViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: introViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.logo' is used in storyboard 'Intro', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Intro', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Intro', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'Intro', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Intro', but couldn't be loaded.") }
-        }
-        if _R.storyboard.intro().introViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'introViewController' could not be loaded from storyboard 'Intro' as 'IntroViewController'.") }
-      }
-      
-      fileprivate init() {}
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -2175,34 +2134,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
         }
         if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct registration: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = RegistrationViewController
-      
-      let bundle = R.hostingBundle
-      let name = "Registration"
-      let registrationViewController = StoryboardViewControllerResource<RegistrationViewController>(identifier: "RegistrationViewController")
-      
-      func registrationViewController(_: Void = ()) -> RegistrationViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: registrationViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.show", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.show' is used in storyboard 'Registration', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in storyboard 'Registration', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'Registration', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'Registration', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "input", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'input' is used in storyboard 'Registration', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "red", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red' is used in storyboard 'Registration', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'Registration', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'Registration', but couldn't be loaded.") }
-        }
-        if _R.storyboard.registration().registrationViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'registrationViewController' could not be loaded from storyboard 'Registration' as 'RegistrationViewController'.") }
       }
       
       fileprivate init() {}

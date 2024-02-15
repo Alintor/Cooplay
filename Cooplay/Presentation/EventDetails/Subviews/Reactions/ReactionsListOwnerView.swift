@@ -31,7 +31,7 @@ struct ReactionsListOwnerView: View {
                         .scaleEffect(x: -1, y: 1, anchor: .center)
                 }
                 
-                ForEach(self.reactions, id: \.user.name) { reaction in
+                ForEach(self.reactions, id: \.user.id) { reaction in
                     ReactionView(
                         viewModel: reaction,
                         member: member,

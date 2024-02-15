@@ -37,6 +37,7 @@ struct AuthorizationMenuView: View {
             }
             .background(Color(.block))
             .clipShape(.rect(cornerRadius: 16, style: .continuous))
+            .matchedGeometryEffect(id: MatchedAnimations.registerButton.name, in: namespace.id)
             .padding(.bottom, 80)
         }
         .padding(.horizontal, 24)

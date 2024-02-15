@@ -16,8 +16,8 @@ class LoginState: ObservableObject {
     private let authorizationService: AuthorizationServiceType
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var emailError: String?
-    @Published var passwordError: String?
+    @Published var emailError: TextFieldView.ErrorType?
+    @Published var passwordError: TextFieldView.ErrorType?
     @Published var isEmailCorrect: Bool = false
     @Published var showEmailChecking: Bool = false
     @Published var showProgress: Bool = false
@@ -37,7 +37,7 @@ class LoginState: ObservableObject {
     @MainActor private func handleEmailChecking(isExist: Bool) {
         showEmailChecking = false
         isEmailCorrect = isExist
-        emailError = isExist ? nil : Localizable.authorizationErrorEmailNotExist()
+        emailError = .text(message: isExist ? nil : Localizable.authorizationErrorEmailNotExist())
     }
     
     @MainActor private func handleLoginResult(isSuccess: Bool) {
@@ -45,14 +45,17 @@ class LoginState: ObservableObject {
         if isSuccess {
             store.dispatch(.successAuthentication)
         } else {
-            passwordError = Localizable.authorizationErrorPasswordWrong()
+            passwordError = .text(message: Localizable.authorizationErrorPasswordWrong())
         }
     }
     
     // MARK: - Methods
     
     func checkEmail() {
-        guard email.isEmail else { return }
+        guard email.isEmail else {
+            emailError = nil
+            return
+        }
         
         showEmailChecking = true
         Task {
@@ -66,6 +69,7 @@ class LoginState: ObservableObject {
     }
     
     func tryLogin() {
+        passwordError = nil
         showProgress = true
         Task {
             do {

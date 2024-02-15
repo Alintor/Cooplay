@@ -1,21 +1,22 @@
 //
-//  AuthorizationView.swift
+//  RegisterView.swift
 //  Cooplay
 //
-//  Created by Alexandr on 29.01.2024.
+//  Created by Alexandr on 12.02.2024.
 //  Copyright © 2024 Ovchinnikov. All rights reserved.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct RegisterView: View {
     
     enum FocusedField {
         case email
         case password
+        case confirmPassword
     }
     
-    @EnvironmentObject var state: LoginState
+    @EnvironmentObject var state: RegisterState
     @EnvironmentObject var coordinator: AuthorizationCoordinator
     @EnvironmentObject var namespace: NamespaceWrapper
     @FocusState private var focusedField: FocusedField?
@@ -26,7 +27,7 @@ struct LoginView: View {
             Spacer()
             if focusedField == nil {
                 HStack {
-                    Text(Localizable.authorizationTitle())
+                    Text(Localizable.registrationTitle())
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundStyle(Color(.textPrimary))
                         .matchedGeometryEffect(id: Constants.navigationTitleEffectId, in: namespace.id)
@@ -36,7 +37,7 @@ struct LoginView: View {
             }
             TextFieldView(
                 text: $state.email,
-                placeholder: Localizable.authorizationEmailTextFieldPlaceholder(),
+                placeholder: Localizable.registrationEmailTextFieldPlaceholder(),
                 keyboardType: .emailAddress,
                 contentType: .emailAddress,
                 showProgress: $state.showEmailChecking,
@@ -49,41 +50,45 @@ struct LoginView: View {
             }
             TextFieldView(
                 text: $state.password,
-                placeholder: Localizable.authorizationPasswordTextFieldPlaceholder(),
+                placeholder: Localizable.registrationPasswordTextFieldPlaceholder(),
                 contentType: .password,
                 isSecured: true,
                 error: $state.passwordError
             )
+            .padding(.bottom, 12)
             .focused($focusedField, equals: .password)
+            .onSubmit {
+                focusedField = .confirmPassword
+            }
+            TextFieldView(
+                text: $state.confirmPassword,
+                placeholder: Localizable.registrationPasswordConfirmTextFieldPlaceholder(),
+                contentType: .password,
+                isSecured: true,
+                error: $state.confirmPasswordError
+            )
+            .padding(.bottom, 12)
+            .focused($focusedField, equals: .confirmPassword)
             .onSubmit {
                 focusedField = nil
                 guard state.isReady else { return }
                 
-                state.tryLogin()
+                state.tryRegister()
             }
-            HStack {
-                Spacer()
-                Button(Localizable.authorizationRecoveryPasswordButtonTitle()) {
-                    focusedField = nil
-                }
-                .foregroundStyle(Color(.actionAccent))
-                .font(.system(size: 20))
-            }
-            .padding(.bottom, 32)
-            MainActionButton(Localizable.authorizationActionButtonTitle(), isDisabled: !state.isReady) {
+            MainActionButton(Localizable.registrationActionButtonTitle(), isDisabled: !state.isReady) {
                 focusedField = nil
-                state.tryLogin()
+                state.tryRegister()
             }
-            .matchedGeometryEffect(id: MatchedAnimations.loginButton.name, in: namespace.id)
+            .matchedGeometryEffect(id: MatchedAnimations.registerButton.name, in: namespace.id)
             Spacer()
             HStack(spacing: 8) {
                 Spacer()
-                Text(Localizable.authorizationRegisterMessage())
+                Text(Localizable.registrationLoginMessage())
                     .font(.system(size: 20))
                     .foregroundStyle(Color(.textPrimary))
-                Button(Localizable.authorizationMenuRegister()) {
+                Button(Localizable.authorizationMenuLogin()) {
                     focusedField = nil
-                    coordinator.openRegister()
+                    coordinator.openLogin()
                 }
                 .font(.system(size: 20))
                 .foregroundStyle(Color(.actionAccent))
@@ -97,6 +102,13 @@ struct LoginView: View {
         .onReceive(state.$email) { _ in
             state.checkEmail()
         }
+        .onReceive(state.$password) { _ in
+            state.checkPassword()
+            state.checkConfirmPassword()
+        }
+        .onReceive(state.$confirmPassword) { _ in
+            state.checkConfirmPassword()
+        }
     }
     
     // MARK: - Subviews
@@ -106,7 +118,7 @@ struct LoginView: View {
             HStack{
                 Spacer()
                 if focusedField != nil {
-                    TitleView(text: Localizable.authorizationTitle())
+                    TitleView(text: Localizable.registrationTitle())
                         .matchedGeometryEffect(id: Constants.navigationTitleEffectId, in: namespace.id)
                 }
                 Spacer()
@@ -123,12 +135,11 @@ struct LoginView: View {
             }
         }
     }
-    
 }
 
 // MARK: - Constants
 
 private enum Constants {
     
-    static let navigationTitleEffectId = "titleLogin"
+    static let navigationTitleEffectId = "titleRegister"
 }

@@ -60,7 +60,7 @@ struct ReactionsListView: View {
                     })
             }
             
-            ForEach(self.reactions, id: \.user.name) { reaction in
+            ForEach(self.reactions, id: \.user.id) { reaction in
                 self.item(for: reaction)
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 4))
                     .transition(.scale.combined(with: .opacity))

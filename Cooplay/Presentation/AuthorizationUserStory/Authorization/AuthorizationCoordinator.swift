@@ -32,17 +32,21 @@ class AuthorizationCoordinator: ObservableObject {
         switch route {
         case .menu:
             AuthorizationMenuView()
-                //.zIndex(1)
-                .transition(.move(edge: .leading))
+                .zIndex(1)
+                .transition(.opacity)
         case .login:
             ScreenViewFactory.login()
-                //.zIndex(1)
+                .zIndex(1)
                 .closable(anchor: .trailing) {
                     self.backToMenu()
                 }
                 .transition(.move(edge: .trailing))
         case .register:
-            AuthorizationMenuView()
+            ScreenViewFactory.register()
+                .zIndex(1)
+                .closable(anchor: .trailing) {
+                    self.backToMenu()
+                }
                 .transition(.move(edge: .trailing))
         }
     }

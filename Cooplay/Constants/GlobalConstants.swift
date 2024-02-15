@@ -16,6 +16,8 @@ enum GlobalConstant {
             case serverDate = "yyyy-MM-dd HH:mm:ss ZZZ",
             time = "HH:mm"
         }
+        
+        static let passwordMinLength = 8
     }
     
     enum CoordinateSpace {

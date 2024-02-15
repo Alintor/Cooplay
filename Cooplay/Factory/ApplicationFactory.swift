@@ -125,4 +125,12 @@ enum ScreenViewFactory {
             ))
     }
     
+    static func register() -> some View {
+        RegisterView()
+            .environmentObject(RegisterState(
+                store: applicationFactory.store,
+                authorizationService: applicationFactory.authorizationService
+            ))
+    }
+    
 }

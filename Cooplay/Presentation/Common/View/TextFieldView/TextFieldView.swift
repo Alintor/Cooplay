@@ -8,7 +8,57 @@
 
 import SwiftUI
 
+enum PasswordValidation: Identifiable {
+    
+    case minLength(isValid: Bool?)
+    case capitalLetter(isValid: Bool?)
+    case digit(isValid: Bool?)
+    
+    var isValid: Bool? {
+        switch self {
+        case .minLength(let isValid): return isValid
+        case .capitalLetter(let isValid): return isValid
+        case .digit(let isValid): return isValid
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .minLength:
+            Localizable.registrationPasswordSymbolsCountLabelTitle(GlobalConstant.Format.passwordMinLength)
+        case .capitalLetter:
+            Localizable.registrationPasswordBigSymbolLabelTitle()
+        case .digit:
+            Localizable.registrationPasswordNumericSymbolsLabelTitle()
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .minLength: return 1
+        case .capitalLetter: return 2
+        case .digit: return 3
+        }
+    }
+    
+}
+
 struct TextFieldView: View {
+    
+    enum ErrorType {
+        
+        case text(message: String?)
+        case passwordValidation(types: [PasswordValidation])
+        
+        var isValid: Bool {
+            switch self {
+            case .text(let message):
+                return message == nil
+            case .passwordValidation(let types):
+                return !types.contains(where: { $0.isValid == false })
+            }
+        }
+    }
     
     var text: Binding<String>
     let placeholder: String
@@ -16,7 +66,7 @@ struct TextFieldView: View {
     let contentType: UITextContentType?
     let isSecured: Bool
     let showProgress: Binding<Bool>
-    var error: Binding<String?>
+    var error: Binding<ErrorType?>
     @FocusState var focused: Bool?
     @State var showSecured: Bool
     
@@ -27,7 +77,7 @@ struct TextFieldView: View {
         contentType: UITextContentType? = nil,
         isSecured: Bool = false,
         showProgress: Binding<Bool> = .constant(false),
-        error: Binding<String?> = .constant(nil)
+        error: Binding<ErrorType?> = .constant(nil)
     ) {
         self.text = text
         self.placeholder = placeholder
@@ -56,20 +106,15 @@ struct TextFieldView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .stroke(
-                        error.wrappedValue == nil
-                        ? (focused == true ? Color(R.color.actionAccent.name) : Color(R.color.block.name))
-                        : Color(R.color.red.name),
+                        focused == true
+                        ? Color(.actionAccent)
+                        : error.wrappedValue?.borderColor ?? Color(.block),
                         lineWidth: 2
                     )
             )
             .background(Color(R.color.input.name))
             .clipShape(.rect(cornerRadius: 12, style: .continuous))
             .focused($focused, equals: true)
-            .onChange(of: text.wrappedValue) { _ in
-                withAnimation(.easeIn(duration: 0.2)) {
-                    error.wrappedValue = nil
-                }
-            }
             .overlay(alignment: .trailing) {
                 ZStack {
                     if showProgress.wrappedValue {
@@ -85,16 +130,99 @@ struct TextFieldView: View {
                 }
                 .padding()
             }
-            HStack {
-                Text(error.wrappedValue ?? "")
-                    .fontWeight(.medium)
-                    .font(.system(size: 13))
-                    .foregroundColor(Color(R.color.red.name))
-                    .padding(.horizontal, 8)
-                    .lineLimit(1, reservesSpace: true)
-                Spacer()
+            switch error.wrappedValue {
+            case .text(let message):
+                textError(message: message)
+                    .transition(.opacity.animation(.easeIn(duration: 0.2)))
+            case .passwordValidation(let types):
+                passwordValidation(types: types)
+                    .transition(.opacity.animation(.easeIn(duration: 0.2)))
+            case .none:
+                textError(message: nil)
             }
-            .transition(.opacity.animation(.easeIn(duration: 0.2)))
         }
     }
+    
+    func textError(message: String?) -> some View {
+        HStack {
+            Text(message ?? "")
+                .fontWeight(.medium)
+                .font(.system(size: 13))
+                .foregroundColor(Color(R.color.red.name))
+                .padding(.horizontal, 8)
+                .lineLimit(1, reservesSpace: true)
+            Spacer()
+        }
+    }
+    
+    func passwordValidation(types: [PasswordValidation]) -> some View {
+        HStack(spacing: 4) {
+            ForEach(types) { type in
+                validationItemView(type: type)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+    }
+    
+    func validationItemView(type: PasswordValidation) -> some View {
+        HStack(spacing: 4) {
+            if let icon = type.icon {
+                icon
+                    .foregroundStyle(type.textColor)
+                    .frame(width: 12, height: 12)
+            }
+            Text(type.title)
+                .font(.system(size: 12))
+                .foregroundStyle(type.textColor)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 2)
+        .background(content: {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(type.backgroundColor)
+        })
+    }
+}
+
+private extension PasswordValidation {
+    
+    var textColor: Color {
+        if let isValid {
+            isValid ? Color(.green) : Color(.red)
+        } else {
+            Color(.textSecondary)
+        }
+    }
+    
+    var backgroundColor: Color {
+        textColor.opacity(0.1)
+    }
+    
+    var icon: Image? {
+        guard let isValid else { return nil }
+        
+        return isValid
+            ? Image(.statusSmallAccepted)
+            : Image(.statusSmallDeclined)
+    }
+}
+
+private extension TextFieldView.ErrorType {
+    
+    var borderColor: Color {
+        switch self {
+        case .text:
+            return isValid ? Color(.green) : Color(.red)
+        case .passwordValidation(let types):
+            if types.contains(where: { $0.isValid == false }) {
+                return Color(.red)
+            }
+            if types.contains(where: { $0.isValid == nil }) {
+                return Color(.block)
+            }
+            return Color(.green)
+        }
+    }
+    
 }
