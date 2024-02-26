@@ -14,7 +14,7 @@ class RegisterState: ObservableObject {
     
     private let store: Store
     private let authorizationService: AuthorizationServiceType
-    @Published var email: String = ""
+    @Published var email: String
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
     @Published var emailError: TextFieldView.ErrorType?
@@ -31,9 +31,10 @@ class RegisterState: ObservableObject {
     
     // MARK: - Init
     
-    init(store: Store, authorizationService: AuthorizationServiceType) {
+    init(store: Store, authorizationService: AuthorizationServiceType, email: String = "") {
         self.store = store
         self.authorizationService = authorizationService
+        self.email = email
     }
     
     // MARK: - Private Methods

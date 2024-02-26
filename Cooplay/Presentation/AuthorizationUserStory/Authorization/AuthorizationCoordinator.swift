@@ -11,11 +11,11 @@ import SwiftUI
 
 class AuthorizationCoordinator: ObservableObject {
     
-    enum Route {
+    enum Route: Equatable {
         
         case menu
-        case login
-        case register
+        case login(email: String)
+        case register(email: String)
     }
     
     @Published var route: Route
@@ -32,18 +32,15 @@ class AuthorizationCoordinator: ObservableObject {
         switch route {
         case .menu:
             AuthorizationMenuView()
-                .zIndex(1)
-                .transition(.opacity)
-        case .login:
-            ScreenViewFactory.login()
-                .zIndex(1)
+                .transition(.asymmetric(insertion: .move(edge: .leading), removal: .opacity))
+        case .login(let email):
+            ScreenViewFactory.login(email: email)
                 .closable(anchor: .trailing) {
                     self.backToMenu()
                 }
                 .transition(.move(edge: .trailing))
-        case .register:
-            ScreenViewFactory.register()
-                .zIndex(1)
+        case .register(let email):
+            ScreenViewFactory.register(email: email)
                 .closable(anchor: .trailing) {
                     self.backToMenu()
                 }
@@ -51,12 +48,12 @@ class AuthorizationCoordinator: ObservableObject {
         }
     }
     
-    func openLogin() {
-        route = .login
+    func openLogin(email: String = "") {
+        route = .login(email: email)
     }
     
-    func openRegister() {
-        route = .register
+    func openRegister(email: String = "") {
+        route = .register(email: email)
     }
     
     func backToMenu() {

@@ -14,7 +14,7 @@ class LoginState: ObservableObject {
     
     private let store: Store
     private let authorizationService: AuthorizationServiceType
-    @Published var email: String = ""
+    @Published var email: String
     @Published var password: String = ""
     @Published var emailError: TextFieldView.ErrorType?
     @Published var passwordError: TextFieldView.ErrorType?
@@ -27,9 +27,10 @@ class LoginState: ObservableObject {
     
     // MARK: - Init
     
-    init(store: Store, authorizationService: AuthorizationServiceType) {
+    init(store: Store, authorizationService: AuthorizationServiceType, email: String = "") {
         self.store = store
         self.authorizationService = authorizationService
+        self.email = email
     }
     
     // MARK: - Private Methods

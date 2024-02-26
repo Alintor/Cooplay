@@ -117,19 +117,21 @@ enum ScreenViewFactory {
             .environmentObject(AuthorizationCoordinator())
     }
     
-    static func login() -> some View {
+    static func login(email: String = "") -> some View {
         LoginView()
             .environmentObject(LoginState(
                 store: applicationFactory.store,
-                authorizationService: applicationFactory.authorizationService
+                authorizationService: applicationFactory.authorizationService,
+                email: email
             ))
     }
     
-    static func register() -> some View {
+    static func register(email: String = "") -> some View {
         RegisterView()
             .environmentObject(RegisterState(
                 store: applicationFactory.store,
-                authorizationService: applicationFactory.authorizationService
+                authorizationService: applicationFactory.authorizationService,
+                email: email
             ))
     }
     

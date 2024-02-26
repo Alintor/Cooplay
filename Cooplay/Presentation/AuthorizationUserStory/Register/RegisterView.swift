@@ -88,7 +88,7 @@ struct RegisterView: View {
                     .foregroundStyle(Color(.textPrimary))
                 Button(Localizable.authorizationMenuLogin()) {
                     focusedField = nil
-                    coordinator.openLogin()
+                    coordinator.openLogin(email: state.email)
                 }
                 .font(.system(size: 20))
                 .foregroundStyle(Color(.actionAccent))
