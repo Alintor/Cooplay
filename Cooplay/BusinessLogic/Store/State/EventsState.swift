@@ -20,14 +20,20 @@ final class EventsState {
     var declinedEvents: [Event] {
         return events.filter({ $0.me.state == .declined })
     }
+    var isFetching: Bool = false
     
     static func reducer(state: GlobalState, action: StoreAction) -> GlobalState {
         switch action {
+        case .fetchEvents:
+            state.events.isFetching = true
+            return state
+            
         case .updateEvents(let events):
             state.events.events = events
             if let activeEvent = state.events.activeEvent, !events.contains(where: { $0.id == activeEvent.id }) {
                 state.events.activeEvent = nil
             }
+            state.events.isFetching = false
             return state
             
         case .updateActiveEvent(let event),

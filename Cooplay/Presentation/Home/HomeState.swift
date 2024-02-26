@@ -18,6 +18,7 @@ class HomeState: ObservableObject {
     @Published var isShownProfile = false
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
+    @Published var isEventsFetching: Bool
     var isActiveEventPresented: Bool {
         activeEvent != nil
     }
@@ -27,6 +28,7 @@ class HomeState: ObservableObject {
     init(store: Store) {
         self.store = store
         self.profile = nil
+        self.isEventsFetching = store.state.value.events.isFetching
         store.state
             .map { $0.user.profile }
             .removeDuplicates {
@@ -42,6 +44,10 @@ class HomeState: ObservableObject {
             .map { $0.events.events.isEmpty }
             .removeDuplicates()
             .assign(to: &$isNoEvents)
+        store.state
+            .map { $0.events.isFetching }
+            .removeDuplicates()
+            .assign(to: &$isEventsFetching)
         store.state
             .map {
                 let invitesCount = $0.events.inventedEvents.count

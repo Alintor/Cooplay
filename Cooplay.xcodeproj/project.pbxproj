@@ -253,6 +253,7 @@
 		A8D1D2A82362ED0900DA1089 /* ArrowsActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */; };
 		A8D48C392B7A2522005B950C /* RegisterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D48C382B7A2522005B950C /* RegisterState.swift */; };
 		A8D48C3B2B7A252D005B950C /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D48C3A2B7A252D005B950C /* RegisterView.swift */; };
+		A8D48C522B8C5DAE005B950C /* HomeLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D48C512B8C5DAE005B950C /* HomeLoadingIndicator.swift */; };
 		A8D99A07292E0FBD00825B47 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D99A06292E0FBD00825B47 /* UserNotifications.framework */; };
 		A8D99A09292E0FBD00825B47 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D99A08292E0FBD00825B47 /* UserNotificationsUI.framework */; };
 		A8D99A0C292E0FBD00825B47 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D99A0B292E0FBD00825B47 /* NotificationViewController.swift */; };
@@ -559,6 +560,7 @@
 		A8D1D2A72362ED0900DA1089 /* ArrowsActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowsActivityIndicatorView.swift; sourceTree = "<group>"; };
 		A8D48C382B7A2522005B950C /* RegisterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterState.swift; sourceTree = "<group>"; };
 		A8D48C3A2B7A252D005B950C /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		A8D48C512B8C5DAE005B950C /* HomeLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLoadingIndicator.swift; sourceTree = "<group>"; };
 		A8D99A05292E0FBD00825B47 /* EventStatusNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EventStatusNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D99A06292E0FBD00825B47 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		A8D99A08292E0FBD00825B47 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -1774,6 +1776,7 @@
 			children = (
 				A8A0F1012AFFB83800997DEA /* HomeNavigationBar.swift */,
 				A8A0F0FD2AFFA32D00997DEA /* InvitesIconView.swift */,
+				A8D48C512B8C5DAE005B950C /* HomeLoadingIndicator.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -2284,6 +2287,7 @@
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
 				A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */,
+				A8D48C522B8C5DAE005B950C /* HomeLoadingIndicator.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
 				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
 				A824CA1627467095000E61A1 /* ReactionView.swift in Sources */,

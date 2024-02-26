@@ -14,32 +14,38 @@ struct HomeNavigationBar: View {
     @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
-        HStack {
-            eventsIcon
-                .padding()
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    state.deselectEvent()
-                }
-            if state.isActiveEventPresented {
-                Spacer()
+        ZStack {
+            if state.isEventsFetching {
+                HomeLoadingIndicator()
+                    .transition(.opacity)
             }
-            Image(R.image.commonLogoText.name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 16)
-                .clipped()
-                .padding(.leading, state.isActiveEventPresented ? 0 : -16)
-            Spacer()
-            if let profile = state.profile, !state.isShownProfile {
-                AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
-                    .frame(width: 32, height: 32, alignment: .center)
-                    .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
+            HStack {
+                eventsIcon
                     .padding()
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        state.isShownProfile = true
+                        state.deselectEvent()
                     }
+                if state.isActiveEventPresented {
+                    Spacer()
+                }
+                Image(R.image.commonLogoText.name)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 16)
+                    .clipped()
+                    .padding(.leading, state.isActiveEventPresented ? 0 : -16)
+                Spacer()
+                if let profile = state.profile, !state.isShownProfile {
+                    AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
+                        .frame(width: 32, height: 32, alignment: .center)
+                        .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
+                        .padding()
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            state.isShownProfile = true
+                        }
+                }
             }
         }
         .background {
@@ -50,6 +56,7 @@ struct HomeNavigationBar: View {
                 .opacity(state.isActiveEventPresented ? 0 : 1)
                 .ignoresSafeArea()
         }
+        .animation(.customTransition, value: state.isEventsFetching)
     }
     
     var eventsIcon: some View {
