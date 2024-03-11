@@ -162,6 +162,7 @@
 "profileSettings.notifications.title" = "Уведомления";
 "profileSettings.reactions.title" = "Реакции";
 "profileSettings.changePassword.title" = "Сменить пароль";
+"profileSettings.delete.title" = "Удалить аккаунт";
 "profileSettings.account.title" = "Аккаунт";
 "profileSettings.logout.title" = "Выйти";
 "profileSettings.logout.message" = "Вы уверены, что хотите выйти из аккаунта?";

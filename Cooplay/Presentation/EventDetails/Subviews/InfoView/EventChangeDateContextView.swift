@@ -36,7 +36,7 @@ struct EventChangeDateContextView<Content: View>: View {
                 }
             VStack(spacing: 0) {
                 Spacer()
-                    .frame(height: targetRect.origin.y)
+                    .frame(height: targetRect.origin.y - 59)
                 content()
                     .frame(width: targetRect.size.width)
                     .onTapGesture {

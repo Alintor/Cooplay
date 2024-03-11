@@ -12,11 +12,14 @@ extension UIColor {
     
     static var avatarColors: [UIColor] {
         return [
-            UIColor(red: 0.87, green: 0.27, blue: 0.33, alpha: 1),
-            UIColor(red: 0.47, green: 0.4, blue: 0.76, alpha: 1),
-            UIColor(red: 0.86, green: 0.53, blue: 0.23, alpha: 1),
-            UIColor(red: 0.8, green: 0.31, blue: 0.53, alpha: 1),
-            UIColor(red: 0.26, green: 0.53, blue: 0.73, alpha: 1)
+            UIColor(red: 0.867, green: 0.271, blue: 0.329, alpha: 1),
+            UIColor(red: 0.839, green: 0.341, blue: 0.173, alpha: 1),
+            UIColor(red: 0.859, green: 0.525, blue: 0.231, alpha: 1),
+            UIColor(red: 0.859, green: 0.525, blue: 0.231, alpha: 1),
+            UIColor(red: 0.388, green: 0.667, blue: 0.333, alpha: 1),
+            UIColor(red: 0.212, green: 0.741, blue: 0.604, alpha: 1),
+            UIColor(red: 0.263, green: 0.533, blue: 0.725, alpha: 1),
+            UIColor(red: 0.475, green: 0.396, blue: 0.757, alpha: 1)
         ]
     }
     

@@ -10,130 +10,32 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @EnvironmentObject var state: ProfileState
     @EnvironmentObject var namespace: NamespaceWrapper
+    @EnvironmentObject var coordinator: ProfileCoordinator
     @State private var canContinueOffset = true
-    private let generator = UIImpactFeedbackGenerator(style: .medium)
+    @State var isShownAvatar: Bool = true
     @State var isBackButton: Bool = false
+    private let generator = UIImpactFeedbackGenerator(style: .medium)
     
     var body: some View {
         ZStack {
-            if let navigation = state.itemNavigation {
-                VStack {
-                    navigationView(title: navigation.title)
-                    switch navigation {
-                    case .edit:
-                        ScreenViewFactory.editProfile(state.profile, needShowProfileAvatar: $state.isShownAvatar)
-                    case .reactions:
-                        ScreenViewFactory.reactionsSettings()
-                    }
-                }
-                .closable(anchor: .trailing) {
-                    state.itemNavigation = nil
-                }
-                .zIndex(1)
-                .transition(.move(edge: .trailing))
-            } else {
-                profileView
-                    .zIndex(1)
-                    .transition(.move(edge: .leading))
-            }
-            if state.showLogoutSheet {
-                LogoutSheetView(showAlert: $state.showLogoutSheet) {
-                    state.logout()
+            coordinator.buildView(isShownAvatar: $isShownAvatar, isBackButton: $isBackButton)
+            if coordinator.isLogoutSheetShown {
+                LogoutSheetView(showAlert: $coordinator.isLogoutSheetShown) {
+                    coordinator.logout()
                 }
             }
         }
-        .animation(.customTransition, value: state.itemNavigation)
-        .animation(.customTransition, value: isBackButton)
-        .onReceive(state.$itemNavigation) { item in
-            isBackButton = item != nil
-        }
-        .activityIndicator(isShown: $state.isInProgress)
-        .fullScreenCover(isPresented: $state.isMinigamesShown) {
+        .animation(.customTransition, value: coordinator.route)
+        .activityIndicator(isShown: $coordinator.isInProgress)
+        .fullScreenCover(isPresented: $coordinator.isMinigamesShown) {
             ArcanoidView().ignoresSafeArea()
         }
-    }
-    
-    // MARK: - Subviews
-    
-    func navigationView(title: String) -> some View {
-        ZStack {
-            HStack{
-                Spacer()
-                TitleView(text: title)
-                Spacer()
-            }
-            HStack {
-                BackCloseIcon(isBack: $isBackButton)
-                    .foregroundColor(Color(.textSecondary))
-                    .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
-                    .frame(width: 32, height: 32, alignment: .center)
-                    .onTapGesture {
-                        state.itemNavigation = nil
-                    }
-                Spacer()
-            }
-        }
-        .padding()
-    }
-    
-    var profileView: some View {
-        ZStack {
-            ScrollView {
-                VStack(spacing: 0) {
-                    ProfileInfoView()
-                        .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile)) { rect in
-                            guard canContinueOffset else { return }
-                            let offset = rect.origin.y - 48
-                            if offset >= 100 {
-                                canContinueOffset = false
-                                generator.prepare()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    generator.impactOccurred()
-                                    state.isShown?.wrappedValue = false
-                                }
-                            }
-                        }
-                        .padding(.bottom, 24)
-                        .padding(.top, 48)
-                    settingsList
-                }
-            }
-            .coordinateSpace(name: GlobalConstant.CoordinateSpace.profile)
-            VStack {
-                HStack {
-                    Spacer()
-                    BackCloseIcon(isBack: $isBackButton)
-                        .foregroundColor(Color(.textSecondary))
-                        .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
-                        .frame(width: 32, height: 32, alignment: .center)
-                        .padding()
-                        .onTapGesture {
-                            state.isShown?.wrappedValue = false
-                        }
-                }
-                Spacer()
-            }
-        }
-        .closable(anchor: .topTrailing) {
-            state.isShown?.wrappedValue = false
-        }
-    }
-    
-    var settingsList: some View {
-        ForEach(ProfileSettingsItem.Section.allCases) { sectionItem in
-            if !sectionItem.title.isEmpty {
-                ProfileSettingsSectionHeader(title: sectionItem.title)
-            }
-            if let items = state.settings[sectionItem] {
-                ForEach(items, id:\.self) { item in
-                    ProfileSettingsItemView(item: item)
-                        .onTapGesture { state.itemSelected(item) }
-                    if item != items.last {
-                        ProfileSettingsSeparator()
-                    }
-                }
+        .onReceive(coordinator.$route) { _ in
+            if coordinator.route == .menu {
+                isBackButton = false
+            } else {
+                isBackButton = true
             }
         }
     }

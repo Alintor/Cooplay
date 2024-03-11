@@ -88,7 +88,17 @@ enum ScreenViewFactory {
     
     static func profile(_ profile: Profile, isShown: Binding<Bool>? = nil) -> some View {
         ProfileView()
-            .environmentObject(ProfileState(profile: profile, store: applicationFactory.store, isShown: isShown))
+            .environmentObject(ProfileCoordinator(profile: profile, store: applicationFactory.store, isShown: isShown))
+    }
+    
+    static func profileMenu(profile: Profile, isShownAvatar: Binding<Bool>, isBackButton: Binding<Bool>)  -> some View {
+        ProfileMenuView()
+            .environmentObject(ProfileMenuState(
+                store: applicationFactory.store, 
+                profile: profile,
+                isShownAvatar: isShownAvatar,
+                isBackButton: isBackButton
+            ))
     }
     
     static func editProfile(_ profile: Profile, needShowProfileAvatar: Binding<Bool>? = nil) -> some View {
@@ -102,6 +112,11 @@ enum ScreenViewFactory {
     
     static func reactionsSettings() -> some View {
         ReactionsSettingsView(state: ReactionsSettingsState(defaultsStorage: applicationFactory.defaultsStorage))
+    }
+    
+    static func accountSettings() -> some View {
+        AccountSettingsView()
+            .environmentObject(AccountSettingsState())
     }
     
     static func additionalReactions(selectedReaction: String?, handler: ((Reaction?) -> Void)?) -> some View {

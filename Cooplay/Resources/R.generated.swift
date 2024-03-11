@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 19 colors.
+  /// This `R.color` struct is generated, and contains static references to 20 colors.
   struct color {
     /// Color `action.accent`.
     static let actionAccent = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.accent")
@@ -36,6 +36,8 @@ struct R: Rswift.Validatable {
     static let profileSettingsAccount = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.account")
     /// Color `profileSettings.changePassword`.
     static let profileSettingsChangePassword = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.changePassword")
+    /// Color `profileSettings.delete`.
+    static let profileSettingsDelete = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.delete")
     /// Color `profileSettings.edit`.
     static let profileSettingsEdit = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.edit")
     /// Color `profileSettings.logout`.
@@ -118,6 +120,13 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func profileSettingsChangePassword(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.profileSettingsChangePassword, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "profileSettings.delete", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func profileSettingsDelete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.profileSettingsDelete, compatibleWith: traitCollection)
     }
     
     /// `UIColor(named: "profileSettings.edit", bundle: ..., traitCollection: ...)`
@@ -231,7 +240,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 59 images.
+  /// This `R.image` struct is generated, and contains static references to 60 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -315,6 +324,8 @@ struct R: Rswift.Validatable {
     static let profileSettingsActionTypeSheet = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.actionType.sheet")
     /// Image `profileSettings.changePassword`.
     static let profileSettingsChangePassword = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.changePassword")
+    /// Image `profileSettings.delete`.
+    static let profileSettingsDelete = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.delete")
     /// Image `profileSettings.edit`.
     static let profileSettingsEdit = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.edit")
     /// Image `profileSettings.logout`.
@@ -555,6 +566,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profileSettings.changePassword", bundle: ..., traitCollection: ...)`
     static func profileSettingsChangePassword(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profileSettingsChangePassword, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profileSettings.delete", bundle: ..., traitCollection: ...)`
+    static func profileSettingsDelete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profileSettingsDelete, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "profileSettings.edit", bundle: ..., traitCollection: ...)`
@@ -800,7 +816,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 162 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 163 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1114,6 +1130,8 @@ struct R: Rswift.Validatable {
       static let profileSettingsNotificationsTitle = Rswift.StringResource(key: "profileSettings.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить
       static let commonDelete = Rswift.StringResource(key: "common.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Удалить аккаунт
+      static let profileSettingsDeleteTitle = Rswift.StringResource(key: "profileSettings.delete.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уже есть аккаунт?
       static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Управление аккаунтом
@@ -1905,6 +1923,11 @@ struct R: Rswift.Validatable {
       /// Value: Удалить
       static func commonDelete(_: Void = ()) -> String {
         return NSLocalizedString("common.delete", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Удалить аккаунт
+      static func profileSettingsDeleteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.delete.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Уже есть аккаунт?

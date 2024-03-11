@@ -12,7 +12,6 @@ import struct Kingfisher.KFImage
 struct EditAvatarView: View {
     
     @EnvironmentObject var state: EditProfileState
-    @EnvironmentObject var profileState: ProfileState
     @EnvironmentObject var namespace: NamespaceWrapper
     
     var body: some View {
