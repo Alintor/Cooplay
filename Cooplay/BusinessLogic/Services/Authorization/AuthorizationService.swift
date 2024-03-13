@@ -13,6 +13,8 @@ enum AuthorizationServiceError: Error {
     
     case unknownError
     case authorizationError(error: Error)
+    case wrongPassword
+    case changePasswordError
     case unhandled(error: Error)
 }
 
@@ -22,6 +24,8 @@ extension AuthorizationServiceError: LocalizedError {
         switch self {
         case .authorizationError(let error): return error.localizedDescription
         case .unknownError: return Localizable.errorsUnknown()
+        case .wrongPassword: return Localizable.errorsAuthorizationServiceWrongPassword()
+        case .changePasswordError: return Localizable.errorsAuthorizationServiceChangePassword()
         case .unhandled(let error): return error.localizedDescription
         }
     }
@@ -33,6 +37,7 @@ protocol AuthorizationServiceType {
     func login(email: String, password: String) async throws
     func createAccount(email: String, password: String) async throws
     func checkAccountExistence(email: String) async throws -> Bool
+    func changePassword(currentPassword: String, newPassword: String) async throws
     func logout()
 }
 
@@ -92,4 +97,27 @@ extension AuthorizationService: AuthorizationServiceType {
         try? firebaseAuth.signOut()
         defaultsStorages?.clear()
     }
+    
+    private func reauthenticate(currentPassword: String) async throws -> FirebaseAuth.User {
+        guard
+            let currentUser = firebaseAuth.currentUser,
+            let email = currentUser.email
+        else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+        do {
+            let result = try await currentUser.reauthenticate(with: credential)
+            return result.user
+        } catch {
+            throw AuthorizationServiceError.wrongPassword
+        }
+    }
+    
+    func changePassword(currentPassword: String, newPassword: String) async throws {
+        let currentUser = try await reauthenticate(currentPassword: currentPassword)
+        try await currentUser.updatePassword(to: newPassword)
+    }
+    
 }

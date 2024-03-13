@@ -74,28 +74,7 @@ class RegisterState: ObservableObject {
     }
     
     func checkPassword() {
-        guard !password.isEmpty else {
-            passwordError = .passwordValidation(
-                types: [.minLength(isValid: nil), .capitalLetter(isValid: nil), .digit(isValid: nil)]
-            )
-            return
-        }
-        
-        var types = [PasswordValidation]()
-        types.append(.minLength(isValid: password.count >= GlobalConstant.Format.passwordMinLength))
-        var hasNumeric = false
-        var hasBigSymbol = false
-        for character in password {
-            if Constant.numericSymbols.contains(character) {
-                hasNumeric = true
-            }
-            if character.isUppercase {
-                hasBigSymbol = true
-            }
-        }
-        types.append(.capitalLetter(isValid: hasBigSymbol))
-        types.append(.digit(isValid: hasNumeric))
-        passwordError = .passwordValidation(types: types)
+        passwordError = .passwordValidation(types: Validation.password(password))
     }
     
     func checkConfirmPassword() {
@@ -123,11 +102,4 @@ class RegisterState: ObservableObject {
         }
     }
     
-}
-
-// MARK: Constants
-
-private enum Constant {
-    
-    static let numericSymbols = "0123456789"
 }

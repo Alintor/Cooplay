@@ -243,6 +243,9 @@
 		A8C0A87C2B19C9F6002E906B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C0A87A2B19C9F6002E906B /* EmptyStateView.swift */; };
 		A8C3079A2B9F0E4B00907B56 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307992B9F0E4B00907B56 /* AccountSettingsView.swift */; };
 		A8C3079C2B9F0E7100907B56 /* AccountSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3079B2B9F0E7100907B56 /* AccountSettingsState.swift */; };
+		A8C3079F2B9F1C6B00907B56 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3079E2B9F1C6B00907B56 /* ChangePasswordView.swift */; };
+		A8C307A12B9F1C8600907B56 /* ChangePasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307A02B9F1C8600907B56 /* ChangePasswordState.swift */; };
+		A8C307A32BA061A700907B56 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307A22BA061A700907B56 /* Validation.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -555,6 +558,9 @@
 		A8C0A87A2B19C9F6002E906B /* EmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A8C307992B9F0E4B00907B56 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		A8C3079B2B9F0E7100907B56 /* AccountSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsState.swift; sourceTree = "<group>"; };
+		A8C3079E2B9F1C6B00907B56 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		A8C307A02B9F1C8600907B56 /* ChangePasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordState.swift; sourceTree = "<group>"; };
+		A8C307A22BA061A700907B56 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -1818,6 +1824,7 @@
 				A86860362A0CE89500327385 /* EditProfile */,
 				A8A383D128C20C83001B22EC /* ReactionsSettings */,
 				A8C307982B9F0E2B00907B56 /* AccountSettings */,
+				A8C3079D2B9F1C3200907B56 /* ChangePassword */,
 			);
 			path = ProfileUserStory;
 			sourceTree = "<group>";
@@ -1896,6 +1903,15 @@
 			path = AccountSettings;
 			sourceTree = "<group>";
 		};
+		A8C3079D2B9F1C3200907B56 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				A8C307A02B9F1C8600907B56 /* ChangePasswordState.swift */,
+				A8C3079E2B9F1C6B00907B56 /* ChangePasswordView.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		A8D1D293235EEEAC00DA1089 /* StateContextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,6 +1987,7 @@
 				A85F9CA02AF5198800BBAE31 /* Animations.swift */,
 				A8A0F0F82AFE43A200997DEA /* RectHandler.swift */,
 				A8A0F1032AFFF67200997DEA /* Haptic.swift */,
+				A8C307A22BA061A700907B56 /* Validation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2337,6 +2354,7 @@
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A8D1D295235EEEDA00DA1089 /* StatusContextViewOld.swift in Sources */,
 				A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */,
+				A8C307A32BA061A700907B56 /* Validation.swift in Sources */,
 				A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */,
 				A86860752A11EFCE00327385 /* SearchGameContract.swift in Sources */,
 				A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */,
@@ -2454,6 +2472,7 @@
 				A8C0A8742B1732A1002E906B /* DeepLinkService.swift in Sources */,
 				A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */,
 				A8A0F0F32AFE20A300997DEA /* AcceptedEventView.swift in Sources */,
+				A8C3079F2B9F1C6B00907B56 /* ChangePasswordView.swift in Sources */,
 				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,
 				A8D1D299235F002B00DA1089 /* StatusMenuView.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
@@ -2553,6 +2572,7 @@
 				A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */,
 				A85F9CA82AF5FCE500BBAE31 /* GlobalState.swift in Sources */,
 				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
+				A8C307A12B9F1C8600907B56 /* ChangePasswordState.swift in Sources */,
 				A8A0F0DC2AFBBF7E00997DEA /* LogoutSheetView.swift in Sources */,
 				A8A383F128C37165001B22EC /* ArkanoidScene.swift in Sources */,
 				A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */,

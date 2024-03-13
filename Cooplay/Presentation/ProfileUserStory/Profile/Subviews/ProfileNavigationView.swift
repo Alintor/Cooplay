@@ -14,6 +14,13 @@ struct ProfileNavigationView: View {
     @EnvironmentObject var coordinator: ProfileCoordinator
     let title: String
     var isBackButton: Binding<Bool>
+    let backAction: (() -> Void)?
+    
+    init(title: String, isBackButton: Binding<Bool>, backAction: (() -> Void)? = nil) {
+        self.title = title
+        self.isBackButton = isBackButton
+        self.backAction = backAction
+    }
     
     var body: some View {
         ZStack {
@@ -28,7 +35,11 @@ struct ProfileNavigationView: View {
                     .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
                     .frame(width: 32, height: 32, alignment: .center)
                     .onTapGesture {
-                        coordinator.open(.menu)
+                        if let backAction {
+                            backAction()
+                        } else {
+                            coordinator.open(.menu)
+                        }
                     }
                 Spacer()
             }

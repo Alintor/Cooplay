@@ -13,6 +13,7 @@ struct NotificationBanner {
     enum NotificationType {
         
         case networkError
+        case success
     }
     
     let title: String

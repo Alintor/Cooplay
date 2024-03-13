@@ -9,7 +9,7 @@
 struct Profile: Codable {
     
     let id: String
-    var name: String!
+    var name: String
     let avatarPath: String?
     var email: String?
     

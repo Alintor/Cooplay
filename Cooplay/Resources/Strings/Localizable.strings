@@ -30,6 +30,8 @@
 "errors.eventsService.removeMember" = "Не удалось исключить участника";
 "errors.eventsService.takeOwner" = "Не удалось сделать лидером";
 "errors.eventsService.addEvent" = "Не удалось получить событие";
+"errors.authorizationService.changePassword" = "Не удалось сменить пароль";
+"errors.authorizationService.wrongPassword" = "Неверный пароль";
 
 
 // MARK: - Status
@@ -196,6 +198,16 @@
 "reactionsSettings.category.8.title" = "Объекты";
 "reactionsSettings.category.9.title" = "Символы";
 "reactionsSettings.category.10.title" = "Флаги";
+
+// MARK: - ChangePAssword
+
+"changePassword.title" = "Смена пароля";
+"changePassword.currentPassword.placeholder" = "Текущий пароль";
+"changePassword.newPassword.placeholder" = "Новый пароль";
+"changePassword.confirmPassword.placeholder" = "Подтверждение пароля";
+"changePassword.actionButton.title" = "Сохранить новый пароль";
+"changePassword.error.passwordConfirm.wrong" = "Пароли не совпадают";
+"changePassword.success.title" = "Пароль успешно изменен";
 
 // MARK: - AdditionalReactions
 

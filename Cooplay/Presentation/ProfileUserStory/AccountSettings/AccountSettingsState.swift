@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-class AccountSettingsState: ObservableObject {
+final class AccountSettingsState: ObservableObject {
     
     // MARK: - Properties
     

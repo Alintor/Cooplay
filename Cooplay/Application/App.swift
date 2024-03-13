@@ -79,12 +79,16 @@ private extension NotificationBanner {
         switch self.type {
         case .networkError:
             Image(.commonLinkBroken)
+        case .success:
+            Image(.commonSuccess)
         }
     }
     var iconColor: Color {
         switch self.type {
         case .networkError:
             Color(.red)
+        case .success:
+            Color(.green)
         }
     }
 }

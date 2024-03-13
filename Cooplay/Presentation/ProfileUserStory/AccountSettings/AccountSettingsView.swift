@@ -19,6 +19,7 @@ struct AccountSettingsView: View {
             VStack(spacing: 0) {
                 if state.showChangePassword {
                     ProfileSettingsItemView(item: .changePassword)
+                        .onTapGesture { coordinator.open(.changePassword) }
                     ProfileSettingsSeparator()
                 }
                 ProfileSettingsItemView(item: .delete)

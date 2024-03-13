@@ -16,7 +16,8 @@ class ProfileCoordinator: ObservableObject {
         case menu
         case editProfile
         case reactions
-        case account
+        case account(isBack: Bool)
+        case changePassword
     }
     
     private let store: Store
@@ -53,6 +54,7 @@ class ProfileCoordinator: ObservableObject {
         case .editProfile: return Localizable.editProfileTitle()
         case .reactions: return Localizable.reactionsSettingsTitle()
         case .account: return Localizable.profileSettingsAccountTitle()
+        case .changePassword: return Localizable.changePasswordTitle()
         }
     }
     
@@ -89,7 +91,7 @@ class ProfileCoordinator: ObservableObject {
             }
             .zIndex(1)
             .transition(.move(edge: .trailing))
-        case .account:
+        case .account(let isBack):
             VStack {
                 if let title = title {
                     ProfileNavigationView(title: title, isBackButton: isBackButton)
@@ -98,6 +100,23 @@ class ProfileCoordinator: ObservableObject {
             }
             .closable(anchor: .trailing) {
                 self.open(.menu)
+            }
+            .zIndex(1)
+            .transition(.asymmetric(
+                insertion: isBack ? .move(edge: .leading) : .move(edge: .trailing),
+                removal: .opacity
+            ))
+        case .changePassword:
+            VStack {
+                if let title = title {
+                    ProfileNavigationView(title: title, isBackButton: isBackButton) {
+                        self.open(.account(isBack: true))
+                    }
+                }
+                ScreenViewFactory.changePassword()
+            }
+            .closable(anchor: .trailing) {
+                self.open(.account(isBack: true))
             }
             .zIndex(1)
             .transition(.move(edge: .trailing))

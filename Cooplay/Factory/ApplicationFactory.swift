@@ -119,6 +119,14 @@ enum ScreenViewFactory {
             .environmentObject(AccountSettingsState())
     }
     
+    static func changePassword() -> some View {
+        ChangePasswordView()
+            .environmentObject(ChangePasswordState(
+                store: applicationFactory.store,
+                authorizationService: applicationFactory.authorizationService
+            ))
+    }
+    
     static func additionalReactions(selectedReaction: String?, handler: ((Reaction?) -> Void)?) -> some View {
         AdditionalReactionsView(state: .init(
             defaultsStorage: applicationFactory.defaultsStorage,

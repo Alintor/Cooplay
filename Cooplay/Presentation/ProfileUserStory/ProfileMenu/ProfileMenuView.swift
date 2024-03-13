@@ -72,7 +72,7 @@ struct ProfileMenuView: View {
                 .onTapGesture { coordinator.open(.reactions) }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionAccountTitle())
             ProfileSettingsItemView(item: .account)
-                .onTapGesture { coordinator.open(.account) }
+                .onTapGesture { coordinator.open(.account(isBack: false)) }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .logout)
                 .onTapGesture { coordinator.showLogoutSheet() }

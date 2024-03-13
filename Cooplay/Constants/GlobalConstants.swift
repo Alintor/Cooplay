@@ -18,6 +18,7 @@ enum GlobalConstant {
         }
         
         static let passwordMinLength = 8
+        static let numericSymbols = "0123456789"
     }
     
     enum CoordinateSpace {
