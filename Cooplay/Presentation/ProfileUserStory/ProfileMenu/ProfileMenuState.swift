@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-class ProfileMenuState: ObservableObject {
+final class ProfileMenuState: ObservableObject {
     
     // MARK: - Properties
     

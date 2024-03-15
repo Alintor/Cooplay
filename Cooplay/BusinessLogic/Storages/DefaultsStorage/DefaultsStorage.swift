@@ -23,6 +23,8 @@ enum DefaultsStorageKey: String, CaseIterable {
     case gameDBToken
     case reactions
     case recentReactions
+    
+    static let userData: [DefaultsStorageKey] = [.showDeclinedEvents, .inventLinkEventId, .gameDBToken]
 }
 
 final class DefaultsStorage {
@@ -53,7 +55,7 @@ extension DefaultsStorage: DefaultsStorageType {
     }
     
     func clear() {
-        for key in DefaultsStorageKey.allCases {
+        for key in DefaultsStorageKey.userData {
             self.remove(valueForKey: key)
         }
     }

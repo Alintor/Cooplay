@@ -110,7 +110,6 @@
 		A85F9CAE2AF5FF9800BBAE31 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CAD2AF5FF9800BBAE31 /* Middleware.swift */; };
 		A85F9CB22AF6063E00BBAE31 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB12AF6063E00BBAE31 /* AuthenticationState.swift */; };
 		A85F9CB62AF61F8700BBAE31 /* ClosableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */; };
-		A85F9CB92AF64EB800BBAE31 /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CB82AF64EB800BBAE31 /* HomeState.swift */; };
 		A85F9CBB2AF64FEF00BBAE31 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CBA2AF64FEF00BBAE31 /* HomeView.swift */; };
 		A85F9CBD2AF7A88200BBAE31 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CBC2AF7A88200BBAE31 /* TitleView.swift */; };
 		A85F9CBF2AF7ACE300BBAE31 /* BackCloseIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F9CBE2AF7ACE300BBAE31 /* BackCloseIcon.swift */; };
@@ -246,6 +245,7 @@
 		A8C3079F2B9F1C6B00907B56 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3079E2B9F1C6B00907B56 /* ChangePasswordView.swift */; };
 		A8C307A12B9F1C8600907B56 /* ChangePasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307A02B9F1C8600907B56 /* ChangePasswordState.swift */; };
 		A8C307A32BA061A700907B56 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307A22BA061A700907B56 /* Validation.swift */; };
+		A8C307A52BA2C47300907B56 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C307A42BA2C47300907B56 /* HomeCoordinator.swift */; };
 		A8CB076B236876D800168EB6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB076A236876D800168EB6 /* MenuItem.swift */; };
 		A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */; };
 		A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D26D2356F8A400DA1089 /* UIButton.swift */; };
@@ -422,7 +422,6 @@
 		A85F9CAD2AF5FF9800BBAE31 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		A85F9CB12AF6063E00BBAE31 /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
 		A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosableModifier.swift; sourceTree = "<group>"; };
-		A85F9CB82AF64EB800BBAE31 /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
 		A85F9CBA2AF64FEF00BBAE31 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A85F9CBC2AF7A88200BBAE31 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		A85F9CBE2AF7ACE300BBAE31 /* BackCloseIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackCloseIcon.swift; sourceTree = "<group>"; };
@@ -561,6 +560,7 @@
 		A8C3079E2B9F1C6B00907B56 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		A8C307A02B9F1C8600907B56 /* ChangePasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordState.swift; sourceTree = "<group>"; };
 		A8C307A22BA061A700907B56 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		A8C307A42BA2C47300907B56 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		A8CB076A236876D800168EB6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A8D1D26B2356F83F00DA1089 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		A8D1D26D2356F8A400DA1089 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -1313,8 +1313,8 @@
 			isa = PBXGroup;
 			children = (
 				A8A0F0FC2AFFA2F100997DEA /* Subviews */,
-				A85F9CB82AF64EB800BBAE31 /* HomeState.swift */,
 				A85F9CBA2AF64FEF00BBAE31 /* HomeView.swift */,
+				A8C307A42BA2C47300907B56 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2460,6 +2460,7 @@
 				A824C9FA2742BF6D000E61A1 /* EventDetailsAddMemberView.swift in Sources */,
 				A80FFC672B906B9500121A7E /* ProfileMenuView.swift in Sources */,
 				A87CF45E23EAC718004189D3 /* UITableView.swift in Sources */,
+				A8C307A52BA2C47300907B56 /* HomeCoordinator.swift in Sources */,
 				A80FFC652B906B8700121A7E /* ProfileMenuState.swift in Sources */,
 				A8BE18392B0201960039634E /* InvitesStatusContextView.swift in Sources */,
 				A82FF2C32346F5D200EE1807 /* AvatarView.swift in Sources */,
@@ -2526,7 +2527,6 @@
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				A85F9CBD2AF7A88200BBAE31 /* TitleView.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
-				A85F9CB92AF64EB800BBAE31 /* HomeState.swift in Sources */,
 				A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */,
 				A824C9EF2742BAE6000E61A1 /* EventDetailsMemberView.swift in Sources */,
 				A8301D3E26AE8C8200519768 /* StatusDetailsView.swift in Sources */,

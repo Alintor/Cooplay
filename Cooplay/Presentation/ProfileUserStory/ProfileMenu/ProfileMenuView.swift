@@ -29,7 +29,7 @@ struct ProfileMenuView: View {
                                 generator.prepare()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     generator.impactOccurred()
-                                    coordinator.close()
+                                    coordinator.close?()
                                 }
                             }
                         }
@@ -48,7 +48,7 @@ struct ProfileMenuView: View {
                         .frame(width: 32, height: 32, alignment: .center)
                         .padding()
                         .onTapGesture {
-                            coordinator.close()
+                            coordinator.close?()
                         }
                 }
                 Spacer()

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class ProfileCoordinator: ObservableObject {
+final class ProfileCoordinator: ObservableObject {
     
     enum Route: Equatable {
         
@@ -26,15 +26,15 @@ class ProfileCoordinator: ObservableObject {
     @Published var isMinigamesShown: Bool = false
     @Published var isLogoutSheetShown: Bool = false
     @Published var isInProgress: Bool = false
-    var isShown: Binding<Bool>?
+    var close: (() -> Void)?
     
     // MARK: - Init
     
-    init(profile: Profile, store: Store, isShown: Binding<Bool>?) {
+    init(profile: Profile, store: Store, close: (() -> Void)?) {
         self.route = .menu
         self.profile = profile
         self.store = store
-        self.isShown = isShown
+        self.close = close
         store.state
             .map { $0.user.profile }
             .replaceNil(with: profile)
@@ -63,7 +63,7 @@ class ProfileCoordinator: ObservableObject {
         case .menu:
             ScreenViewFactory.profileMenu(profile: profile, isShownAvatar: isShownAvatar, isBackButton: isBackButton)
                 .closable(anchor: .topTrailing, closeHandler: {
-                    self.close()
+                    self.close?()
                 })
                 .zIndex(1)
                 .transition(.move(edge: .leading))
@@ -137,10 +137,6 @@ class ProfileCoordinator: ObservableObject {
     
     func logout() {
         store.dispatch(.logout)
-    }
-    
-    func close() {
-        isShown?.wrappedValue = false
     }
     
 }

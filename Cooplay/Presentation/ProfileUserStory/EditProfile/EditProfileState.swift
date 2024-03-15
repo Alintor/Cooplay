@@ -18,7 +18,7 @@ enum EditAction: Hashable {
     case addImage(_ image: UIImage)
 }
 
-class EditProfileState: NSObject, ObservableObject {
+final class EditProfileState: NSObject, ObservableObject {
     
     // MARK: - Properties
     

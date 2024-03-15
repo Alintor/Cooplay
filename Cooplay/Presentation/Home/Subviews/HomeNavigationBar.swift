@@ -10,12 +10,12 @@ import SwiftUI
 
 struct HomeNavigationBar: View {
     
-    @EnvironmentObject var state: HomeState
     @EnvironmentObject var namespace: NamespaceWrapper
+    @EnvironmentObject var coordinator: HomeCoordinator
     
     var body: some View {
         ZStack {
-            if state.isEventsFetching {
+            if coordinator.showLoadingIndicator {
                 HomeLoadingIndicator()
                     .transition(.opacity)
             }
@@ -24,9 +24,9 @@ struct HomeNavigationBar: View {
                     .padding()
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        state.deselectEvent()
+                        coordinator.deselectEvent()
                     }
-                if state.isActiveEventPresented {
+                if coordinator.isActiveEventPresented {
                     Spacer()
                 }
                 Image(R.image.commonLogoText.name)
@@ -34,16 +34,16 @@ struct HomeNavigationBar: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 16)
                     .clipped()
-                    .padding(.leading, state.isActiveEventPresented ? 0 : -16)
+                    .padding(.leading, coordinator.isActiveEventPresented ? 0 : -16)
                 Spacer()
-                if let profile = state.profile, !state.isShownProfile {
+                if let profile = coordinator.profile, !coordinator.hideProfile {
                     AvatarItemView(viewModel: .init(with: profile.user), diameter: 32)
                         .frame(width: 32, height: 32, alignment: .center)
                         .matchedGeometryEffect(id: MatchedAnimations.profileAvatar.name, in: namespace.id)
                         .padding()
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            state.isShownProfile = true
+                            coordinator.show(.profile(profile))
                         }
                 }
             }
@@ -53,16 +53,16 @@ struct HomeNavigationBar: View {
                 .blur(radius: 15)
                 .padding([.horizontal, .top], -30)
                 .frame(width: UIScreen.main.bounds.size.width)
-                .opacity(state.isActiveEventPresented ? 0 : 1)
+                .opacity(coordinator.isActiveEventPresented ? 0 : 1)
                 .ignoresSafeArea()
         }
-        .animation(.customTransition, value: state.isEventsFetching)
+        .animation(.customTransition, value: coordinator.showLoadingIndicator)
     }
     
     var eventsIcon: some View {
         ZStack {
-            if state.invitesCount > 0 && state.isActiveEventPresented {
-                InvitesIconView(count: state.invitesCount)
+            if coordinator.invitesCount > 0 && coordinator.isActiveEventPresented {
+                InvitesIconView(count: coordinator.invitesCount)
                     .frame(width: 32, height: 32)
                     .zIndex(1)
                     .transition(.scale)
@@ -70,10 +70,10 @@ struct HomeNavigationBar: View {
                 Image(R.image.commonLogoIcon.name)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(state.isActiveEventPresented ? Color(.textPrimary) : Color(.actionAccent))
+                    .foregroundStyle(coordinator.isActiveEventPresented ? Color(.textPrimary) : Color(.actionAccent))
                     .frame(width: 32, height: 32)
                     .clipped()
-                    .rotationEffect(.degrees(state.isActiveEventPresented ? -180 : 0))
+                    .rotationEffect(.degrees(coordinator.isActiveEventPresented ? -180 : 0))
                     .zIndex(1)
                     .transition(.scale)
             }

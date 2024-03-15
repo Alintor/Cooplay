@@ -73,7 +73,7 @@ enum ScreenViewFactory {
     
     static func home() -> some View {
         HomeView()
-            .environmentObject(HomeState(store: applicationFactory.store))
+            .environmentObject(HomeCoordinator(store: applicationFactory.store))
     }
     
     static func eventsList(newEventAction: (() -> Void)?) -> some View {
@@ -86,9 +86,9 @@ enum ScreenViewFactory {
             .environmentObject(EventDetailsState(store: applicationFactory.store, event: event, defaultsStorage: applicationFactory.defaultsStorage))
     }
     
-    static func profile(_ profile: Profile, isShown: Binding<Bool>? = nil) -> some View {
+    static func profile(_ profile: Profile, close: (() -> Void)?) -> some View {
         ProfileView()
-            .environmentObject(ProfileCoordinator(profile: profile, store: applicationFactory.store, isShown: isShown))
+            .environmentObject(ProfileCoordinator(profile: profile, store: applicationFactory.store, close: close))
     }
     
     static func profileMenu(profile: Profile, isShownAvatar: Binding<Bool>, isBackButton: Binding<Bool>)  -> some View {

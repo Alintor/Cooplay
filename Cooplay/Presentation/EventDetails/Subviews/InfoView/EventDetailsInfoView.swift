@@ -24,12 +24,12 @@ struct EventDetailsInfoView: View {
                     .font(.system(size: 28, weight: .regular))
                     .foregroundColor(Color(.textPrimary))
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .matchedGeometryEffect(id: MatchedAnimations.gameName(state.event.id).name, in: namespace.id)
+                    //.matchedGeometryEffect(id: MatchedAnimations.gameName(state.event.id).name, in: namespace.id)
                 Text(state.event.date.displayString)
                     .font(.system(size: 22, weight: .regular))
                     .foregroundColor(Color(R.color.textSecondary.name))
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
+                    //.matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
             }
             .padding(.horizontal, 8)
         }

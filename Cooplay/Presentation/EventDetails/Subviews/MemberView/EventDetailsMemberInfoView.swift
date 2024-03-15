@@ -19,7 +19,7 @@ struct EventDetailsMemberInfoView: View {
             AvatarItemView(viewModel: viewModel.avatarViewModel, diameter: 32)
                 .frame(width: 32, height: 32, alignment: .center)
                 .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 4))
-                .matchedGeometryEffect(id: MatchedAnimations.member(viewModel.member.id, eventId: state.event.id).name, in: namespace.id)
+                //.matchedGeometryEffect(id: MatchedAnimations.member(viewModel.member.id, eventId: state.event.id).name, in: namespace.id)
             VStack(spacing: 0) {
                 HStack {
                     if viewModel.isOwner {

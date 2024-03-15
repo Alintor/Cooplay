@@ -10,39 +10,29 @@ import SwiftUI
 
 struct EventsListStatusContextView: View {
     
-    @EnvironmentObject var state: EventsListState
+    @EnvironmentObject var namespace: NamespaceWrapper
+    @EnvironmentObject var coordinator: HomeCoordinator
     @State var status: User.Status? = nil
-    @State var contextPresented = false
     @State var showChangeStatusContext = false
+    @State var isButtonDisable = true
     let event: Event
-    @Binding var showStatusContext: Bool
-    @Binding var statusRect: CGRect
-    var bottomSpacerHeight: CGFloat {
-        let bottom = state.eventsListSize.height - statusRect.origin.y - statusRect.size.height - 8
-        if statusRect.origin.y < 236 {
-            return bottom + (236 - statusRect.origin.y)
-        } else {
-            return bottom
-        }
-    }
     
     func close() {
+        isButtonDisable = true
         showChangeStatusContext = false
-        contextPresented = false
+        coordinator.hideFullScreenCover()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             if let status = status {
-                state.changeStatus(status, for: event)
+                coordinator.changeStatus(status, for: event)
             }
-            showStatusContext = false
             Haptic.play(style: .medium)
         }
     }
     
     var body: some View {
         ZStack {
-            VisualEffectView(effect: UIBlurEffect(style: .regular), intensity: 0.2)
+            VisualEffectView(effect: UIBlurEffect(style: .dark), intensity: 0.8)
                 .ignoresSafeArea()
-                .opacity(contextPresented ? 1 : 0)
                 .onTapGesture {
                     close()
                 }
@@ -57,26 +47,23 @@ struct EventsListStatusContextView: View {
                 .scaleEffect(showChangeStatusContext ? 1 : 0, anchor: .bottom)
                 .opacity(showChangeStatusContext ? 1 : 0)
                 .padding(.bottom, 4)
-                EventStatusView(viewModel: .init(with: event), isTapped: $contextPresented)
+                EventStatusView(viewModel: .init(with: event), isTapped: .constant(true))
                     .background(Color(.shapeBackground))
                     .clipShape(.rect(cornerRadius: 20, style: .continuous))
+                    .matchedGeometryEffect(id: MatchedAnimations.eventStatus(event.id).name, in: namespace.id)
                     .padding(.bottom, 8)
                     .onTapGesture {
                         close()
                     }
-                if !contextPresented {
-                    Spacer()
-                        .frame(height: bottomSpacerHeight)
-                }
+                    .disabled(isButtonDisable)
             }
             .padding(.horizontal, 8)
         }
-        .animation(.fastTransition, value: contextPresented)
         .animation(.fastTransition, value: showChangeStatusContext)
         .animation(.fastTransition, value: event.me.status)
         .onAppear {
-            contextPresented = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isButtonDisable = false
                 showChangeStatusContext.toggle()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

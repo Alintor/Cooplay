@@ -10,23 +10,21 @@ import SwiftUI
 
 struct HomeLoadingIndicator: View {
     
-    @State var isBounce: Bool = true
-    @State var isColorMain: Bool = false
+    @State var isBounce: Bool = false
+    @State var isFirstColor: Bool = true
     
-    var circleColor: Color {
-        let colors = [Color(.yellow), Color(.green), Color(.red)]
-        let firstIndex = Int.random(in: 0..<3)
-        let secondIndex = Int.random(in: 0..<5)
-        return isColorMain
-            ? colors[firstIndex]
-            : Color(uiColor: UIColor.avatarColors[secondIndex])
+    var firstColor: Color {
+        Color(uiColor: UIColor.avatarColors[Int.random(in: 0..<4)])
+    }
+    var secondColor: Color {
+        Color(uiColor: UIColor.avatarColors[Int.random(in: 4..<8)])
     }
     
     var body: some View {
         ZStack {
             circle
         }
-        .padding(.top, -190)
+        .padding(.top, -210)
         
     }
     
@@ -35,23 +33,28 @@ struct HomeLoadingIndicator: View {
             if isBounce {
                 Spacer()
             }
-            Capsule().fill(circleColor)
+            Capsule().fill(isFirstColor ? firstColor : secondColor)
                 .frame(width: 300, height: 240, alignment: .center)
-                .opacity(0.35)
+                .opacity(0.15)
             .blur(radius: 25)
             if !isBounce {
                 Spacer()
             }
         }
-        .padding(.horizontal, -200)
+        .padding(.horizontal, -330)
         .animation(
-            .easeInOut(duration: 1)
-            .repeatForever(autoreverses: true),
+            .easeInOut(duration: 2)
+            .repeatForever(autoreverses: false),
             value: isBounce
+        )
+        .animation(
+            .easeInOut(duration: 2)
+            .repeatForever(autoreverses: false),
+            value: isFirstColor
         )
         .onAppear() {
             isBounce.toggle()
-            isColorMain.toggle()
+            isFirstColor.toggle()
         }
     }
         
