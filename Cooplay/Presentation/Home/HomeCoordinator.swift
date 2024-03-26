@@ -33,7 +33,7 @@ final class HomeCoordinator: ObservableObject {
     
     enum FullScreenCover: Equatable {
         
-        case profile(_ profile: Profile)
+        case profile
         case editStatus(event: Event)
     }
     
@@ -68,7 +68,7 @@ final class HomeCoordinator: ObservableObject {
     
     // MARK: - Init
     
-    init(store: Store) {
+    init(store: Store = ApplicationFactory.getStore()) {
         self.store = store
         self.profile = nil
         self.showLoadingIndicator = store.state.value.events.isFetching
@@ -191,10 +191,10 @@ final class HomeCoordinator: ObservableObject {
 
 extension HomeCoordinator.FullScreenCover {
     
-    @ViewBuilder func buildView(close: (() -> Void)?) -> some View {
+    @ViewBuilder func buildView() -> some View {
         switch self {
-        case .profile(let profile):
-            ScreenViewFactory.profile(profile, close: close)
+        case .profile:
+            ScreenViewFactory.profile()
                 .zIndex(1)
                 .transition(.scale(scale: 0, anchor: .topTrailing).combined(with: .opacity))
         case .editStatus(let event):

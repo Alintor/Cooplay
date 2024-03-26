@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuthorizationView: View {
     
-    @EnvironmentObject var coordinator: AuthorizationCoordinator
+    @StateObject var coordinator = AuthorizationCoordinator()
     @Namespace var namespace
     
     var body: some View {
@@ -19,6 +19,7 @@ struct AuthorizationView: View {
                 .edgesIgnoringSafeArea(.all)
             coordinator.buildView()
                 .environmentObject(NamespaceWrapper(namespace))
+                .environmentObject(coordinator)
         }
         .animation(.customTransition, value: coordinator.route)
     }

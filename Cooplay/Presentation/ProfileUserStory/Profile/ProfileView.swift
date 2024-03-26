@@ -11,7 +11,8 @@ import SwiftUI
 struct ProfileView: View {
     
     @EnvironmentObject var namespace: NamespaceWrapper
-    @EnvironmentObject var coordinator: ProfileCoordinator
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
+    @StateObject var coordinator = ProfileCoordinator()
     @State private var canContinueOffset = true
     @State var isShownAvatar: Bool = true
     @State var isBackButton: Bool = false
@@ -20,6 +21,7 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             coordinator.buildView(isShownAvatar: $isShownAvatar, isBackButton: $isBackButton)
+                .environmentObject(coordinator)
             if coordinator.isLogoutSheetShown {
                 LogoutSheetView(showAlert: $coordinator.isLogoutSheetShown) {
                     coordinator.logout()
@@ -36,6 +38,11 @@ struct ProfileView: View {
                 isBackButton = false
             } else {
                 isBackButton = true
+            }
+        }
+        .onAppear {
+            coordinator.close = {
+                homeCoordinator.hideFullScreenCover()
             }
         }
     }

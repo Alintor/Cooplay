@@ -65,9 +65,12 @@ struct LoginView: View {
                 Spacer()
                 Button(Localizable.authorizationRecoveryPasswordButtonTitle()) {
                     focusedField = nil
+                    state.sendResetEmail()
                 }
                 .foregroundStyle(Color(.actionAccent))
                 .font(.system(size: 20))
+                .disabled(!state.isEmailCorrect)
+                .opacity(state.isEmailCorrect ? 1 : 0.5)
             }
             .padding(.bottom, 32)
             MainActionButton(Localizable.authorizationActionButtonTitle(), isDisabled: !state.isReady) {

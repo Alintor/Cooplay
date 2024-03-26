@@ -34,6 +34,7 @@ struct ProfileNavigationView: View {
                     .foregroundColor(Color(.textSecondary))
                     .matchedGeometryEffect(id: MatchedAnimations.closeButton.name, in: namespace.id)
                     .frame(width: 32, height: 32, alignment: .center)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         if let backAction {
                             backAction()

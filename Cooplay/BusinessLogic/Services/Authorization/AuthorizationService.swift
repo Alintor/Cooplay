@@ -38,6 +38,7 @@ protocol AuthorizationServiceType {
     func createAccount(email: String, password: String) async throws
     func checkAccountExistence(email: String) async throws -> Bool
     func changePassword(currentPassword: String, newPassword: String) async throws
+    func sendResetPasswordEmail(_ email: String) async throws
     func logout()
 }
 
@@ -118,6 +119,11 @@ extension AuthorizationService: AuthorizationServiceType {
     func changePassword(currentPassword: String, newPassword: String) async throws {
         let currentUser = try await reauthenticate(currentPassword: currentPassword)
         try await currentUser.updatePassword(to: newPassword)
+    }
+    
+    func sendResetPasswordEmail(_ email: String) async throws {
+        firebaseAuth.useAppLanguage()
+        try await firebaseAuth.sendPasswordReset(withEmail: email)
     }
     
 }

@@ -173,6 +173,7 @@ extension UserService: Middleware {
                         }
                     }
                     store.dispatch(.hideProfileProgress)
+                    store.dispatch(.showNotificationBanner(.init(title: Localizable.editProfileSuccessTitle(), type: .success)))
                     
                 } catch {
                     store.dispatch(.hideProfileProgress)

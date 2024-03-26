@@ -30,11 +30,10 @@ final class ProfileCoordinator: ObservableObject {
     
     // MARK: - Init
     
-    init(profile: Profile, store: Store, close: (() -> Void)?) {
+    init(store: Store = ApplicationFactory.getStore()) {
         self.route = .menu
-        self.profile = profile
+        self.profile = store.state.value.user.profile!
         self.store = store
-        self.close = close
         store.state
             .map { $0.user.profile }
             .replaceNil(with: profile)
@@ -107,19 +106,12 @@ final class ProfileCoordinator: ObservableObject {
                 removal: .opacity
             ))
         case .changePassword:
-            VStack {
-                if let title = title {
-                    ProfileNavigationView(title: title, isBackButton: isBackButton) {
-                        self.open(.account(isBack: true))
-                    }
+            ScreenViewFactory.changePassword()
+                .closable(anchor: .trailing) {
+                    self.open(.account(isBack: true))
                 }
-                ScreenViewFactory.changePassword()
-            }
-            .closable(anchor: .trailing) {
-                self.open(.account(isBack: true))
-            }
-            .zIndex(1)
-            .transition(.move(edge: .trailing))
+                .zIndex(1)
+                .transition(.move(edge: .trailing))
         }
     }
     

@@ -82,4 +82,19 @@ class LoginState: ObservableObject {
         }
     }
     
+    func sendResetEmail() {
+        Task {
+            do {
+                try await authorizationService.sendResetPasswordEmail(email)
+                store.dispatch(.showNotificationBanner(.init(
+                    title: Localizable.authorizationResetPasswordTitle(),
+                    message: Localizable.authorizationResetPasswordMessage(email),
+                    type: .success
+                )))
+            } catch {
+                store.dispatch(.showNetworkError(AuthorizationServiceError.unknownError))
+            }
+        }
+    }
+    
 }

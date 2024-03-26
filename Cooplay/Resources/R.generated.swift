@@ -823,7 +823,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 172 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 175 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -953,6 +953,8 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsCategory3Title = Rswift.StringResource(key: "reactionsSettings.category.3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Мои события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На почту %@ отправлено письмо для подтверждения сброса пароля
+      static let authorizationResetPasswordMessage = Rswift.StringResource(key: "authorization.resetPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
       static let searchGameSearchBarPlaceholder = Rswift.StringResource(key: "searchGame.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Например, введите 'Overwatch' и посмотрите, что будет =)
@@ -1091,6 +1093,8 @@ struct R: Rswift.Validatable {
       static let errorsUnknown = Rswift.StringResource(key: "errors.unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Профиль
       static let profileTitle = Rswift.StringResource(key: "profile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Профиль успешно обновлен
+      static let editProfileSuccessTitle = Rswift.StringResource(key: "editProfile.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Путешествия и места
       static let reactionsSettingsCategory6Title = Rswift.StringResource(key: "reactionsSettings.category.6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Реакции
@@ -1107,6 +1111,8 @@ struct R: Rswift.Validatable {
       static let searchMembersSectionsSearchResults = Rswift.StringResource(key: "searchMembers.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: С кем
       static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сброс парося
+      static let authorizationResetPasswordTitle = Rswift.StringResource(key: "authorization.resetPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Свернуть
       static let eventsListDeclinedEventsHide = Rswift.StringResource(key: "eventsList.declinedEvents.hide", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
@@ -1490,6 +1496,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: На почту %@ отправлено письмо для подтверждения сброса пароля
+      static func authorizationResetPasswordMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("authorization.resetPassword.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Value: Название игры
       static func searchGameSearchBarPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.searchBar.placeholder", bundle: R.hostingBundle, comment: "")
@@ -1835,6 +1846,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("profile.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Профиль успешно обновлен
+      static func editProfileSuccessTitle(_: Void = ()) -> String {
+        return NSLocalizedString("editProfile.success.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Путешествия и места
       static func reactionsSettingsCategory6Title(_: Void = ()) -> String {
         return NSLocalizedString("reactionsSettings.category.6.title", bundle: R.hostingBundle, comment: "")
@@ -1873,6 +1889,11 @@ struct R: Rswift.Validatable {
       /// Value: С кем
       static func newEventChooseMembersLabelTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.chooseMembersLabel.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сброс парося
+      static func authorizationResetPasswordTitle(_: Void = ()) -> String {
+        return NSLocalizedString("authorization.resetPassword.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Свернуть

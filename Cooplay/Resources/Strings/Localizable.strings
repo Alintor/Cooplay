@@ -135,6 +135,8 @@
 "authorization.error.email.incorrect" = "Email введён не верно";
 "authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
 "authorization.error.password.wrong" = "Неверный пароль";
+"authorization.resetPassword.title" = "Сброс парося";
+"authorization.resetPassword.message" = "На почту %@ отправлено письмо для подтверждения сброса пароля";
 
 // MARK: - Registration
 "registration.title" = "Создать аккаунт";
@@ -183,6 +185,7 @@
 "editProfile.permissionsAlert.title" = "Для доступа к камере нужно разрешение";
 "editProfile.permissionsAlert.setting" = "Открыть настройки";
 "editProfile.nickname.placeholder" = "Никнейм";
+"editProfile.success.title" = "Профиль успешно обновлен";
 
 // MARK: - ReactionsSettings
 "reactionsSettings.title" = "Настройка реакции";

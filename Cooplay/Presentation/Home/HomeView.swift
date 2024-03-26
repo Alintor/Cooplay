@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     
     @Environment(\.scenePhase) var scenePhase
-    @EnvironmentObject var coordinator: HomeCoordinator
+    @StateObject var coordinator = HomeCoordinator()
     @Namespace var namespace
     @State var showNewEvent = false
     
@@ -22,9 +22,11 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             coordinator.buildView()
                 .environmentObject(NamespaceWrapper(namespace))
+                .environmentObject(coordinator)
             if let fullScreenCover = coordinator.fullScreenCover {
-                fullScreenCover.buildView { coordinator.hideFullScreenCover() }
+                fullScreenCover.buildView()
                     .environmentObject(NamespaceWrapper(namespace))
+                    .environmentObject(coordinator)
             }
         }
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.home)

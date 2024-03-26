@@ -27,6 +27,7 @@ final class ChangePasswordState: ObservableObject {
     var isReady: Bool {
         !currentPassword.isEmpty && newPasswordError?.isValid == true && newPassword == confirmPassword
     }
+    var close: (() -> Void)?
     
     // MARK: - Init
     
@@ -40,6 +41,7 @@ final class ChangePasswordState: ObservableObject {
     @MainActor private func handleSuccessChange() {
         showProgress = false
         store.dispatch(.showNotificationBanner(.init(title: Localizable.changePasswordSuccessTitle(), type: .success)))
+        close?()
     }
     
     @MainActor private func handleWrongCurrentPassword() {

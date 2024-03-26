@@ -43,7 +43,7 @@ struct HomeNavigationBar: View {
                         .padding()
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            coordinator.show(.profile(profile))
+                            coordinator.show(.profile)
                         }
                 }
             }
