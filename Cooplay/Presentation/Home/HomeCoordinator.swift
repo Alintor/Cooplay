@@ -16,6 +16,7 @@ final class HomeCoordinator: ObservableObject {
         case editProfile(_ profile: Profile)
         case events(_ route: EventRoute)
         case loading
+        case logoSpinner
     }
     
     enum EventRoute: Equatable {
@@ -46,6 +47,7 @@ final class HomeCoordinator: ObservableObject {
     @Published var invitesCount: Int = 0
     @Published var showLoadingIndicator: Bool
     @Published var showNewEvent: Bool = false
+    @Published var showLogoSpinner: Bool = false
     @Published var fullScreenCover: FullScreenCover?
     @Published var editStatusEventId: String?
     var isActiveEventPresented: Bool {
@@ -58,6 +60,7 @@ final class HomeCoordinator: ObservableObject {
         guard let profile else { return .loading }
         guard !profile.name.isEmpty else { return .editProfile(profile) }
         guard !showNewEvent else { return .events(.newEvent) }
+        guard !showLogoSpinner else { return .logoSpinner }
         
         if let activeEvent {
             return .events(.events(.active(event: activeEvent)))
@@ -136,6 +139,10 @@ final class HomeCoordinator: ObservableObject {
             ActivityIndicatorView()
                 .zIndex(1)
                 .transition(.scale.combined(with: .opacity))
+        case .logoSpinner:
+            LogoSpinnerView()
+                .zIndex(1)
+                .transition(.opacity)
         case .editProfile(let profile):
             VStack {
                 TitleView(text: Localizable.personalisationTitle())

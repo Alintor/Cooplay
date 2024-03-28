@@ -64,6 +64,9 @@
 "timeCarouselPanel.change.title" = "Изменить";
 "timeCarouselPanel.latness.value" = "%@ мин";
 
+//MARK: - LogoSpinner
+"logoSpinner.hint" = "Переместите логотип сюда, чтобы выйти";
+
 // MARK: - EventMemberMenuItem
 "eventMemberMenuItem.makeOwner" = "Сделать лидером";
 "eventMemberMenuItem.delete" = "Исключить";

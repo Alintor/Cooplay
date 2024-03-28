@@ -10,6 +10,7 @@ import SwiftUI
 
 enum MatchedAnimations {
     
+    case logo
     case profileAvatar
     case closeButton
     case newEventButton
@@ -24,6 +25,8 @@ enum MatchedAnimations {
     
     var name: String {
         switch self {
+        case .logo:
+            return "logo"
         case .profileAvatar:
             return "profileAvatar"
         case .closeButton:
@@ -76,5 +79,9 @@ extension SwiftUI.Animation {
     static var fastTransition: SwiftUI.Animation {
         //.interpolatingSpring(stiffness: 400, damping: 30)
         .snappy(duration: 0.3)
+    }
+    
+    static var bounceTransition: SwiftUI.Animation {
+        .interpolatingSpring(stiffness: 350, damping: 15)
     }
 }

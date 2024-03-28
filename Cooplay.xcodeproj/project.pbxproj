@@ -198,6 +198,7 @@
 		A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972924BED14B0036B155 /* DefaultsStorage.swift */; };
 		A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */; };
 		A89F972E24BEEC820036B155 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F972D24BEEC820036B155 /* Notification.swift */; };
+		A89FE2C12BB2A57200F85F1A /* LogoSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FE2C02BB2A57200F85F1A /* LogoSpinnerView.swift */; };
 		A8A0F0CD2AFA09A700997DEA /* ReactionsSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0CC2AFA09A700997DEA /* ReactionsSettingsState.swift */; };
 		A8A0F0CF2AFA3CD300997DEA /* ArcanoidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0CE2AFA3CD300997DEA /* ArcanoidView.swift */; };
 		A8A0F0D62AFBAAEF00997DEA /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0F0D52AFBAAEF00997DEA /* EditSheetView.swift */; };
@@ -514,6 +515,7 @@
 		A89F972924BED14B0036B155 /* DefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorage.swift; sourceTree = "<group>"; };
 		A89F972B24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageAssemblyContainer.swift; sourceTree = "<group>"; };
 		A89F972D24BEEC820036B155 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A89FE2C02BB2A57200F85F1A /* LogoSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoSpinnerView.swift; sourceTree = "<group>"; };
 		A8A0F0CC2AFA09A700997DEA /* ReactionsSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsState.swift; sourceTree = "<group>"; };
 		A8A0F0CE2AFA3CD300997DEA /* ArcanoidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcanoidView.swift; sourceTree = "<group>"; };
 		A8A0F0D52AFBAAEF00997DEA /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 				A863E3C02B68C41F0021B405 /* AuthorizationUserStory */,
 				A88003DC28F447D500FDA878 /* AdditionalReactions */,
 				A85F9CB72AF64EA500BBAE31 /* Home */,
+				A89FE2BF2BB2A55600F85F1A /* LogoSpinner */,
 				A8A0F0E42AFCE0CD00997DEA /* EmptyEvents */,
 				3B0EFF11180C755BF51BF0FA /* EventsList */,
 				5C6E24950482FD9B716412DB /* EventDetails */,
@@ -1784,6 +1787,14 @@
 			path = DefaultsStorage;
 			sourceTree = "<group>";
 		};
+		A89FE2BF2BB2A55600F85F1A /* LogoSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				A89FE2C02BB2A57200F85F1A /* LogoSpinnerView.swift */,
+			);
+			path = LogoSpinner;
+			sourceTree = "<group>";
+		};
 		A8A0F0E42AFCE0CD00997DEA /* EmptyEvents */ = {
 			isa = PBXGroup;
 			children = (
@@ -2362,6 +2373,7 @@
 				A86860912A15248900327385 /* UIImage.swift in Sources */,
 				A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */,
 				A87CF41323E03D69004189D3 /* UserServiceAssemblyContainer.swift in Sources */,
+				A89FE2C12BB2A57200F85F1A /* LogoSpinnerView.swift in Sources */,
 				A82FF2DD2347492B00EE1807 /* String.swift in Sources */,
 				A87CF46A23EBB5E3004189D3 /* NewEventTimePickerView.swift in Sources */,
 				A87CF47923EC1518004189D3 /* APIProviderAssemblyContainer.swift in Sources */,

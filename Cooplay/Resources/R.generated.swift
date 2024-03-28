@@ -823,7 +823,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 175 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 176 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1041,6 +1041,8 @@ struct R: Rswift.Validatable {
       static let authorizationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "authorization.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароль успешно изменен
       static let changePasswordSuccessTitle = Rswift.StringResource(key: "changePassword.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Переместите логотип сюда, чтобы выйти
+      static let logoSpinnerHint = Rswift.StringResource(key: "logoSpinner.hint", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Персонализация
       static let personalisationTitle = Rswift.StringResource(key: "personalisation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Победа
@@ -1714,6 +1716,11 @@ struct R: Rswift.Validatable {
       /// Value: Пароль успешно изменен
       static func changePasswordSuccessTitle(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.success.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Переместите логотип сюда, чтобы выйти
+      static func logoSpinnerHint(_: Void = ()) -> String {
+        return NSLocalizedString("logoSpinner.hint", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Персонализация
