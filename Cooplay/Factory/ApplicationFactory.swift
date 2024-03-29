@@ -81,8 +81,11 @@ enum ScreenViewFactory {
     }
     
     static func eventDetails(_ event: Event) -> some View {
-        EventDetailsView()
-            .environmentObject(EventDetailsState(store: applicationFactory.store, event: event, defaultsStorage: applicationFactory.defaultsStorage))
+        EventDetailsView(state: EventDetailsState(
+            store: applicationFactory.store,
+            event: event,
+            defaultsStorage: applicationFactory.defaultsStorage
+        ))
     }
     
     static func profile() -> some View {
@@ -99,13 +102,22 @@ enum ScreenViewFactory {
             ))
     }
     
-    static func editProfile(_ profile: Profile, needShowProfileAvatar: Binding<Bool>? = nil) -> some View {
-        EditProfileView()
-            .environmentObject(EditProfileState(
-                store: applicationFactory.store,
-                profile: profile,
-                needShowProfileAvatar: needShowProfileAvatar
-            ))
+    static func editProfile(
+        _ profile: Profile,
+        needShowProfileAvatar: Binding<Bool>? = nil,
+        isBackButton: Binding<Bool> = .constant(true),
+        isPersonalization: Bool = false,
+        backAction: (() -> Void)? = nil
+    ) -> some View {
+        EditProfileView(state: EditProfileState(
+            store: applicationFactory.store,
+            profile: profile, 
+            userService: applicationFactory.userService,
+            needShowProfileAvatar: needShowProfileAvatar,
+            isBackButton: isBackButton,
+            isPersonalization: isPersonalization,
+            backAction: backAction
+        ))
     }
     
     static func reactionsSettings() -> some View {
@@ -118,11 +130,10 @@ enum ScreenViewFactory {
     }
     
     static func changePassword() -> some View {
-        ChangePasswordView()
-            .environmentObject(ChangePasswordState(
-                store: applicationFactory.store,
-                authorizationService: applicationFactory.authorizationService
-            ))
+        ChangePasswordView(state: ChangePasswordState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService
+        ))
     }
     
     static func additionalReactions(selectedReaction: String?, handler: ((Reaction?) -> Void)?) -> some View {
@@ -138,21 +149,19 @@ enum ScreenViewFactory {
     }
     
     static func login(email: String = "") -> some View {
-        LoginView()
-            .environmentObject(LoginState(
-                store: applicationFactory.store,
-                authorizationService: applicationFactory.authorizationService,
-                email: email
-            ))
+        LoginView(state: LoginState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService,
+            email: email
+        ))
     }
     
     static func register(email: String = "") -> some View {
-        RegisterView()
-            .environmentObject(RegisterState(
-                store: applicationFactory.store,
-                authorizationService: applicationFactory.authorizationService,
-                email: email
-            ))
+        RegisterView(state: RegisterState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService,
+            email: email
+        ))
     }
     
 }

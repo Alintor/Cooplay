@@ -16,7 +16,7 @@ struct EditProfileView: View {
     
     // MARK: - Properties
     
-    @EnvironmentObject var state: EditProfileState
+    @StateObject var state: EditProfileState
     @EnvironmentObject var namespace: NamespaceWrapper
     @FocusState private var focusedField: FocusedField?
     
@@ -65,6 +65,7 @@ struct EditProfileView: View {
                 }
                 .edgesIgnoringSafeArea(.bottom)
         }
+        .activityIndicator(isShown: $state.showProgress)
         .alert(Localizable.editProfilePermissionsAlertTitle(), isPresented: $state.showPermissionsAlert, actions: {
             Button(Localizable.commonCancel(), role: .cancel) {}
             Button(Localizable.editProfilePermissionsAlertSetting()) {
@@ -77,9 +78,16 @@ struct EditProfileView: View {
     
     var editView: some View {
         VStack(spacing: 0) {
+            if state.isPersonalization {
+                TitleView(text: Localizable.personalisationTitle())
+                    .padding()
+            } else {
+                ProfileNavigationView(title: Localizable.editProfileTitle(), isBackButton: state.isBackButton, backAction: state.backAction)
+            }
             EditAvatarView()
                 .padding(.top, 24)
                 .padding(.bottom, 32)
+                .environmentObject(state)
                 .onTapGesture {
                     state.showAvatarSheet = true
                     focusedField = nil

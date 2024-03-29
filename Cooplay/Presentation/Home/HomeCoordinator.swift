@@ -60,10 +60,11 @@ final class HomeCoordinator: ObservableObject {
         guard let profile else { return .loading }
         guard !profile.name.isEmpty else { return .editProfile(profile) }
         guard !showNewEvent else { return .events(.newEvent) }
-        guard !showLogoSpinner else { return .logoSpinner }
         
         if let activeEvent {
             return .events(.events(.active(event: activeEvent)))
+        } else if showLogoSpinner {
+            return .logoSpinner
         } else {
             return .events(.events(isNoEvents ? .empty : .list))
         }
@@ -144,13 +145,9 @@ final class HomeCoordinator: ObservableObject {
                 .zIndex(1)
                 .transition(.opacity)
         case .editProfile(let profile):
-            VStack {
-                TitleView(text: Localizable.personalisationTitle())
-                    .padding()
-                ScreenViewFactory.editProfile(profile)
-            }
-            .zIndex(1)
-            .transition(.move(edge: .bottom))
+            ScreenViewFactory.editProfile(profile, isPersonalization: true)
+                .zIndex(1)
+                .transition(.move(edge: .bottom))
         case .events(let eventsRoute):
             ZStack {
                 switch eventsRoute {

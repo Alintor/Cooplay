@@ -15,7 +15,7 @@ struct LoginView: View {
         case password
     }
     
-    @EnvironmentObject var state: LoginState
+    @StateObject var state: LoginState
     @EnvironmentObject var coordinator: AuthorizationCoordinator
     @EnvironmentObject var namespace: NamespaceWrapper
     @FocusState private var focusedField: FocusedField?

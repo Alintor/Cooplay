@@ -46,7 +46,6 @@ struct ProfileNavigationView: View {
             }
         }
         .padding()
-        //.animation(.customTransition, value: isBackButton)
     }
     
 }

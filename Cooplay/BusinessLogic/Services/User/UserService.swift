@@ -33,6 +33,9 @@ extension UserServiceError: LocalizedError {
 protocol UserServiceType {
     
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void)
+    func updateNickName(_ name: String) async throws
+    func uploadNewAvatar(_ image: UIImage) async throws
+    func deleteAvatar(path: String, needClear: Bool) async throws
 }
 
 
@@ -71,7 +74,7 @@ final class UserService {
         }
     }
     
-    private func updateNickName(_ name: String) async throws {
+    func updateNickName(_ name: String) async throws {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
         try await firestore.collection("Users").document(userId).updateData(["name" : name])
@@ -84,7 +87,7 @@ final class UserService {
         try await batch.commit()
     }
     
-    private func uploadNewAvatar(_ image: UIImage) async throws {
+    func uploadNewAvatar(_ image: UIImage) async throws {
         guard
             let userId = firebaseAuth.currentUser?.uid,
             let imageData = image.imageDataForUpload
@@ -104,7 +107,7 @@ final class UserService {
         try await batch.commit()
     }
     
-    private func deleteAvatar(path: String, needClear: Bool) async throws {
+    func deleteAvatar(path: String, needClear: Bool) async throws {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
         let avatarRef = storage.reference(forURL: path)
@@ -154,32 +157,6 @@ extension UserService: Middleware {
         case .logout:
             userListener = nil
             removeNotificationToken()
-            
-        case .profileEditActions(let editActions):
-            store.dispatch(.showProfileProgress)
-            Task.detached {
-                do {
-                    for editAction in editActions {
-                        switch editAction {
-                        case .updateName(let name):
-                            try await self.updateNickName(name)
-                        case .deleteImage(let path):
-                            try await self.deleteAvatar(path: path, needClear: true)
-                        case .addImage(let image):
-                            try await self.uploadNewAvatar(image)
-                        case .updateImage(let image, let lastPath):
-                            try await self.deleteAvatar(path: lastPath, needClear: false)
-                            try await self.uploadNewAvatar(image)
-                        }
-                    }
-                    store.dispatch(.hideProfileProgress)
-                    store.dispatch(.showNotificationBanner(.init(title: Localizable.editProfileSuccessTitle(), type: .success)))
-                    
-                } catch {
-                    store.dispatch(.hideProfileProgress)
-                    store.dispatch(.showNetworkError(UserServiceError.editProfile))
-                }
-            }
             
         case .registerNotificationToken(let token):
             registerNotificationToken(token)

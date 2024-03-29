@@ -16,7 +16,7 @@ struct ChangePasswordView: View {
         case confirmPassword
     }
     
-    @EnvironmentObject var state: ChangePasswordState
+    @StateObject var state: ChangePasswordState
     @EnvironmentObject var namespace: NamespaceWrapper
     @EnvironmentObject var coordinator: ProfileCoordinator
     @FocusState private var focusedField: FocusedField?

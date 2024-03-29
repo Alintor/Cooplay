@@ -24,29 +24,42 @@ final class EditProfileState: NSObject, ObservableObject {
     
     private let store: Store
     private let profile: Profile
+    private let userService: UserServiceType
     @Published var name: String
     @Published var image: UIImage?
     @Published var avatarPath: String?
     @Published var showAvatarSheet: Bool = false
     @Published var showPhotoPicker: Bool = false
     @Published var showPermissionsAlert: Bool = false
+    @Published var showProgress: Bool = false
     var photoPickerTypeCamera = true
     let avatarBackgroundColor: UIColor
     var needShowProfileAvatar: Binding<Bool>?
+    var isBackButton: Binding<Bool>
+    let isPersonalization: Bool
+    let backAction: (() -> Void)?
     
     // MARK: - Init
     
     init(
         store: Store,
         profile: Profile,
-        needShowProfileAvatar: Binding<Bool>?
+        userService: UserServiceType,
+        needShowProfileAvatar: Binding<Bool>?,
+        isBackButton: Binding<Bool>,
+        isPersonalization: Bool,
+        backAction: (() -> Void)?
     ) {
         self.store = store
         self.profile = profile
+        self.userService = userService
         self.name = profile.name
         self.avatarPath = profile.avatarPath
         self.avatarBackgroundColor = UIColor.avatarBackgroundColor(profile.id)
         self.needShowProfileAvatar = needShowProfileAvatar
+        self.isBackButton = isBackButton
+        self.isPersonalization = isPersonalization
+        self.backAction = backAction
     }
     
     // MARK: - Computed properties
@@ -101,13 +114,45 @@ final class EditProfileState: NSObject, ObservableObject {
     
     // MARK: - Methods
     
+    @MainActor private func handleEditResult(isSuccess: Bool) {
+        showProgress = false
+        if isSuccess {
+            guard !isPersonalization else { return }
+            
+            store.dispatch(.showNotificationBanner(.init(title: Localizable.editProfileSuccessTitle(), type: .success)))
+            backAction?()
+        } else {
+            store.dispatch(.showNetworkError(UserServiceError.editProfile))
+        }
+    }
+    
     func removeAvatar() {
         image = nil
         avatarPath = nil
     }
     
     func saveChange() {
-        store.dispatch(.profileEditActions(editActions))
+        showProgress = true
+        Task.detached { [weak self] in
+            do {
+                for editAction in self?.editActions ?? [] {
+                    switch editAction {
+                    case .updateName(let name):
+                        try await self?.userService.updateNickName(name)
+                    case .deleteImage(let path):
+                        try await self?.userService.deleteAvatar(path: path, needClear: true)
+                    case .addImage(let image):
+                        try await self?.userService.uploadNewAvatar(image)
+                    case .updateImage(let image, let lastPath):
+                        try await self?.userService.deleteAvatar(path: lastPath, needClear: false)
+                        try await self?.userService.uploadNewAvatar(image)
+                    }
+                }
+                await self?.handleEditResult(isSuccess: true)
+            } catch {
+                await self?.handleEditResult(isSuccess: false)
+            }
+        }
     }
     
     func addImage(_ image: UIImage) {

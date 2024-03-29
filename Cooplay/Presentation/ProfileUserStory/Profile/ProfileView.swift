@@ -29,7 +29,6 @@ struct ProfileView: View {
             }
         }
         .animation(.customTransition, value: coordinator.route)
-        .activityIndicator(isShown: $coordinator.isInProgress)
         .fullScreenCover(isPresented: $coordinator.isMinigamesShown) {
             ArcanoidView().ignoresSafeArea()
         }

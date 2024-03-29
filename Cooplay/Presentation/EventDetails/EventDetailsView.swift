@@ -15,7 +15,7 @@ final class ReactionsContextState: ObservableObject {
 
 struct EventDetailsView: View {
     
-    @EnvironmentObject var state: EventDetailsState
+    @StateObject var state: EventDetailsState
     @EnvironmentObject var namespace: NamespaceWrapper
     @State private var showStatusContextView = false
     @StateObject private var reactionsContextState = ReactionsContextState()
@@ -90,6 +90,7 @@ struct EventDetailsView: View {
                 Spacer()
             }
         }
+        .environmentObject(state)
         .clipShape(.rect(cornerRadius: 24, style: .continuous))
         .handleRect(in: .global) {
             if state.eventDetailsSize != $0.size {
@@ -98,9 +99,11 @@ struct EventDetailsView: View {
         }
         .overlayModal(isPresented: $showStatusContextView, content: {
             EventDetailsStatusContextView(showStatusContext: $showStatusContextView)
+                .environmentObject(state)
         })
         .overlayModal(isPresented: $reactionsContextState.showContext, content: {
             OwnerReactionContextView(showReactionsContext: $reactionsContextState.showContext)
+                .environmentObject(state)
         })
         .sheet(isPresented: $state.showChangeGameSheet) {
             SearchGameView(selectedGame: state.event.game) { game in

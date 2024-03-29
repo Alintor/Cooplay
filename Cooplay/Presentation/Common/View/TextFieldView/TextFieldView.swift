@@ -100,9 +100,10 @@ struct TextFieldView: View {
                     TextField(placeholder, text: text)
                 }
             }
+            .frame(height: 24)
             .keyboardType(keyboardType)
             .textContentType(contentType)
-            .padding(EdgeInsets(top: 12, leading: 14, bottom: 12, trailing: isSecured ? 48 : 14))
+            .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: isSecured ? 48 : 14))
             .overlay(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .stroke(
@@ -162,7 +163,7 @@ struct TextFieldView: View {
             }
             Spacer()
         }
-        .padding(.horizontal, 16)
+        .padding(.leading, 8)
     }
     
     func validationItemView(type: PasswordValidation) -> some View {

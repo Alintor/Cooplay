@@ -16,7 +16,7 @@ struct RegisterView: View {
         case confirmPassword
     }
     
-    @EnvironmentObject var state: RegisterState
+    @StateObject var state: RegisterState
     @EnvironmentObject var coordinator: AuthorizationCoordinator
     @EnvironmentObject var namespace: NamespaceWrapper
     @FocusState private var focusedField: FocusedField?

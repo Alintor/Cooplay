@@ -25,7 +25,6 @@ final class ProfileCoordinator: ObservableObject {
     @Published private var profile: Profile
     @Published var isMinigamesShown: Bool = false
     @Published var isLogoutSheetShown: Bool = false
-    @Published var isInProgress: Bool = false
     var close: (() -> Void)?
     
     // MARK: - Init
@@ -39,10 +38,6 @@ final class ProfileCoordinator: ObservableObject {
             .replaceNil(with: profile)
             .removeDuplicates { $0.isEqual($1) }
             .assign(to: &$profile)
-        store.state
-            .map { $0.user.isInProgress }
-            .removeDuplicates()
-            .assign(to: &$isInProgress)
     }
     
     // MARK: - Methods
@@ -67,11 +62,8 @@ final class ProfileCoordinator: ObservableObject {
                 .zIndex(1)
                 .transition(.move(edge: .leading))
         case .editProfile:
-            VStack {
-                if let title = title {
-                    ProfileNavigationView(title: title, isBackButton: isBackButton)
-                }
-                ScreenViewFactory.editProfile(profile, needShowProfileAvatar: isShownAvatar)
+            ScreenViewFactory.editProfile(profile, needShowProfileAvatar: isShownAvatar, isBackButton: isBackButton) {
+                self.open(.menu)
             }
             .closable(anchor: .trailing) {
                 self.open(.menu)
