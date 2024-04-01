@@ -32,13 +32,13 @@ struct ProfileView: View {
         .fullScreenCover(isPresented: $coordinator.isMinigamesShown) {
             ArcanoidView().ignoresSafeArea()
         }
-        .onReceive(coordinator.$route) { _ in
+        .onChange(of: coordinator.route, perform: { newValue in
             if coordinator.route == .menu {
                 isBackButton = false
             } else {
                 isBackButton = true
             }
-        }
+        })
         .onAppear {
             coordinator.close = {
                 homeCoordinator.hideFullScreenCover()

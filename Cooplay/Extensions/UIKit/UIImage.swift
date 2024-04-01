@@ -17,11 +17,10 @@ extension UIImage {
     func reduce(maxSize: Int, quality: CGFloat) -> Data? {
         guard let data = self.jpegData(compressionQuality: quality) else { return nil }
         
-        let size = data.count
-        if data.count > maxSize {
+        if data.count > maxSize && quality > 0.1 {
             let nextQuality = quality - 0.05
-            if nextQuality < 0.0 {
-                return data
+            if nextQuality < 0.1 {
+                return self.reduce(maxSize: maxSize, quality: 0.1)
             } else {
                 return self.reduce(maxSize: maxSize, quality: nextQuality)
             }
