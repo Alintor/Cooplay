@@ -16,15 +16,13 @@ struct AccountSettingsView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
-                if state.showChangePassword {
-                    ProfileSettingsItemView(item: .changePassword)
-                        .onTapGesture { coordinator.open(.changePassword) }
-                    ProfileSettingsSeparator()
-                }
-                ProfileSettingsItemView(item: .delete)
-                Spacer()
+            if state.showChangePassword {
+                ProfileSettingsItemView(item: .changePassword)
+                    .onTapGesture { coordinator.open(.changePassword) }
+                ProfileSettingsSeparator()
             }
+            ProfileSettingsItemView(item: .delete)
+            Spacer()
         }
         .animation(.customTransition, value: state.showChangePassword)
     }

@@ -240,7 +240,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 61 images.
+  /// This `R.image` struct is generated, and contains static references to 62 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -268,6 +268,8 @@ struct R: Rswift.Validatable {
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.arrowUp`.
     static let commonArrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowUp")
+    /// Image `common.attention`.
+    static let commonAttention = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.attention")
     /// Image `common.back`.
     static let commonBack = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.back")
     /// Image `common.calendar`.
@@ -428,6 +430,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.arrowUp", bundle: ..., traitCollection: ...)`
     static func commonArrowUp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonArrowUp, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.attention", bundle: ..., traitCollection: ...)`
+    static func commonAttention(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonAttention, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.back", bundle: ..., traitCollection: ...)`
@@ -823,7 +830,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 176 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 187 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -863,6 +870,10 @@ struct R: Rswift.Validatable {
       static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш свет угасает...
       static let arkanoidLose3Message = Rswift.StringResource(key: "arkanoid.lose.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Включите эту настройку, чтобы получать уведомления
+      static let notificationsSettingsItemsEnableNotificationsMessage = Rswift.StringResource(key: "notificationsSettings.items.enableNotifications.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Включить в настройках
+      static let notificationsSettingsPermissionsAction = Rswift.StringResource(key: "notificationsSettings.permissions.action", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во сколько
       static let newEventChooseTimeLabelTitle = Rswift.StringResource(key: "newEvent.chooseTimeLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во что
@@ -1005,6 +1016,8 @@ struct R: Rswift.Validatable {
       static let errorsAuthorizationServiceWrongPassword = Rswift.StringResource(key: "errors.authorizationService.wrongPassword", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Недавние
       static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Необходимо включить уведомления в настройках устройства
+      static let notificationsSettingsPermissionsMessage = Rswift.StringResource(key: "notificationsSettings.permissions.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Нет аккаунта?
       static let authorizationRegisterMessage = Rswift.StringResource(key: "authorization.registerMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ник пользователя
@@ -1067,6 +1080,12 @@ struct R: Rswift.Validatable {
       static let statusAcceptedFull = Rswift.StringResource(key: "status.accepted.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пойду
       static let statusAcceptedShort = Rswift.StringResource(key: "status.accepted.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Получать уведомления о реакциях, оставленных на ваш статус в событии
+      static let notificationsSettingsItemsNeedReactionsForMeMessage = Rswift.StringResource(key: "notificationsSettings.items.needReactionsForMe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Получать уведомления о реакциях, оставленных на статусы других участников события
+      static let notificationsSettingsItemsNeedOtherReactionsMessage = Rswift.StringResource(key: "notificationsSettings.items.needOtherReactions.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Получать уведомления об изменении статусов игроков в событиях, где вы участвуете
+      static let notificationsSettingsItemsNeedStatusChangeMessage = Rswift.StringResource(key: "notificationsSettings.items.needStatusChange.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поражение
       static let arkanoidLose0Message = Rswift.StringResource(key: "arkanoid.lose.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Потрачено
@@ -1099,6 +1118,8 @@ struct R: Rswift.Validatable {
       static let editProfileSuccessTitle = Rswift.StringResource(key: "editProfile.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Путешествия и места
       static let reactionsSettingsCategory6Title = Rswift.StringResource(key: "reactionsSettings.category.6.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Разрешать уведомления
+      static let notificationsSettingsItemsEnableNotificationsTitle = Rswift.StringResource(key: "notificationsSettings.items.enableNotifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Реакции
       static let profileSettingsReactionsTitle = Rswift.StringResource(key: "profileSettings.reactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Редактирование
@@ -1160,7 +1181,15 @@ struct R: Rswift.Validatable {
       /// Value: Убить время
       static let profileSettingsMiniGamesTitle = Rswift.StringResource(key: "profileSettings.miniGames.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уведомления
+      static let notificationsSettingsTitle = Rswift.StringResource(key: "notificationsSettings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Уведомления
       static let profileSettingsNotificationsTitle = Rswift.StringResource(key: "profileSettings.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Уведомлять о реакциях
+      static let notificationsSettingsItemsNeedReactionsForMeTitle = Rswift.StringResource(key: "notificationsSettings.items.needReactionsForMe.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Уведомлять о статусах
+      static let notificationsSettingsItemsNeedStatusChangeTitle = Rswift.StringResource(key: "notificationsSettings.items.needStatusChange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Уведомлять о чужих реакциях
+      static let notificationsSettingsItemsNeedOtherReactionsTitle = Rswift.StringResource(key: "notificationsSettings.items.needOtherReactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить
       static let commonDelete = Rswift.StringResource(key: "common.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить аккаунт
@@ -1271,6 +1300,16 @@ struct R: Rswift.Validatable {
       /// Value: Ваш свет угасает...
       static func arkanoidLose3Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.3.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Включите эту настройку, чтобы получать уведомления
+      static func notificationsSettingsItemsEnableNotificationsMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.enableNotifications.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Включить в настройках
+      static func notificationsSettingsPermissionsAction(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.permissions.action", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Во сколько
@@ -1628,6 +1667,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("reactionsSettings.category.1.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Необходимо включить уведомления в настройках устройства
+      static func notificationsSettingsPermissionsMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.permissions.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Нет аккаунта?
       static func authorizationRegisterMessage(_: Void = ()) -> String {
         return NSLocalizedString("authorization.registerMessage", bundle: R.hostingBundle, comment: "")
@@ -1783,6 +1827,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.accepted.short", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Получать уведомления о реакциях, оставленных на ваш статус в событии
+      static func notificationsSettingsItemsNeedReactionsForMeMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needReactionsForMe.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Получать уведомления о реакциях, оставленных на статусы других участников события
+      static func notificationsSettingsItemsNeedOtherReactionsMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needOtherReactions.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Получать уведомления об изменении статусов игроков в событиях, где вы участвуете
+      static func notificationsSettingsItemsNeedStatusChangeMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needStatusChange.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Поражение
       static func arkanoidLose0Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.0.message", bundle: R.hostingBundle, comment: "")
@@ -1861,6 +1920,11 @@ struct R: Rswift.Validatable {
       /// Value: Путешествия и места
       static func reactionsSettingsCategory6Title(_: Void = ()) -> String {
         return NSLocalizedString("reactionsSettings.category.6.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Разрешать уведомления
+      static func notificationsSettingsItemsEnableNotificationsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.enableNotifications.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Реакции
@@ -2014,8 +2078,28 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Уведомления
+      static func notificationsSettingsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Уведомления
       static func profileSettingsNotificationsTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.notifications.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Уведомлять о реакциях
+      static func notificationsSettingsItemsNeedReactionsForMeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needReactionsForMe.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Уведомлять о статусах
+      static func notificationsSettingsItemsNeedStatusChangeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needStatusChange.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Уведомлять о чужих реакциях
+      static func notificationsSettingsItemsNeedOtherReactionsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notificationsSettings.items.needOtherReactions.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Удалить

@@ -82,9 +82,7 @@ extension AuthorizationService: AuthorizationServiceType {
         let data = [
             "id": result.user.uid,
             "name": "",
-            "needStatusChangeNotifications": true,
-            "needReactionsForMeNotifications": true,
-            "needReactionsAllNotifications": true
+            "notificationsInfo": NotificationsInfo().dictionary!
         ] as [String : Any]
         try await Firestore.firestore().collection("Users").document(result.user.uid).setData(data)
     }

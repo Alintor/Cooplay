@@ -47,10 +47,10 @@ final class ApplicationFactory {
         self.store = Store(
             state: GlobalState(isAuthenticated: authorizationService.isLoggedIn),
             middleware: [
-                authorizationService,
                 NotificationBannerService(),
                 eventService,
                 userService,
+                authorizationService,
                 NotificationsService(),
                 DeepLinkService(defaultsStorage: defaultsStorage)
             ],
@@ -122,6 +122,14 @@ enum ScreenViewFactory {
     
     static func reactionsSettings() -> some View {
         ReactionsSettingsView(state: ReactionsSettingsState(defaultsStorage: applicationFactory.defaultsStorage))
+    }
+    
+    static func notificationsSettings() -> some View {
+        NotificationsSettingsView(state: NotificationsSettingsState(
+            store: applicationFactory.store,
+            userService: applicationFactory.userService,
+            notificationCenter: UNUserNotificationCenter.current()
+        ))
     }
     
     static func accountSettings() -> some View {

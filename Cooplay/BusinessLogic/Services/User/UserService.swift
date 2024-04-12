@@ -36,6 +36,7 @@ protocol UserServiceType {
     func updateNickName(_ name: String) async throws
     func uploadNewAvatar(_ image: UIImage) async throws
     func deleteAvatar(path: String, needClear: Bool) async throws
+    func updateNotificationsInfo(_ info: NotificationsInfo)
 }
 
 
@@ -127,13 +128,13 @@ final class UserService {
     private func registerNotificationToken(_ token: String) {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
-        firestore.collection("Users").document(userId).updateData(["notificationToken" : token])
+        firestore.collection("Users").document(userId).updateData(["notificationsInfo.tokens.\(UIDevice.current.systemName)" : token])
     }
     
     private func removeNotificationToken() {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
-        firestore.collection("Users").document(userId).updateData(["notificationToken" : FieldValue.delete()])
+        firestore.collection("Users").document(userId).updateData(["notificationsInfo.tokens.\(UIDevice.current.systemName)" : FieldValue.delete()])
     }
     
 }
@@ -184,6 +185,19 @@ extension UserService: UserServiceType {
             completion(.success(filteredUsers?.map({ $0.user }) ?? []))
         }
         
+    }
+    
+    func updateNotificationsInfo(_ info: NotificationsInfo) {
+        guard 
+            let userId = firebaseAuth.currentUser?.uid,
+            let infoData = info.dictionary
+        else { return }
+        
+        var data = [String: Any]()
+        for (key, value) in infoData {
+            data["notificationsInfo.\(key)"] = value
+        }
+        firestore.collection("Users").document(userId).updateData(data)
     }
     
 }

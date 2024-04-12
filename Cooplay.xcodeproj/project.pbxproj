@@ -284,6 +284,8 @@
 		A8D99A2E292E26E900825B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A8D99A36292E33C600825B47 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D1D29E2361884000DA1089 /* UIView.swift */; };
 		A8D99A37292E33FC00825B47 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3526AACFB700519768 /* UIBezierPath.swift */; };
+		A8EF29482BC7EEDC00388045 /* NotificationsSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF29472BC7EEDC00388045 /* NotificationsSettingsState.swift */; };
+		A8EF294A2BC90A2400388045 /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF29492BC90A2400388045 /* NotificationsSettingsView.swift */; };
 		A8FB1CD12499D2E4001C9355 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */; };
 		A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD32499D868001C9355 /* AuthorizationService.swift */; };
 		A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */; };
@@ -589,6 +591,8 @@
 		A8D99A1D292E14CA00825B47 /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
 		A8D99A24292E15CB00825B47 /* EventDetailsNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsNotificationViewModel.swift; sourceTree = "<group>"; };
 		A8D99A27292E160200825B47 /* EventDetailsNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsNotificationView.swift; sourceTree = "<group>"; };
+		A8EF29472BC7EEDC00388045 /* NotificationsSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsState.swift; sourceTree = "<group>"; };
+		A8EF29492BC90A2400388045 /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "AppConfiguration/Private/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8FB1CD32499D868001C9355 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceAssemblyContainer.swift; sourceTree = "<group>"; };
@@ -670,11 +674,13 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		29F59E0BCE3DF536786E3CCF /* NotificationSettings */ = {
+		29F59E0BCE3DF536786E3CCF /* NotificationsSettings */ = {
 			isa = PBXGroup;
 			children = (
+				A8EF29472BC7EEDC00388045 /* NotificationsSettingsState.swift */,
+				A8EF29492BC90A2400388045 /* NotificationsSettingsView.swift */,
 			);
-			path = NotificationSettings;
+			path = NotificationsSettings;
 			sourceTree = "<group>";
 		};
 		3B0EFF11180C755BF51BF0FA /* EventsList */ = {
@@ -911,7 +917,6 @@
 				3DA964026DC3A5F7765016B8 /* SearchMembers */,
 				A8A383D028C20C65001B22EC /* ProfileUserStory */,
 				A8A383EC28C36F61001B22EC /* MiniGamesUserStory */,
-				29F59E0BCE3DF536786E3CCF /* NotificationSettings */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1833,6 +1838,7 @@
 				C4575DD5FE3DA8338BDABF59 /* Profile */,
 				A80FFC632B906AC000121A7E /* ProfileMenu */,
 				A86860362A0CE89500327385 /* EditProfile */,
+				29F59E0BCE3DF536786E3CCF /* NotificationsSettings */,
 				A8A383D128C20C83001B22EC /* ReactionsSettings */,
 				A8C307982B9F0E2B00907B56 /* AccountSettings */,
 				A8C3079D2B9F1C3200907B56 /* ChangePassword */,
@@ -2369,6 +2375,7 @@
 				A8A0F0E62AFCE18000997DEA /* EventsState.swift in Sources */,
 				A86860752A11EFCE00327385 /* SearchGameContract.swift in Sources */,
 				A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */,
+				A8EF29482BC7EEDC00388045 /* NotificationsSettingsState.swift in Sources */,
 				A8D1D29F2361884000DA1089 /* UIView.swift in Sources */,
 				A86860912A15248900327385 /* UIImage.swift in Sources */,
 				A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */,
@@ -2583,6 +2590,7 @@
 				A823DFF02B038B57006EC119 /* ReactionSelectionView.swift in Sources */,
 				A865B71B2733CD4E00F8A6CC /* GeometryGetter.swift in Sources */,
 				A85F9CA82AF5FCE500BBAE31 /* GlobalState.swift in Sources */,
+				A8EF294A2BC90A2400388045 /* NotificationsSettingsView.swift in Sources */,
 				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
 				A8C307A12B9F1C8600907B56 /* ChangePasswordState.swift in Sources */,
 				A8A0F0DC2AFBBF7E00997DEA /* LogoutSheetView.swift in Sources */,

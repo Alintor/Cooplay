@@ -205,7 +205,21 @@
 "reactionsSettings.category.9.title" = "Символы";
 "reactionsSettings.category.10.title" = "Флаги";
 
-// MARK: - ChangePAssword
+// MARK: - Notifications settings
+
+"notificationsSettings.title" = "Уведомления";
+"notificationsSettings.items.enableNotifications.title" = "Разрешать уведомления";
+"notificationsSettings.items.enableNotifications.message" = "Включите эту настройку, чтобы получать уведомления";
+"notificationsSettings.items.needStatusChange.title" = "Уведомлять о статусах";
+"notificationsSettings.items.needStatusChange.message" = "Получать уведомления об изменении статусов игроков в событиях, где вы участвуете";
+"notificationsSettings.items.needReactionsForMe.title" = "Уведомлять о реакциях";
+"notificationsSettings.items.needReactionsForMe.message" = "Получать уведомления о реакциях, оставленных на ваш статус в событии";
+"notificationsSettings.items.needOtherReactions.title" = "Уведомлять о чужих реакциях";
+"notificationsSettings.items.needOtherReactions.message" = "Получать уведомления о реакциях, оставленных на статусы других участников события";
+"notificationsSettings.permissions.message" = "Необходимо включить уведомления в настройках устройства";
+"notificationsSettings.permissions.action" = "Включить в настройках";
+
+// MARK: - ChangePassword
 
 "changePassword.title" = "Смена пароля";
 "changePassword.currentPassword.placeholder" = "Текущий пароль";

@@ -16,6 +16,7 @@ final class ProfileCoordinator: ObservableObject {
         case menu
         case editProfile
         case reactions
+        case notifications
         case account(isBack: Bool)
         case changePassword
     }
@@ -47,6 +48,7 @@ final class ProfileCoordinator: ObservableObject {
         case .menu: return nil
         case .editProfile: return Localizable.editProfileTitle()
         case .reactions: return Localizable.reactionsSettingsTitle()
+        case .notifications: return Localizable.notificationsSettingsTitle()
         case .account: return Localizable.profileSettingsAccountTitle()
         case .changePassword: return Localizable.changePasswordTitle()
         }
@@ -76,6 +78,18 @@ final class ProfileCoordinator: ObservableObject {
                     ProfileNavigationView(title: title, isBackButton: isBackButton)
                 }
                 ScreenViewFactory.reactionsSettings()
+            }
+            .closable(anchor: .trailing) {
+                self.open(.menu)
+            }
+            .zIndex(1)
+            .transition(.move(edge: .trailing))
+        case.notifications:
+            VStack {
+                if let title = title {
+                    ProfileNavigationView(title: title, isBackButton: isBackButton)
+                }
+                ScreenViewFactory.notificationsSettings()
             }
             .closable(anchor: .trailing) {
                 self.open(.menu)

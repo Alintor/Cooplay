@@ -67,6 +67,7 @@ struct ProfileMenuView: View {
                 .onTapGesture { coordinator.showArkanoidGame() }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionSettingsTitle())
             ProfileSettingsItemView(item: .notifications)
+                .onTapGesture { coordinator.open(.notifications) }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .reactions)
                 .onTapGesture { coordinator.open(.reactions) }
