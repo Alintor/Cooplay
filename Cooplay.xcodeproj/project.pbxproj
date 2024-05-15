@@ -286,6 +286,8 @@
 		A8D99A37292E33FC00825B47 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301D3526AACFB700519768 /* UIBezierPath.swift */; };
 		A8EF29482BC7EEDC00388045 /* NotificationsSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF29472BC7EEDC00388045 /* NotificationsSettingsState.swift */; };
 		A8EF294A2BC90A2400388045 /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF29492BC90A2400388045 /* NotificationsSettingsView.swift */; };
+		A8EF29502BD25D1900388045 /* ResetPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF294F2BD25D1900388045 /* ResetPasswordState.swift */; };
+		A8EF29522BD25D2600388045 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF29512BD25D2600388045 /* ResetPasswordView.swift */; };
 		A8FB1CD12499D2E4001C9355 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */; };
 		A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD32499D868001C9355 /* AuthorizationService.swift */; };
 		A8FB1CD62499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */; };
@@ -593,6 +595,8 @@
 		A8D99A27292E160200825B47 /* EventDetailsNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsNotificationView.swift; sourceTree = "<group>"; };
 		A8EF29472BC7EEDC00388045 /* NotificationsSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsState.swift; sourceTree = "<group>"; };
 		A8EF29492BC90A2400388045 /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
+		A8EF294F2BD25D1900388045 /* ResetPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordState.swift; sourceTree = "<group>"; };
+		A8EF29512BD25D2600388045 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		A8FB1CD02499D2E4001C9355 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "AppConfiguration/Private/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8FB1CD32499D868001C9355 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceAssemblyContainer.swift; sourceTree = "<group>"; };
@@ -1345,6 +1349,7 @@
 				A863E3C32B68C4AD0021B405 /* AuthorizationMenu */,
 				A863E3C12B68C43B0021B405 /* Login */,
 				A8D48C372B7A2500005B950C /* Register */,
+				A8EF294E2BD25D0000388045 /* ResetPassword */,
 			);
 			path = AuthorizationUserStory;
 			sourceTree = "<group>";
@@ -1988,6 +1993,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A8EF294E2BD25D0000388045 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				A8EF294F2BD25D1900388045 /* ResetPasswordState.swift */,
+				A8EF29512BD25D2600388045 /* ResetPasswordView.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
 		A8FB1CD22499D7DD001C9355 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -2438,6 +2452,7 @@
 				A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */,
 				A87CF49123ED71E2004189D3 /* NewEventMemberCell.swift in Sources */,
 				A865B71D2733CE2800F8A6CC /* StateContextViewHandler.swift in Sources */,
+				A8EF29502BD25D1900388045 /* ResetPasswordState.swift in Sources */,
 				A823E0032B08E0D3006EC119 /* EventChangeDateContextView.swift in Sources */,
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* GlobalConstants.swift in Sources */,
@@ -2554,6 +2569,7 @@
 				2E588156BE1CE773673E9BF7 /* SearchGameRouter.swift in Sources */,
 				A8A0F0F92AFE43A200997DEA /* RectHandler.swift in Sources */,
 				A863E3C92B68C5270021B405 /* AuthorizationMenuView.swift in Sources */,
+				A8EF29522BD25D2600388045 /* ResetPasswordView.swift in Sources */,
 				A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */,
 				A824CA18274670CD000E61A1 /* AddReactionView.swift in Sources */,
 				341E442EC1C6F430AF7CE18C /* SearchMembersViewController.swift in Sources */,

@@ -32,8 +32,8 @@ struct NotificationsSettingsView: View {
                     )
                     itemView(
                         inOn: $state.notificationsInfo.needReactionsForMe,
-                        title: Localizable.notificationsSettingsItemsNeedOtherReactionsTitle(),
-                        message: Localizable.notificationsSettingsItemsNeedOtherReactionsMessage()
+                        title: Localizable.notificationsSettingsItemsNeedReactionsForMeTitle(),
+                        message: Localizable.notificationsSettingsItemsNeedReactionsForMeMessage()
                     )
                     itemView(
                         inOn: $state.notificationsInfo.needOtherReactions,

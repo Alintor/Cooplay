@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoginState: ObservableObject {
+final class LoginState: ObservableObject {
     
     // MARK: - Properties
     

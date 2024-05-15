@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RegisterState: ObservableObject {
+final class RegisterState: ObservableObject {
     
     // MARK: - Properties
     

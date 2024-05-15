@@ -16,6 +16,7 @@ class AuthorizationCoordinator: ObservableObject {
         case menu
         case login(email: String)
         case register(email: String)
+        case resetPassword(code: String)
     }
     
     @Published var route: Route
@@ -24,6 +25,11 @@ class AuthorizationCoordinator: ObservableObject {
     
     init() {
         self.route = .menu
+        NotificationCenter.default.addObserver(self, selector: #selector(resetPassword(_:)), name: .handleResetPassword, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Methods
@@ -45,6 +51,12 @@ class AuthorizationCoordinator: ObservableObject {
                     self.backToMenu()
                 }
                 .transition(.move(edge: .trailing))
+        case .resetPassword(let code):
+            ScreenViewFactory.resetPassword(oobCode: code)
+                .closable(anchor: .trailing) {
+                    self.backToMenu()
+                }
+                .transition(.move(edge: .trailing))
         }
     }
     
@@ -58,6 +70,15 @@ class AuthorizationCoordinator: ObservableObject {
     
     func backToMenu() {
         route = .menu
+    }
+    
+    @objc private func resetPassword(_ notification: NSNotification) {
+        guard 
+            let userInfo = notification.userInfo as? [String: Any],
+            let oobCode = userInfo["oobCode"] as? String
+        else { return }
+        
+        route = .resetPassword(code: oobCode)
     }
     
 }

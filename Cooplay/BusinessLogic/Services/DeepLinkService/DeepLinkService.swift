@@ -34,6 +34,27 @@ final class DeepLinkService {
         }
     }
     
+    private func handleInviteEvent(url: URL, store: Store) {
+        DynamicLinks.dynamicLinks().handleUniversalLink(url) { [weak self] (dynamiclink, error) in
+            if let deepLink = dynamiclink?.url, let eventId = deepLink.queryParameters[GlobalConstant.eventIdKey] {
+                if store.state.value.authentication.isAuthenticated {
+                    store.dispatch(.addEvent(eventId))
+                } else {
+                    self?.inviteEventId = eventId
+                }
+            }
+        }
+    }
+    
+    private func handleResetPassword(url: URL) {
+        if url.absoluteString.contains("reset-password"), let oobCode = url.queryParameters["oobCode"] {
+            let userInfo = [
+                "oobCode": oobCode
+            ]
+            NotificationCenter.default.post(name: .handleResetPassword, object: nil, userInfo: userInfo)
+        }
+    }
+    
 }
 
 extension DeepLinkService: Middleware {
@@ -41,15 +62,8 @@ extension DeepLinkService: Middleware {
     func perform(store: Store, action: StoreAction) {
         switch action {
         case .handleDeepLink(let url):
-            DynamicLinks.dynamicLinks().handleUniversalLink(url) { [weak self] (dynamiclink, error) in
-                if let deepLink = dynamiclink?.url, let eventId = deepLink.queryParameters[GlobalConstant.eventIdKey] {
-                    if store.state.value.authentication.isAuthenticated {
-                        store.dispatch(.addEvent(eventId))
-                    } else {
-                        self?.inviteEventId = eventId
-                    }
-                }
-            }
+            handleInviteEvent(url: url, store: store)
+            handleResetPassword(url: url)
             
         case .successAuthentication:
             if let eventId = inviteEventId {

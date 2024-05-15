@@ -15,6 +15,7 @@ enum AuthorizationServiceError: Error {
     case authorizationError(error: Error)
     case wrongPassword
     case changePasswordError
+    case notHaveRestEmail
     case unhandled(error: Error)
 }
 
@@ -26,6 +27,7 @@ extension AuthorizationServiceError: LocalizedError {
         case .unknownError: return Localizable.errorsUnknown()
         case .wrongPassword: return Localizable.errorsAuthorizationServiceWrongPassword()
         case .changePasswordError: return Localizable.errorsAuthorizationServiceChangePassword()
+        case .notHaveRestEmail: return nil
         case .unhandled(let error): return error.localizedDescription
         }
     }
@@ -39,6 +41,8 @@ protocol AuthorizationServiceType {
     func checkAccountExistence(email: String) async throws -> Bool
     func changePassword(currentPassword: String, newPassword: String) async throws
     func sendResetPasswordEmail(_ email: String) async throws
+    func fetchResetEmail(oobCode: String) async throws -> String
+    func resetPassword(newPassword: String, oobCode: String) async throws
     func logout()
 }
 
@@ -122,6 +126,19 @@ extension AuthorizationService: AuthorizationServiceType {
     func sendResetPasswordEmail(_ email: String) async throws {
         firebaseAuth.useAppLanguage()
         try await firebaseAuth.sendPasswordReset(withEmail: email)
+    }
+    
+    func fetchResetEmail(oobCode: String) async throws -> String {
+        let codeInfo = try await firebaseAuth.checkActionCode(oobCode)
+        if let email = codeInfo.email {
+            return email
+        } else {
+            throw AuthorizationServiceError.notHaveRestEmail
+        }
+    }
+    
+    func resetPassword(newPassword: String, oobCode: String) async throws {
+        try await firebaseAuth.confirmPasswordReset(withCode: oobCode, newPassword: newPassword)
     }
     
 }

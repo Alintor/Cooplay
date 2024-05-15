@@ -240,7 +240,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 62 images.
+  /// This `R.image` struct is generated, and contains static references to 64 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -264,6 +264,8 @@ struct R: Rswift.Validatable {
     static let arkanoidBubble = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.bubble")
     /// Image `arkanoid.paddle`.
     static let arkanoidPaddle = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.paddle")
+    /// Image `common.apple.icon`.
+    static let commonAppleIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.apple.icon")
     /// Image `common.arrowDown`.
     static let commonArrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.arrowDown")
     /// Image `common.arrowUp`.
@@ -290,6 +292,8 @@ struct R: Rswift.Validatable {
     static let commonGameCover = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gameCover")
     /// Image `common.gamepadArrow`.
     static let commonGamepadArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.gamepadArrow")
+    /// Image `common.google.icon`.
+    static let commonGoogleIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.google.icon")
     /// Image `common.hide`.
     static let commonHide = Rswift.ImageResource(bundle: R.hostingBundle, name: "common.hide")
     /// Image `common.link.broken`.
@@ -422,6 +426,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.arkanoidPaddle, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "common.apple.icon", bundle: ..., traitCollection: ...)`
+    static func commonAppleIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonAppleIcon, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "common.arrowDown", bundle: ..., traitCollection: ...)`
     static func commonArrowDown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonArrowDown, compatibleWith: traitCollection)
@@ -485,6 +494,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "common.gamepadArrow", bundle: ..., traitCollection: ...)`
     static func commonGamepadArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.commonGamepadArrow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "common.google.icon", bundle: ..., traitCollection: ...)`
+    static func commonGoogleIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.commonGoogleIcon, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "common.hide", bundle: ..., traitCollection: ...)`
@@ -830,7 +844,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 187 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 199 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -870,6 +884,8 @@ struct R: Rswift.Validatable {
       static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш свет угасает...
       static let arkanoidLose3Message = Rswift.StringResource(key: "arkanoid.lose.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Введите новый пароль для аккаунта
+      static let resetPasswordMessage = Rswift.StringResource(key: "resetPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Включите эту настройку, чтобы получать уведомления
       static let notificationsSettingsItemsEnableNotificationsMessage = Rswift.StringResource(key: "notificationsSettings.items.enableNotifications.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Включить в настройках
@@ -1004,6 +1020,8 @@ struct R: Rswift.Validatable {
       static let errorsUserServiceFetchProfile = Rswift.StringResource(key: "errors.userService.fetchProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось получить событие
       static let errorsEventsServiceAddEvent = Rswift.StringResource(key: "errors.eventsService.addEvent", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось сбросить пароль
+      static let resetPasswordResetFailure = Rswift.StringResource(key: "resetPassword.resetFailure", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось сделать лидером
       static let errorsEventsServiceTakeOwner = Rswift.StringResource(key: "errors.eventsService.takeOwner", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось сменить пароль
@@ -1026,6 +1044,8 @@ struct R: Rswift.Validatable {
       static let editProfileNicknamePlaceholder = Rswift.StringResource(key: "editProfile.nickname.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Новый пароль
       static let changePasswordNewPasswordPlaceholder = Rswift.StringResource(key: "changePassword.newPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Новый пароль
+      static let resetPasswordNewPasswordFieldPlaceholder = Rswift.StringResource(key: "resetPassword.newPasswordField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Объекты
       static let reactionsSettingsCategory8Title = Rswift.StringResource(key: "reactionsSettings.category.8.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
@@ -1052,6 +1072,8 @@ struct R: Rswift.Validatable {
       static let registrationErrorPasswordConfirmWrong = Rswift.StringResource(key: "registration.error.passwordConfirm.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароль
       static let authorizationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "authorization.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пароль сброшен
+      static let resetPasswordResetSuccess = Rswift.StringResource(key: "resetPassword.resetSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароль успешно изменен
       static let changePasswordSuccessTitle = Rswift.StringResource(key: "changePassword.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Переместите логотип сюда, чтобы выйти
@@ -1068,6 +1090,8 @@ struct R: Rswift.Validatable {
       static let statusConfirmation = Rswift.StringResource(key: "status.confirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтверждение пароля
       static let changePasswordConfirmPasswordPlaceholder = Rswift.StringResource(key: "changePassword.confirmPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Подтверждение пароля
+      static let resetPasswordConfirmPasswordFieldPlaceholder = Rswift.StringResource(key: "resetPassword.confirmPasswordField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
       static let newEventSearchGameButtonTitle = Rswift.StringResource(key: "newEvent.searchGameButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поиск игры
@@ -1086,6 +1110,8 @@ struct R: Rswift.Validatable {
       static let notificationsSettingsItemsNeedOtherReactionsMessage = Rswift.StringResource(key: "notificationsSettings.items.needOtherReactions.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Получать уведомления об изменении статусов игроков в событиях, где вы участвуете
       static let notificationsSettingsItemsNeedStatusChangeMessage = Rswift.StringResource(key: "notificationsSettings.items.needStatusChange.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Попробуйте сбросить пароль ещё раз
+      static let resetPasswordExpiredViewTitle = Rswift.StringResource(key: "resetPassword.expiredView.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Поражение
       static let arkanoidLose0Message = Rswift.StringResource(key: "arkanoid.lose.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Потрачено
@@ -1110,6 +1136,10 @@ struct R: Rswift.Validatable {
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Продолжить с Apple
+      static let authorizationMenuApple = Rswift.StringResource(key: "authorizationMenu.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Продолжить с Google
+      static let authorizationMenuGoogle = Rswift.StringResource(key: "authorizationMenu.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Произошла неизвестная ошибка
       static let errorsUnknown = Rswift.StringResource(key: "errors.unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Профиль
@@ -1134,8 +1164,12 @@ struct R: Rswift.Validatable {
       static let searchMembersSectionsSearchResults = Rswift.StringResource(key: "searchMembers.sections.searchResults", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: С кем
       static let newEventChooseMembersLabelTitle = Rswift.StringResource(key: "newEvent.chooseMembersLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Сброс парося
+      /// Value: Сброс пароля
       static let authorizationResetPasswordTitle = Rswift.StringResource(key: "authorization.resetPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сброс пароля
+      static let resetPasswordTitle = Rswift.StringResource(key: "resetPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сбросить пароль
+      static let resetPasswordResetButtonTitle = Rswift.StringResource(key: "resetPassword.resetButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Свернуть
       static let eventsListDeclinedEventsHide = Rswift.StringResource(key: "eventsList.declinedEvents.hide", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сделать лидером
@@ -1174,6 +1208,8 @@ struct R: Rswift.Validatable {
       static let editProfileSaveButton = Rswift.StringResource(key: "editProfile.saveButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сохранить новый пароль
       static let changePasswordActionButtonTitle = Rswift.StringResource(key: "changePassword.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Срок действия запроса на сброс пароля истек, или ссылка уже использована
+      static let resetPasswordExpiredViewMessage = Rswift.StringResource(key: "resetPassword.expiredView.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Текущий пароль
       static let changePasswordCurrentPasswordPlaceholder = Rswift.StringResource(key: "changePassword.currentPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: У Вас через %d мин. игра в %@. Уточните свой статус для других участников
@@ -1206,6 +1242,8 @@ struct R: Rswift.Validatable {
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
       static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: или
+      static let authorizationMenuOr = Rswift.StringResource(key: "authorizationMenu.or", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: %@ в %@
       static func statusFullDetails(_ value1: String, _ value2: String) -> String {
@@ -1300,6 +1338,11 @@ struct R: Rswift.Validatable {
       /// Value: Ваш свет угасает...
       static func arkanoidLose3Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.3.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Введите новый пароль для аккаунта
+      static func resetPasswordMessage(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Включите эту настройку, чтобы получать уведомления
@@ -1637,6 +1680,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("errors.eventsService.addEvent", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Не удалось сбросить пароль
+      static func resetPasswordResetFailure(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.resetFailure", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Не удалось сделать лидером
       static func errorsEventsServiceTakeOwner(_: Void = ()) -> String {
         return NSLocalizedString("errors.eventsService.takeOwner", bundle: R.hostingBundle, comment: "")
@@ -1690,6 +1738,11 @@ struct R: Rswift.Validatable {
       /// Value: Новый пароль
       static func changePasswordNewPasswordPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.newPassword.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Новый пароль
+      static func resetPasswordNewPasswordFieldPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.newPasswordField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Объекты
@@ -1757,6 +1810,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorization.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Пароль сброшен
+      static func resetPasswordResetSuccess(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.resetSuccess", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Пароль успешно изменен
       static func changePasswordSuccessTitle(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.success.title", bundle: R.hostingBundle, comment: "")
@@ -1795,6 +1853,11 @@ struct R: Rswift.Validatable {
       /// Value: Подтверждение пароля
       static func changePasswordConfirmPasswordPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.confirmPassword.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Подтверждение пароля
+      static func resetPasswordConfirmPasswordFieldPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.confirmPasswordField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Поиск игры
@@ -1840,6 +1903,11 @@ struct R: Rswift.Validatable {
       /// Value: Получать уведомления об изменении статусов игроков в событиях, где вы участвуете
       static func notificationsSettingsItemsNeedStatusChangeMessage(_: Void = ()) -> String {
         return NSLocalizedString("notificationsSettings.items.needStatusChange.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Попробуйте сбросить пароль ещё раз
+      static func resetPasswordExpiredViewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.expiredView.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Поражение
@@ -1902,6 +1970,16 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Продолжить с Apple
+      static func authorizationMenuApple(_: Void = ()) -> String {
+        return NSLocalizedString("authorizationMenu.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Продолжить с Google
+      static func authorizationMenuGoogle(_: Void = ()) -> String {
+        return NSLocalizedString("authorizationMenu.google", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Произошла неизвестная ошибка
       static func errorsUnknown(_: Void = ()) -> String {
         return NSLocalizedString("errors.unknown", bundle: R.hostingBundle, comment: "")
@@ -1962,9 +2040,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("newEvent.chooseMembersLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Сброс парося
+      /// Value: Сброс пароля
       static func authorizationResetPasswordTitle(_: Void = ()) -> String {
         return NSLocalizedString("authorization.resetPassword.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сброс пароля
+      static func resetPasswordTitle(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сбросить пароль
+      static func resetPasswordResetButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.resetButton.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Свернуть
@@ -2062,6 +2150,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("changePassword.actionButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Срок действия запроса на сброс пароля истек, или ссылка уже использована
+      static func resetPasswordExpiredViewMessage(_: Void = ()) -> String {
+        return NSLocalizedString("resetPassword.expiredView.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Текущий пароль
       static func changePasswordCurrentPasswordPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.currentPassword.placeholder", bundle: R.hostingBundle, comment: "")
@@ -2140,6 +2233,11 @@ struct R: Rswift.Validatable {
       /// Value: Частые участники
       static func searchMembersSectionsOfften(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.sections.offten", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: или
+      static func authorizationMenuOr(_: Void = ()) -> String {
+        return NSLocalizedString("authorizationMenu.or", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

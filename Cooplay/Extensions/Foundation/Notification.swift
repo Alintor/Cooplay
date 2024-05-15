@@ -9,6 +9,8 @@
 import Foundation
 
 extension Notification.Name {
+    
     static private let prefix = "com.ovchinnikov.ruwus.notification"
     static let handleDeepLinkInvent = Notification.Name("\(prefix).handleDeepLinkInvent")
+    static let handleResetPassword = Notification.Name("\(prefix).handleResetPassword")
 }

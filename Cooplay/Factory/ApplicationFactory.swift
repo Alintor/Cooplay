@@ -172,4 +172,12 @@ enum ScreenViewFactory {
         ))
     }
     
+    static func resetPassword(oobCode: String) -> some View {
+        ResetPasswordView(state: ResetPasswordState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService,
+            oobCode: oobCode
+        ))
+    }
+    
 }
