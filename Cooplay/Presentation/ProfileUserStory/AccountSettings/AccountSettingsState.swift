@@ -13,12 +13,19 @@ final class AccountSettingsState: ObservableObject {
     
     // MARK: - Properties
     
-    @Published var showChangePassword: Bool
+    private let userService: UserServiceType
+    @Published private var providers = [AuthProvider]()
+    var showChangePassword: Bool {
+        providers.contains { $0 == .password }
+    }
     
     // MARK: - Init
     
-    init() {
-        self.showChangePassword = true
+    init(userService: UserServiceType) {
+        self.userService = userService
     }
     
+    func checkProviders() {
+        providers = userService.getUserProviders()
+    }
 }

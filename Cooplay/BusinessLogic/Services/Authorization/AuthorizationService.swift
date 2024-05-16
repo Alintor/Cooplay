@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import GoogleSignIn
 
 enum AuthorizationServiceError: Error {
     
@@ -38,6 +39,7 @@ protocol AuthorizationServiceType {
     var isLoggedIn: Bool { get }
     func login(email: String, password: String) async throws
     func createAccount(email: String, password: String) async throws
+    func signInWithGoogle() async throws
     func checkAccountExistence(email: String) async throws -> Bool
     func changePassword(currentPassword: String, newPassword: String) async throws
     func sendResetPasswordEmail(_ email: String) async throws
@@ -91,8 +93,35 @@ extension AuthorizationService: AuthorizationServiceType {
         try await Firestore.firestore().collection("Users").document(result.user.uid).setData(data)
     }
     
+    func signInWithGoogle() async throws {
+        guard
+            let clientId = FirebaseApp.app()?.options.clientID,
+            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let rootViewController = await windowScene.windows.first?.rootViewController
+        else { throw AuthorizationServiceError.unknownError }
+        
+        let config = GIDConfiguration(clientID: clientId)
+        GIDSignIn.sharedInstance.configuration = config
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+        guard let idToken = result.user.idToken?.tokenString else {
+            throw AuthorizationServiceError.unknownError
+        }
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+        let authResult = try await firebaseAuth.signIn(with: credential)
+        let user = try? await Firestore.firestore().collection("Users").document(authResult.user.uid).getDocument()
+        if user?.data() == nil {
+            let data = [
+                "id": authResult.user.uid,
+                "name": "",
+                "notificationsInfo": NotificationsInfo().dictionary!
+            ] as [String : Any]
+            try await Firestore.firestore().collection("Users").document(authResult.user.uid).setData(data)
+        }
+    }
+    
     func checkAccountExistence(email: String) async throws -> Bool {
         let methods = try await firebaseAuth.fetchSignInMethods(forEmail: email)
+        print(methods)
         return !methods.isEmpty
     }
     

@@ -30,6 +30,14 @@
 				<string>ruwus</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.712355885945-84p2c2f02o14j1kpcn8mg64os9smg3vj</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -47,10 +55,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSCameraUsageDescription</key>
-    <string>Need access to camera</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Need access to user's calendar</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need access to camera</string>
 	<key>OfficialSite</key>
 	<string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
 	<key>UIBackgroundModes</key>
@@ -65,8 +73,6 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -78,5 +84,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 </dict>
 </plist>

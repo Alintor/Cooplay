@@ -37,7 +37,7 @@ class AuthorizationCoordinator: ObservableObject {
     @ViewBuilder func buildView() -> some View {
         switch route {
         case .menu:
-            AuthorizationMenuView()
+            ScreenViewFactory.authorizationMenu()
                 .transition(.asymmetric(insertion: .move(edge: .leading), removal: .opacity))
         case .login(let email):
             ScreenViewFactory.login(email: email)

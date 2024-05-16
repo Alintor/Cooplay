@@ -25,6 +25,9 @@ struct AccountSettingsView: View {
             Spacer()
         }
         .animation(.customTransition, value: state.showChangePassword)
+        .onAppear {
+            state.checkProviders()
+        }
     }
     
 }

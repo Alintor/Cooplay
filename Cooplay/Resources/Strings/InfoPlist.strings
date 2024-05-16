@@ -6,5 +6,5 @@
   Copyright © 2023 Ovchinnikov. All rights reserved.
 */
 
-"NSCameraUsageDescription" = "Предоставьте доступ к камере, чтобы сделать фотографию на ававрку";
+"NSCameraUsageDescription" = "Предоставьте доступ к камере, чтобы сделать фотографию на аватарку";
 "NSCalendarsUsageDescription" = "Предоставьте доступ календарю, чтобы приложение смогло добавить новое событие";

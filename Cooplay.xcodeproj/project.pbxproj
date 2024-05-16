@@ -142,6 +142,8 @@
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
+		A87C38202BF4C5CF00A86DE2 /* AuthorizationMenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87C381F2BF4C5CF00A86DE2 /* AuthorizationMenuState.swift */; };
+		A87C38222BF608FC00A86DE2 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87C38212BF608FC00A86DE2 /* AuthProvider.swift */; };
 		A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF40C23E03CD8004189D3 /* GamesService.swift */; };
 		A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF40E23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift */; };
 		A87CF41123E03D5C004189D3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41023E03D5C004189D3 /* UserService.swift */; };
@@ -461,6 +463,8 @@
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A877020823336E6F002EA095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A877020A23336E6F002EA095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A87C381F2BF4C5CF00A86DE2 /* AuthorizationMenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationMenuState.swift; sourceTree = "<group>"; };
+		A87C38212BF608FC00A86DE2 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		A87CF40C23E03CD8004189D3 /* GamesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesService.swift; sourceTree = "<group>"; };
 		A87CF40E23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesServiceAssemblyContainer.swift; sourceTree = "<group>"; };
 		A87CF41023E03D5C004189D3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -983,6 +987,7 @@
 				A89F96FB24BC2DFF0036B155 /* NotificationType.swift */,
 				A85F9C892AF4CCF400BBAE31 /* NotificationBanner.swift */,
 				A829975A25370AAE00423D71 /* GameDBToken.swift */,
+				A87C38212BF608FC00A86DE2 /* AuthProvider.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1375,6 +1380,7 @@
 		A863E3C32B68C4AD0021B405 /* AuthorizationMenu */ = {
 			isa = PBXGroup;
 			children = (
+				A87C381F2BF4C5CF00A86DE2 /* AuthorizationMenuState.swift */,
 				A863E3C82B68C5270021B405 /* AuthorizationMenuView.swift */,
 			);
 			path = AuthorizationMenu;
@@ -2219,6 +2225,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cooplay/Pods-Cooplay-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCollectionViewManager/DTCollectionViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/DTModelStorage/DTModelStorage.framework",
@@ -2237,8 +2244,10 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseMessagingInterop/FirebaseMessagingInterop.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseStorage/FirebaseStorage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCalendar/KDCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -2263,6 +2272,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCollectionViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTModelStorage.framework",
@@ -2281,8 +2291,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessagingInterop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseStorage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleSignIn.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -2558,6 +2570,7 @@
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
 				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,
+				A87C38222BF608FC00A86DE2 /* AuthProvider.swift in Sources */,
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				A85F9CBD2AF7A88200BBAE31 /* TitleView.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
@@ -2600,6 +2613,7 @@
 				A85F9CBB2AF64FEF00BBAE31 /* HomeView.swift in Sources */,
 				A85F9CAC2AF5FF4000BBAE31 /* Reducer.swift in Sources */,
 				A8FB1CDD249B4BA9001C9355 /* EventFirebaseResponse.swift in Sources */,
+				A87C38202BF4C5CF00A86DE2 /* AuthorizationMenuState.swift in Sources */,
 				A824C9D5273E896A000E61A1 /* ProfileAvatar.swift in Sources */,
 				A823DFF62B060D71006EC119 /* AdditionalReactionsState.swift in Sources */,
 				A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */,

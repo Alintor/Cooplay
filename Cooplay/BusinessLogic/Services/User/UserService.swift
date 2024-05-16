@@ -37,6 +37,7 @@ protocol UserServiceType {
     func uploadNewAvatar(_ image: UIImage) async throws
     func deleteAvatar(path: String, needClear: Bool) async throws
     func updateNotificationsInfo(_ info: NotificationsInfo)
+    func getUserProviders() -> [AuthProvider]
 }
 
 
@@ -198,6 +199,15 @@ extension UserService: UserServiceType {
             data["notificationsInfo.\(key)"] = value
         }
         firestore.collection("Users").document(userId).updateData(data)
+    }
+    
+    func getUserProviders() -> [AuthProvider] {
+        guard let providers = firebaseAuth.currentUser?.providerData else { return [] }
+        
+        for provider in providers {
+            print(provider.providerID)
+        }
+        return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
     }
     
 }

@@ -134,7 +134,9 @@ enum ScreenViewFactory {
     
     static func accountSettings() -> some View {
         AccountSettingsView()
-            .environmentObject(AccountSettingsState())
+            .environmentObject(AccountSettingsState(
+                userService: applicationFactory.userService
+            ))
     }
     
     static func changePassword() -> some View {
@@ -154,6 +156,13 @@ enum ScreenViewFactory {
     
     static func authorization() -> some View {
         AuthorizationView()
+    }
+    
+    static func authorizationMenu() -> some View {
+        AuthorizationMenuView(state: AuthorizationMenuState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService
+        ))
     }
     
     static func login(email: String = "") -> some View {

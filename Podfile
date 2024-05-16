@@ -25,6 +25,7 @@ target 'Cooplay' do
   pod 'Firebase/Storage'
   pod 'UIImageColors'
   pod 'Kingfisher/SwiftUI'
+  pod 'GoogleSignIn'
 
   target 'EventStatusNotification' do 
 	inherit! :search_paths
