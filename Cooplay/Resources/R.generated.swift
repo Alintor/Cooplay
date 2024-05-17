@@ -826,12 +826,12 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.infoPlist` struct is generated, and contains static references to 2 localization keys.
     struct infoPlist {
-      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на ававрку
+      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на аватарку
       static let nsCameraUsageDescription = Rswift.StringResource(key: "NSCameraUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Предоставьте доступ календарю, чтобы приложение смогло добавить новое событие
       static let nsCalendarsUsageDescription = Rswift.StringResource(key: "NSCalendarsUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, locales: [], comment: nil)
       
-      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на ававрку
+      /// Value: Предоставьте доступ к камере, чтобы сделать фотографию на аватарку
       static func nsCameraUsageDescription(_: Void = ()) -> String {
         return NSLocalizedString("NSCameraUsageDescription", tableName: "InfoPlist", bundle: R.hostingBundle, comment: "")
       }

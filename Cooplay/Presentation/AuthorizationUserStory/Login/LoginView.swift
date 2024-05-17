@@ -39,7 +39,6 @@ struct LoginView: View {
                 placeholder: Localizable.authorizationEmailTextFieldPlaceholder(),
                 keyboardType: .emailAddress,
                 contentType: .emailAddress,
-                showProgress: $state.showEmailChecking,
                 error: $state.emailError
             )
             .padding(.bottom, 12)
@@ -69,8 +68,8 @@ struct LoginView: View {
                 }
                 .foregroundStyle(Color(.actionAccent))
                 .font(.system(size: 20))
-                .disabled(!state.isEmailCorrect)
-                .opacity(state.isEmailCorrect ? 1 : 0.5)
+                .disabled(!state.email.isEmail)
+                .opacity(state.email.isEmail ? 1 : 0.5)
             }
             .padding(.bottom, 32)
             MainActionButton(Localizable.authorizationActionButtonTitle(), isDisabled: !state.isReady) {
@@ -97,9 +96,6 @@ struct LoginView: View {
         .padding(.horizontal, 24)
         .animation(.customTransition, value: focusedField)
         .activityIndicator(isShown: $state.showProgress)
-        .onReceive(state.$email) { _ in
-            state.checkEmail()
-        }
     }
     
     // MARK: - Subviews

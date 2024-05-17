@@ -22,11 +22,9 @@ final class RegisterState: ObservableObject {
         types: [.minLength(isValid: nil), .capitalLetter(isValid: nil), .digit(isValid: nil)]
     )
     @Published var confirmPasswordError: TextFieldView.ErrorType?
-    @Published var isEmailCorrect: Bool = false
-    @Published var showEmailChecking: Bool = false
     @Published var showProgress: Bool = false
     var isReady: Bool {
-        isEmailCorrect && passwordError?.isValid == true && password == confirmPassword
+        email.isEmail && !password.isEmpty && passwordError?.isValid == true && password == confirmPassword
     }
     
     // MARK: - Init
@@ -39,12 +37,6 @@ final class RegisterState: ObservableObject {
     
     // MARK: - Private Methods
     
-    @MainActor private func handleEmailChecking(isExist: Bool) {
-        showEmailChecking = false
-        isEmailCorrect = !isExist
-        emailError = .text(message: isExist ? Localizable.registrationErrorEmailAlreadyExist() : nil)
-    }
-    
     @MainActor private func handleRegisterResult(isSuccess: Bool) {
         showProgress = false
         if isSuccess {
@@ -55,23 +47,6 @@ final class RegisterState: ObservableObject {
     }
     
     // MARK: - Methods
-    
-    func checkEmail() {
-        guard email.isEmail else {
-            emailError = nil
-            return
-        }
-        
-        showEmailChecking = true
-        Task {
-            do {
-                let isExist = try await authorizationService.checkAccountExistence(email: email)
-                await handleEmailChecking(isExist: isExist)
-            } catch {
-                store.dispatch(.showNetworkError(AuthorizationServiceError.unknownError))
-            }
-        }
-    }
     
     func checkPassword() {
         passwordError = .passwordValidation(types: Validation.password(password))

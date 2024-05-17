@@ -40,7 +40,6 @@ struct RegisterView: View {
                 placeholder: Localizable.registrationEmailTextFieldPlaceholder(),
                 keyboardType: .emailAddress,
                 contentType: .emailAddress,
-                showProgress: $state.showEmailChecking,
                 error: $state.emailError
             )
             .padding(.bottom, 12)
@@ -99,9 +98,6 @@ struct RegisterView: View {
         .padding(.horizontal, 24)
         .animation(.customTransition, value: focusedField)
         .activityIndicator(isShown: $state.showProgress)
-        .onReceive(state.$email) { _ in
-            state.checkEmail()
-        }
         .onReceive(state.$password) { _ in
             state.checkPassword()
             state.checkConfirmPassword()
