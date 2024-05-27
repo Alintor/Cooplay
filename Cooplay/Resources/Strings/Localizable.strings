@@ -183,11 +183,22 @@
 "profileSettings.changePassword.title" = "Сменить пароль";
 "profileSettings.delete.title" = "Удалить аккаунт";
 "profileSettings.account.title" = "Аккаунт";
+"profileSettings.google.link.title" = "Привязать Google аккаунт";
+"profileSettings.google.unlink.title" = "Отвязать Google аккаунт";
+"profileSettings.apple.link.title" = "Привязать Apple ID";
+"profileSettings.apple.unlink.title" = "Отвязать Apple ID";
+"profileSettings.addPassword.title" = "Создать пароль";
 "profileSettings.logout.title" = "Выйти";
 "profileSettings.logout.message" = "Вы уверены, что хотите выйти из аккаунта?";
 "profileSettings.logout.actionButton" = "Выйти из аккаунта";
 "profileSettings.section.settings.title" = "Настройки";
 "profileSettings.section.account.title" = "Управление аккаунтом";
+
+// MARK: - Account
+
+"account.alert.unlink.apple" = "Вы действительно хотите отвязать Apple ID?";
+"account.alert.unlink.google" = "Вы действительно хотите отвязать Google аккаунт?";
+"account.alert.unlink.action" = "Отвязать";
 
 // MARK: - Edit profile
 

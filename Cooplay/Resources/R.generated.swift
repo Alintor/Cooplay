@@ -844,7 +844,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 199 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 207 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -912,6 +912,10 @@ struct R: Rswift.Validatable {
       static let additionalReactionsTitle = Rswift.StringResource(key: "additionalReactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вход
       static let authorizationTitle = Rswift.StringResource(key: "authorization.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы действительно хотите отвязать Apple ID?
+      static let accountAlertUnlinkApple = Rswift.StringResource(key: "account.alert.unlink.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы действительно хотите отвязать Google аккаунт?
+      static let accountAlertUnlinkGoogle = Rswift.StringResource(key: "account.alert.unlink.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы действительно хотите удалить данное событие?
       static let eventDetailsDeleteAlertTitle = Rswift.StringResource(key: "eventDetails.deleteAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы можете создать событие сами, и пригласить друзей
@@ -1056,6 +1060,12 @@ struct R: Rswift.Validatable {
       static let eventDetailsCellLateness = Rswift.StringResource(key: "eventDetails.cell.lateness", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю на %d мин
       static let statusLateFull = Rswift.StringResource(key: "status.late.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отвязать
+      static let accountAlertUnlinkAction = Rswift.StringResource(key: "account.alert.unlink.action", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отвязать Apple ID
+      static let profileSettingsAppleUnlinkTitle = Rswift.StringResource(key: "profileSettings.apple.unlink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отвязать Google аккаунт
+      static let profileSettingsGoogleUnlinkTitle = Rswift.StringResource(key: "profileSettings.google.unlink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отклоненные события
       static let eventsListSectionsDeclined = Rswift.StringResource(key: "eventsList.sections.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Открыть настройки
@@ -1124,6 +1134,10 @@ struct R: Rswift.Validatable {
       static let statusSuggestDateFull = Rswift.StringResource(key: "status.suggestDate.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Предложить время
       static let statusSuggestDateShort = Rswift.StringResource(key: "status.suggestDate.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Привязать Apple ID
+      static let profileSettingsAppleLinkTitle = Rswift.StringResource(key: "profileSettings.apple.link.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Привязать Google аккаунт
+      static let profileSettingsGoogleLinkTitle = Rswift.StringResource(key: "profileSettings.google.link.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пригласить по ссылке
       static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
@@ -1202,6 +1216,8 @@ struct R: Rswift.Validatable {
       static let registrationActionButtonTitle = Rswift.StringResource(key: "registration.actionButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать аккаунт
       static let registrationTitle = Rswift.StringResource(key: "registration.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать пароль
+      static let profileSettingsAddPasswordTitle = Rswift.StringResource(key: "profileSettings.addPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать событие
       static let newEventMainActionTitle = Rswift.StringResource(key: "newEvent.mainAction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сохранить изменения
@@ -1408,6 +1424,16 @@ struct R: Rswift.Validatable {
       /// Value: Вход
       static func authorizationTitle(_: Void = ()) -> String {
         return NSLocalizedString("authorization.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вы действительно хотите отвязать Apple ID?
+      static func accountAlertUnlinkApple(_: Void = ()) -> String {
+        return NSLocalizedString("account.alert.unlink.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вы действительно хотите отвязать Google аккаунт?
+      static func accountAlertUnlinkGoogle(_: Void = ()) -> String {
+        return NSLocalizedString("account.alert.unlink.google", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Вы действительно хотите удалить данное событие?
@@ -1770,6 +1796,21 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("status.late.full", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// Value: Отвязать
+      static func accountAlertUnlinkAction(_: Void = ()) -> String {
+        return NSLocalizedString("account.alert.unlink.action", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Отвязать Apple ID
+      static func profileSettingsAppleUnlinkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.apple.unlink.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Отвязать Google аккаунт
+      static func profileSettingsGoogleUnlinkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.google.unlink.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Отклоненные события
       static func eventsListSectionsDeclined(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.sections.declined", bundle: R.hostingBundle, comment: "")
@@ -1938,6 +1979,16 @@ struct R: Rswift.Validatable {
       /// Value: Предложить время
       static func statusSuggestDateShort(_: Void = ()) -> String {
         return NSLocalizedString("status.suggestDate.short", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Привязать Apple ID
+      static func profileSettingsAppleLinkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.apple.link.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Привязать Google аккаунт
+      static func profileSettingsGoogleLinkTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.google.link.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Пригласить по ссылке
@@ -2133,6 +2184,11 @@ struct R: Rswift.Validatable {
       /// Value: Создать аккаунт
       static func registrationTitle(_: Void = ()) -> String {
         return NSLocalizedString("registration.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создать пароль
+      static func profileSettingsAddPasswordTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.addPassword.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Создать событие

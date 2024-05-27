@@ -15,6 +15,7 @@ final class ApplicationFactory {
     
     fileprivate let store: Store
     fileprivate let authorizationService: AuthorizationService
+    fileprivate let appleAuthorizationService: AppleAuthorizationService
     fileprivate let eventService: EventService
     fileprivate let userService: UserService
     fileprivate let defaultsStorage: DefaultsStorage
@@ -40,6 +41,7 @@ final class ApplicationFactory {
             firestore: Firestore.firestore(),
             firebaseFunctions: Functions.functions()
         )
+        appleAuthorizationService = AppleAuthorizationService()
         self.authorizationService = authorizationService
         self.eventService = eventService
         self.userService = userService
@@ -133,10 +135,10 @@ enum ScreenViewFactory {
     }
     
     static func accountSettings() -> some View {
-        AccountSettingsView()
-            .environmentObject(AccountSettingsState(
-                userService: applicationFactory.userService
-            ))
+        AccountSettingsView(state: AccountSettingsState(
+            userService: applicationFactory.userService,
+            appleAuthorizationService: applicationFactory.appleAuthorizationService
+        ))
     }
     
     static func changePassword() -> some View {
@@ -161,7 +163,8 @@ enum ScreenViewFactory {
     static func authorizationMenu() -> some View {
         AuthorizationMenuView(state: AuthorizationMenuState(
             store: applicationFactory.store,
-            authorizationService: applicationFactory.authorizationService
+            authorizationService: applicationFactory.authorizationService, 
+            appleAuthorizationService: applicationFactory.appleAuthorizationService
         ))
     }
     

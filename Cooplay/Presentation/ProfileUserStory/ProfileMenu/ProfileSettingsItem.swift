@@ -18,15 +18,54 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     changePassword,
     account,
     logout,
-    delete
+    delete,
+    addPassword,
+    linkGoogle = "google.link",
+    unlinkGoogle = "google.unlink",
+    linkApple = "apple.link",
+    unlinkApple = "apple.unlink"
     
     var title: String { NSLocalizedString("profileSettings.\(self.rawValue).title", comment: "") }
-    var iconColor: Color { Color("profileSettings.\(self.rawValue)") }
-    var iconImage: Image { Image("profileSettings.\(self.rawValue)") }
+    var iconColor: Color {
+        switch self {
+        case .addPassword:
+            Color(.profileSettingsChangePassword)
+        case .linkGoogle:
+            Color(.textPrimary)
+        case .unlinkGoogle:
+            Color(.textPrimary)
+        case .linkApple:
+            Color(.textPrimary)
+        case .unlinkApple:
+            Color(.textPrimary)
+        default:
+            Color("profileSettings.\(self.rawValue)")
+        }
+    }
+    var iconImage: Image {
+        switch self {
+        case .addPassword:
+            Image(.profileSettingsChangePassword)
+        case .linkGoogle:
+            Image(.commonGoogleIcon)
+        case .unlinkGoogle:
+            Image(.commonGoogleIcon)
+        case .linkApple:
+            Image(.commonAppleIcon)
+        case .unlinkApple:
+            Image(.commonAppleIcon)
+        default:
+            Image("profileSettings.\(self.rawValue)")
+        }
+    }
     var actionImage: Image? {
         switch self {
         case .logout,
-             .miniGames:
+             .miniGames,
+             .linkApple,
+             .linkGoogle,
+             .unlinkApple,
+             .unlinkGoogle:
             return Image(R.image.profileSettingsActionTypeSheet.name)
         default:
             return Image(R.image.profileSettingsActionTypeNavigation.name)

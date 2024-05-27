@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import GoogleSignIn
+import AuthenticationServices
 
 enum AuthorizationServiceError: Error {
     
@@ -40,6 +41,7 @@ protocol AuthorizationServiceType {
     func login(email: String, password: String) async throws
     func createAccount(email: String, password: String) async throws
     func signInWithGoogle() async throws
+    func signInWithApple(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
     func checkAccountExistence(email: String) async throws -> Bool
     func changePassword(currentPassword: String, newPassword: String) async throws
     func sendResetPasswordEmail(_ email: String) async throws
@@ -107,6 +109,27 @@ extension AuthorizationService: AuthorizationServiceType {
             throw AuthorizationServiceError.unknownError
         }
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+        let authResult = try await firebaseAuth.signIn(with: credential)
+        let user = try? await Firestore.firestore().collection("Users").document(authResult.user.uid).getDocument()
+        if user?.data() == nil {
+            let data = [
+                "id": authResult.user.uid,
+                "name": "",
+                "notificationsInfo": NotificationsInfo().dictionary!
+            ] as [String : Any]
+            try await Firestore.firestore().collection("Users").document(authResult.user.uid).setData(data)
+        }
+    }
+    
+    func signInWithApple(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws {
+        guard 
+            let appleIDToken = creds.identityToken,
+            let idTokenString = String(data: appleIDToken, encoding: .utf8)
+        else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        let credential = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
         let authResult = try await firebaseAuth.signIn(with: credential)
         let user = try? await Firestore.firestore().collection("Users").document(authResult.user.uid).getDocument()
         if user?.data() == nil {

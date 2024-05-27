@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 import FirebaseCore
+import GoogleSignIn
+import AuthenticationServices
 
 enum UserServiceError: Error {
     
@@ -38,6 +40,9 @@ protocol UserServiceType {
     func deleteAvatar(path: String, needClear: Bool) async throws
     func updateNotificationsInfo(_ info: NotificationsInfo)
     func getUserProviders() -> [AuthProvider]
+    func linkGoogleProvider() async throws
+    func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
+    func unlinkProvider(_ provider: AuthProvider) async throws
 }
 
 
@@ -204,10 +209,44 @@ extension UserService: UserServiceType {
     func getUserProviders() -> [AuthProvider] {
         guard let providers = firebaseAuth.currentUser?.providerData else { return [] }
         
-        for provider in providers {
-            print(provider.providerID)
-        }
         return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
+    }
+    
+    func linkGoogleProvider() async throws {
+        guard
+            let user = firebaseAuth.currentUser,
+            let clientId = FirebaseApp.app()?.options.clientID,
+            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let rootViewController = await windowScene.windows.first?.rootViewController
+        else { throw UserServiceError.unknownError }
+        
+        let config = GIDConfiguration(clientID: clientId)
+        GIDSignIn.sharedInstance.configuration = config
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+        guard let idToken = result.user.idToken?.tokenString else {
+            throw AuthorizationServiceError.unknownError
+        }
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+        try await user.link(with: credential)
+    }
+    
+    func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws {
+        guard
+            let user = firebaseAuth.currentUser,
+            let appleIDToken = creds.identityToken,
+            let idTokenString = String(data: appleIDToken, encoding: .utf8)
+        else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        let credential = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
+        try await user.link(with: credential)
+    }
+    
+    func unlinkProvider(_ provider: AuthProvider) async throws {
+        guard let user = firebaseAuth.currentUser else { throw UserServiceError.unknownError }
+        
+        try await user.unlink(fromProvider: provider.rawValue)
     }
     
 }

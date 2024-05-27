@@ -193,6 +193,7 @@
 		A88003EA28F449DB00FDA878 /* AdditionalReactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */; };
 		A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */; };
 		A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */; };
+		A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A02C007D7C00E30549 /* AppleSignInService.swift */; };
 		A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
 		A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
 		A89F96FE24BC490B0036B155 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FD24BC490B0036B155 /* URL.swift */; };
@@ -515,6 +516,7 @@
 		A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsPresenter.swift; sourceTree = "<group>"; };
 		A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsView.swift; sourceTree = "<group>"; };
 		A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsBuilder.swift; sourceTree = "<group>"; };
+		A89840A02C007D7C00E30549 /* AppleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInService.swift; sourceTree = "<group>"; };
 		A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
 		A89F96FB24BC2DFF0036B155 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		A89F96FD24BC490B0036B155 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -2013,6 +2015,7 @@
 			children = (
 				A8FB1CD32499D868001C9355 /* AuthorizationService.swift */,
 				A8FB1CD52499D92F001C9355 /* AuthorizationServiceAssemblyContainer.swift */,
+				A89840A02C007D7C00E30549 /* AppleSignInService.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -2439,6 +2442,7 @@
 				A823E0012B077610006EC119 /* SearchMembersView.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */,
+				A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */,
 				A8D1D2782356F96300DA1089 /* UITextField.swift in Sources */,
 				A8D48C3B2B7A252D005B950C /* RegisterView.swift in Sources */,
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,

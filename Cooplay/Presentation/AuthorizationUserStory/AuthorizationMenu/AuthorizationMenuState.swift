@@ -14,13 +14,19 @@ final class AuthorizationMenuState: ObservableObject {
     
     private let store: Store
     private let authorizationService: AuthorizationServiceType
+    private let appleAuthorizationService: AppleAuthorizationServiceType
     @Published var showProgress: Bool = false
     
     // MARK: - Init
     
-    init(store: Store, authorizationService: AuthorizationServiceType) {
+    init(
+        store: Store,
+        authorizationService: AuthorizationServiceType,
+        appleAuthorizationService: AppleAuthorizationServiceType
+    ) {
         self.store = store
         self.authorizationService = authorizationService
+        self.appleAuthorizationService = appleAuthorizationService
     }
     
     @MainActor private func hideProgress() {
@@ -34,6 +40,21 @@ final class AuthorizationMenuState: ObservableObject {
         Task {
             do {
                 try await authorizationService.signInWithGoogle()
+                store.dispatch(.successAuthentication)
+                await hideProgress()
+            } catch {
+                store.dispatch(.showNetworkError(AuthorizationServiceError.unknownError))
+                await hideProgress()
+            }
+        }
+    }
+    
+    func signWithApple() {
+        showProgress = true
+        Task {
+            do {
+                let creds = try await appleAuthorizationService.requestAuthorization()
+                try await authorizationService.signInWithApple(creds: creds, nonce: appleAuthorizationService.currentNonce)
                 store.dispatch(.successAuthentication)
                 await hideProgress()
             } catch {

@@ -23,7 +23,7 @@ struct AuthorizationMenuView: View {
                 .frame(width: 200, height: 200)
             Spacer()
             Button {
-                print("APPLE")
+                state.signWithApple()
             } label: {
                 HStack {
                     Spacer()
