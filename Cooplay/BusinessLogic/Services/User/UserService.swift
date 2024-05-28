@@ -42,7 +42,9 @@ protocol UserServiceType {
     func getUserProviders() -> [AuthProvider]
     func linkGoogleProvider() async throws
     func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
+    func addPassword(_ password: String) async throws
     func unlinkProvider(_ provider: AuthProvider) async throws
+    func getEmailForProvider(_ provider: AuthProvider) -> String?
 }
 
 
@@ -212,6 +214,12 @@ extension UserService: UserServiceType {
         return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
     }
     
+    func getEmailForProvider(_ provider: AuthProvider) -> String? {
+        guard let providers = firebaseAuth.currentUser?.providerData else { return nil }
+        
+        return providers.first(where: { $0.providerID == provider.rawValue})?.email
+    }
+    
     func linkGoogleProvider() async throws {
         guard
             let user = firebaseAuth.currentUser,
@@ -241,6 +249,18 @@ extension UserService: UserServiceType {
         
         let credential = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
         try await user.link(with: credential)
+    }
+    
+    func addPassword(_ password: String) async throws {
+        guard
+            let currentUser = firebaseAuth.currentUser,
+            let email = currentUser.email
+        else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        try await currentUser.link(with: credential)
     }
     
     func unlinkProvider(_ provider: AuthProvider) async throws {

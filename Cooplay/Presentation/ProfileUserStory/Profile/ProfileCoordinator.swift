@@ -19,6 +19,7 @@ final class ProfileCoordinator: ObservableObject {
         case notifications
         case account(isBack: Bool)
         case changePassword
+        case addPassword
     }
     
     private let store: Store
@@ -51,6 +52,7 @@ final class ProfileCoordinator: ObservableObject {
         case .notifications: return Localizable.notificationsSettingsTitle()
         case .account: return Localizable.profileSettingsAccountTitle()
         case .changePassword: return Localizable.changePasswordTitle()
+        case .addPassword: return Localizable.addPasswordTitle()
         }
     }
     
@@ -113,6 +115,13 @@ final class ProfileCoordinator: ObservableObject {
             ))
         case .changePassword:
             ScreenViewFactory.changePassword()
+                .closable(anchor: .trailing) {
+                    self.open(.account(isBack: true))
+                }
+                .zIndex(1)
+                .transition(.move(edge: .trailing))
+        case .addPassword:
+            ScreenViewFactory.addPassword()
                 .closable(anchor: .trailing) {
                     self.open(.account(isBack: true))
                 }

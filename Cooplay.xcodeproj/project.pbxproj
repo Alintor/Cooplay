@@ -194,6 +194,8 @@
 		A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */; };
 		A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */; };
 		A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A02C007D7C00E30549 /* AppleSignInService.swift */; };
+		A89840A42C04886300E30549 /* AddPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A32C04886300E30549 /* AddPasswordState.swift */; };
+		A89840A62C05B5A800E30549 /* AddPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A52C05B5A800E30549 /* AddPasswordView.swift */; };
 		A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
 		A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
 		A89F96FE24BC490B0036B155 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FD24BC490B0036B155 /* URL.swift */; };
@@ -517,6 +519,8 @@
 		A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsView.swift; sourceTree = "<group>"; };
 		A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsBuilder.swift; sourceTree = "<group>"; };
 		A89840A02C007D7C00E30549 /* AppleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInService.swift; sourceTree = "<group>"; };
+		A89840A32C04886300E30549 /* AddPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordState.swift; sourceTree = "<group>"; };
+		A89840A52C05B5A800E30549 /* AddPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordView.swift; sourceTree = "<group>"; };
 		A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
 		A89F96FB24BC2DFF0036B155 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		A89F96FD24BC490B0036B155 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -1788,6 +1792,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		A89840A22C0480C700E30549 /* AddPassword */ = {
+			isa = PBXGroup;
+			children = (
+				A89840A32C04886300E30549 /* AddPasswordState.swift */,
+				A89840A52C05B5A800E30549 /* AddPasswordView.swift */,
+			);
+			path = AddPassword;
+			sourceTree = "<group>";
+		};
 		A89F972724BED1230036B155 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1854,6 +1867,7 @@
 				29F59E0BCE3DF536786E3CCF /* NotificationsSettings */,
 				A8A383D128C20C83001B22EC /* ReactionsSettings */,
 				A8C307982B9F0E2B00907B56 /* AccountSettings */,
+				A89840A22C0480C700E30549 /* AddPassword */,
 				A8C3079D2B9F1C3200907B56 /* ChangePassword */,
 			);
 			path = ProfileUserStory;
@@ -2422,6 +2436,7 @@
 				A85F9CB62AF61F8700BBAE31 /* ClosableModifier.swift in Sources */,
 				A8D1D26E2356F8A400DA1089 /* UIButton.swift in Sources */,
 				A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */,
+				A89840A62C05B5A800E30549 /* AddPasswordView.swift in Sources */,
 				A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */,
 				A8A383E628C22AC0001B22EC /* ReactionsSettingsView.swift in Sources */,
 				A87CF44723EA682A004189D3 /* SearchSectionHeaderView.swift in Sources */,
@@ -2489,6 +2504,7 @@
 				A85F9C8C2AF4CDAE00BBAE31 /* NotificationBannerState.swift in Sources */,
 				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
 				A824C9E5273FCD24000E61A1 /* EventDetailsView.swift in Sources */,
+				A89840A42C04886300E30549 /* AddPasswordState.swift in Sources */,
 				A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */,
 				A824C9DF273FC37B000E61A1 /* EventInfoViewModel.swift in Sources */,
 				A824CA14274664FC000E61A1 /* EventDetailsMemberInfoView.swift in Sources */,

@@ -13,6 +13,7 @@ final class AccountSettingsState: ObservableObject {
     
     // MARK: - Properties
     
+    private let store: Store
     private let userService: UserServiceType
     private let appleAuthorizationService: AppleAuthorizationServiceType
     @Published var providers: [AuthProvider]
@@ -29,10 +30,17 @@ final class AccountSettingsState: ObservableObject {
     var showUnlink: Bool {
         providers.count > 1
     }
+    var googleEmail: String? {
+        userService.getEmailForProvider(.google)
+    }
+    var appleEmail: String? {
+        userService.getEmailForProvider(.apple)
+    }
     
     // MARK: - Init
     
-    init(userService: UserServiceType, appleAuthorizationService: AppleAuthorizationServiceType) {
+    init(store: Store, userService: UserServiceType, appleAuthorizationService: AppleAuthorizationServiceType) {
+        self.store = store
         self.userService = userService
         self.appleAuthorizationService = appleAuthorizationService
         providers = userService.getUserProviders()
@@ -46,7 +54,6 @@ final class AccountSettingsState: ObservableObject {
     
     @MainActor private func checkProviders() {
         providers = userService.getUserProviders()
-        print(providers.count)
     }
     
     func linkGoogleAccount() {
@@ -56,6 +63,7 @@ final class AccountSettingsState: ObservableObject {
                 try await userService.linkGoogleProvider()
                 await hideProgress()
                 await checkProviders()
+                store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessGoogle(), type: .success)))
             } catch {
                 await hideProgress()
             }
@@ -70,6 +78,7 @@ final class AccountSettingsState: ObservableObject {
                 try await userService.linkAppleProvider(creds: creds, nonce: appleAuthorizationService.currentNonce)
                 await hideProgress()
                 await checkProviders()
+                store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessApple(), type: .success)))
             } catch {
                 await hideProgress()
             }
@@ -83,6 +92,13 @@ final class AccountSettingsState: ObservableObject {
                 try await userService.unlinkProvider(provider)
                 await hideProgress()
                 await checkProviders()
+                switch provider {
+                case .google:
+                    store.dispatch(.showNotificationBanner(.init(title: Localizable.accountUnlinkSuccessGoogle(), type: .success)))
+                case .apple:
+                    store.dispatch(.showNotificationBanner(.init(title: Localizable.accountUnlinkSuccessApple(), type: .success)))
+                default: break
+                }
             } catch {
                 await hideProgress()
             }
