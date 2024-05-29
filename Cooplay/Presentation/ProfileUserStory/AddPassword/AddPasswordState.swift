@@ -13,7 +13,7 @@ final class AddPasswordState: ObservableObject {
     // MARK: - Properties
     
     private let store: Store
-    private let userService: UserServiceType
+    private let authorizationService: AuthorizationServiceType
     @Published var newPassword: String = ""
     @Published var confirmPassword: String = ""
     @Published var newPasswordError: TextFieldView.ErrorType? = .passwordValidation(
@@ -28,9 +28,9 @@ final class AddPasswordState: ObservableObject {
     
     // MARK: - Init
     
-    init(store: Store, userService: UserServiceType) {
+    init(store: Store, authorizationService: AuthorizationServiceType) {
         self.store = store
-        self.userService = userService
+        self.authorizationService = authorizationService
     }
     
     // MARK: - Private Methods
@@ -71,7 +71,7 @@ final class AddPasswordState: ObservableObject {
         showProgress = true
         Task {
             do {
-                try await userService.addPassword(newPassword)
+                try await authorizationService.addPassword(newPassword)
                 await handleResetResult(isSuccess: true)
             } catch {
                 await handleResetResult(isSuccess: false)

@@ -39,12 +39,6 @@ protocol UserServiceType {
     func uploadNewAvatar(_ image: UIImage) async throws
     func deleteAvatar(path: String, needClear: Bool) async throws
     func updateNotificationsInfo(_ info: NotificationsInfo)
-    func getUserProviders() -> [AuthProvider]
-    func linkGoogleProvider() async throws
-    func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
-    func addPassword(_ password: String) async throws
-    func unlinkProvider(_ provider: AuthProvider) async throws
-    func getEmailForProvider(_ provider: AuthProvider) -> String?
 }
 
 
@@ -206,67 +200,6 @@ extension UserService: UserServiceType {
             data["notificationsInfo.\(key)"] = value
         }
         firestore.collection("Users").document(userId).updateData(data)
-    }
-    
-    func getUserProviders() -> [AuthProvider] {
-        guard let providers = firebaseAuth.currentUser?.providerData else { return [] }
-        
-        return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
-    }
-    
-    func getEmailForProvider(_ provider: AuthProvider) -> String? {
-        guard let providers = firebaseAuth.currentUser?.providerData else { return nil }
-        
-        return providers.first(where: { $0.providerID == provider.rawValue})?.email
-    }
-    
-    func linkGoogleProvider() async throws {
-        guard
-            let user = firebaseAuth.currentUser,
-            let clientId = FirebaseApp.app()?.options.clientID,
-            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
-            let rootViewController = await windowScene.windows.first?.rootViewController
-        else { throw UserServiceError.unknownError }
-        
-        let config = GIDConfiguration(clientID: clientId)
-        GIDSignIn.sharedInstance.configuration = config
-        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-        guard let idToken = result.user.idToken?.tokenString else {
-            throw AuthorizationServiceError.unknownError
-        }
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
-        try await user.link(with: credential)
-    }
-    
-    func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws {
-        guard
-            let user = firebaseAuth.currentUser,
-            let appleIDToken = creds.identityToken,
-            let idTokenString = String(data: appleIDToken, encoding: .utf8)
-        else {
-            throw AuthorizationServiceError.unknownError
-        }
-        
-        let credential = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
-        try await user.link(with: credential)
-    }
-    
-    func addPassword(_ password: String) async throws {
-        guard
-            let currentUser = firebaseAuth.currentUser,
-            let email = currentUser.email
-        else {
-            throw AuthorizationServiceError.unknownError
-        }
-        
-        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
-        try await currentUser.link(with: credential)
-    }
-    
-    func unlinkProvider(_ provider: AuthProvider) async throws {
-        guard let user = firebaseAuth.currentUser else { throw UserServiceError.unknownError }
-        
-        try await user.unlink(fromProvider: provider.rawValue)
     }
     
 }

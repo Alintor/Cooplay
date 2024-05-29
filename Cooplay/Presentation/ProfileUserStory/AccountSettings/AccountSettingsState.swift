@@ -14,7 +14,7 @@ final class AccountSettingsState: ObservableObject {
     // MARK: - Properties
     
     private let store: Store
-    private let userService: UserServiceType
+    private let authorizationService: AuthorizationServiceType
     private let appleAuthorizationService: AppleAuthorizationServiceType
     @Published var providers: [AuthProvider]
     @Published var showProgress: Bool = false
@@ -31,19 +31,19 @@ final class AccountSettingsState: ObservableObject {
         providers.count > 1
     }
     var googleEmail: String? {
-        userService.getEmailForProvider(.google)
+        authorizationService.getEmailForProvider(.google)
     }
     var appleEmail: String? {
-        userService.getEmailForProvider(.apple)
+        authorizationService.getEmailForProvider(.apple)
     }
     
     // MARK: - Init
     
-    init(store: Store, userService: UserServiceType, appleAuthorizationService: AppleAuthorizationServiceType) {
+    init(store: Store, authorizationService: AuthorizationServiceType, appleAuthorizationService: AppleAuthorizationServiceType) {
         self.store = store
-        self.userService = userService
+        self.authorizationService = authorizationService
         self.appleAuthorizationService = appleAuthorizationService
-        providers = userService.getUserProviders()
+        providers = authorizationService.getUserProviders()
     }
     
     // MARK: - Methods
@@ -53,14 +53,14 @@ final class AccountSettingsState: ObservableObject {
     }
     
     @MainActor private func checkProviders() {
-        providers = userService.getUserProviders()
+        providers = authorizationService.getUserProviders()
     }
     
     func linkGoogleAccount() {
         showProgress = true
         Task {
             do {
-                try await userService.linkGoogleProvider()
+                try await authorizationService.linkGoogleProvider()
                 await hideProgress()
                 await checkProviders()
                 store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessGoogle(), type: .success)))
@@ -75,7 +75,7 @@ final class AccountSettingsState: ObservableObject {
         Task {
             do {
                 let creds = try await appleAuthorizationService.requestAuthorization()
-                try await userService.linkAppleProvider(creds: creds, nonce: appleAuthorizationService.currentNonce)
+                try await authorizationService.linkAppleProvider(creds: creds, nonce: appleAuthorizationService.currentNonce)
                 await hideProgress()
                 await checkProviders()
                 store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessApple(), type: .success)))
@@ -89,7 +89,7 @@ final class AccountSettingsState: ObservableObject {
         showProgress = true
         Task {
             do {
-                try await userService.unlinkProvider(provider)
+                try await authorizationService.unlinkProvider(provider)
                 await hideProgress()
                 await checkProviders()
                 switch provider {
