@@ -196,6 +196,8 @@
 		A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A02C007D7C00E30549 /* AppleSignInService.swift */; };
 		A89840A42C04886300E30549 /* AddPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A32C04886300E30549 /* AddPasswordState.swift */; };
 		A89840A62C05B5A800E30549 /* AddPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A52C05B5A800E30549 /* AddPasswordView.swift */; };
+		A89840A92C0707E000E30549 /* DeleteAccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A82C0707E000E30549 /* DeleteAccountState.swift */; };
+		A89840AB2C07110C00E30549 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840AA2C07110C00E30549 /* DeleteAccountView.swift */; };
 		A89F96F924BC24550036B155 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
 		A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
 		A89F96FE24BC490B0036B155 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FD24BC490B0036B155 /* URL.swift */; };
@@ -521,6 +523,8 @@
 		A89840A02C007D7C00E30549 /* AppleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInService.swift; sourceTree = "<group>"; };
 		A89840A32C04886300E30549 /* AddPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordState.swift; sourceTree = "<group>"; };
 		A89840A52C05B5A800E30549 /* AddPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordView.swift; sourceTree = "<group>"; };
+		A89840A82C0707E000E30549 /* DeleteAccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountState.swift; sourceTree = "<group>"; };
+		A89840AA2C07110C00E30549 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
 		A89F96FB24BC2DFF0036B155 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		A89F96FD24BC490B0036B155 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -1801,6 +1805,15 @@
 			path = AddPassword;
 			sourceTree = "<group>";
 		};
+		A89840A72C0707BF00E30549 /* DeleteAccount */ = {
+			isa = PBXGroup;
+			children = (
+				A89840A82C0707E000E30549 /* DeleteAccountState.swift */,
+				A89840AA2C07110C00E30549 /* DeleteAccountView.swift */,
+			);
+			path = DeleteAccount;
+			sourceTree = "<group>";
+		};
 		A89F972724BED1230036B155 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1869,6 +1882,7 @@
 				A8C307982B9F0E2B00907B56 /* AccountSettings */,
 				A89840A22C0480C700E30549 /* AddPassword */,
 				A8C3079D2B9F1C3200907B56 /* ChangePassword */,
+				A89840A72C0707BF00E30549 /* DeleteAccount */,
 			);
 			path = ProfileUserStory;
 			sourceTree = "<group>";
@@ -2488,6 +2502,7 @@
 				A82FF2B2234606B700EE1807 /* EventService.swift in Sources */,
 				A82FF2B523460E7900EE1807 /* GlobalConstants.swift in Sources */,
 				A87CF43923E97527004189D3 /* Router.swift in Sources */,
+				A89840AB2C07110C00E30549 /* DeleteAccountView.swift in Sources */,
 				A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */,
 				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A8BE18332B01E7210039634E /* EventsSectionHeader.swift in Sources */,
@@ -2549,6 +2564,7 @@
 				A824CA1D27467147000E61A1 /* View.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
 				A8A0F0FE2AFFA32D00997DEA /* InvitesIconView.swift in Sources */,
+				A89840A92C0707E000E30549 /* DeleteAccountState.swift in Sources */,
 				A8A0F0F12AFDFF7600997DEA /* InvitedEventView.swift in Sources */,
 				A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */,
 				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,

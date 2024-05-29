@@ -11,6 +11,13 @@ import Firebase
 import GoogleSignIn
 import AuthenticationServices
 
+enum AuthDeleteProvider {
+    
+    case password(_ password: String)
+    case apple(creds: ASAuthorizationAppleIDCredential, nonce: String)
+    case google
+}
+
 enum AuthorizationServiceError: Error {
     
     case unknownError
@@ -38,6 +45,7 @@ extension AuthorizationServiceError: LocalizedError {
 protocol AuthorizationServiceType {
     
     var isLoggedIn: Bool { get }
+    var userEmail: String? { get }
     func login(email: String, password: String) async throws
     func createAccount(email: String, password: String) async throws
     func signInWithGoogle() async throws
@@ -50,23 +58,86 @@ protocol AuthorizationServiceType {
     func getUserProviders() -> [AuthProvider]
     func linkGoogleProvider() async throws
     func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
-    func addPassword(_ password: String) async throws
+    func addPassword(_ password: String, email: String) async throws
     func unlinkProvider(_ provider: AuthProvider) async throws
     func getEmailForProvider(_ provider: AuthProvider) -> String?
-    func getCurrentProvider() async throws -> AuthProvider
     func logout()
+    func deleteAccount(provider: AuthDeleteProvider) async throws
 }
 
 
 final class AuthorizationService {
     
     private let firebaseAuth: Auth
+    private let firestore: Firestore
     private let defaultsStorages: DefaultsStorageType?
     
-    init(firebaseAuth: Auth, defaultsStorages: DefaultsStorageType?) {
+    init(firebaseAuth: Auth, firestore: Firestore, defaultsStorages: DefaultsStorageType?) {
         firebaseAuth.useAppLanguage()
         self.firebaseAuth = firebaseAuth
+        self.firestore = firestore
         self.defaultsStorages = defaultsStorages
+    }
+    
+    // MARK: - Private Methods
+    
+    private func getGoogleCredential() async throws -> AuthCredential {
+        guard
+            let clientId = FirebaseApp.app()?.options.clientID,
+            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let rootViewController = await windowScene.windows.first?.rootViewController
+        else { throw AuthorizationServiceError.unknownError }
+        
+        let config = GIDConfiguration(clientID: clientId)
+        GIDSignIn.sharedInstance.configuration = config
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+        guard let idToken = result.user.idToken?.tokenString else {
+            throw AuthorizationServiceError.unknownError
+        }
+        return GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+    }
+    
+    private func reauthenticate(currentPassword: String) async throws -> FirebaseAuth.User {
+        guard
+            let currentUser = firebaseAuth.currentUser,
+            let email = currentUser.email
+        else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+        do {
+            let result = try await currentUser.reauthenticate(with: credential)
+            return result.user
+        } catch {
+            throw AuthorizationServiceError.wrongPassword
+        }
+    }
+    
+    private func reauthenticateWithProvider(_ provider: AuthDeleteProvider) async throws -> FirebaseAuth.User {
+        guard let currentUser = firebaseAuth.currentUser else {
+            throw AuthorizationServiceError.unknownError
+        }
+        
+        switch provider {
+        case .password(let password):
+            return try await reauthenticate(currentPassword: password)
+        case .apple(let creds, let nonce):
+            guard
+                let appleIDToken = creds.identityToken,
+                let idTokenString = String(data: appleIDToken, encoding: .utf8)
+            else {
+                throw AuthorizationServiceError.unknownError
+            }
+            
+            let appleCreds = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
+            let result = try await currentUser.reauthenticate(with: appleCreds)
+            return result.user
+        case .google:
+            let googleCreds = try await getGoogleCredential()
+            let result = try await currentUser.reauthenticate(with: googleCreds)
+            return result.user
+        }
     }
 }
 
@@ -88,6 +159,17 @@ extension AuthorizationService: AuthorizationServiceType {
         return firebaseAuth.currentUser != nil
     }
     
+    var userEmail: String? {
+        guard
+            let currentUser = firebaseAuth.currentUser,
+            let email = currentUser.email
+        else {
+            return nil
+        }
+        
+        return email
+    }
+    
     func login(email: String, password: String) async throws {
         try await firebaseAuth.signIn(withEmail: email, password: password)
     }
@@ -103,19 +185,7 @@ extension AuthorizationService: AuthorizationServiceType {
     }
     
     func signInWithGoogle() async throws {
-        guard
-            let clientId = FirebaseApp.app()?.options.clientID,
-            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
-            let rootViewController = await windowScene.windows.first?.rootViewController
-        else { throw AuthorizationServiceError.unknownError }
-        
-        let config = GIDConfiguration(clientID: clientId)
-        GIDSignIn.sharedInstance.configuration = config
-        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-        guard let idToken = result.user.idToken?.tokenString else {
-            throw AuthorizationServiceError.unknownError
-        }
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
+        let credential = try await getGoogleCredential()
         let authResult = try await firebaseAuth.signIn(with: credential)
         let user = try? await Firestore.firestore().collection("Users").document(authResult.user.uid).getDocument()
         if user?.data() == nil {
@@ -160,23 +230,6 @@ extension AuthorizationService: AuthorizationServiceType {
         defaultsStorages?.clear()
     }
     
-    private func reauthenticate(currentPassword: String) async throws -> FirebaseAuth.User {
-        guard
-            let currentUser = firebaseAuth.currentUser,
-            let email = currentUser.email
-        else {
-            throw AuthorizationServiceError.unknownError
-        }
-        
-        let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
-        do {
-            let result = try await currentUser.reauthenticate(with: credential)
-            return result.user
-        } catch {
-            throw AuthorizationServiceError.wrongPassword
-        }
-    }
-    
     func changePassword(currentPassword: String, newPassword: String) async throws {
         let currentUser = try await reauthenticate(currentPassword: currentPassword)
         try await currentUser.updatePassword(to: newPassword)
@@ -204,17 +257,6 @@ extension AuthorizationService: AuthorizationServiceType {
         guard let providers = firebaseAuth.currentUser?.providerData else { return [] }
         
         return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
-    }
-    
-    func getCurrentProvider() async throws -> AuthProvider {
-        guard let currentUser = firebaseAuth.currentUser else { throw UserServiceError.unknownError }
-        
-        let result = try await currentUser.getIDTokenResult()
-        if let provider = AuthProvider(rawValue: result.signInProvider) {
-            return provider
-        } else {
-            throw UserServiceError.unknownError
-        }
     }
     
     func getEmailForProvider(_ provider: AuthProvider) -> String? {
@@ -254,11 +296,8 @@ extension AuthorizationService: AuthorizationServiceType {
         try await user.link(with: credential)
     }
     
-    func addPassword(_ password: String) async throws {
-        guard
-            let currentUser = firebaseAuth.currentUser,
-            let email = currentUser.email
-        else {
+    func addPassword(_ password: String, email: String) async throws {
+        guard let currentUser = firebaseAuth.currentUser else {
             throw AuthorizationServiceError.unknownError
         }
         
@@ -270,6 +309,12 @@ extension AuthorizationService: AuthorizationServiceType {
         guard let user = firebaseAuth.currentUser else { throw UserServiceError.unknownError }
         
         try await user.unlink(fromProvider: provider.rawValue)
+    }
+    
+    func deleteAccount(provider: AuthDeleteProvider) async throws {
+        let user = try await reauthenticateWithProvider(provider)
+        try await firestore.collection("Users").document(user.uid).updateData(["isDeleted": true])
+        try await user.delete()
     }
     
 }

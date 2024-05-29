@@ -14,6 +14,7 @@ final class AddPasswordState: ObservableObject {
     
     private let store: Store
     private let authorizationService: AuthorizationServiceType
+    @Published var email: String
     @Published var newPassword: String = ""
     @Published var confirmPassword: String = ""
     @Published var newPasswordError: TextFieldView.ErrorType? = .passwordValidation(
@@ -22,7 +23,7 @@ final class AddPasswordState: ObservableObject {
     @Published var confirmPasswordError: TextFieldView.ErrorType?
     @Published var showProgress: Bool = false
     var isReady: Bool {
-        newPasswordError?.isValid == true && newPassword == confirmPassword && !newPassword.isEmpty
+        email.isEmail && newPasswordError?.isValid == true && newPassword == confirmPassword && !newPassword.isEmpty
     }
     var close: (() -> Void)?
     
@@ -31,6 +32,7 @@ final class AddPasswordState: ObservableObject {
     init(store: Store, authorizationService: AuthorizationServiceType) {
         self.store = store
         self.authorizationService = authorizationService
+        email = authorizationService.userEmail ?? ""
     }
     
     // MARK: - Private Methods
@@ -71,9 +73,10 @@ final class AddPasswordState: ObservableObject {
         showProgress = true
         Task {
             do {
-                try await authorizationService.addPassword(newPassword)
+                try await authorizationService.addPassword(newPassword, email: email)
                 await handleResetResult(isSuccess: true)
             } catch {
+                print(error.localizedDescription)
                 await handleResetResult(isSuccess: false)
             }
         }

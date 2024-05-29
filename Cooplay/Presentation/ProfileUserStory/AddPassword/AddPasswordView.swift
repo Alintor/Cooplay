@@ -11,6 +11,7 @@ import SwiftUI
 struct AddPasswordView: View {
     
     enum FocusedField {
+        case email
         case newPassword
         case confirmPassword
     }
@@ -25,6 +26,18 @@ struct AddPasswordView: View {
                 coordinator.open(.account(isBack: true))
             }
             VStack {
+                TextFieldView(
+                    text: $state.email,
+                    placeholder: Localizable.addPasswordEmailPlaceholder(),
+                    keyboardType: .emailAddress,
+                    contentType: .emailAddress,
+                    error: .constant(nil)
+                )
+                .padding(.bottom, 4)
+                .focused($focusedField, equals: .email)
+                .onSubmit {
+                    focusedField = .newPassword
+                }
                 TextFieldView(
                     text: $state.newPassword,
                     placeholder: Localizable.addPasswordNewPasswordFieldPlaceholder(),

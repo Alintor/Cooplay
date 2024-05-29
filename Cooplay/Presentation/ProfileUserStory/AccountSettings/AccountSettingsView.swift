@@ -19,27 +19,35 @@ struct AccountSettingsView: View {
     var body: some View {
         VStack(spacing: 0) {
             if state.showLinkApple {
-                linkItem(icon: Image(.commonAppleIcon), title: Localizable.accountLinkTitleApple())
-                    .onTapGesture { state.linkAppleAccount() }
+                linkItem(
+                    icon: Image(.commonAppleIcon),
+                    title: Localizable.accountLinkTitleApple(),
+                    message: Localizable.accountLinkMessage()
+                )
+                .onTapGesture { state.linkAppleAccount() }
                 ProfileSettingsSeparator()
             } else if state.showUnlink {
                 linkItem(
                     icon: Image(.commonAppleIcon),
                     title: Localizable.accountUnlinkTitleApple(),
-                    email: state.appleEmail
+                    message: state.appleEmail
                 )
                 .onTapGesture { showUnlinkAppleAlert = true }
                 ProfileSettingsSeparator()
             }
             if state.showLinkGoogle {
-                linkItem(icon: Image(.commonGoogleIcon), title: Localizable.accountLinkTitleGoogle())
-                    .onTapGesture { state.linkGoogleAccount() }
+                linkItem(
+                    icon: Image(.commonGoogleIcon),
+                    title: Localizable.accountLinkTitleGoogle(),
+                    message: Localizable.accountLinkMessage()
+                )
+                .onTapGesture { state.linkGoogleAccount() }
                 ProfileSettingsSeparator()
             } else if state.showUnlink  {
                 linkItem(
                     icon: Image(.commonGoogleIcon),
                     title: Localizable.accountUnlinkTitleGoogle(),
-                    email: state.googleEmail
+                    message: state.googleEmail
                 )
                 .onTapGesture { showUnlinkGoogleAlert = true }
                 ProfileSettingsSeparator()
@@ -48,11 +56,18 @@ struct AccountSettingsView: View {
                 ProfileSettingsItemView(item: .changePassword)
                     .onTapGesture { coordinator.open(.changePassword) }
             } else {
-                ProfileSettingsItemView(item: .addPassword)
+                linkItem(
+                    icon: Image(.profileSettingsChangePassword),
+                    iconColor: Color(.profileSettingsChangePassword),
+                    title: Localizable.accountAddPasswordTitle(),
+                    message: Localizable.accountAddPasswordMessage(),
+                    isSheet: false
+                )
                     .onTapGesture { coordinator.open(.addPassword) }
             }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .delete)
+                .onTapGesture { coordinator.open(.deleteAccount) }
             Spacer()
         }
         .animation(.customTransition, value: state.providers)
@@ -63,7 +78,7 @@ struct AccountSettingsView: View {
                 state.unlinkProvider(.apple)
             }
         })
-        .alert(Localizable.accountUnlinkAlertAction(), isPresented: $showUnlinkGoogleAlert, actions: {
+        .alert(Localizable.accountUnlinkAlertGoogle(), isPresented: $showUnlinkGoogleAlert, actions: {
             Button(Localizable.commonCancel(), role: .cancel) {}
             Button(Localizable.accountUnlinkAlertAction(), role: .destructive) {
                 state.unlinkProvider(.google)
@@ -71,10 +86,10 @@ struct AccountSettingsView: View {
         })
     }
     
-    func linkItem(icon: Image, title: String, email: String? = nil) -> some View {
+    func linkItem(icon: Image, iconColor: Color = Color(.textPrimary), title: String, message: String? = nil, isSheet: Bool = true) -> some View {
         HStack {
             ZStack {
-                Circle().foregroundStyle(Color(.textPrimary))
+                Circle().foregroundStyle(iconColor)
                 icon
                     .frame(width: 20, height: 20, alignment: .center)
                     .cornerRadius(15, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
@@ -86,14 +101,14 @@ struct AccountSettingsView: View {
                 Text(title)
                     .foregroundColor(Color(.textPrimary))
                     .font(.system(size: 17, weight: .semibold))
-                if let email = email {
-                    Text(email)
+                if let message = message {
+                    Text(message)
                         .foregroundColor(Color(.textSecondary))
                         .font(.system(size: 14, weight: .semibold))
                 }
             }
             Spacer()
-            Image(.profileSettingsActionTypeSheet)
+            Image(isSheet ? .profileSettingsActionTypeSheet : .profileSettingsActionTypeNavigation)
                 .frame(width: 16, height: 16, alignment: .center)
                 .foregroundColor(Color(R.color.textSecondary.name))
         }

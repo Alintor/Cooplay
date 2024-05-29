@@ -844,7 +844,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 216 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 229 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -856,6 +856,8 @@ struct R: Rswift.Validatable {
       static let accountUnlinkSuccessApple = Rswift.StringResource(key: "account.unlink.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Apple ID успешно привзян
       static let accountLinkSuccessApple = Rswift.StringResource(key: "account.link.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Email
+      static let addPasswordEmailPlaceholder = Rswift.StringResource(key: "addPassword.email.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let authorizationEmailTextFieldPlaceholder = Rswift.StringResource(key: "authorization.emailTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
@@ -890,14 +892,20 @@ struct R: Rswift.Validatable {
       static let eventsListSectionsActive = Rswift.StringResource(key: "eventsList.sections.active", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Большая буква
       static let registrationPasswordBigSymbolLabelTitle = Rswift.StringResource(key: "registration.passwordBigSymbolLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ваш аккаунт успешно удален
+      static let deleteAccountSuccessTitle = Rswift.StringResource(key: "deleteAccount.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш свет угасает...
       static let arkanoidLose3Message = Rswift.StringResource(key: "arkanoid.lose.3.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Введите новый пароль для аккаунта
       static let resetPasswordMessage = Rswift.StringResource(key: "resetPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Введите пароль
+      static let deleteAccountPassword = Rswift.StringResource(key: "deleteAccount.password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Включите эту настройку, чтобы получать уведомления
       static let notificationsSettingsItemsEnableNotificationsMessage = Rswift.StringResource(key: "notificationsSettings.items.enableNotifications.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Включить в настройках
       static let notificationsSettingsPermissionsAction = Rswift.StringResource(key: "notificationsSettings.permissions.action", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Внимание! Это действие необратимо!
+      static let deleteAccountMessage = Rswift.StringResource(key: "deleteAccount.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во сколько
       static let newEventChooseTimeLabelTitle = Rswift.StringResource(key: "newEvent.chooseTimeLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Во что
@@ -926,6 +934,8 @@ struct R: Rswift.Validatable {
       static let accountUnlinkAlertGoogle = Rswift.StringResource(key: "account.unlink.alert.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы действительно хотите удалить данное событие?
       static let eventDetailsDeleteAlertTitle = Rswift.StringResource(key: "eventDetails.deleteAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы действительно хотите удалить свой аккаунт?
+      static let deleteAccountAlertTitle = Rswift.StringResource(key: "deleteAccount.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static let eventsListEmptySateDescription = Rswift.StringResource(key: "eventsList.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Вы уверены, что хотите выйти из аккаунта?
@@ -948,8 +958,16 @@ struct R: Rswift.Validatable {
       static let commonDone = Rswift.StringResource(key: "common.done", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Готово
       static let searchMembersDoneButtonTitle = Rswift.StringResource(key: "searchMembers.doneButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для авторизации в приложении
+      static let accountLinkMessage = Rswift.StringResource(key: "account.link.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для авторизации по email
+      static let accountAddPasswordMessage = Rswift.StringResource(key: "account.addPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Для доступа к камере нужно разрешение
       static let editProfilePermissionsAlertTitle = Rswift.StringResource(key: "editProfile.permissionsAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
+      static let deleteAccountAlertApple = Rswift.StringResource(key: "deleteAccount.alert.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
+      static let deleteAccountAlertGoogle = Rswift.StringResource(key: "deleteAccount.alert.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
       static let eventDetailsAddMemberLabelTitle = Rswift.StringResource(key: "eventDetails.addMemberLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Допускается 12 символов, цифры, буквы, -_.~%+
@@ -1231,6 +1249,8 @@ struct R: Rswift.Validatable {
       /// Value: Создать аккаунт
       static let registrationTitle = Rswift.StringResource(key: "registration.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать пароль
+      static let accountAddPasswordTitle = Rswift.StringResource(key: "account.addPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Создать пароль
       static let addPasswordCreateTitle = Rswift.StringResource(key: "addPassword.create.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Создать пароль
       static let addPasswordTitle = Rswift.StringResource(key: "addPassword.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1260,10 +1280,16 @@ struct R: Rswift.Validatable {
       static let notificationsSettingsItemsNeedStatusChangeTitle = Rswift.StringResource(key: "notificationsSettings.items.needStatusChange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уведомлять о чужих реакциях
       static let notificationsSettingsItemsNeedOtherReactionsTitle = Rswift.StringResource(key: "notificationsSettings.items.needOtherReactions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Удаление аккаунта
+      static let deleteAccountTitle = Rswift.StringResource(key: "deleteAccount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить
       static let commonDelete = Rswift.StringResource(key: "common.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Удалить
+      static let deleteAccountAlertButton = Rswift.StringResource(key: "deleteAccount.alert.button", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Удалить аккаунт
       static let profileSettingsDeleteTitle = Rswift.StringResource(key: "profileSettings.delete.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Удалить аккунт
+      static let deleteAccountActionButton = Rswift.StringResource(key: "deleteAccount.actionButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Уже есть аккаунт?
       static let registrationLoginMessage = Rswift.StringResource(key: "registration.loginMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Управление аккаунтом
@@ -1302,6 +1328,11 @@ struct R: Rswift.Validatable {
       /// Value: Apple ID успешно привзян
       static func accountLinkSuccessApple(_: Void = ()) -> String {
         return NSLocalizedString("account.link.success.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Email
+      static func addPasswordEmailPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("addPassword.email.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Email
@@ -1389,6 +1420,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration.passwordBigSymbolLabel.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Ваш аккаунт успешно удален
+      static func deleteAccountSuccessTitle(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.success.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Ваш свет угасает...
       static func arkanoidLose3Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.3.message", bundle: R.hostingBundle, comment: "")
@@ -1399,6 +1435,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("resetPassword.message", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Введите пароль
+      static func deleteAccountPassword(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.password", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Включите эту настройку, чтобы получать уведомления
       static func notificationsSettingsItemsEnableNotificationsMessage(_: Void = ()) -> String {
         return NSLocalizedString("notificationsSettings.items.enableNotifications.message", bundle: R.hostingBundle, comment: "")
@@ -1407,6 +1448,11 @@ struct R: Rswift.Validatable {
       /// Value: Включить в настройках
       static func notificationsSettingsPermissionsAction(_: Void = ()) -> String {
         return NSLocalizedString("notificationsSettings.permissions.action", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Внимание! Это действие необратимо!
+      static func deleteAccountMessage(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Во сколько
@@ -1479,6 +1525,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventDetails.deleteAlert.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Вы действительно хотите удалить свой аккаунт?
+      static func deleteAccountAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Вы можете создать событие сами, и пригласить друзей
       static func eventsListEmptySateDescription(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.emptySate.description", bundle: R.hostingBundle, comment: "")
@@ -1534,9 +1585,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchMembers.doneButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Для авторизации в приложении
+      static func accountLinkMessage(_: Void = ()) -> String {
+        return NSLocalizedString("account.link.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Для авторизации по email
+      static func accountAddPasswordMessage(_: Void = ()) -> String {
+        return NSLocalizedString("account.addPassword.message", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Для доступа к камере нужно разрешение
       static func editProfilePermissionsAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("editProfile.permissionsAlert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
+      static func deleteAccountAlertApple(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.alert.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
+      static func deleteAccountAlertGoogle(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.alert.google", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Добавить участников
@@ -2240,6 +2311,11 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Создать пароль
+      static func accountAddPasswordTitle(_: Void = ()) -> String {
+        return NSLocalizedString("account.addPassword.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Создать пароль
       static func addPasswordCreateTitle(_: Void = ()) -> String {
         return NSLocalizedString("addPassword.create.title", bundle: R.hostingBundle, comment: "")
       }
@@ -2314,14 +2390,29 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("notificationsSettings.items.needOtherReactions.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Удаление аккаунта
+      static func deleteAccountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Удалить
       static func commonDelete(_: Void = ()) -> String {
         return NSLocalizedString("common.delete", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Удалить
+      static func deleteAccountAlertButton(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.alert.button", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Удалить аккаунт
       static func profileSettingsDeleteTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.delete.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Удалить аккунт
+      static func deleteAccountActionButton(_: Void = ()) -> String {
+        return NSLocalizedString("deleteAccount.actionButton", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Уже есть аккаунт?

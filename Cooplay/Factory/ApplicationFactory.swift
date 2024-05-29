@@ -29,6 +29,7 @@ final class ApplicationFactory {
         let defaultsStorage = DefaultsStorage(defaults: .standard)
         let authorizationService = AuthorizationService(
             firebaseAuth: Auth.auth(),
+            firestore: Firestore.firestore(),
             defaultsStorages: defaultsStorage
         )
         let userService = UserService(
@@ -153,6 +154,14 @@ enum ScreenViewFactory {
         AddPasswordView(state: AddPasswordState(
             store: applicationFactory.store,
             authorizationService: applicationFactory.authorizationService
+        ))
+    }
+    
+    static func deleteAccount() -> some View {
+        DeleteAccountView(state: DeleteAccountState(
+            store: applicationFactory.store,
+            authorizationService: applicationFactory.authorizationService,
+            appleAuthorizationService: applicationFactory.appleAuthorizationService
         ))
     }
     

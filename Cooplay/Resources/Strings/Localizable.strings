@@ -194,6 +194,7 @@
 
 "account.link.title.google" = "Привязать Google аккаунт";
 "account.link.title.apple" = "Привязать Apple ID";
+"account.link.message" = "Для авторизации в приложении";
 "account.link.success.apple" = "Apple ID успешно привзян";
 "account.link.success.google" = "Google аккаунт успешно привзян";
 "account.unlink.title.google" = "Отвязать Google аккаунт";
@@ -203,6 +204,20 @@
 "account.unlink.alert.apple" = "Вы действительно хотите отвязать Apple ID?";
 "account.unlink.alert.google" = "Вы действительно хотите отвязать Google аккаунт?";
 "account.unlink.alert.action" = "Отвязать";
+"account.addPassword.title" = "Создать пароль";
+"account.addPassword.message" = "Для авторизации по email";
+
+// MARK: - Delete Account
+
+"deleteAccount.title" = "Удаление аккаунта";
+"deleteAccount.message" = "Внимание! Это действие необратимо!";
+"deleteAccount.password" = "Введите пароль";
+"deleteAccount.actionButton" = "Удалить аккунт";
+"deleteAccount.alert.title" = "Вы действительно хотите удалить свой аккаунт?";
+"deleteAccount.alert.apple" = "Для продолжения необходимо повторно авторизоваться через Apple ID";
+"deleteAccount.alert.google" = "Для продолжения необходимо повторно авторизоваться через Google аккаунт";
+"deleteAccount.alert.button" = "Удалить";
+"deleteAccount.success.title" = "Ваш аккаунт успешно удален";
 
 // MARK: - Edit profile
 
@@ -259,6 +274,7 @@
 // MARK: - Add password
 
 "addPassword.title" = "Создать пароль";
+"addPassword.email.placeholder" = "Email";
 "addPassword.newPasswordField.placeholder" = "Пароль";
 "addPassword.confirmPasswordField.placeholder" = "Подтверждение пароля";
 "addPassword.create.title" = "Создать пароль";

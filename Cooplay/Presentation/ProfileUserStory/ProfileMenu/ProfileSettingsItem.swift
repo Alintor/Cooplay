@@ -18,25 +18,14 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     changePassword,
     account,
     logout,
-    delete,
-    addPassword
+    delete
     
     var title: String { NSLocalizedString("profileSettings.\(self.rawValue).title", comment: "") }
     var iconColor: Color {
-        switch self {
-        case .addPassword:
-            Color(.profileSettingsChangePassword)
-        default:
-            Color("profileSettings.\(self.rawValue)")
-        }
+        Color("profileSettings.\(self.rawValue)")
     }
     var iconImage: Image {
-        switch self {
-        case .addPassword:
-            Image(.profileSettingsChangePassword)
-        default:
-            Image("profileSettings.\(self.rawValue)")
-        }
+        Image("profileSettings.\(self.rawValue)")
     }
     var actionImage: Image? {
         switch self {
