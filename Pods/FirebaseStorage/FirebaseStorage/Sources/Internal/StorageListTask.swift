@@ -23,7 +23,7 @@ import Foundation
 /**
  * A Task that lists the entries under a {@link StorageReference}
  */
-internal class StorageListTask: StorageTask, StorageTaskManagement {
+class StorageListTask: StorageTask, StorageTaskManagement {
   private var fetcher: GTMSessionFetcher?
   private var fetcherCompletion: ((Data?, NSError?) -> Void)?
   private var taskCompletion: ((_: StorageListResult?, _: NSError?) -> Void)?
@@ -43,12 +43,12 @@ internal class StorageListTask: StorageTask, StorageTaskManagement {
    * @param previousPageToken An optional pageToken, used to resume a previous invocation.
    * @param completion The completion handler to be called with the FIRIMPLStorageListResult.
    */
-  internal init(reference: StorageReference,
-                fetcherService: GTMSessionFetcherService,
-                queue: DispatchQueue,
-                pageSize: Int64?,
-                previousPageToken: String?,
-                completion: ((_ listResult: StorageListResult?, _ error: NSError?) -> Void)?) {
+  init(reference: StorageReference,
+       fetcherService: GTMSessionFetcherService,
+       queue: DispatchQueue,
+       pageSize: Int64?,
+       previousPageToken: String?,
+       completion: ((_ listResult: StorageListResult?, _ error: NSError?) -> Void)?) {
     self.pageSize = pageSize
     self.previousPageToken = previousPageToken
     super.init(reference: reference, service: fetcherService, queue: queue)
@@ -66,7 +66,7 @@ internal class StorageListTask: StorageTask, StorageTaskManagement {
   /**
    * Prepares a task and begins execution.
    */
-  internal func enqueue() {
+  func enqueue() {
     if let completion = taskCompletion {
       taskCompletion = { (listResult: StorageListResult?, error: NSError?) in
         completion(listResult, error)
@@ -83,18 +83,20 @@ internal class StorageListTask: StorageTask, StorageTaskManagement {
         queryParams["prefix"] = "\(prefix)/"
       }
 
-      // Firebase Storage uses file system semantics and treats slashes as separators. GCS's List API
+      // Firebase Storage uses file system semantics and treats slashes as separators. GCS's List
+      // API
       // does not prescribe a separator, and hence we need to provide a slash as the delimiter.
       queryParams["delimiter"] = "/"
 
-      // listAll() doesn't set a pageSize as this allows Firebase Storage to determine how many items
+      // listAll() doesn't set a pageSize as this allows Firebase Storage to determine how many
+      // items
       // to return per page. This removes the need to backfill results if Firebase Storage filters
       // objects that are considered invalid (such as items with two consecutive slashes).
-      if let pageSize = self.pageSize {
+      if let pageSize {
         queryParams["maxResults"] = "\(pageSize)"
       }
 
-      if let previousPageToken = self.previousPageToken {
+      if let previousPageToken {
         queryParams["pageToken"] = previousPageToken
       }
 
@@ -114,10 +116,10 @@ internal class StorageListTask: StorageTask, StorageTaskManagement {
       self.fetcherCompletion = { [weak self] (data: Data?, error: NSError?) in
         guard let self = self else { return }
         var listResult: StorageListResult?
-        if let error = error, self.error == nil {
+        if let error, self.error == nil {
           self.error = StorageErrorCode.error(withServerError: error, ref: self.reference)
         } else {
-          if let data = data,
+          if let data,
              let responseDictionary = try? JSONSerialization
              .jsonObject(with: data) as? [String: Any] {
             listResult = StorageListResult(with: responseDictionary, reference: self.reference)

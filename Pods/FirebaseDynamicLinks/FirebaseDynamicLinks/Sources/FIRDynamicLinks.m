@@ -366,7 +366,7 @@ static const NSInteger FIRErrorCodeDurableDeepLinkFailed = -119;
   }
 
   if ([url.path isEqualToString:@"/link"] && [url.host isEqualToString:@"google"]) {
-    // This URL is a callback url from a fingerprint match
+    // This URL is a callback url from a device heuristics based match
     // Extract information from query.
     NSString *query = url.query;
 
@@ -698,7 +698,7 @@ static NSString *kSelfDiagnoseOutputFooter =
   NSDictionary *plistMap = (NSDictionary *)plistData;
 
   // analyze entitlements and print diagnostic information
-  // we can't detect erorrs, information p[rinted here may hint developer or will help support
+  // we can't detect errors, information p[rinted here may hint developer or will help support
   // to identify the issue
   NSMutableString *outputString = [[NSMutableString alloc] init];
 

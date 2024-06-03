@@ -395,8 +395,8 @@ typedef uint32_t XXH32_hash_t;
  *
  * Speed on Core 2 Duo @ 3 GHz (single thread, SMHasher benchmark): 5.4 GB/s
  *
- * @param input The block of data to be hashed , at least @p length bytes in size.
- * @param length The length of @p input , in bytes.
+ * @param input The block of data to be hashed, at least @p length bytes in size.
+ * @param length The length of @p input, in bytes.
  * @param seed The 32-bit seed to alter the hash's output predictably.
  *
  * @pre
@@ -518,8 +518,8 @@ XXH_PUBLIC_API XXH_errorcode XXH32_reset  (XXH32_state_t* statePtr, XXH32_hash_t
  * Call this to incrementally consume blocks of data.
  *
  * @param statePtr The state struct to update.
- * @param input The block of data to be hashed , at least @p length bytes in size.
- * @param length The length of @p input , in bytes.
+ * @param input The block of data to be hashed, at least @p length bytes in size.
+ * @param length The length of @p input, in bytes.
  *
  * @pre
  *   @p statePtr must not be `NULL`.
@@ -689,8 +689,8 @@ typedef uint64_t XXH64_hash_t;
  * This function usually runs faster on 64-bit systems, but slower on 32-bit
  * systems (see benchmark).
  *
- * @param input The block of data to be hashed , at least @p length bytes in size.
- * @param length The length of @p input , in bytes.
+ * @param input The block of data to be hashed, at least @p length bytes in size.
+ * @param length The length of @p input, in bytes.
  * @param seed The 64-bit seed to alter the hash's output predictably.
  *
  * @pre
@@ -1987,7 +1987,7 @@ static xxh_u32 XXH32_avalanche(xxh_u32 h32)
  *
  * @param h32 The hash to finalize.
  * @param ptr The pointer to the remaining input.
- * @param len The remaining length , modulo 16.
+ * @param len The remaining length, modulo 16.
  * @param align Whether @p ptr is aligned.
  * @return The finalized hash.
  */
@@ -2076,7 +2076,7 @@ XXH32_finalize(xxh_u32 h32, const xxh_u8* ptr, size_t len, XXH_alignment align)
  * @internal
  * @brief The implementation for @ref XXH32().
  *
- * @param input  , len , seed Directly passed from @ref XXH32().
+ * @param input , len , seed Directly passed from @ref XXH32().
  * @param align Whether @p input is aligned.
  * @return The calculated hash.
  */
@@ -3204,7 +3204,7 @@ XXH_ALIGN(64) static const xxh_u8 XXH3_kSecret[XXH_SECRET_DEFAULT_SIZE] = {
  * If you are compiling for platforms like Thumb-1 and don't have a better option,
  * you may also want to write your own long multiply routine here.
  *
- * @param x , y Numbers to be multiplied
+ * @param x, y Numbers to be multiplied
  * @return 64-bit product of the low 32 bits of @p x and @p y.
  */
 XXH_FORCE_INLINE xxh_u64
@@ -3232,7 +3232,7 @@ XXH_mult32to64(xxh_u64 x, xxh_u64 y)
  * Uses `__uint128_t` and `_umul128` if available, otherwise uses a scalar
  * version.
  *
- * @param lhs  , rhs The 64-bit integers to be multiplied
+ * @param lhs , rhs The 64-bit integers to be multiplied
  * @return The 128-bit result represented in an @ref XXH128_hash_t.
  */
 static XXH128_hash_t
@@ -3365,7 +3365,7 @@ XXH_mult64to128(xxh_u64 lhs, xxh_u64 rhs)
  * The reason for the separate function is to prevent passing too many structs
  * around by value. This will hopefully inline the multiply, but we don't force it.
  *
- * @param lhs  , rhs The 64-bit integers to multiply
+ * @param lhs , rhs The 64-bit integers to multiply
  * @return The low 64 bits of the product XOR'd by the high 64 bits.
  * @see XXH_mult64to128()
  */

@@ -20,8 +20,16 @@
 
 #include "src/core/ext/xds/xds_channel_stack_modifier.h"
 
+#include <algorithm>
+#include <initializer_list>
+#include <string>
+
+#include "src/core/lib/channel/channel_args.h"
+#include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/config/core_configuration.h"
+#include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/surface/channel_init.h"
+#include "src/core/lib/surface/channel_stack_type.h"
 
 namespace grpc_core {
 namespace {
@@ -49,42 +57,29 @@ const char* kXdsChannelStackModifierChannelArgName =
 
 }  // namespace
 
-bool XdsChannelStackModifier::ModifyChannelStack(
-    grpc_channel_stack_builder* builder) {
-  // Insert the filters after the census filter if present.
-  grpc_channel_stack_builder_iterator* it =
-      grpc_channel_stack_builder_create_iterator_at_first(builder);
-  while (grpc_channel_stack_builder_move_next(it)) {
-    if (grpc_channel_stack_builder_iterator_is_end(it)) break;
-    const char* filter_name_at_it =
-        grpc_channel_stack_builder_iterator_filter_name(it);
-    if (strcmp("census_server", filter_name_at_it) == 0 ||
-        strcmp("opencensus_server", filter_name_at_it) == 0) {
-      break;
+void XdsChannelStackModifier::ModifyChannelStack(ChannelStackBuilder& builder) {
+  // Insert the filters after predicate filters if present.
+  auto insert_before = builder.mutable_stack()->end();
+  for (auto it = builder.mutable_stack()->begin();
+       it != builder.mutable_stack()->end(); ++it) {
+    for (absl::string_view predicate_name : {"server", "census_server"}) {
+      if (predicate_name == (*it)->name) insert_before = it + 1;
     }
   }
-  if (grpc_channel_stack_builder_iterator_is_end(it)) {
-    // No census filter found. Reset iterator to the beginning. This will result
-    // in prepending the list of xDS HTTP filters to the current stack. Note
-    // that this stage is run before the stage that adds the top server filter,
-    // resulting in these filters being finally placed after the `server`
-    // filter.
-    grpc_channel_stack_builder_iterator_destroy(it);
-    it = grpc_channel_stack_builder_create_iterator_at_first(builder);
-  }
-  GPR_ASSERT(grpc_channel_stack_builder_move_next(it));
   for (const grpc_channel_filter* filter : filters_) {
-    GPR_ASSERT(grpc_channel_stack_builder_add_filter_before(it, filter, nullptr,
-                                                            nullptr));
+    insert_before = builder.mutable_stack()->insert(insert_before, filter);
+    ++insert_before;
   }
-  grpc_channel_stack_builder_iterator_destroy(it);
-  return true;
 }
 
 grpc_arg XdsChannelStackModifier::MakeChannelArg() const {
   return grpc_channel_arg_pointer_create(
       const_cast<char*>(kXdsChannelStackModifierChannelArgName),
       const_cast<XdsChannelStackModifier*>(this), &kChannelArgVtable);
+}
+
+absl::string_view XdsChannelStackModifier::ChannelArgName() {
+  return kXdsChannelStackModifierChannelArgName;
 }
 
 RefCountedPtr<XdsChannelStackModifier>
@@ -97,15 +92,15 @@ XdsChannelStackModifier::GetFromChannelArgs(const grpc_channel_args& args) {
 }
 
 void RegisterXdsChannelStackModifier(CoreConfiguration::Builder* builder) {
-  builder->channel_init()->RegisterStage(
-      GRPC_SERVER_CHANNEL, INT_MAX, [](grpc_channel_stack_builder* builder) {
-        RefCountedPtr<XdsChannelStackModifier> channel_stack_modifier =
-            XdsChannelStackModifier::GetFromChannelArgs(
-                *grpc_channel_stack_builder_get_channel_arguments(builder));
+  builder->channel_init()->RegisterPostProcessor(
+      GRPC_SERVER_CHANNEL,
+      ChannelInit::PostProcessorSlot::kXdsChannelStackModifier,
+      [](ChannelStackBuilder& builder) {
+        auto channel_stack_modifier =
+            builder.channel_args().GetObjectRef<XdsChannelStackModifier>();
         if (channel_stack_modifier != nullptr) {
           return channel_stack_modifier->ModifyChannelStack(builder);
         }
-        return true;
       });
 }
 

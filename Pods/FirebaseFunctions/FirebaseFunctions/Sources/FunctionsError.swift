@@ -14,7 +14,7 @@
 
 import Foundation
 
-/// The error domain for codes in the `FunctionsErrorCode` enum.
+/// The error domain for codes in the ``FunctionsErrorCode`` enum.
 public let FunctionsErrorDomain: String = "com.firebase.functions"
 
 /// The key for finding error details in the `NSError` userInfo.
@@ -108,7 +108,7 @@ public let FunctionsErrorDetailsKey: String = "details"
  * - Parameter status An HTTP status code.
  * - Returns: The corresponding error code, or `FIRFunctionsErrorCodeUnknown` if none.
  */
-internal func FunctionsCodeForHTTPStatus(_ status: NSInteger) -> FunctionsErrorCode {
+func FunctionsCodeForHTTPStatus(_ status: NSInteger) -> FunctionsErrorCode {
   switch status {
   case 200:
     return .OK
@@ -209,9 +209,9 @@ extension FunctionsErrorCode {
   }
 }
 
-internal func FunctionsErrorForResponse(status: NSInteger,
-                                        body: Data?,
-                                        serializer: FUNSerializer) -> NSError? {
+func FunctionsErrorForResponse(status: NSInteger,
+                               body: Data?,
+                               serializer: FUNSerializer) -> NSError? {
   // Start with reasonable defaults from the status code.
   var code = FunctionsCodeForHTTPStatus(status)
   var description = code.descriptionForErrorCode
@@ -219,7 +219,7 @@ internal func FunctionsErrorForResponse(status: NSInteger,
   var details: AnyObject?
 
   // Then look through the body for explicit details.
-  if let body = body,
+  if let body,
      let json = try? JSONSerialization.jsonObject(with: body) as? NSDictionary,
      let errorDetails = json["error"] as? NSDictionary {
     if let status = errorDetails["status"] as? String {
@@ -252,7 +252,7 @@ internal func FunctionsErrorForResponse(status: NSInteger,
 
   var userInfo = [String: Any]()
   userInfo[NSLocalizedDescriptionKey] = description
-  if let details = details {
+  if let details {
     userInfo[FunctionsErrorDetailsKey] = details
   }
   return code.generatedError(userInfo: userInfo)

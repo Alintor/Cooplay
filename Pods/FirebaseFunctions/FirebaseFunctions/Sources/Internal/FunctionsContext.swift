@@ -12,25 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import FirebaseAppCheckInterop
 import FirebaseAuthInterop
 import FirebaseMessagingInterop
+import Foundation
 
 /// FunctionsContext is a helper class for gathering metadata for a function call.
-internal class FunctionsContext: NSObject {
+class FunctionsContext: NSObject {
   let authToken: String?
   let fcmToken: String?
   let appCheckToken: String?
+  let limitedUseAppCheckToken: String?
 
-  init(authToken: String?, fcmToken: String?, appCheckToken: String?) {
+  init(authToken: String?, fcmToken: String?, appCheckToken: String?,
+       limitedUseAppCheckToken: String?) {
     self.authToken = authToken
     self.fcmToken = fcmToken
     self.appCheckToken = appCheckToken
+    self.limitedUseAppCheckToken = limitedUseAppCheckToken
   }
 }
 
-internal class FunctionsContextProvider: NSObject {
+class FunctionsContextProvider: NSObject {
   private var auth: AuthInterop?
   private var messaging: MessagingInterop?
   private var appCheck: AppCheckInterop?
@@ -48,14 +51,16 @@ internal class FunctionsContextProvider: NSObject {
 //
 //  }
 
-  internal func getContext(_ completion: @escaping ((FunctionsContext, Error?) -> Void)) {
+  func getContext(options: HTTPSCallableOptions? = nil,
+                  _ completion: @escaping ((FunctionsContext, Error?) -> Void)) {
     let dispatchGroup = DispatchGroup()
 
     var authToken: String?
     var appCheckToken: String?
     var error: Error?
+    var limitedUseAppCheckToken: String?
 
-    if let auth = auth {
+    if let auth {
       dispatchGroup.enter()
 
       auth.getToken(forcingRefresh: false) { token, authError in
@@ -65,22 +70,33 @@ internal class FunctionsContextProvider: NSObject {
       }
     }
 
-    if let appCheck = appCheck {
+    if let appCheck {
       dispatchGroup.enter()
 
-      appCheck.getToken(forcingRefresh: false) { tokenResult in
-        // Send only valid token to functions.
-        if tokenResult.error == nil {
-          appCheckToken = tokenResult.token
+      if options?.requireLimitedUseAppCheckTokens == true {
+        appCheck.getLimitedUseToken? { tokenResult in
+          // Send only valid token to functions.
+          if tokenResult.error == nil {
+            limitedUseAppCheckToken = tokenResult.token
+          }
+          dispatchGroup.leave()
         }
-        dispatchGroup.leave()
+      } else {
+        appCheck.getToken(forcingRefresh: false) { tokenResult in
+          // Send only valid token to functions.
+          if tokenResult.error == nil {
+            appCheckToken = tokenResult.token
+          }
+          dispatchGroup.leave()
+        }
       }
     }
 
     dispatchGroup.notify(queue: .main) {
       let context = FunctionsContext(authToken: authToken,
                                      fcmToken: self.messaging?.fcmToken,
-                                     appCheckToken: appCheckToken)
+                                     appCheckToken: appCheckToken,
+                                     limitedUseAppCheckToken: limitedUseAppCheckToken)
       completion(context, error)
     }
   }

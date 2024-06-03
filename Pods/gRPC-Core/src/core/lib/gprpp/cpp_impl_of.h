@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef GRPC_CORE_LIB_GPRPP_CPP_IMPL_OF_H
-#define GRPC_CORE_LIB_GPRPP_CPP_IMPL_OF_H
+#ifndef GRPC_SRC_CORE_LIB_GPRPP_CPP_IMPL_OF_H
+#define GRPC_SRC_CORE_LIB_GPRPP_CPP_IMPL_OF_H
 
 namespace grpc_core {
 
@@ -31,6 +31,10 @@ class CppImplOf {
     return reinterpret_cast<CppType*>(c_type);
   }
 
+  static const CppType* FromC(const CType* c_type) {
+    return reinterpret_cast<const CppType*>(c_type);
+  }
+
   // Retrieve a c pointer (of the same ownership as this)
   CType* c_ptr() {
     return reinterpret_cast<CType*>(static_cast<CppType*>(this));
@@ -42,4 +46,4 @@ class CppImplOf {
 
 }  // namespace grpc_core
 
-#endif  // GRPC_CORE_LIB_GPRPP_CPP_IMPL_OF_H
+#endif  // GRPC_SRC_CORE_LIB_GPRPP_CPP_IMPL_OF_H

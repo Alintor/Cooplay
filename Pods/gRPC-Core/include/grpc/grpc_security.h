@@ -21,6 +21,8 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <stdbool.h>
+
 #include <grpc/grpc.h>
 #include <grpc/grpc_security_constants.h>
 #include <grpc/status.h>
@@ -130,17 +132,6 @@ typedef struct grpc_call_credentials grpc_call_credentials;
 /** Releases a call credentials object.
    The creator of the credentials object is responsible for its release. */
 GRPCAPI void grpc_call_credentials_release(grpc_call_credentials* creds);
-
-/** --- grpc_channel_credentials object. ---
-
-   A channel credentials object represents a way to authenticate a client on a
-   channel.  */
-
-typedef struct grpc_channel_credentials grpc_channel_credentials;
-
-/** Releases a channel credentials object.
-   The creator of the credentials object is responsible for its release. */
-GRPCAPI void grpc_channel_credentials_release(grpc_channel_credentials* creds);
 
 /** Creates default credentials to connect to a google gRPC service.
    WARNING: Do NOT use this credentials to connect to a non-google service as
@@ -478,30 +469,6 @@ GRPCAPI grpc_call_credentials* grpc_metadata_credentials_create_from_plugin(
     grpc_metadata_credentials_plugin plugin,
     grpc_security_level min_security_level, void* reserved);
 
-/** --- Secure channel creation. --- */
-
-/** Creates a secure channel using the passed-in credentials. Additional
-    channel level configuration MAY be provided by grpc_channel_args, though
-    the expectation is that most clients will want to simply pass NULL. The
-    user data in 'args' need only live through the invocation of this function.
-    However, if any args of the 'pointer' type are passed, then the referenced
-    vtable must be maintained by the caller until grpc_channel_destroy
-    terminates. See grpc_channel_args definition for more on this. */
-GRPCAPI grpc_channel* grpc_secure_channel_create(
-    grpc_channel_credentials* creds, const char* target,
-    const grpc_channel_args* args, void* reserved);
-
-/** --- grpc_server_credentials object. ---
-
-   A server credentials object represents a way to authenticate a server.  */
-
-typedef struct grpc_server_credentials grpc_server_credentials;
-
-/** Releases a server_credentials object.
-   The creator of the server_credentials object is responsible for its release.
-   */
-GRPCAPI void grpc_server_credentials_release(grpc_server_credentials* creds);
-
 /** Server certificate config object holds the server's public certificates and
    associated private keys, as well as any CA certificates needed for client
    certificate validation (if applicable). Create using
@@ -598,15 +565,6 @@ GRPCAPI void grpc_ssl_server_credentials_options_destroy(
 GRPCAPI grpc_server_credentials*
 grpc_ssl_server_credentials_create_with_options(
     grpc_ssl_server_credentials_options* options);
-
-/** --- Server-side secure ports. --- */
-
-/** Add a HTTP2 over an encrypted link over tcp listener.
-   Returns bound port number on success, 0 on failure.
-   REQUIRES: server not started */
-GRPCAPI int grpc_server_add_secure_http2_port(grpc_server* server,
-                                              const char* addr,
-                                              grpc_server_credentials* creds);
 
 /** --- Call specific credentials. --- */
 
@@ -860,6 +818,40 @@ GRPCAPI grpc_tls_credentials_options* grpc_tls_credentials_options_create(void);
 /**
  * EXPERIMENTAL API - Subject to change
  *
+ * Sets the minimum TLS version that will be negotiated during the TLS
+ * handshake. If not set, the underlying SSL library will set it to TLS v1.2.
+ */
+GRPCAPI void grpc_tls_credentials_options_set_min_tls_version(
+    grpc_tls_credentials_options* options, grpc_tls_version min_tls_version);
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
+ * Sets the maximum TLS version that will be negotiated during the TLS
+ * handshake. If not set, the underlying SSL library will set it to TLS v1.3.
+ */
+GRPCAPI void grpc_tls_credentials_options_set_max_tls_version(
+    grpc_tls_credentials_options* options, grpc_tls_version max_tls_version);
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
+ * Copies a grpc_tls_credentials_options.
+ */
+GRPCAPI grpc_tls_credentials_options* grpc_tls_credentials_options_copy(
+    grpc_tls_credentials_options* options);
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
+ * Destroys a grpc_tls_credentials_options.
+ */
+GRPCAPI void grpc_tls_credentials_options_destroy(
+    grpc_tls_credentials_options* options);
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
  * Sets the credential provider in the options.
  * The |options| will implicitly take a new ref to the |provider|.
  */
@@ -920,7 +912,10 @@ GRPCAPI void grpc_tls_credentials_options_set_identity_cert_name(
 GRPCAPI void grpc_tls_credentials_options_set_cert_request_type(
     grpc_tls_credentials_options* options,
     grpc_ssl_client_certificate_request_type type);
-/**
+
+/** Deprecated in favor of grpc_tls_credentials_options_set_crl_provider. The
+ * crl provider interface provides a significantly more flexible approach to
+ * using CRLs. See gRFC A69 for details.
  * EXPERIMENTAL API - Subject to change
  *
  * If set, gRPC will read all hashed x.509 CRL files in the directory and
@@ -939,6 +934,23 @@ GRPCAPI void grpc_tls_credentials_options_set_crl_directory(
  */
 GRPCAPI void grpc_tls_credentials_options_set_verify_server_cert(
     grpc_tls_credentials_options* options, int verify_server_cert);
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
+ * Sets whether or not a TLS server should send a list of CA names in the
+ * ServerHello. This list of CA names is read from the server's trust bundle, so
+ * that the client can use this list as a hint to know which certificate it
+ * should send to the server.
+ *
+ * WARNING: This API is extremely dangerous and should not be used. If the
+ * server's trust bundle is too large, then the TLS server will be unable to
+ * form a ServerHello, and hence will be unusable. The definition of "too large"
+ * depends on the underlying SSL library being used and on the size of the CN
+ * fields of the certificates in the trust bundle.
+ */
+GRPCAPI void grpc_tls_credentials_options_set_send_client_ca_list(
+    grpc_tls_credentials_options* options, bool send_client_ca_list);
 
 /**
  * EXPERIMENTAL API - Subject to change
@@ -975,6 +987,10 @@ typedef struct grpc_tls_custom_verification_check_request {
      * grpc_security_constants.h.
      * TODO(ZhenLian): Consider fixing this in the future. */
     const char* peer_cert_full_chain;
+    /* The verified root cert subject.
+     * This value will only be filled if the cryptographic peer certificate
+     * verification was successful */
+    const char* verified_root_cert_subject;
   } peer_info;
 } grpc_tls_custom_verification_check_request;
 
@@ -1094,6 +1110,17 @@ grpc_tls_certificate_verifier* grpc_tls_certificate_verifier_external_create(
 /**
  * EXPERIMENTAL API - Subject to change
  *
+ * Factory function for an internal verifier that won't perform any
+ * post-handshake verification. Note: using this solely without any other
+ * authentication mechanisms on the peer identity will leave your applications
+ * to the MITM(Man-In-The-Middle) attacks. Users should avoid doing so in
+ * production environments.
+ */
+grpc_tls_certificate_verifier* grpc_tls_certificate_verifier_no_op_create();
+
+/**
+ * EXPERIMENTAL API - Subject to change
+ *
  * Factory function for an internal verifier that will do the default hostname
  * check.
  */
@@ -1187,14 +1214,14 @@ grpc_server_credentials* grpc_tls_server_credentials_create(
  *
  * This method creates an insecure channel credentials object.
  */
-grpc_channel_credentials* grpc_insecure_credentials_create();
+GRPCAPI grpc_channel_credentials* grpc_insecure_credentials_create();
 
 /**
  * EXPERIMENTAL API - Subject to change
  *
  * This method creates an insecure server credentials object.
  */
-grpc_server_credentials* grpc_insecure_server_credentials_create();
+GRPCAPI grpc_server_credentials* grpc_insecure_server_credentials_create();
 
 /**
  * EXPERIMENTAL API - Subject to change
@@ -1236,9 +1263,9 @@ typedef struct grpc_authorization_policy_provider
 
 /**
  * EXPERIMENTAL - Subject to change.
- * Creates a grpc_authorization_policy_provider using SDK authorization policy
+ * Creates a grpc_authorization_policy_provider using gRPC authorization policy
  * from static string.
- * - authz_policy is the input SDK authorization policy.
+ * - authz_policy is the input gRPC authorization policy.
  * - code is the error status code on failure. On success, it equals
  *   GRPC_STATUS_OK.
  * - error_details contains details about the error if any. If the
@@ -1252,9 +1279,9 @@ grpc_authorization_policy_provider_static_data_create(
 
 /**
  * EXPERIMENTAL - Subject to change.
- * Creates a grpc_authorization_policy_provider by watching for SDK
+ * Creates a grpc_authorization_policy_provider by watching for gRPC
  * authorization policy changes in filesystem.
- * - authz_policy is the file path of SDK authorization policy.
+ * - authz_policy is the file path of gRPC authorization policy.
  * - refresh_interval_sec is the amount of time the internal thread would wait
  *   before checking for file updates.
  * - code is the error status code on failure. On success, it equals
@@ -1275,6 +1302,26 @@ grpc_authorization_policy_provider_file_watcher_create(
  */
 GRPCAPI void grpc_authorization_policy_provider_release(
     grpc_authorization_policy_provider* provider);
+
+/** --- TLS session key logging. ---
+ * Experimental API to control tls session key logging. Tls session key logging
+ * is expected to be used only for debugging purposes and never in production.
+ * Tls session key logging is only enabled when:
+ *  At least one grpc_tls_credentials_options object is assigned a tls session
+ *  key logging file path using the API specified below.
+ */
+
+/**
+ * EXPERIMENTAL API - Subject to change.
+ * Configures a grpc_tls_credentials_options object with tls session key
+ * logging capability. TLS channels using these credentials have tls session
+ * key logging enabled.
+ * - options is the grpc_tls_credentials_options object
+ * - path is a string pointing to the location where TLS session keys would be
+ *   stored.
+ */
+GRPCAPI void grpc_tls_credentials_options_set_tls_session_key_log_file_path(
+    grpc_tls_credentials_options* options, const char* path);
 
 #ifdef __cplusplus
 }

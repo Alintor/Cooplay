@@ -1,4 +1,4 @@
-// Copyright 2021 gRPC authors.
+// Copyright 2016 gRPC authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,3 +15,6 @@
 #include <grpc/support/port_platform.h>
 
 #include "src/core/lib/slice/slice_refcount.h"
+
+grpc_core::DebugOnlyTraceFlag grpc_slice_refcount_trace(false,
+                                                        "slice_refcount");

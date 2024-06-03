@@ -43,6 +43,7 @@ NSString *const kFIRMessagingFID = @"google.c.fid";
 NSString *const kFIRMessagingAnalyticsComposerIdentifier = @"google.c.a.c_id";
 NSString *const kFIRMessagingAnalyticsMessageLabel = @"google.c.a.m_l";
 NSString *const kFIRMessagingAnalyticsComposerLabel = @"google.c.a.c_l";
+NSString *const kFIRMessagingProductID = @"google.product_id";
 
 NSString *const kFIRMessagingRemoteNotificationsProxyEnabledInfoPlistKey =
     @"FirebaseAppDelegateProxyEnabled";
@@ -67,6 +68,7 @@ NSString *const kFIRMessagingDefaultGCMTokenFailNotification =
 // Miscellaneous
 NSString *const kFIRMessagingAllScopeIdentifier = @"iid-all";
 NSString *const kFIRMessagingDefaultTokenScope = @"*";
+NSString *const kFIRMessagingFIAMTokenScope = @"fiam";
 NSString *const kFIRMessagingInstanceIDSubDirectoryName = @"Google/FirebaseInstanceID";
 
 // Registration Options

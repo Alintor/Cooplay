@@ -1,38 +1,39 @@
-/*
- * Copyright 2015 gRPC authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
+//
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+//
 
-#include <memory>
+#include <vector>
+
+#include "absl/base/thread_annotations.h"
 
 #include <grpc/grpc.h>
 #include <grpc/support/cpu.h>
 #include <grpc/support/log.h>
+#include <grpc/support/sync.h>
+#include <grpc/support/time.h>
 #include <grpcpp/completion_queue.h>
+#include <grpcpp/impl/completion_queue_tag.h>
 #include <grpcpp/impl/grpc_library.h>
-#include <grpcpp/support/time.h>
 
 #include "src/core/lib/gpr/useful.h"
-#include "src/core/lib/gprpp/manual_constructor.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/gprpp/thd.h"
 
 namespace grpc {
 namespace {
-
-internal::GrpcLibraryInitializer g_gli_initializer;
 
 gpr_once g_once_init_callback_alternative = GPR_ONCE_INIT;
 grpc_core::Mutex* g_callback_alternative_mu;
@@ -125,12 +126,11 @@ CallbackAlternativeCQ g_callback_alternative_cq;
 // a 'grpc_completion_queue' instance (which is being passed as the input to
 // this constructor), one must have already called grpc_init().
 CompletionQueue::CompletionQueue(grpc_completion_queue* take)
-    : GrpcLibraryCodegen(false), cq_(take) {
+    : GrpcLibrary(false), cq_(take) {
   InitialAvalanching();
 }
 
 void CompletionQueue::Shutdown() {
-  g_gli_initializer.summon();
 #ifndef NDEBUG
   if (!ServerListEmpty()) {
     gpr_log(GPR_ERROR,
@@ -151,7 +151,7 @@ CompletionQueue::NextStatus CompletionQueue::AsyncNextInternal(
         return SHUTDOWN;
       case GRPC_OP_COMPLETE:
         auto core_cq_tag =
-            static_cast<::grpc::internal::CompletionQueueTag*>(ev.tag);
+            static_cast<grpc::internal::CompletionQueueTag*>(ev.tag);
         *ok = ev.success != 0;
         *tag = core_cq_tag;
         if (core_cq_tag->FinalizeResult(tag, ok)) {
@@ -179,7 +179,7 @@ bool CompletionQueue::CompletionQueueTLSCache::Flush(void** tag, bool* ok) {
   if (grpc_completion_queue_thread_local_cache_flush(cq_->cq_, &res_tag,
                                                      &res)) {
     auto core_cq_tag =
-        static_cast<::grpc::internal::CompletionQueueTag*>(res_tag);
+        static_cast<grpc::internal::CompletionQueueTag*>(res_tag);
     *ok = res == 1;
     if (core_cq_tag->FinalizeResult(tag, ok)) {
       return true;

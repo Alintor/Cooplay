@@ -23,15 +23,15 @@ import Foundation
 /**
  * Task which provides the ability to delete an object in Firebase Storage.
  */
-internal class StorageDeleteTask: StorageTask, StorageTaskManagement {
+class StorageDeleteTask: StorageTask, StorageTaskManagement {
   private var fetcher: GTMSessionFetcher?
   private var fetcherCompletion: ((Data?, NSError?) -> Void)?
   private var taskCompletion: ((_ error: Error?) -> Void)?
 
-  internal init(reference: StorageReference,
-                fetcherService: GTMSessionFetcherService,
-                queue: DispatchQueue,
-                completion: ((_: Error?) -> Void)?) {
+  init(reference: StorageReference,
+       fetcherService: GTMSessionFetcherService,
+       queue: DispatchQueue,
+       completion: ((_: Error?) -> Void)?) {
     super.init(reference: reference, service: fetcherService, queue: queue)
     taskCompletion = completion
   }
@@ -43,7 +43,7 @@ internal class StorageDeleteTask: StorageTask, StorageTaskManagement {
   /**
    * Prepares a task and begins execution.
    */
-  internal func enqueue() {
+  func enqueue() {
     let completion = taskCompletion
     taskCompletion = { (error: Error?) in
       completion?(error)
@@ -63,7 +63,7 @@ internal class StorageDeleteTask: StorageTask, StorageTaskManagement {
 
       self.fetcherCompletion = { [weak self] (data: Data?, error: NSError?) in
         guard let self = self else { return }
-        if let error = error, self.error == nil {
+        if let error, self.error == nil {
           self.error = StorageErrorCode.error(withServerError: error, ref: self.reference)
         }
         self.taskCompletion?(self.error)

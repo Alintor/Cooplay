@@ -12,20 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef GRPC_CORE_LIB_TRANSPORT_PARSED_METADATA_H
-#define GRPC_CORE_LIB_TRANSPORT_PARSED_METADATA_H
+#ifndef GRPC_SRC_CORE_LIB_TRANSPORT_PARSED_METADATA_H
+#define GRPC_SRC_CORE_LIB_TRANSPORT_PARSED_METADATA_H
 
 #include <grpc/support/port_platform.h>
 
+#include <string.h>
+
 #include <cstdint>
+#include <string>
 #include <type_traits>
+#include <utility>
 
+#include "absl/functional/function_ref.h"
 #include "absl/meta/type_traits.h"
+#include "absl/strings/escaping.h"
 #include "absl/strings/match.h"
+#include "absl/strings/str_cat.h"
+#include "absl/strings/string_view.h"
 
-#include "src/core/lib/iomgr/error.h"
+#include <grpc/slice.h>
+
+#include "src/core/lib/gprpp/time.h"
 #include "src/core/lib/slice/slice.h"
-#include "src/core/lib/surface/validate_metadata.h"
 
 namespace grpc_core {
 
@@ -39,13 +48,14 @@ namespace metadata_detail {
 template <typename Which>
 struct HasSimpleMemento {
   static constexpr bool value =
-      std::is_trivial<typename Which::MementoType>::value &&
-      sizeof(typename Which::MementoType) <= sizeof(grpc_slice);
+      (std::is_trivial<typename Which::MementoType>::value &&
+       sizeof(typename Which::MementoType) <= sizeof(grpc_slice)) ||
+      std::is_same<typename Which::MementoType, Duration>::value;
 };
 
 // Storage type for a single metadata entry.
 union Buffer {
-  char trivial[sizeof(grpc_slice)];
+  uint8_t trivial[sizeof(grpc_slice)];
   void* pointer;
   grpc_slice slice;
 };
@@ -72,9 +82,9 @@ GPR_ATTRIBUTE_NOINLINE std::string MakeDebugStringPipeline(
 // Extract a trivial field value from a Buffer - for MakeDebugStringPipeline.
 template <typename Field>
 Field FieldFromTrivial(const Buffer& value) {
-  Field x;
-  memcpy(&x, value.trivial, sizeof(x));
-  return x;
+  Field field;
+  memcpy(&field, value.trivial, sizeof(Field));
+  return field;
 }
 
 // Extract a pointer field value from a Buffer - for MakeDebugStringPipeline.
@@ -91,6 +101,12 @@ void DestroySliceValue(const Buffer& value);
 
 // Destroy a trivial memento (empty function).
 void DestroyTrivialMemento(const Buffer& value);
+
+// Set a slice value in a container
+template <Slice (*MementoToValue)(Slice)>
+void SetSliceValue(Slice* set, const Buffer& value) {
+  *set = MementoToValue(SliceFromBuffer(value));
+}
 
 }  // namespace metadata_detail
 
@@ -136,9 +152,14 @@ class ParsedMetadata {
     value_.slice = value.TakeCSlice();
   }
   // Construct metadata from a string key, slice value pair.
-  ParsedMetadata(Slice key, Slice value)
+  // FromSlicePair() is used to adjust the overload set so that we don't
+  // inadvertently match against any of the previous overloads.
+  // TODO(ctiller): re-evaluate the overload functions here so and maybe
+  // introduce some factory functions?
+  struct FromSlicePair {};
+  ParsedMetadata(FromSlicePair, Slice key, Slice value, uint32_t transport_size)
       : vtable_(ParsedMetadata::KeyValueVTable(key.as_string_view())),
-        transport_size_(key.size() + value.size() + 32) {
+        transport_size_(transport_size) {
     value_.pointer =
         new std::pair<Slice, Slice>(std::move(key), std::move(value));
   }
@@ -172,18 +193,23 @@ class ParsedMetadata {
   // HTTP2 defined storage size of this metadatum.
   uint32_t transport_size() const { return transport_size_; }
   // Create a new parsed metadata with the same key but a different value.
-  ParsedMetadata WithNewValue(Slice value,
+  ParsedMetadata WithNewValue(Slice value, bool will_keep_past_request_lifetime,
+                              uint32_t value_wire_size,
                               MetadataParseErrorFn on_error) const {
     ParsedMetadata result;
     result.vtable_ = vtable_;
     result.value_ = value_;
     result.transport_size_ =
-        TransportSize(vtable_->key(value_).length(), value.length());
-    vtable_->with_new_value(&value, on_error, &result);
+        TransportSize(static_cast<uint32_t>(key().length()), value_wire_size);
+    vtable_->with_new_value(&value, will_keep_past_request_lifetime, on_error,
+                            &result);
     return result;
   }
   std::string DebugString() const { return vtable_->debug_string(value_); }
-  absl::string_view key() const { return vtable_->key(value_); }
+  absl::string_view key() const {
+    if (vtable_->key == nullptr) return vtable_->key_value;
+    return vtable_->key(value_);
+  }
 
   // TODO(ctiller): move to transport
   static uint32_t TransportSize(uint32_t key_size, uint32_t value_size) {
@@ -200,9 +226,12 @@ class ParsedMetadata {
     void (*const set)(const Buffer& value, MetadataContainer* container);
     // result is a bitwise copy of the originating ParsedMetadata.
     void (*const with_new_value)(Slice* new_value,
+                                 bool will_keep_past_request_lifetime,
                                  MetadataParseErrorFn on_error,
                                  ParsedMetadata* result);
     std::string (*const debug_string)(const Buffer& value);
+    // The key - if key is null, use key_value, otherwise call key.
+    absl::string_view key_value;
     absl::string_view (*const key)(const Buffer& value);
   };
 
@@ -215,17 +244,22 @@ class ParsedMetadata {
   template <typename Which>
   static const VTable* SliceTraitVTable();
 
-  template <Slice (*ParseMemento)(Slice, MetadataParseErrorFn)>
+  template <Slice (*ParseMemento)(Slice, bool, MetadataParseErrorFn)>
   GPR_ATTRIBUTE_NOINLINE static void WithNewValueSetSlice(
-      Slice* slice, MetadataParseErrorFn on_error, ParsedMetadata* result) {
+      Slice* slice, bool will_keep_past_request_lifetime,
+      MetadataParseErrorFn on_error, ParsedMetadata* result) {
     result->value_.slice =
-        ParseMemento(std::move(*slice), on_error).TakeCSlice();
+        ParseMemento(std::move(*slice), will_keep_past_request_lifetime,
+                     on_error)
+            .TakeCSlice();
   }
 
-  template <typename T, T (*ParseMemento)(Slice, MetadataParseErrorFn)>
+  template <typename T, T (*ParseMemento)(Slice, bool, MetadataParseErrorFn)>
   GPR_ATTRIBUTE_NOINLINE static void WithNewValueSetTrivial(
-      Slice* slice, MetadataParseErrorFn on_error, ParsedMetadata* result) {
-    T memento = ParseMemento(std::move(*slice), on_error);
+      Slice* slice, bool will_keep_past_request_lifetime,
+      MetadataParseErrorFn on_error, ParsedMetadata* result) {
+    T memento = ParseMemento(std::move(*slice), will_keep_past_request_lifetime,
+                             on_error);
     memcpy(result->value_.trivial, &memento, sizeof(memento));
   }
 
@@ -246,11 +280,12 @@ ParsedMetadata<MetadataContainer>::EmptyVTable() {
       // set
       [](const Buffer&, MetadataContainer*) {},
       // with_new_value
-      [](Slice*, MetadataParseErrorFn, ParsedMetadata*) {},
+      [](Slice*, bool, MetadataParseErrorFn, ParsedMetadata*) {},
       // debug_string
       [](const Buffer&) -> std::string { return "empty"; },
       // key
-      [](const Buffer&) -> absl::string_view { return ""; },
+      "",
+      nullptr,
   };
   return &vtable;
 }
@@ -278,10 +313,11 @@ ParsedMetadata<MetadataContainer>::TrivialTraitVTable() {
         return metadata_detail::MakeDebugStringPipeline(
             Which::key(), value,
             metadata_detail::FieldFromTrivial<typename Which::MementoType>,
-            Which::DisplayValue);
+            Which::DisplayMemento);
       },
       // key
-      [](const Buffer&) { return Which::key(); },
+      Which::key(),
+      nullptr,
   };
   return &vtable;
 }
@@ -302,19 +338,22 @@ ParsedMetadata<MetadataContainer>::NonTrivialTraitVTable() {
         map->Set(Which(), Which::MementoToValue(*p));
       },
       // with_new_value
-      [](Slice* value, MetadataParseErrorFn on_error, ParsedMetadata* result) {
-        result->value_.pointer = new typename Which::MementoType(
-            Which::ParseMemento(std::move(*value), on_error));
+      [](Slice* value, bool will_keep_past_request_lifetime,
+         MetadataParseErrorFn on_error, ParsedMetadata* result) {
+        result->value_.pointer =
+            new typename Which::MementoType(Which::ParseMemento(
+                std::move(*value), will_keep_past_request_lifetime, on_error));
       },
       // debug_string
       [](const Buffer& value) {
         return metadata_detail::MakeDebugStringPipeline(
             Which::key(), value,
             metadata_detail::FieldFromPointer<typename Which::MementoType>,
-            Which::DisplayValue);
+            Which::DisplayMemento);
       },
       // key
-      [](const Buffer&) { return Which::key(); },
+      Which::key(),
+      nullptr,
   };
   return &vtable;
 }
@@ -329,8 +368,8 @@ ParsedMetadata<MetadataContainer>::SliceTraitVTable() {
       metadata_detail::DestroySliceValue,
       // set
       [](const Buffer& value, MetadataContainer* map) {
-        map->Set(Which(), Which::MementoToValue(
-                              metadata_detail::SliceFromBuffer(value)));
+        metadata_detail::SetSliceValue<Which::MementoToValue>(
+            map->GetOrCreatePointer(Which()), value);
       },
       // with_new_value
       WithNewValueSetSlice<Which::ParseMemento>,
@@ -338,10 +377,11 @@ ParsedMetadata<MetadataContainer>::SliceTraitVTable() {
       [](const Buffer& value) {
         return metadata_detail::MakeDebugStringPipeline(
             Which::key(), value, metadata_detail::SliceFromBuffer,
-            Which::DisplayValue);
+            Which::DisplayMemento);
       },
       // key
-      [](const Buffer&) { return Which::key(); },
+      Which::key(),
+      nullptr,
   };
   return &vtable;
 }
@@ -355,31 +395,38 @@ ParsedMetadata<MetadataContainer>::KeyValueVTable(absl::string_view key) {
   };
   static const auto set = [](const Buffer& value, MetadataContainer* map) {
     auto* p = static_cast<KV*>(value.pointer);
-    map->AppendUnknown(p->first.as_string_view(), p->second.Ref());
+    map->unknown_.Append(p->first.as_string_view(), p->second.Ref());
   };
-  static const auto with_new_value = [](Slice* value, MetadataParseErrorFn,
-                                        ParsedMetadata* result) {
-    auto* p = new KV{
-        static_cast<KV*>(result->value_.pointer)->first.Ref(),
-        std::move(*value),
-    };
-    result->value_.pointer = p;
-  };
+  static const auto with_new_value =
+      [](Slice* value, bool will_keep_past_request_lifetime,
+         MetadataParseErrorFn, ParsedMetadata* result) {
+        auto* p = new KV{
+            static_cast<KV*>(result->value_.pointer)->first.Ref(),
+            will_keep_past_request_lifetime ? value->TakeUniquelyOwned()
+                                            : std::move(*value),
+        };
+        result->value_.pointer = p;
+      };
   static const auto debug_string = [](const Buffer& value) {
     auto* p = static_cast<KV*>(value.pointer);
     return absl::StrCat(p->first.as_string_view(), ": ",
                         p->second.as_string_view());
   };
+  static const auto binary_debug_string = [](const Buffer& value) {
+    auto* p = static_cast<KV*>(value.pointer);
+    return absl::StrCat(p->first.as_string_view(), ": \"",
+                        absl::CEscape(p->second.as_string_view()), "\"");
+  };
   static const auto key_fn = [](const Buffer& value) {
     return static_cast<KV*>(value.pointer)->first.as_string_view();
   };
   static const VTable vtable[2] = {
-      {false, destroy, set, with_new_value, debug_string, key_fn},
-      {true, destroy, set, with_new_value, debug_string, key_fn},
+      {false, destroy, set, with_new_value, debug_string, "", key_fn},
+      {true, destroy, set, with_new_value, binary_debug_string, "", key_fn},
   };
   return &vtable[absl::EndsWith(key, "-bin")];
 }
 
 }  // namespace grpc_core
 
-#endif  // GRPC_CORE_LIB_TRANSPORT_PARSED_METADATA_H
+#endif  // GRPC_SRC_CORE_LIB_TRANSPORT_PARSED_METADATA_H

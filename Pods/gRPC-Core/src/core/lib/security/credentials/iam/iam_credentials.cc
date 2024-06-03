@@ -1,66 +1,71 @@
-/*
- *
- * Copyright 2016 gRPC authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
+//
+//
+// Copyright 2016 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+//
 
 #include <grpc/support/port_platform.h>
 
 #include "src/core/lib/security/credentials/iam/iam_credentials.h"
 
+#include <stdlib.h>
+
+#include <memory>
+#include <utility>
+
 #include "absl/strings/str_format.h"
+#include "absl/strings/string_view.h"
 
-#include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
-#include <grpc/support/string_util.h>
-#include <grpc/support/sync.h>
 
+#include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
+#include "src/core/lib/iomgr/exec_ctx.h"
+#include "src/core/lib/promise/promise.h"
 #include "src/core/lib/surface/api_trace.h"
+#include "src/core/lib/transport/metadata_batch.h"
 
-bool grpc_google_iam_credentials::get_request_metadata(
-    grpc_polling_entity* /*pollent*/, grpc_auth_metadata_context /*context*/,
-    grpc_core::CredentialsMetadataArray* md_array,
-    grpc_closure* /*on_request_metadata*/, grpc_error_handle* /*error*/) {
+grpc_core::ArenaPromise<absl::StatusOr<grpc_core::ClientMetadataHandle>>
+grpc_google_iam_credentials::GetRequestMetadata(
+    grpc_core::ClientMetadataHandle initial_metadata,
+    const grpc_call_credentials::GetRequestMetadataArgs*) {
   if (token_.has_value()) {
-    md_array->emplace_back(grpc_core::Slice::FromStaticString(
-                               GRPC_IAM_AUTHORIZATION_TOKEN_METADATA_KEY),
-                           token_->Ref());
+    initial_metadata->Append(
+        GRPC_IAM_AUTHORIZATION_TOKEN_METADATA_KEY, token_->Ref(),
+        [](absl::string_view, const grpc_core::Slice&) { abort(); });
   }
-  md_array->emplace_back(grpc_core::Slice::FromStaticString(
-                             GRPC_IAM_AUTHORITY_SELECTOR_METADATA_KEY),
-                         authority_selector_.Ref());
-  return true;
-}
-
-void grpc_google_iam_credentials::cancel_get_request_metadata(
-    grpc_core::CredentialsMetadataArray* /*md_array*/,
-    grpc_error_handle error) {
-  GRPC_ERROR_UNREF(error);
+  initial_metadata->Append(
+      GRPC_IAM_AUTHORITY_SELECTOR_METADATA_KEY, authority_selector_.Ref(),
+      [](absl::string_view, const grpc_core::Slice&) { abort(); });
+  return grpc_core::Immediate(std::move(initial_metadata));
 }
 
 grpc_google_iam_credentials::grpc_google_iam_credentials(
     const char* token, const char* authority_selector)
-    : grpc_call_credentials(GRPC_CALL_CREDENTIALS_TYPE_IAM),
-      token_(token == nullptr ? absl::optional<grpc_core::Slice>()
+    : token_(token == nullptr ? absl::optional<grpc_core::Slice>()
                               : grpc_core::Slice::FromCopiedString(token)),
       authority_selector_(
           grpc_core::Slice::FromCopiedString(authority_selector)),
       debug_string_(absl::StrFormat(
           "GoogleIAMCredentials{Token:%s,AuthoritySelector:%s}",
           token != nullptr ? "present" : "absent", authority_selector)) {}
+
+grpc_core::UniqueTypeName grpc_google_iam_credentials::Type() {
+  static grpc_core::UniqueTypeName::Factory kFactory("Iam");
+  return kFactory.Create();
+}
 
 grpc_call_credentials* grpc_google_iam_credentials_create(
     const char* token, const char* authority_selector, void* reserved) {

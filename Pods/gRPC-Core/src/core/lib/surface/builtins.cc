@@ -16,34 +16,22 @@
 
 #include "src/core/lib/surface/builtins.h"
 
-#include "src/core/lib/channel/connected_channel.h"
+#include "src/core/lib/channel/call_tracer.h"
 #include "src/core/lib/config/core_configuration.h"
+#include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/surface/lame_client.h"
 #include "src/core/lib/surface/server.h"
 
 namespace grpc_core {
 
 void RegisterBuiltins(CoreConfiguration::Builder* builder) {
-  builder->channel_init()->RegisterStage(GRPC_CLIENT_SUBCHANNEL,
-                                         GRPC_CHANNEL_INIT_BUILTIN_PRIORITY,
-                                         grpc_add_connected_filter);
-  builder->channel_init()->RegisterStage(GRPC_CLIENT_DIRECT_CHANNEL,
-                                         GRPC_CHANNEL_INIT_BUILTIN_PRIORITY,
-                                         grpc_add_connected_filter);
-  builder->channel_init()->RegisterStage(GRPC_SERVER_CHANNEL,
-                                         GRPC_CHANNEL_INIT_BUILTIN_PRIORITY,
-                                         grpc_add_connected_filter);
-  builder->channel_init()->RegisterStage(
-      GRPC_CLIENT_LAME_CHANNEL, GRPC_CHANNEL_INIT_BUILTIN_PRIORITY,
-      [](grpc_channel_stack_builder* builder) {
-        return grpc_channel_stack_builder_append_filter(
-            builder, &grpc_lame_filter, nullptr, nullptr);
-      });
-  builder->channel_init()->RegisterStage(
-      GRPC_SERVER_CHANNEL, INT_MAX, [](grpc_channel_stack_builder* builder) {
-        return grpc_channel_stack_builder_prepend_filter(
-            builder, &Server::kServerTopFilter, nullptr, nullptr);
-      });
+  RegisterServerCallTracerFilter(builder);
+  builder->channel_init()
+      ->RegisterFilter<LameClientFilter>(GRPC_CLIENT_LAME_CHANNEL)
+      .Terminal();
+  builder->channel_init()
+      ->RegisterFilter(GRPC_SERVER_CHANNEL, &Server::kServerTopFilter)
+      .BeforeAll();
 }
 
 }  // namespace grpc_core

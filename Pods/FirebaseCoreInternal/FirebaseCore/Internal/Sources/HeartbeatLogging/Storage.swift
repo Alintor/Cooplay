@@ -53,7 +53,8 @@ final class FileStorage: Storage {
   /// Reads and returns the data from this object's associated file resource.
   ///
   /// - Returns: The data stored on disk.
-  /// - Throws: An error if reading the contents of the file resource fails (i.e. file doesn't exist).
+  /// - Throws: An error if reading the contents of the file resource fails (i.e. file doesn't
+  /// exist).
   func read() throws -> Data {
     do {
       return try Data(contentsOf: url)
@@ -70,7 +71,7 @@ final class FileStorage: Storage {
   func write(_ data: Data?) throws {
     do {
       try createDirectories(in: url.deletingLastPathComponent())
-      if let data = data {
+      if let data {
         try data.write(to: url, options: .atomic)
       } else {
         let emptyData = Data()
@@ -135,7 +136,7 @@ final class UserDefaultsStorage: Storage {
   ///
   /// - Parameter data: The `Data?` to write to this object's associated defaults.
   func write(_ data: Data?) throws {
-    if let data = data {
+    if let data {
       defaults.set(data, forKey: key)
     } else {
       defaults.removeObject(forKey: key)

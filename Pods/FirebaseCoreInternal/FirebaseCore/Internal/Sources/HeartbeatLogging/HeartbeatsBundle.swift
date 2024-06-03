@@ -19,21 +19,25 @@ protocol HeartbeatsPayloadConvertible {
   func makeHeartbeatsPayload() -> HeartbeatsPayload
 }
 
-/// A codable collection of heartbeats that has a fixed capacity and optimizations for storing heartbeats of
+/// A codable collection of heartbeats that has a fixed capacity and optimizations for storing
+/// heartbeats of
 /// multiple time periods.
 struct HeartbeatsBundle: Codable, HeartbeatsPayloadConvertible {
   /// The maximum number of heartbeats that can be stored in the buffer.
   let capacity: Int
   /// A cache used for keeping track of the last heartbeat date recorded for a given time period.
   ///
-  /// The cache contains the last added date for each time period. The reason only the date is cached is
-  /// because it's the only piece of information that should be used by clients to determine whether or not
+  /// The cache contains the last added date for each time period. The reason only the date is
+  /// cached is
+  /// because it's the only piece of information that should be used by clients to determine whether
+  /// or not
   /// to append a new heartbeat.
   private(set) var lastAddedHeartbeatDates: [TimePeriod: Date]
   /// A ring buffer of heartbeats.
   private var buffer: RingBuffer<Heartbeat>
 
-  /// A default cache provider that provides a dictionary of all time periods mapping to a default date.
+  /// A default cache provider that provides a dictionary of all time periods mapping to a default
+  /// date.
   static var cacheProvider: () -> [TimePeriod: Date] {
     let timePeriodsAndDates = TimePeriod.allCases.map { ($0, Date.distantPast) }
     return { Dictionary(uniqueKeysWithValues: timePeriodsAndDates) }
@@ -68,8 +72,8 @@ struct HeartbeatsBundle: Codable, HeartbeatsPayloadConvertible {
       }
 
       // Update cache with the new heartbeat's date.
-      heartbeat.timePeriods.forEach {
-        lastAddedHeartbeatDates[$0] = heartbeat.date
+      for timePeriod in heartbeat.timePeriods {
+        lastAddedHeartbeatDates[timePeriod] = heartbeat.date
       }
 
     } catch let error as RingBuffer<Heartbeat>.Error {
@@ -94,8 +98,8 @@ struct HeartbeatsBundle: Codable, HeartbeatsPayloadConvertible {
 
       if case .success = secondPushAttempt {
         // Update cache with the new heartbeat's date.
-        diagnosticHeartbeat.timePeriods.forEach {
-          lastAddedHeartbeatDates[$0] = diagnosticHeartbeat.date
+        for timePeriod in diagnosticHeartbeat.timePeriods {
+          lastAddedHeartbeatDates[timePeriod] = diagnosticHeartbeat.date
         }
       }
     } catch {
@@ -120,9 +124,9 @@ struct HeartbeatsBundle: Codable, HeartbeatsPayloadConvertible {
       poppedHeartbeats.append(poppedHeartbeat)
     }
 
-    poppedHeartbeats.reversed().forEach {
+    for poppedHeartbeat in poppedHeartbeats.reversed() {
       do {
-        try buffer.push($0)
+        try buffer.push(poppedHeartbeat)
       } catch {
         // Ignore error.
       }
