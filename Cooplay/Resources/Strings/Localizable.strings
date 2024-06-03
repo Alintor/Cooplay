@@ -279,6 +279,9 @@
 "addPassword.confirmPasswordField.placeholder" = "Подтверждение пароля";
 "addPassword.create.title" = "Создать пароль";
 "addPassword.success.title" = "Пароль успешно создан";
+"addPassword.alert.apple" = "Для продолжения необходимо повторно авторизоваться через Apple ID";
+"addPassword.alert.google" = "Для продолжения необходимо повторно авторизоваться через Google аккаунт";
+"addPassword.alert.button" = "Продолжить";
 
 // MARK: - AdditionalReactions
 

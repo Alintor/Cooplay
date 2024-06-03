@@ -10,8 +10,9 @@ import Foundation
 import Firebase
 import GoogleSignIn
 import AuthenticationServices
+import FirebaseAuth
 
-enum AuthDeleteProvider {
+enum ReauthProvider {
     
     case password(_ password: String)
     case apple(creds: ASAuthorizationAppleIDCredential, nonce: String)
@@ -25,6 +26,7 @@ enum AuthorizationServiceError: Error {
     case wrongPassword
     case changePasswordError
     case notHaveRestEmail
+    case needRelogin
     case unhandled(error: Error)
 }
 
@@ -37,6 +39,7 @@ extension AuthorizationServiceError: LocalizedError {
         case .wrongPassword: return Localizable.errorsAuthorizationServiceWrongPassword()
         case .changePasswordError: return Localizable.errorsAuthorizationServiceChangePassword()
         case .notHaveRestEmail: return nil
+        case .needRelogin: return nil
         case .unhandled(let error): return error.localizedDescription
         }
     }
@@ -58,11 +61,11 @@ protocol AuthorizationServiceType {
     func getUserProviders() -> [AuthProvider]
     func linkGoogleProvider() async throws
     func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws
-    func addPassword(_ password: String, email: String) async throws
+    func addPassword(_ password: String, email: String, provider: ReauthProvider?) async throws
     func unlinkProvider(_ provider: AuthProvider) async throws
     func getEmailForProvider(_ provider: AuthProvider) -> String?
     func logout()
-    func deleteAccount(provider: AuthDeleteProvider) async throws
+    func deleteAccount(provider: ReauthProvider) async throws
 }
 
 
@@ -114,7 +117,7 @@ final class AuthorizationService {
         }
     }
     
-    private func reauthenticateWithProvider(_ provider: AuthDeleteProvider) async throws -> FirebaseAuth.User {
+    private func reauthenticateWithProvider(_ provider: ReauthProvider) async throws -> FirebaseAuth.User {
         guard let currentUser = firebaseAuth.currentUser else {
             throw AuthorizationServiceError.unknownError
         }
@@ -221,7 +224,6 @@ extension AuthorizationService: AuthorizationServiceType {
     
     func checkAccountExistence(email: String) async throws -> Bool {
         let methods = try await firebaseAuth.fetchSignInMethods(forEmail: email)
-        print(methods)
         return !methods.isEmpty
     }
     
@@ -256,6 +258,9 @@ extension AuthorizationService: AuthorizationServiceType {
     func getUserProviders() -> [AuthProvider] {
         guard let providers = firebaseAuth.currentUser?.providerData else { return [] }
         
+        for provider in providers {
+            print(provider.providerID)
+        }
         return providers.compactMap { AuthProvider(rawValue: $0.providerID) }
     }
     
@@ -296,13 +301,23 @@ extension AuthorizationService: AuthorizationServiceType {
         try await user.link(with: credential)
     }
     
-    func addPassword(_ password: String, email: String) async throws {
-        guard let currentUser = firebaseAuth.currentUser else {
+    func addPassword(_ password: String, email: String, provider: ReauthProvider?) async throws {
+        guard var currentUser = firebaseAuth.currentUser else {
             throw AuthorizationServiceError.unknownError
         }
-        
+        if let provider {
+            _ = try await reauthenticateWithProvider(provider)
+        }
         let credential = EmailAuthProvider.credential(withEmail: email, password: password)
-        try await currentUser.link(with: credential)
+        do {
+            try await currentUser.link(with: credential)
+        } catch {
+            if (error as NSError).code == AuthErrorCode.requiresRecentLogin.rawValue {
+                throw AuthorizationServiceError.needRelogin
+            } else {
+                throw error
+            }
+        }
     }
     
     func unlinkProvider(_ provider: AuthProvider) async throws {
@@ -311,7 +326,7 @@ extension AuthorizationService: AuthorizationServiceType {
         try await user.unlink(fromProvider: provider.rawValue)
     }
     
-    func deleteAccount(provider: AuthDeleteProvider) async throws {
+    func deleteAccount(provider: ReauthProvider) async throws {
         let user = try await reauthenticateWithProvider(provider)
         try await firestore.collection("Users").document(user.uid).updateData(["isDeleted": true])
         try await user.delete()

@@ -153,7 +153,8 @@ enum ScreenViewFactory {
     static func addPassword() -> some View {
         AddPasswordView(state: AddPasswordState(
             store: applicationFactory.store,
-            authorizationService: applicationFactory.authorizationService
+            authorizationService: applicationFactory.authorizationService, 
+            appleAuthorizationService: applicationFactory.appleAuthorizationService
         ))
     }
     

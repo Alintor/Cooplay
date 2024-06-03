@@ -202,7 +202,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 4 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `ArkanoidScene.sks`.
     static let arkanoidSceneSks = Rswift.FileResource(bundle: R.hostingBundle, name: "ArkanoidScene", pathExtension: "sks")
@@ -212,6 +212,8 @@ struct R: Rswift.Validatable {
     static let configXcconfig = Rswift.FileResource(bundle: R.hostingBundle, name: "Config", pathExtension: "xcconfig")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    /// Resource file `PrivacyInfo.xcprivacy`.
+    static let privacyInfoXcprivacy = Rswift.FileResource(bundle: R.hostingBundle, name: "PrivacyInfo", pathExtension: "xcprivacy")
     
     /// `bundle.url(forResource: "ArkanoidScene", withExtension: "sks")`
     static func arkanoidSceneSks(_: Void = ()) -> Foundation.URL? {
@@ -234,6 +236,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
     static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.googleServiceInfoPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "PrivacyInfo", withExtension: "xcprivacy")`
+    static func privacyInfoXcprivacy(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.privacyInfoXcprivacy
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -844,7 +852,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 229 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 232 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -965,7 +973,11 @@ struct R: Rswift.Validatable {
       /// Value: Для доступа к камере нужно разрешение
       static let editProfilePermissionsAlertTitle = Rswift.StringResource(key: "editProfile.permissionsAlert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
+      static let addPasswordAlertApple = Rswift.StringResource(key: "addPassword.alert.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
       static let deleteAccountAlertApple = Rswift.StringResource(key: "deleteAccount.alert.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
+      static let addPasswordAlertGoogle = Rswift.StringResource(key: "addPassword.alert.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
       static let deleteAccountAlertGoogle = Rswift.StringResource(key: "deleteAccount.alert.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Добавить участников
@@ -1182,6 +1194,8 @@ struct R: Rswift.Validatable {
       static let statusOntimeFull = Rswift.StringResource(key: "status.ontime.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registrationPasswordTextFieldPlaceholder = Rswift.StringResource(key: "registration.passwordTextField.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Продолжить
+      static let addPasswordAlertButton = Rswift.StringResource(key: "addPassword.alert.button", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Продолжить с Apple
       static let authorizationMenuApple = Rswift.StringResource(key: "authorizationMenu.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Продолжить с Google
@@ -1601,8 +1615,18 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
+      static func addPasswordAlertApple(_: Void = ()) -> String {
+        return NSLocalizedString("addPassword.alert.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Для продолжения необходимо повторно авторизоваться через Apple ID
       static func deleteAccountAlertApple(_: Void = ()) -> String {
         return NSLocalizedString("deleteAccount.alert.apple", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
+      static func addPasswordAlertGoogle(_: Void = ()) -> String {
+        return NSLocalizedString("addPassword.alert.google", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Для продолжения необходимо повторно авторизоваться через Google аккаунт
@@ -2143,6 +2167,11 @@ struct R: Rswift.Validatable {
       /// Value: Придумайте пароль
       static func registrationPasswordTextFieldPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("registration.passwordTextField.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Продолжить
+      static func addPasswordAlertButton(_: Void = ()) -> String {
+        return NSLocalizedString("addPassword.alert.button", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Продолжить с Apple

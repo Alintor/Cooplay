@@ -75,6 +75,18 @@ struct AddPasswordView: View {
         }
         .animation(.customTransition, value: focusedField)
         .activityIndicator(isShown: $state.showProgress)
+        .alert(Localizable.addPasswordAlertGoogle(), isPresented: $state.showGoogleAlert, actions: {
+            Button(Localizable.commonCancel(), role: .cancel) {}
+            Button(Localizable.addPasswordAlertButton(), role: .none) {
+                state.tryAddPassword()
+            }
+        })
+        .alert(Localizable.addPasswordAlertApple(), isPresented: $state.showAppleAlert, actions: {
+            Button(Localizable.commonCancel(), role: .cancel) {}
+            Button(Localizable.addPasswordAlertButton(), role: .none) {
+                state.tryAddPassword()
+            }
+        })
         .onReceive(state.$newPassword) { _ in
             state.checkPassword()
             state.checkConfirmPassword()
