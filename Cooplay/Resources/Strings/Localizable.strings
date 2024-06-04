@@ -32,6 +32,8 @@
 "errors.eventsService.addEvent" = "Не удалось получить событие";
 "errors.authorizationService.changePassword" = "Не удалось сменить пароль";
 "errors.authorizationService.wrongPassword" = "Неверный пароль";
+"errors.authorizationService.emailAlreadyInUse" = "Адрес электронной почты уже используется другой учетной записью";
+"errors.authorizationService.credentialAlreadyInUse" = "Эти учетные данные уже связаны с другой учетной записью пользователя.";
 
 
 // MARK: - Status
@@ -195,8 +197,9 @@
 "account.link.title.google" = "Привязать Google аккаунт";
 "account.link.title.apple" = "Привязать Apple ID";
 "account.link.message" = "Для авторизации в приложении";
-"account.link.success.apple" = "Apple ID успешно привзян";
-"account.link.success.google" = "Google аккаунт успешно привзян";
+"account.link.success.apple" = "Apple ID успешно привязан";
+"account.link.success.google" = "Google аккаунт успешно привязан";
+"account.link.error" = "Не удалось привязать аккаунт";
 "account.unlink.title.google" = "Отвязать Google аккаунт";
 "account.unlink.title.apple" = "Отвязать Apple ID";
 "account.unlink.success.apple" = "Apple ID успешно отвязан";

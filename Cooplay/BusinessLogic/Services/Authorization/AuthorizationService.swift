@@ -27,6 +27,8 @@ enum AuthorizationServiceError: Error {
     case changePasswordError
     case notHaveRestEmail
     case needRelogin
+    case emailAlreadyInUse
+    case credentialAlreadyInUse
     case unhandled(error: Error)
 }
 
@@ -40,6 +42,8 @@ extension AuthorizationServiceError: LocalizedError {
         case .changePasswordError: return Localizable.errorsAuthorizationServiceChangePassword()
         case .notHaveRestEmail: return nil
         case .needRelogin: return nil
+        case .emailAlreadyInUse: return Localizable.errorsAuthorizationServiceEmailAlreadyInUse()
+        case .credentialAlreadyInUse: return Localizable.errorsAuthorizationServiceCredentialAlreadyInUse()
         case .unhandled(let error): return error.localizedDescription
         }
     }
@@ -140,6 +144,16 @@ final class AuthorizationService {
             let googleCreds = try await getGoogleCredential()
             let result = try await currentUser.reauthenticate(with: googleCreds)
             return result.user
+        }
+    }
+    
+    private func handleLinkError(_ error: Error) -> AuthorizationServiceError {
+        if (error as NSError).code == AuthErrorCode.emailAlreadyInUse.rawValue {
+            return .emailAlreadyInUse
+        } else if (error as NSError).code == AuthErrorCode.credentialAlreadyInUse.rawValue {
+            return .credentialAlreadyInUse
+        } else {
+            return .unhandled(error: error)
         }
     }
 }
@@ -285,7 +299,11 @@ extension AuthorizationService: AuthorizationServiceType {
             throw AuthorizationServiceError.unknownError
         }
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: result.user.accessToken.tokenString)
-        try await user.link(with: credential)
+        do {
+            try await user.link(with: credential)
+        } catch {
+            throw handleLinkError(error)
+        }
     }
     
     func linkAppleProvider(creds: ASAuthorizationAppleIDCredential, nonce: String) async throws {
@@ -298,7 +316,11 @@ extension AuthorizationService: AuthorizationServiceType {
         }
         
         let credential = OAuthProvider.credential(withProviderID: AuthProvider.apple.rawValue, idToken: idTokenString, rawNonce: nonce)
-        try await user.link(with: credential)
+        do {
+            try await user.link(with: credential)
+        } catch {
+            throw handleLinkError(error)
+        }
     }
     
     func addPassword(_ password: String, email: String, provider: ReauthProvider?) async throws {

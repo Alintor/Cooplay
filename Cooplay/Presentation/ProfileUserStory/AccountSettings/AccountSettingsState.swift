@@ -56,6 +56,25 @@ final class AccountSettingsState: ObservableObject {
         providers = authorizationService.getUserProviders()
     }
     
+    @MainActor private func handleError(_ error: Error) {
+        showProgress = false
+        guard let serviceError = error as? AuthorizationServiceError else {
+            store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkError(), type: .networkError)))
+            return
+        }
+        
+        switch serviceError {
+        case .emailAlreadyInUse, .credentialAlreadyInUse:
+            store.dispatch(.showNotificationBanner(.init(
+                title: Localizable.accountLinkError(),
+                message: serviceError.localizedDescription,
+                type: .networkError
+            )))
+        default:
+            store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkError(), type: .networkError)))
+        }
+    }
+    
     func linkGoogleAccount() {
         showProgress = true
         Task {
@@ -65,7 +84,7 @@ final class AccountSettingsState: ObservableObject {
                 await checkProviders()
                 store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessGoogle(), type: .success)))
             } catch {
-                await hideProgress()
+                await handleError(error)
             }
         }
     }
@@ -80,7 +99,7 @@ final class AccountSettingsState: ObservableObject {
                 await checkProviders()
                 store.dispatch(.showNotificationBanner(.init(title: Localizable.accountLinkSuccessApple(), type: .success)))
             } catch {
-                await hideProgress()
+                await handleError(error)
             }
         }
     }

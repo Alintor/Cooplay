@@ -852,7 +852,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 232 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 235 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -862,7 +862,7 @@ struct R: Rswift.Validatable {
       static let registrationPasswordSymbolsCountLabelTitle = Rswift.StringResource(key: "registration.passwordSymbolsCountLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Apple ID успешно отвязан
       static let accountUnlinkSuccessApple = Rswift.StringResource(key: "account.unlink.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Apple ID успешно привзян
+      /// Value: Apple ID успешно привязан
       static let accountLinkSuccessApple = Rswift.StringResource(key: "account.link.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let addPasswordEmailPlaceholder = Rswift.StringResource(key: "addPassword.email.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -880,7 +880,7 @@ struct R: Rswift.Validatable {
       static let arkanoidLose1Message = Rswift.StringResource(key: "arkanoid.lose.1.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Google аккаунт успешно отвязан
       static let accountUnlinkSuccessGoogle = Rswift.StringResource(key: "account.unlink.success.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Google аккаунт успешно привзян
+      /// Value: Google аккаунт успешно привязан
       static let accountLinkSuccessGoogle = Rswift.StringResource(key: "account.link.success.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -888,6 +888,8 @@ struct R: Rswift.Validatable {
       static let arkanoidWin4Message = Rswift.StringResource(key: "arkanoid.win.4.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: YOU DIED
       static let arkanoidLose4Message = Rswift.StringResource(key: "arkanoid.lose.4.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Адрес электронной почты уже используется другой учетной записью
+      static let errorsAuthorizationServiceEmailAlreadyInUse = Rswift.StringResource(key: "errors.authorizationService.emailAlreadyInUse", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Аккаунт
       static let profileSettingsAccountTitle = Rswift.StringResource(key: "profileSettings.account.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Аккаунт уже существует
@@ -1062,6 +1064,8 @@ struct R: Rswift.Validatable {
       static let errorsUserServiceFetchProfile = Rswift.StringResource(key: "errors.userService.fetchProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось получить событие
       static let errorsEventsServiceAddEvent = Rswift.StringResource(key: "errors.eventsService.addEvent", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не удалось привязать аккаунт
+      static let accountLinkError = Rswift.StringResource(key: "account.link.error", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось сбросить пароль
       static let resetPasswordResetFailure = Rswift.StringResource(key: "resetPassword.resetFailure", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось сделать лидером
@@ -1316,6 +1320,8 @@ struct R: Rswift.Validatable {
       static let searchGameSectionsOfften = Rswift.StringResource(key: "searchGame.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
       static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Эти учетные данные уже связаны с другой учетной записью пользователя.
+      static let errorsAuthorizationServiceCredentialAlreadyInUse = Rswift.StringResource(key: "errors.authorizationService.credentialAlreadyInUse", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: или
       static let authorizationMenuOr = Rswift.StringResource(key: "authorizationMenu.or", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
@@ -1339,7 +1345,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("account.unlink.success.apple", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Apple ID успешно привзян
+      /// Value: Apple ID успешно привязан
       static func accountLinkSuccessApple(_: Void = ()) -> String {
         return NSLocalizedString("account.link.success.apple", bundle: R.hostingBundle, comment: "")
       }
@@ -1384,7 +1390,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("account.unlink.success.google", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Google аккаунт успешно привзян
+      /// Value: Google аккаунт успешно привязан
       static func accountLinkSuccessGoogle(_: Void = ()) -> String {
         return NSLocalizedString("account.link.success.google", bundle: R.hostingBundle, comment: "")
       }
@@ -1402,6 +1408,11 @@ struct R: Rswift.Validatable {
       /// Value: YOU DIED
       static func arkanoidLose4Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.lose.4.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Адрес электронной почты уже используется другой учетной записью
+      static func errorsAuthorizationServiceEmailAlreadyInUse(_: Void = ()) -> String {
+        return NSLocalizedString("errors.authorizationService.emailAlreadyInUse", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Аккаунт
@@ -1837,6 +1848,11 @@ struct R: Rswift.Validatable {
       /// Value: Не удалось получить событие
       static func errorsEventsServiceAddEvent(_: Void = ()) -> String {
         return NSLocalizedString("errors.eventsService.addEvent", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не удалось привязать аккаунт
+      static func accountLinkError(_: Void = ()) -> String {
+        return NSLocalizedString("account.link.error", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не удалось сбросить пароль
@@ -2472,6 +2488,11 @@ struct R: Rswift.Validatable {
       /// Value: Частые участники
       static func searchMembersSectionsOfften(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.sections.offten", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Эти учетные данные уже связаны с другой учетной записью пользователя.
+      static func errorsAuthorizationServiceCredentialAlreadyInUse(_: Void = ()) -> String {
+        return NSLocalizedString("errors.authorizationService.credentialAlreadyInUse", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: или
