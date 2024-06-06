@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 final class ReactionsContextState: ObservableObject {
     
@@ -43,10 +44,14 @@ struct EventDetailsView: View {
                                 }
                                 if offset <= 0 && state.modeState.isEditMode { canContinueOffset = true }
                             }
-                            .padding(EdgeInsets(top: 64, leading: 16, bottom: 24, trailing: 16))
+                            .padding(EdgeInsets(top: 64, leading: 16, bottom: 8, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
+                        if state.needShowDateSelection {
+                            dateSelector
+                                .padding(.horizontal, 16)
+                        }
                         EventDetailsAddMemberView()
-                            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                            .padding(EdgeInsets(top: 24, leading: 16, bottom: 8, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
                             .onTapGesture {
                                 state.showAddMembersSheet = true
@@ -127,10 +132,12 @@ struct EventDetailsView: View {
         .animation(.customTransition, value: state.event)
         .animation(.customTransition, value: state.modeState)
         .animation(.customTransition, value: showStatusContextView)
+        .animation(.customTransition, value: state.needShowDateSelection)
         .animation(.customTransition, value: showHeader)
     }
     
     // MARK: - Subviews
+    // MARK: - OwnerView
     
     var ownerView: some View {
         VStack(spacing: 0) {
@@ -157,6 +164,8 @@ struct EventDetailsView: View {
                 .ignoresSafeArea()
         }
     }
+    
+    // MARK: - Toolbar
     
     var toolBar: some View {
         ZStack {
@@ -221,6 +230,8 @@ struct EventDetailsView: View {
         }
     }
     
+    // MARK: - TitleView
+    
     var titleView: some View {
         VStack(spacing: 2) {
             Text(state.event.game.name)
@@ -234,5 +245,40 @@ struct EventDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .matchedGeometryEffect(id: MatchedAnimations.eventDate(state.event.id).name, in: namespace.id)
         }
+    }
+    
+    // MARK: - DateSelector
+    
+    var dateSelector: some View {
+        VStack {
+            HStack {
+                Button(Localizable.commonCancel()) {
+                    state.needShowDateSelection = false
+                }
+                .foregroundStyle(Color(.actionAccent))
+                .font(.system(size: 17))
+                .padding(.top, 12)
+                .padding(.leading, 16)
+                Spacer()
+                Button(Localizable.commonDone()) {
+                    state.changeDate()
+                    state.changeEditMode()
+                }
+                .foregroundStyle(Color(.actionAccent))
+                .font(.system(size: 17))
+                .padding(.top, 12)
+                .padding(.trailing, 16)
+            }
+            DatePicker(
+                "",
+                selection: $state.newDate,
+                in: .init(uncheckedBounds: (Date(), Date() + 7.days)),
+                displayedComponents: [.date, .hourAndMinute]
+            )
+            .datePickerStyle(.wheel)
+            .padding(.horizontal)
+        }
+        .background(Rectangle().foregroundColor(Color(.block)))
+        .clipShape(.rect(cornerRadius: 16, style: .continuous))
     }
 }

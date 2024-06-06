@@ -48,7 +48,7 @@ struct EventChangeDateContextView<Content: View>: View {
                         cancelHandler: { close() },
                         confirmHandler: nil,
                         dateHandler: { date in
-                            state.changeDate(date)
+                            //state.changeDate(date)
                             close()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 state.changeEditMode()

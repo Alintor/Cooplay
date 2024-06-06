@@ -11,12 +11,9 @@ import SwiftUI
 struct EventDetailsEditInfoView: View {
     
     @EnvironmentObject var state: EventDetailsState
-    @EnvironmentObject var namespace: NamespaceWrapper
-    @State var showChangeDatesContext = false
-    @State var dateButtonRect: CGRect = .zero
     
     var body: some View {
-        VStack(spacing: 8) {
+        LazyVStack(spacing: 8) {
             HStack {
                 Text(state.event.game.name)
                     .font(.system(size: 17, weight: .regular))
@@ -32,22 +29,18 @@ struct EventDetailsEditInfoView: View {
                     .padding(.trailing, 16)
             }
             .background(Rectangle().foregroundColor(Color(.block)))
-            .cornerRadius(12)
+            .clipShape(.rect(cornerRadius: 16, style: .continuous))
             .onTapGesture {
                 state.showChangeGameSheet = true
             }
-            
-            dateButton
-                .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile), handler: { dateButtonRect = $0 })
-            .onTapGesture {
-                showChangeDatesContext = true
-            }
-        }
-        .overlayModal(isPresented: $showChangeDatesContext) {
-            EventChangeDateContextView(showDateContext: $showChangeDatesContext, targetRect: $dateButtonRect) {
+            if !state.needShowDateSelection {
                 dateButton
+                    .onTapGesture {
+                        state.showDateSelection()
+                    }
             }
         }
+        .animation(.customTransition, value: state.needShowDateSelection)
     }
     
     var dateButton: some View {
@@ -66,7 +59,7 @@ struct EventDetailsEditInfoView: View {
                 .padding(.trailing, 16)
         }
         .background(Rectangle().foregroundColor(Color(.block)))
-        .cornerRadius(12)
+        .clipShape(.rect(cornerRadius: 16, style: .continuous))
     }
 }
 

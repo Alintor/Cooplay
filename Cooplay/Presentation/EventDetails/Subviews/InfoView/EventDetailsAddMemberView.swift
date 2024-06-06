@@ -28,6 +28,6 @@ struct EventDetailsAddMemberView: View {
             Spacer(minLength: 4)
         }
         .background(Rectangle().foregroundColor(Color(R.color.block.name)))
-        .cornerRadius(12)
+        .clipShape(.rect(cornerRadius: 16, style: .continuous))
     }
 }

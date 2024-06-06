@@ -29,8 +29,10 @@ class EventDetailsState: ObservableObject {
     @Published var event: Event
     @Published var modeState: ModeState
     @Published var eventDetailsSize: CGSize = .zero
+    @Published var needShowDateSelection = false
     @Published var showChangeGameSheet = false
     @Published var showAddMembersSheet = false
+    @Published var newDate: Date
     var members: [User] {
         event.members
         .sorted(by: { $0.name < $1.name })
@@ -44,6 +46,7 @@ class EventDetailsState: ObservableObject {
         self.event = event
         self.defaultsStorage = defaultsStorage
         self.modeState = event.me.isOwner == true ? .owner : .member
+        self.newDate = event.date
         store.state
             .map { $0.events.activeEvent }
             .replaceNil(with: event)
@@ -78,10 +81,16 @@ class EventDetailsState: ObservableObject {
             modeState = .edit
         case .edit:
             modeState = event.me.isOwner == true ? .owner : .member
+            needShowDateSelection = false
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             Haptic.play(style: .medium)
         }
+    }
+    
+    func showDateSelection() {
+        newDate = event.date
+        needShowDateSelection = true
     }
     
     func close() {
@@ -98,10 +107,10 @@ class EventDetailsState: ObservableObject {
         store.dispatch(.changeGame(game, event: event))
     }
     
-    func changeDate(_ date: Date) {
-        guard date != event.date else { return }
+    func changeDate() {
+        guard newDate != event.date else { return }
         
-        store.dispatch(.changeDate(date, event: event))
+        store.dispatch(.changeDate(newDate, event: event))
     }
     
     func addMembers(_ members: [User]) {
