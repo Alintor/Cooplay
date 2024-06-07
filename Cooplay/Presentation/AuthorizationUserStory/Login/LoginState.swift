@@ -38,7 +38,7 @@ final class LoginState: ObservableObject {
         if isSuccess {
             store.dispatch(.successAuthentication)
         } else {
-            passwordError = .text(message: Localizable.authorizationErrorPasswordWrong())
+            passwordError = .text(message: Localizable.loginErrorPasswordWrong())
         }
     }
     
@@ -62,8 +62,8 @@ final class LoginState: ObservableObject {
             do {
                 try await authorizationService.sendResetPasswordEmail(email)
                 store.dispatch(.showNotificationBanner(.init(
-                    title: Localizable.authorizationResetPasswordTitle(),
-                    message: Localizable.authorizationResetPasswordMessage(email),
+                    title: Localizable.loginResetPasswordTitle(),
+                    message: Localizable.loginResetPasswordMessage(email),
                     type: .success
                 )))
             } catch {

@@ -26,7 +26,7 @@ struct LoginView: View {
             Spacer()
             if focusedField == nil {
                 HStack {
-                    Text(Localizable.authorizationTitle())
+                    Text(Localizable.loginTitle())
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundStyle(Color(.textPrimary))
                         .matchedGeometryEffect(id: Constants.navigationTitleEffectId, in: namespace.id)
@@ -36,7 +36,7 @@ struct LoginView: View {
             }
             TextFieldView(
                 text: $state.email,
-                placeholder: Localizable.authorizationEmailTextFieldPlaceholder(),
+                placeholder: Localizable.loginEmailPlaceholder(),
                 keyboardType: .emailAddress,
                 contentType: .emailAddress,
                 error: $state.emailError
@@ -48,7 +48,7 @@ struct LoginView: View {
             }
             TextFieldView(
                 text: $state.password,
-                placeholder: Localizable.authorizationPasswordTextFieldPlaceholder(),
+                placeholder: Localizable.loginPasswordPlaceholder(),
                 contentType: .password,
                 isSecured: true,
                 error: $state.passwordError
@@ -62,7 +62,7 @@ struct LoginView: View {
             }
             HStack {
                 Spacer()
-                Button(Localizable.authorizationRecoveryPasswordButtonTitle()) {
+                Button(Localizable.loginRecoveryPasswordButton()) {
                     focusedField = nil
                     state.sendResetEmail()
                 }
@@ -72,7 +72,7 @@ struct LoginView: View {
                 .opacity(state.email.isEmail ? 1 : 0.5)
             }
             .padding(.bottom, 32)
-            MainActionButton(Localizable.authorizationActionButtonTitle(), isDisabled: !state.isReady) {
+            MainActionButton(Localizable.loginActionButton(), isDisabled: !state.isReady) {
                 focusedField = nil
                 state.tryLogin()
             }
@@ -80,10 +80,10 @@ struct LoginView: View {
             Spacer()
             HStack(spacing: 8) {
                 Spacer()
-                Text(Localizable.authorizationRegisterMessage())
+                Text(Localizable.loginRegisterMessage())
                     .font(.system(size: 20))
                     .foregroundStyle(Color(.textPrimary))
-                Button(Localizable.authorizationMenuRegister()) {
+                Button(Localizable.loginRegisterMessageButton()) {
                     focusedField = nil
                     coordinator.openRegister(email: state.email)
                 }
@@ -105,7 +105,7 @@ struct LoginView: View {
             HStack{
                 Spacer()
                 if focusedField != nil {
-                    TitleView(text: Localizable.authorizationTitle())
+                    TitleView(text: Localizable.loginTitle())
                         .matchedGeometryEffect(id: Constants.navigationTitleEffectId, in: namespace.id)
                 }
                 Spacer()

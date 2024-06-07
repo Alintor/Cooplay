@@ -52,11 +52,11 @@ struct StatusContextView: View {
     func itemView(_ status: User.Status) -> some View {
         VStack(spacing: 0) {
             HStack {
-                Text(status.contextTitle(event))
+                Text(status.contextTitle)
                     .foregroundStyle(status.titleColor)
                     .font(.system(size: 20))
                 Spacer()
-                status.contextIcon
+                status.icon
                     .foregroundStyle(status.iconColor)
                     .frame(width: 24, height: 24)
             }
@@ -86,7 +86,7 @@ struct StatusContextView: View {
             showTimePanel = true
         case .late:
             if case .late(let minutes) = event.me.status {
-                initialTimeValue = minutes ?? 0
+                initialTimeValue = minutes
             }
             timePanelType = .latness
             showTimePanel = true
@@ -124,36 +124,23 @@ extension User.Status {
         case .unknown: return 8
         }
     }
-    
-    
-    func contextTitle(_ event: Event) -> String {
+        
+    var titleColor: Color {
         switch self {
-        case .suggestDate:
-            return Localizable.statusSuggestDateShort()
+        case .declined:
+            return Color(.red)
         default:
-            return self.title(event: event)
+            return Color(.textPrimary)
         }
     }
         
-        var contextIcon: Image {
-            Image(uiImage: self.icon()!)
+    var iconColor: Color {
+        switch self {
+        case .declined:
+            return Color(.red)
+        default:
+            return Color(.textPrimary)
         }
-        
-        var titleColor: Color {
-            switch self {
-            case .declined:
-                return Color(.red)
-            default:
-                return Color(.textPrimary)
-            }
-        }
-        
-        var iconColor: Color {
-            switch self {
-            case .declined:
-                return Color(.red)
-            default:
-                return Color(.textPrimary)
-            }
-        }
+    }
+    
 }

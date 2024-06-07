@@ -43,13 +43,11 @@ struct EventStatusView: View {
                 Circle()
                     .foregroundColor(viewModel.color)
                     .frame(width: 24, height: 24, alignment: .center)
-                if let icon = viewModel.icon {
-                    icon
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color(R.color.background.name))
-                        .frame(width: 24, height: 24, alignment: .center)
-                }
+                viewModel.icon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color(R.color.background.name))
+                    .frame(width: 24, height: 24, alignment: .center)
             }
             .padding(.trailing, 14)
         }

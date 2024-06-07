@@ -22,7 +22,7 @@ struct EventDetailsAddMemberView: View {
             }
             .frame(width: 32, height: 32, alignment: .center)
             .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 4))
-            Text(R.string.localizable.eventDetailsAddMemberLabelTitle())
+            Text(Localizable.eventDetailsAddMember())
                 .font(.system(size: 17, weight: .regular))
                 .foregroundColor(Color(R.color.actionAccent.name))
             Spacer(minLength: 4)

@@ -25,11 +25,11 @@ enum PasswordValidation: Identifiable {
     var title: String {
         switch self {
         case .minLength:
-            Localizable.registrationPasswordSymbolsCountLabelTitle(GlobalConstant.Format.passwordMinLength)
+            Localizable.passwordValidationSymbolsCount(GlobalConstant.Format.passwordMinLength)
         case .capitalLetter:
-            Localizable.registrationPasswordBigSymbolLabelTitle()
+            Localizable.passwordValidationBigSymbol()
         case .digit:
-            Localizable.registrationPasswordNumericSymbolsLabelTitle()
+            Localizable.passwordValidationNumericSymbols()
         }
     }
     

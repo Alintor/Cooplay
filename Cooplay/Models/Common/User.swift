@@ -34,7 +34,7 @@ struct User: Codable {
         case accepted,
         ontime,
         maybe,
-        late(minutes: Int?),
+        late(minutes: Int),
         suggestDate(minutes: Int),
         declined,
         invited,
@@ -45,7 +45,7 @@ struct User: Codable {
         }
         
         static var confirmationStatuses: [Status] {
-            return [.ontime, .late(minutes: nil), .declined]
+            return [.ontime, .late(minutes: 0), .declined]
         }
     }
     

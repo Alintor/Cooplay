@@ -78,7 +78,7 @@ final class AddPasswordState: ObservableObject {
         
         confirmPasswordError = .text(
             message: newPassword != confirmPassword
-                ? Localizable.registrationErrorPasswordConfirmWrong()
+                ? Localizable.registerErrorPasswordConfirmWrong()
                 : nil
         )
     }

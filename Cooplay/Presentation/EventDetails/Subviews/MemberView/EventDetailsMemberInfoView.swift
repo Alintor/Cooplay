@@ -63,13 +63,11 @@ struct EventDetailsMemberInfoView: View {
                 Circle()
                     .foregroundColor(viewModel.statusColor)
                     .frame(width: 24, height: 24, alignment: .center)
-                if let icon = viewModel.statusIcon {
-                    icon
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color(R.color.background.name))
-                        .frame(width: 24, height: 24, alignment: .center)
-                }
+                viewModel.statusIcon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color(R.color.background.name))
+                    .frame(width: 24, height: 24, alignment: .center)
             }.padding(.trailing, 14)
         }
         .background(Color(R.color.block.name))

@@ -98,15 +98,10 @@ class TimeCarouselPanel: UIView {
         statusHandler?(status)
         dateHandler?(date)
     }
-}
-
-extension TimeCarouselPanel: MenuPanelItem {
-    
-    var panelView: UIView {
-        return self
-    }
     
     func loadData() {
         timeCarouselView.reloadData()
     }
+
 }
+

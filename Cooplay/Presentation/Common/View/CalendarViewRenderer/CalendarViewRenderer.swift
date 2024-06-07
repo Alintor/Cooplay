@@ -224,7 +224,7 @@ extension CalendarViewRenderer: UICalendarSelectionSingleDateDelegate {
         self.selectedDate = date
         let dateString = date.toString(.custom("d MMMM"))
         UIView.performWithoutAnimation {
-            self.confirmButton.setTitle(R.string.localizable.commonChoose(dateString), for: .normal)
+            self.confirmButton.setTitle(Localizable.calendarChooseAction(dateString), for: .normal)
             self.confirmButton.layoutIfNeeded()
         }
     }

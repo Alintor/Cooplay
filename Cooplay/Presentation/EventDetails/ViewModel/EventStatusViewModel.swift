@@ -13,14 +13,14 @@ import SwiftDate
 struct EventStatusViewModel {
     
     var title: String
-    var icon: Image?
+    var icon: Image
     var color: Color
     var avatarViewModel: AvatarViewModel
     var detailsViewModel: StatusDetailsViewModel?
     
     init(with event: Event) {
-        icon = event.me.status.icon().flatMap({ Image(uiImage: $0) })
-        color = Color(event.me.status.color)
+        icon = event.me.status.icon
+        color = event.me.status.color
         switch event.me.status {
         case .suggestDate(let minutes):
             let newDate = event.date + minutes.minutes
@@ -29,10 +29,10 @@ struct EventStatusViewModel {
             break
         }
         if event.needConfirm {
-            title = R.string.localizable.statusConfirmation()
+            title = Localizable.statusConfirmation()
             detailsViewModel = nil
         } else {
-            title = event.me.status.title(event: event)
+            title = event.me.status.title
         }
         avatarViewModel = AvatarViewModel(with: event.me)
     }

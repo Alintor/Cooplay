@@ -60,7 +60,7 @@ final class RegisterState: ObservableObject {
         
         confirmPasswordError = .text(
             message: password != confirmPassword 
-                ? Localizable.registrationErrorPasswordConfirmWrong()
+                ? Localizable.registerErrorPasswordConfirmWrong()
                 : nil
         )
     }

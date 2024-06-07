@@ -33,7 +33,7 @@ struct InvitedEventView: View {
                 state.changeStatus(.accepted, for: event)
                 Haptic.play(style: .soft)
             } label: {
-                Text(Localizable.statusAcceptedShort())
+                Text(Localizable.statusContextAccepted())
                     .font(.system(size: 20))
                     .foregroundStyle(Color(.block))
                     .padding(.vertical, 16)

@@ -189,7 +189,7 @@ final class EventService {
             "members.\(event.me.id).reactions": FieldValue.delete()
         ]
         if needClearAmount || event.me.stateAmount != nil {
-            data["members.\(event.me.id).lateness"] = event.me.stateAmount ?? FieldValue.delete()
+            data["members.\(event.me.id).stateAmount"] = event.me.stateAmount ?? FieldValue.delete()
         }
         try await firestore.collection("Events").document(event.id).updateData(data)
         firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
@@ -268,7 +268,7 @@ final class EventService {
         for member in members {
             membersData["members.\(member.id).state"] = User.State.invited.rawValue
             if member.stateAmount != nil {
-                membersData["members.\(member.id).lateness"] = FieldValue.delete()
+                membersData["members.\(member.id).stateAmount"] = FieldValue.delete()
             }
             if member.reactions != nil {
                 membersData["members.\(member.id).reactions"] = FieldValue.delete()

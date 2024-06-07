@@ -11,7 +11,6 @@
 // MARK: - Common
 "common.cancel" = "Отмена";
 "common.done" = "Готово";
-"common.choose" = "Выбрать %@";
 "common.delete" = "Удалить";
 
 // MARK: - Errors
@@ -37,24 +36,23 @@
 
 
 // MARK: - Status
-"status.accepted.short" = "Пойду";
-"status.ontime.short" = "Вовремя";
-"status.maybe.short" = "Возможно";
-"status.late.short" = "Опоздаю";
-"status.suggestDate.short" = "Предложить время";
-"status.declined.short" = "Не пойду";
-"status.invited.short" = "Приглашен";
-"status.unknown.short" = "Неизвестный";
-"status.accepted.full" = "Пойду";
-"status.ontime.full" = "Приду вовремя";
-"status.maybe.full" = "Возможно, пойду";
-"status.late.full" = "Опоздаю на %d мин";
-"status.suggestDate.full" = "Предлагаю в";
-"status.declined.full" = "Не пойду";
-"status.invited.full" = "Приглашен";
-"status.unknown.full" = "Неизвестный статус";
+"status.accepted" = "Пойду";
+"status.ontime" = "Приду вовремя";
+"status.maybe" = "Возможно, пойду";
+"status.late" = "Опоздаю на %d мин";
+"status.suggestDate" = "Предлагаю в";
+"status.declined" = "Не пойду";
+"status.invited" = "Приглашен";
+"status.unknown" = "Неизвестный статус";
 "status.confirmation" = "Подтвердить статус";
 "status.fullDetails" = "%@ в %@";
+
+"status.context.accepted" = "Пойду";
+"status.context.ontime" = "Приду вовремя";
+"status.context.maybe" = "Возможно, пойду";
+"status.context.late" = "Опоздаю";
+"status.context.suggestDate" = "Предложить время";
+"status.context.declined" = "Не пойду";
 
 // MARK: - Notifications
 "notifications.statusRemind.title" = "Подтвердите свой статус";
@@ -68,6 +66,10 @@
 "timeCarouselPanel.change.title" = "Изменить";
 "timeCarouselPanel.latness.value" = "%@ мин";
 
+// MARK: - Calendar
+
+"calendar.chooseAction" = "Выбрать %@";
+
 //MARK: - LogoSpinner
 "logoSpinner.hint" = "Переместите логотип сюда, чтобы выйти";
 
@@ -76,7 +78,6 @@
 "eventMemberMenuItem.delete" = "Исключить";
 
 // MARK: - Events list
-"eventsList.sections.active" = "Ближайшее событие";
 "eventsList.sections.future" = "Мои события";
 "eventsList.sections.declined" = "Отклоненные события";
 "eventsList.sections.invited" = "Приглашения";
@@ -86,9 +87,7 @@
 "eventsList.declinedEvents.hide" = "Свернуть";
 
 // MARK: - Events Details
-"eventDetails.cell.lateness" = "Опоздаю на %@ мин";
-"eventDetails.cell.suggestDate" = "Предлагаю \"%@\"";
-"eventDetails.addMemberLabel.title" = "Добавить участников";
+"eventDetails.addMember" = "Добавить участников";
 "eventDetails.edit.title" = "Редактирование";
 "eventDetails.deleteAlert.title" = "Вы действительно хотите удалить данное событие?";
 
@@ -127,46 +126,49 @@
 "searchMembers.emptySate.title" = "Ищите участников по нику";
 "searchMembers.emptySate.description" = "Или пригласите по ссылке";
 
-// MARK: - Intro
-"intro.authButton.title" = "Войти";
-"intro.registerButton.title" = "Создать аккаунт";
+// MARK: - AuthorizationMenu
 
-// MARK: - Authorization
-"authorization.title" = "Вход";
-"authorization.emailTextField.placeholder" = "Email";
-"authorization.passwordTextField.placeholder" = "Пароль";
-"authorization.recoveryPasswordButton.title" = "Забыли пароль?";
-"authorization.actionButton.title" = "Войти";
-"authorization.registerMessage" = "Нет аккаунта?";
-"authorization.registerMessage.highlight" = "Создать аккаунт";
-"authorization.error.email.incorrect" = "Email введён не верно";
-"authorization.error.email.notExist" = "Аккаунта на данном Email не существует";
-"authorization.error.password.wrong" = "Неверный пароль";
-"authorization.resetPassword.title" = "Сброс пароля";
-"authorization.resetPassword.message" = "На почту %@ отправлено письмо для подтверждения сброса пароля";
+"authorizationMenu.login" = "Войти по email";
+"authorizationMenu.register" = "Создать аккаунт";
+"authorizationMenu.google" = "Продолжить с Google";
+"authorizationMenu.apple" = "Продолжить с Apple";
+"authorizationMenu.or" = "или";
 
-// MARK: - Registration
-"registration.title" = "Создать аккаунт";
-"registration.emailTextField.placeholder" = "Email";
-"registration.passwordTextField.placeholder" = "Придумайте пароль";
-"registration.passwordConfirmTextField.placeholder" = "Подтвердите пароль";
-"registration.actionButton.title" = "Создать аккаунт";
-"registration.loginMessage" = "Уже есть аккаунт?";
-"registration.loginMessage.highlight" = "Войти";
-"registration.passwordSymbolsCountLabel.title" = "%d символов";
-"registration.passwordBigSymbolLabel.title" = "Большая буква";
-"registration.passwordNumericSymbolsLabel.title" = "Цифра";
-"registration.error.email.incorret" = "Email введён не верно";
-"registration.error.email.alreadyExist" = "Аккаунт уже существует";
-"registration.error.passwordConfirm.wrong" = "Пароли не совпадают";
+// MARK: - Login
+"login.title" = "Вход";
+"login.emailPlaceholder" = "Email";
+"login.password.placeholder" = "Пароль";
+"login.recoveryPasswordButton" = "Забыли пароль?";
+"login.actionButton" = "Войти";
+"login.registerMessage" = "Нет аккаунта?";
+"login.registerMessage.button" = "Создать аккаунт";
+"login.error.password.wrong" = "Неверный пароль";
+"login.resetPassword.title" = "Сброс пароля";
+"login.resetPassword.message" = "На почту %@ отправлено письмо для подтверждения сброса пароля";
+
+// MARK: - Register
+"register.title" = "Создать аккаунт";
+"register.emailPlaceholder" = "Email";
+"register.password.placeholder" = "Придумайте пароль";
+"register.passwordConfirm.placeholder" = "Подтвердите пароль";
+"register.actionButton" = "Создать аккаунт";
+"register.loginMessage" = "Уже есть аккаунт?";
+"register.loginMessage.button" = "Войти";
+"register.error.passwordConfirm.wrong" = "Пароли не совпадают";
+
+// MARK: - Password validation
+
+"passwordValidation.symbolsCount" = "%d символов";
+"passwordValidation.bigSymbol" = "Большая буква";
+"passwordValidation.numericSymbols" = "Цифра";
 
 // MARK: - Reset password
 
 "resetPassword.title" = "Сброс пароля";
 "resetPassword.message" = "Введите новый пароль для аккаунта";
-"resetPassword.newPasswordField.placeholder" = "Новый пароль";
-"resetPassword.confirmPasswordField.placeholder" = "Подтверждение пароля";
-"resetPassword.resetButton.title" = "Сбросить пароль";
+"resetPassword.newPassword.placeholder" = "Новый пароль";
+"resetPassword.confirmPassword.placeholder" = "Подтверждение пароля";
+"resetPassword.resetButton" = "Сбросить пароль";
 "resetPassword.expiredView.title" = "Попробуйте сбросить пароль ещё раз";
 "resetPassword.expiredView.message" = "Срок действия запроса на сброс пароля истек, или ссылка уже использована";
 "resetPassword.resetFailure" = "Не удалось сбросить пароль";
@@ -174,10 +176,6 @@
 
 // MARK: - Personalisation
 "personalisation.title" = "Персонализация";
-
-// MARK: - Profile
-"profile.title" = "Профиль";
-"profile.exitButton.title" = "Сменить профиль";
 
 // MARK: - Profile
 "profileSettings.edit.title" = "Редактировать профиль";
@@ -272,7 +270,7 @@
 "changePassword.currentPassword.placeholder" = "Текущий пароль";
 "changePassword.newPassword.placeholder" = "Новый пароль";
 "changePassword.confirmPassword.placeholder" = "Подтверждение пароля";
-"changePassword.actionButton.title" = "Сохранить новый пароль";
+"changePassword.actionButton" = "Сохранить новый пароль";
 "changePassword.error.passwordConfirm.wrong" = "Пароли не совпадают";
 "changePassword.success.title" = "Пароль успешно изменен";
 
@@ -280,8 +278,8 @@
 
 "addPassword.title" = "Создать пароль";
 "addPassword.email.placeholder" = "Email";
-"addPassword.newPasswordField.placeholder" = "Пароль";
-"addPassword.confirmPasswordField.placeholder" = "Подтверждение пароля";
+"addPassword.newPassword.placeholder" = "Пароль";
+"addPassword.confirmPassword.placeholder" = "Подтверждение пароля";
 "addPassword.create.title" = "Создать пароль";
 "addPassword.success.title" = "Пароль успешно создан";
 "addPassword.alert.apple" = "Для продолжения необходимо повторно авторизоваться через Apple ID";
@@ -291,14 +289,6 @@
 // MARK: - AdditionalReactions
 
 "additionalReactions.title" = "Все реакции";
-
-// MARK: - AuthorizationMenu
-
-"authorizationMenu.login" = "Войти";
-"authorizationMenu.register" = "Создать аккаунт";
-"authorizationMenu.google" = "Продолжить с Google";
-"authorizationMenu.apple" = "Продолжить с Apple";
-"authorizationMenu.or" = "или";
 
 // MARK: - Arkanoid Game
 

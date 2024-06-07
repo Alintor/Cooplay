@@ -40,7 +40,7 @@ struct AddPasswordView: View {
                 }
                 TextFieldView(
                     text: $state.newPassword,
-                    placeholder: Localizable.addPasswordNewPasswordFieldPlaceholder(),
+                    placeholder: Localizable.addPasswordNewPasswordPlaceholder(),
                     contentType: .password,
                     isSecured: true,
                     error: $state.newPasswordError
@@ -52,7 +52,7 @@ struct AddPasswordView: View {
                 }
                 TextFieldView(
                     text: $state.confirmPassword,
-                    placeholder: Localizable.addPasswordConfirmPasswordFieldPlaceholder(),
+                    placeholder: Localizable.addPasswordConfirmPasswordPlaceholder(),
                     contentType: .password,
                     isSecured: true,
                     error: $state.confirmPasswordError

@@ -67,7 +67,7 @@ struct ChangePasswordView: View {
                     
                     state.tryChangePassword()
                 }
-                MainActionButton(Localizable.changePasswordActionButtonTitle(), isDisabled: !state.isReady) {
+                MainActionButton(Localizable.changePasswordActionButton(), isDisabled: !state.isReady) {
                     focusedField = nil
                     state.tryChangePassword()
                 }

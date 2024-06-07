@@ -17,7 +17,7 @@ struct EventDetailsMemberViewModel {
     var name: String
     var status: String
     var statusColor: Color
-    var statusIcon: Image?
+    var statusIcon: Image
     var avatarViewModel: AvatarViewModel
     var isOwner: Bool
     var reactions: [ReactionViewModel]
@@ -27,7 +27,7 @@ struct EventDetailsMemberViewModel {
     init(with member: User, event: Event) {
         self.member = member
         name = member.name
-        status = member.status.title(event: event)
+        status = member.status.title
         switch member.status {
         case .suggestDate(let minutes):
             let newDate = event.date + minutes.minutes
@@ -35,8 +35,8 @@ struct EventDetailsMemberViewModel {
         default:
             break
         }
-        statusColor = Color(member.status.color)
-        statusIcon = member.status.icon(isSmall: false).flatMap({Image(uiImage: $0)})
+        statusColor = member.status.color
+        statusIcon = member.status.icon
         avatarViewModel = AvatarViewModel(with: member)
         isOwner = member.isOwner == true
         reactions = member.reactions.map({ ReactionViewModel.build(reactions: $0, event: event) }) ?? []

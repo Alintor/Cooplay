@@ -46,7 +46,7 @@ struct ResetPasswordView: View {
                 }
                 TextFieldView(
                     text: $state.newPassword,
-                    placeholder: Localizable.resetPasswordNewPasswordFieldPlaceholder(),
+                    placeholder: Localizable.resetPasswordNewPasswordPlaceholder(),
                     contentType: .password,
                     isSecured: true,
                     error: $state.newPasswordError
@@ -58,7 +58,7 @@ struct ResetPasswordView: View {
                 }
                 TextFieldView(
                     text: $state.confirmPassword,
-                    placeholder: Localizable.resetPasswordConfirmPasswordFieldPlaceholder(),
+                    placeholder: Localizable.resetPasswordConfirmPasswordPlaceholder(),
                     contentType: .password,
                     isSecured: true,
                     error: $state.confirmPasswordError
@@ -71,7 +71,7 @@ struct ResetPasswordView: View {
                     
                     state.tryResetPassword()
                 }
-                MainActionButton(Localizable.resetPasswordResetButtonTitle(), isDisabled: !state.isReady) {
+                MainActionButton(Localizable.resetPasswordResetButton(), isDisabled: !state.isReady) {
                     focusedField = nil
                     state.tryResetPassword()
                 }
