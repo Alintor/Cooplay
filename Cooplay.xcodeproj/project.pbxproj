@@ -66,7 +66,6 @@
 		A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AC2345F81A00EE1807 /* Event.swift */; };
 		A82FF2B2234606B700EE1807 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B1234606B700EE1807 /* EventService.swift */; };
 		A82FF2B523460E7900EE1807 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B423460E7900EE1807 /* GlobalConstants.swift */; };
-		A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */; };
 		A82FF2B92346E91D00EE1807 /* EventServiceAssemblyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */; };
 		A82FF2BB2346E96F00EE1807 /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */; };
 		A82FF2C12346F4C500EE1807 /* AvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2C02346F4C500EE1807 /* AvatarView.xib */; };
@@ -393,7 +392,6 @@
 		A82FF2AC2345F81A00EE1807 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A82FF2B1234606B700EE1807 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		A82FF2B423460E7900EE1807 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
-		A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedStorage.swift; sourceTree = "<group>"; };
 		A82FF2B82346E91D00EE1807 /* EventServiceAssemblyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceAssemblyContainer.swift; sourceTree = "<group>"; };
 		A82FF2BA2346E96F00EE1807 /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		A82FF2C02346F4C500EE1807 /* AvatarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarView.xib; sourceTree = "<group>"; };
@@ -1055,7 +1053,6 @@
 				A87CF40B23E03CB7004189D3 /* User */,
 				A87CF40A23E03CAD004189D3 /* Games */,
 				A82FF2B02346068A00EE1807 /* Event */,
-				A82FF2B62346E73100EE1807 /* HardcodedStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2368,7 +2365,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Cooplay/Resources/R.generated.swift",
+				$SRCROOT/Cooplay/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2465,7 +2462,6 @@
 				A87CF41123E03D5C004189D3 /* UserService.swift in Sources */,
 				A82FF2AD2345F81A00EE1807 /* Event.swift in Sources */,
 				A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */,
-				A82FF2B72346E73100EE1807 /* HardcodedStorage.swift in Sources */,
 				A87CF42723E195F7004189D3 /* SkeletonAnimation.swift in Sources */,
 				A82FF2C62346F6AB00EE1807 /* AvatarViewModel.swift in Sources */,
 				A8C0A87C2B19C9F6002E906B /* EmptyStateView.swift in Sources */,

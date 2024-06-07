@@ -852,7 +852,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 235 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 237 localization keys.
     struct localizable {
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1080,6 +1080,10 @@ struct R: Rswift.Validatable {
       static let errorsAuthorizationServiceWrongPassword = Rswift.StringResource(key: "errors.authorizationService.wrongPassword", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Недавние
       static let reactionsSettingsCategory1Title = Rswift.StringResource(key: "reactionsSettings.category.1.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Неизвестный
+      static let statusUnknownShort = Rswift.StringResource(key: "status.unknown.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Неизвестный статус
+      static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Необходимо включить уведомления в настройках устройства
       static let notificationsSettingsPermissionsMessage = Rswift.StringResource(key: "notificationsSettings.permissions.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Нет аккаунта?
@@ -1189,9 +1193,9 @@ struct R: Rswift.Validatable {
       /// Value: Пригласить по ссылке
       static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
-      static let statusUnknownFull = Rswift.StringResource(key: "status.unknown.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let statusInvitedFull = Rswift.StringResource(key: "status.invited.full", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
-      static let statusUnknownShort = Rswift.StringResource(key: "status.unknown.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let statusInvitedShort = Rswift.StringResource(key: "status.invited.short", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашения
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
@@ -1890,6 +1894,16 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("reactionsSettings.category.1.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Неизвестный
+      static func statusUnknownShort(_: Void = ()) -> String {
+        return NSLocalizedString("status.unknown.short", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Неизвестный статус
+      static func statusUnknownFull(_: Void = ()) -> String {
+        return NSLocalizedString("status.unknown.full", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Необходимо включить уведомления в настройках устройства
       static func notificationsSettingsPermissionsMessage(_: Void = ()) -> String {
         return NSLocalizedString("notificationsSettings.permissions.message", bundle: R.hostingBundle, comment: "")
@@ -2161,13 +2175,13 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Приглашен
-      static func statusUnknownFull(_: Void = ()) -> String {
-        return NSLocalizedString("status.unknown.full", bundle: R.hostingBundle, comment: "")
+      static func statusInvitedFull(_: Void = ()) -> String {
+        return NSLocalizedString("status.invited.full", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приглашен
-      static func statusUnknownShort(_: Void = ()) -> String {
-        return NSLocalizedString("status.unknown.short", bundle: R.hostingBundle, comment: "")
+      static func statusInvitedShort(_: Void = ()) -> String {
+        return NSLocalizedString("status.invited.short", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Приглашения

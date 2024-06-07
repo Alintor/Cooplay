@@ -33,12 +33,10 @@ protocol GamesServiceType {
 final class GamesService {
     
     private let provider: APIProviderType?
-    private let storage: HardcodedStorage?
     private let defaultsStorage: DefaultsStorageType?
     
-    init(provider: APIProviderType?, storage: HardcodedStorage?, defaultsStorage: DefaultsStorageType?) {
+    init(provider: APIProviderType?, defaultsStorage: DefaultsStorageType?) {
         self.provider = provider
-        self.storage = storage
         self.defaultsStorage = defaultsStorage
     }
 }

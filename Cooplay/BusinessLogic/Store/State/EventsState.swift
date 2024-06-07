@@ -12,10 +12,10 @@ final class EventsState {
     var activeEvent: Event?
     
     var inventedEvents: [Event] {
-        return events.filter({ $0.me.state == .unknown })
+        return events.filter({ $0.me.state == .invited })
     }
     var acceptedEvents: [Event] {
-        return events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
+        return events.filter({ $0.me.state != .invited && $0.me.state != .declined })
     }
     var declinedEvents: [Event] {
         return events.filter({ $0.me.state == .declined })

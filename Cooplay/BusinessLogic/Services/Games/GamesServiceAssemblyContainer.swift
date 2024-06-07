@@ -15,7 +15,6 @@ final class GamesServiceAssemblyContainer: Assembly {
         container.register(GamesServiceType.self) { r in
             return GamesService(
                 provider: r.resolve(APIProviderType.self),
-                storage: HardcodedStorage(),
                 defaultsStorage: r.resolve(DefaultsStorageType.self)
             )
         }

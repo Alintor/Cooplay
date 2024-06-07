@@ -24,7 +24,7 @@ struct Event: Codable {
     var needConfirm: Bool {
         guard (date - GlobalConstant.eventConfirmPeriodMinutes.minutes) <= Date() else { return false }
         switch self.me.status {
-        case .accepted, .maybe, .suggestDate, .unknown:
+        case .accepted, .maybe, .suggestDate, .unknown, .invited:
             return true
         default:
             return false
@@ -32,7 +32,7 @@ struct Event: Codable {
     }
     
     var isAgreed: Bool {
-        if case .unknown = me.status {
+        if case .invited = me.status {
             return false
         } else {
             return true
@@ -85,10 +85,10 @@ extension Event {
             ),
             date: Date(),
             members: [
-                User(id: "1", name: "Nilo", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil),
-                User(id: "2", name: "Rika", avatarPath: nil, state: .maybe, lateness: nil, isOwner: true, reactions: nil)
+                User(id: "1", name: "Nilo", avatarPath: nil, state: .accepted, stateAmount: nil, isOwner: true, reactions: nil),
+                User(id: "2", name: "Rika", avatarPath: nil, state: .maybe, stateAmount: nil, isOwner: true, reactions: nil)
             ],
-            me: User(id: "3", name: "Alintor", avatarPath: nil, state: .accepted, lateness: nil, isOwner: true, reactions: nil)
+            me: User(id: "3", name: "Alintor", avatarPath: nil, state: .accepted, stateAmount: nil, isOwner: true, reactions: nil)
         )
     }
 }

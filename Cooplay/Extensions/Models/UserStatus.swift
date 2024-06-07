@@ -24,7 +24,7 @@ extension User.Status {
             return R.color.actionAccent()!
         case .declined:
             return R.color.red()!
-        case .unknown:
+        case .unknown, .invited:
             return R.color.grey()!
         }
     }
@@ -43,7 +43,7 @@ extension User.Status {
             return isSmall ? R.image.statusSmallSuggestDate() : R.image.statusNormalSuggestDate()
         case .declined:
             return isSmall ? R.image.statusSmallDeclined() : R.image.statusNormalDeclined()
-        case .unknown:
+        case .unknown, .invited:
             return isSmall ? R.image.statusSmallUnknown() : R.image.statusNormalUnknown()
         }
     }
@@ -64,6 +64,8 @@ extension User.Status {
             return isShort ? newDate.timeDisplayString : R.string.localizable.statusSuggestDateFull()
         case .declined:
             return isShort ? R.string.localizable.statusDeclinedShort() : R.string.localizable.statusDeclinedFull()
+        case .invited:
+            return isShort ? R.string.localizable.statusInvitedShort() : R.string.localizable.statusInvitedFull()
         case .unknown:
             return isShort ? R.string.localizable.statusUnknownShort() : R.string.localizable.statusUnknownFull()
         }

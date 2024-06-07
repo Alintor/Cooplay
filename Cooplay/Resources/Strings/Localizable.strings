@@ -43,14 +43,16 @@
 "status.late.short" = "Опоздаю";
 "status.suggestDate.short" = "Предложить время";
 "status.declined.short" = "Не пойду";
-"status.unknown.short" = "Приглашен";
+"status.invited.short" = "Приглашен";
+"status.unknown.short" = "Неизвестный";
 "status.accepted.full" = "Пойду";
 "status.ontime.full" = "Приду вовремя";
 "status.maybe.full" = "Возможно, пойду";
 "status.late.full" = "Опоздаю на %d мин";
 "status.suggestDate.full" = "Предлагаю в";
 "status.declined.full" = "Не пойду";
-"status.unknown.full" = "Приглашен";
+"status.invited.full" = "Приглашен";
+"status.unknown.full" = "Неизвестный статус";
 "status.confirmation" = "Подтвердить статус";
 "status.fullDetails" = "%@ в %@";
 

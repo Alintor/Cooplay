@@ -14,14 +14,18 @@ struct User: Codable {
     enum State: String, Codable {
         
         case accepted,
+        ontime,
         maybe,
+        late,
+        suggestDate,
         declined,
+        invited,
         unknown
         
         init(from decoder: Decoder) throws {
             self = try State(
                 rawValue: decoder.singleValueContainer().decode(String.self)
-                ) ?? .unknown
+            ) ?? .unknown
         }
     }
     
@@ -33,6 +37,7 @@ struct User: Codable {
         late(minutes: Int?),
         suggestDate(minutes: Int),
         declined,
+        invited,
         unknown
         
         static var agreementStatuses: [Status] {
@@ -48,7 +53,7 @@ struct User: Codable {
     var name: String
     let avatarPath: String?
     var state: State
-    var lateness: Int?
+    var stateAmount: Int?
     var isOwner: Bool?
     var reactions: [String: Reaction]?
     
@@ -60,53 +65,53 @@ extension User {
         get {
             switch state {
             case .accepted:
-                if let lateness = lateness {
-                    if lateness == 0 {
-                        return .ontime
-                    } else {
-                        return .late(minutes: lateness)
-                    }
-                } else {
-                    return .accepted
-                }
-            case .maybe:
-                if let lateness = lateness {
-                    if lateness == 0 {
-                        return .maybe
-                    } else {
-                        return .suggestDate(minutes: lateness)
-                    }
+                return .accepted
+            case .ontime:
+                return .ontime
+            case .late:
+                if let minutes = stateAmount, minutes != 0 {
+                    return .late(minutes: minutes)
                 } else {
                     return .maybe
                 }
-            case .declined: return.declined
+            case .suggestDate:
+                if let minutes = stateAmount {
+                    return .suggestDate(minutes: minutes)
+                } else {
+                    return .maybe
+                }
+            case .maybe: return .maybe
+            case .declined: return .declined
+            case .invited: return .invited
             case .unknown: return .unknown
             }
         }
-        
         set {
             switch newValue {
             case .accepted:
                 state = .accepted
-                lateness = nil
+                stateAmount = nil
             case .ontime:
-                state = .accepted
-                lateness = 0
+                state = .ontime
+                stateAmount = 0
             case .maybe:
                 state = .maybe
-                lateness = nil
+                stateAmount = nil
             case .late(let minutes):
-                state = .accepted
-                lateness = minutes
+                state = .late
+                stateAmount = minutes
             case .suggestDate(let minutes):
-                state = .maybe
-                lateness = minutes
+                state = .suggestDate
+                stateAmount = minutes
             case .declined:
                 state = .declined
-                lateness = nil
+                stateAmount = nil
+            case .invited:
+                state = .invited
+                stateAmount = nil
             case .unknown:
                 state = .unknown
-                lateness = nil
+                stateAmount = nil
             }
         }
     }
@@ -127,7 +132,7 @@ extension User {
         && self.name == user.name
         && self.avatarPath == user.avatarPath
         && self.state == user.state
-        && self.lateness == user.lateness
+        && self.stateAmount == user.stateAmount
         && self.isOwner == user.isOwner
         && self.reactions == user.reactions
     }

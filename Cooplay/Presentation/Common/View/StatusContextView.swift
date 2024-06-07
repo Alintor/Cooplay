@@ -120,7 +120,8 @@ extension User.Status {
         case .late: return 4
         case .suggestDate: return 5
         case .declined: return 6
-        case .unknown: return 7
+        case .invited: return 7
+        case .unknown: return 8
         }
     }
     

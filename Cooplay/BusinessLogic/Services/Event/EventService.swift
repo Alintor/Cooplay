@@ -104,7 +104,7 @@ final class EventService {
         func createEvent(user: User) {
             var members = request.members?.map({ user -> User in
                 var member = user
-                member.status = .unknown
+                member.status = .invited
                 member.isOwner = false
                 member.reactions = nil
                 return member
@@ -138,7 +138,7 @@ final class EventService {
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
         activeEventListener = firestore.collection("Events").document(id).addSnapshotListener { (snapshot, error) in
-            if let error = error {
+            if let _ = error {
                 completion(.failure(.fetchActiveEvent))
                 return
             }
@@ -165,7 +165,7 @@ final class EventService {
             throw EventServiceError.addEvent
         }
         var user = profile.user
-        user.status = .unknown
+        user.status = .invited
         user.isOwner = false
         guard let userDictionary = user.dictionary else { throw EventServiceError.addEvent }
         try await firestore.collection("Events").document(eventId).updateData([
@@ -183,13 +183,13 @@ final class EventService {
         }
     }
     
-    private func changeStatus(for event: Event, needClearLateness: Bool) async throws {
+    private func changeStatus(for event: Event, needClearAmount: Bool) async throws {
         var data: [AnyHashable: Any] = [
             "members.\(event.me.id).state": event.me.state.rawValue as Any,
             "members.\(event.me.id).reactions": FieldValue.delete()
         ]
-        if needClearLateness || event.me.lateness != nil {
-            data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        if needClearAmount || event.me.stateAmount != nil {
+            data["members.\(event.me.id).lateness"] = event.me.stateAmount ?? FieldValue.delete()
         }
         try await firestore.collection("Events").document(event.id).updateData(data)
         firebaseFunctions.httpsCallable("sendChangeStatusNotification").call(event.dictionary) { (_, _) in }
@@ -266,8 +266,8 @@ final class EventService {
     private func membersDataWithResetStatuses(_ members: [User]) -> [AnyHashable: Any] {
         var membersData = [AnyHashable: Any]()
         for member in members {
-            membersData["members.\(member.id).state"] = User.State.unknown.rawValue
-            if member.lateness != nil {
+            membersData["members.\(member.id).state"] = User.State.invited.rawValue
+            if member.stateAmount != nil {
                 membersData["members.\(member.id).lateness"] = FieldValue.delete()
             }
             if member.reactions != nil {
@@ -280,7 +280,7 @@ final class EventService {
     private func addMembers(_ members: [User], toEvent event: Event) async throws {
         var membersData = [AnyHashable: Any]()
         for var member in members {
-            member.status = .unknown
+            member.status = .invited
             member.isOwner = false
             member.reactions = nil
             membersData["members.\(member.id)"] = member.dictionary
@@ -312,7 +312,7 @@ extension EventService: Middleware {
             fetchEvents { [weak self] result in
                 switch result {
                 case .success(let events):
-                    let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
+                    let acceptedEvents = events.filter({ $0.me.state != .invited && $0.me.state != .declined })
                     if
                         self?.isFirstFetch == true || store.state.value.events.events.isEmpty,
                         acceptedEvents.count == 1,
@@ -344,12 +344,12 @@ extension EventService: Middleware {
         case .changeStatus(let status, var event):
             guard event.me.status != status else { return }
             
-            let needClearLateness = event.me.lateness != nil
+            let needClearAmount = event.me.stateAmount != nil
             event.me.status = status
             let updatedEvent = event
             Task {
                 do {
-                    try await changeStatus(for: updatedEvent, needClearLateness: needClearLateness)
+                    try await changeStatus(for: updatedEvent, needClearAmount: needClearAmount)
                 } catch {
                     store.dispatch(.showNetworkError(EventServiceError.changeStatus))
                 }

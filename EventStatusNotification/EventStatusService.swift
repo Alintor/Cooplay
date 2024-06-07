@@ -23,7 +23,7 @@ class EventStatusService {
             "members.\(event.me.id).state": event.me.state.rawValue as Any,
             "members.\(event.me.id).reactions": FieldValue.delete()
         ]
-        data["members.\(event.me.id).lateness"] = event.me.lateness ?? FieldValue.delete()
+        data["members.\(event.me.id).lateness"] = event.me.stateAmount ?? FieldValue.delete()
         firestore.collection("Events").document(event.id).updateData(data) { [weak self] (error) in
             if let error = error {
                 completion()

@@ -168,8 +168,8 @@ extension NotificationsService: Middleware {
             }
             
         case .updateEvents(let events):
-            let acceptedEvents = events.filter({ $0.me.state != .unknown && $0.me.state != .declined })
-            let inventedEvents = events.filter({ $0.me.state == .unknown })
+            let acceptedEvents = events.filter({ $0.me.state != .invited && $0.me.state != .declined })
+            let inventedEvents = events.filter({ $0.me.state == .invited })
             setupLocalNotifications(events: acceptedEvents)
             updateAppBadge(inventedEventsCount: inventedEvents.count)
             if let event = events.first(where: { $0.id == self.inventedEventId }) {
