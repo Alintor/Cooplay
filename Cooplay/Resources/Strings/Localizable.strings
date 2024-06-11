@@ -57,8 +57,62 @@
 // MARK: - Notifications
 "notifications.statusRemind.title" = "Подтвердите свой статус";
 "notifications.statusRemind.message" = "У Вас через %d мин. игра в %@. Уточните свой статус для других участников";
+
 "notifications.eventStartRemind.title" = "Событие начинается";
 "notifications.eventStartRemind.message" = "Игра в %@ начинается. Если вы опаздываете, то уточните свой статус";
+
+"notifications.invitation.title" = "Приглашение в %@";
+"notifications.invitation.message" = "%@ приглашает Вас сыграть в %@";
+
+"notifications.statusChange.accepted.title" = "✅ %@ изменил свой статус";
+"notifications.statusChange.ontime.title" = "✅ %@ изменил свой статус";
+"notifications.statusChange.maybe.title" = "❔ %@ изменил свой статус";
+"notifications.statusChange.late.title" = "🕒 %@ изменил свой статус";
+"notifications.statusChange.suggestDate.title" = "🕒 %@ изменил свой статус";
+"notifications.statusChange.declined.title" = "❌ %@ изменил свой статус";
+"notifications.statusChange.invited.title" = "❔ %@ изменил свой статус";
+"notifications.statusChange.unknown.title" = "❔ %@ изменил свой статус";
+"notifications.statusChange.accepted.message" = "%@ придет на игру в %@";
+"notifications.statusChange.ontime.message" = "%@ придет вовремя на игру в %@";
+"notifications.statusChange.maybe.message" = "%@ возможно пойдет на игру в %@";
+"notifications.statusChange.late.message" = "%@ опоздает на %@ мин. на игру в %@";
+"notifications.statusChange.suggestDate.message" = "%@ предложил другое время на игру в %@";
+"notifications.statusChange.declined.message" = "%@ не пойдет на игру в %@";
+"notifications.statusChange.invited.message" = "%@ приглашен на игру в %@";
+"notifications.statusChange.unknown.message" = "%@ оставил неизвестный статус на игру в %@";
+
+"notifications.addReaction.title" = "%@ %@ оставил реакцию";
+"notifications.addReaction.me.accepted.message" = "На ваш статус \"пойду\" в %@";
+"notifications.addReaction.me.ontime.message" = "На ваш статус \"приду вовремя\" в %@";
+"notifications.addReaction.me.maybe.message" = "На ваш статус \"возможно, пойду\" в %@";
+"notifications.addReaction.me.late.message" = "На ваш статус \"опоздаю\" в %@";
+"notifications.addReaction.me.suggestDate.message" = "На ваш статус \"предложил другое время\" в %@";
+"notifications.addReaction.me.declined.message" = "На ваш статус \"не пойду\" в %@";
+"notifications.addReaction.me.invited.message" = "На ваш статус \"приглашен\" в %@";
+"notifications.addReaction.me.unknown.message" = "На ваш неизвестный для его версии приложения статус в %@";
+"notifications.addReaction.member.accepted.message" = "На статус участника %@ \"приду вовремя\" в %@";
+"notifications.addReaction.member.ontime.message" = "На статус участника %@ \"возможно, пойду\" в %@";
+"notifications.addReaction.member.maybe.message" = "На статус участника %@ \"опоздаю\" в %@";
+"notifications.addReaction.member.late.message" = "На статус участника %@ \"предложил другое время\" в %@";
+"notifications.addReaction.member.suggestDate.message" = "На статус участника %@ \"пойду\" в %@";
+"notifications.addReaction.member.declined.message" = "На статус участника %@ \"не пойду\" в %@";
+"notifications.addReaction.member.invited.message" = "На статус участника %@ \"приглашен\" в %@";
+"notifications.addReaction.member.unknown.message" = "На неизвестный для его версии приложения статус участника %@ в %@";
+
+"notifications.gameChange.title" = "%@ изменил игру";
+"notifications.gameChange.message" = "Новая игра теперь %@, подтвердите свой статус";
+
+"notifications.dateChange.title" = "%@ изменил время начала";
+"notifications.dateChange.message" = "Подтвердите свой статус";
+
+"notifications.deleteEvent.title" = "Отмена %@";
+"notifications.deleteEvent.message" = "%@ отменил игру в %@";
+
+"notifications.removeMember.title" = "Вас исключили";
+"notifications.removeMember.message" = "%@ исключил Вас из игры в %@";
+
+"notifications.takeEventOwner.title" = "Вас сделали лидером";
+"notifications.takeEventOwner.message" = "%@ сделал Вас лидером игры в %@";
 
 // MARK: - Time carousel
 "timeCarouselPanel.latness.title" = "Опоздаю на";

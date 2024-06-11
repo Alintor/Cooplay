@@ -852,12 +852,42 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 224 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 269 localization keys.
     struct localizable {
+      /// Value: %@ %@ оставил реакцию
+      static let notificationsAddReactionTitle = Rswift.StringResource(key: "notifications.addReaction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %@ в %@
       static let statusFullDetails = Rswift.StringResource(key: "status.fullDetails", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ возможно пойдет на игру в %@
+      static let notificationsStatusChangeMaybeMessage = Rswift.StringResource(key: "notifications.statusChange.maybe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ изменил время начала
+      static let notificationsDateChangeTitle = Rswift.StringResource(key: "notifications.dateChange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ изменил игру
+      static let notificationsGameChangeTitle = Rswift.StringResource(key: "notifications.gameChange.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ исключил Вас из игры в %@
+      static let notificationsRemoveMemberMessage = Rswift.StringResource(key: "notifications.removeMember.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %@ мин
       static let timeCarouselPanelLatnessValue = Rswift.StringResource(key: "timeCarouselPanel.latness.value", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ не пойдет на игру в %@
+      static let notificationsStatusChangeDeclinedMessage = Rswift.StringResource(key: "notifications.statusChange.declined.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ опоздает на %@ мин. на игру в %@
+      static let notificationsStatusChangeLateMessage = Rswift.StringResource(key: "notifications.statusChange.late.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ оставил неизвестный статус на игру в %@
+      static let notificationsStatusChangeUnknownMessage = Rswift.StringResource(key: "notifications.statusChange.unknown.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ отменил игру в %@
+      static let notificationsDeleteEventMessage = Rswift.StringResource(key: "notifications.deleteEvent.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ предложил другое время на игру в %@
+      static let notificationsStatusChangeSuggestDateMessage = Rswift.StringResource(key: "notifications.statusChange.suggestDate.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ приглашает Вас сыграть в %@
+      static let notificationsInvitationMessage = Rswift.StringResource(key: "notifications.invitation.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ приглашен на игру в %@
+      static let notificationsStatusChangeInvitedMessage = Rswift.StringResource(key: "notifications.statusChange.invited.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ придет вовремя на игру в %@
+      static let notificationsStatusChangeOntimeMessage = Rswift.StringResource(key: "notifications.statusChange.ontime.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ придет на игру в %@
+      static let notificationsStatusChangeAcceptedMessage = Rswift.StringResource(key: "notifications.statusChange.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: %@ сделал Вас лидером игры в %@
+      static let notificationsTakeEventOwnerMessage = Rswift.StringResource(key: "notifications.takeEventOwner.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: %d символов
       static let passwordValidationSymbolsCount = Rswift.StringResource(key: "passwordValidation.symbolsCount", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Apple ID успешно отвязан
@@ -892,6 +922,10 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsCategory7Title = Rswift.StringResource(key: "reactionsSettings.category.7.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Большая буква
       static let passwordValidationBigSymbol = Rswift.StringResource(key: "passwordValidation.bigSymbol", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вас исключили
+      static let notificationsRemoveMemberTitle = Rswift.StringResource(key: "notifications.removeMember.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вас сделали лидером
+      static let notificationsTakeEventOwnerTitle = Rswift.StringResource(key: "notifications.takeEventOwner.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш аккаунт успешно удален
       static let deleteAccountSuccessTitle = Rswift.StringResource(key: "deleteAccount.success.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ваш свет угасает...
@@ -1010,8 +1044,40 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsCategory3Title = Rswift.StringResource(key: "reactionsSettings.category.3.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Мои события
       static let eventsListSectionsFuture = Rswift.StringResource(key: "eventsList.sections.future", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш неизвестный для его версии приложения статус в %@
+      static let notificationsAddReactionMeUnknownMessage = Rswift.StringResource(key: "notifications.addReaction.me.unknown.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "возможно, пойду" в %@
+      static let notificationsAddReactionMeMaybeMessage = Rswift.StringResource(key: "notifications.addReaction.me.maybe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "не пойду" в %@
+      static let notificationsAddReactionMeDeclinedMessage = Rswift.StringResource(key: "notifications.addReaction.me.declined.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "опоздаю" в %@
+      static let notificationsAddReactionMeLateMessage = Rswift.StringResource(key: "notifications.addReaction.me.late.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "пойду" в %@
+      static let notificationsAddReactionMeAcceptedMessage = Rswift.StringResource(key: "notifications.addReaction.me.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "предложил другое время" в %@
+      static let notificationsAddReactionMeSuggestDateMessage = Rswift.StringResource(key: "notifications.addReaction.me.suggestDate.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "приглашен" в %@
+      static let notificationsAddReactionMeInvitedMessage = Rswift.StringResource(key: "notifications.addReaction.me.invited.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На ваш статус "приду вовремя" в %@
+      static let notificationsAddReactionMeOntimeMessage = Rswift.StringResource(key: "notifications.addReaction.me.ontime.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На неизвестный для его версии приложения статус участника %@ в %@
+      static let notificationsAddReactionMemberUnknownMessage = Rswift.StringResource(key: "notifications.addReaction.member.unknown.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На почту %@ отправлено письмо для подтверждения сброса пароля
       static let loginResetPasswordMessage = Rswift.StringResource(key: "login.resetPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "возможно, пойду" в %@
+      static let notificationsAddReactionMemberOntimeMessage = Rswift.StringResource(key: "notifications.addReaction.member.ontime.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "не пойду" в %@
+      static let notificationsAddReactionMemberDeclinedMessage = Rswift.StringResource(key: "notifications.addReaction.member.declined.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "опоздаю" в %@
+      static let notificationsAddReactionMemberMaybeMessage = Rswift.StringResource(key: "notifications.addReaction.member.maybe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "пойду" в %@
+      static let notificationsAddReactionMemberSuggestDateMessage = Rswift.StringResource(key: "notifications.addReaction.member.suggestDate.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "предложил другое время" в %@
+      static let notificationsAddReactionMemberLateMessage = Rswift.StringResource(key: "notifications.addReaction.member.late.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "приглашен" в %@
+      static let notificationsAddReactionMemberInvitedMessage = Rswift.StringResource(key: "notifications.addReaction.member.invited.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "приду вовремя" в %@
+      static let notificationsAddReactionMemberAcceptedMessage = Rswift.StringResource(key: "notifications.addReaction.member.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
       static let searchGameSearchBarPlaceholder = Rswift.StringResource(key: "searchGame.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Например, введите 'Overwatch' и посмотрите, что будет =)
@@ -1076,6 +1142,8 @@ struct R: Rswift.Validatable {
       static let searchMembersSearchBarPlaceholder = Rswift.StringResource(key: "searchMembers.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Никнейм
       static let editProfileNicknamePlaceholder = Rswift.StringResource(key: "editProfile.nickname.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Новая игра теперь %@, подтвердите свой статус
+      static let notificationsGameChangeMessage = Rswift.StringResource(key: "notifications.gameChange.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Новый пароль
       static let changePasswordNewPasswordPlaceholder = Rswift.StringResource(key: "changePassword.newPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Новый пароль
@@ -1104,6 +1172,8 @@ struct R: Rswift.Validatable {
       static let searchGameCloseButtonTitle = Rswift.StringResource(key: "searchGame.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена
       static let searchMembersCloseButtonTitle = Rswift.StringResource(key: "searchMembers.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Отмена %@
+      static let notificationsDeleteEventTitle = Rswift.StringResource(key: "notifications.deleteEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароли не совпадают
       static let changePasswordErrorPasswordConfirmWrong = Rswift.StringResource(key: "changePassword.error.passwordConfirm.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароли не совпадают
@@ -1126,6 +1196,8 @@ struct R: Rswift.Validatable {
       static let arkanoidWin0Message = Rswift.StringResource(key: "arkanoid.win.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите пароль
       static let registerPasswordConfirmPlaceholder = Rswift.StringResource(key: "register.passwordConfirm.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Подтвердите свой статус
+      static let notificationsDateChangeMessage = Rswift.StringResource(key: "notifications.dateChange.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите свой статус
       static let notificationsStatusRemindTitle = Rswift.StringResource(key: "notifications.statusRemind.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердить статус
@@ -1174,6 +1246,8 @@ struct R: Rswift.Validatable {
       static let searchMembersInviteByLinkTitle = Rswift.StringResource(key: "searchMembers.inviteByLink.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашен
       static let statusInvited = Rswift.StringResource(key: "status.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Приглашение в %@
+      static let notificationsInvitationTitle = Rswift.StringResource(key: "notifications.invitation.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приглашения
       static let eventsListSectionsInvited = Rswift.StringResource(key: "eventsList.sections.invited", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Приду вовремя
@@ -1302,15 +1376,106 @@ struct R: Rswift.Validatable {
       static let errorsAuthorizationServiceCredentialAlreadyInUse = Rswift.StringResource(key: "errors.authorizationService.credentialAlreadyInUse", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: или
       static let authorizationMenuOr = Rswift.StringResource(key: "authorizationMenu.or", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ✅ %@ изменил свой статус
+      static let notificationsStatusChangeAcceptedTitle = Rswift.StringResource(key: "notifications.statusChange.accepted.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ✅ %@ изменил свой статус
+      static let notificationsStatusChangeOntimeTitle = Rswift.StringResource(key: "notifications.statusChange.ontime.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ❌ %@ изменил свой статус
+      static let notificationsStatusChangeDeclinedTitle = Rswift.StringResource(key: "notifications.statusChange.declined.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ❔ %@ изменил свой статус
+      static let notificationsStatusChangeInvitedTitle = Rswift.StringResource(key: "notifications.statusChange.invited.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ❔ %@ изменил свой статус
+      static let notificationsStatusChangeMaybeTitle = Rswift.StringResource(key: "notifications.statusChange.maybe.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: ❔ %@ изменил свой статус
+      static let notificationsStatusChangeUnknownTitle = Rswift.StringResource(key: "notifications.statusChange.unknown.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 🕒 %@ изменил свой статус
+      static let notificationsStatusChangeLateTitle = Rswift.StringResource(key: "notifications.statusChange.late.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 🕒 %@ изменил свой статус
+      static let notificationsStatusChangeSuggestDateTitle = Rswift.StringResource(key: "notifications.statusChange.suggestDate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: %@ %@ оставил реакцию
+      static func notificationsAddReactionTitle(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
       
       /// Value: %@ в %@
       static func statusFullDetails(_ value1: String, _ value2: String) -> String {
         return String(format: NSLocalizedString("status.fullDetails", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
+      /// Value: %@ возможно пойдет на игру в %@
+      static func notificationsStatusChangeMaybeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.maybe.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ изменил время начала
+      static func notificationsDateChangeTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.dateChange.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: %@ изменил игру
+      static func notificationsGameChangeTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.gameChange.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: %@ исключил Вас из игры в %@
+      static func notificationsRemoveMemberMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.removeMember.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// Value: %@ мин
       static func timeCarouselPanelLatnessValue(_ value1: String) -> String {
         return String(format: NSLocalizedString("timeCarouselPanel.latness.value", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: %@ не пойдет на игру в %@
+      static func notificationsStatusChangeDeclinedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.declined.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ опоздает на %@ мин. на игру в %@
+      static func notificationsStatusChangeLateMessage(_ value1: String, _ value2: String, _ value3: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.late.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
+      }
+      
+      /// Value: %@ оставил неизвестный статус на игру в %@
+      static func notificationsStatusChangeUnknownMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.unknown.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ отменил игру в %@
+      static func notificationsDeleteEventMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.deleteEvent.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ предложил другое время на игру в %@
+      static func notificationsStatusChangeSuggestDateMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.suggestDate.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ приглашает Вас сыграть в %@
+      static func notificationsInvitationMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.invitation.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ приглашен на игру в %@
+      static func notificationsStatusChangeInvitedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.invited.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ придет вовремя на игру в %@
+      static func notificationsStatusChangeOntimeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.ontime.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ придет на игру в %@
+      static func notificationsStatusChangeAcceptedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.accepted.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: %@ сделал Вас лидером игры в %@
+      static func notificationsTakeEventOwnerMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.takeEventOwner.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: %d символов
@@ -1396,6 +1561,16 @@ struct R: Rswift.Validatable {
       /// Value: Большая буква
       static func passwordValidationBigSymbol(_: Void = ()) -> String {
         return NSLocalizedString("passwordValidation.bigSymbol", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вас исключили
+      static func notificationsRemoveMemberTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notifications.removeMember.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Вас сделали лидером
+      static func notificationsTakeEventOwnerTitle(_: Void = ()) -> String {
+        return NSLocalizedString("notifications.takeEventOwner.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Ваш аккаунт успешно удален
@@ -1693,9 +1868,89 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("eventsList.sections.future", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: На ваш неизвестный для его версии приложения статус в %@
+      static func notificationsAddReactionMeUnknownMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.unknown.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "возможно, пойду" в %@
+      static func notificationsAddReactionMeMaybeMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.maybe.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "не пойду" в %@
+      static func notificationsAddReactionMeDeclinedMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.declined.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "опоздаю" в %@
+      static func notificationsAddReactionMeLateMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.late.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "пойду" в %@
+      static func notificationsAddReactionMeAcceptedMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.accepted.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "предложил другое время" в %@
+      static func notificationsAddReactionMeSuggestDateMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.suggestDate.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "приглашен" в %@
+      static func notificationsAddReactionMeInvitedMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.invited.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На ваш статус "приду вовремя" в %@
+      static func notificationsAddReactionMeOntimeMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.me.ontime.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На неизвестный для его версии приложения статус участника %@ в %@
+      static func notificationsAddReactionMemberUnknownMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.unknown.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// Value: На почту %@ отправлено письмо для подтверждения сброса пароля
       static func loginResetPasswordMessage(_ value1: String) -> String {
         return String(format: NSLocalizedString("login.resetPassword.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: На статус участника %@ "возможно, пойду" в %@
+      static func notificationsAddReactionMemberOntimeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.ontime.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "не пойду" в %@
+      static func notificationsAddReactionMemberDeclinedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.declined.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "опоздаю" в %@
+      static func notificationsAddReactionMemberMaybeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.maybe.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "пойду" в %@
+      static func notificationsAddReactionMemberSuggestDateMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.suggestDate.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "предложил другое время" в %@
+      static func notificationsAddReactionMemberLateMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.late.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "приглашен" в %@
+      static func notificationsAddReactionMemberInvitedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.invited.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: На статус участника %@ "приду вовремя" в %@
+      static func notificationsAddReactionMemberAcceptedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.accepted.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: Название игры
@@ -1858,6 +2113,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("editProfile.nickname.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Новая игра теперь %@, подтвердите свой статус
+      static func notificationsGameChangeMessage(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.gameChange.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Value: Новый пароль
       static func changePasswordNewPasswordPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.newPassword.placeholder", bundle: R.hostingBundle, comment: "")
@@ -1928,6 +2188,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchMembers.closeButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Отмена %@
+      static func notificationsDeleteEventTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.deleteEvent.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Value: Пароли не совпадают
       static func changePasswordErrorPasswordConfirmWrong(_: Void = ()) -> String {
         return NSLocalizedString("changePassword.error.passwordConfirm.wrong", bundle: R.hostingBundle, comment: "")
@@ -1981,6 +2246,11 @@ struct R: Rswift.Validatable {
       /// Value: Подтвердите пароль
       static func registerPasswordConfirmPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("register.passwordConfirm.placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Подтвердите свой статус
+      static func notificationsDateChangeMessage(_: Void = ()) -> String {
+        return NSLocalizedString("notifications.dateChange.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Подтвердите свой статус
@@ -2101,6 +2371,11 @@ struct R: Rswift.Validatable {
       /// Value: Приглашен
       static func statusInvited(_: Void = ()) -> String {
         return NSLocalizedString("status.invited", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Приглашение в %@
+      static func notificationsInvitationTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.invitation.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Value: Приглашения
@@ -2421,6 +2696,46 @@ struct R: Rswift.Validatable {
       /// Value: или
       static func authorizationMenuOr(_: Void = ()) -> String {
         return NSLocalizedString("authorizationMenu.or", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: ✅ %@ изменил свой статус
+      static func notificationsStatusChangeAcceptedTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.accepted.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: ✅ %@ изменил свой статус
+      static func notificationsStatusChangeOntimeTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.ontime.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: ❌ %@ изменил свой статус
+      static func notificationsStatusChangeDeclinedTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.declined.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: ❔ %@ изменил свой статус
+      static func notificationsStatusChangeInvitedTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.invited.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: ❔ %@ изменил свой статус
+      static func notificationsStatusChangeMaybeTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.maybe.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: ❔ %@ изменил свой статус
+      static func notificationsStatusChangeUnknownTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.unknown.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: 🕒 %@ изменил свой статус
+      static func notificationsStatusChangeLateTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.late.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: 🕒 %@ изменил свой статус
+      static func notificationsStatusChangeSuggestDateTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("notifications.statusChange.suggestDate.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       fileprivate init() {}
