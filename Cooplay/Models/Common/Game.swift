@@ -6,29 +6,12 @@
 //  Copyright © 2019 Ovchinnikov. All rights reserved.
 //
 
-import SwiftyJSON
-
 struct Game: Codable {
     
     let slug: String
     let name: String
     let coverPath: String?
     let previewImagePath: String?
-    
-    init(with json: JSON ) {
-        var coverPath: String? = nil
-        if let imagId = json["cover"]["image_id"].string {
-            coverPath = "https://images.igdb.com/igdb/image/upload/t_cover_big/\(imagId).jpg"
-        }
-        var previewImagePath: String? = nil
-        if let imagId = json["screenshots"].array?.first?["image_id"].string {
-            previewImagePath = "https://images.igdb.com/igdb/image/upload/t_original/\(imagId).jpg"
-        }
-        slug = json["slug"].stringValue
-        name = json["name"].stringValue
-        self.coverPath = coverPath
-        self.previewImagePath =  previewImagePath
-    }
     
     init(slug: String, name: String, coverPath: String?, previewImagePath: String?) {
         self.slug = slug

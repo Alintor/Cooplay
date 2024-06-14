@@ -56,11 +56,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Need access to user's calendar</string>
+	<string>Need access to user&apos;s calendar</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Need access to camera</string>
-	<key>OfficialSite</key>
-	<string>${OFFICIAL_SITE_SCHEME}://${OFFICIAL_SITE_URL}/</string>
+    <key>NSUserActivityTypes</key>
+    <array>
+        <string>INSendMessageIntent</string>
+    </array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftDate
 
 struct User: Codable {
     

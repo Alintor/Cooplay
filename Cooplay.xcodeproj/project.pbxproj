@@ -128,6 +128,16 @@
 		A868608F2A14C0E700327385 /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868608E2A14C0E700327385 /* MainActionButton.swift */; };
 		A86860912A15248900327385 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86860902A15248900327385 /* UIImage.swift */; };
 		A86860952A15E9B500327385 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A86860942A15E9B500327385 /* InfoPlist.strings */; };
+		A8692D482C18512500D55C40 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8692D472C18512500D55C40 /* NotificationService.swift */; };
+		A8692D4C2C18512500D55C40 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A8692D452C18512500D55C40 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A8692D502C18561C00D55C40 /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96F824BC24550036B155 /* UNNotificationAttachment.swift */; };
+		A8692D522C1856F700D55C40 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9FD274510C9000E61A1 /* Reaction.swift */; };
+		A8692D542C1856FE00D55C40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AC2345F81A00EE1807 /* Event.swift */; };
+		A8692D552C185B7D00D55C40 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
+		A8692D572C185BB300D55C40 /* Event+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8692D562C185BB300D55C40 /* Event+Properties.swift */; };
+		A8692D592C185C2000D55C40 /* Game+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8692D582C185C2000D55C40 /* Game+JSON.swift */; };
+		A8692D5A2C185C4500D55C40 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
+		A8692D5B2C185CC700D55C40 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F96FB24BC2DFF0036B155 /* NotificationType.swift */; };
 		A86D3674255A9F9D001FDBFC /* TimePickerRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */; };
 		A86D3676256100A3001FDBFC /* SearchGameRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */; };
 		A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367B25627379001FDBFC /* TimeCarouselView.swift */; };
@@ -234,6 +244,7 @@
 		A8A383F928C39FFC001B22EC /* Playing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383F828C39FFC001B22EC /* Playing.swift */; };
 		A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FA28C3A01A001B22EC /* GameOver.swift */; };
 		A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FC28C3A036001B22EC /* WaitingForTap.swift */; };
+		A8ABFF4F2C19AF1900DAB467 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2CE234714BD00EE1807 /* Localizable.strings */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8BE182D2B00EA9D0039634E /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */; };
 		A8BE182F2B011E1C0039634E /* EventsListStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */; };
@@ -267,7 +278,7 @@
 		A8D99A0C292E0FBD00825B47 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D99A0B292E0FBD00825B47 /* NotificationViewController.swift */; };
 		A8D99A13292E0FBE00825B47 /* EventStatusNotification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A8D99A05292E0FBD00825B47 /* EventStatusNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A8D99A19292E142B00825B47 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D99A18292E142B00825B47 /* DeviceConstants.swift */; };
-		A8D99A1E292E14CA00825B47 /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D99A1D292E14CA00825B47 /* UserStatus.swift */; };
+		A8D99A1E292E14CA00825B47 /* User+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D99A1D292E14CA00825B47 /* User+Status.swift */; };
 		A8D99A1F292E151800825B47 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2A82345F23C00EE1807 /* User.swift */; };
 		A8D99A20292E151D00825B47 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AA2345F60F00EE1807 /* Game.swift */; };
 		A8D99A21292E152100825B47 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FF2AC2345F81A00EE1807 /* Event.swift */; };
@@ -303,6 +314,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A8692D4A2C18512500D55C40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A87701F323336E6E002EA095 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8692D442C18512500D55C40;
+			remoteInfo = NotificationService;
+		};
 		A8D99A11292E0FBE00825B47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A87701F323336E6E002EA095 /* Project object */;
@@ -320,6 +338,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				A8D99A13292E0FBE00825B47 /* EventStatusNotification.appex in Embed Foundation Extensions */,
+				A8692D4C2C18512500D55C40 /* NotificationService.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +465,11 @@
 		A868608E2A14C0E700327385 /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
 		A86860902A15248900327385 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		A86860942A15E9B500327385 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A8692D452C18512500D55C40 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8692D472C18512500D55C40 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		A8692D492C18512500D55C40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8692D562C185BB300D55C40 /* Event+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Properties.swift"; sourceTree = "<group>"; };
+		A8692D582C185C2000D55C40 /* Game+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+JSON.swift"; sourceTree = "<group>"; };
 		A86D3673255A9F9D001FDBFC /* TimePickerRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerRoutable.swift; sourceTree = "<group>"; };
 		A86D3675256100A3001FDBFC /* SearchGameRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameRoutable.swift; sourceTree = "<group>"; };
 		A86D367B25627379001FDBFC /* TimeCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselView.swift; sourceTree = "<group>"; };
@@ -589,7 +613,7 @@
 		A8D99A0B292E0FBD00825B47 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A8D99A10292E0FBD00825B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8D99A18292E142B00825B47 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
-		A8D99A1D292E14CA00825B47 /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
+		A8D99A1D292E14CA00825B47 /* User+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Status.swift"; sourceTree = "<group>"; };
 		A8D99A24292E15CB00825B47 /* EventDetailsNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsNotificationViewModel.swift; sourceTree = "<group>"; };
 		A8D99A27292E160200825B47 /* EventDetailsNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsNotificationView.swift; sourceTree = "<group>"; };
 		A8E8D0F42C131959000FEA53 /* ArrowsActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowsActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -617,6 +641,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A8692D422C18512500D55C40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A87701F823336E6E002EA095 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1458,6 +1489,15 @@
 			path = MainActionButton;
 			sourceTree = "<group>";
 		};
+		A8692D462C18512500D55C40 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				A8692D472C18512500D55C40 /* NotificationService.swift */,
+				A8692D492C18512500D55C40 /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		A86D367A2562732E001FDBFC /* TimeCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1477,6 +1517,7 @@
 			children = (
 				A87701FD23336E6E002EA095 /* Cooplay */,
 				A8D99A0A292E0FBD00825B47 /* EventStatusNotification */,
+				A8692D462C18512500D55C40 /* NotificationService */,
 				A87701FC23336E6E002EA095 /* Products */,
 				618666405E3843E32A72C4E0 /* Pods */,
 				D0DFD0D1889AEBF25C6681CF /* Frameworks */,
@@ -1488,6 +1529,7 @@
 			children = (
 				A87701FB23336E6E002EA095 /* Ruwus.app */,
 				A8D99A05292E0FBD00825B47 /* EventStatusNotification.appex */,
+				A8692D452C18512500D55C40 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1964,7 +2006,9 @@
 		A8D99A1A292E149C00825B47 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A8D99A1D292E14CA00825B47 /* UserStatus.swift */,
+				A8D99A1D292E14CA00825B47 /* User+Status.swift */,
+				A8692D562C185BB300D55C40 /* Event+Properties.swift */,
+				A8692D582C185C2000D55C40 /* Game+JSON.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2095,6 +2139,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A8692D442C18512500D55C40 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8692D4F2C18512500D55C40 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				A8692D412C18512500D55C40 /* Sources */,
+				A8692D422C18512500D55C40 /* Frameworks */,
+				A8692D432C18512500D55C40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = A8692D452C18512500D55C40 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A87701FA23336E6E002EA095 /* Cooplay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A877020D23336E6F002EA095 /* Build configuration list for PBXNativeTarget "Cooplay" */;
@@ -2111,6 +2172,7 @@
 			);
 			dependencies = (
 				A8D99A12292E0FBE00825B47 /* PBXTargetDependency */,
+				A8692D4B2C18512500D55C40 /* PBXTargetDependency */,
 			);
 			name = Cooplay;
 			productName = Cooplay;
@@ -2141,10 +2203,14 @@
 		A87701F323336E6E002EA095 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Ovchinnikov;
 				TargetAttributes = {
+					A8692D442C18512500D55C40 = {
+						CreatedOnToolsVersion = 15.0.1;
+						ProvisioningStyle = Automatic;
+					};
 					A87701FA23336E6E002EA095 = {
 						CreatedOnToolsVersion = 10.3;
 						ProvisioningStyle = Automatic;
@@ -2170,11 +2236,20 @@
 			targets = (
 				A87701FA23336E6E002EA095 /* Cooplay */,
 				A8D99A04292E0FBD00825B47 /* EventStatusNotification */,
+				A8692D442C18512500D55C40 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A8692D432C18512500D55C40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8ABFF4F2C19AF1900DAB467 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A87701F923336E6E002EA095 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2380,6 +2455,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A8692D412C18512500D55C40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8692D5B2C185CC700D55C40 /* NotificationType.swift in Sources */,
+				A8692D502C18561C00D55C40 /* UNNotificationAttachment.swift in Sources */,
+				A8692D5A2C185C4500D55C40 /* Game.swift in Sources */,
+				A8692D482C18512500D55C40 /* NotificationService.swift in Sources */,
+				A8692D522C1856F700D55C40 /* Reaction.swift in Sources */,
+				A8692D552C185B7D00D55C40 /* User.swift in Sources */,
+				A8692D542C1856FE00D55C40 /* Event.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A87701F723336E6E002EA095 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2533,7 +2622,9 @@
 				A8BE18352B01E96C0039634E /* StatusContextView.swift in Sources */,
 				A88003E628F4497500FDA878 /* AdditionalReactionsRouter.swift in Sources */,
 				A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */,
+				A8692D592C185C2000D55C40 /* Game+JSON.swift in Sources */,
 				A824CA1F274678B1000E61A1 /* ReactionsListOwnerView.swift in Sources */,
+				A8692D572C185BB300D55C40 /* Event+Properties.swift in Sources */,
 				A86860782A11F1D900327385 /* SearchMembersContract.swift in Sources */,
 				A8A0F0FB2AFE43C100997DEA /* VisualEffectView.swift in Sources */,
 				A85F9C7C2AF4BA4200BBAE31 /* UserState.swift in Sources */,
@@ -2599,7 +2690,7 @@
 				A824CA2127475A52000E61A1 /* ReactionViewModel.swift in Sources */,
 				A8301D4026AE8D0C00519768 /* StatusDetailsViewModel.swift in Sources */,
 				A8A0F1042AFFF67200997DEA /* Haptic.swift in Sources */,
-				A8D99A1E292E14CA00825B47 /* UserStatus.swift in Sources */,
+				A8D99A1E292E14CA00825B47 /* User+Status.swift in Sources */,
 				A85F9CAE2AF5FF9800BBAE31 /* Middleware.swift in Sources */,
 				A8D99A19292E142B00825B47 /* DeviceConstants.swift in Sources */,
 				A87E2EF52B0C89D30095DDD3 /* NotificationsService.swift in Sources */,
@@ -2661,6 +2752,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A8692D4B2C18512500D55C40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8692D442C18512500D55C40 /* NotificationService */;
+			targetProxy = A8692D4A2C18512500D55C40 /* PBXContainerItemProxy */;
+		};
 		A8D99A12292E0FBE00825B47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A8D99A04292E0FBD00825B47 /* EventStatusNotification */;
@@ -2680,6 +2776,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A8692D4D2C18512500D55C40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4XW8K2LS2;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Ovchinnikov. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A8692D4E2C18512500D55C40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4XW8K2LS2;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Ovchinnikov. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ovchinnikov.ruwus.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		A877020B23336E6F002EA095 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A87CF48923ED6B60004189D3 /* Config.xcconfig */;
@@ -2900,6 +3055,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A8692D4F2C18512500D55C40 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8692D4D2C18512500D55C40 /* Debug */,
+				A8692D4E2C18512500D55C40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A87701F623336E6E002EA095 /* Build configuration list for PBXProject "Cooplay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

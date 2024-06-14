@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftDate
 
 struct Event: Codable {
     
@@ -16,28 +15,6 @@ struct Event: Codable {
     var date: Date
     var members: [User]
     var me: User
-    
-    var isActive: Bool {
-        return (date - GlobalConstant.eventActivePeriodHours.hours) <= Date()
-    }
-    
-    var needConfirm: Bool {
-        guard (date - GlobalConstant.eventConfirmPeriodMinutes.minutes) <= Date() else { return false }
-        switch self.me.status {
-        case .accepted, .maybe, .suggestDate, .unknown, .invited:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    var isAgreed: Bool {
-        if case .invited = me.status {
-            return false
-        } else {
-            return true
-        }
-    }
     
 }
 
