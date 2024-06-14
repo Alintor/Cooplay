@@ -18,7 +18,7 @@ struct ProfileMenuView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
                     ProfileInfoView()
                         .handleRect(in: .named(GlobalConstant.CoordinateSpace.profile)) { rect in
@@ -71,6 +71,11 @@ struct ProfileMenuView: View {
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .reactions)
                 .onTapGesture { coordinator.open(.reactions) }
+            ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionFeedbackTitle())
+            ProfileSettingsItemView(item: .rateApp)
+                .onTapGesture { coordinator.openRateApp() }
+            ProfileSettingsSeparator()
+            ProfileSettingsItemView(item: .writeToUs)
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionAccountTitle())
             ProfileSettingsItemView(item: .account)
                 .onTapGesture { coordinator.open(.account(isBack: false)) }

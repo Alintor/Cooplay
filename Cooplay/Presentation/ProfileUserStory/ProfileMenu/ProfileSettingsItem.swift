@@ -16,6 +16,8 @@ enum ProfileSettingsItem: String, CaseIterable, Hashable {
     notifications,
     reactions,
     changePassword,
+    rateApp,
+    writeToUs,
     account,
     logout,
     delete

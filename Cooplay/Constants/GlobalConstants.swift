@@ -35,6 +35,7 @@ enum GlobalConstant {
     static var eventDurationHours = 3
     static var eventOverdueMonths = 6
     static let defaultsReactions = ["👍", "👎", "👀", "😘", "😭", "😡"]
+    static let appleAppId = "1523433260"
 }
 
 var localizableUITableName = "Localizable"

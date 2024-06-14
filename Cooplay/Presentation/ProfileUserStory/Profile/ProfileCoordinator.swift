@@ -147,6 +147,12 @@ final class ProfileCoordinator: ObservableObject {
         isMinigamesShown = true
     }
     
+    func openRateApp() {
+        if let url = URL(string: "https://apps.apple.com/app/id\(GlobalConstant.appleAppId)?action=write-review") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     func showLogoutSheet() {
         isLogoutSheetShown = true
     }

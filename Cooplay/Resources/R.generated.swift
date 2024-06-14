@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 20 colors.
+  /// This `R.color` struct is generated, and contains static references to 22 colors.
   struct color {
     /// Color `action.accent`.
     static let actionAccent = Rswift.ColorResource(bundle: R.hostingBundle, name: "action.accent")
@@ -46,8 +46,12 @@ struct R: Rswift.Validatable {
     static let profileSettingsMiniGames = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.miniGames")
     /// Color `profileSettings.notifications`.
     static let profileSettingsNotifications = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.notifications")
+    /// Color `profileSettings.rateApp`.
+    static let profileSettingsRateApp = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.rateApp")
     /// Color `profileSettings.reactions`.
     static let profileSettingsReactions = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.reactions")
+    /// Color `profileSettings.writeToUs`.
+    static let profileSettingsWriteToUs = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileSettings.writeToUs")
     /// Color `red`.
     static let red = Rswift.ColorResource(bundle: R.hostingBundle, name: "red")
     /// Color `shape.background`.
@@ -157,11 +161,25 @@ struct R: Rswift.Validatable {
       return UIKit.UIColor(resource: R.color.profileSettingsNotifications, compatibleWith: traitCollection)
     }
     
+    /// `UIColor(named: "profileSettings.rateApp", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func profileSettingsRateApp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.profileSettingsRateApp, compatibleWith: traitCollection)
+    }
+    
     /// `UIColor(named: "profileSettings.reactions", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func profileSettingsReactions(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.profileSettingsReactions, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "profileSettings.writeToUs", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func profileSettingsWriteToUs(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.profileSettingsWriteToUs, compatibleWith: traitCollection)
     }
     
     /// `UIColor(named: "red", bundle: ..., traitCollection: ...)`
@@ -248,7 +266,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 64 images.
+  /// This `R.image` struct is generated, and contains static references to 66 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -350,8 +368,12 @@ struct R: Rswift.Validatable {
     static let profileSettingsMiniGames = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.miniGames")
     /// Image `profileSettings.notifications`.
     static let profileSettingsNotifications = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.notifications")
+    /// Image `profileSettings.rateApp`.
+    static let profileSettingsRateApp = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.rateApp")
     /// Image `profileSettings.reactions`.
     static let profileSettingsReactions = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.reactions")
+    /// Image `profileSettings.writeToUs`.
+    static let profileSettingsWriteToUs = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.writeToUs")
     /// Image `status.normal.accepted`.
     static let statusNormalAccepted = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.accepted")
     /// Image `status.normal.declined`.
@@ -629,9 +651,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.profileSettingsNotifications, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "profileSettings.rateApp", bundle: ..., traitCollection: ...)`
+    static func profileSettingsRateApp(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profileSettingsRateApp, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "profileSettings.reactions", bundle: ..., traitCollection: ...)`
     static func profileSettingsReactions(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profileSettingsReactions, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profileSettings.writeToUs", bundle: ..., traitCollection: ...)`
+    static func profileSettingsWriteToUs(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profileSettingsWriteToUs, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "status.normal.accepted", bundle: ..., traitCollection: ...)`
@@ -852,7 +884,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 269 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 272 localization keys.
     struct localizable {
       /// Value: %@ %@ оставил реакцию
       static let notificationsAddReactionTitle = Rswift.StringResource(key: "notifications.addReaction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1080,6 +1112,8 @@ struct R: Rswift.Validatable {
       static let notificationsAddReactionMemberAcceptedMessage = Rswift.StringResource(key: "notifications.addReaction.member.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
       static let searchGameSearchBarPlaceholder = Rswift.StringResource(key: "searchGame.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Написать нам
+      static let profileSettingsWriteToUsTitle = Rswift.StringResource(key: "profileSettings.writeToUs.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Например, введите 'Overwatch' и посмотрите, что будет =)
       static let searchGameEmptySateDescription = Rswift.StringResource(key: "searchGame.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Настройка реакции
@@ -1148,6 +1182,8 @@ struct R: Rswift.Validatable {
       static let changePasswordNewPasswordPlaceholder = Rswift.StringResource(key: "changePassword.newPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Новый пароль
       static let resetPasswordNewPasswordPlaceholder = Rswift.StringResource(key: "resetPassword.newPassword.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Обратная связь
+      static let profileSettingsSectionFeedbackTitle = Rswift.StringResource(key: "profileSettings.section.feedback.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Объекты
       static let reactionsSettingsCategory8Title = Rswift.StringResource(key: "reactionsSettings.category.8.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Опоздаю
@@ -1174,6 +1210,8 @@ struct R: Rswift.Validatable {
       static let searchMembersCloseButtonTitle = Rswift.StringResource(key: "searchMembers.closeButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Отмена %@
       static let notificationsDeleteEventTitle = Rswift.StringResource(key: "notifications.deleteEvent.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Оценить приложение
+      static let profileSettingsRateAppTitle = Rswift.StringResource(key: "profileSettings.rateApp.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароли не совпадают
       static let changePasswordErrorPasswordConfirmWrong = Rswift.StringResource(key: "changePassword.error.passwordConfirm.wrong", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Пароли не совпадают
@@ -1958,6 +1996,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("searchGame.searchBar.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Написать нам
+      static func profileSettingsWriteToUsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.writeToUs.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Например, введите 'Overwatch' и посмотрите, что будет =)
       static func searchGameEmptySateDescription(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.emptySate.description", bundle: R.hostingBundle, comment: "")
@@ -2128,6 +2171,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("resetPassword.newPassword.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Обратная связь
+      static func profileSettingsSectionFeedbackTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.section.feedback.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Объекты
       static func reactionsSettingsCategory8Title(_: Void = ()) -> String {
         return NSLocalizedString("reactionsSettings.category.8.title", bundle: R.hostingBundle, comment: "")
@@ -2191,6 +2239,11 @@ struct R: Rswift.Validatable {
       /// Value: Отмена %@
       static func notificationsDeleteEventTitle(_ value1: String) -> String {
         return String(format: NSLocalizedString("notifications.deleteEvent.title", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Value: Оценить приложение
+      static func profileSettingsRateAppTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profileSettings.rateApp.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Пароли не совпадают

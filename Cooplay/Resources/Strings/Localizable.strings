@@ -236,6 +236,8 @@
 "profileSettings.miniGames.title" = "Убить время";
 "profileSettings.notifications.title" = "Уведомления";
 "profileSettings.reactions.title" = "Реакции";
+"profileSettings.rateApp.title" = "Оценить приложение";
+"profileSettings.writeToUs.title" = "Написать нам";
 "profileSettings.changePassword.title" = "Сменить пароль";
 "profileSettings.delete.title" = "Удалить аккаунт";
 "profileSettings.account.title" = "Аккаунт";
@@ -244,6 +246,7 @@
 "profileSettings.logout.message" = "Вы уверены, что хотите выйти из аккаунта?";
 "profileSettings.logout.actionButton" = "Выйти из аккаунта";
 "profileSettings.section.settings.title" = "Настройки";
+"profileSettings.section.feedback.title" = "Обратная связь";
 "profileSettings.section.account.title" = "Управление аккаунтом";
 
 // MARK: - Account
