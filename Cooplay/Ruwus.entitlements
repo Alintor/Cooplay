@@ -11,7 +11,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:ruwusdev.page.link</string>
-		<string>applinks:ruwus.ru</string>
+		<string>applinks:ruwus.app</string>
 		<string>applinks:cooplaydev.firebaseapp.com</string>
 		<string>applinks:cooplaydev.web.app</string>
 	</array>
