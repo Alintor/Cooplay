@@ -17,6 +17,7 @@ final class ProfileCoordinator: ObservableObject {
         case editProfile
         case reactions
         case notifications
+        case writeToUs
         case account(isBack: Bool)
         case changePassword
         case addPassword
@@ -55,6 +56,7 @@ final class ProfileCoordinator: ObservableObject {
         case .changePassword: return Localizable.changePasswordTitle()
         case .addPassword: return Localizable.addPasswordTitle()
         case .deleteAccount: return Localizable.deleteAccountTitle()
+        case .writeToUs: return Localizable.writeToUsTitle()
         }
     }
     
@@ -94,6 +96,18 @@ final class ProfileCoordinator: ObservableObject {
                     ProfileNavigationView(title: title, isBackButton: isBackButton)
                 }
                 ScreenViewFactory.notificationsSettings()
+            }
+            .closable(anchor: .trailing) {
+                self.open(.menu)
+            }
+            .zIndex(1)
+            .transition(.move(edge: .trailing))
+        case .writeToUs:
+            VStack {
+                if let title = title {
+                    ProfileNavigationView(title: title, isBackButton: isBackButton)
+                }
+                ScreenViewFactory.writeToUs()
             }
             .closable(anchor: .trailing) {
                 self.open(.menu)

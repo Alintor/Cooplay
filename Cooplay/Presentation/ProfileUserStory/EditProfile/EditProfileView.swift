@@ -79,7 +79,7 @@ struct EditProfileView: View {
     var editView: some View {
         VStack(spacing: 0) {
             if state.isPersonalization {
-                TitleView(text: Localizable.personalisationTitle())
+                TitleView(text: Localizable.editProfileTitle())
                     .padding()
             } else {
                 ProfileNavigationView(title: Localizable.editProfileTitle(), isBackButton: state.isBackButton, backAction: state.backAction)

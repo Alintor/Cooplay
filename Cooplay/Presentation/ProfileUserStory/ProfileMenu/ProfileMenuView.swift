@@ -76,6 +76,7 @@ struct ProfileMenuView: View {
                 .onTapGesture { coordinator.openRateApp() }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .writeToUs)
+                .onTapGesture { coordinator.open(.writeToUs) }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionAccountTitle())
             ProfileSettingsItemView(item: .account)
                 .onTapGesture { coordinator.open(.account(isBack: false)) }

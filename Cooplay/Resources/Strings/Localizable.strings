@@ -228,11 +228,8 @@
 "resetPassword.resetFailure" = "Не удалось сбросить пароль";
 "resetPassword.resetSuccess" = "Пароль сброшен";
 
-// MARK: - Personalisation
-"personalisation.title" = "Персонализация";
-
 // MARK: - Profile
-"profileSettings.edit.title" = "Редактировать профиль";
+"profileSettings.edit.title" = "Персонализация";
 "profileSettings.miniGames.title" = "Убить время";
 "profileSettings.notifications.title" = "Уведомления";
 "profileSettings.reactions.title" = "Реакции";
@@ -281,7 +278,7 @@
 
 // MARK: - Edit profile
 
-"editProfile.title" = "Редактирование";
+"editProfile.title" = "Персонализация";
 "editProfile.changeAvatar" = "Изменить";
 "editProfile.nameDescription" = "Допускается 12 символов, цифры, буквы, -_.~%+";
 "editProfile.saveButton" = "Сохранить изменения";
@@ -320,6 +317,16 @@
 "notificationsSettings.items.needOtherReactions.message" = "Получать уведомления о реакциях, оставленных на статусы других участников события";
 "notificationsSettings.permissions.message" = "Необходимо включить уведомления в настройках устройства";
 "notificationsSettings.permissions.action" = "Включить в настройках";
+
+// MARK: - Write to us
+
+"writeToUs.title" = "Написать нам";
+"writeToUs.placeholder" = "Было бы круто ...";
+"writeToUs.message" = "Напишите нам свои пожелания, предложения по улучшению приложения, встреченные баги.\nЭто поможет нам сделать приложение лучше.";
+"writeToUs.actionButton" = "Отправить";
+"writeToUs.success.alert" = "Спасибо за обратную связь!";
+"writeToUs.failure.alert" = "Не удалось отправить";
+
 
 // MARK: - ChangePassword
 

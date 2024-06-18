@@ -245,6 +245,10 @@
 		A8A383FB28C3A01A001B22EC /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FA28C3A01A001B22EC /* GameOver.swift */; };
 		A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A383FC28C3A036001B22EC /* WaitingForTap.swift */; };
 		A8ABFF4F2C19AF1900DAB467 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A82FF2CE234714BD00EE1807 /* Localizable.strings */; };
+		A8ABFF582C201B8500DAB467 /* WriteToUsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF572C201B8500DAB467 /* WriteToUsState.swift */; };
+		A8ABFF5A2C201B9100DAB467 /* WriteToUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF592C201B9100DAB467 /* WriteToUsView.swift */; };
+		A8ABFF5C2C201CB900DAB467 /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF5B2C201CB900DAB467 /* FeedbackRequest.swift */; };
+		A8ABFF5F2C201E7500DAB467 /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8BE182D2B00EA9D0039634E /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */; };
 		A8BE182F2B011E1C0039634E /* EventsListStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */; };
@@ -580,6 +584,10 @@
 		A8A383F828C39FFC001B22EC /* Playing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playing.swift; sourceTree = "<group>"; };
 		A8A383FA28C3A01A001B22EC /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		A8A383FC28C3A036001B22EC /* WaitingForTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
+		A8ABFF572C201B8500DAB467 /* WriteToUsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteToUsState.swift; sourceTree = "<group>"; };
+		A8ABFF592C201B9100DAB467 /* WriteToUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteToUsView.swift; sourceTree = "<group>"; };
+		A8ABFF5B2C201CB900DAB467 /* FeedbackRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
+		A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
 		A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
 		A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListStatusContextView.swift; sourceTree = "<group>"; };
 		A8BE18302B01E68C0039634E /* DeclinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclinedEventsView.swift; sourceTree = "<group>"; };
@@ -1065,6 +1073,7 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A8ABFF5D2C201E6300DAB467 /* Feedback */,
 				A8C0A8752B1732A6002E906B /* DeepLinkService */,
 				A87E2EF32B0C899F0095DDD3 /* NotificationsService */,
 				A85F9CAF2AF6002000BBAE31 /* NotificationBannerService */,
@@ -1293,6 +1302,7 @@
 			isa = PBXGroup;
 			children = (
 				A8469517241103F500139CF4 /* NewEventRequest.swift */,
+				A8ABFF5B2C201CB900DAB467 /* FeedbackRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1891,6 +1901,7 @@
 				A86860362A0CE89500327385 /* EditProfile */,
 				29F59E0BCE3DF536786E3CCF /* NotificationsSettings */,
 				A8A383D128C20C83001B22EC /* ReactionsSettings */,
+				A8ABFF562C201B6E00DAB467 /* WriteToUs */,
 				A8C307982B9F0E2B00907B56 /* AccountSettings */,
 				A89840A22C0480C700E30549 /* AddPassword */,
 				A8C3079D2B9F1C3200907B56 /* ChangePassword */,
@@ -1945,6 +1956,23 @@
 				A8A383FC28C3A036001B22EC /* WaitingForTap.swift */,
 			);
 			path = States;
+			sourceTree = "<group>";
+		};
+		A8ABFF562C201B6E00DAB467 /* WriteToUs */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABFF572C201B8500DAB467 /* WriteToUsState.swift */,
+				A8ABFF592C201B9100DAB467 /* WriteToUsView.swift */,
+			);
+			path = WriteToUs;
+			sourceTree = "<group>";
+		};
+		A8ABFF5D2C201E6300DAB467 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 		A8C0A8752B1732A6002E906B /* DeepLinkService */ = {
@@ -2543,6 +2571,7 @@
 				A85F9C9B2AF4F5D400BBAE31 /* EditProfileState.swift in Sources */,
 				A8D1D2742356F91900DA1089 /* UISearchBar.swift in Sources */,
 				A87CF46823EACF70004189D3 /* NewEventTimeButtonView.swift in Sources */,
+				A8ABFF5F2C201E7500DAB467 /* FeedbackService.swift in Sources */,
 				A8A0F0CF2AFA3CD300997DEA /* ArcanoidView.swift in Sources */,
 				A824C9F82742BC64000E61A1 /* EventDetailsEditInfoView.swift in Sources */,
 				A87CF47723EC12C8004189D3 /* APIRequestSpecification.swift in Sources */,
@@ -2568,6 +2597,7 @@
 				A87CF41B23E046A0004189D3 /* NewEventGameCell.swift in Sources */,
 				A80FFC6A2B90782B00121A7E /* ProfileNavigationView.swift in Sources */,
 				A85F9C8C2AF4CDAE00BBAE31 /* NotificationBannerState.swift in Sources */,
+				A8ABFF582C201B8500DAB467 /* WriteToUsState.swift in Sources */,
 				A84694F523FE326500139CF4 /* SearchMembersCell.swift in Sources */,
 				A824C9E5273FCD24000E61A1 /* EventDetailsView.swift in Sources */,
 				A89840A42C04886300E30549 /* AddPasswordState.swift in Sources */,
@@ -2632,6 +2662,7 @@
 				A87CF44C23EA6DF0004189D3 /* KeyboardHandler.swift in Sources */,
 				A8BE18312B01E68C0039634E /* DeclinedEventsView.swift in Sources */,
 				A823DFEE2B038306006EC119 /* ReactionContextView.swift in Sources */,
+				A8ABFF5A2C201B9100DAB467 /* WriteToUsView.swift in Sources */,
 				A8E8D0F82C131959000FEA53 /* ArrowsActivityIndicatorView.swift in Sources */,
 				A833EF6623D811EE009FCD73 /* NewEventDayDateViewModel.swift in Sources */,
 				FC00D21A6F25B2CC2665244E /* NewEventViewController.swift in Sources */,
@@ -2641,6 +2672,7 @@
 				35F9A92CF668F07974374327 /* NewEventInteractor.swift in Sources */,
 				A84694F123FD482B00139CF4 /* SearchMembersDataSource.swift in Sources */,
 				A8A0F0EA2AFD063700997DEA /* NewEventView.swift in Sources */,
+				A8ABFF5C2C201CB900DAB467 /* FeedbackRequest.swift in Sources */,
 				A863E3B72B676C5D0021B405 /* LoginState.swift in Sources */,
 				A833EF6323D70A42009FCD73 /* CalendarViewRenderer.swift in Sources */,
 				A8469518241103F500139CF4 /* NewEventRequest.swift in Sources */,

@@ -18,6 +18,7 @@ final class ApplicationFactory {
     fileprivate let appleAuthorizationService: AppleAuthorizationService
     fileprivate let eventService: EventService
     fileprivate let userService: UserService
+    fileprivate let feedbackService: FeedbackService
     fileprivate let defaultsStorage: DefaultsStorage
     
     static func getStore() -> Store {
@@ -42,6 +43,7 @@ final class ApplicationFactory {
             firestore: Firestore.firestore(),
             firebaseFunctions: Functions.functions()
         )
+        feedbackService = FeedbackService(firebaseAuth: Auth.auth(), firestore: Firestore.firestore())
         appleAuthorizationService = AppleAuthorizationService()
         self.authorizationService = authorizationService
         self.eventService = eventService
@@ -132,6 +134,13 @@ enum ScreenViewFactory {
             store: applicationFactory.store,
             userService: applicationFactory.userService,
             notificationCenter: UNUserNotificationCenter.current()
+        ))
+    }
+    
+    static func writeToUs() -> some View {
+        WriteToUsView(state: WriteToUsState(
+            store: applicationFactory.store,
+            feedbackService: applicationFactory.feedbackService
         ))
     }
     
