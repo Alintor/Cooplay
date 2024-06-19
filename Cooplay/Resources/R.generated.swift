@@ -884,7 +884,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 277 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 278 localization keys.
     struct localizable {
       /// Value: %@ %@ оставил реакцию
       static let notificationsAddReactionTitle = Rswift.StringResource(key: "notifications.addReaction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1126,6 +1126,8 @@ struct R: Rswift.Validatable {
       static let reactionsSettingsTitle = Rswift.StringResource(key: "reactionsSettings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Настройки
       static let profileSettingsSectionSettingsTitle = Rswift.StringResource(key: "profileSettings.section.settings.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не будешь же ты играть один?
+      static let eventDetailsEmptyMessage = Rswift.StringResource(key: "eventDetails.empty.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let statusContextDeclined = Rswift.StringResource(key: "status.context.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
@@ -2039,6 +2041,11 @@ struct R: Rswift.Validatable {
       /// Value: Настройки
       static func profileSettingsSectionSettingsTitle(_: Void = ()) -> String {
         return NSLocalizedString("profileSettings.section.settings.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не будешь же ты играть один?
+      static func eventDetailsEmptyMessage(_: Void = ()) -> String {
+        return NSLocalizedString("eventDetails.empty.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не пойду

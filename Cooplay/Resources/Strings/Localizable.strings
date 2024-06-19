@@ -144,6 +144,7 @@
 "eventDetails.addMember" = "Добавить участников";
 "eventDetails.edit.title" = "Редактирование";
 "eventDetails.deleteAlert.title" = "Вы действительно хотите удалить данное событие?";
+"eventDetails.empty.message" = "Не будешь же ты играть один?";
 
 // MARK: - New Event
 "newEvent.title" = "Создание события";

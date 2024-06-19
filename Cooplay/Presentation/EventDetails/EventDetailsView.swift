@@ -74,12 +74,17 @@ struct EventDetailsView: View {
                             .padding(.bottom, 24)
                             .transition(.scale.combined(with: .opacity))
                     }
-                    
-                    ForEach(state.members, id:\.name) { item in
-                        EventDetailsMemberView(viewModel: .init(with: item, event: state.event))
-                            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                            .animation(.easeInOut(duration: 0.2))
+                    if state.members.isEmpty && !state.modeState.isEditMode {
+                        emptyView
                             .transition(.scale.combined(with: .opacity))
+                            .padding(.top, 80)
+                    } else {
+                        ForEach(state.members, id:\.name) { item in
+                            EventDetailsMemberView(viewModel: .init(with: item, event: state.event))
+                                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                .animation(.easeInOut(duration: 0.2))
+                                .transition(.scale.combined(with: .opacity))
+                        }
                     }
                 }
                 .padding(.top, 16)
@@ -119,7 +124,9 @@ struct EventDetailsView: View {
         .sheet(isPresented: $state.showAddMembersSheet, content: {
             SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members) { members in
                 state.addMembers(members)
-                state.changeEditMode()
+                if state.modeState.isEditMode {
+                    state.changeEditMode()
+                }
             }
         })
         .alert(Localizable.eventDetailsDeleteAlertTitle(), isPresented: $showDeleteAlert, actions: {
@@ -130,6 +137,7 @@ struct EventDetailsView: View {
         })
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.eventDetails)
         .animation(.customTransition, value: state.event)
+        .animation(.customTransition, value: state.members)
         .animation(.customTransition, value: state.modeState)
         .animation(.customTransition, value: showStatusContextView)
         .animation(.customTransition, value: state.needShowDateSelection)
@@ -280,5 +288,27 @@ struct EventDetailsView: View {
         }
         .background(Rectangle().foregroundColor(Color(.block)))
         .clipShape(.rect(cornerRadius: 16, style: .continuous))
+    }
+    
+    // MARK: - Empty view
+    
+    var emptyView: some View {
+        VStack(spacing: 16) {
+            Text(Localizable.eventDetailsEmptyMessage())
+                .font(.system(size: 17))
+                .foregroundStyle(Color(.textSecondary))
+            Button(action: {
+                state.showAddMembersSheet = true
+            }, label: {
+                Label(Localizable.eventDetailsAddMember(), systemImage: "plus")
+                    .font(.system(size: 17))
+                    .foregroundStyle(Color(.textPrimary))
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+            })
+            .background(Color(.actionAccent))
+            .clipShape(.rect(cornerRadius: 20, style: .continuous))
+        }
+        .padding(.horizontal, 32)
     }
 }
