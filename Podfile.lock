@@ -1026,6 +1026,15 @@ PODS:
     - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.27.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseCrashlytics (10.28.0):
+    - FirebaseCore (~> 10.5)
+    - FirebaseInstallations (~> 10.0)
+    - FirebaseRemoteConfigInterop (~> 10.23)
+    - FirebaseSessions (~> 10.5)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/Environment (~> 7.8)
+    - nanopb (< 2.30911.0, >= 2.30908.0)
+    - PromisesObjC (~> 2.1)
   - FirebaseDynamicLinks (10.27.0):
     - FirebaseCore (~> 10.0)
   - FirebaseFirestore (10.27.0):
@@ -1071,6 +1080,16 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30911.0, >= 2.30908.0)
   - FirebaseMessagingInterop (10.27.0)
+  - FirebaseRemoteConfigInterop (10.28.0)
+  - FirebaseSessions (10.28.0):
+    - FirebaseCore (~> 10.5)
+    - FirebaseCoreExtension (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/Environment (~> 7.13)
+    - GoogleUtilities/UserDefaults (~> 7.13)
+    - nanopb (< 2.30911.0, >= 2.30908.0)
+    - PromisesSwift (~> 2.1)
   - FirebaseSharedSwift (10.27.0)
   - FirebaseStorage (10.27.0):
     - FirebaseAppCheckInterop (~> 10.0)
@@ -1237,6 +1256,8 @@ PODS:
   - nanopb/encode (2.30910.0)
   - PluggableAppDelegate (1.3.0)
   - PromisesObjC (2.4.0)
+  - PromisesSwift (2.4.0):
+    - PromisesObjC (= 2.4.0)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -1259,6 +1280,7 @@ DEPENDENCIES:
   - Firebase/Functions
   - Firebase/Messaging
   - Firebase/Storage
+  - FirebaseCrashlytics
   - GoogleSignIn
   - iCarousel (~> 1.8.3)
   - KDCalendar (~> 1.8.9)
@@ -1289,6 +1311,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
+    - FirebaseCrashlytics
     - FirebaseDynamicLinks
     - FirebaseFirestore
     - FirebaseFirestoreInternal
@@ -1296,6 +1319,8 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseMessaging
     - FirebaseMessagingInterop
+    - FirebaseRemoteConfigInterop
+    - FirebaseSessions
     - FirebaseSharedSwift
     - FirebaseStorage
     - GoogleAppMeasurement
@@ -1314,6 +1339,7 @@ SPEC REPOS:
     - nanopb
     - PluggableAppDelegate
     - PromisesObjC
+    - PromisesSwift
     - R.swift
     - R.swift.Library
     - RecaptchaInterop
@@ -1340,6 +1366,7 @@ SPEC CHECKSUMS:
   FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
   FirebaseCoreExtension: 4ec89dd0c6de93d6becde32122d68b7c35f6bf5d
   FirebaseCoreInternal: 4b297a2d56063dbea2c1d0d04222d44a8d058862
+  FirebaseCrashlytics: d3cffa6e6eb4fa9234162dff3ba62e37b93252a6
   FirebaseDynamicLinks: 087bf18ffabe8b6abe0c80301fd16ba2225ce373
   FirebaseFirestore: 7169b75e7db8f9796d4130e3c2157ed444f100d4
   FirebaseFirestoreInternal: 7ba63f170a554ae49392da44f9430e5b7915a7ff
@@ -1347,6 +1374,8 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 766dabca09fd94aef922538aaf144cc4a6fb6869
   FirebaseMessaging: 585984d0a1df120617eb10b44cad8968b859815e
   FirebaseMessagingInterop: 8e911a5387664e849d316c5cd257c33fa1d37529
+  FirebaseRemoteConfigInterop: 70d200c6956ef3b5c3592a95e824c1210682d785
+  FirebaseSessions: 20da8500ad66bb12622743e170459bf62a0768e8
   FirebaseSharedSwift: a03fe7a59ee646fef71099a887f774fe25d745b8
   FirebaseStorage: 255526c3d04c49874d7a5e3886964a79f77d6f33
   GoogleAppMeasurement: f65fc137531af9ad647f1c0a42f3b6a4d3a98049
@@ -1365,6 +1394,7 @@ SPEC CHECKSUMS:
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   PluggableAppDelegate: 94c85bf821d85661c843a86e1aafe0cc12a62634
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
@@ -1375,6 +1405,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 67efd87a7a188c1a3e18137fcbbb9d7061eb7c5d
+PODFILE CHECKSUM: e807dacabc6750b720d742cc84ed84138556bfba
 
 COCOAPODS: 1.14.2
