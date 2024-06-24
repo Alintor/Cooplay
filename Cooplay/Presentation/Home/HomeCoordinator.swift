@@ -46,8 +46,22 @@ final class HomeCoordinator: ObservableObject {
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
     @Published var showLoadingIndicator: Bool
-    @Published var showNewEvent: Bool = false
-    @Published var showLogoSpinner: Bool = false
+    @Published var showNewEvent: Bool = false {
+        didSet {
+            if showNewEvent {
+                AnalyticsService.sendEvent(.openNewEventScreen)
+            }
+        }
+    }
+    @Published var showLogoSpinner: Bool = false {
+        didSet {
+            if showLogoSpinner {
+                AnalyticsService.sendEvent(.openLogoSpinnerScreen)
+            } else {
+                AnalyticsService.sendEvent(.closeLogoSpinnerScreen)
+            }
+        }
+    }
     @Published var fullScreenCover: FullScreenCover?
     @Published var editStatusEventId: String?
     var isActiveEventPresented: Bool {
@@ -111,6 +125,9 @@ final class HomeCoordinator: ObservableObject {
     // MARK: - Methods
     
     func show(_ fullScreenCover: FullScreenCover) {
+        if fullScreenCover == .profile {
+            AnalyticsService.sendEvent(.openProfileScreen)
+        }
         self.fullScreenCover = fullScreenCover
         editStatusEventId = fullScreenCover.editStatusEventId
     }
@@ -171,6 +188,7 @@ final class HomeCoordinator: ObservableObject {
                                 .padding(.top, 72)
                                 .transition(.scale(scale: 0.5, anchor: .top).combined(with: .opacity))
                                 .closable(showBackground: false) {
+                                    AnalyticsService.sendEvent(.closeEventDetailsByEdgeSwipe)
                                     self.store.dispatch(.deselectEvent)
                                 }
                                 .zIndex(1)

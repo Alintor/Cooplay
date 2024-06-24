@@ -61,10 +61,12 @@ class AuthorizationCoordinator: ObservableObject {
     }
     
     func openLogin(email: String = "") {
+        AnalyticsService.sendEvent(.openLoginScreen)
         route = .login(email: email)
     }
     
     func openRegister(email: String = "") {
+        AnalyticsService.sendEvent(.openRegisterScreen)
         route = .register(email: email)
     }
     
@@ -78,6 +80,7 @@ class AuthorizationCoordinator: ObservableObject {
             let oobCode = userInfo["oobCode"] as? String
         else { return }
         
+        AnalyticsService.sendEvent(.openResetPassword)
         route = .resetPassword(code: oobCode)
     }
     

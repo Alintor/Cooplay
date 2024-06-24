@@ -121,6 +121,7 @@ struct HomeNavigationBar: View {
     }
     
     private func handleTapLogo() {
+        AnalyticsService.sendEvent(.tapLogo)
         logoTapCount += 1
         switch logoTapCount {
         case 1: Haptic.play(style: .soft)

@@ -67,6 +67,7 @@ final class RegisterState: ObservableObject {
     
     func tryRegister() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitRegister)
         Task {
             do {
                 try await authorizationService.createAccount(email: email, password: password)

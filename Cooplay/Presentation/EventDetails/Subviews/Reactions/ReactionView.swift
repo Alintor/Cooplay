@@ -38,6 +38,8 @@ struct ReactionView: View {
         .addBorder(Color(R.color.actionAccent.name), width: viewModel.isOwner ? 2 : 0, cornerRadius: 20)
         .onTapGesture {
             guard viewModel.isOwner else { return }
+            
+            AnalyticsService.sendEvent(.openReactionsContextMenu)
             state.showContext = true
         }
     }

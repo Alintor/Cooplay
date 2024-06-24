@@ -72,6 +72,7 @@ final class EventService {
         eventsListener = nil
         guard let userId = firebaseAuth.currentUser?.uid else { return }
         
+        AnalyticsService.setUserId(userId)
         eventsListener = firestore.collection("Events").whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId).addSnapshotListener { (snapshot, error) in
             if let _ = error {
                 completion(.failure(.fetchEvents))

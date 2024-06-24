@@ -51,6 +51,7 @@ class ReactionsSettingsState: ObservableObject, AllReactionsConfigurable {
             }
         }
         self.reactions = reactions
+        AnalyticsService.sendEvent(.changeReactionsInSettings)
         updateMyReactions(reactions)
     }
 }

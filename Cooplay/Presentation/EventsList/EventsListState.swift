@@ -61,6 +61,7 @@ class EventsListState: ObservableObject {
     }
     
     func changeStatus(_ status: User.Status, for event: Event) {
+        AnalyticsService.sendEvent(.changeStatusFromList, parameters: ["status": status.title])
         store.dispatch(.changeStatus(status, event: event))
     }
     

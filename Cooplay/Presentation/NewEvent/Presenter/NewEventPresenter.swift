@@ -129,6 +129,7 @@ extension NewEventPresenter: NewEventViewOutput {
     }
     
     func didTapSearchGame() {
+        AnalyticsService.sendEvent(.openSearchGameFromNewEvent)
         router.openGameSearch(
             offtenGames: gamesDataSours.offtenItems,
             selectedGame: gamesDataSours.selectedItems.first,
@@ -141,6 +142,7 @@ extension NewEventPresenter: NewEventViewOutput {
     }
     
     func didTapSearchMember() {
+        AnalyticsService.sendEvent(.openSearchMemberFromNewEvent)
         router.openMembersSearch(
             eventId: request.id,
             offtenMembers: membersDataSours.offtenItems,
@@ -154,6 +156,7 @@ extension NewEventPresenter: NewEventViewOutput {
     }
     
     func didTapMainActionButton() {
+        AnalyticsService.sendEvent(.submitCreateNewEvent)
         request.members = membersDataSours.selectedItems
         createNewEvent()
     }

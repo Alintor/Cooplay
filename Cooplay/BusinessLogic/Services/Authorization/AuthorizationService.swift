@@ -244,6 +244,7 @@ extension AuthorizationService: AuthorizationServiceType {
     func logout() {
         try? firebaseAuth.signOut()
         defaultsStorages?.clear()
+        AnalyticsService.setUserId(nil)
     }
     
     func changePassword(currentPassword: String, newPassword: String) async throws {

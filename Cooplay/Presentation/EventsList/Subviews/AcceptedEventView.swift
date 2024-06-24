@@ -24,6 +24,7 @@ struct AcceptedEventView: View {
                 statusView
                     .opacity(coordinator.editStatusEventId == event.id ? 0 : 1)
                     .onTapGesture {
+                        AnalyticsService.sendEvent(.openChangeStatusContextMenuFromList)
                         isStatusButtonDisable = true
                         coordinator.show(.editStatus(event: event))
                     }

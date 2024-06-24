@@ -33,6 +33,7 @@ final class WriteToUsState: ObservableObject {
     
     func trySendFeedback() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitFeedback)
         Task {
             do {
                 try await feedbackService.sendFeedback(feedbackText)

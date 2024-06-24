@@ -30,8 +30,16 @@ class EventDetailsState: ObservableObject {
     @Published var modeState: ModeState
     @Published var eventDetailsSize: CGSize = .zero
     @Published var needShowDateSelection = false
-    @Published var showChangeGameSheet = false
-    @Published var showAddMembersSheet = false
+    @Published var showChangeGameSheet = false {
+        didSet {
+            if showChangeGameSheet { AnalyticsService.sendEvent(.openSearchGameFromEventDetails) }
+        }
+    }
+    @Published var showAddMembersSheet = false {
+        didSet {
+            if showAddMembersSheet { AnalyticsService.sendEvent(.openSearchMemberFromEventDetails) }
+        }
+    }
     @Published var newDate: Date
     var members: [User] {
         event.members
@@ -68,6 +76,7 @@ class EventDetailsState: ObservableObject {
     // MARK: - Methods
     
     func changeStatus(_ status: User.Status) {
+        AnalyticsService.sendEvent(.changeStatusFromEventDetails, parameters: ["status": status.title])
         store.dispatch(.changeStatus(status, event: event))
     }
     
@@ -78,6 +87,7 @@ class EventDetailsState: ObservableObject {
     func changeEditMode() {
         switch modeState {
         case .member, .owner:
+            AnalyticsService.sendEvent(.showEventDetailsEditMode)
             modeState = .edit
         case .edit:
             modeState = event.me.isOwner == true ? .owner : .member
@@ -104,16 +114,19 @@ class EventDetailsState: ObservableObject {
     }
     
     func changeGame(_ game: Game) {
+        AnalyticsService.sendEvent(.submitChangeEventGame)
         store.dispatch(.changeGame(game, event: event))
     }
     
     func changeDate() {
         guard newDate != event.date else { return }
         
+        AnalyticsService.sendEvent(.submitChangeEventDate)
         store.dispatch(.changeDate(newDate, event: event))
     }
     
     func addMembers(_ members: [User]) {
+        AnalyticsService.sendEvent(.submitAddEventMember)
         store.dispatch(.addMembers(members, event: event))
     }
     

@@ -77,6 +77,7 @@ final class AccountSettingsState: ObservableObject {
     
     func linkGoogleAccount() {
         showProgress = true
+        AnalyticsService.sendEvent(.tapLinkGoogle)
         Task {
             do {
                 try await authorizationService.linkGoogleProvider()
@@ -91,6 +92,7 @@ final class AccountSettingsState: ObservableObject {
     
     func linkAppleAccount() {
         showProgress = true
+        AnalyticsService.sendEvent(.tapLinkApple)
         Task {
             do {
                 let creds = try await appleAuthorizationService.requestAuthorization()

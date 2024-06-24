@@ -44,6 +44,7 @@ final class DeleteAccountState: ObservableObject {
     
     func tryDeleteAccount() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitDeleteAccount)
         Task {
             do {
                 switch provider {

@@ -28,6 +28,7 @@ struct ProfileMenuView: View {
                                 canContinueOffset = false
                                 generator.prepare()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    AnalyticsService.sendEvent(.closeProfileByTopPull)
                                     generator.impactOccurred()
                                     coordinator.close?()
                                 }
@@ -48,6 +49,7 @@ struct ProfileMenuView: View {
                         .frame(width: 32, height: 32, alignment: .center)
                         .padding()
                         .onTapGesture {
+                            AnalyticsService.sendEvent(.closeProfileByButton)
                             coordinator.close?()
                         }
                 }
@@ -61,25 +63,46 @@ struct ProfileMenuView: View {
     var settingsList: some View {
         VStack(spacing: 0) {
             ProfileSettingsItemView(item: .edit)
-                .onTapGesture { coordinator.open(.editProfile) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openPersonalisationScreen)
+                    coordinator.open(.editProfile)
+                }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .miniGames)
-                .onTapGesture { coordinator.showArkanoidGame() }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openArkanoidGame)
+                    coordinator.showArkanoidGame()
+                }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionSettingsTitle())
             ProfileSettingsItemView(item: .notifications)
-                .onTapGesture { coordinator.open(.notifications) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openNotificationSettingsScreen)
+                    coordinator.open(.notifications)
+                }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .reactions)
-                .onTapGesture { coordinator.open(.reactions) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openReactionsSettingsScreen)
+                    coordinator.open(.reactions)
+                }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionFeedbackTitle())
             ProfileSettingsItemView(item: .rateApp)
-                .onTapGesture { coordinator.openRateApp() }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openRateUs)
+                    coordinator.openRateApp()
+                }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .writeToUs)
-                .onTapGesture { coordinator.open(.writeToUs) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openWriteUsScreen)
+                    coordinator.open(.writeToUs)
+                }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionAccountTitle())
             ProfileSettingsItemView(item: .account)
-                .onTapGesture { coordinator.open(.account(isBack: false)) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openAccountScreen)
+                    coordinator.open(.account(isBack: false))
+                }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .logout)
                 .onTapGesture { coordinator.showLogoutSheet() }

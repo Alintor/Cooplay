@@ -18,6 +18,9 @@ struct EventDetailsInfoView: View {
         VStack(spacing: 8) {
             gameCover
                 .matchedGeometryEffect(id: MatchedAnimations.gameCover(state.event.id).name, in: namespace.id)
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.tapGameCoverOnEventDetails)
+                }
             VStack(spacing: 2) {
                 Text(state.event.game.name)
                     .multilineTextAlignment(.center)

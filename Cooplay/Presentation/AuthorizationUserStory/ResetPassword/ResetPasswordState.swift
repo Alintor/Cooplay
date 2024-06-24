@@ -92,6 +92,7 @@ final class ResetPasswordState: ObservableObject {
         guard let email else { return }
         
         showProgress = true
+        AnalyticsService.sendEvent(.submitResetPassword)
         Task {
             do {
                 try await authorizationService.resetPassword(newPassword: newPassword, oobCode: oobCode)

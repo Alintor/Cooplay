@@ -70,6 +70,7 @@ struct ReactionContextView: View {
         }
         .sheet(isPresented: $showAdditionalReactions) {
             ScreenViewFactory.additionalReactions(selectedReaction: reactionViewModel?.value) { reaction in
+                AnalyticsService.sendEvent(.addMemberReactionFromContextMenu, parameters: ["value": reaction?.value ?? ""])
                 state.addReaction(reaction, to: viewModel.member)
                 showAdditionalReactions = false
                 close()
@@ -99,6 +100,7 @@ struct ReactionContextView: View {
     var contextView: some View {
         HStack {
             ReactionSelectionView(reactions: state.myReactions, selectedReaction: reactionViewModel?.value) { reaction in
+                AnalyticsService.sendEvent(.addMemberReactionFromContextMenu, parameters: ["value": reaction?.value ?? ""])
                 state.addReaction(reaction, to: viewModel.member)
                 close()
             }
@@ -122,6 +124,7 @@ struct ReactionContextView: View {
             .transition(.scale.combined(with: .opacity))
             .contentShape(Rectangle())
             .onTapGesture {
+                AnalyticsService.sendEvent(.openFullReactionsListFromContextMenu)
                 showAdditionalReactions = true
             }
     }

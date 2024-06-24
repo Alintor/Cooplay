@@ -36,10 +36,12 @@ struct EditProfileView: View {
                     showAlert: $state.showAvatarSheet,
                     canDelete: state.canDeleteAvatar,
                     cameraAction: {
+                        AnalyticsService.sendEvent(.changeAvatarWithPicture)
                         state.showAvatarSheet = false
                         state.checkPermissions()
                     },
                     photoAction: {
+                        AnalyticsService.sendEvent(.changeAvatarWithPhoto)
                         state.photoPickerTypeCamera = false
                         state.showPhotoPicker = true
                     },

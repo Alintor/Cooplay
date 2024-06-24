@@ -27,6 +27,7 @@ struct AddReactionView: View {
             .background(Color(R.color.block.name))
             .cornerRadius(20)
             .onTapGesture {
+                AnalyticsService.sendEvent(.openReactionsContextMenu)
                 state.showContext = true
             }
     }

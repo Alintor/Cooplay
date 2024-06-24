@@ -30,6 +30,7 @@ struct InvitedEventView: View {
     var buttons: some View {
         HStack(spacing: 2) {
             Button {
+                AnalyticsService.sendEvent(.tapAgreeOnInvitation)
                 state.changeStatus(.accepted, for: event)
                 Haptic.play(style: .soft)
             } label: {
@@ -42,6 +43,7 @@ struct InvitedEventView: View {
                     .clipShape(.rect(cornerRadius: 20, style: .continuous))
             }
             Button {
+                AnalyticsService.sendEvent(.tapMoreOnInvitation)
                 showStatusContext = true
             } label: {
                 moreButtonText

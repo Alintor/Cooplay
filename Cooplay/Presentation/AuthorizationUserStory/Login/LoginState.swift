@@ -45,6 +45,7 @@ final class LoginState: ObservableObject {
     // MARK: - Methods
     
     func tryLogin() {
+        AnalyticsService.sendEvent(.submitLogin)
         passwordError = nil
         showProgress = true
         Task {
@@ -58,6 +59,7 @@ final class LoginState: ObservableObject {
     }
     
     func sendResetEmail() {
+        AnalyticsService.sendEvent(.tapResetPasswordEmail)
         Task {
             do {
                 try await authorizationService.sendResetPasswordEmail(email)

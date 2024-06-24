@@ -75,6 +75,7 @@ final class ChangePasswordState: ObservableObject {
     
     func tryChangePassword() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitChangePassword)
         Task {
             do {
                 try await authorizationService.changePassword(currentPassword: currentPassword, newPassword: newPassword)

@@ -37,6 +37,7 @@ final class AuthorizationMenuState: ObservableObject {
     
     func signWithGoogle() {
         showProgress = true
+        AnalyticsService.sendEvent(.tapGoogleSignIn)
         Task {
             do {
                 try await authorizationService.signInWithGoogle()
@@ -51,6 +52,7 @@ final class AuthorizationMenuState: ObservableObject {
     
     func signWithApple() {
         showProgress = true
+        AnalyticsService.sendEvent(.tapAppleSignIn)
         Task {
             do {
                 let creds = try await appleAuthorizationService.requestAuthorization()

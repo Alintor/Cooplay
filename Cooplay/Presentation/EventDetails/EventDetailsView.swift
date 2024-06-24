@@ -39,6 +39,7 @@ struct EventDetailsView: View {
                                 if offset >= 100, canContinueOffset, state.modeState.isEditMode {
                                     canContinueOffset = false
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        AnalyticsService.sendEvent(.closeEventDetailsEditModeByTopPull)
                                         state.changeEditMode()
                                     }
                                 }
@@ -65,6 +66,7 @@ struct EventDetailsView: View {
                                     canContinueOffset = false
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         Haptic.play(style: .soft)
+                                        AnalyticsService.sendEvent(.closeEventDetailsByTopPull)
                                         state.close()
                                     }
                                 }
@@ -161,6 +163,7 @@ struct EventDetailsView: View {
                 .matchedGeometryEffect(id: MatchedAnimations.eventStatus(state.event.id).name, in: namespace.id)
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
                 .onTapGesture {
+                    AnalyticsService.sendEvent(.openChangeStatusContextMenuFromEventDetails)
                     showStatusContextView.toggle()
                 }
         }
@@ -193,6 +196,7 @@ struct EventDetailsView: View {
                         .clipShape(.rect(cornerRadius: 24, style: .continuous))
                         .transition(.scale.combined(with: .opacity))
                         .onTapGesture {
+                            AnalyticsService.sendEvent(.closeEventDetailsEditModeByButton)
                             state.changeEditMode()
                         }
                 }

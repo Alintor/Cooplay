@@ -193,12 +193,7 @@
 		A87E2EF52B0C89D30095DDD3 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EF42B0C89D30095DDD3 /* NotificationsService.swift */; };
 		A88003D728F43BE400FDA878 /* AllReactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003D628F43BE400FDA878 /* AllReactionsListView.swift */; };
 		A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */; };
-		A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */; };
-		A88003E628F4497500FDA878 /* AdditionalReactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */; };
-		A88003E828F449D000FDA878 /* AdditionalReactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */; };
-		A88003EA28F449DB00FDA878 /* AdditionalReactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */; };
 		A88003EC28F44B3200FDA878 /* AdditionalReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */; };
-		A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */; };
 		A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A02C007D7C00E30549 /* AppleSignInService.swift */; };
 		A89840A42C04886300E30549 /* AddPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A32C04886300E30549 /* AddPasswordState.swift */; };
 		A89840A62C05B5A800E30549 /* AddPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89840A52C05B5A800E30549 /* AddPasswordView.swift */; };
@@ -249,6 +244,7 @@
 		A8ABFF5A2C201B9100DAB467 /* WriteToUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF592C201B9100DAB467 /* WriteToUsView.swift */; };
 		A8ABFF5C2C201CB900DAB467 /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF5B2C201CB900DAB467 /* FeedbackRequest.swift */; };
 		A8ABFF5F2C201E7500DAB467 /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */; };
+		A8ABFF632C29618D00DAB467 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF622C29618D00DAB467 /* AnalyticsService.swift */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8BE182D2B00EA9D0039634E /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */; };
 		A8BE182F2B011E1C0039634E /* EventsListStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */; };
@@ -532,12 +528,7 @@
 		A87E2EF42B0C89D30095DDD3 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		A88003D628F43BE400FDA878 /* AllReactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsListView.swift; sourceTree = "<group>"; };
 		A88003DA28F43FEC00FDA878 /* AllReactionsConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReactionsConfigurable.swift; sourceTree = "<group>"; };
-		A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsContract.swift; sourceTree = "<group>"; };
-		A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsRouter.swift; sourceTree = "<group>"; };
-		A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsInteractor.swift; sourceTree = "<group>"; };
-		A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsPresenter.swift; sourceTree = "<group>"; };
 		A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsView.swift; sourceTree = "<group>"; };
-		A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsBuilder.swift; sourceTree = "<group>"; };
 		A89840A02C007D7C00E30549 /* AppleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInService.swift; sourceTree = "<group>"; };
 		A89840A32C04886300E30549 /* AddPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordState.swift; sourceTree = "<group>"; };
 		A89840A52C05B5A800E30549 /* AddPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordView.swift; sourceTree = "<group>"; };
@@ -588,6 +579,7 @@
 		A8ABFF592C201B9100DAB467 /* WriteToUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteToUsView.swift; sourceTree = "<group>"; };
 		A8ABFF5B2C201CB900DAB467 /* FeedbackRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
 		A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
+		A8ABFF622C29618D00DAB467 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
 		A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListStatusContextView.swift; sourceTree = "<group>"; };
 		A8BE18302B01E68C0039634E /* DeclinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclinedEventsView.swift; sourceTree = "<group>"; };
@@ -1073,6 +1065,7 @@
 		A82FF2AF2346065300EE1807 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A8ABFF612C29617100DAB467 /* Analytics */,
 				A8ABFF5D2C201E6300DAB467 /* Feedback */,
 				A8C0A8752B1732A6002E906B /* DeepLinkService */,
 				A87E2EF32B0C899F0095DDD3 /* NotificationsService */,
@@ -1761,61 +1754,8 @@
 			children = (
 				A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */,
 				A88003EB28F44B3200FDA878 /* AdditionalReactionsView.swift */,
-				A88003DD28F4482D00FDA878 /* Builder */,
-				A88003DE28F4483400FDA878 /* Contract */,
-				A88003DF28F4487000FDA878 /* Presenter */,
-				A88003E028F4488800FDA878 /* View */,
-				A88003E128F4488E00FDA878 /* Interactor */,
-				A88003E228F4489400FDA878 /* Router */,
 			);
 			path = AdditionalReactions;
-			sourceTree = "<group>";
-		};
-		A88003DD28F4482D00FDA878 /* Builder */ = {
-			isa = PBXGroup;
-			children = (
-				A88003ED28F44E2900FDA878 /* AdditionalReactionsBuilder.swift */,
-			);
-			path = Builder;
-			sourceTree = "<group>";
-		};
-		A88003DE28F4483400FDA878 /* Contract */ = {
-			isa = PBXGroup;
-			children = (
-				A88003E328F448C100FDA878 /* AdditionalReactionsContract.swift */,
-			);
-			path = Contract;
-			sourceTree = "<group>";
-		};
-		A88003DF28F4487000FDA878 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A88003E928F449DB00FDA878 /* AdditionalReactionsPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		A88003E028F4488800FDA878 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A88003E128F4488E00FDA878 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				A88003E728F449D000FDA878 /* AdditionalReactionsInteractor.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		A88003E228F4489400FDA878 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				A88003E528F4497500FDA878 /* AdditionalReactionsRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		A89840A22C0480C700E30549 /* AddPassword */ = {
@@ -1973,6 +1913,14 @@
 				A8ABFF5E2C201E7500DAB467 /* FeedbackService.swift */,
 			);
 			path = Feedback;
+			sourceTree = "<group>";
+		};
+		A8ABFF612C29617100DAB467 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				A8ABFF622C29618D00DAB467 /* AnalyticsService.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		A8C0A8752B1732A6002E906B /* DeepLinkService */ = {
@@ -2536,7 +2484,6 @@
 				A89F972E24BEEC820036B155 /* Notification.swift in Sources */,
 				A824CA1627467095000E61A1 /* ReactionView.swift in Sources */,
 				A85F9CB22AF6063E00BBAE31 /* AuthenticationState.swift in Sources */,
-				A88003E428F448C100FDA878 /* AdditionalReactionsContract.swift in Sources */,
 				A8A0F0F72AFE35EB00997DEA /* EventsListView.swift in Sources */,
 				A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */,
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
@@ -2587,7 +2534,6 @@
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */,
-				A88003EE28F44E2900FDA878 /* AdditionalReactionsBuilder.swift in Sources */,
 				A8A0F0EC2AFDF09200997DEA /* EventsListState.swift in Sources */,
 				A86860722A0FB5E900327385 /* NewEventContract.swift in Sources */,
 				A868608C2A14C09900327385 /* TextFieldView.swift in Sources */,
@@ -2639,7 +2585,6 @@
 				A8C3079A2B9F0E4B00907B56 /* AccountSettingsView.swift in Sources */,
 				A824C9E3273FCA10000E61A1 /* EventDetailsMemberViewModel.swift in Sources */,
 				A87CF44423E97AB5004189D3 /* SearchGameCellViewModel.swift in Sources */,
-				A88003E828F449D000FDA878 /* AdditionalReactionsInteractor.swift in Sources */,
 				A8FB1CD9249A166D001C9355 /* FirestoreDecoder.swift in Sources */,
 				A80FFC622B90625500121A7E /* ProfileCoordinator.swift in Sources */,
 				A863E3C72B68C5100021B405 /* AuthorizationCoordinator.swift in Sources */,
@@ -2678,7 +2623,6 @@
 				A8A0F0D62AFBAAEF00997DEA /* EditSheetView.swift in Sources */,
 				A86D367C25627379001FDBFC /* TimeCarouselView.swift in Sources */,
 				A8BE18352B01E96C0039634E /* StatusContextView.swift in Sources */,
-				A88003E628F4497500FDA878 /* AdditionalReactionsRouter.swift in Sources */,
 				A8A383DA28C2105D001B22EC /* UIViewController+Transition.swift in Sources */,
 				A8692D592C185C2000D55C40 /* Game+JSON.swift in Sources */,
 				A824CA1F274678B1000E61A1 /* ReactionsListOwnerView.swift in Sources */,
@@ -2712,9 +2656,9 @@
 				A824C9FE274510C9000E61A1 /* Reaction.swift in Sources */,
 				A824C9F62742BBB2000E61A1 /* EventStatusView.swift in Sources */,
 				A85F9C9D2AF4F8BE00BBAE31 /* EditProfileView.swift in Sources */,
+				A8ABFF632C29618D00DAB467 /* AnalyticsService.swift in Sources */,
 				A8A383F328C37192001B22EC /* ArkanoidViewController.swift in Sources */,
 				A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */,
-				A88003EA28F449DB00FDA878 /* AdditionalReactionsPresenter.swift in Sources */,
 				9BE0997AEC909845DC32D0BA /* NewEventRouter.swift in Sources */,
 				A829975B25370AAE00423D71 /* GameDBToken.swift in Sources */,
 				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,

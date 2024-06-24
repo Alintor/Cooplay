@@ -17,6 +17,7 @@ final class NotificationBannerService: Middleware {
                 store.dispatch(.hideNotificationBanner)
             }
         case .showNetworkError(let error):
+            AnalyticsService.sendEvent(.showNetworkError, parameters: ["message": error.localizedDescription])
             store.dispatch(.showNotificationBanner(.init(
                 title: error.localizedDescription,
                 type: .networkError

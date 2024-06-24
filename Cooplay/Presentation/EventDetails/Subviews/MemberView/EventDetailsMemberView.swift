@@ -26,10 +26,13 @@ struct EventDetailsMemberView: View {
                 .animation(nil)
                 .opacity(memberInfoOpacity)
                 .gesture(TapGesture(count: 2).onEnded({
+                    AnalyticsService.sendEvent(.addMemberReactionByDoubleTap)
                     Haptic.play(style: .medium)
                     eventState.sendMainReaction(to: viewModel.member)
                 }).exclusively(before: TapGesture().onEnded({
                     guard eventState.event.me.isOwner == true else { return }
+                    
+                    AnalyticsService.sendEvent(.openMemberContextMenu)
                     showMemberContext = true
                 })))
             ReactionsListView(

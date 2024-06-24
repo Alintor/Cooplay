@@ -85,6 +85,7 @@ final class AddPasswordState: ObservableObject {
     
     func tryAddPassword() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitAddPassword)
         Task {
             do {
                 switch provider {

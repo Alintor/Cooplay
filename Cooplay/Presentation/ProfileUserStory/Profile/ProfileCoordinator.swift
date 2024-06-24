@@ -65,6 +65,7 @@ final class ProfileCoordinator: ObservableObject {
         case .menu:
             ScreenViewFactory.profileMenu(profile: profile, isShownAvatar: isShownAvatar, isBackButton: isBackButton)
                 .closable(anchor: .topTrailing, closeHandler: {
+                    AnalyticsService.sendEvent(.closeProfileByEdgeSwipe)
                     self.close?()
                 })
                 .zIndex(1)
@@ -172,6 +173,7 @@ final class ProfileCoordinator: ObservableObject {
     }
     
     func logout() {
+        AnalyticsService.sendEvent(.submitLogout)
         store.dispatch(.logout)
     }
     

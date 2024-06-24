@@ -54,7 +54,10 @@ struct AccountSettingsView: View {
             }
             if state.showChangePassword {
                 ProfileSettingsItemView(item: .changePassword)
-                    .onTapGesture { coordinator.open(.changePassword) }
+                    .onTapGesture {
+                        AnalyticsService.sendEvent(.openChangePasswordScreen)
+                        coordinator.open(.changePassword)
+                    }
             } else {
                 linkItem(
                     icon: Image(.profileSettingsChangePassword),
@@ -63,11 +66,17 @@ struct AccountSettingsView: View {
                     message: Localizable.accountAddPasswordMessage(),
                     isSheet: false
                 )
-                    .onTapGesture { coordinator.open(.addPassword) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openAddPasswordScreen)
+                    coordinator.open(.addPassword)
+                }
             }
             ProfileSettingsSeparator()
             ProfileSettingsItemView(item: .delete)
-                .onTapGesture { coordinator.open(.deleteAccount) }
+                .onTapGesture {
+                    AnalyticsService.sendEvent(.openDeleteAccountScreen)
+                    coordinator.open(.deleteAccount)
+                }
             Spacer()
         }
         .animation(.customTransition, value: state.providers)
@@ -75,12 +84,14 @@ struct AccountSettingsView: View {
         .alert(Localizable.accountUnlinkAlertApple(), isPresented: $showUnlinkAppleAlert, actions: {
             Button(Localizable.commonCancel(), role: .cancel) {}
             Button(Localizable.accountUnlinkAlertAction(), role: .destructive) {
+                AnalyticsService.sendEvent(.tapUnlinkApple)
                 state.unlinkProvider(.apple)
             }
         })
         .alert(Localizable.accountUnlinkAlertGoogle(), isPresented: $showUnlinkGoogleAlert, actions: {
             Button(Localizable.commonCancel(), role: .cancel) {}
             Button(Localizable.accountUnlinkAlertAction(), role: .destructive) {
+                AnalyticsService.sendEvent(.tapUnlinkGoogle)
                 state.unlinkProvider(.google)
             }
         })

@@ -133,6 +133,7 @@ final class EditProfileState: NSObject, ObservableObject {
     
     func saveChange() {
         showProgress = true
+        AnalyticsService.sendEvent(.submitChangePersonalisation)
         Task.detached { [weak self] in
             do {
                 for editAction in self?.editActions ?? [] {
@@ -166,6 +167,7 @@ final class EditProfileState: NSObject, ObservableObject {
                     self?.photoPickerTypeCamera = true
                     self?.showPhotoPicker = true
                 } else {
+                    AnalyticsService.sendEvent(.showMediaPermissionsAlert)
                     self?.showPermissionsAlert = true
                 }
             }
@@ -173,6 +175,7 @@ final class EditProfileState: NSObject, ObservableObject {
     }
     
     func openSettings() {
+        AnalyticsService.sendEvent(.openApplicationSettings)
         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     }
     
