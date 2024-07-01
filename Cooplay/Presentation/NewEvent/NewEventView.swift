@@ -105,10 +105,7 @@ struct NewEventView: View {
             state.close = {
                 homeCoordinator.showNewEvent = false
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                state.tryFetchOftenData()
-            }
-            //state.tryFetchOftenData()
+            state.tryFetchOftenData()
         }
     }
     
@@ -223,7 +220,6 @@ struct NewEventView: View {
                 .font(.system(size: 17))
                 .padding(.top, -4)
         }
-        //.padding(8)
         .frame(width: 56, height: 56)
         .background(Color(.block))
         .clipShape(.rect(cornerRadius: 16, style: .continuous))

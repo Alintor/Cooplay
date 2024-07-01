@@ -25,6 +25,12 @@ private struct TransparentNonAnimatableFullScreenModifier<FullScreenContent: Vie
         content
             .onChange(of: isPresented) { isPresented in
                 UIView.setAnimationsEnabled(false)
+                if !isPresented {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        UIView.setAnimationsEnabled(true)
+                    }
+                }
+                
             }
             .fullScreenCover(isPresented: $isPresented,
                              content: {
