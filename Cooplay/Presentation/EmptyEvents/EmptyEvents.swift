@@ -49,7 +49,7 @@ struct EmptyEvents: View {
                     guard state.translation.height > 0 && !coordinator.showArkanoid  else { return }
 
                     if offset >= 200 {
-                        Haptic.play(style: .medium)
+                        Haptic.play(style: .heavy)
                         coordinator.showArkanoid = true
                     } else {
                         Haptic.play(style: .soft)
@@ -59,7 +59,7 @@ struct EmptyEvents: View {
                 .onEnded({ _ in
                     if !coordinator.showArkanoid {
                         offset = 0
-                        Haptic.play(style: .medium)
+                        Haptic.play(style: .heavy)
                     }
                 })
             )
