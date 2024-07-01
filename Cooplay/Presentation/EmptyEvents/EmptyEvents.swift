@@ -51,6 +51,7 @@ struct EmptyEvents: View {
                     if offset >= 200 {
                         Haptic.play(style: .heavy)
                         coordinator.showArkanoid = true
+                        AnalyticsService.sendEvent(.openArkanoidGameFromEmptyView)
                     } else {
                         Haptic.play(style: .soft)
                         offset = state.translation.height * 0.8

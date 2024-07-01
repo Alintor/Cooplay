@@ -47,6 +47,7 @@ enum AnalyticsService {
         changeAvatarWithPhoto,
         submitChangePersonalisation,
         openArkanoidGame,
+        openArkanoidGameFromEmptyView,
         closeArkanoidGame,
         openNotificationSettingsScreen,
         openReactionsSettingsScreen,
