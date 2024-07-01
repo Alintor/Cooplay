@@ -22,6 +22,7 @@ enum MatchedAnimations {
     case eventStatus(_ eventId: String)
     case loginButton
     case registerButton
+    case timeView
     
     var name: String {
         switch self {
@@ -49,6 +50,8 @@ enum MatchedAnimations {
             return "loginButton"
         case .registerButton:
             return "registerButton"
+        case .timeView:
+            return "timeView"
         }
     }
 }
@@ -68,7 +71,8 @@ extension SwiftUI.Animation {
         //.interpolatingSpring(stiffness: 300, damping: 28)
         //.interpolatingSpring(duration: 0.3)
         .snappy(duration: 0.3)
-        //.smooth(duration: 0.3)
+        //.easeIn(duration: 0.3)
+        //.smooth(duration: 0.2)
         //.spring(duration: 0.3)
     }
     
@@ -83,5 +87,9 @@ extension SwiftUI.Animation {
     
     static var bounceTransition: SwiftUI.Animation {
         .interpolatingSpring(stiffness: 350, damping: 15)
+    }
+    
+    static var springTransition: SwiftUI.Animation {
+        .spring(duration: 0.3)
     }
 }

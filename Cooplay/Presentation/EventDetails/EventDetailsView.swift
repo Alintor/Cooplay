@@ -118,13 +118,13 @@ struct EventDetailsView: View {
                 .environmentObject(state)
         })
         .sheet(isPresented: $state.showChangeGameSheet) {
-            SearchGameView(selectedGame: state.event.game) { game in
+            SearchGameView(selectedGame: state.event.game, oftenGames: nil) { game in
                 state.changeGame(game)
                 state.changeEditMode()
             }
         }
         .sheet(isPresented: $state.showAddMembersSheet, content: {
-            SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members) { members in
+            SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members, oftenMembers: nil, isEditing: true) { members in
                 state.addMembers(members)
                 if state.modeState.isEditMode {
                     state.changeEditMode()

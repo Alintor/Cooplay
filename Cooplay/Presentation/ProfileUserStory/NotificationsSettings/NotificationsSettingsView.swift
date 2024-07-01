@@ -44,6 +44,7 @@ struct NotificationsSettingsView: View {
                 .disabled(!state.notificationsInfo.enableNotifications)
                 .opacity(state.notificationsInfo.enableNotifications ? 1 : 0.5)
             }
+            .padding(.top, 72)
             .padding(.horizontal, 24)
         }
         .animation(.customTransition, value: state.notificationsInfo)

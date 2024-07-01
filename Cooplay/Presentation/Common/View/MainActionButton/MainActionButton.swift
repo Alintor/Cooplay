@@ -26,9 +26,10 @@ struct MainActionButton: View {
                 .foregroundColor(Color(R.color.textPrimary.name))
                 .font(.system(size: 20))
                 .frame(maxWidth: .infinity)
-                .padding(16)
+                .padding(.vertical, 16)
+                .padding(.horizontal, 24)
         }
-        .background(Color(R.color.actionAccent.name))
+        .background(Color(.actionAccent))
         .clipShape(.rect(cornerRadius: 16, style: .continuous))
         .disabled(isDisabled)
         .opacity(isDisabled ? 0.5 : 1)

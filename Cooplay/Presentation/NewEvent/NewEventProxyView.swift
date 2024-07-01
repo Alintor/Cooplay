@@ -1,20 +1,22 @@
 //
-//  ArcanoidView.swift
+//  NewEventView.swift
 //  Cooplay
 //
-//  Created by Alexandr on 07.11.2023.
+//  Created by Alexandr on 09.11.2023.
 //  Copyright © 2023 Ovchinnikov. All rights reserved.
 //
 
 import SwiftUI
 
-struct ArkanoidView : UIViewControllerRepresentable {
+struct NewEventProxyView : UIViewControllerRepresentable {
+    
+    var closeHandler: (() -> Void)?
 
      func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     
      }
 
      func makeUIViewController(context: Context) -> some UIViewController {
-        return ArkanoidViewController()
+         return UINavigationController(rootViewController: NewEventBuilder().build(closeHandler: closeHandler))
      }
 }

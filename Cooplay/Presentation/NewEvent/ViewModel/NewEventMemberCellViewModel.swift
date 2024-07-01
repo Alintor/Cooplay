@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewEventMemberCellViewModel: NewEventCellViewModel {
+struct NewEventMemberCellViewModel: NewEventCellViewModel, Equatable {
     
     var name: String
     var avatarViewModel: AvatarViewModel
@@ -30,6 +30,10 @@ struct NewEventMemberCellViewModel: NewEventCellViewModel {
     
     init(model: User, isSelected: Bool, selectAction: ((Bool) -> Void)?) {
         self.init(model: model, isSelected: isSelected, isBlocked: false, selectAction: selectAction)
+    }
+    
+    static func == (lhs: NewEventMemberCellViewModel, rhs: NewEventMemberCellViewModel) -> Bool {
+        lhs.model == rhs.model && lhs.isSelected == rhs.isSelected
     }
     
 }

@@ -26,6 +26,8 @@ enum EventServiceError: Error {
     case removeMember
     case takeOwner
     case addEvent
+    case fetchOftenData
+    case createEvent
     case unhandled(error: Error)
 }
 
@@ -45,6 +47,8 @@ extension EventServiceError: LocalizedError {
         case .takeOwner: return Localizable.errorsEventsServiceTakeOwner()
         case .addEvent: return Localizable.errorsEventsServiceAddEvent()
         case .unknownError: return Localizable.errorsUnknown()
+        case .fetchOftenData: return nil
+        case .createEvent: return nil
         case .unhandled(let error): return error.localizedDescription
         }
     }
@@ -443,9 +447,93 @@ protocol EventServiceType {
     
     func createNewEvent(_ request: NewEventRequest)
     func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void)
+    func fetchOftenData() async throws -> NewEventOftenDataResponse
+    func createNewEvent(_ request: NewEventRequest) async throws
 }
 
 extension EventService: EventServiceType {
+    
+    func fetchOftenData() async throws -> NewEventOftenDataResponse {
+        guard let userId = firebaseAuth.currentUser?.uid else { throw EventServiceError.fetchOftenData }
+        
+        var members = [(user: User, count: Int)]()
+        var games =  [Game]()
+        var times = [(time: Date, count: Int)]()
+        let snapshot = try await firestore
+            .collection("Events")
+            .whereField(FieldPath(["members", userId, "id"]), isEqualTo: userId)
+            .getDocuments()
+        let response = snapshot.documents.compactMap({
+            return try? FirestoreDecoder.decode($0.data(), to: EventFirebaseResponse.self)
+        })
+        let events = response.compactMap({ $0.getModel(userId: userId )})
+        let currentDate = Date()
+        for event in events.sorted(by: { $0.date > $1.date }) {
+            var time = event.date
+            let components = Calendar.current.dateComponents(in: .current, from: event.date)
+            if
+                let hour = components.hour,
+                let minute = components.minute,
+                let newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: currentDate) {
+                time = newDate
+            }
+            if !games.contains(event.game) {
+                games.append(event.game)
+            }
+            if let timeIndex = times.firstIndex(where: { $0.time == time }) {
+                var count = times[timeIndex].count
+                count += 1
+                times[timeIndex] = (time, count)
+            } else {
+                times.append((time, 1))
+            }
+            for member in event.members {
+                if let memberIndex = members.firstIndex(where: { $0.user == member }) {
+                    var count = members[memberIndex].count
+                    count += 1
+                    members[memberIndex] = (member, count)
+                } else {
+                    members.append((member, 1))
+                }
+            }
+        }
+        let membersSlice = members.sorted(by: { $0.count > $1.count }).map { member -> User in
+            var user = member.user
+            user.reactions = nil
+            return user
+        }
+        let time = times.sorted(by: { $0.count > $1.count }).map { $0.time }.first
+        return NewEventOftenDataResponse(members: Array(membersSlice), games: games, time: time)
+    }
+    
+    func createNewEvent(_ request: NewEventRequest) async throws {
+        guard let userId = firebaseAuth.currentUser?.uid else { throw EventServiceError.createEvent }
+        
+        let userSnapshot = try await firestore.collection("Users").document(userId).getDocument()
+        guard let data = userSnapshot.data() else { throw EventServiceError.createEvent }
+        
+        let profile = try FirestoreDecoder.decode(data, to: Profile.self)
+        var user = profile.user
+        user.status = .accepted
+        user.isOwner = true
+        user.reactions = nil
+        var members = request.members?.map({ user -> User in
+            var member = user
+            member.status = .invited
+            member.isOwner = false
+            member.reactions = nil
+            return member
+        }) ?? []
+        members.append(user)
+        guard var data = request.dictionary else { throw EventServiceError.createEvent }
+        
+        var membersDictionary = [String: Any]()
+        for member in members {
+            membersDictionary[member.id] = member.dictionary
+        }
+        data["members"] = membersDictionary
+        try await firestore.collection("Events").document(request.id).setData(data)
+    }
     
     func fetchOfftenData(completion: @escaping (Result<NewEventOftenDataResponse, UserServiceError>) -> Void) {
         // TODO: Remove error

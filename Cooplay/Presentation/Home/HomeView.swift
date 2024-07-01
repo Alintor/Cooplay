@@ -31,8 +31,12 @@ struct HomeView: View {
         }
         .coordinateSpace(name: GlobalConstant.CoordinateSpace.home)
         .animation(.customTransition, value: coordinator.isActiveEventPresented)
+        .animation(.springTransition, value: coordinator.showNewEvent)
         .animation(.customTransition, value: coordinator.route)
         .animation(.customTransition, value: coordinator.fullScreenCover)
+        .overlayModal(isPresented: $coordinator.showArkanoid, content: {
+            ArkanoidView().ignoresSafeArea()
+        })
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
                 coordinator.fetchEvents()

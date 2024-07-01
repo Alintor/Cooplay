@@ -8,7 +8,7 @@
 
 import SwiftDate
 
-struct NewEventDayDateViewModel {
+struct NewEventDayDateViewModel: Equatable {
     
     let day: String
     let month: String

@@ -12,6 +12,8 @@ struct EmptyEvents: View {
     
     var newEventAction: (() -> Void)?
     @EnvironmentObject var namespace: NamespaceWrapper
+    @EnvironmentObject var coordinator: HomeCoordinator
+    @State var offset: CGFloat = 0
     
     var body: some View {
         VStack(spacing: 20) {
@@ -39,10 +41,40 @@ struct EmptyEvents: View {
             .background(Color(.actionAccent))
             .clipShape(.rect(cornerRadius: 48, style: .continuous))
             .scaleEffect(0.7)
+            .offset(x: 0, y: offset)
             .matchedGeometryEffect(id: MatchedAnimations.newEventButton.name, in: namespace.id)
+            .animation(.interpolatingSpring(stiffness: 250, damping: 20), value: offset)
+            .highPriorityGesture(DragGesture()
+                .onChanged { state in
+                    guard state.translation.height > 0 && !coordinator.showArkanoid  else { return }
+
+                    if offset >= 200 {
+                        Haptic.play(style: .medium)
+                        coordinator.showArkanoid = true
+                    } else {
+                        Haptic.play(style: .soft)
+                        offset = state.translation.height * 0.8
+                    }
+                }
+                .onEnded({ _ in
+                    if !coordinator.showArkanoid {
+                        offset = 0
+                        Haptic.play(style: .medium)
+                    }
+                })
+            )
             Spacer()
         }
         .padding(.horizontal, 32)
+        .onChange(of: coordinator.showArkanoid) { showGame in
+            if !showGame {
+                offset = 0
+                Haptic.play(style: .medium)
+            }
+        }
+//        .fullScreenCover(isPresented: $showGame) {
+//            ArcanoidView().ignoresSafeArea()
+//        }
     }
 }
 

@@ -30,7 +30,7 @@ struct ProfileView: View {
         }
         .animation(.customTransition, value: coordinator.route)
         .fullScreenCover(isPresented: $coordinator.isMinigamesShown) {
-            ArcanoidView().ignoresSafeArea()
+            ArkanoidView().ignoresSafeArea()
         }
         .onChange(of: coordinator.route, perform: { newValue in
             if coordinator.route == .menu {

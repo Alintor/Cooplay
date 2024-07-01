@@ -93,6 +93,13 @@ enum ScreenViewFactory {
         ))
     }
     
+    static func newEvent() -> some View {
+        NewEventView(state: NewEventState(
+            store: applicationFactory.store,
+            eventService: applicationFactory.eventService
+        ))
+    }
+    
     static func profile() -> some View {
         ProfileView()
     }

@@ -47,12 +47,12 @@ struct EventDetailsInfoView: View {
                     })
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
-                    .cornerRadius(12)
+                    .clipShape(.rect(cornerRadius: 12, style: .continuous))
             } else {
                 Image(.commonGameCover)
                     .resizable()
                     .frame(width: 70, height: 90, alignment: .center)
-                    .cornerRadius(12)
+                    .clipShape(.rect(cornerRadius: 12, style: .continuous))
             }
         }
     }

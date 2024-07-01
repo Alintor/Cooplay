@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct NewEventGameCellViewModel: NewEventCellViewModel {
+struct NewEventGameCellViewModel: NewEventCellViewModel, Equatable {
 
     let coverPath: String?
     var isSelected: Bool
@@ -23,4 +23,9 @@ struct NewEventGameCellViewModel: NewEventCellViewModel {
         coverPath = model.coverPath
         self.isSelected = isSelected
     }
+    
+    static func == (lhs: NewEventGameCellViewModel, rhs: NewEventGameCellViewModel) -> Bool {
+        lhs.model == rhs.model && lhs.isSelected == rhs.isSelected
+    }
+    
 }

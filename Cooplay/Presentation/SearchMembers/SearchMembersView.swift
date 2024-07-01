@@ -12,6 +12,8 @@ struct SearchMembersView : UIViewControllerRepresentable {
     
     let eventId: String
     let selectedMembers: [User]
+    let oftenMembers: [User]?
+    let isEditing: Bool
     let selectionHandler: ((_ members: [User]) -> Void)?
 
      func makeUIViewController(context: Context) -> some UIViewController {
@@ -19,7 +21,7 @@ struct SearchMembersView : UIViewControllerRepresentable {
             eventId: eventId,
             offtenMembers: nil,
             selectedMembers: selectedMembers,
-            isEditing: true,
+            isEditing: isEditing,
             selectionHandler: selectionHandler
          ))
          return navigationController

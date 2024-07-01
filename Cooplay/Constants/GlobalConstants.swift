@@ -37,6 +37,7 @@ enum GlobalConstant {
     static let defaultsReactions = ["👍", "👎", "👀", "😘", "😭", "😡"]
     static let appleAppId = "1523433260"
     static let webLink = "https://ruwus.app"
+    static let defaultEventTime = Calendar.current.date(bySettingHour: 21, minute: 00, second: 0, of: Date())!
 }
 
 var localizableUITableName = "Localizable"

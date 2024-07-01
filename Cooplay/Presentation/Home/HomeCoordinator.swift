@@ -46,6 +46,7 @@ final class HomeCoordinator: ObservableObject {
     @Published var isNoEvents = false
     @Published var invitesCount: Int = 0
     @Published var showLoadingIndicator: Bool
+    @Published var showArkanoid = false
     @Published var showNewEvent: Bool = false {
         didSet {
             if showNewEvent {
@@ -169,7 +170,8 @@ final class HomeCoordinator: ObservableObject {
             ZStack {
                 switch eventsRoute {
                 case .newEvent:
-                    NewEventView { self.showNewEvent = false }
+                    //NewEventProxyView { self.showNewEvent = false }
+                    ScreenViewFactory.newEvent()
                         .closable(anchor: .trailing) { self.showNewEvent = false }
                         .zIndex(1)
                         .transition(.move(edge: .trailing))

@@ -56,6 +56,6 @@ class ArkanoidViewController: UIViewController {
     
     @objc private func closeButtonTapped() {
         AnalyticsService.sendEvent(.closeArkanoidGame)
-        dismiss(animated: true)
+        dismiss(animated: false)
     }
 }

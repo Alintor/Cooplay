@@ -92,11 +92,21 @@ final class ProfileCoordinator: ObservableObject {
             .zIndex(1)
             .transition(.move(edge: .trailing))
         case.notifications:
-            VStack {
-                if let title = title {
-                    ProfileNavigationView(title: title, isBackButton: isBackButton)
-                }
+            ZStack {
                 ScreenViewFactory.notificationsSettings()
+                if let title = title {
+                    VStack {
+                        ProfileNavigationView(title: title, isBackButton: isBackButton)
+                            .background {
+                                TransparentBlurView(removeAllFilters: false)
+                                    .blur(radius: 15)
+                                    .padding([.horizontal, .top], -30)
+                                    .frame(width: UIScreen.main.bounds.size.width)
+                                    .ignoresSafeArea()
+                            }
+                        Spacer()
+                    }
+                }
             }
             .closable(anchor: .trailing) {
                 self.open(.menu)

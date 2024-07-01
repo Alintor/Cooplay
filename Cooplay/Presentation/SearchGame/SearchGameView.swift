@@ -10,7 +10,8 @@ import SwiftUI
 
 struct SearchGameView : UIViewControllerRepresentable {
     
-    let selectedGame: Game
+    let selectedGame: Game?
+    let oftenGames: [Game]?
     let selectionHandler: ((_ game: Game) -> Void)?
 
      func makeUIViewController(context: Context) -> some UIViewController {
