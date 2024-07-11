@@ -20,6 +20,16 @@ final class ApplicationFactory {
     fileprivate let userService: UserService
     fileprivate let feedbackService: FeedbackService
     fileprivate let defaultsStorage: DefaultsStorage
+    fileprivate var gameService: GamesService {
+        GamesService(
+            provider: APIProvider(
+                apiKey: "",
+                authorizationHandler: AuthorizationHandler(),
+                defaultHeaders: [:]
+            ),
+            defaultsStorage: defaultsStorage
+        )
+    }
     
     static func getStore() -> Store {
         applicationFactory.store
@@ -97,6 +107,16 @@ enum ScreenViewFactory {
         NewEventView(state: NewEventState(
             store: applicationFactory.store,
             eventService: applicationFactory.eventService
+        ))
+    }
+    
+    static func searchGame(oftenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?) -> some View {
+        SearchGameView(state: SearchGameState(
+            eventService: applicationFactory.eventService,
+            gamesService: applicationFactory.gameService,
+            oftenGames: oftenGames,
+            selectedGame: selectedGame,
+            selectionHandler: selectionHandler
         ))
     }
     

@@ -27,6 +27,7 @@ extension GamesServiceError: LocalizedError {
 protocol GamesServiceType {
     
     func searchGame(_ searchValue: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void)
+    func searchGame(_ searchValue: String) async throws -> [Game]
 }
 
 
@@ -61,6 +62,19 @@ extension GamesService: GamesServiceType {
         }
     }
     
+    func searchGame(_ searchValue: String) async throws -> [Game] {
+        if
+            let tokenData = defaultsStorage?.get(valueForKey: .gameDBToken) as? Data,
+            let token = try? JSONDecoder().decode(GameDBToken.self, from: tokenData),
+            token.expiresAt > Date() 
+        {
+            return try await fetchGames(searchValue: searchValue, token: token.token)
+        } else {
+            let token = try await fetchToken()
+            return try await fetchGames(searchValue: searchValue, token: token)
+        }
+    }
+    
     private func fetchGames(searchValue: String, token: String, completion: @escaping (Result<[Game], GamesServiceError>) -> Void) {
         provider?.sendRequest(requestSpecification: GamesSpecification.search(value: searchValue, accessToken: token)
         ) { (result: Result<JSON, MoyaError>) in
@@ -70,6 +84,21 @@ extension GamesService: GamesServiceType {
                 completion(.success(games ?? []))
             case .failure(let error):
                 completion(.failure(.unhandled(error: error)))
+            }
+        }
+    }
+    
+    private func fetchGames(searchValue: String, token: String) async throws -> [Game] {
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            self?.provider?.sendRequest(requestSpecification: GamesSpecification.search(value: searchValue, accessToken: token)
+            ) { (result: Result<JSON, MoyaError>) in
+                switch result {
+                case .success(let response):
+                    let games = response.array?.map({ Game(with: $0)})
+                    continuation.resume(returning: games ?? [])
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }
@@ -87,4 +116,21 @@ extension GamesService: GamesServiceType {
             }
         }
     }
+    
+    private func fetchToken() async throws -> String {
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            self?.provider?.sendRequest(requestSpecification: GamesSpecification.token) { [weak self] (result: Result<GameDBToken, MoyaError>) in
+                switch result {
+                case .success(let token):
+                    if let tokenData = try? JSONEncoder().encode(token) {
+                        self?.defaultsStorage?.set(value: tokenData, forKey: .gameDBToken)
+                    }
+                    continuation.resume(returning: token.token)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
 }

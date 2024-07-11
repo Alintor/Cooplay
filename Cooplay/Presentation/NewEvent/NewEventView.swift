@@ -15,7 +15,6 @@ struct NewEventView: View {
     @StateObject var state: NewEventState
     @State var showTimeContext = false
     @State var showCalendar = false
-    @State var showSearchGame = false
     @State var showSearchMember = false
     
     var body: some View {
@@ -76,14 +75,6 @@ struct NewEventView: View {
             }
             
         }
-        .sheet(isPresented: $showSearchGame) {
-            SearchGameView(
-                selectedGame: state.games?.first(where: { $0.isSelected })?.model,
-                oftenGames: state.games?.compactMap({ $0.model })
-            ) { game in
-                state.didSelectGame(game)
-            }
-        }
         .sheet(isPresented: $showSearchMember, content: {
             SearchMembersView(
                 eventId: state.eventId,
@@ -120,7 +111,13 @@ struct NewEventView: View {
                 Spacer()
                 Button(Localizable.newEventSearchGameButtonTitle()) {
                     AnalyticsService.sendEvent(.openSearchGameFromNewEvent)
-                    showSearchGame = true
+                    homeCoordinator.showSheetModal(HomeCoordinator.SheetModal.searchGame(
+                        oftenGames: state.games?.compactMap({ $0.model }),
+                        selectedGame: state.games?.first(where: { $0.isSelected })?.model,
+                        selectionHandler: { game in
+                            state.didSelectGame(game)
+                        }
+                    ))
                 }
                 .foregroundStyle(Color(.actionAccent))
                 .font(.system(size: 20))

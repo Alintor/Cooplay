@@ -17,6 +17,7 @@ final class ReactionsContextState: ObservableObject {
 struct EventDetailsView: View {
     
     @StateObject var state: EventDetailsState
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     @EnvironmentObject var namespace: NamespaceWrapper
     @State private var showStatusContextView = false
     @StateObject private var reactionsContextState = ReactionsContextState()
@@ -117,12 +118,6 @@ struct EventDetailsView: View {
             OwnerReactionContextView(showReactionsContext: $reactionsContextState.showContext)
                 .environmentObject(state)
         })
-        .sheet(isPresented: $state.showChangeGameSheet) {
-            SearchGameView(selectedGame: state.event.game, oftenGames: nil) { game in
-                state.changeGame(game)
-                state.changeEditMode()
-            }
-        }
         .sheet(isPresented: $state.showAddMembersSheet, content: {
             SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members, oftenMembers: nil, isEditing: true) { members in
                 state.addMembers(members)

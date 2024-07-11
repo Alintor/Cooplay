@@ -37,6 +37,10 @@ struct HomeView: View {
         .overlayModal(isPresented: $coordinator.showArkanoid, content: {
             ArkanoidView().ignoresSafeArea()
         })
+        .sheet(item: $coordinator.sheetModal, content: { sheet in
+            sheet.buildView()
+                .environmentObject(coordinator)
+        })
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
                 coordinator.fetchEvents()

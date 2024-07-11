@@ -54,7 +54,7 @@ final class SearchGamePresenter {
             fetchOfftenGames()
             return
         }
-        let sectionHeader = offtenGames.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsOfften())
+        let sectionHeader = offtenGames.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchGameSectionsOften())
         //dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
         dataSource.headerModelProvider = { index in
             guard index == 0 else { return nil }

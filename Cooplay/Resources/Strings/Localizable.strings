@@ -162,11 +162,12 @@
 "searchGame.title" = "Поиск игры";
 "searchGame.closeButton.title" = "Отмена";
 "searchGame.searchBar.placeholder" = "Название игры";
-"searchGame.sections.offten" = "Частые игры";
+"searchGame.sections.often" = "Частые игры";
 "searchGame.sections.searchResults" = "Результаты поиска";
-"searchGame.emptyResults.title" = "Не получилось найти игру =(";
-"searchGame.emptySate.title" = "Ищите игры по названию";
-"searchGame.emptySate.description" = "Например, введите 'Overwatch' и посмотрите, что будет =)";
+"searchGame.emptyResults.title" = "Игра не найдена";
+"searchGame.emptyResults.description" = "Хм, мы не смогли найти ни одной игры, проверьте название и попробуйте ещё раз";
+"searchGame.emptySate.title" = "Здесь будут частые игры";
+"searchGame.emptySate.description" = "Ищите игры по названию, они появятся здесь после создания события ";
 
 // MARK: - Search Members
 "searchMembers.title" = "Поиск участников";

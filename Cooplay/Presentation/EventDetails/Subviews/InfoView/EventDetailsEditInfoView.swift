@@ -11,6 +11,7 @@ import SwiftUI
 struct EventDetailsEditInfoView: View {
     
     @EnvironmentObject var state: EventDetailsState
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
     var body: some View {
         LazyVStack(spacing: 8) {
@@ -31,7 +32,11 @@ struct EventDetailsEditInfoView: View {
             .background(Rectangle().foregroundColor(Color(.block)))
             .clipShape(.rect(cornerRadius: 16, style: .continuous))
             .onTapGesture {
-                state.showChangeGameSheet = true
+                AnalyticsService.sendEvent(.openSearchGameFromEventDetails)
+                homeCoordinator.showSheetModal(.searchGame(oftenGames: nil, selectedGame: state.event.game, selectionHandler: { game in
+                    state.changeGame(game)
+                    state.changeEditMode()
+                }))
             }
             if !state.needShowDateSelection {
                 dateButton

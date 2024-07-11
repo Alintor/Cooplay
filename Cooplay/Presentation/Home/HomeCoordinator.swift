@@ -38,6 +38,17 @@ final class HomeCoordinator: ObservableObject {
         case editStatus(event: Event)
     }
     
+    enum SheetModal: Identifiable {
+        
+        case searchGame(oftenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?)
+        
+        var id: Int {
+            switch self {
+            case .searchGame: return 1
+            }
+        }
+    }
+    
     // MARK: - Properties
     
     private let store: Store
@@ -64,6 +75,7 @@ final class HomeCoordinator: ObservableObject {
         }
     }
     @Published var fullScreenCover: FullScreenCover?
+    @Published var sheetModal: SheetModal?
     @Published var editStatusEventId: String?
     var isActiveEventPresented: Bool {
         activeEvent != nil
@@ -148,6 +160,14 @@ final class HomeCoordinator: ObservableObject {
     
     func changeStatus(_ status: User.Status, for event: Event) {
         store.dispatch(.changeStatus(status, event: event))
+    }
+    
+    func showSheetModal(_ sheet: SheetModal) {
+        sheetModal = sheet
+    }
+    
+    func closeSheet() {
+        sheetModal = nil
     }
     
     // MARK: - ViewBuilder
@@ -238,6 +258,16 @@ extension HomeCoordinator.FullScreenCover {
         switch self {
         case .profile: return nil
         case .editStatus(let event): return event.id
+        }
+    }
+}
+
+extension HomeCoordinator.SheetModal {
+    
+    @ViewBuilder func buildView() -> some View {
+        switch self {
+        case .searchGame(let oftenGames, let selectedGame, let selectionHandler):
+            ScreenViewFactory.searchGame(oftenGames: oftenGames, selectedGame: selectedGame, selectionHandler: selectionHandler)
         }
     }
 }

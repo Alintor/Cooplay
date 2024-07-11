@@ -29,7 +29,7 @@
 		A823DFF22B04C425006EC119 /* EventDetailsStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */; };
 		A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */; };
 		A823DFF62B060D71006EC119 /* AdditionalReactionsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */; };
-		A823DFF82B0626A1006EC119 /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF72B0626A1006EC119 /* SearchGameView.swift */; };
+		A823DFF82B0626A1006EC119 /* SearchGameProxyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF72B0626A1006EC119 /* SearchGameProxyView.swift */; };
 		A823E0012B077610006EC119 /* SearchMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0002B077610006EC119 /* SearchMembersView.swift */; };
 		A823E0032B08E0D3006EC119 /* EventChangeDateContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */; };
 		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
@@ -147,6 +147,13 @@
 		A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */; };
 		A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */; };
 		A86D36842563DDC3001FDBFC /* TimeCarouselPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */; };
+		A870FE712C3E731C00C99044 /* SearchGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE702C3E731C00C99044 /* SearchGameState.swift */; };
+		A870FE732C3E7B4100C99044 /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE722C3E7B4100C99044 /* SearchGameView.swift */; };
+		A870FE752C3FA61800C99044 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE742C3FA61800C99044 /* SearchField.swift */; };
+		A870FE782C3FB41E00C99044 /* SearchGameOftenEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE772C3FB41E00C99044 /* SearchGameOftenEmptyView.swift */; };
+		A870FE7A2C3FB62100C99044 /* SearchGameEmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE792C3FB62100C99044 /* SearchGameEmptyResultView.swift */; };
+		A870FE7C2C3FB87600C99044 /* SearchGameItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE7B2C3FB87600C99044 /* SearchGameItemView.swift */; };
+		A870FE7E2C3FBFE300C99044 /* SearchGameSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE7D2C3FBFE300C99044 /* SearchGameSkeletonView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
@@ -378,7 +385,7 @@
 		A823DFF12B04C425006EC119 /* EventDetailsStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsStatusContextView.swift; sourceTree = "<group>"; };
 		A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerReactionContextView.swift; sourceTree = "<group>"; };
 		A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsState.swift; sourceTree = "<group>"; };
-		A823DFF72B0626A1006EC119 /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
+		A823DFF72B0626A1006EC119 /* SearchGameProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameProxyView.swift; sourceTree = "<group>"; };
 		A823E0002B077610006EC119 /* SearchMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersView.swift; sourceTree = "<group>"; };
 		A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChangeDateContextView.swift; sourceTree = "<group>"; };
 		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
@@ -489,6 +496,13 @@
 		A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemModel.swift; sourceTree = "<group>"; };
 		A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselConfiguration.swift; sourceTree = "<group>"; };
 		A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselPanel.swift; sourceTree = "<group>"; };
+		A870FE702C3E731C00C99044 /* SearchGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameState.swift; sourceTree = "<group>"; };
+		A870FE722C3E7B4100C99044 /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
+		A870FE742C3FA61800C99044 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		A870FE772C3FB41E00C99044 /* SearchGameOftenEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameOftenEmptyView.swift; sourceTree = "<group>"; };
+		A870FE792C3FB62100C99044 /* SearchGameEmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameEmptyResultView.swift; sourceTree = "<group>"; };
+		A870FE7B2C3FB87600C99044 /* SearchGameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameItemView.swift; sourceTree = "<group>"; };
+		A870FE7D2C3FBFE300C99044 /* SearchGameSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameSkeletonView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Ruwus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruwus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1152,6 +1166,7 @@
 				A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */,
 				A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */,
 				A8BE18342B01E96C0039634E /* StatusContextView.swift */,
+				A870FE742C3FA61800C99044 /* SearchField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1544,6 +1559,17 @@
 				A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */,
 			);
 			path = TimeCarousel;
+			sourceTree = "<group>";
+		};
+		A870FE762C3FB3F800C99044 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A870FE772C3FB41E00C99044 /* SearchGameOftenEmptyView.swift */,
+				A870FE792C3FB62100C99044 /* SearchGameEmptyResultView.swift */,
+				A870FE7B2C3FB87600C99044 /* SearchGameItemView.swift */,
+				A870FE7D2C3FBFE300C99044 /* SearchGameSkeletonView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A87701F223336E6E002EA095 = {
@@ -2119,7 +2145,10 @@
 		BF452587466D36F09D1E7251 /* SearchGame */ = {
 			isa = PBXGroup;
 			children = (
-				A823DFF72B0626A1006EC119 /* SearchGameView.swift */,
+				A870FE762C3FB3F800C99044 /* Subviews */,
+				A870FE702C3E731C00C99044 /* SearchGameState.swift */,
+				A870FE722C3E7B4100C99044 /* SearchGameView.swift */,
+				A823DFF72B0626A1006EC119 /* SearchGameProxyView.swift */,
 				A86860582A0E593200327385 /* Builder */,
 				A86860732A11EFB700327385 /* Contract */,
 				A87CF44223E97A87004189D3 /* ViewModel */,
@@ -2548,6 +2577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A82FF2A92345F23C00EE1807 /* User.swift in Sources */,
+				A870FE7C2C3FB87600C99044 /* SearchGameItemView.swift in Sources */,
 				A824C9D3273E891D000E61A1 /* ProfileSettingsSectionHeader.swift in Sources */,
 				A8D48C522B8C5DAE005B950C /* HomeLoadingIndicator.swift in Sources */,
 				A82FF2AB2345F60F00EE1807 /* Game.swift in Sources */,
@@ -2557,6 +2587,7 @@
 				A85F9CB22AF6063E00BBAE31 /* AuthenticationState.swift in Sources */,
 				A8A0F0F72AFE35EB00997DEA /* EventsListView.swift in Sources */,
 				A824C9DB273EC6F2000E61A1 /* Profile.swift in Sources */,
+				A870FE7E2C3FBFE300C99044 /* SearchGameSkeletonView.swift in Sources */,
 				A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */,
 				A86860892A14BFDE00327385 /* String+Localizable.swift in Sources */,
 				A8C307A32BA061A700907B56 /* Validation.swift in Sources */,
@@ -2574,7 +2605,7 @@
 				A87CF47923EC1518004189D3 /* APIProviderAssemblyContainer.swift in Sources */,
 				A863E3C52B68C4D00021B405 /* AuthorizationView.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
-				A823DFF82B0626A1006EC119 /* SearchGameView.swift in Sources */,
+				A823DFF82B0626A1006EC119 /* SearchGameProxyView.swift in Sources */,
 				A863E3B52B676C410021B405 /* LoginView.swift in Sources */,
 				A8D48C392B7A2522005B950C /* RegisterState.swift in Sources */,
 				A85F9CB62AF61F8700BBAE31 /* ClosableModifier.swift in Sources */,
@@ -2608,6 +2639,7 @@
 				A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */,
 				A8A0F0EC2AFDF09200997DEA /* EventsListState.swift in Sources */,
 				A86860722A0FB5E900327385 /* NewEventContract.swift in Sources */,
+				A870FE752C3FA61800C99044 /* SearchField.swift in Sources */,
 				A868608C2A14C09900327385 /* TextFieldView.swift in Sources */,
 				A815E81924701F66005DFAF0 /* UIApplication.swift in Sources */,
 				A8C3079C2B9F0E7100907B56 /* AccountSettingsState.swift in Sources */,
@@ -2685,12 +2717,15 @@
 				A8C3079F2B9F1C6B00907B56 /* ChangePasswordView.swift in Sources */,
 				A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */,
 				A8D1D26C2356F83F00DA1089 /* UIBarButtonItem.swift in Sources */,
+				A870FE732C3E7B4100C99044 /* SearchGameView.swift in Sources */,
+				A870FE782C3FB41E00C99044 /* SearchGameOftenEmptyView.swift in Sources */,
 				A824CA1A2746711D000E61A1 /* ReactionsListView.swift in Sources */,
 				A824C9ED2742BAB0000E61A1 /* EventStatusDetailsView.swift in Sources */,
 				A823DFF22B04C425006EC119 /* EventDetailsStatusContextView.swift in Sources */,
 				A824CA1D27467147000E61A1 /* View.swift in Sources */,
 				A87CF44023E977BA004189D3 /* SearchGameCell.swift in Sources */,
 				A8A0F0FE2AFFA32D00997DEA /* InvitesIconView.swift in Sources */,
+				A870FE7A2C3FB62100C99044 /* SearchGameEmptyResultView.swift in Sources */,
 				A89840A92C0707E000E30549 /* DeleteAccountState.swift in Sources */,
 				A8A0F0F12AFDFF7600997DEA /* InvitedEventView.swift in Sources */,
 				A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */,
@@ -2742,6 +2777,7 @@
 				A87CF40F23E03CEA004189D3 /* GamesServiceAssemblyContainer.swift in Sources */,
 				A87C38222BF608FC00A86DE2 /* AuthProvider.swift in Sources */,
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
+				A870FE712C3E731C00C99044 /* SearchGameState.swift in Sources */,
 				A85F9CBD2AF7A88200BBAE31 /* TitleView.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
 				A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */,
