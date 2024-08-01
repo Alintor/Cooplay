@@ -266,7 +266,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 70 images.
+  /// This `R.image` struct is generated, and contains static references to 71 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -382,6 +382,8 @@ struct R: Rswift.Validatable {
     static let profileSettingsWriteToUs = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.writeToUs")
     /// Image `search.emptyOftenGames`.
     static let searchEmptyOftenGames = Rswift.ImageResource(bundle: R.hostingBundle, name: "search.emptyOftenGames")
+    /// Image `search.emptyOftenMembers`.
+    static let searchEmptyOftenMembers = Rswift.ImageResource(bundle: R.hostingBundle, name: "search.emptyOftenMembers")
     /// Image `status.normal.accepted`.
     static let statusNormalAccepted = Rswift.ImageResource(bundle: R.hostingBundle, name: "status.normal.accepted")
     /// Image `status.normal.declined`.
@@ -694,6 +696,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.searchEmptyOftenGames, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "search.emptyOftenMembers", bundle: ..., traitCollection: ...)`
+    static func searchEmptyOftenMembers(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.searchEmptyOftenMembers, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "status.normal.accepted", bundle: ..., traitCollection: ...)`
     static func statusNormalAccepted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.statusNormalAccepted, compatibleWith: traitCollection)
@@ -912,7 +919,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 279 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 280 localization keys.
     struct localizable {
       /// Value: %@ %@ оставил реакцию
       static let notificationsAddReactionTitle = Rswift.StringResource(key: "notifications.addReaction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1078,6 +1085,8 @@ struct R: Rswift.Validatable {
       static let loginRecoveryPasswordButton = Rswift.StringResource(key: "login.recoveryPasswordButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Завтра
       static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Здесь буду частые участники
+      static let searchMembersEmptySateTitle = Rswift.StringResource(key: "searchMembers.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Здесь будут все ваши события
       static let eventsListEmptySateTitle = Rswift.StringResource(key: "eventsList.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Здесь будут частые игры
@@ -1094,14 +1103,12 @@ struct R: Rswift.Validatable {
       static let editProfileChangeAvatar = Rswift.StringResource(key: "editProfile.changeAvatar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Изменить
       static let timeCarouselPanelChangeTitle = Rswift.StringResource(key: "timeCarouselPanel.change.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Или пригласите по ссылке
-      static let searchMembersEmptySateDescription = Rswift.StringResource(key: "searchMembers.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Исключить
       static let eventMemberMenuItemDelete = Rswift.StringResource(key: "eventMemberMenuItem.delete", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Ищите игроков по никнейму, или пригласите друзей по ссылке
+      static let searchMembersEmptySateDescription = Rswift.StringResource(key: "searchMembers.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Ищите игры по названию, они появятся здесь после создания события 
       static let searchGameEmptySateDescription = Rswift.StringResource(key: "searchGame.emptySate.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Ищите участников по нику
-      static let searchMembersEmptySateTitle = Rswift.StringResource(key: "searchMembers.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Когда
       static let newEventChooseDayLabelTitle = Rswift.StringResource(key: "newEvent.chooseDayLabel.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Коснитесь, чтобы начать
@@ -1162,7 +1169,7 @@ struct R: Rswift.Validatable {
       static let statusContextDeclined = Rswift.StringResource(key: "status.context.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не пойду
       static let statusDeclined = Rswift.StringResource(key: "status.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Не получилось найти человека =(
+      /// Value: Не получилось найти человека
       static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось добавить реакцию
       static let errorsEventsServiceAddReaction = Rswift.StringResource(key: "errors.eventsService.addReaction", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1336,6 +1343,8 @@ struct R: Rswift.Validatable {
       static let statusOntime = Rswift.StringResource(key: "status.ontime", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Придумайте пароль
       static let registerPasswordPlaceholder = Rswift.StringResource(key: "register.password.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Проверьте правильность никнейма или пригласите по ссылке
+      static let searchMembersEmptyResultsDescription = Rswift.StringResource(key: "searchMembers.emptyResults.description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Продолжить
       static let addPasswordAlertButton = Rswift.StringResource(key: "addPassword.alert.button", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Продолжить с Apple
@@ -1451,7 +1460,7 @@ struct R: Rswift.Validatable {
       /// Value: Частые игры
       static let searchGameSectionsOften = Rswift.StringResource(key: "searchGame.sections.often", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Частые участники
-      static let searchMembersSectionsOfften = Rswift.StringResource(key: "searchMembers.sections.offten", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let searchMembersSectionsOften = Rswift.StringResource(key: "searchMembers.sections.often", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Эти учетные данные уже связаны с другой учетной записью пользователя.
       static let errorsAuthorizationServiceCredentialAlreadyInUse = Rswift.StringResource(key: "errors.authorizationService.credentialAlreadyInUse", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: или
@@ -1883,6 +1892,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("newEvent.tomorrowButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Здесь буду частые участники
+      static func searchMembersEmptySateTitle(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptySate.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Здесь будут все ваши события
       static func eventsListEmptySateTitle(_: Void = ()) -> String {
         return NSLocalizedString("eventsList.emptySate.title", bundle: R.hostingBundle, comment: "")
@@ -1923,24 +1937,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeCarouselPanel.change.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Или пригласите по ссылке
-      static func searchMembersEmptySateDescription(_: Void = ()) -> String {
-        return NSLocalizedString("searchMembers.emptySate.description", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: Исключить
       static func eventMemberMenuItemDelete(_: Void = ()) -> String {
         return NSLocalizedString("eventMemberMenuItem.delete", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Ищите игроков по никнейму, или пригласите друзей по ссылке
+      static func searchMembersEmptySateDescription(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptySate.description", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Ищите игры по названию, они появятся здесь после создания события 
       static func searchGameEmptySateDescription(_: Void = ()) -> String {
         return NSLocalizedString("searchGame.emptySate.description", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Ищите участников по нику
-      static func searchMembersEmptySateTitle(_: Void = ()) -> String {
-        return NSLocalizedString("searchMembers.emptySate.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Когда
@@ -2093,7 +2102,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("status.declined", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Не получилось найти человека =(
+      /// Value: Не получилось найти человека
       static func searchMembersEmptyResultsTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.emptyResults.title", bundle: R.hostingBundle, comment: "")
       }
@@ -2528,6 +2537,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("register.password.placeholder", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Проверьте правильность никнейма или пригласите по ссылке
+      static func searchMembersEmptyResultsDescription(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.emptyResults.description", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Продолжить
       static func addPasswordAlertButton(_: Void = ()) -> String {
         return NSLocalizedString("addPassword.alert.button", bundle: R.hostingBundle, comment: "")
@@ -2814,8 +2828,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: Частые участники
-      static func searchMembersSectionsOfften(_: Void = ()) -> String {
-        return NSLocalizedString("searchMembers.sections.offten", bundle: R.hostingBundle, comment: "")
+      static func searchMembersSectionsOften(_: Void = ()) -> String {
+        return NSLocalizedString("searchMembers.sections.often", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Эти учетные данные уже связаны с другой учетной записью пользователя.

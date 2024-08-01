@@ -30,11 +30,6 @@ class EventDetailsState: ObservableObject {
     @Published var modeState: ModeState
     @Published var eventDetailsSize: CGSize = .zero
     @Published var needShowDateSelection = false
-    @Published var showAddMembersSheet = false {
-        didSet {
-            if showAddMembersSheet { AnalyticsService.sendEvent(.openSearchMemberFromEventDetails) }
-        }
-    }
     @Published var newDate: Date
     var members: [User] {
         event.members

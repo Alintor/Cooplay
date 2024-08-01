@@ -35,6 +35,7 @@ extension UserServiceError: LocalizedError {
 protocol UserServiceType {
     
     func searchUser(_ searchValue: String, completion: @escaping (Result<[User], UserServiceError>) -> Void)
+    func searchUser(_ searchValue: String) async throws -> [User]
     func updateNickName(_ name: String) async throws
     func uploadNewAvatar(_ image: UIImage) async throws
     func deleteAvatar(path: String, needClear: Bool) async throws
@@ -187,6 +188,19 @@ extension UserService: UserServiceType {
             completion(.success(filteredUsers?.map({ $0.user }) ?? []))
         }
         
+    }
+    
+    func searchUser(_ searchValue: String) async throws -> [User] {
+        guard let userId = firebaseAuth.currentUser?.uid else { throw UserServiceError.unknownError }
+        
+        let snapshot = try await firestore.collection("Users").getDocuments()
+        let users = snapshot.documents.compactMap({
+            return try? FirestoreDecoder.decode($0.data(), to: Profile.self)
+        })
+        let filteredUsers = users.filter({
+            $0.name.lowercased().contains(searchValue.lowercased()) && $0.id != userId
+        })
+        return filteredUsers.map({ $0.user })
     }
     
     func updateNotificationsInfo(_ info: NotificationsInfo) {

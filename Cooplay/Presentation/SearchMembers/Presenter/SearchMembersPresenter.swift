@@ -60,7 +60,7 @@ final class SearchMembersPresenter {
             fetchOftenMembers()
             return
         }
-        let sectionHeader = offtenMembers.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsOfften())
+        let sectionHeader = offtenMembers.isEmpty ? nil : SearchSectionHeaderViewModel(with: R.string.localizable.searchMembersSectionsOften())
         //dataSource.setSectionHeaderModel(sectionHeader, forSection: 0)
         dataSource.headerModelProvider = { index in
             guard index == 0 else { return nil }

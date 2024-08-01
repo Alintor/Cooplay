@@ -41,10 +41,17 @@ final class HomeCoordinator: ObservableObject {
     enum SheetModal: Identifiable {
         
         case searchGame(oftenGames: [Game]?, selectedGame: Game?, selectionHandler: ((_ game: Game) -> Void)?)
+        case searchMembers(eventId: String,
+            oftenMembers: [User]?,
+            selectedMembers: [User]?,
+            isEditing: Bool,
+            selectionHandler: ((_ members: [User]) -> Void)?
+        )
         
         var id: Int {
             switch self {
-            case .searchGame: return 1
+            case .searchGame: return 0
+            case .searchMembers: return 1
             }
         }
     }
@@ -268,6 +275,14 @@ extension HomeCoordinator.SheetModal {
         switch self {
         case .searchGame(let oftenGames, let selectedGame, let selectionHandler):
             ScreenViewFactory.searchGame(oftenGames: oftenGames, selectedGame: selectedGame, selectionHandler: selectionHandler)
+        case let .searchMembers(eventId, oftenMembers, selectedMembers, isEditing, selectionHandler):
+            ScreenViewFactory.searchMembers(
+                eventId: eventId,
+                oftenMembers: oftenMembers,
+                selectedMembers: selectedMembers,
+                isEditing: isEditing,
+                selectionHandler: selectionHandler
+            )
         }
     }
 }

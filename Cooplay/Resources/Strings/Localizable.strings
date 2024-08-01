@@ -176,11 +176,12 @@
 "searchMembers.inviteByLink.title" = "Пригласить по ссылке";
 "searchMembers.searchBar.placeholder" = "Ник пользователя";
 "searchMembers.sections.selected" = "Выбранные";
-"searchMembers.sections.offten" = "Частые участники";
+"searchMembers.sections.often" = "Частые участники";
 "searchMembers.sections.searchResults" = "Результаты поиска";
-"searchMembers.emptyResults.title" = "Не получилось найти человека =(";
-"searchMembers.emptySate.title" = "Ищите участников по нику";
-"searchMembers.emptySate.description" = "Или пригласите по ссылке";
+"searchMembers.emptyResults.title" = "Не получилось найти человека";
+"searchMembers.emptyResults.description" = "Проверьте правильность никнейма или пригласите по ссылке";
+"searchMembers.emptySate.title" = "Здесь буду частые участники";
+"searchMembers.emptySate.description" = "Ищите игроков по никнейму, или пригласите друзей по ссылке";
 
 // MARK: - AuthorizationMenu
 

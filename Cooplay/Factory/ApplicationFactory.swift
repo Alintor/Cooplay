@@ -120,6 +120,24 @@ enum ScreenViewFactory {
         ))
     }
     
+    static func searchMembers(
+        eventId: String,
+        oftenMembers: [User]?,
+        selectedMembers: [User]?,
+        isEditing: Bool,
+        selectionHandler: ((_ members: [User]) -> Void)?
+    ) -> some View {
+        SearchMembersView(state: SearchMembersState(
+            eventId: eventId,
+            eventService: applicationFactory.eventService,
+            userService: applicationFactory.userService,
+            oftenMembers: oftenMembers,
+            selectedMembers: selectedMembers,
+            isEditing: isEditing,
+            selectionHandler: selectionHandler
+        ))
+    }
+    
     static func profile() -> some View {
         ProfileView()
     }

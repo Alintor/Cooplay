@@ -86,10 +86,6 @@ struct SearchGameView: View {
         ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 Section {
-                    Rectangle()
-                        .foregroundColor(Color(UIColor.white.withAlphaComponent(0.1)))
-                        .padding(.leading, 16)
-                        .frame(height: 1 / UIScreen.main.scale)
                     ForEach(games, id:\.model.slug) { game in
                         SearchGameItemView(viewModel: game)
                             .onTapGesture {
@@ -97,20 +93,27 @@ struct SearchGameView: View {
                             }
                     }
                 } header: {
-                    Text(title)
-                        .font(.system(size: 17))
-                        .foregroundStyle(Color(.textSecondary))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                        .padding(.top, 20)
-                        .padding(.bottom, 12)
-                        .background {
-                            TransparentBlurView(removeAllFilters: false)
-                                .blur(radius: 15)
-                                .padding([.horizontal, .top], -30)
-                                .frame(width: UIScreen.main.bounds.size.width)
-                                .ignoresSafeArea()
-                        }
+                    VStack(spacing: 0) {
+                        Text(title)
+                            .font(.system(size: 17))
+                            .foregroundStyle(Color(.textSecondary))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 20)
+                            .padding(.bottom, 12)
+                            .background {
+                                TransparentBlurView(removeAllFilters: false)
+                                    .blur(radius: 15)
+                                    .padding([.horizontal, .top], -30)
+                                    .frame(width: UIScreen.main.bounds.size.width)
+                                    .ignoresSafeArea()
+                            }
+                        Rectangle()
+                            .foregroundColor(Color(UIColor.white.withAlphaComponent(0.1)))
+                            .padding(.leading, 16)
+                            .frame(height: 1 / UIScreen.main.scale)
+                    }
+                    .background(Color(.background).opacity(0.7))
                 }
             }
         }

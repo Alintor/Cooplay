@@ -15,7 +15,6 @@ struct NewEventView: View {
     @StateObject var state: NewEventState
     @State var showTimeContext = false
     @State var showCalendar = false
-    @State var showSearchMember = false
     
     var body: some View {
         ZStack {
@@ -75,16 +74,6 @@ struct NewEventView: View {
             }
             
         }
-        .sheet(isPresented: $showSearchMember, content: {
-            SearchMembersView(
-                eventId: state.eventId,
-                selectedMembers: state.members?.filter({ $0.isSelected }).map({ $0.model }) ?? [],
-                oftenMembers: state.members?.compactMap({ $0.model }),
-                isEditing: false
-            ) { members in
-                state.didSelectMembers(members)
-            }
-        })
         .animation(.stackTransition, value: state.dayDate)
         .animation(.stackTransition, value: state.games)
         .animation(.stackTransition, value: state.members)
@@ -262,7 +251,15 @@ struct NewEventView: View {
                 Spacer()
                 Button(Localizable.newEventSearchMembersButtonTitle()) {
                     AnalyticsService.sendEvent(.openSearchMemberFromNewEvent)
-                    showSearchMember = true
+                    homeCoordinator.showSheetModal(.searchMembers(
+                        eventId: state.eventId,
+                        oftenMembers: state.members?.compactMap({ $0.model }),
+                        selectedMembers: state.members?.filter({ $0.isSelected }).map({ $0.model }) ?? [],
+                        isEditing: false,
+                        selectionHandler: { members in
+                            state.didSelectMembers(members)
+                        }
+                    ))
                 }
                 .foregroundStyle(Color(.actionAccent))
                 .font(.system(size: 20))

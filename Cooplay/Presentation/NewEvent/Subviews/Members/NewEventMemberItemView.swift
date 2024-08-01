@@ -22,7 +22,7 @@ struct NewEventMemberItemView: View {
                 .lineLimit(1)
                 .frame(width: 66)
         }
-        //.frame(width: 56)
+        .opacity(model.isBlocked ? 0.5 : 1)
     }
     
     var avatarView: some View {

@@ -25,6 +25,22 @@ struct EventDetailsView: View {
     @State private var canContinueOffset = true
     @State private var showDeleteAlert = false
     
+    private func showSearchMembers() {
+        AnalyticsService.sendEvent(.openSearchMemberFromEventDetails)
+        homeCoordinator.showSheetModal(.searchMembers(
+            eventId: state.event.id,
+            oftenMembers: nil,
+            selectedMembers: state.event.members,
+            isEditing: true,
+            selectionHandler: { members in
+                state.addMembers(members)
+                if state.modeState.isEditMode {
+                    state.changeEditMode()
+                }
+            }
+        ))
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -56,7 +72,7 @@ struct EventDetailsView: View {
                             .padding(EdgeInsets(top: 24, leading: 16, bottom: 8, trailing: 16))
                             .transition(.scale.combined(with: .opacity))
                             .onTapGesture {
-                                state.showAddMembersSheet = true
+                                showSearchMembers()
                             }
                     } else {
                         EventDetailsInfoView()
@@ -117,14 +133,6 @@ struct EventDetailsView: View {
         .overlayModal(isPresented: $reactionsContextState.showContext, content: {
             OwnerReactionContextView(showReactionsContext: $reactionsContextState.showContext)
                 .environmentObject(state)
-        })
-        .sheet(isPresented: $state.showAddMembersSheet, content: {
-            SearchMembersView(eventId: state.event.id, selectedMembers: state.event.members, oftenMembers: nil, isEditing: true) { members in
-                state.addMembers(members)
-                if state.modeState.isEditMode {
-                    state.changeEditMode()
-                }
-            }
         })
         .alert(Localizable.eventDetailsDeleteAlertTitle(), isPresented: $showDeleteAlert, actions: {
             Button(Localizable.commonCancel(), role: .cancel) {}
@@ -297,7 +305,7 @@ struct EventDetailsView: View {
                 .font(.system(size: 17))
                 .foregroundStyle(Color(.textSecondary))
             Button(action: {
-                state.showAddMembersSheet = true
+                showSearchMembers()
             }, label: {
                 Label(Localizable.eventDetailsAddMember(), systemImage: "plus")
                     .font(.system(size: 17))

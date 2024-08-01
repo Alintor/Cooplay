@@ -30,7 +30,7 @@
 		A823DFF42B04E615006EC119 /* OwnerReactionContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */; };
 		A823DFF62B060D71006EC119 /* AdditionalReactionsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */; };
 		A823DFF82B0626A1006EC119 /* SearchGameProxyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823DFF72B0626A1006EC119 /* SearchGameProxyView.swift */; };
-		A823E0012B077610006EC119 /* SearchMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0002B077610006EC119 /* SearchMembersView.swift */; };
+		A823E0012B077610006EC119 /* SearchMembersProxyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0002B077610006EC119 /* SearchMembersProxyView.swift */; };
 		A823E0032B08E0D3006EC119 /* EventChangeDateContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */; };
 		A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */; };
 		A824C9D1273E88C2000E61A1 /* ProfileSettingsSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */; };
@@ -147,6 +147,11 @@
 		A86D368025628EE5001FDBFC /* TimeCarouselItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */; };
 		A86D36822563B1FA001FDBFC /* TimeCarouselConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */; };
 		A86D36842563DDC3001FDBFC /* TimeCarouselPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */; };
+		A86DBC5D2C5768A000252F0A /* SearchMembersOftenEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC5C2C5768A000252F0A /* SearchMembersOftenEmptyView.swift */; };
+		A86DBC5F2C576F2A00252F0A /* InviteByLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC5E2C576F2A00252F0A /* InviteByLinkButton.swift */; };
+		A86DBC6E2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC6D2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift */; };
+		A86DBC702C5A3C7700252F0A /* SearchMemberItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */; };
+		A86DBC722C5A592500252F0A /* SearchMembersSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */; };
 		A870FE712C3E731C00C99044 /* SearchGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE702C3E731C00C99044 /* SearchGameState.swift */; };
 		A870FE732C3E7B4100C99044 /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE722C3E7B4100C99044 /* SearchGameView.swift */; };
 		A870FE752C3FA61800C99044 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE742C3FA61800C99044 /* SearchField.swift */; };
@@ -154,6 +159,9 @@
 		A870FE7A2C3FB62100C99044 /* SearchGameEmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE792C3FB62100C99044 /* SearchGameEmptyResultView.swift */; };
 		A870FE7C2C3FB87600C99044 /* SearchGameItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE7B2C3FB87600C99044 /* SearchGameItemView.swift */; };
 		A870FE7E2C3FBFE300C99044 /* SearchGameSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE7D2C3FBFE300C99044 /* SearchGameSkeletonView.swift */; };
+		A870FE832C4109D200C99044 /* SearchMembersState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE822C4109D200C99044 /* SearchMembersState.swift */; };
+		A870FE852C412B2400C99044 /* ShareActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE842C412B2400C99044 /* ShareActivityView.swift */; };
+		A870FE872C412B9700C99044 /* SearchMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE862C412B9700C99044 /* SearchMembersView.swift */; };
 		A87701FF23336E6E002EA095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87701FE23336E6E002EA095 /* AppDelegate.swift */; };
 		A877020623336E6F002EA095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A877020523336E6F002EA095 /* Assets.xcassets */; };
 		A877020923336E6F002EA095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A877020723336E6F002EA095 /* LaunchScreen.storyboard */; };
@@ -386,7 +394,7 @@
 		A823DFF32B04E615006EC119 /* OwnerReactionContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerReactionContextView.swift; sourceTree = "<group>"; };
 		A823DFF52B060D71006EC119 /* AdditionalReactionsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalReactionsState.swift; sourceTree = "<group>"; };
 		A823DFF72B0626A1006EC119 /* SearchGameProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameProxyView.swift; sourceTree = "<group>"; };
-		A823E0002B077610006EC119 /* SearchMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersView.swift; sourceTree = "<group>"; };
+		A823E0002B077610006EC119 /* SearchMembersProxyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersProxyView.swift; sourceTree = "<group>"; };
 		A823E0022B08E0D3006EC119 /* EventChangeDateContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChangeDateContextView.swift; sourceTree = "<group>"; };
 		A824C9CB273E7E63000E61A1 /* ProfileSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsItem.swift; sourceTree = "<group>"; };
 		A824C9D0273E88C2000E61A1 /* ProfileSettingsSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSeparator.swift; sourceTree = "<group>"; };
@@ -496,6 +504,11 @@
 		A86D367F25628EE5001FDBFC /* TimeCarouselItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselItemModel.swift; sourceTree = "<group>"; };
 		A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselConfiguration.swift; sourceTree = "<group>"; };
 		A86D36832563DDC3001FDBFC /* TimeCarouselPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCarouselPanel.swift; sourceTree = "<group>"; };
+		A86DBC5C2C5768A000252F0A /* SearchMembersOftenEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersOftenEmptyView.swift; sourceTree = "<group>"; };
+		A86DBC5E2C576F2A00252F0A /* InviteByLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteByLinkButton.swift; sourceTree = "<group>"; };
+		A86DBC6D2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersEmptyResultView.swift; sourceTree = "<group>"; };
+		A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMemberItemView.swift; sourceTree = "<group>"; };
+		A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersSkeletonView.swift; sourceTree = "<group>"; };
 		A870FE702C3E731C00C99044 /* SearchGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameState.swift; sourceTree = "<group>"; };
 		A870FE722C3E7B4100C99044 /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
 		A870FE742C3FA61800C99044 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -503,6 +516,9 @@
 		A870FE792C3FB62100C99044 /* SearchGameEmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameEmptyResultView.swift; sourceTree = "<group>"; };
 		A870FE7B2C3FB87600C99044 /* SearchGameItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameItemView.swift; sourceTree = "<group>"; };
 		A870FE7D2C3FBFE300C99044 /* SearchGameSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameSkeletonView.swift; sourceTree = "<group>"; };
+		A870FE822C4109D200C99044 /* SearchMembersState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersState.swift; sourceTree = "<group>"; };
+		A870FE842C412B2400C99044 /* ShareActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityView.swift; sourceTree = "<group>"; };
+		A870FE862C412B9700C99044 /* SearchMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersView.swift; sourceTree = "<group>"; };
 		A87701FB23336E6E002EA095 /* Ruwus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruwus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A87701FE23336E6E002EA095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A877020523336E6F002EA095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -770,7 +786,10 @@
 		3DA964026DC3A5F7765016B8 /* SearchMembers */ = {
 			isa = PBXGroup;
 			children = (
-				A823E0002B077610006EC119 /* SearchMembersView.swift */,
+				A86DBC5B2C57683E00252F0A /* Subviews */,
+				A870FE822C4109D200C99044 /* SearchMembersState.swift */,
+				A870FE862C412B9700C99044 /* SearchMembersView.swift */,
+				A823E0002B077610006EC119 /* SearchMembersProxyView.swift */,
 				A868605B2A0E5A6600327385 /* Builder */,
 				A86860762A11F1C500327385 /* Contract */,
 				A84694F723FE326A00139CF4 /* ViewModel */,
@@ -1166,6 +1185,7 @@
 				A8A0F0FA2AFE43C100997DEA /* VisualEffectView.swift */,
 				A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */,
 				A8BE18342B01E96C0039634E /* StatusContextView.swift */,
+				A870FE842C412B2400C99044 /* ShareActivityView.swift */,
 				A870FE742C3FA61800C99044 /* SearchField.swift */,
 			);
 			path = View;
@@ -1559,6 +1579,18 @@
 				A86D36812563B1FA001FDBFC /* TimeCarouselConfiguration.swift */,
 			);
 			path = TimeCarousel;
+			sourceTree = "<group>";
+		};
+		A86DBC5B2C57683E00252F0A /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A86DBC5C2C5768A000252F0A /* SearchMembersOftenEmptyView.swift */,
+				A86DBC6D2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift */,
+				A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */,
+				A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */,
+				A86DBC5E2C576F2A00252F0A /* InviteByLinkButton.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A870FE762C3FB3F800C99044 /* Subviews */ = {
@@ -2606,6 +2638,7 @@
 				A863E3C52B68C4D00021B405 /* AuthorizationView.swift in Sources */,
 				A8D1D2702356F8C800DA1089 /* UILabel.swift in Sources */,
 				A823DFF82B0626A1006EC119 /* SearchGameProxyView.swift in Sources */,
+				A86DBC722C5A592500252F0A /* SearchMembersSkeletonView.swift in Sources */,
 				A863E3B52B676C410021B405 /* LoginView.swift in Sources */,
 				A8D48C392B7A2522005B950C /* RegisterState.swift in Sources */,
 				A85F9CB62AF61F8700BBAE31 /* ClosableModifier.swift in Sources */,
@@ -2628,7 +2661,7 @@
 				A8D1D2722356F8F400DA1089 /* UINavigationItem.swift in Sources */,
 				A8ABFF682C2C06B600DAB467 /* NewEventState.swift in Sources */,
 				A86D367E25627DB1001FDBFC /* TimeCarouselItemView.swift in Sources */,
-				A823E0012B077610006EC119 /* SearchMembersView.swift in Sources */,
+				A823E0012B077610006EC119 /* SearchMembersProxyView.swift in Sources */,
 				A82FF2A72345EB6600EE1807 /* R.generated.swift in Sources */,
 				A8FB1CD42499D868001C9355 /* AuthorizationService.swift in Sources */,
 				A89840A12C007D7C00E30549 /* AppleSignInService.swift in Sources */,
@@ -2637,6 +2670,7 @@
 				A89F972C24BED17A0036B155 /* DefaultsStorageAssemblyContainer.swift in Sources */,
 				A82FF2CA2346F81300EE1807 /* UIColor.swift in Sources */,
 				A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */,
+				A870FE852C412B2400C99044 /* ShareActivityView.swift in Sources */,
 				A8A0F0EC2AFDF09200997DEA /* EventsListState.swift in Sources */,
 				A86860722A0FB5E900327385 /* NewEventContract.swift in Sources */,
 				A870FE752C3FA61800C99044 /* SearchField.swift in Sources */,
@@ -2728,6 +2762,7 @@
 				A870FE7A2C3FB62100C99044 /* SearchGameEmptyResultView.swift in Sources */,
 				A89840A92C0707E000E30549 /* DeleteAccountState.swift in Sources */,
 				A8A0F0F12AFDFF7600997DEA /* InvitedEventView.swift in Sources */,
+				A86DBC702C5A3C7700252F0A /* SearchMemberItemView.swift in Sources */,
 				A824C9D9273E8A9B000E61A1 /* ProfileSettingsItemView.swift in Sources */,
 				A869C23D2C329BF40036EAFF /* NewEventMemberItemView.swift in Sources */,
 				A84695152410F1CC00139CF4 /* NewEventInfoResponse.swift in Sources */,
@@ -2797,8 +2832,11 @@
 				A824CA0527454544000E61A1 /* NSObject.swift in Sources */,
 				FE9229B3273AE4B00B56CA6F /* SearchMembersInteractor.swift in Sources */,
 				24E6413A129527585FBC1798 /* SearchMembersRouter.swift in Sources */,
+				A870FE872C412B9700C99044 /* SearchMembersView.swift in Sources */,
+				A870FE832C4109D200C99044 /* SearchMembersState.swift in Sources */,
 				A824C9CC273E7E63000E61A1 /* ProfileSettingsItem.swift in Sources */,
 				A87E2EF22B0B348C0095DDD3 /* AppState.swift in Sources */,
+				A86DBC5D2C5768A000252F0A /* SearchMembersOftenEmptyView.swift in Sources */,
 				A8A383FD28C3A036001B22EC /* WaitingForTap.swift in Sources */,
 				A88003DB28F43FEC00FDA878 /* AllReactionsConfigurable.swift in Sources */,
 				A824C9E1273FC47E000E61A1 /* EventStatusViewModel.swift in Sources */,
@@ -2829,6 +2867,7 @@
 				A85F9CA82AF5FCE500BBAE31 /* GlobalState.swift in Sources */,
 				A8EF294A2BC90A2400388045 /* NotificationsSettingsView.swift in Sources */,
 				A89F96FE24BC490B0036B155 /* URL.swift in Sources */,
+				A86DBC5F2C576F2A00252F0A /* InviteByLinkButton.swift in Sources */,
 				A8C307A12B9F1C8600907B56 /* ChangePasswordState.swift in Sources */,
 				A8A0F0DC2AFBBF7E00997DEA /* LogoutSheetView.swift in Sources */,
 				A8ABFF712C2D775900DAB467 /* NewEventCalendarView.swift in Sources */,
@@ -2842,6 +2881,7 @@
 				A85F9C962AF4D0D100BBAE31 /* NotificationBannerService.swift in Sources */,
 				A8354D6E25B58006008699E5 /* TimeCarouselContextView.swift in Sources */,
 				A868605D2A0E5A7700327385 /* SearchMembersBuilder.swift in Sources */,
+				A86DBC6E2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift in Sources */,
 				A85F9C9F2AF510DB00BBAE31 /* ProfileView.swift in Sources */,
 				A8A0F0E82AFCFCCF00997DEA /* EmptyEvents.swift in Sources */,
 				A87E2EE32B09F7490095DDD3 /* MemberContextView.swift in Sources */,
