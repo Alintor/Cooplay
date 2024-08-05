@@ -89,6 +89,10 @@ extension SwiftUI.Animation {
         .interpolatingSpring(stiffness: 350, damping: 15)
     }
     
+    static var bounceLittleTransition: SwiftUI.Animation {
+        .interpolatingSpring(stiffness: 320, damping: 20)
+    }
+    
     static var springTransition: SwiftUI.Animation {
         .spring(duration: 0.3)
     }

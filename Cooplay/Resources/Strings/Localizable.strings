@@ -183,6 +183,18 @@
 "searchMembers.emptySate.title" = "Здесь буду частые участники";
 "searchMembers.emptySate.description" = "Ищите игроков по никнейму, или пригласите друзей по ссылке";
 
+// MARK: - Onboarding
+
+"onboarding.title" = "Планируй игры с друзьями";
+"onboarding.message" = "Не пропускай события, следи за статусами";
+"onboarding.game.fortnite" = "Fortnite";
+"onboarding.game.baldursgate" = "Baldur's Gate 3";
+"onboarding.game.overwatch" = "Overwatch 2";
+"onboarding.date.today" = "Сегодня, в 19:00";
+"onboarding.date.today2" = "Сегодня, в 21:00";
+"onboarding.date.tomorrow" = "Завтра, в 20:00";
+"onboarding.actionButton" = "Погнали!";
+
 // MARK: - AuthorizationMenu
 
 "authorizationMenu.login" = "Войти по email";

@@ -266,7 +266,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 71 images.
+  /// This `R.image` struct is generated, and contains static references to 76 images.
   struct image {
     /// Image `arkanoid.ball`.
     static let arkanoidBall = Rswift.ImageResource(bundle: R.hostingBundle, name: "arkanoid.ball")
@@ -356,6 +356,16 @@ struct R: Rswift.Validatable {
     static let eventsEmpty = Rswift.ImageResource(bundle: R.hostingBundle, name: "events.empty")
     /// Image `eventsList.emptyState`.
     static let eventsListEmptyState = Rswift.ImageResource(bundle: R.hostingBundle, name: "eventsList.emptyState")
+    /// Image `onboarding.avatar.alintor`.
+    static let onboardingAvatarAlintor = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboarding.avatar.alintor")
+    /// Image `onboarding.avatar.nilo`.
+    static let onboardingAvatarNilo = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboarding.avatar.nilo")
+    /// Image `onboarding.game.baldursgate`.
+    static let onboardingGameBaldursgate = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboarding.game.baldursgate")
+    /// Image `onboarding.game.fortnite`.
+    static let onboardingGameFortnite = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboarding.game.fortnite")
+    /// Image `onboarding.game.overwatch`.
+    static let onboardingGameOverwatch = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboarding.game.overwatch")
     /// Image `profileSettings.account`.
     static let profileSettingsAccount = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileSettings.account")
     /// Image `profileSettings.actionType.navigation`.
@@ -629,6 +639,31 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "eventsList.emptyState", bundle: ..., traitCollection: ...)`
     static func eventsListEmptyState(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.eventsListEmptyState, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "onboarding.avatar.alintor", bundle: ..., traitCollection: ...)`
+    static func onboardingAvatarAlintor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingAvatarAlintor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "onboarding.avatar.nilo", bundle: ..., traitCollection: ...)`
+    static func onboardingAvatarNilo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingAvatarNilo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "onboarding.game.baldursgate", bundle: ..., traitCollection: ...)`
+    static func onboardingGameBaldursgate(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingGameBaldursgate, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "onboarding.game.fortnite", bundle: ..., traitCollection: ...)`
+    static func onboardingGameFortnite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingGameFortnite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "onboarding.game.overwatch", bundle: ..., traitCollection: ...)`
+    static func onboardingGameOverwatch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingGameOverwatch, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "profileSettings.account", bundle: ..., traitCollection: ...)`
@@ -919,7 +954,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 280 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 289 localization keys.
     struct localizable {
       /// Value: %@ %@ оставил реакцию
       static let notificationsAddReactionTitle = Rswift.StringResource(key: "notifications.addReaction.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -961,12 +996,16 @@ struct R: Rswift.Validatable {
       static let accountUnlinkSuccessApple = Rswift.StringResource(key: "account.unlink.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Apple ID успешно привязан
       static let accountLinkSuccessApple = Rswift.StringResource(key: "account.link.success.apple", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Baldur's Gate 3
+      static let onboardingGameBaldursgate = Rswift.StringResource(key: "onboarding.game.baldursgate", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let addPasswordEmailPlaceholder = Rswift.StringResource(key: "addPassword.email.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let loginEmailPlaceholder = Rswift.StringResource(key: "login.emailPlaceholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Email
       static let registerEmailPlaceholder = Rswift.StringResource(key: "register.emailPlaceholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Fortnite
+      static let onboardingGameFortnite = Rswift.StringResource(key: "onboarding.game.fortnite", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: GG WP
       static let arkanoidWin2Message = Rswift.StringResource(key: "arkanoid.win.2.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Game Over
@@ -977,6 +1016,8 @@ struct R: Rswift.Validatable {
       static let accountLinkSuccessGoogle = Rswift.StringResource(key: "account.link.success.google", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Localizable
       static let tableName = Rswift.StringResource(key: "tableName", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Overwatch 2
+      static let onboardingGameOverwatch = Rswift.StringResource(key: "onboarding.game.overwatch", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Winner Winner Chicken Dinner
       static let arkanoidWin4Message = Rswift.StringResource(key: "arkanoid.win.4.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: YOU DIED
@@ -1085,6 +1126,8 @@ struct R: Rswift.Validatable {
       static let loginRecoveryPasswordButton = Rswift.StringResource(key: "login.recoveryPasswordButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Завтра
       static let newEventTomorrowButtonTitle = Rswift.StringResource(key: "newEvent.tomorrowButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Завтра, в 20:00
+      static let onboardingDateTomorrow = Rswift.StringResource(key: "onboarding.date.tomorrow", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Здесь буду частые участники
       static let searchMembersEmptySateTitle = Rswift.StringResource(key: "searchMembers.emptySate.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Здесь будут все ваши события
@@ -1171,6 +1214,8 @@ struct R: Rswift.Validatable {
       static let statusDeclined = Rswift.StringResource(key: "status.declined", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не получилось найти человека
       static let searchMembersEmptyResultsTitle = Rswift.StringResource(key: "searchMembers.emptyResults.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Не пропускай события, следи за статусами
+      static let onboardingMessage = Rswift.StringResource(key: "onboarding.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось добавить реакцию
       static let errorsEventsServiceAddReaction = Rswift.StringResource(key: "errors.eventsService.addReaction", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Не удалось добавить участников
@@ -1279,8 +1324,12 @@ struct R: Rswift.Validatable {
       static let editProfileTitle = Rswift.StringResource(key: "editProfile.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Персонализация
       static let profileSettingsEditTitle = Rswift.StringResource(key: "profileSettings.edit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Планируй игры с друзьями
+      static let onboardingTitle = Rswift.StringResource(key: "onboarding.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Победа
       static let arkanoidWin0Message = Rswift.StringResource(key: "arkanoid.win.0.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Погнали!
+      static let onboardingActionButton = Rswift.StringResource(key: "onboarding.actionButton", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите пароль
       static let registerPasswordConfirmPlaceholder = Rswift.StringResource(key: "register.passwordConfirm.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Подтвердите свой статус
@@ -1383,6 +1432,10 @@ struct R: Rswift.Validatable {
       static let editProfileAlertMakePhoto = Rswift.StringResource(key: "editProfile.alert.makePhoto", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Сегодня
       static let newEventTodayButtonTitle = Rswift.StringResource(key: "newEvent.todayButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сегодня, в 19:00
+      static let onboardingDateToday = Rswift.StringResource(key: "onboarding.date.today", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Сегодня, в 21:00
+      static let onboardingDateToday2 = Rswift.StringResource(key: "onboarding.date.today2", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Символы
       static let reactionsSettingsCategory9Title = Rswift.StringResource(key: "reactionsSettings.category.9.title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Смайлики и эмоции
@@ -1582,6 +1635,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("account.link.success.apple", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Baldur's Gate 3
+      static func onboardingGameBaldursgate(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.game.baldursgate", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Email
       static func addPasswordEmailPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("addPassword.email.placeholder", bundle: R.hostingBundle, comment: "")
@@ -1595,6 +1653,11 @@ struct R: Rswift.Validatable {
       /// Value: Email
       static func registerEmailPlaceholder(_: Void = ()) -> String {
         return NSLocalizedString("register.emailPlaceholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Fortnite
+      static func onboardingGameFortnite(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.game.fortnite", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: GG WP
@@ -1620,6 +1683,11 @@ struct R: Rswift.Validatable {
       /// Value: Localizable
       static func tableName(_: Void = ()) -> String {
         return NSLocalizedString("tableName", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Overwatch 2
+      static func onboardingGameOverwatch(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.game.overwatch", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Winner Winner Chicken Dinner
@@ -1892,6 +1960,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("newEvent.tomorrowButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Завтра, в 20:00
+      static func onboardingDateTomorrow(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.date.tomorrow", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Здесь буду частые участники
       static func searchMembersEmptySateTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.emptySate.title", bundle: R.hostingBundle, comment: "")
@@ -2105,6 +2178,11 @@ struct R: Rswift.Validatable {
       /// Value: Не получилось найти человека
       static func searchMembersEmptyResultsTitle(_: Void = ()) -> String {
         return NSLocalizedString("searchMembers.emptyResults.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Не пропускай события, следи за статусами
+      static func onboardingMessage(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.message", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Не удалось добавить реакцию
@@ -2377,9 +2455,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("profileSettings.edit.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Планируй игры с друзьями
+      static func onboardingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Победа
       static func arkanoidWin0Message(_: Void = ()) -> String {
         return NSLocalizedString("arkanoid.win.0.message", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Погнали!
+      static func onboardingActionButton(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.actionButton", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Подтвердите пароль
@@ -2635,6 +2723,16 @@ struct R: Rswift.Validatable {
       /// Value: Сегодня
       static func newEventTodayButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("newEvent.todayButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сегодня, в 19:00
+      static func onboardingDateToday(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.date.today", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Сегодня, в 21:00
+      static func onboardingDateToday2(_: Void = ()) -> String {
+        return NSLocalizedString("onboarding.date.today2", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Символы

@@ -20,6 +20,7 @@ struct AuthorizationMenuView: View {
             Image(.commonLogo)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .matchedGeometryEffect(id: MatchedAnimations.logo.name, in: namespace.id)
                 .frame(width: 200, height: 200)
             Spacer()
             Button {

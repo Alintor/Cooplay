@@ -152,6 +152,9 @@
 		A86DBC6E2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC6D2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift */; };
 		A86DBC702C5A3C7700252F0A /* SearchMemberItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */; };
 		A86DBC722C5A592500252F0A /* SearchMembersSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */; };
+		A86DBC772C5B75DA00252F0A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC762C5B75DA00252F0A /* OnboardingView.swift */; };
+		A86DBC7A2C5B7C1700252F0A /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC792C5B7C1700252F0A /* OnboardingCardView.swift */; };
+		A86DBC7E2C5B8FC200252F0A /* ParallaxMotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DBC7D2C5B8FC200252F0A /* ParallaxMotionModifier.swift */; };
 		A870FE712C3E731C00C99044 /* SearchGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE702C3E731C00C99044 /* SearchGameState.swift */; };
 		A870FE732C3E7B4100C99044 /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE722C3E7B4100C99044 /* SearchGameView.swift */; };
 		A870FE752C3FA61800C99044 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870FE742C3FA61800C99044 /* SearchField.swift */; };
@@ -270,6 +273,7 @@
 		A8ABFF6D2C2D4FCF00DAB467 /* NewEventTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF6C2C2D4FCF00DAB467 /* NewEventTimeView.swift */; };
 		A8ABFF6F2C2D6B6A00DAB467 /* NewEventContextTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF6E2C2D6B6A00DAB467 /* NewEventContextTimeView.swift */; };
 		A8ABFF712C2D775900DAB467 /* NewEventCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABFF702C2D775900DAB467 /* NewEventCalendarView.swift */; };
+		A8B3B1F22C5E125500B64B1D /* OnboardingCardSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B3B1F12C5E125500B64B1D /* OnboardingCardSide.swift */; };
 		A8BA9B2823ED94AB008AB06F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A87CF48923ED6B60004189D3 /* Config.xcconfig */; };
 		A8BE182D2B00EA9D0039634E /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */; };
 		A8BE182F2B011E1C0039634E /* EventsListStatusContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */; };
@@ -509,6 +513,9 @@
 		A86DBC6D2C5A36ED00252F0A /* SearchMembersEmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersEmptyResultView.swift; sourceTree = "<group>"; };
 		A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMemberItemView.swift; sourceTree = "<group>"; };
 		A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMembersSkeletonView.swift; sourceTree = "<group>"; };
+		A86DBC762C5B75DA00252F0A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A86DBC792C5B7C1700252F0A /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
+		A86DBC7D2C5B8FC200252F0A /* ParallaxMotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxMotionModifier.swift; sourceTree = "<group>"; };
 		A870FE702C3E731C00C99044 /* SearchGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameState.swift; sourceTree = "<group>"; };
 		A870FE722C3E7B4100C99044 /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
 		A870FE742C3FA61800C99044 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -630,6 +637,7 @@
 		A8ABFF6C2C2D4FCF00DAB467 /* NewEventTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTimeView.swift; sourceTree = "<group>"; };
 		A8ABFF6E2C2D6B6A00DAB467 /* NewEventContextTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventContextTimeView.swift; sourceTree = "<group>"; };
 		A8ABFF702C2D775900DAB467 /* NewEventCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCalendarView.swift; sourceTree = "<group>"; };
+		A8B3B1F12C5E125500B64B1D /* OnboardingCardSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardSide.swift; sourceTree = "<group>"; };
 		A8BE182C2B00EA9D0039634E /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
 		A8BE182E2B011E1C0039634E /* EventsListStatusContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListStatusContextView.swift; sourceTree = "<group>"; };
 		A8BE18302B01E68C0039634E /* DeclinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclinedEventsView.swift; sourceTree = "<group>"; };
@@ -1421,6 +1429,7 @@
 		A863E3C02B68C41F0021B405 /* AuthorizationUserStory */ = {
 			isa = PBXGroup;
 			children = (
+				A86DBC752C5B75BE00252F0A /* Onboarding */,
 				A863E3C22B68C4A50021B405 /* Authorization */,
 				A863E3C32B68C4AD0021B405 /* AuthorizationMenu */,
 				A863E3C12B68C43B0021B405 /* Login */,
@@ -1589,6 +1598,24 @@
 				A86DBC6F2C5A3C7700252F0A /* SearchMemberItemView.swift */,
 				A86DBC712C5A592500252F0A /* SearchMembersSkeletonView.swift */,
 				A86DBC5E2C576F2A00252F0A /* InviteByLinkButton.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A86DBC752C5B75BE00252F0A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A86DBC782C5B7C0100252F0A /* Subviews */,
+				A86DBC762C5B75DA00252F0A /* OnboardingView.swift */,
+				A8B3B1F12C5E125500B64B1D /* OnboardingCardSide.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A86DBC782C5B7C0100252F0A /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A86DBC792C5B7C1700252F0A /* OnboardingCardView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -2012,6 +2039,7 @@
 				A85F9CB52AF61F8700BBAE31 /* ClosableModifier.swift */,
 				A8A0F0F42AFE355C00997DEA /* OverlayModifier.swift */,
 				A8A844642C2E894A00851489 /* ShimmerModifier.swift */,
+				A86DBC7D2C5B8FC200252F0A /* ParallaxMotionModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -2733,6 +2761,7 @@
 				A82FF2CC2347043F00EE1807 /* UIImageView.swift in Sources */,
 				A87CF42523E1954C004189D3 /* Skeletonable.swift in Sources */,
 				A824C9FA2742BF6D000E61A1 /* EventDetailsAddMemberView.swift in Sources */,
+				A86DBC772C5B75DA00252F0A /* OnboardingView.swift in Sources */,
 				A80FFC672B906B9500121A7E /* ProfileMenuView.swift in Sources */,
 				A87CF45E23EAC718004189D3 /* UITableView.swift in Sources */,
 				A8C307A52BA2C47300907B56 /* HomeCoordinator.swift in Sources */,
@@ -2814,6 +2843,7 @@
 				1A6254FE6E8682481D6FE71C /* SearchGameViewController.swift in Sources */,
 				A870FE712C3E731C00C99044 /* SearchGameState.swift in Sources */,
 				A85F9CBD2AF7A88200BBAE31 /* TitleView.swift in Sources */,
+				A86DBC7A2C5B7C1700252F0A /* OnboardingCardView.swift in Sources */,
 				63CAE3F479DBF7C3F372FE4D /* SearchGamePresenter.swift in Sources */,
 				A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */,
 				A824C9EF2742BAE6000E61A1 /* EventDetailsMemberView.swift in Sources */,
@@ -2875,9 +2905,11 @@
 				A89F96FC24BC2DFF0036B155 /* NotificationType.swift in Sources */,
 				A86860602A0E5B9300327385 /* NewEventBuilder.swift in Sources */,
 				A8C0A87B2B19C9F6002E906B /* EmptyStateHandler.swift in Sources */,
+				A86DBC7E2C5B8FC200252F0A /* ParallaxMotionModifier.swift in Sources */,
 				A868605A2A0E594400327385 /* SearchGameBuilder.swift in Sources */,
 				A85F9CA12AF5198800BBAE31 /* Animations.swift in Sources */,
 				A8E8D0FA2C131959000FEA53 /* LineActivityIndicatorView.swift in Sources */,
+				A8B3B1F22C5E125500B64B1D /* OnboardingCardSide.swift in Sources */,
 				A85F9C962AF4D0D100BBAE31 /* NotificationBannerService.swift in Sources */,
 				A8354D6E25B58006008699E5 /* TimeCarouselContextView.swift in Sources */,
 				A868605D2A0E5A7700327385 /* SearchMembersBuilder.swift in Sources */,

@@ -13,7 +13,8 @@ class AuthorizationCoordinator: ObservableObject {
     
     enum Route: Equatable {
         
-        case menu
+        case onboarding
+        case menu(isStart: Bool)
         case login(email: String)
         case register(email: String)
         case resetPassword(code: String)
@@ -24,7 +25,7 @@ class AuthorizationCoordinator: ObservableObject {
     // MARK: - Init
     
     init() {
-        self.route = .menu
+        self.route = .onboarding
         NotificationCenter.default.addObserver(self, selector: #selector(resetPassword(_:)), name: .handleResetPassword, object: nil)
     }
     
@@ -36,9 +37,13 @@ class AuthorizationCoordinator: ObservableObject {
     
     @ViewBuilder func buildView() -> some View {
         switch route {
-        case .menu:
+        case .onboarding:
+            OnboardingView()
+                .zIndex(1)
+                .transition(.opacity)
+        case .menu(let isStart):
             ScreenViewFactory.authorizationMenu()
-                .transition(.asymmetric(insertion: .move(edge: .leading), removal: .opacity))
+                .transition(.asymmetric(insertion: .move(edge: isStart ? .bottom : .leading), removal: .opacity))
         case .login(let email):
             ScreenViewFactory.login(email: email)
                 .closable(anchor: .trailing) {
@@ -70,8 +75,8 @@ class AuthorizationCoordinator: ObservableObject {
         route = .register(email: email)
     }
     
-    func backToMenu() {
-        route = .menu
+    func backToMenu(isStart: Bool = false) {
+        route = .menu(isStart: isStart)
     }
     
     @objc private func resetPassword(_ notification: NSNotification) {
