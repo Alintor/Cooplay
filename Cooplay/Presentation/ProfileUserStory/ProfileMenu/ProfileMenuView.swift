@@ -67,12 +67,6 @@ struct ProfileMenuView: View {
                     AnalyticsService.sendEvent(.openPersonalisationScreen)
                     coordinator.open(.editProfile)
                 }
-            ProfileSettingsSeparator()
-            ProfileSettingsItemView(item: .miniGames)
-                .onTapGesture {
-                    AnalyticsService.sendEvent(.openArkanoidGame)
-                    coordinator.showArkanoidGame()
-                }
             ProfileSettingsSectionHeader(title: Localizable.profileSettingsSectionSettingsTitle())
             ProfileSettingsItemView(item: .notifications)
                 .onTapGesture {
