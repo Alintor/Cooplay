@@ -1,6 +1,0 @@
-framework module DTModelStorage {
-  umbrella header "DTModelStorage-umbrella.h"
-
-  export *
-  module * { export * }
-}

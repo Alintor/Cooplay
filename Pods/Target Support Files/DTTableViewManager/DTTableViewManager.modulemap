@@ -1,6 +1,0 @@
-framework module DTTableViewManager {
-  umbrella header "DTTableViewManager-umbrella.h"
-
-  export *
-  module * { export * }
-}

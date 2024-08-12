@@ -959,13 +959,6 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.32):
     - BoringSSL-GRPC/Interface (= 0.0.32)
   - BoringSSL-GRPC/Interface (0.0.32)
-  - DTCollectionViewManager (11.0.0):
-    - DTModelStorage (~> 11.0.0)
-  - DTModelStorage (11.0.2):
-    - DTModelStorage/Core (= 11.0.2)
-  - DTModelStorage/Core (11.0.2)
-  - DTTableViewManager (11.0.0):
-    - DTModelStorage (~> 11.0.0)
   - Firebase/Analytics (10.27.0):
     - Firebase/Core
   - Firebase/Auth (10.27.0):
@@ -1237,9 +1230,6 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.1)
   - iCarousel (1.8.3)
-  - KDCalendar (1.8.9):
-    - KDCalendar/EventManager (= 1.8.9)
-  - KDCalendar/EventManager (1.8.9)
   - Kingfisher/Core (5.15.8)
   - Kingfisher/SwiftUI (5.15.8):
     - Kingfisher/Core
@@ -1254,7 +1244,6 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
-  - PluggableAppDelegate (1.3.0)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
@@ -1265,14 +1254,8 @@ PODS:
   - Result (4.1.0)
   - SwiftDate (7.0.0)
   - SwiftyJSON (5.0.1)
-  - Swinject (2.6.2)
-  - SwinjectStoryboard (2.2.0):
-    - Swinject (~> 2.6)
-  - UIImageColors (2.1.0)
 
 DEPENDENCIES:
-  - DTCollectionViewManager (~> 11.0.0)
-  - DTTableViewManager (~> 11.0.0)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/DynamicLinks
@@ -1283,16 +1266,11 @@ DEPENDENCIES:
   - FirebaseCrashlytics
   - GoogleSignIn
   - iCarousel (~> 1.8.3)
-  - KDCalendar (~> 1.8.9)
   - Kingfisher/SwiftUI
   - Moya (~> 13.0.1)
-  - PluggableAppDelegate (~> 1.3.0)
   - R.swift (~> 5.0.3)
   - SwiftDate (~> 7.0.0)
   - SwiftyJSON (~> 5.0.0)
-  - Swinject (~> 2.6.2)
-  - SwinjectStoryboard (~> 2.2.0)
-  - UIImageColors
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -1300,9 +1278,6 @@ SPEC REPOS:
     - Alamofire
     - AppAuth
     - BoringSSL-GRPC
-    - DTCollectionViewManager
-    - DTModelStorage
-    - DTTableViewManager
     - Firebase
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
@@ -1332,12 +1307,10 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - iCarousel
-    - KDCalendar
     - Kingfisher
     - leveldb-library
     - Moya
     - nanopb
-    - PluggableAppDelegate
     - PromisesObjC
     - PromisesSwift
     - R.swift
@@ -1346,18 +1319,12 @@ SPEC REPOS:
     - Result
     - SwiftDate
     - SwiftyJSON
-    - Swinject
-    - SwinjectStoryboard
-    - UIImageColors
 
 SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  DTCollectionViewManager: ca85ad0b71bc42d04852609e8c26664c138b7909
-  DTModelStorage: 321da46178bb09fec4a681cb6ff34c20e173319e
-  DTTableViewManager: bdce6b1f025033c8cb9d2023b046e1cf55d4e865
   Firebase: 26b040b20866a55f55eb3611b9fcf3ae64816b86
   FirebaseAnalytics: f9211b719db260cc91aebee8bb539cb367d0dfd1
   FirebaseAppCheckInterop: 0dd062c9926a76332ca5711dbed6f1a9ac540b54
@@ -1387,12 +1354,10 @@ SPEC CHECKSUMS:
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  KDCalendar: a587bc486b992d82ef94bd04001fce9baf45e518
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
-  PluggableAppDelegate: 94c85bf821d85661c843a86e1aafe0cc12a62634
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
@@ -1401,10 +1366,7 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
-  SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
-  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: e807dacabc6750b720d742cc84ed84138556bfba
+PODFILE CHECKSUM: 3b5aa429eae4c599da412b3f2791bb19a70a657b
 
 COCOAPODS: 1.14.2

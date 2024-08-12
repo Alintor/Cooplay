@@ -1084,19 +1084,19 @@ struct R: Rswift.Validatable {
       /// Value: На почту %@ отправлено письмо для подтверждения сброса пароля
       static let loginResetPasswordMessage = Rswift.StringResource(key: "login.resetPassword.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На статус участника %@ "возможно, пойду" в %@
-      static let notificationsAddReactionMemberOntimeMessage = Rswift.StringResource(key: "notifications.addReaction.member.ontime.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let notificationsAddReactionMemberMaybeMessage = Rswift.StringResource(key: "notifications.addReaction.member.maybe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На статус участника %@ "не пойду" в %@
       static let notificationsAddReactionMemberDeclinedMessage = Rswift.StringResource(key: "notifications.addReaction.member.declined.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На статус участника %@ "опоздаю" в %@
-      static let notificationsAddReactionMemberMaybeMessage = Rswift.StringResource(key: "notifications.addReaction.member.maybe.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: На статус участника %@ "пойду" в %@
-      static let notificationsAddReactionMemberSuggestDateMessage = Rswift.StringResource(key: "notifications.addReaction.member.suggestDate.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: На статус участника %@ "предложил другое время" в %@
       static let notificationsAddReactionMemberLateMessage = Rswift.StringResource(key: "notifications.addReaction.member.late.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "пойду" в %@
+      static let notificationsAddReactionMemberAcceptedMessage = Rswift.StringResource(key: "notifications.addReaction.member.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: На статус участника %@ "предложил другое время" в %@
+      static let notificationsAddReactionMemberSuggestDateMessage = Rswift.StringResource(key: "notifications.addReaction.member.suggestDate.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На статус участника %@ "приглашен" в %@
       static let notificationsAddReactionMemberInvitedMessage = Rswift.StringResource(key: "notifications.addReaction.member.invited.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: На статус участника %@ "приду вовремя" в %@
-      static let notificationsAddReactionMemberAcceptedMessage = Rswift.StringResource(key: "notifications.addReaction.member.accepted.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let notificationsAddReactionMemberOntimeMessage = Rswift.StringResource(key: "notifications.addReaction.member.ontime.message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Название игры
       static let searchGameSearchBarPlaceholder = Rswift.StringResource(key: "searchGame.searchBar.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Написать нам
@@ -1999,8 +1999,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: На статус участника %@ "возможно, пойду" в %@
-      static func notificationsAddReactionMemberOntimeMessage(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("notifications.addReaction.member.ontime.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      static func notificationsAddReactionMemberMaybeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.maybe.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: На статус участника %@ "не пойду" в %@
@@ -2009,18 +2009,18 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: На статус участника %@ "опоздаю" в %@
-      static func notificationsAddReactionMemberMaybeMessage(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("notifications.addReaction.member.maybe.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      static func notificationsAddReactionMemberLateMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.late.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: На статус участника %@ "пойду" в %@
-      static func notificationsAddReactionMemberSuggestDateMessage(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("notifications.addReaction.member.suggestDate.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      static func notificationsAddReactionMemberAcceptedMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.accepted.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: На статус участника %@ "предложил другое время" в %@
-      static func notificationsAddReactionMemberLateMessage(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("notifications.addReaction.member.late.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      static func notificationsAddReactionMemberSuggestDateMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.suggestDate.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: На статус участника %@ "приглашен" в %@
@@ -2029,8 +2029,8 @@ struct R: Rswift.Validatable {
       }
       
       /// Value: На статус участника %@ "приду вовремя" в %@
-      static func notificationsAddReactionMemberAcceptedMessage(_ value1: String, _ value2: String) -> String {
-        return String(format: NSLocalizedString("notifications.addReaction.member.accepted.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      static func notificationsAddReactionMemberOntimeMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("notifications.addReaction.member.ontime.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
       }
       
       /// Value: Название игры

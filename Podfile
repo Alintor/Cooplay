@@ -5,15 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'Cooplay' do
   use_frameworks!
 
-  pod 'Swinject', '~> 2.6.2'
-  pod 'SwinjectStoryboard', '~> 2.2.0'
   pod 'R.swift', '~> 5.0.3'
-  pod 'PluggableAppDelegate', '~> 1.3.0'
   pod 'SwiftDate', '~> 7.0.0'
-  pod 'DTTableViewManager', '~> 11.0.0'
-  pod 'DTCollectionViewManager', '~> 11.0.0'
   pod 'iCarousel', '~> 1.8.3'
-  pod 'KDCalendar', '~> 1.8.9'
   pod 'Moya', '~> 13.0.1'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Firebase/Analytics'
@@ -24,7 +18,6 @@ target 'Cooplay' do
   pod 'Firebase/Functions'
   pod 'FirebaseCrashlytics'
   pod 'Firebase/Storage'
-  pod 'UIImageColors'
   pod 'Kingfisher/SwiftUI'
   pod 'GoogleSignIn'
 
