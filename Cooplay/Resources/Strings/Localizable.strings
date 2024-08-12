@@ -90,11 +90,11 @@
 "notifications.addReaction.me.declined.message" = "На ваш статус \"не пойду\" в %@";
 "notifications.addReaction.me.invited.message" = "На ваш статус \"приглашен\" в %@";
 "notifications.addReaction.me.unknown.message" = "На ваш неизвестный для его версии приложения статус в %@";
-"notifications.addReaction.member.accepted.message" = "На статус участника %@ \"приду вовремя\" в %@";
-"notifications.addReaction.member.ontime.message" = "На статус участника %@ \"возможно, пойду\" в %@";
-"notifications.addReaction.member.maybe.message" = "На статус участника %@ \"опоздаю\" в %@";
-"notifications.addReaction.member.late.message" = "На статус участника %@ \"предложил другое время\" в %@";
-"notifications.addReaction.member.suggestDate.message" = "На статус участника %@ \"пойду\" в %@";
+"notifications.addReaction.member.accepted.message" = "На статус участника %@ \"пойду\" в %@";
+"notifications.addReaction.member.ontime.message" = "На статус участника %@ \"приду вовремя\" в %@";
+"notifications.addReaction.member.maybe.message" = "На статус участника %@ \"возможно, пойду\" в %@";
+"notifications.addReaction.member.late.message" = "На статус участника %@ \"опоздаю\" в %@";
+"notifications.addReaction.member.suggestDate.message" = "На статус участника %@ \"предложил другое время\" в %@";
 "notifications.addReaction.member.declined.message" = "На статус участника %@ \"не пойду\" в %@";
 "notifications.addReaction.member.invited.message" = "На статус участника %@ \"приглашен\" в %@";
 "notifications.addReaction.member.unknown.message" = "На неизвестный для его версии приложения статус участника %@ в %@";

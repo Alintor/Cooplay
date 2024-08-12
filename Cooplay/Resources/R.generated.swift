@@ -804,20 +804,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
     /// Nib `AvatarView`.
     static let avatarView = _R.nib._AvatarView()
-    /// Nib `NewEventGameCell`.
-    static let newEventGameCell = _R.nib._NewEventGameCell()
-    /// Nib `NewEventMemberCell`.
-    static let newEventMemberCell = _R.nib._NewEventMemberCell()
-    /// Nib `SearchEmptyResultCell`.
-    static let searchEmptyResultCell = _R.nib._SearchEmptyResultCell()
-    /// Nib `SearchGameCell`.
-    static let searchGameCell = _R.nib._SearchGameCell()
-    /// Nib `SearchMembersCell`.
-    static let searchMembersCell = _R.nib._SearchMembersCell()
     
     /// `UINib(name: "AvatarView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avatarView) instead")
@@ -825,108 +815,21 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.avatarView)
     }
     
-    /// `UINib(name: "NewEventGameCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.newEventGameCell) instead")
-    static func newEventGameCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.newEventGameCell)
-    }
-    
-    /// `UINib(name: "NewEventMemberCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.newEventMemberCell) instead")
-    static func newEventMemberCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.newEventMemberCell)
-    }
-    
-    /// `UINib(name: "SearchEmptyResultCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.searchEmptyResultCell) instead")
-    static func searchEmptyResultCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.searchEmptyResultCell)
-    }
-    
-    /// `UINib(name: "SearchGameCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.searchGameCell) instead")
-    static func searchGameCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.searchGameCell)
-    }
-    
-    /// `UINib(name: "SearchMembersCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.searchMembersCell) instead")
-    static func searchMembersCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.searchMembersCell)
-    }
-    
     static func avatarView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avatarView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
-    static func newEventGameCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventGameCell? {
-      return R.nib.newEventGameCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventGameCell
-    }
-    
-    static func newEventMemberCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventMemberCell? {
-      return R.nib.newEventMemberCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventMemberCell
-    }
-    
-    static func searchEmptyResultCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchEmptyResultCell? {
-      return R.nib.searchEmptyResultCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchEmptyResultCell
-    }
-    
-    static func searchGameCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchGameCell? {
-      return R.nib.searchGameCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchGameCell
-    }
-    
-    static func searchMembersCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchMembersCell? {
-      return R.nib.searchMembersCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchMembersCell
-    }
-    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
-  struct reuseIdentifier {
-    /// Reuse identifier `NewEventGameCell`.
-    static let newEventGameCell: Rswift.ReuseIdentifier<NewEventGameCell> = Rswift.ReuseIdentifier(identifier: "NewEventGameCell")
-    /// Reuse identifier `NewEventMemberCell`.
-    static let newEventMemberCell: Rswift.ReuseIdentifier<NewEventMemberCell> = Rswift.ReuseIdentifier(identifier: "NewEventMemberCell")
-    /// Reuse identifier `SearchEmptyResultCell`.
-    static let searchEmptyResultCell: Rswift.ReuseIdentifier<SearchEmptyResultCell> = Rswift.ReuseIdentifier(identifier: "SearchEmptyResultCell")
-    /// Reuse identifier `SearchGameCell`.
-    static let searchGameCell: Rswift.ReuseIdentifier<SearchGameCell> = Rswift.ReuseIdentifier(identifier: "SearchGameCell")
-    /// Reuse identifier `SearchMembersCell`.
-    static let searchMembersCell: Rswift.ReuseIdentifier<SearchMembersCell> = Rswift.ReuseIdentifier(identifier: "SearchMembersCell")
-    
-    fileprivate init() {}
-  }
-  
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 1 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
-    /// Storyboard `NewEvent`.
-    static let newEvent = _R.storyboard.newEvent()
-    /// Storyboard `SearchGame`.
-    static let searchGame = _R.storyboard.searchGame()
-    /// Storyboard `SearchMembers`.
-    static let searchMembers = _R.storyboard.searchMembers()
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
-    }
-    
-    /// `UIStoryboard(name: "NewEvent", bundle: ...)`
-    static func newEvent(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.newEvent)
-    }
-    
-    /// `UIStoryboard(name: "SearchGame", bundle: ...)`
-    static func searchGame(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.searchGame)
-    }
-    
-    /// `UIStoryboard(name: "SearchMembers", bundle: ...)`
-    static func searchMembers(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.searchMembers)
     }
     
     fileprivate init() {}
@@ -3002,17 +2905,9 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
-    try nib.validate()
   }
   
-  struct nib: Rswift.Validatable {
-    static func validate() throws {
-      try _NewEventGameCell.validate()
-      try _NewEventMemberCell.validate()
-      try _SearchGameCell.validate()
-      try _SearchMembersCell.validate()
-    }
-    
+  struct nib {
     struct _AvatarView: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "AvatarView"
@@ -3024,120 +2919,12 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _NewEventGameCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = NewEventGameCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "NewEventGameCell"
-      let name = "NewEventGameCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventGameCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventGameCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "status.small.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.accepted' is used in nib 'NewEventGameCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventGameCell', but couldn't be loaded.") }
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _NewEventMemberCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = NewEventMemberCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "NewEventMemberCell"
-      let name = "NewEventMemberCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewEventMemberCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewEventMemberCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "status.small.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.small.accepted' is used in nib 'NewEventMemberCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'NewEventMemberCell', but couldn't be loaded.") }
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _SearchEmptyResultCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = SearchEmptyResultCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "SearchEmptyResultCell"
-      let name = "SearchEmptyResultCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchEmptyResultCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchEmptyResultCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _SearchGameCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = SearchGameCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "SearchGameCell"
-      let name = "SearchGameCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchGameCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchGameCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'SearchGameCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'SearchGameCell', but couldn't be loaded.") }
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _SearchMembersCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = SearchMembersCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "SearchMembersCell"
-      let name = "SearchMembersCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SearchMembersCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SearchMembersCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "status.normal.accepted", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'status.normal.accepted' is used in nib 'SearchMembersCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'SearchMembersCell', but couldn't be loaded.") }
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
     fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try launchScreen.validate()
-      try newEvent.validate()
-      try searchGame.validate()
-      try searchMembers.validate()
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -3151,79 +2938,6 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct newEvent: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = NewEventViewController
-      
-      let bundle = R.hostingBundle
-      let name = "NewEvent"
-      let newEventViewController = StoryboardViewControllerResource<NewEventViewController>(identifier: "NewEventViewController")
-      
-      func newEventViewController(_: Void = ()) -> NewEventViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: newEventViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.calendar", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.calendar' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.primary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.primary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text.secondary", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text.secondary' is used in storyboard 'NewEvent', but couldn't be loaded.") }
-        }
-        if _R.storyboard.newEvent().newEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newEventViewController' could not be loaded from storyboard 'NewEvent' as 'NewEventViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct searchGame: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = SearchGameViewController
-      
-      let bundle = R.hostingBundle
-      let name = "SearchGame"
-      let searchGameViewController = StoryboardViewControllerResource<SearchGameViewController>(identifier: "SearchGameViewController")
-      
-      func searchGameViewController(_: Void = ()) -> SearchGameViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchGameViewController)
-      }
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchGame', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchGame', but couldn't be loaded.") }
-        }
-        if _R.storyboard.searchGame().searchGameViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchGameViewController' could not be loaded from storyboard 'SearchGame' as 'SearchGameViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct searchMembers: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = SearchMembersViewController
-      
-      let bundle = R.hostingBundle
-      let name = "SearchMembers"
-      let searchMembersViewController = StoryboardViewControllerResource<SearchMembersViewController>(identifier: "SearchMembersViewController")
-      
-      func searchMembersViewController(_: Void = ()) -> SearchMembersViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchMembersViewController)
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "common.link", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'common.link' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-          if UIKit.UIColor(named: "action.accent", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'action.accent' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "block", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'block' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "shape.background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shape.background' is used in storyboard 'SearchMembers', but couldn't be loaded.") }
-        }
-        if _R.storyboard.searchMembers().searchMembersViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchMembersViewController' could not be loaded from storyboard 'SearchMembers' as 'SearchMembersViewController'.") }
       }
       
       fileprivate init() {}
