@@ -32,9 +32,9 @@ struct NewEventRequest: Codable {
             let minute = components.minute,
             var newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: currentDate)
         else { return }
-        let minimumDate = Date() + 10.minutes
+        let minimumDate = Date() + 5.minutes
         if newDate < minimumDate {
-            newDate = minimumDate
+            newDate = minimumDate.rounded(minutes: 5, rounding: .ceil)
         }
         date = newDate.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
     }
@@ -47,9 +47,9 @@ struct NewEventRequest: Codable {
             let minute = components.minute,
             var newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: date)
         else { return }
-        let minimumDate = Date() + 10.minutes
+        let minimumDate = Date() + 5.minutes
         if newDate < minimumDate {
-            newDate = minimumDate
+            newDate = minimumDate.rounded(minutes: 5, rounding: .ceil)
         }
         self.date = newDate.toString(.custom(GlobalConstant.Format.Date.serverDate.rawValue))
     }

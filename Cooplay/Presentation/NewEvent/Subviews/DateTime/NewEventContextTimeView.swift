@@ -38,7 +38,10 @@ struct NewEventContextTimeView: View {
                     DatePicker(
                         "",
                         selection: $timeDate,
-                        in: .init(uncheckedBounds: (Date() + 10.minutes, Date() + 3.months)),
+                        in: .init(uncheckedBounds: (
+                            (Date() + 5.minutes).rounded(minutes: 5, rounding: .ceil), 
+                            (Date() + 3.months).rounded(minutes: 5, rounding: .floor)
+                        )),
                         displayedComponents: .hourAndMinute
                     )
                     .datePickerStyle(.wheel)
