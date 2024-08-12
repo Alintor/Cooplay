@@ -145,8 +145,7 @@
 		A87C38222BF608FC00A86DE2 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87C38212BF608FC00A86DE2 /* AuthProvider.swift */; };
 		A87CF40D23E03CD8004189D3 /* GamesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF40C23E03CD8004189D3 /* GamesService.swift */; };
 		A87CF41123E03D5C004189D3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41023E03D5C004189D3 /* UserService.swift */; };
-		A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */; };
-		A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */; };
+		A87CF42023E12742004189D3 /* NewEventGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF41F23E12742004189D3 /* NewEventGameViewModel.swift */; };
 		A87CF44423E97AB5004189D3 /* SearchGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF44323E97AB5004189D3 /* SearchGameCellViewModel.swift */; };
 		A87CF44923EA6A57004189D3 /* SearchSectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF44823EA6A57004189D3 /* SearchSectionHeaderViewModel.swift */; };
 		A87CF45E23EAC718004189D3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF45D23EAC718004189D3 /* UITableView.swift */; };
@@ -156,7 +155,7 @@
 		A87CF47723EC12C8004189D3 /* APIRequestSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47623EC12C8004189D3 /* APIRequestSpecification.swift */; };
 		A87CF47E23EC1884004189D3 /* GamesSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF47D23EC1884004189D3 /* GamesSpecification.swift */; };
 		A87CF48B23ED6C82004189D3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF48A23ED6C82004189D3 /* Configuration.swift */; };
-		A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */; };
+		A87CF49423ED786F004189D3 /* NewEventMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87CF49323ED786F004189D3 /* NewEventMemberViewModel.swift */; };
 		A87E2EE32B09F7490095DDD3 /* MemberContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */; };
 		A87E2EE52B09FAED0095DDD3 /* EventDetailsMemberContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */; };
 		A87E2EE72B0B2A450095DDD3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87E2EE62B0B2A450095DDD3 /* App.swift */; };
@@ -450,8 +449,7 @@
 		A87C38212BF608FC00A86DE2 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		A87CF40C23E03CD8004189D3 /* GamesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesService.swift; sourceTree = "<group>"; };
 		A87CF41023E03D5C004189D3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameCellViewModel.swift; sourceTree = "<group>"; };
-		A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCellViewModel.swift; sourceTree = "<group>"; };
+		A87CF41F23E12742004189D3 /* NewEventGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventGameViewModel.swift; sourceTree = "<group>"; };
 		A87CF44323E97AB5004189D3 /* SearchGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameCellViewModel.swift; sourceTree = "<group>"; };
 		A87CF44823EA6A57004189D3 /* SearchSectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionHeaderViewModel.swift; sourceTree = "<group>"; };
 		A87CF45D23EAC718004189D3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -462,7 +460,7 @@
 		A87CF47D23EC1884004189D3 /* GamesSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSpecification.swift; sourceTree = "<group>"; };
 		A87CF48923ED6B60004189D3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A87CF48A23ED6C82004189D3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberCellViewModel.swift; sourceTree = "<group>"; };
+		A87CF49323ED786F004189D3 /* NewEventMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventMemberViewModel.swift; sourceTree = "<group>"; };
 		A87E2EE22B09F7490095DDD3 /* MemberContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberContextView.swift; sourceTree = "<group>"; };
 		A87E2EE42B09FAED0095DDD3 /* EventDetailsMemberContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsMemberContext.swift; sourceTree = "<group>"; };
 		A87E2EE62B0B2A450095DDD3 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -1067,9 +1065,8 @@
 			isa = PBXGroup;
 			children = (
 				A833EF6523D811EE009FCD73 /* NewEventDayDateViewModel.swift */,
-				A87CF42123E128C4004189D3 /* NewEventCellViewModel.swift */,
-				A87CF41F23E12742004189D3 /* NewEventGameCellViewModel.swift */,
-				A87CF49323ED786F004189D3 /* NewEventMemberCellViewModel.swift */,
+				A87CF41F23E12742004189D3 /* NewEventGameViewModel.swift */,
+				A87CF49323ED786F004189D3 /* NewEventMemberViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2195,7 +2192,6 @@
 				A82FF2B523460E7900EE1807 /* GlobalConstants.swift in Sources */,
 				A8A844672C2EC0F100851489 /* NewEventGameItemView.swift in Sources */,
 				A89840AB2C07110C00E30549 /* DeleteAccountView.swift in Sources */,
-				A87CF42223E128C4004189D3 /* NewEventCellViewModel.swift in Sources */,
 				A8BE18332B01E7210039634E /* EventsSectionHeader.swift in Sources */,
 				A8301D3626AACFB700519768 /* UIBezierPath.swift in Sources */,
 				A84694F923FE329200139CF4 /* SearchMembersCellViewModel.swift in Sources */,
@@ -2214,7 +2210,7 @@
 				A8A383F928C39FFC001B22EC /* Playing.swift in Sources */,
 				A89F972A24BED14B0036B155 /* DefaultsStorage.swift in Sources */,
 				A87CF46123EACBD3004189D3 /* SearchEmptyResultCellViewModel.swift in Sources */,
-				A87CF42023E12742004189D3 /* NewEventGameCellViewModel.swift in Sources */,
+				A87CF42023E12742004189D3 /* NewEventGameViewModel.swift in Sources */,
 				A8A844622C2E88B700851489 /* NewEventSkeletonGamesView.swift in Sources */,
 				A8C3079A2B9F0E4B00907B56 /* AccountSettingsView.swift in Sources */,
 				A824C9E3273FCA10000E61A1 /* EventDetailsMemberViewModel.swift in Sources */,
@@ -2294,7 +2290,7 @@
 				A86DBC7A2C5B7C1700252F0A /* OnboardingCardView.swift in Sources */,
 				A824C9D7273E89B5000E61A1 /* ProfileInfoView.swift in Sources */,
 				A824C9EF2742BAE6000E61A1 /* EventDetailsMemberView.swift in Sources */,
-				A87CF49423ED786F004189D3 /* NewEventMemberCellViewModel.swift in Sources */,
+				A87CF49423ED786F004189D3 /* NewEventMemberViewModel.swift in Sources */,
 				A8A0F0F92AFE43A200997DEA /* RectHandler.swift in Sources */,
 				A863E3C92B68C5270021B405 /* AuthorizationMenuView.swift in Sources */,
 				A8EF29522BD25D2600388045 /* ResetPasswordView.swift in Sources */,

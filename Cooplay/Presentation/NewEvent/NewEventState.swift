@@ -23,8 +23,8 @@ class NewEventState: ObservableObject {
     
     private let store: Store
     private let eventService: EventServiceType
-    @Published var games: [NewEventGameCellViewModel]?
-    @Published var members: [NewEventMemberCellViewModel]?
+    @Published var games: [NewEventGameViewModel]?
+    @Published var members: [NewEventMemberViewModel]?
     var dayDate: DayDate {
         guard let date = request.getDate() else { return .today }
         if Calendar.current.isDateInToday(date) {
@@ -65,11 +65,11 @@ class NewEventState: ObservableObject {
             do {
                 let data = try await eventService.fetchOftenData()
                 await MainActor.run {
-                    games = data.games.map({ NewEventGameCellViewModel(model: $0, isSelected: false, selectAction: nil)})
+                    games = data.games.map({ NewEventGameViewModel(model: $0, isSelected: false)})
                     if let game = data.games.first {
                         didSelectGame(game)
                     }
-                    members = data.members.map({ NewEventMemberCellViewModel(model: $0, isSelected: false, selectAction: nil)})
+                    members = data.members.map({ NewEventMemberViewModel(model: $0, isSelected: false)})
                     request.setTime(data.time ?? GlobalConstant.defaultEventTime)
                 }
             } catch {
@@ -115,7 +115,7 @@ class NewEventState: ObservableObject {
             viewModel.isSelected = true
             games[index] = viewModel
         } else {
-            let newViewModel = NewEventGameCellViewModel(model: game, isSelected: true, selectAction: nil)
+            let newViewModel = NewEventGameViewModel(model: game, isSelected: true)
             games.insert(newViewModel, at: 0)
         }
         self.games = games
@@ -127,7 +127,7 @@ class NewEventState: ObservableObject {
             viewModel.isSelected = forceSelect ? true : !viewModel.isSelected
             members?[index] = viewModel
         } else {
-            let newViewModel = NewEventMemberCellViewModel(model: member, isSelected: true, selectAction: nil)
+            let newViewModel = NewEventMemberViewModel(model: member, isSelected: true)
             members?.insert(newViewModel, at: 0)
         }
         let selectedMembers = members?.filter({ $0.isSelected }).map({ $0.model }) ?? []

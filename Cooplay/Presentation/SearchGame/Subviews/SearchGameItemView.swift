@@ -11,7 +11,7 @@ import struct Kingfisher.KFImage
 
 struct SearchGameItemView: View {
     
-    let viewModel: NewEventGameCellViewModel
+    let viewModel: NewEventGameViewModel
     let selectedOpacity = 0.5
     
     var body: some View {

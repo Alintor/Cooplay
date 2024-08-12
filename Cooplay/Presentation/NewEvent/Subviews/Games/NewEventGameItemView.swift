@@ -11,7 +11,7 @@ import struct Kingfisher.KFImage
 
 struct NewEventGameItemView: View {
     
-    let model: NewEventGameCellViewModel
+    let model: NewEventGameViewModel
     
     var body: some View {
         ZStack {

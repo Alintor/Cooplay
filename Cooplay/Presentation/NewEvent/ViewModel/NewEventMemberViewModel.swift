@@ -8,31 +8,28 @@
 
 import Foundation
 
-struct NewEventMemberCellViewModel: NewEventCellViewModel, Equatable {
+struct NewEventMemberViewModel: Equatable {
     
     var name: String
     var avatarViewModel: AvatarViewModel
     var isSelected: Bool
     var isBlocked: Bool
-    var prevState: Bool?
-    var selectAction: ((_ isSelected: Bool) -> Void)?
     
     let model: User
     
-    init(model: User, isSelected: Bool, isBlocked: Bool, selectAction: ((_ isSelected: Bool) -> Void)?) {
+    init(model: User, isSelected: Bool, isBlocked: Bool) {
         self.model = model
-        self.selectAction = selectAction
         self.isSelected = isSelected
         self.isBlocked = isBlocked
         name = model.name
         avatarViewModel = AvatarViewModel(with: model)
     }
     
-    init(model: User, isSelected: Bool, selectAction: ((Bool) -> Void)?) {
-        self.init(model: model, isSelected: isSelected, isBlocked: false, selectAction: selectAction)
+    init(model: User, isSelected: Bool) {
+        self.init(model: model, isSelected: isSelected, isBlocked: false)
     }
     
-    static func == (lhs: NewEventMemberCellViewModel, rhs: NewEventMemberCellViewModel) -> Bool {
+    static func == (lhs: NewEventMemberViewModel, rhs: NewEventMemberViewModel) -> Bool {
         lhs.model == rhs.model && lhs.isSelected == rhs.isSelected
     }
     

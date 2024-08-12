@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NewEventMemberItemView: View {
     
-    let model: NewEventMemberCellViewModel
+    let model: NewEventMemberViewModel
     
     var body: some View {
         VStack {

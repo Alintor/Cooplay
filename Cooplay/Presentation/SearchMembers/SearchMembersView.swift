@@ -130,7 +130,7 @@ struct SearchMembersView: View {
         }
     }
     
-    func membersList(_ members: [NewEventMemberCellViewModel], title: String) -> some View {
+    func membersList(_ members: [NewEventMemberViewModel], title: String) -> some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {

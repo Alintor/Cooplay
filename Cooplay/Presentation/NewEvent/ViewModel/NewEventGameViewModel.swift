@@ -8,23 +8,20 @@
 
 import UIKit
 
-struct NewEventGameCellViewModel: NewEventCellViewModel, Equatable {
+struct NewEventGameViewModel: Equatable {
 
     let coverPath: String?
     var isSelected: Bool
-    var prevState: Bool?
-    let selectAction: ((_ isSelected: Bool) -> Void)?
     
     let model: Game
     
-    init(model: Game, isSelected: Bool, selectAction: ((_ isSelected: Bool) -> Void)?) {
+    init(model: Game, isSelected: Bool) {
         self.model = model
-        self.selectAction = selectAction
         coverPath = model.coverPath
         self.isSelected = isSelected
     }
     
-    static func == (lhs: NewEventGameCellViewModel, rhs: NewEventGameCellViewModel) -> Bool {
+    static func == (lhs: NewEventGameViewModel, rhs: NewEventGameViewModel) -> Bool {
         lhs.model == rhs.model && lhs.isSelected == rhs.isSelected
     }
     

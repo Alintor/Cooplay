@@ -15,8 +15,8 @@ class SearchGameState: ObservableObject {
     
     private let eventService: EventServiceType
     private let gamesService: GamesServiceType
-    @Published var oftenGames: [NewEventGameCellViewModel]?
-    @Published var searchResultGames: [NewEventGameCellViewModel]?
+    @Published var oftenGames: [NewEventGameViewModel]?
+    @Published var searchResultGames: [NewEventGameViewModel]?
     @Published var showProgress: Bool = false
     var selectedGame: Game?
     var close: (() -> Void)?
@@ -36,7 +36,7 @@ class SearchGameState: ObservableObject {
         self.selectionHandler = selectionHandler
         self.selectedGame = selectedGame
         if let oftenGames {
-            self.oftenGames = oftenGames.map({ NewEventGameCellViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug, selectAction: nil)})
+            self.oftenGames = oftenGames.map({ NewEventGameViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug)})
         }
     }
     
@@ -49,7 +49,7 @@ class SearchGameState: ObservableObject {
             do {
                 let data = try await eventService.fetchOftenData()
                 await MainActor.run {
-                    oftenGames = data.games.map({ NewEventGameCellViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug, selectAction: nil)})
+                    oftenGames = data.games.map({ NewEventGameViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug)})
                 }
             } catch {
                 await MainActor.run {
@@ -68,7 +68,7 @@ class SearchGameState: ObservableObject {
                 let games = try await gamesService.searchGame(name)
                 await MainActor.run {
                     showProgress = false
-                    searchResultGames = games.map({ NewEventGameCellViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug, selectAction: nil)})
+                    searchResultGames = games.map({ NewEventGameViewModel(model: $0, isSelected: selectedGame?.slug == $0.slug)})
                 }
             } catch {
                 await MainActor.run {

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchMemberItemView: View {
     
-    let viewModel: NewEventMemberCellViewModel
+    let viewModel: NewEventMemberViewModel
     let blockedOpacity = 0.5
     
     var body: some View {

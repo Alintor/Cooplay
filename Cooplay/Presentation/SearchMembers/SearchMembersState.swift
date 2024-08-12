@@ -27,28 +27,26 @@ class SearchMembersState: ObservableObject {
     @Published var showProgress: Bool = false
     @Published var selectedMembers: [User]
     @Published var shareInfo: ShareInfo?
-    var selectedMembersViewModels: [NewEventMemberCellViewModel] {
+    var selectedMembersViewModels: [NewEventMemberViewModel] {
         selectedMembers.map { user in
-            NewEventMemberCellViewModel(model: user, isSelected: true, isBlocked: blockedMembers.contains(where: { $0 == user }), selectAction: nil)
+            NewEventMemberViewModel(model: user, isSelected: true, isBlocked: blockedMembers.contains(where: { $0 == user }))
         }
     }
-    var oftenMembersViewModels: [NewEventMemberCellViewModel]? {
+    var oftenMembersViewModels: [NewEventMemberViewModel]? {
         oftenMembers?.map({ user in
-            NewEventMemberCellViewModel(
+            NewEventMemberViewModel(
                 model: user,
                 isSelected: selectedMembers.contains(where: { $0 == user }),
-                isBlocked: blockedMembers.contains(where: { $0 == user }),
-                selectAction: nil
+                isBlocked: blockedMembers.contains(where: { $0 == user })
             )
         })
     }
-    var searchResultMembersViewModels: [NewEventMemberCellViewModel]? {
+    var searchResultMembersViewModels: [NewEventMemberViewModel]? {
         searchResultMembers?.map({ user in
-            NewEventMemberCellViewModel(
+            NewEventMemberViewModel(
                 model: user,
                 isSelected: selectedMembers.contains(where: { $0 == user }),
-                isBlocked: blockedMembers.contains(where: { $0 == user }),
-                selectAction: nil
+                isBlocked: blockedMembers.contains(where: { $0 == user })
             )
         })
     }

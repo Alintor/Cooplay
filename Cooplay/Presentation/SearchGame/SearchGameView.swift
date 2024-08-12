@@ -82,7 +82,7 @@ struct SearchGameView: View {
         .padding()
     }
     
-    func gamesList(_ games: [NewEventGameCellViewModel], title: String) -> some View {
+    func gamesList(_ games: [NewEventGameViewModel], title: String) -> some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 Section {
